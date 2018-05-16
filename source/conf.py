@@ -20,7 +20,7 @@ import sphinx_rtd_theme
 
 # -- Project information -----------------------------------------------------
 
-project = u'fong'
+project = u'SphinxTheme'
 copyright = u'2018, fong'
 author = u'fong'
 

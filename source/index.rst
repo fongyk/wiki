@@ -8,7 +8,7 @@ Welcome to fong's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :glob:
 	
 	beginning/index
     base/index

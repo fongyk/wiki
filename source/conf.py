@@ -83,7 +83,7 @@ html_theme = 'sphinx_rtd_theme'
 #
 # html_theme_options = {}
 
-html_show_sourcelink = True
+html_show_sourcelink = False
 
 # html_context = {
 # "display_github": True, # Add 'Edit on Github' link instead of 'View page source'

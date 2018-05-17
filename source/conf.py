@@ -84,8 +84,9 @@ html_theme = 'sphinx_rtd_theme'
 # html_theme_options = {}
 
 html_show_sourcelink = True
+
 html_context = {
-"display_github": False,
+"display_github": True,
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,

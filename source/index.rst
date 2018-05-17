@@ -10,6 +10,9 @@
    :maxdepth: 2
    :glob:
 
-   beginning/index
-   base/index
-   tool/index
+   cpp/index
+   python/index
+   linux/index
+   machineLearning/index
+   deepLearning/index
+   else/index

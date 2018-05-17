@@ -17,3 +17,4 @@
    deepLearning/index
    else/index
    test
+   test2

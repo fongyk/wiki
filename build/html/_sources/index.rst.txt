@@ -16,3 +16,4 @@
    machineLearning/index
    deepLearning/index
    else/index
+   test

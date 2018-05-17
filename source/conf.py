@@ -118,12 +118,17 @@ latex_elements = {
 
     # Additional stuff for the LaTeX preamble.
     #
-    # 'preamble': '',
+    'preamble': '''
+	    % Use some font with UTF-8 support with XeLaTeX
+        \\usepackage[UTF8]{ctex}
+     '''
 
     # Latex figure (float) alignment
     #
     # 'figure_align': 'htbp',
 }
+
+# latex_elements['preamble']  += '\\usepackage[UTF8]{ctex}'
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,

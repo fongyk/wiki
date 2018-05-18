@@ -74,8 +74,7 @@ command
 
 `text` 这里是 ``python`` :
 
-.. code-block:: python
-    :linenos:
+.. code:: python
 
     def foo():
         print "Love Python, Love FreeDome"
@@ -95,7 +94,7 @@ command
 .. highlight:: python
     :linenothreshold: 1
 
-.. code-block:: python
+.. code-block:: guess
     :linenos:
 
     # 测试注释

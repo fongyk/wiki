@@ -17,6 +17,5 @@
    linux/index
    machineLearning/index
    deepLearning/index
+   link/index
    else/index
-   test
-   test2

@@ -92,8 +92,8 @@ command
 
 來源：简书
 
-.. .. highlight:: python
-..     :linenothreshold: 1
+.. highlight:: python
+    :linenothreshold: 1
 
 .. code-block:: python
     :linenos:

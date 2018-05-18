@@ -15,6 +15,8 @@ makefile的规则
         ...
         ...
 
+下面是几个定义：
+
 target
     可以是一个object file（目标文件），也可以是一个执行文件，还可以是一个标签（label）。对
     于标签这种特性，在后续的“伪目标”章节中会有叙述。
@@ -40,7 +42,7 @@ command
 的主线和核心，但要写好一个makefile还不够，我会在后面一点一点地结合我的工作经验给你慢慢道来。内
 容还多着呢。
 
-Since Pythagoras, we know that :math:`a^2 + b^2 = c^2`.
+行内公式使用 ``math`` 这个role :math:`a^2 + b^2 = c^2`.
 
 .. math::
 
@@ -54,8 +56,8 @@ Since Pythagoras, we know that :math:`a^2 + b^2 = c^2`.
   X_k =  \sum_{n=0}^{N-1} x_n e^{-{i 2\pi k \frac{n}{N}}} \qquad k = 0,\dots,N-1.
 
 
-.. highlight:: c
-    :linenothreshold: 1
+.. .. highlight:: c
+..     :linenothreshold: 1
 
 这里是 ``C++`` :
 
@@ -90,8 +92,8 @@ Since Pythagoras, we know that :math:`a^2 + b^2 = c^2`.
 
 來源：简书
 
-.. highlight:: python
-    :linenothreshold: 1
+.. .. highlight:: python
+..     :linenothreshold: 1
 
 .. code-block:: python
     :linenos:

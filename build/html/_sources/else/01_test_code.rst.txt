@@ -74,8 +74,8 @@ command
    # Dumping data for table `item_table`
 
    INSERT INTO item_table VALUES (
-     0000000001, 0, 'Manual', '', '0.18.0',
-     'This is the manual for Mantis version 0.18.0.\r\n\r\nThe Mantis manual is modeled after the [url=http://www.php.net/manual/en/]PHP Manual[/url]. It is authored via the \\"manual\\" module in Mantis CVS.  You can always view/download the latest version of this manual from [url=http://mantisbt.sourceforge.net/manual/]here[/url].',
+   0000000001, 0, 'Manual', '', '0.18.0',
+   'This is the manual for Mantis version 0.18.0.\r\n\r\nThe Mantis manual is modeled after the [url=http://www.php.net/manual/en/]PHP Manual[/url]. It is authored via the \\"manual\\" module in Mantis CVS.  You can always view/download the latest version of this manual from [url=http://mantisbt.sourceforge.net/manual/]here[/url].',
      '', 1, 1, 20030811192655);
 
 .. highlight:: python

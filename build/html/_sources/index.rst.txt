@@ -10,7 +10,7 @@
     **本文中可能存在很多小错误，欢迎 PR。**
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: 目录
 
    cpp/index
@@ -19,4 +19,5 @@
    machineLearning/index
    deepLearning/index
    link/index
+   softwares/index
    else/index

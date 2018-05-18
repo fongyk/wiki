@@ -62,7 +62,7 @@ master_doc = 'index'
 # Usually you set "language" from the command line for these cases.
 language = 'python'
 
-highlight_language = "none"
+highlight_language = "python"
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.

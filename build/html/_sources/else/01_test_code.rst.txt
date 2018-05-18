@@ -88,7 +88,7 @@ command
     def foo():
         print "Love Python, Love FreeDome"
         print "E文标点,.0123456789,中文标点,. "
-        
+
 下面是javescipt::
 
   .. code:: javascript
@@ -96,3 +96,9 @@ command
       function whatever() {
           return "such color"
       }
+
+下面是python::
+  
+  def foo():
+      print "Love Python, Love FreeDome"
+      print "E文标点,.0123456789,中文标点,. "

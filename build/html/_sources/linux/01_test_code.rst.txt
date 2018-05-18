@@ -40,9 +40,21 @@ command
 的主线和核心，但要写好一个makefile还不够，我会在后面一点一点地结合我的工作经验给你慢慢道来。内
 容还多着呢。
 
-这里是--C++--
+``latex``测试::
 
-.. code-block:: c
+  X_k =  \sum_{n=0}^{N-1} x_n e^{-{i 2\pi k \frac{n}{N}}} \qquad k = 0,\dots,N-1.
+
+
+.. highlight::python
+    :linenothreshold: 1
+
+    def foo():
+        print "Love Python, Love FreeDome"
+        print "E文标点,.0123456789,中文标点,. "
+
+这里是``C++``
+
+.. code-block::c
   :linenos:
   :emphasize-lines: 3,6
 
@@ -57,11 +69,25 @@ command
   echo "Hello World!";
   echo "Hello World!";
 
-这里是--python--
+这里是``python``
 
-.. code-block:: python
+.. code-block::python
     :linenos:
 
     def foo():
         print "Love Python, Love FreeDome"
         print "E文标点,.0123456789,中文标点,. "
+
+如果数据库有问题, 执行下面的 ``SQL``::
+
+   # Dumping data for table `item_table`
+
+   INSERT INTO item_table VALUES (
+     0000000001, 0, 'Manual', '', '0.18.0',
+     'This is the manual for Mantis version 0.18.0.\r\n\r\nThe Mantis manual is modeled after the [url=http://www.php.net/manual/en/]PHP Manual[/url]. It is authored via the \\"manual\\" module in Mantis CVS.  You can always view/download the latest version of this manual from [url=http://mantisbt.sourceforge.net/manual/]here[/url].',
+     '', 1, 1, 20030811192655);
+
+作者：nummy
+链接：https://www.jianshu.com/p/f60e9be4781d
+來源：简书
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

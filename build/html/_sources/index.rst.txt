@@ -5,11 +5,12 @@
 
 文档
 ========
+.. note::
 
-**本文中可能存在很多小错误，欢迎 PR。**
+    **本文中可能存在很多小错误，欢迎 PR。**
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    :caption: 目录
 
    cpp/index

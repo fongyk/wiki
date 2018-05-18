@@ -193,47 +193,28 @@
 <p>说到底，makefile的东西就是这样一点，好像我的这篇文档也该结束了。呵呵。还不尽然，这是makefile
 的主线和核心，但要写好一个makefile还不够，我会在后面一点一点地结合我的工作经验给你慢慢道来。内
 容还多着呢。</p>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">latex</span></code> 测试:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X_k</span> <span class="o">=</span>  \<span class="n">sum_</span><span class="p">{</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">}</span><span class="o">^</span><span class="p">{</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">}</span> <span class="n">x_n</span> <span class="n">e</span><span class="o">^</span><span class="p">{</span><span class="o">-</span><span class="p">{</span><span class="n">i</span> <span class="mi">2</span>\<span class="n">pi</span> <span class="n">k</span> \<span class="n">frac</span><span class="p">{</span><span class="n">n</span><span class="p">}{</span><span class="n">N</span><span class="p">}}}</span> \<span class="n">qquad</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>\<span class="n">dots</span><span class="p">,</span><span class="n">N</span><span class="o">-</span><span class="mf">1.</span>
-</pre></div>
-</div>
-</div></blockquote>
-<p>这里是 <code class="docutils literal notranslate"><span class="pre">C++</span></code></p>
-<div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<p>Since Pythagoras, we know that <span class="math notranslate nohighlight">\(a^2 + b^2 = c^2\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}(a + b)^2  &amp;=  (a + b)(a + b) \\
+           &amp;=  a^2 + 2ab + b^2\end{split}\]</div>
+<p><code class="docutils literal notranslate"><span class="pre">latex</span></code> math测试:</p>
+<div class="math notranslate nohighlight">
+\[X_k =  \sum_{n=0}^{N-1} x_n e^{-{i 2\pi k \frac{n}{N}}} \qquad k = 0,\dots,N-1.\]</div>
+<p>这里是 <code class="docutils literal notranslate"><span class="pre">C++</span></code> :</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
 <span class="hll">  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
-</span>  <span class="kt">int</span> <span class="n">j</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="hll">
-</span><span class="n">echo</span> <span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
-<span class="n">echo</span> <span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
-<span class="n">echo</span> <span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
-<span class="n">echo</span> <span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
-<span class="n">echo</span> <span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
-<span class="n">echo</span> <span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
-<span class="n">echo</span> <span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
-<span class="n">echo</span> <span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
-<span class="n">echo</span> <span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
-<span class="n">echo</span> <span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
+</span><span class="hll">  <span class="kt">int</span> <span class="n">j</span><span class="p">;</span>
+</span><span class="p">}</span>
+<span class="c1">// 主函数注释</span>
 </pre></div>
 </td></tr></table></div>
-<p>这里是 <code class="docutils literal notranslate"><span class="pre">python</span></code></p>
+<p><cite>text</cite> 这里是 <code class="docutils literal notranslate"><span class="pre">python</span></code> :</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
@@ -258,7 +239,9 @@ INSERT INTO item_table VALUES (
 <p>來源：简书</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># 测试注释</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
     <span class="k">print</span> <span class="s2">&quot;Love Python, Love FreeDome&quot;</span>
     <span class="k">print</span> <span class="s2">&quot;E文标点,.0123456789,中文标点,. &quot;</span>
 </pre></div>
@@ -320,6 +303,7 @@ INSERT INTO item_table VALUES (
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

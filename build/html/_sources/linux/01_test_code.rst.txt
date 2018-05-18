@@ -40,7 +40,16 @@ command
 的主线和核心，但要写好一个makefile还不够，我会在后面一点一点地结合我的工作经验给你慢慢道来。内
 容还多着呢。
 
- ``latex`` 测试::
+Since Pythagoras, we know that :math:`a^2 + b^2 = c^2`.
+
+.. math::
+
+   (a + b)^2  &=  (a + b)(a + b) \\
+              &=  a^2 + 2ab + b^2
+
+``latex`` math测试:
+
+.. math::
 
   X_k =  \sum_{n=0}^{N-1} x_n e^{-{i 2\pi k \frac{n}{N}}} \qquad k = 0,\dots,N-1.
 
@@ -48,30 +57,20 @@ command
 .. highlight:: c
     :linenothreshold: 1
 
-这里是 ``C++``
+这里是 ``C++`` :
 
-.. code-block:: c
+.. code-block:: cpp
   :linenos:
-  :emphasize-lines: 3,6
+  :emphasize-lines: 3,4
 
   int main()
   {
     int i;
     int j;
   }
+  // 主函数注释
 
-  echo "Hello World!";
-  echo "Hello World!";
-  echo "Hello World!";
-  echo "Hello World!";
-  echo "Hello World!";
-  echo "Hello World!";
-  echo "Hello World!";
-  echo "Hello World!";
-  echo "Hello World!";
-  echo "Hello World!";
-
-这里是 ``python``
+`text` 这里是 ``python`` :
 
 .. code-block:: python
     :linenos:
@@ -97,6 +96,7 @@ command
 .. code-block:: python
     :linenos:
 
+    # 测试注释
     def foo():
         print "Love Python, Love FreeDome"
         print "E文标点,.0123456789,中文标点,. "

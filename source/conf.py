@@ -40,7 +40,10 @@ release = u'0.1.0'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-     'sphinx.ext.mathjax',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.autodoc',
+    'sphinx.ext.mathjax',
+    'sphinx.ext.viewcode',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -70,8 +73,8 @@ highlight_language = "python"
 exclude_patterns = []
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'sphinx'
-
+# pygments_style = 'sphinx'
+pygments_style = 'default'
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -86,7 +89,9 @@ html_theme = 'sphinx_rtd_theme'
 #
 # html_theme_options = {}
 
-html_show_sourcelink = False
+html_logo = "logo.jpg"
+
+html_show_sourcelink = True
 
 # html_context = {
 # "display_github": True, # Add 'Edit on Github' link instead of 'View page source'

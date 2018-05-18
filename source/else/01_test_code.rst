@@ -29,7 +29,7 @@ command
 
 ``echo "Hello World!";``
 
-行内公式使用 ``math`` 这个role:math:`a^2 + b^2 = c^2`.
+行内公式使用 ``math`` 这个role :math:`a^2 + b^2 = c^2`.
 
 .. math::
 
@@ -59,7 +59,7 @@ command
   }
   // 主函数注释
 
-斜体`text`
+斜体 `text`
 
 这里是 ``python`` :
 
@@ -88,9 +88,11 @@ command
     def foo():
         print "Love Python, Love FreeDome"
         print "E文标点,.0123456789,中文标点,. "
+        
+下面是javescipt::
 
-.. code:: javascript
+  .. code:: javascript
 
-    function whatever() {
-        return "such color"
-    }
+      function whatever() {
+          return "such color"
+      }

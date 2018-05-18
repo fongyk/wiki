@@ -193,25 +193,77 @@
 <p>说到底，makefile的东西就是这样一点，好像我的这篇文档也该结束了。呵呵。还不尽然，这是makefile
 的主线和核心，但要写好一个makefile还不够，我会在后面一点一点地结合我的工作经验给你慢慢道来。内
 容还多着呢。</p>
-<p><a href="#id2"><span class="problematic" id="id3">``</span></a>latex``测试:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">latex</span></code> 测试:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X_k</span> <span class="o">=</span>  \<span class="n">sum_</span><span class="p">{</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">}</span><span class="o">^</span><span class="p">{</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">}</span> <span class="n">x_n</span> <span class="n">e</span><span class="o">^</span><span class="p">{</span><span class="o">-</span><span class="p">{</span><span class="n">i</span> <span class="mi">2</span>\<span class="n">pi</span> <span class="n">k</span> \<span class="n">frac</span><span class="p">{</span><span class="n">n</span><span class="p">}{</span><span class="n">N</span><span class="p">}}}</span> \<span class="n">qquad</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>\<span class="n">dots</span><span class="p">,</span><span class="n">N</span><span class="o">-</span><span class="mf">1.</span>
 </pre></div>
 </div>
-<p>这里是``C++``</p>
-<p>这里是``python``</p>
-<p>如果数据库有问题, 执行下面的 <code class="docutils literal notranslate"><span class="pre">SQL</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dumping data for table `item_table`</span>
-
-<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">item_table</span> <span class="n">VALUES</span> <span class="p">(</span>
-  <span class="mi">0000000001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Manual&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;0.18.0&#39;</span><span class="p">,</span>
-  <span class="s1">&#39;This is the manual for Mantis version 0.18.0.</span><span class="se">\r\n\r\n</span><span class="s1">The Mantis manual is modeled after the [url=http://www.php.net/manual/en/]PHP Manual[/url]. It is authored via the </span><span class="se">\\</span><span class="s1">&quot;manual</span><span class="se">\\</span><span class="s1">&quot; module in Mantis CVS.  You can always view/download the latest version of this manual from [url=http://mantisbt.sourceforge.net/manual/]here[/url].&#39;</span><span class="p">,</span>
-  <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">20030811192655</span><span class="p">);</span>
+</div></blockquote>
+<p>这里是 <code class="docutils literal notranslate"><span class="pre">C++</span></code></p>
+<div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="hll">  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span>  <span class="kt">int</span> <span class="n">j</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="hll">
+</span><span class="n">echo</span> <span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
+<span class="n">echo</span> <span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
+<span class="n">echo</span> <span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
+<span class="n">echo</span> <span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
+<span class="n">echo</span> <span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
+<span class="n">echo</span> <span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
+<span class="n">echo</span> <span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
+<span class="n">echo</span> <span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
+<span class="n">echo</span> <span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
+<span class="n">echo</span> <span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
 </pre></div>
-</div>
-<p>作者：nummy
-链接：<a class="reference external" href="https://www.jianshu.com/p/f60e9be4781d">https://www.jianshu.com/p/f60e9be4781d</a>
-來源：简书
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</td></tr></table></div>
+<p>这里是 <code class="docutils literal notranslate"><span class="pre">python</span></code></p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s2">&quot;Love Python, Love FreeDome&quot;</span>
+    <span class="k">print</span> <span class="s2">&quot;E文标点,.0123456789,中文标点,. &quot;</span>
+</pre></div>
+</td></tr></table></div>
+<p>如果数据库有问题, 执行下面的 <code class="docutils literal notranslate"><span class="pre">SQL</span></code>:</p>
+<div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span># Dumping data for table `item_table`
+
+INSERT INTO item_table VALUES (
+  0000000001, 0, &#39;Manual&#39;, &#39;&#39;, &#39;0.18.0&#39;,
+  &#39;This is the manual for Mantis version 0.18.0.\r\n\r\nThe Mantis manual is modeled after the [url=http://www.php.net/manual/en/]PHP Manual[/url]. It is authored via the \\&quot;manual\\&quot; module in Mantis CVS.  You can always view/download the latest version of this manual from [url=http://mantisbt.sourceforge.net/manual/]here[/url].&#39;,
+  &#39;&#39;, 1, 1, 20030811192655);
+</pre></div>
+</td></tr></table></div>
+<p>來源：简书</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s2">&quot;Love Python, Love FreeDome&quot;</span>
+    <span class="k">print</span> <span class="s2">&quot;E文标点,.0123456789,中文标点,. &quot;</span>
+</pre></div>
+</td></tr></table></div>
+<p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
 </div>
 </div>
 

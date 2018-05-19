@@ -162,7 +162,7 @@
             
   <div class="section" id="rst">
 <h1>1. rst语法测试<a class="headerlink" href="#rst" title="Permalink to this headline">¶</a></h1>
-<p>makefile规则：</p>
+<p><code class="docutils literal notranslate"><span class="pre">makefile</span></code> 规则：</p>
 <div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">target ... </span><span class="o">:</span> <span class="n">prerequisites</span> ...
     <span class="nb">command</span>
     ...
@@ -184,16 +184,16 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>prerequisites中如果有一个以上的文件比target文件要新的话，command所定义的命令就会被执行。
 </pre></div>
 </div>
-<p>这就是makefile的规则，也就是makefile中最核心的内容。</p>
+<p>这就是``makefile`` 的规则，也就是``makefile`` 中最核心的内容。</p>
 <p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Hello</span> <span class="pre">World!&quot;;</span></code></p>
-<p>行内公式使用 <code class="docutils literal notranslate"><span class="pre">math</span></code> 这个role <span class="math notranslate nohighlight">\(a^2 + b^2 = c^2\)</span>.</p>
+<p>行内公式使用 <code class="docutils literal notranslate"><span class="pre">math</span></code> 这个``role``: <span class="math notranslate nohighlight">\(a^2 + b^2 = c^2\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}(a + b)^2  &amp;=  (a + b)(a + b) \\
            &amp;=  a^2 + 2ab + b^2\end{split}\]</div>
 <p><code class="docutils literal notranslate"><span class="pre">latex</span></code> math测试:</p>
 <div class="math notranslate nohighlight">
 \[X_k =  \sum_{n=0}^{N-1} x_n e^{-{i 2\pi k \frac{n}{N}}} \qquad k = 0,\dots,N-1.\]</div>
-<p>将高亮语言设置为C</p>
+<p>将高亮语言设置为``C``</p>
 <p>测试C:</p>
 <div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -221,7 +221,7 @@
 <p>测试python:</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pytorch</span>
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="k">print</span> <span class="s2">&quot;hello world&quot;</span>
 </pre></div>
@@ -235,14 +235,14 @@
 </pre></div>
 </td></tr></table></div>
 <p>如果数据库有问题, 执行下面的 <code class="docutils literal notranslate"><span class="pre">SQL</span></code>:</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="n">Dumping</span> <span class="k">data</span> <span class="k">for</span> <span class="k">table</span> <span class="o">`</span><span class="n">item_table</span><span class="o">`</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Dumping data for table `item_table`</span>
 <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">item_table</span> <span class="k">VALUES</span> <span class="p">(</span>
 <span class="mi">0000000001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Manual&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;0.18.0&#39;</span><span class="p">,</span>
 <span class="s1">&#39;This is the manual for Mantis version 0.18.0.\r\n\r\nThe Mantis manual is modeled after the [url=http://www.php.net/manual/en/]PHP Manual[/url]. It is authored via the \\&quot;manual\\&quot; module in Mantis CVS.  You can always view/download the latest version of this manual from [url=http://mantisbt.sourceforge.net/manual/]here[/url].&#39;</span><span class="p">,</span>
   <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">20030811192655</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>下面是python：</p>
+<p>下面是``python``：</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -252,7 +252,7 @@
     <span class="k">print</span> <span class="s2">&quot;E文标点,.0123456789,中文标点,. &quot;</span>
 </pre></div>
 </td></tr></table></div>
-<p>下面是javescipt:</p>
+<p>下面是 <code class="docutils literal notranslate"><span class="pre">javescipt</span></code> 的rst源码:</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -266,7 +266,7 @@
     <span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
-<p>下面是python (code-block):</p>
+<p>下面是``python`` (code-block):</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
@@ -274,7 +274,7 @@
     <span class="k">print</span> <span class="s2">&quot;E文标点,.0123456789,中文标点,. &quot;</span>
 </pre></div>
 </td></tr></table></div>
-<p>下面是bash:</p>
+<p>下面是``bash``:</p>
 <div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nb">cd</span> home

@@ -56,6 +56,7 @@ command
   {
     int i;
     int j;
+    return 1;
   }
   // 主函数注释
 
@@ -69,10 +70,11 @@ command
         print "Love Python, Love FreeDome"
         print "E文标点,.0123456789,中文标点,. "
 
-如果数据库有问题, 执行下面的 ``SQL``::
+如果数据库有问题, 执行下面的 ``SQL``:
+
+.. code-block:: sql
 
    # Dumping data for table `item_table`
-
    INSERT INTO item_table VALUES (
    0000000001, 0, 'Manual', '', '0.18.0',
    'This is the manual for Mantis version 0.18.0.\r\n\r\nThe Mantis manual is modeled after the [url=http://www.php.net/manual/en/]PHP Manual[/url]. It is authored via the \\"manual\\" module in Mantis CVS.  You can always view/download the latest version of this manual from [url=http://mantisbt.sourceforge.net/manual/]here[/url].',
@@ -81,7 +83,7 @@ command
 .. highlight:: python
     :linenothreshold: 1
 
-.. code-block:: guess
+.. code-block:: python
     :linenos:
 
     # 测试注释
@@ -102,3 +104,13 @@ command
   def foo():
       print "Love Python, Love FreeDome"
       print "E文标点,.0123456789,中文标点,. "
+
+下面是bash:
+
+.. code-block:: bash
+
+    cd home
+    mkdir filefolder
+    cd ..
+
+结束

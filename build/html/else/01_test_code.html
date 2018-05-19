@@ -89,6 +89,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">其他</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">1. rst语法测试</a></li>
 </ul>
@@ -198,11 +199,13 @@
 3
 4
 5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
 <span class="hll">  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
 </span><span class="hll">  <span class="kt">int</span> <span class="n">j</span><span class="p">;</span>
-</span><span class="p">}</span>
+</span>  <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
 <span class="c1">// 主函数注释</span>
 </pre></div>
 </td></tr></table></div>
@@ -216,26 +219,20 @@
 </pre></div>
 </td></tr></table></div>
 <p>如果数据库有问题, 执行下面的 <code class="docutils literal notranslate"><span class="pre">SQL</span></code>:</p>
-<div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span></span># Dumping data for table `item_table`
-
-INSERT INTO item_table VALUES (
-0000000001, 0, &#39;Manual&#39;, &#39;&#39;, &#39;0.18.0&#39;,
-&#39;This is the manual for Mantis version 0.18.0.\r\n\r\nThe Mantis manual is modeled after the [url=http://www.php.net/manual/en/]PHP Manual[/url]. It is authored via the \\&quot;manual\\&quot; module in Mantis CVS.  You can always view/download the latest version of this manual from [url=http://mantisbt.sourceforge.net/manual/]here[/url].&#39;,
-  &#39;&#39;, 1, 1, 20030811192655);
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">#</span> <span class="n">Dumping</span> <span class="k">data</span> <span class="k">for</span> <span class="k">table</span> <span class="o">`</span><span class="n">item_table</span><span class="o">`</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">item_table</span> <span class="k">VALUES</span> <span class="p">(</span>
+<span class="mi">0000000001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Manual&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;0.18.0&#39;</span><span class="p">,</span>
+<span class="s1">&#39;This is the manual for Mantis version 0.18.0.\r\n\r\nThe Mantis manual is modeled after the [url=http://www.php.net/manual/en/]PHP Manual[/url]. It is authored via the \\&quot;manual\\&quot; module in Mantis CVS.  You can always view/download the latest version of this manual from [url=http://mantisbt.sourceforge.net/manual/]here[/url].&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">20030811192655</span><span class="p">);</span>
 </pre></div>
-</td></tr></table></div>
-<div class="highlight-guess notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+</div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span># 测试注释
-def foo():
-    print &quot;Love Python, Love FreeDome&quot;
-    print &quot;E文标点,.0123456789,中文标点,. &quot;
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># 测试注释</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s2">&quot;Love Python, Love FreeDome&quot;</span>
+    <span class="k">print</span> <span class="s2">&quot;E文标点,.0123456789,中文标点,. &quot;</span>
 </pre></div>
 </td></tr></table></div>
 <p>下面是javescipt:</p>
@@ -258,6 +255,13 @@ def foo():
     <span class="k">print</span> <span class="s2">&quot;E文标点,.0123456789,中文标点,. &quot;</span>
 </pre></div>
 </td></tr></table></div>
+<p>下面是bash:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> home
+mkdir filefolder
+<span class="nb">cd</span> ..
+</pre></div>
+</div>
+<p>结束</p>
 </div>
 
 

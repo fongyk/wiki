@@ -50,7 +50,7 @@ command
 
 .. code-block:: cpp
   :linenos:
-  :emphasize-lines: 3,4
+  :emphasize-lines: 3,5
 
   int main()
   {
@@ -64,7 +64,7 @@ command
 
 这里是 ``python`` :
 
-.. code:: python
+.. code::
 
     def foo():
         print "Love Python, Love FreeDome"
@@ -80,9 +80,6 @@ command
    'This is the manual for Mantis version 0.18.0.\r\n\r\nThe Mantis manual is modeled after the [url=http://www.php.net/manual/en/]PHP Manual[/url]. It is authored via the \\"manual\\" module in Mantis CVS.  You can always view/download the latest version of this manual from [url=http://mantisbt.sourceforge.net/manual/]here[/url].',
      '', 1, 1, 20030811192655);
 
-.. highlight:: python
-    :linenothreshold: 1
-
 .. code-block:: python
     :linenos:
 
@@ -94,6 +91,7 @@ command
 下面是javescipt::
 
   .. code:: javascript
+      :linenos:
 
       function whatever() {
           return "such color"
@@ -108,6 +106,7 @@ command
 下面是bash:
 
 .. code-block:: bash
+    :linenos:
 
     cd home
     mkdir filefolder

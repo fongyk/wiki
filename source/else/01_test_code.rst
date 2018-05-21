@@ -54,7 +54,6 @@ command
     char c = 'c';
     printf("%c\n", c);
 
-
 这里是 ``C++`` :
 
 .. code-block:: cpp

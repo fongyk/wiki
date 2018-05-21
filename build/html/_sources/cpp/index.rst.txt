@@ -6,3 +6,4 @@ C/C++
     :numbered: 2
 
     01_main.rst
+    test.rst

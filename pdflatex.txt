@@ -1,3 +1,0 @@
-make latex
-cd build/latex
-xelatex Fong.tex

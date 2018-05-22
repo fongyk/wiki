@@ -18,12 +18,12 @@
 
 import sphinx_rtd_theme
 
-import os
-on_rtd = os.environ.get('READTHEDOCS') == 'False'
-if on_rtd:
-    html_theme = 'default'
-else:
-    html_theme = 'nature'
+# import os
+# on_rtd = os.environ.get('READTHEDOCS') == 'False'
+# if on_rtd:
+#     html_theme = 'default'
+# else:
+#     html_theme = 'nature'
 
 # -- Project information -----------------------------------------------------
 
@@ -34,7 +34,7 @@ author = u'fong'
 # The short X.Y version
 version = u''
 # The full version, including alpha/beta/rc tags
-release = u'alpha'
+release = u'1.0'
 
 
 # -- General configuration ---------------------------------------------------

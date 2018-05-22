@@ -171,7 +171,7 @@
 <div class="section" id="id1">
 <h2>1.1. 返回值<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>C++ main函数的返回值必须是 <code class="docutils literal notranslate"><span class="pre">int</span></code> ，即整型类型。在大多数系统中，main 的返回值被用来指示状态，返回值 <code class="docutils literal notranslate"><span class="pre">0</span></code> 表示执行成功，非0的返回值含义由系统定义，通常用来指出错误类型。</p>
-<p>Windows系统下运行可执行文件可以直接忽略其扩展名 <code class="docutils literal notranslate"><span class="pre">.exe</span></code> ：</p>
+<p>Windows系统下运行可执行文件(如launch.exe)可以直接忽略其扩展名 <code class="docutils literal notranslate"><span class="pre">.exe</span></code> ：</p>
 <div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">launch</span>
 </pre></div>
 </div>
@@ -181,7 +181,7 @@
 </div>
 <p>访问main函数返回之后的方法依赖于系统。在Windows和Unix系统中，执行完一个程序之后，都可以通过 <code class="docutils literal notranslate"><span class="pre">echo</span></code> 命令来获取返回值。</p>
 <p>Windows:</p>
-<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="o">%</span><span class="n">ERRORLEVEL</span><span class="o">%</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> %ERRORLEVEL%
 </pre></div>
 </div>
 <p>Unix:</p>
@@ -193,6 +193,7 @@
 <h2>1.2. 处理命令行选项<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>main函数的形参列表有两种形式：</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]){</span> <span class="p">...</span> <span class="p">}</span>
+
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">){</span> <span class="p">...</span> <span class="p">}</span>
 </pre></div>
 </div>

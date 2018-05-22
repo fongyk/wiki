@@ -114,7 +114,7 @@ command
 
 下面是 ``javescipt`` 的 ``rst`` 源码::
 
-  .. code:: javascript
+  .. code-block:: javascript
       :linenos:
 
       function whatever()

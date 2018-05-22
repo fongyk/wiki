@@ -134,10 +134,10 @@ latex_elements = {
 
     # Additional stuff for the LaTeX preamble.
     #
-    'preamble': '''
-	    % Use some font with UTF-8 support with XeLaTeX
-        \\usepackage[UTF8]{ctex}
-     '''
+    # 'preamble': '''
+	#     % Use some font with UTF-8 support with XeLaTeX
+    #     \\usepackage[UTF8]{ctex}
+    #  '''
 
     # Latex figure (float) alignment
     #

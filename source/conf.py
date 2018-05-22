@@ -18,6 +18,13 @@
 
 import sphinx_rtd_theme
 
+import os
+on_rtd = os.environ.get('READTHEDOCS') == 'False'
+if on_rtd:
+    html_theme = 'default'
+else:
+    html_theme = 'nature'
+
 # -- Project information -----------------------------------------------------
 
 project = u'fong'
@@ -73,8 +80,8 @@ language = None
 exclude_patterns = []
 
 # The name of the Pygments (syntax highlighting) style to use.
-# pygments_style = 'sphinx'
-pygments_style = 'default'
+pygments_style = 'sphinx'
+# pygments_style = 'default'
 
 # -- Options for HTML output -------------------------------------------------
 

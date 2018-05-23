@@ -16,17 +16,25 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
+import sphinx_rtd_theme
+
+# import os
+# on_rtd = os.environ.get('READTHEDOCS') == 'False'
+# if on_rtd:
+#     html_theme = 'default'
+# else:
+#     html_theme = 'nature'
 
 # -- Project information -----------------------------------------------------
 
-project = u'Fong'
+project = u'fong'
 copyright = u'2018, fong'
 author = u'fong'
 
 # The short X.Y version
-version = u''
+version = u'1.0'
 # The full version, including alpha/beta/rc tags
-release = u'alpha'
+release = u'1.0'
 
 
 # -- General configuration ---------------------------------------------------
@@ -39,8 +47,10 @@ release = u'alpha'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.autodoc',
+    'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
-    'sphinx.ext.githubpages',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -62,6 +72,8 @@ master_doc = 'index'
 # Usually you set "language" from the command line for these cases.
 language = None
 
+# highlight_language = "python"
+
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path .
@@ -69,7 +81,7 @@ exclude_patterns = []
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
-
+# pygments_style = 'default'
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -83,6 +95,16 @@ html_theme = 'sphinx_rtd_theme'
 # documentation.
 #
 # html_theme_options = {}
+
+html_logo = "logo.jpg"
+
+html_show_sourcelink = True
+
+# html_context = {
+# "display_github": True, # Add 'Edit on Github' link instead of 'View page source'
+# "last_updated": True,
+# "commit": False,
+# }
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -119,12 +141,17 @@ latex_elements = {
 
     # Additional stuff for the LaTeX preamble.
     #
-    # 'preamble': '',
+    # 'preamble': '''
+	#     % Use some font with UTF-8 support with XeLaTeX
+    #     \\usepackage[UTF8]{ctex}
+    #  '''
 
     # Latex figure (float) alignment
     #
     # 'figure_align': 'htbp',
 }
+
+# latex_elements['preamble']  += '\\usepackage[UTF8]{ctex}'
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
@@ -155,6 +182,3 @@ texinfo_documents = [
      author, 'Fong', 'One line description of project.',
      'Miscellaneous'),
 ]
-
-
-# -- Extension configuration -------------------------------------------------

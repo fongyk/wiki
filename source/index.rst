@@ -14,10 +14,3 @@
    :caption: 目录
 
    cpp/index
-   python/index
-   linux/index
-   machineLearning/index
-   deepLearning/index
-   link/index
-   softwares/index
-   else/index

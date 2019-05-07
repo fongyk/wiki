@@ -9,6 +9,10 @@
 
     **文中可能存在错误，欢迎 PR。**
 
+    https://github.com/fongyk
+
+    https://github.com/fongyq
+
 .. toctree::
    :maxdepth: 1
    :caption: 目录
@@ -20,4 +24,5 @@
    deepLearning/index
    link/index
    softwares/index
+   tech/index
    else/index

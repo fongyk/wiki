@@ -18,13 +18,13 @@
 
 import sphinx_rtd_theme
 
-import os
-on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+# import os
+# on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 
-if not on_rtd:  # only import and set the theme if we're building docs locally
-    import sphinx_rtd_theme
-    html_theme = 'sphinx_rtd_theme'
-    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+# if not on_rtd:  # only import and set the theme if we're building docs locally
+    # import sphinx_rtd_theme
+    # html_theme = 'sphinx_rtd_theme'
+    # html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 # import os
 # on_rtd = os.environ.get('READTHEDOCS') == 'False'
@@ -40,9 +40,9 @@ copyright = u'2018, fong'
 author = u'fong'
 
 # The short X.Y version
-version = u'1.0'
+version = u'alpha'
 # The full version, including alpha/beta/rc tags
-release = u'1.0'
+release = u'alpha'
 
 
 # -- General configuration ---------------------------------------------------
@@ -59,6 +59,8 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
+	'sphinx.ext.githubpages',
+    # 'sphinxcontrib.contentui',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -88,8 +90,8 @@ language = None
 exclude_patterns = []
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'sphinx'
-# pygments_style = 'default'
+# pygments_style = 'sphinx'
+pygments_style = 'default'
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -152,6 +154,7 @@ latex_elements = {
     'preamble': '''
 	    % Use some font with UTF-8 support with XeLaTeX
         \\usepackage[UTF8]{ctex}
+        \usepackage{color}
      '''
 
     # Latex figure (float) alignment
@@ -190,3 +193,6 @@ texinfo_documents = [
      author, 'Fong', 'One line description of project.',
      'Miscellaneous'),
 ]
+
+def setup(app):
+    app.add_stylesheet('custom.css')

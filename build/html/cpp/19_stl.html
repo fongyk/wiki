@@ -1,0 +1,601 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>19. 常用STL类及容器 &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Python" href="../python/index.html" />
+    <link rel="prev" title="18. 常用函数" href="18_commonFunc.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C/C++</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_main.html">1. main函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_array.html">2. 数组</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_typeSize.html">3. 数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_classSize.html">4. 类的大小</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_swap.html">5. 交换函数swap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_arrayArg.html">6. 数组形参</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_pointerReference.html">7. 指针与引用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_overload.html">8. 重载，覆盖，隐藏</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_strcpy.html">9. strcpy函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_cast.html">10. 强制类型转换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html">11. 堆、栈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_argPass.html">12. 参数传递</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_nullClassPtr.html">13. 空类指针</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html">14. static和extern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_classAccess.html">15. public、protected、private</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_staticconst.html">16. 类的static const成员</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_enum.html">17. 枚举类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html">18. 常用函数</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">19. 常用STL类及容器</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#string">19.1. string</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vector">19.2. vector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list">19.3. list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deque">19.4. deque</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pair">19.5. pair</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#map">19.6. map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stack">19.7. stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#queue">19.8. queue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">19.9. 参考资料</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">C/C++</a> &raquo;</li>
+        
+      <li>19. 常用STL类及容器</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/cpp/19_stl.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="stl">
+<h1>19. 常用STL类及容器<a class="headerlink" href="#stl" title="Permalink to this headline">¶</a></h1>
+<p><strong>STL: Standard Template Library</strong> ，标准模板库。</p>
+<dl class="docutils">
+<dt>顺序容器</dt>
+<dd><ul class="first last simple">
+<li>array</li>
+<li>vector</li>
+<li>list</li>
+<li>deque</li>
+<li>string</li>
+<li>…</li>
+</ul>
+</dd>
+<dt>关联容器</dt>
+<dd><ul class="first last simple">
+<li>set</li>
+<li>map</li>
+<li>multiset</li>
+<li>multimap</li>
+<li>…</li>
+</ul>
+</dd>
+<dt>容器适配器</dt>
+<dd><ul class="first last simple">
+<li>stack</li>
+<li>queue</li>
+<li>priority_queue</li>
+</ul>
+</dd>
+</dl>
+<div class="section" id="string">
+<h2>19.1. string<a class="headerlink" href="#string" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<ul>
+<li><p class="first">长度：length()，size()，empty()</p>
+</li>
+<li><p class="first">访问：[pos]，at(pos)。at()返回位置pos处元素的引用，越界则抛出out_of_range异常。</p>
+</li>
+<li><p class="first">字典序比较：==，!=，&lt;，&lt;=，&gt;，&gt;=</p>
+</li>
+<li><p class="first">串接：+</p>
+</li>
+<li><p class="first">c_str()：返回指向C类型字符串的指针。</p>
+</li>
+<li><p class="first">子串</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">string</span> <span class="n">substr</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">len</span> <span class="o">=</span> <span class="n">npos</span><span class="p">)</span> <span class="k">const</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="vector">
+<h2>19.2. vector<a class="headerlink" href="#vector" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p><strong>底层实现：顺序表（数组）。</strong></p>
+<ul>
+<li><p class="first">元素个数：size()，empty()</p>
+</li>
+<li><p class="first">逐元素比较：==，!=，&lt;，&lt;=，&gt;，&gt;=</p>
+</li>
+<li><p class="first">内存空间：capcity()</p>
+</li>
+<li><p class="first">访问：[pos]，at(pos)</p>
+</li>
+<li><p class="first">尾部插入：push_back(x)</p>
+</li>
+<li><p class="first">迭代器插入：在position <strong>之前</strong> 插入元素。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">iterator</span> <span class="n">insert</span> <span class="p">(</span><span class="n">iterator</span> <span class="n">position</span><span class="p">,</span> <span class="k">const</span> <span class="n">value_type</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">尾部删除：pop_back()</p>
+</li>
+<li><p class="first">申请空间：至少能容纳n个元素。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">reserve</span> <span class="p">(</span><span class="n">size_type</span> <span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">赋值</p>
+<ul>
+<li><p class="first">数组或其他向量区间 [first,last) 内的值赋给当前向量。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">InputIterator</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">assign</span> <span class="p">(</span><span class="n">InputIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">InputIterator</span> <span class="n">last</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">赋予n个val元素给当前向量。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">assign</span> <span class="p">(</span><span class="n">size_type</span> <span class="n">n</span><span class="p">,</span> <span class="k">const</span> <span class="n">value_type</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p class="first">删除：删除一个元素之后，此位置之后所有元素往前移动。虽然当前迭代器没有+1，但是由于后续元素的前移，相当于迭代器自动指向了下一个元素。故删除了一个元素之后如果要访问下一个元素，不必执行it++。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">iterator</span> <span class="nf">erase</span> <span class="p">(</span><span class="n">const_iterator</span> <span class="n">position</span><span class="p">);</span>
+<span class="n">iterator</span> <span class="nf">erase</span> <span class="p">(</span><span class="n">const_iterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">const_iterator</span> <span class="n">last</span><span class="p">);</span> <span class="c1">// 区间 [first,last)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">清除：</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">vector&lt;</span> <span class="pre">value_type</span> <span class="pre">&gt;().swap(myVec)</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">myVec.clear()</span></code> 让myVec.size()为0，但是myVec.capcity()不为0，调用 <code class="docutils literal notranslate"><span class="pre">myVec.clear()</span></code> 之后再调用 <code class="docutils literal notranslate"><span class="pre">myVec.shrink_to_fit()</span></code> 。 <code class="docutils literal notranslate"><span class="pre">shrink_to_fit()</span></code> 的作用是减小capcity()以匹配size()。</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="list">
+<h2>19.3. list<a class="headerlink" href="#list" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;list&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p><strong>底层实现：双向链表。</strong></p>
+<ul>
+<li><p class="first">元素个数：size()，empty()</p>
+</li>
+<li><p class="first">插入：push_front()，push_back()，emplace_front()，emplace_back()</p>
+</li>
+<li><p class="first">删除：pop_front()，pop_back()</p>
+</li>
+<li><p class="first">迭代器插入：在position <strong>之前</strong> 插入元素。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">iterator</span> <span class="n">insert</span> <span class="p">(</span><span class="n">iterator</span> <span class="n">position</span><span class="p">,</span> <span class="k">const</span> <span class="n">value_type</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="deque">
+<h2>19.4. deque<a class="headerlink" href="#deque" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;deque&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p><strong>底层实现：循环队列。</strong></p>
+<ul>
+<li><p class="first">元素个数：size()，empty()</p>
+</li>
+<li><p class="first">插入：push_front(x)，push_back(x)</p>
+</li>
+<li><p class="first">删除：pop_front()，pop_back()</p>
+</li>
+<li><p class="first">迭代器插入：在position <strong>之前</strong> 插入元素。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">iterator</span> <span class="n">insert</span> <span class="p">(</span><span class="n">iterator</span> <span class="n">position</span><span class="p">,</span> <span class="k">const</span> <span class="n">value_type</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="pair">
+<h2>19.5. pair<a class="headerlink" href="#pair" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;utility&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<ul>
+<li><p class="first">构造</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T2</span><span class="o">&gt;</span>
+<span class="n">pair</span><span class="o">&lt;</span><span class="n">T1</span><span class="p">,</span><span class="n">T2</span><span class="o">&gt;</span> <span class="n">make_pair</span> <span class="p">(</span><span class="n">T1</span> <span class="n">x</span><span class="p">,</span> <span class="n">T2</span> <span class="n">y</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">访问：成员 <code class="docutils literal notranslate"><span class="pre">first</span></code> 访问第一个元素，成员 <code class="docutils literal notranslate"><span class="pre">second</span></code> 访问第二个元素。</p>
+</li>
+</ul>
+</div>
+<div class="section" id="map">
+<h2>19.6. map<a class="headerlink" href="#map" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;map&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p><strong>底层实现：红黑树。</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">map&lt;K，T&gt;</span></code> 容器，保存的是 <code class="docutils literal notranslate"><span class="pre">pair&lt;const</span> <span class="pre">K，T&gt;</span></code> 类型的元素。</p>
+<p><code class="docutils literal notranslate"><span class="pre">map&lt;K，T&gt;::key_type</span></code> ：键类型</p>
+<p><code class="docutils literal notranslate"><span class="pre">map&lt;K，T&gt;::mapped_type</span></code> ：值类型</p>
+<p><code class="docutils literal notranslate"><span class="pre">map&lt;K，T&gt;::value_type</span></code> ：pair类型， <code class="docutils literal notranslate"><span class="pre">&lt;map&lt;K，T&gt;::key_type,</span> <span class="pre">map&lt;K，T&gt;::mapped_type&gt;</span></code></p>
+<ul>
+<li><p class="first">访问：[key]，at(key)</p>
+<ul class="simple">
+<li>[key]，key不存在，会创建新的键值对。</li>
+<li>at(key)，key不存在，抛出out_of_range异常。</li>
+</ul>
+</li>
+<li><p class="first">查找：找不到key则返回 <code class="docutils literal notranslate"><span class="pre">map::end</span></code> 。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">iterator</span> <span class="nf">find</span> <span class="p">(</span><span class="k">const</span> <span class="n">key_type</span><span class="o">&amp;</span> <span class="n">k</span><span class="p">);</span>
+<span class="n">const_iterator</span> <span class="nf">find</span> <span class="p">(</span><span class="k">const</span> <span class="n">key_type</span><span class="o">&amp;</span> <span class="n">k</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">插入：如果key已经存在，则插入无效。map的元素自动按照key升序排序，不能人为对map进行排序。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">pair</span><span class="o">&lt;</span><span class="n">iterator</span><span class="p">,</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">insert</span> <span class="p">(</span><span class="k">const</span> <span class="n">value_type</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">删除：返回删除元素后的下一个元素的迭代器，当前迭代器失效。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">iterator</span>  <span class="nf">erase</span> <span class="p">(</span><span class="n">const_iterator</span> <span class="n">position</span><span class="p">);</span>
+<span class="n">size_type</span> <span class="nf">erase</span> <span class="p">(</span><span class="k">const</span> <span class="n">key_type</span><span class="o">&amp;</span> <span class="n">k</span><span class="p">);</span>
+<span class="n">iterator</span>  <span class="nf">erase</span> <span class="p">(</span><span class="n">const_iterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">const_iterator</span> <span class="n">last</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">it</span> <span class="pre">=</span> <span class="pre">myMap.erase(it)</span></code> 等效为 <code class="docutils literal notranslate"><span class="pre">myMap.erase(it++)</span></code> 。</p>
+</li>
+</ul>
+<p>例子</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">mymap</span><span class="p">;</span>
+
+  <span class="c1">// first insert function version (single parameter):</span>
+  <span class="n">mymap</span><span class="p">.</span><span class="n">insert</span> <span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="sc">&#39;a&#39;</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="p">);</span>
+  <span class="n">mymap</span><span class="p">.</span><span class="n">insert</span> <span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">value_type</span><span class="p">(</span><span class="sc">&#39;z&#39;</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span> <span class="p">);</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">iterator</span><span class="p">,</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">ret</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">mymap</span><span class="p">.</span><span class="n">insert</span> <span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="sc">&#39;z&#39;</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span> <span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">ret</span><span class="p">.</span><span class="n">second</span><span class="o">==</span><span class="nb">false</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;element &#39;z&#39; already existed&quot;</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; with a value of &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">ret</span><span class="p">.</span><span class="n">first</span><span class="o">-&gt;</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="stack">
+<h2>19.7. stack<a class="headerlink" href="#stack" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;stack&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<ul>
+<li><p class="first">大小：size()，empty()</p>
+</li>
+<li><p class="first">栈顶元素：top()</p>
+</li>
+<li><p class="first">入栈：push(x)</p>
+</li>
+<li><p class="first">出栈：pop()</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">pop</span><span class="p">();</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="queue">
+<h2>19.8. queue<a class="headerlink" href="#queue" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;queue&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<ul>
+<li><p class="first">大小：size()，empty()</p>
+</li>
+<li><p class="first">队首元素：front()</p>
+</li>
+<li><p class="first">队尾元素：back()</p>
+</li>
+<li><p class="first">入队：push(x)</p>
+</li>
+<li><p class="first">出队：pop()</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">pop</span><span class="p">();</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>19.9. 参考资料<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>C++ reference</li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="http://www.cplusplus.com/reference/string/string">http://www.cplusplus.com/reference/string/string</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/vector/vector">http://www.cplusplus.com/reference/vector/vector</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/list/list">http://www.cplusplus.com/reference/list/list</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/deque/deque">http://www.cplusplus.com/reference/deque/deque</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/map/map">http://www.cplusplus.com/reference/map/map</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/stack/stack">http://www.cplusplus.com/reference/stack/stack</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/queue/queue">http://www.cplusplus.com/reference/queue/queue</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>C++ STL快速入门</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/skyfsm/p/6934246.html">https://www.cnblogs.com/skyfsm/p/6934246.html</a></div></blockquote>
+<ol class="arabic simple" start="3">
+<li>STL教程：C++ STL快速入门（非常详细）</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="http://c.biancheng.net/stl/">http://c.biancheng.net/stl/</a></div></blockquote>
+<ol class="arabic simple" start="4">
+<li>标准C++中的string类的用法总结（转）</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/aminxu/p/4686320.html">https://www.cnblogs.com/aminxu/p/4686320.html</a></div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../python/index.html" class="btn btn-neutral float-right" title="Python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="18_commonFunc.html" class="btn btn-neutral" title="18. 常用函数" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'alpha',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,237 @@
+\select@language {english}
+\contentsline {chapter}{\numberline {1}C/C++}{3}{chapter.1}
+\contentsline {section}{\numberline {1.1}main函数}{3}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}返回值}{3}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}处理命令行选项}{3}{subsection.1.1.2}
+\contentsline {subsection}{\numberline {1.1.3}参考资料}{4}{subsection.1.1.3}
+\contentsline {section}{\numberline {1.2}数组}{4}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}动态数组}{4}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}另类的数组表达}{7}{subsection.1.2.2}
+\contentsline {subsection}{\numberline {1.2.3}数组实参}{7}{subsection.1.2.3}
+\contentsline {subsection}{\numberline {1.2.4}数组地址与加法}{8}{subsection.1.2.4}
+\contentsline {subsection}{\numberline {1.2.5}malloc/free与new/delete}{8}{subsection.1.2.5}
+\contentsline {subsubsection}{相同点}{8}{subsubsection*.3}
+\contentsline {subsubsection}{不同点}{8}{subsubsection*.4}
+\contentsline {subsection}{\numberline {1.2.6}参考资料}{9}{subsection.1.2.6}
+\contentsline {section}{\numberline {1.3}数据类型}{10}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}常用内置数据类型的大小}{10}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}sizeof与strlen}{10}{subsection.1.3.2}
+\contentsline {subsection}{\numberline {1.3.3}参考资料}{11}{subsection.1.3.3}
+\contentsline {section}{\numberline {1.4}类的大小}{12}{section.1.4}
+\contentsline {subsection}{\numberline {1.4.1}空类}{12}{subsection.1.4.1}
+\contentsline {subsection}{\numberline {1.4.2}普通数据成员}{12}{subsection.1.4.2}
+\contentsline {subsection}{\numberline {1.4.3}普通继承}{13}{subsection.1.4.3}
+\contentsline {subsubsection}{继承空类}{13}{subsubsection*.5}
+\contentsline {subsubsection}{类包含空类对象数据成员}{14}{subsubsection*.6}
+\contentsline {subsection}{\numberline {1.4.4}虚函数与继承}{14}{subsection.1.4.4}
+\contentsline {subsubsection}{单继承}{14}{subsubsection*.7}
+\contentsline {subsubsection}{多继承}{15}{subsubsection*.8}
+\contentsline {subsection}{\numberline {1.4.5}虚继承}{16}{subsection.1.4.5}
+\contentsline {subsection}{\numberline {1.4.6}内存对齐}{17}{subsection.1.4.6}
+\contentsline {subsection}{\numberline {1.4.7}位域}{18}{subsection.1.4.7}
+\contentsline {subsection}{\numberline {1.4.8}参考资料}{20}{subsection.1.4.8}
+\contentsline {section}{\numberline {1.5}交换函数swap}{21}{section.1.5}
+\contentsline {section}{\numberline {1.6}数组形参}{22}{section.1.6}
+\contentsline {subsection}{\numberline {1.6.1}非引用}{22}{subsection.1.6.1}
+\contentsline {subsection}{\numberline {1.6.2}引用}{22}{subsection.1.6.2}
+\contentsline {section}{\numberline {1.7}指针与引用}{23}{section.1.7}
+\contentsline {section}{\numberline {1.8}重载，覆盖，隐藏}{23}{section.1.8}
+\contentsline {subsection}{\numberline {1.8.1}重载}{23}{subsection.1.8.1}
+\contentsline {subsection}{\numberline {1.8.2}覆盖}{24}{subsection.1.8.2}
+\contentsline {subsection}{\numberline {1.8.3}隐藏}{24}{subsection.1.8.3}
+\contentsline {subsection}{\numberline {1.8.4}参考资料}{24}{subsection.1.8.4}
+\contentsline {section}{\numberline {1.9}strcpy函数}{24}{section.1.9}
+\contentsline {subsection}{\numberline {1.9.1}形参src}{24}{subsection.1.9.1}
+\contentsline {subsection}{\numberline {1.9.2}额外指针cp}{24}{subsection.1.9.2}
+\contentsline {subsection}{\numberline {1.9.3}返回值}{25}{subsection.1.9.3}
+\contentsline {subsection}{\numberline {1.9.4}参考资料}{25}{subsection.1.9.4}
+\contentsline {section}{\numberline {1.10}强制类型转换}{25}{section.1.10}
+\contentsline {subsection}{\numberline {1.10.1}static\_cast\textless {}type\textgreater {} (expr)}{25}{subsection.1.10.1}
+\contentsline {subsection}{\numberline {1.10.2}dynamic\_cast\textless {}type\textgreater {} (expr)}{25}{subsection.1.10.2}
+\contentsline {subsection}{\numberline {1.10.3}const\_cast\textless {}type\textgreater {} (expr)}{25}{subsection.1.10.3}
+\contentsline {subsection}{\numberline {1.10.4}reinterpret\_cast\textless {}type\textgreater {} (expr)}{26}{subsection.1.10.4}
+\contentsline {subsection}{\numberline {1.10.5}参考资料}{26}{subsection.1.10.5}
+\contentsline {section}{\numberline {1.11}堆、栈}{26}{section.1.11}
+\contentsline {subsection}{\numberline {1.11.1}管理方式}{26}{subsection.1.11.1}
+\contentsline {subsection}{\numberline {1.11.2}空间大小}{26}{subsection.1.11.2}
+\contentsline {subsection}{\numberline {1.11.3}分配方式}{27}{subsection.1.11.3}
+\contentsline {subsection}{\numberline {1.11.4}生长方式}{27}{subsection.1.11.4}
+\contentsline {subsection}{\numberline {1.11.5}分配效率}{27}{subsection.1.11.5}
+\contentsline {subsection}{\numberline {1.11.6}存放内容}{27}{subsection.1.11.6}
+\contentsline {subsection}{\numberline {1.11.7}附：内存分区}{27}{subsection.1.11.7}
+\contentsline {subsection}{\numberline {1.11.8}参考资料}{28}{subsection.1.11.8}
+\contentsline {section}{\numberline {1.12}参数传递}{28}{section.1.12}
+\contentsline {subsection}{\numberline {1.12.1}传值参数}{28}{subsection.1.12.1}
+\contentsline {subsection}{\numberline {1.12.2}传引用参数}{29}{subsection.1.12.2}
+\contentsline {subsection}{\numberline {1.12.3}参考资料}{29}{subsection.1.12.3}
+\contentsline {section}{\numberline {1.13}空类指针}{29}{section.1.13}
+\contentsline {subsection}{\numberline {1.13.1}空类指针调用成员函数}{30}{subsection.1.13.1}
+\contentsline {subsection}{\numberline {1.13.2}参考资料}{30}{subsection.1.13.2}
+\contentsline {section}{\numberline {1.14}static和extern}{31}{section.1.14}
+\contentsline {subsection}{\numberline {1.14.1}static: 静态全局变量}{31}{subsection.1.14.1}
+\contentsline {subsection}{\numberline {1.14.2}static: 静态函数}{31}{subsection.1.14.2}
+\contentsline {subsection}{\numberline {1.14.3}static: 静态局部变量}{31}{subsection.1.14.3}
+\contentsline {subsection}{\numberline {1.14.4}static: 静态成员变量}{32}{subsection.1.14.4}
+\contentsline {subsection}{\numberline {1.14.5}static: 静态成员函数}{32}{subsection.1.14.5}
+\contentsline {subsection}{\numberline {1.14.6}extern: 修饰函数、变量}{33}{subsection.1.14.6}
+\contentsline {subsection}{\numberline {1.14.7}extern “C” \{\}}{33}{subsection.1.14.7}
+\contentsline {subsubsection}{例子}{33}{subsubsection*.9}
+\contentsline {subsection}{\numberline {1.14.8}参考资料}{34}{subsection.1.14.8}
+\contentsline {section}{\numberline {1.15}public、protected、private}{34}{section.1.15}
+\contentsline {subsection}{\numberline {1.15.1}继承}{34}{subsection.1.15.1}
+\contentsline {subsection}{\numberline {1.15.2}class与struct}{35}{subsection.1.15.2}
+\contentsline {subsection}{\numberline {1.15.3}参考资料}{35}{subsection.1.15.3}
+\contentsline {section}{\numberline {1.16}类的static const成员}{35}{section.1.16}
+\contentsline {subsection}{\numberline {1.16.1}const}{35}{subsection.1.16.1}
+\contentsline {subsection}{\numberline {1.16.2}static}{36}{subsection.1.16.2}
+\contentsline {subsection}{\numberline {1.16.3}static const}{36}{subsection.1.16.3}
+\contentsline {subsection}{\numberline {1.16.4}参考资料}{37}{subsection.1.16.4}
+\contentsline {section}{\numberline {1.17}枚举类型}{37}{section.1.17}
+\contentsline {subsection}{\numberline {1.17.1}初始化}{37}{subsection.1.17.1}
+\contentsline {subsection}{\numberline {1.17.2}枚举变量}{37}{subsection.1.17.2}
+\contentsline {subsection}{\numberline {1.17.3}参考资料}{38}{subsection.1.17.3}
+\contentsline {section}{\numberline {1.18}常用函数}{39}{section.1.18}
+\contentsline {subsection}{\numberline {1.18.1}lower\_bound，upper\_bound}{39}{subsection.1.18.1}
+\contentsline {subsection}{\numberline {1.18.2}fill，fill\_n，for\_each}{40}{subsection.1.18.2}
+\contentsline {subsection}{\numberline {1.18.3}sort}{41}{subsection.1.18.3}
+\contentsline {subsection}{\numberline {1.18.4}附：头文件}{43}{subsection.1.18.4}
+\contentsline {subsection}{\numberline {1.18.5}参考资料}{43}{subsection.1.18.5}
+\contentsline {chapter}{\numberline {2}Python}{45}{chapter.2}
+\contentsline {section}{\numberline {2.1}in-place 运算}{45}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}+= 运算}{45}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}add和iadd}{46}{subsection.2.1.2}
+\contentsline {subsubsection}{immutable targets}{46}{subsubsection*.10}
+\contentsline {subsubsection}{mutable targets}{46}{subsubsection*.11}
+\contentsline {subsection}{\numberline {2.1.3}参考资料}{47}{subsection.2.1.3}
+\contentsline {section}{\numberline {2.2}\_\_all\_\_ 的使用}{47}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}从\_\_init\_\_.py谈起}{47}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}参考资料}{48}{subsection.2.2.2}
+\contentsline {section}{\numberline {2.3}is和==}{49}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}is和==}{49}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}None}{49}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}参考资料}{50}{subsection.2.3.3}
+\contentsline {section}{\numberline {2.4}装饰器}{50}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}作用}{50}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}使用装饰器计时}{50}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}参考资料}{51}{subsection.2.4.3}
+\contentsline {section}{\numberline {2.5}迭代器和生成器}{51}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}迭代器（iterator）}{51}{subsection.2.5.1}
+\contentsline {subsubsection}{可迭代对象（iterable）}{52}{subsubsection*.12}
+\contentsline {subsection}{\numberline {2.5.2}生成器（generator）}{53}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}参考资料}{54}{subsection.2.5.3}
+\contentsline {section}{\numberline {2.6}lambda用法}{54}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}使用场景}{54}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}参考资料}{55}{subsection.2.6.2}
+\contentsline {section}{\numberline {2.7}*args和**kwargs}{55}{section.2.7}
+\contentsline {subsection}{\numberline {2.7.1}*args}{55}{subsection.2.7.1}
+\contentsline {subsection}{\numberline {2.7.2}**kwargs}{57}{subsection.2.7.2}
+\contentsline {subsection}{\numberline {2.7.3}arg，*args，**kwargs}{57}{subsection.2.7.3}
+\contentsline {subsection}{\numberline {2.7.4}参考资料}{58}{subsection.2.7.4}
+\contentsline {section}{\numberline {2.8}基本数据类型}{58}{section.2.8}
+\contentsline {subsection}{\numberline {2.8.1}类型与方法}{58}{subsection.2.8.1}
+\contentsline {subsection}{\numberline {2.8.2}深复制和浅复制}{62}{subsection.2.8.2}
+\contentsline {subsection}{\numberline {2.8.3}参考资料}{63}{subsection.2.8.3}
+\contentsline {section}{\numberline {2.9}random}{64}{section.2.9}
+\contentsline {subsection}{\numberline {2.9.1}random}{64}{subsection.2.9.1}
+\contentsline {subsection}{\numberline {2.9.2}numpy.random}{64}{subsection.2.9.2}
+\contentsline {subsection}{\numberline {2.9.3}参考资料}{66}{subsection.2.9.3}
+\contentsline {section}{\numberline {2.10}归一化}{66}{section.2.10}
+\contentsline {subsection}{\numberline {2.10.1}numpy.linalg.norm}{66}{subsection.2.10.1}
+\contentsline {subsection}{\numberline {2.10.2}sklearn.preprocessing.normalize}{66}{subsection.2.10.2}
+\contentsline {subsection}{\numberline {2.10.3}torch.nn.functional.normalize}{67}{subsection.2.10.3}
+\contentsline {subsection}{\numberline {2.10.4}参考资料}{67}{subsection.2.10.4}
+\contentsline {section}{\numberline {2.11}常用数据结构}{68}{section.2.11}
+\contentsline {subsection}{\numberline {2.11.1}栈}{68}{subsection.2.11.1}
+\contentsline {subsection}{\numberline {2.11.2}队列}{68}{subsection.2.11.2}
+\contentsline {subsubsection}{Queue}{68}{subsubsection*.13}
+\contentsline {subsubsection}{deque}{69}{subsubsection*.14}
+\contentsline {subsection}{\numberline {2.11.3}堆}{70}{subsection.2.11.3}
+\contentsline {subsubsection}{创建堆}{70}{subsubsection*.15}
+\contentsline {subsubsection}{获取最值}{71}{subsubsection*.16}
+\contentsline {subsection}{\numberline {2.11.4}计数器}{72}{subsection.2.11.4}
+\contentsline {subsection}{\numberline {2.11.5}参考资料}{72}{subsection.2.11.5}
+\contentsline {chapter}{\numberline {3}Linux/Shell}{75}{chapter.3}
+\contentsline {section}{\numberline {3.1}基本命令}{75}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}文件和目录}{75}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}磁盘空间}{76}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}处理数据文件}{76}{subsection.3.1.3}
+\contentsline {chapter}{\numberline {4}机器学习}{77}{chapter.4}
+\contentsline {section}{\numberline {4.1}Logistic Regression}{77}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}基本假设}{77}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}求解方法}{77}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}优缺点}{78}{subsection.4.1.3}
+\contentsline {subsection}{\numberline {4.1.4}解析}{78}{subsection.4.1.4}
+\contentsline {subsection}{\numberline {4.1.5}参考资料}{78}{subsection.4.1.5}
+\contentsline {section}{\numberline {4.2}支持向量机}{79}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}核函数}{79}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}多分类}{80}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}SVM库}{80}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}优缺点}{80}{subsection.4.2.4}
+\contentsline {subsection}{\numberline {4.2.5}解析}{80}{subsection.4.2.5}
+\contentsline {subsection}{\numberline {4.2.6}SVM与LR的异同}{80}{subsection.4.2.6}
+\contentsline {subsection}{\numberline {4.2.7}参考资料}{81}{subsection.4.2.7}
+\contentsline {section}{\numberline {4.3}主成分分析PCA}{81}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}优化目标}{82}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}求解}{82}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}PCA白化}{82}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.4}SVD分解}{82}{subsection.4.3.4}
+\contentsline {subsection}{\numberline {4.3.5}参考资料}{83}{subsection.4.3.5}
+\contentsline {chapter}{\numberline {5}深度学习}{85}{chapter.5}
+\contentsline {section}{\numberline {5.1}pytorch的多GPU模式}{85}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}网络外指定}{85}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}网络内指定}{85}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}参考资料}{86}{subsection.5.1.3}
+\contentsline {section}{\numberline {5.2}激活函数(Activation Function)}{86}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}sigmoid}{86}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}tanh}{87}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}ReLU}{88}{subsection.5.2.3}
+\contentsline {subsection}{\numberline {5.2.4}参考资料}{89}{subsection.5.2.4}
+\contentsline {section}{\numberline {5.3}Batch Normalization}{90}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}BN允许更大的学习率}{90}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}BN提供了正则化的作用}{90}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.3}BN回滚}{90}{subsection.5.3.3}
+\contentsline {subsection}{\numberline {5.3.4}缺点}{90}{subsection.5.3.4}
+\contentsline {subsection}{\numberline {5.3.5}参考资料}{90}{subsection.5.3.5}
+\contentsline {section}{\numberline {5.4}过拟合}{91}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}表现}{91}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}原因}{91}{subsection.5.4.2}
+\contentsline {subsection}{\numberline {5.4.3}解决方案}{91}{subsection.5.4.3}
+\contentsline {section}{\numberline {5.5}pytorch模型保存与读取}{91}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}简单}{91}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}详细}{92}{subsection.5.5.2}
+\contentsline {subsection}{\numberline {5.5.3}load部分参数}{93}{subsection.5.5.3}
+\contentsline {subsection}{\numberline {5.5.4}参考资料}{93}{subsection.5.5.4}
+\contentsline {section}{\numberline {5.6}pytorch: cuda()}{93}{section.5.6}
+\contentsline {subsection}{\numberline {5.6.1}使用指定GPU}{93}{subsection.5.6.1}
+\contentsline {subsection}{\numberline {5.6.2}cuda()}{94}{subsection.5.6.2}
+\contentsline {subsection}{\numberline {5.6.3}参考资料}{94}{subsection.5.6.3}
+\contentsline {chapter}{\numberline {6}资源链接}{95}{chapter.6}
+\contentsline {section}{\numberline {6.1}Github Page}{95}{section.6.1}
+\contentsline {section}{\numberline {6.2}AnyKnew}{95}{section.6.2}
+\contentsline {section}{\numberline {6.3}arXiv}{95}{section.6.3}
+\contentsline {section}{\numberline {6.4}Read the Docs}{95}{section.6.4}
+\contentsline {section}{\numberline {6.5}C++ Reference}{95}{section.6.5}
+\contentsline {section}{\numberline {6.6}Numpy}{95}{section.6.6}
+\contentsline {section}{\numberline {6.7}Pytorch}{96}{section.6.7}
+\contentsline {section}{\numberline {6.8}Standford University Lectures}{96}{section.6.8}
+\contentsline {section}{\numberline {6.9}ShareLatex}{96}{section.6.9}
+\contentsline {section}{\numberline {6.10}PlanetB}{96}{section.6.10}
+\contentsline {section}{\numberline {6.11}Vision Open Source Library}{96}{section.6.11}
+\contentsline {section}{\numberline {6.12}牛客网}{96}{section.6.12}
+\contentsline {chapter}{\numberline {7}实用软件}{97}{chapter.7}
+\contentsline {section}{\numberline {7.1}Listary}{97}{section.7.1}
+\contentsline {section}{\numberline {7.2}FreeCommander}{97}{section.7.2}
+\contentsline {section}{\numberline {7.3}MobaXterm}{97}{section.7.3}
+\contentsline {section}{\numberline {7.4}TeamViewer}{97}{section.7.4}
+\contentsline {section}{\numberline {7.5}Notepad++}{98}{section.7.5}
+\contentsline {chapter}{\numberline {8}其他}{99}{chapter.8}
+\contentsline {section}{\numberline {8.1}rst语法测试}{99}{section.8.1}
+\contentsline {subsection}{\numberline {8.1.1}参考资料}{102}{subsection.8.1.1}
+\contentsline {section}{\numberline {8.2}面试笔试}{102}{section.8.2}
+\contentsline {subsection}{\numberline {8.2.1}汇总}{102}{subsection.8.2.1}
+\contentsline {subsection}{\numberline {8.2.2}编程算法}{102}{subsection.8.2.2}
+\contentsline {subsection}{\numberline {8.2.3}c++}{105}{subsection.8.2.3}
+\contentsline {subsection}{\numberline {8.2.4}python}{105}{subsection.8.2.4}
+\contentsline {subsection}{\numberline {8.2.5}机器学习（深度学习）}{105}{subsection.8.2.5}
+\contentsline {subsection}{\numberline {8.2.6}论文相关}{106}{subsection.8.2.6}
+\contentsline {subsection}{\numberline {8.2.7}其他}{107}{subsection.8.2.7}

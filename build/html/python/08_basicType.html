@@ -1,0 +1,638 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8. 基本数据类型 &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9. random" href="09_random.html" />
+    <link rel="prev" title="7. *args和**kwargs" href="07_arg.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_inplace.html">1. in-place 运算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_all.html">2. __all__ 的使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_is.html">3. is和==</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_decorator.html">4. 装饰器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_iterator.html">5. 迭代器和生成器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_lambda.html">6. lambda用法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_arg.html">7. *args和**kwargs</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">8. 基本数据类型</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">8.1. 类型与方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">8.2. 深复制和浅复制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">8.3. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="09_random.html">9. random</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_normalize.html">10. 归一化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_dataStruct.html">11. 常用数据结构</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Python</a> &raquo;</li>
+        
+      <li>8. 基本数据类型</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/python/08_basicType.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>8. 基本数据类型<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>8.1. 类型与方法<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first"><strong>str</strong></p>
+<ul class="simple">
+<li>索引、切片：[ind]，[first:last]获取区间 [first, last) 内的元素。</li>
+<li>长度：len()</li>
+<li>查找：若字符/序列不在字符串内，index()报错 ValueError，find()返回-1。</li>
+<li>判断字符串内容：字母，isalpha()；数字，isdigit()；数字或字母，isalnum()。</li>
+<li>大小写转换：capitalize()、lower()、upper()。</li>
+<li>判断以什么开头结尾：startswith()、endswith()。</li>
+<li>连接：join()，将字符串、元组、列表中的元素以指定的字符(分隔符)连接生成一个新的字符串。</li>
+<li>分割：split()、partition()。 <strong>如果想把字符串分割成独立的字符，用 list(string)。</strong></li>
+<li>替代：replace()</li>
+<li>清除空白: strip()、lstrip()、rstrip()</li>
+</ul>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;abcde&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;-&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">s</span>
+<span class="go">a-b-c-d-e</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;abc&#39;</span><span class="p">,</span> <span class="s1">&#39;def&#39;</span><span class="p">,</span> <span class="s1">&#39;ghi&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;-&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">s</span>
+<span class="go">abc_def_ghi</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;a-b-c-d-e&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">partion</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="c1">## 只能分割为3部分</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">s</span>
+<span class="go">(&#39;a&#39;, &#39;-&#39;, &#39;b-c-d-e&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">s</span>
+<span class="go">[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;]</span>
+</pre></div>
+</td></tr></table></div>
+</li>
+<li><p class="first"><strong>list</strong></p>
+<ul class="simple">
+<li>索引、切片：[ind]，[first:last]获取区间 [first, last) 内的元素。</li>
+<li>统计元素出现的次数：count()</li>
+<li>追加：append()</li>
+<li>拓展：extend()</li>
+<li>插入：insert()</li>
+<li>弹出元素：pop()，默认弹出列表末尾的元素</li>
+<li>移除/删除元素：remove()，del （del可删除切片）</li>
+<li>排序：sort()</li>
+</ul>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">a</span>
+<span class="go">[1, 2, 3, 4]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">a</span>
+<span class="go">[1, 2, 3, 4, 10, 20, 30]</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="c1">## 在第一个元素之后插入</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">a</span>
+<span class="go">[1, 5, 2, 3, 4, 10, 20, 30]</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">a</span>
+<span class="go">[1, 5, 3, 4, 10, 20, 30]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">del</span> <span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">a</span>
+<span class="go">[1, 5, 3, 10, 20, 30]</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">a</span>
+<span class="go">[30, 20, 10, 5, 3, 1] ## 直接修改 a，无返回值。使用 sorted 返回排序后的副本。</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a2</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">a</span>
+<span class="go">[1, 5, 10, 20, 30] ## a</span>
+</pre></div>
+</td></tr></table></div>
+</li>
+<li><p class="first"><strong>dict</strong></p>
+<ul class="simple">
+<li>获取：keys()，values()，items()。</li>
+<li>清除：clear()</li>
+<li>访问：get(key)，不存在时返回None。</li>
+<li>更新：update(d)，把另一个字典d中的项添加到当前字典。</li>
+<li>浅复制：copy()</li>
+</ul>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">info</span> <span class="o">=</span><span class="p">{</span>
+ <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;Tom&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;age&quot;</span><span class="p">:</span><span class="mi">25</span><span class="p">,</span>
+ <span class="s2">&quot;sex&quot;</span><span class="p">:</span><span class="s2">&quot;man&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">info</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;sex&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">info</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+<span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="s1">&#39;Tom&#39;</span><span class="p">,</span> <span class="s1">&#39;man&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">info</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+<span class="p">[(</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;Tom&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="s1">&#39;man&#39;</span><span class="p">)]</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+<span class="mi">25</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">new</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="mi">60</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">info</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">new</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">info</span>
+<span class="p">{</span><span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Tom&#39;</span><span class="p">,</span> <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span> <span class="s1">&#39;sex&#39;</span><span class="p">:</span> <span class="s1">&#39;man&#39;</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">info</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">info</span>
+<span class="p">{}</span>
+</pre></div>
+</td></tr></table></div>
+<ul class="simple">
+<li>collections.defaultdict：defaultdict类使用一种给定数据类型来初始化。当所访问的key不存在的时候，会实例化一个value作为默认值。因此，判断某个key是否存在，可使用get(key)。</li>
+</ul>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dd</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="c1">## 使用 list 作为value type</span>
+<span class="go">defaultdict(&lt;type &#39;list&#39;&gt;, {})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dd</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span>
+<span class="go">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dd</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
+<span class="go">defaultdict(&lt;type &#39;list&#39;&gt;, {&#39;a&#39;: [], &#39;b&#39;: [&#39;hello&#39;]})</span>
+</pre></div>
+</td></tr></table></div>
+</li>
+<li><p class="first"><strong>set</strong></p>
+<ul class="simple">
+<li>特征：无重复，无须，每个元素为不可变类型</li>
+<li>增加元素：单个元素，add()；多个元素，update()</li>
+<li>删除：删除元素不存在，remove()报错，discard()无反应。</li>
+<li>集合操作：&amp;，|，-，交差补集 ^，issubset() 、isupperset()。</li>
+</ul>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">}</span> <span class="c1">## 或者 s1 = set([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s1</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;e&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">s1</span>
+<span class="go">set([&#39;a&#39;, &#39;c&#39;, &#39;b&#39;, &#39;e&#39;, &#39;d&#39;])</span>
+</pre></div>
+</td></tr></table></div>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>对于 <code class="docutils literal notranslate"><span class="pre">切片（slice）</span></code> 操作，下标越界 <strong>不会</strong> 报错，返回空。</p>
+<p class="last">对于 <code class="docutils literal notranslate"><span class="pre">索引（index）</span></code> 操作，下标越界 <strong>会</strong> 报错。</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">j</span><span class="p">]</span>
+
+<span class="n">The</span> <span class="nb">slice</span> <span class="n">of</span> <span class="n">s</span> <span class="kn">from</span> <span class="nn">i</span> <span class="n">to</span> <span class="n">j</span> <span class="ow">is</span> <span class="n">defined</span> <span class="k">as</span> <span class="n">the</span> <span class="n">sequence</span> <span class="n">of</span> <span class="n">items</span> <span class="k">with</span> <span class="n">index</span> <span class="n">k</span> <span class="n">such</span> <span class="n">that</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">j</span><span class="o">.</span>
+
+<span class="n">If</span> <span class="n">i</span> <span class="ow">or</span> <span class="n">j</span> <span class="ow">is</span> <span class="n">greater</span> <span class="n">than</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">use</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span>
+<span class="n">If</span> <span class="n">i</span> <span class="ow">is</span> <span class="n">omitted</span> <span class="ow">or</span> <span class="kc">None</span><span class="p">,</span> <span class="n">use</span> <span class="mf">0.</span>
+<span class="n">If</span> <span class="n">j</span> <span class="ow">is</span> <span class="n">omitted</span> <span class="ow">or</span> <span class="kc">None</span><span class="p">,</span> <span class="n">use</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span>
+<span class="n">If</span> <span class="n">i</span> <span class="ow">is</span> <span class="n">greater</span> <span class="n">than</span> <span class="ow">or</span> <span class="n">equal</span> <span class="n">to</span> <span class="n">j</span><span class="p">,</span> <span class="n">the</span> <span class="nb">slice</span> <span class="ow">is</span> <span class="n">empty</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>8.2. 深复制和浅复制<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first"><strong>直接赋值</strong> ：并没有拷贝对象，而是拷贝了对象的引用，因此原始对象或被赋值对象的改变，都会导致另一个对象被修改。</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">alist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">alist</span> <span class="c1">## 引用</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[:]</span> <span class="c1">## 复制</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">alist</span>
+<span class="go">[1, 2, 3, 5]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">b</span>
+<span class="go">[1, 2, 3, 5]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">c</span>
+<span class="go">[1, 2, 3]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">a</span>
+<span class="go">[-1, 2, 3, 5]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">b</span>
+<span class="go">[-1, 2, 3, 5]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">c</span>
+<span class="go">[1, 2, 3]</span>
+</pre></div>
+</td></tr></table></div>
+</li>
+<li><p class="first"><strong>浅复制</strong> ：只会复制父对象，而不会复制对象的内部的子对象。</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">alist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">]]</span> <span class="c1">## [&#39;a&#39;,&#39;b&#39;] 是列表，是一个子对象</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a_copy</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span> <span class="c1">## dict类有copy()方法，e.g.，d.copy()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">alist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">## 非子对象的修改</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">alist</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">],</span> <span class="mi">5</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">a_copy</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a_copy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">alist</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">],</span> <span class="mi">5</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">a_copy</span>
+<span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]]</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">alist</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span> <span class="c1">## 子对象的修改</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">alist</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">],</span> <span class="mi">5</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">a_copy</span>
+<span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a_copy</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">alist</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">],</span> <span class="mi">5</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">a_copy</span>
+<span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">]]</span>
+</pre></div>
+</td></tr></table></div>
+</li>
+<li><p class="first"><strong>深复制</strong> ：复制对象及其子对象，原始对象的改变不会造成深复制里任何子元素的改变。</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">alist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">]]</span> <span class="c1">## [&#39;a&#39;,&#39;b&#39;] 是列表，是一个子对象</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a_copy</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">alist</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span> <span class="c1">## 子对象的修改</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">alist</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">a_copy</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a_copy</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">alist</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">a_copy</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">]]</span>
+</pre></div>
+</td></tr></table></div>
+</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2>8.3. 参考资料<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Python基本数据类型</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/littlefivebolg/p/8982889.html">https://www.cnblogs.com/littlefivebolg/p/8982889.html</a></div></blockquote>
+<ol class="arabic simple" start="2">
+<li>切片python字符串时 为何不会引起下标越界?</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://segmentfault.com/q/1010000011412371">https://segmentfault.com/q/1010000011412371</a></div></blockquote>
+<ol class="arabic simple" start="3">
+<li>python中defaultdict方法的使用</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/dancesir/p/8142775.html">https://www.cnblogs.com/dancesir/p/8142775.html</a></div></blockquote>
+<ol class="arabic simple" start="4">
+<li>python的复制，深拷贝和浅拷贝的区别</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/xueli/p/4952063.html">https://www.cnblogs.com/xueli/p/4952063.html</a></div></blockquote>
+<ol class="arabic simple" start="5">
+<li>Python学习日记之字典深复制与浅复制</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/mokero/p/6662202.html">https://www.cnblogs.com/mokero/p/6662202.html</a></div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="09_random.html" class="btn btn-neutral float-right" title="9. random" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="07_arg.html" class="btn btn-neutral" title="7. *args和**kwargs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'alpha',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

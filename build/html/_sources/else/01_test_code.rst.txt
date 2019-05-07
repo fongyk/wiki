@@ -122,11 +122,7 @@ command
           return "such color"
       }
 
-下面是 ``python`` (code-block)::
 
-  def foo():
-      print "Love Python, Love FreeDome"
-      print "E文标点,.0123456789,中文标点,. "
 
 下面是 ``bash`` :
 
@@ -140,4 +136,88 @@ command
     mkdir filefolder
     cd ..
 
-结束
+下面是 ``python`` (code-block):
+
+.. code-block:: python
+  :linenos:
+
+  class Solution(object):
+      def jump_from_i(self, nums, i):
+          if i == len(nums) - 1:
+              return True
+          max_step = min(len(nums), i + nums[i] + 1)
+          for t in range(i+1, max_step):
+              if self.jump_from_i(nums, t):
+                  return True
+          return False
+      def canJump(self, nums):
+          """
+          https://leetcode.com/problems/jump-game/
+          Each element in the array represents your maximum jump length at that position.
+
+          Input: [2,3,1,1,4]
+          Output: true
+          Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
+
+          :type nums: List[int]
+          :rtype: bool
+          """
+          if nums == []:
+              return False
+          if len(nums) == 1:
+              return True
+          return self.jump_from_i(nums, 0)
+
+代码显示与隐藏：
+
+:math:`\color{darkgreen}{Show/Hide\ Code}`
+
+.. container:: toggle
+
+  .. container:: header
+
+    :math:`\color{darkgreen}{Show/Hide\ Code}`
+
+  .. code-block:: xml
+   :linenos:
+
+   from plone import api
+   ...
+
+
+参考资料
+-----------------
+
+1. reStructuredText(rst)快速入门语法说明
+
+  https://www.jianshu.com/p/1885d5570b37
+
+2. RST 语法
+
+  https://3vshej.cn/rstSyntax/rstSyntax.html
+
+3. 代码隐藏（自定义，_templates放在conf.py同目录下）
+
+  http://cn.voidcc.com/question/p-pnfmhomd-v.html
+
+  https://stackoverflow.com/questions/2454577/sphinx-restructuredtext-show-hide-code-snippets
+
+4. 代码隐藏（安装扩展，全屏显示，体验不好）
+
+  https://sphinxcontrib-contentui.readthedocs.io/en/latest/installation.html
+
+  https://sphinxcontrib-contentui.readthedocs.io/en/latest/toggle.html
+
+5. Sphinx + Github Page + Read the Docs
+
+  https://kyzhang.me/2018/05/08/Sphinx-Readthedocs-GitHub2build-wiki/
+
+  https://www.jianshu.com/p/78e9e1b8553a
+
+  https://jamwheeler.com/college-productivity/how-to-write-beautiful-code-documentation/
+
+  https://daler.github.io/sphinxdoc-test/includeme.html
+
+6. latex 颜色
+
+  http://latexcolor.com/

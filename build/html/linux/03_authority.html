@@ -1,0 +1,417 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. 权限管理 &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="机器学习" href="../machineLearning/index.html" />
+    <link rel="prev" title="2. 更多指令" href="02_more.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Linux/Shell</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_basic.html">1. 基本命令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_more.html">2. 更多指令</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. 权限管理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">3.1. 文件描述符</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">3.2. 默认文件权限</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">3.3. 改变权限</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">3.4. 参考资料</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Linux/Shell</a> &raquo;</li>
+        
+      <li>3. 权限管理</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/linux/03_authority.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>3. 权限管理<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>3.1. 文件描述符<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code> 命令输出的第一个字段就是描述文件和目录权限的编码。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">drwxrwxr</span><span class="o">-</span><span class="n">x</span> <span class="mi">13</span> <span class="n">fong</span> <span class="n">fong</span> <span class="mi">4096</span> <span class="mi">5</span><span class="n">月</span>   <span class="mi">7</span> <span class="mi">10</span><span class="p">:</span><span class="mi">33</span> <span class="n">source</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>该字段的第一个字符代表对象的类型：</p>
+<blockquote>
+<div><ul class="simple">
+<li>-：文件</li>
+<li>d：目录</li>
+<li>l：链接</li>
+<li>c：字符型设备</li>
+<li>b：块设备</li>
+<li>n：网络设备</li>
+</ul>
+</div></blockquote>
+<p>之后是3组三字符的编码，每一组定义了3种访问权限（若没有某种权限，使用 - 代替）：</p>
+<blockquote>
+<div><ul class="simple">
+<li>r：可读</li>
+<li>w：可写</li>
+<li>x：可执行</li>
+</ul>
+</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-F</span></code> 能够在可执行文件的文件名后加一个 *，目录后方加 /。</p>
+<p>3组权限对应对象的3个安全等级：</p>
+<blockquote>
+<div><ul class="simple">
+<li>对象的属主（登录名fong）</li>
+<li>对象的属组（组名fong）</li>
+<li>系统其它用户</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id3">
+<h2>3.2. 默认文件权限<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">umask</span></code> 查看默认文件权限，</p>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ <span class="nb">umask</span>
+<span class="m">0002</span>
+
+<span class="c1">## 临时修改默认权限 （若要长期生效，把 umask 0022 写进 ~/.bashrc 并 source）</span>
+$ <span class="nb">umask</span> <span class="m">0022</span>
+$ <span class="nb">umask</span>
+<span class="m">0022</span>
+</pre></div>
+</td></tr></table></div>
+<p>第1位代表粘着位（sticky bit），后3位表示文件或目录对应的umask八进制值（对应3组权限）。</p>
+<table border="1" class="docutils align-center" id="id6">
+<caption><span class="caption-text">Linux文件权限码</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">权限</th>
+<th class="head">二进制值</th>
+<th class="head">八进制值</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>- - -</td>
+<td>000</td>
+<td>0</td>
+</tr>
+<tr class="row-odd"><td>- - x</td>
+<td>001</td>
+<td>1</td>
+</tr>
+<tr class="row-even"><td>- w -</td>
+<td>010</td>
+<td>2</td>
+</tr>
+<tr class="row-odd"><td>- w x</td>
+<td>011</td>
+<td>3</td>
+</tr>
+<tr class="row-even"><td>r - -</td>
+<td>100</td>
+<td>4</td>
+</tr>
+<tr class="row-odd"><td>r - x</td>
+<td>101</td>
+<td>5</td>
+</tr>
+<tr class="row-even"><td>r w -</td>
+<td>110</td>
+<td>6</td>
+</tr>
+<tr class="row-odd"><td>r w x</td>
+<td>111</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+<p>umask值只是 <strong>掩码</strong> ，屏蔽不想授予的权限，即：真正的权限是用 <strong>全权限</strong> 值减去umask值。
+文件的全权限值是 <strong>666</strong> ，目录的全权限值是 <strong>777</strong> 。当umask=0022，文件默认权限是644，目录默认权限是755。</p>
+</div>
+<div class="section" id="id4">
+<h2>3.3. 改变权限<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chmod</span> <span class="p">[</span><span class="o">-</span><span class="n">cfvR</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">help</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">version</span><span class="p">]</span> <span class="p">[</span><span class="n">mode</span><span class="p">]</span> <span class="p">[</span><span class="n">file</span><span class="o">...</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>参数：</p>
+<ul class="simple">
+<li>c：若该文件权限确实已经更改，才打印更改动作</li>
+<li>f：若该文件权限无法被更改，也不打印错误讯息</li>
+<li>v：打印权限变更的详细动作</li>
+<li>R：对目前目录下的所有文件与子目录进行相同的权限变更（即以递回的方式逐个变更）</li>
+</ul>
+<p>mode:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">ugoa</span><span class="o">...</span><span class="p">]</span> <span class="p">[</span><span class="o">+-=</span><span class="p">]</span> <span class="p">[</span><span class="n">rwxX</span><span class="o">...</span><span class="p">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>u 表示对象的属主，g 表示对象的属组成员，o 表示系统其它用户，a 表示这三者皆是。</li>
+<li><ul class="first">
+<li>表示增加权限、- 表示取消权限、= 表示唯一设定权限。</li>
+</ul>
+</li>
+<li>r 表示可读，w 表示可写，x 表示可执行。</li>
+</ul>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ mkdir <span class="nb">test</span>
+$ ls -l
+drwxr-xr-x  <span class="m">2</span> fong fong <span class="m">4096</span> <span class="m">5</span>月   <span class="m">7</span> <span class="m">13</span>:34 test/
+$ chmod -v <span class="m">777</span> <span class="nb">test</span>
+mode of <span class="s1">&#39;test&#39;</span> changed from <span class="m">0755</span> <span class="o">(</span>rwxr-xr-x<span class="o">)</span> to <span class="m">0777</span> <span class="o">(</span>rwxrwxrwx<span class="o">)</span>
+$ chmod -v a-w <span class="nb">test</span>
+mode of <span class="s1">&#39;test&#39;</span> changed from <span class="m">0777</span> <span class="o">(</span>rwxrwxrwx<span class="o">)</span> to <span class="m">0555</span> <span class="o">(</span>r-xr-xr-x<span class="o">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id5">
+<h2>3.4. 参考资料<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>1.《Linux命令行与shell脚本编程大全》</p>
+<ol class="arabic simple" start="2">
+<li>Linux chmod命令</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.runoob.com/linux/linux-comm-chmod.html">https://www.runoob.com/linux/linux-comm-chmod.html</a></div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../machineLearning/index.html" class="btn btn-neutral float-right" title="机器学习" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="02_more.html" class="btn btn-neutral" title="2. 更多指令" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'alpha',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

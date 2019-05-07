@@ -1,0 +1,471 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5. 迭代器和生成器 &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. lambda用法" href="06_lambda.html" />
+    <link rel="prev" title="4. 装饰器" href="04_decorator.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_inplace.html">1. in-place 运算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_all.html">2. __all__ 的使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_is.html">3. is和==</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_decorator.html">4. 装饰器</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5. 迭代器和生成器</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#iterator">5.1. 迭代器（iterator）</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#iterable">5.1.1. 可迭代对象（iterable）</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#generator">5.2. 生成器（generator）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">5.3. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="06_lambda.html">6. lambda用法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_arg.html">7. *args和**kwargs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_basicType.html">8. 基本数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_random.html">9. random</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_normalize.html">10. 归一化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_dataStruct.html">11. 常用数据结构</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Python</a> &raquo;</li>
+        
+      <li>5. 迭代器和生成器</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/python/05_iterator.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>5. 迭代器和生成器<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<a class="reference internal image-reference" href="../_images/05_iterator.png"><img alt="../_images/05_iterator.png" class="align-center" src="../_images/05_iterator.png" style="width: 500px;" /></a>
+<div class="section" id="iterator">
+<h2>5.1. 迭代器（iterator）<a class="headerlink" href="#iterator" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>特点：</dt>
+<dd><ul class="first simple">
+<li>迭代器是访问集合元素的一种方式，不能随机访问集合中的某个值，只能从头到尾依次访问（ <code class="docutils literal notranslate"><span class="pre">next()</span></code> 方法），访问到一半时不能往回退。</li>
+<li>不需要事先准备好整个迭代过程中的所有元素。迭代器仅仅在迭代到某个元素时才计算该元素，而在这之前或之后，元素可以不存在或者被销毁。</li>
+<li>便于循环比较大的数据集合，节省内存。</li>
+<li>不能复制一个迭代器，如果要再次（或者同时）迭代同一个对象，只能去创建另一个迭代器对象。</li>
+</ul>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">## enumerate 返回迭代器</span>
+<span class="n">a</span> <span class="o">=</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span> <span class="c1">## 迭代两次enumerate对象</span>
+    <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+    <span class="k">print</span> <span class="s2">&quot;========&quot;</span>
+</pre></div>
+</td></tr></table></div>
+<p>结果是：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="o">========</span>
+<span class="o">========</span>
+</pre></div>
+</div>
+<p class="last">可以发现：第二次返回值为空。</p>
+</dd>
+</dl>
+<div class="section" id="iterable">
+<h3>5.1.1. 可迭代对象（iterable）<a class="headerlink" href="#iterable" title="Permalink to this headline">¶</a></h3>
+<p><strong>可以直接作用于for循环的对象统称为可迭代对象（Iterable）</strong> 。只要定义了可以返回一个迭代器的 <code class="docutils literal notranslate"><span class="pre">__iter__()</span></code> 方法，或者定义了可以支持下标索引的 <code class="docutils literal notranslate"><span class="pre">__getitem__()</span></code> 方法，那么它就是一个可迭代对象。</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Iterator_test</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="k">return</span> <span class="bp">self</span>
+
+  <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+          <span class="k">raise</span> <span class="ne">StopIteration</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">-=</span> <span class="mi">1</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+
+<span class="n">iterator_winter</span> <span class="o">=</span> <span class="n">Iterator_test</span><span class="p">(</span><span class="s1">&#39;abcde&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">iterator_winter</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">item</span>
+<span class="c1">## 打印 e d c b a</span>
+
+<span class="k">class</span> <span class="nc">Iterator_test2</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">it</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">it</span><span class="p">]</span>
+<span class="n">no_iter</span> <span class="o">=</span> <span class="n">Iterator_test2</span><span class="p">(</span><span class="s1">&#39;abcde&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">no_iter</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">item</span>
+<span class="c1">## 打印 a b c d e</span>
+</pre></div>
+</td></tr></table></div>
+<p>常见的可迭代对象：</p>
+<blockquote>
+<div><ul class="simple">
+<li>集合数据类型，如list、tuple、dict、set、str等。</li>
+<li>generator，包括生成器和带yield的generator function。</li>
+</ul>
+</div></blockquote>
+<p><strong>可以被next()函数调用并不断返回下一个值的对象称为迭代器（Iterator）</strong> 。生成器都是Iterator对象，但list、dict、str虽然是Iterable，却不是Iterator。</p>
+<p><strong>所有的Iterable均可以通过内置函数iter()来转变为Iterator</strong> 。</p>
+<p>判断一个对象是否是可迭代对象：</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Iterable</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">)</span> <span class="c1"># True</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">next</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># 或 a.next()，返回 1</span>
+<span class="nb">next</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># 返回 2</span>
+<span class="nb">next</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># 返回 3</span>
+<span class="nb">next</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># 抛出 StopIteration 异常</span>
+</pre></div>
+</td></tr></table></div>
+<p>一个可迭代对象是不能独立进行迭代的，Python中， 迭代是通过 <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">...</span> <span class="pre">in</span></code> 来完成的 。
+for循环会不断调用迭代器对象的 <code class="docutils literal notranslate"><span class="pre">__next__()</span></code> 方法（python3  <code class="docutils literal notranslate"><span class="pre">__next__()</span></code> ；python2  <code class="docutils literal notranslate"><span class="pre">next()</span></code> ），每次循环，都返回迭代器对象的下一个值，直到遇到 <code class="docutils literal notranslate"><span class="pre">StopIteration</span></code> 异常。</p>
+<p>任何实现了 <code class="docutils literal notranslate"><span class="pre">__iter__()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">__next__()</span></code> （python2中实现 <code class="docutils literal notranslate"><span class="pre">next()</span></code> ）方法的对象都是迭代器， <code class="docutils literal notranslate"><span class="pre">__iter__()</span></code> 返回迭代器自身， <code class="docutils literal notranslate"><span class="pre">__next__()</span></code> 返回容器中的下一个值 。</p>
+</div>
+</div>
+<div class="section" id="generator">
+<h2>5.2. 生成器（generator）<a class="headerlink" href="#generator" title="Permalink to this headline">¶</a></h2>
+<p>生成器其实是一种特殊的迭代器。它不需要再像上面的类一样写 <code class="docutils literal notranslate"><span class="pre">__iter__()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">__next__()</span></code> 方法了，只需要一个 <code class="docutils literal notranslate"><span class="pre">yiled</span></code> 关键字。 <code class="docutils literal notranslate"><span class="pre">yield</span></code> 就是return返回的一个值，并且记住这个返回的位置。下一次迭代就从这个位置开始。
+生成器一定是迭代器（反之不成立），因此任何生成器也是以一种懒加载的模式生成值。</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generator_winter</span><span class="p">():</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">:</span>
+      <span class="k">yield</span> <span class="n">i</span>
+      <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">generator_iter</span> <span class="o">=</span> <span class="n">generator_winter</span><span class="p">()</span> <span class="c1">## 函数体中的代码并不会执行，只有显示或隐示地调用next的时候才会真正执行里面的代码。</span>
+<span class="k">print</span> <span class="n">generator_iter</span><span class="o">.</span><span class="n">next</span><span class="p">()</span> <span class="c1">## 1</span>
+<span class="k">print</span> <span class="n">generator_iter</span><span class="o">.</span><span class="n">next</span><span class="p">()</span> <span class="c1">## 2</span>
+<span class="k">print</span> <span class="n">generator_iter</span><span class="o">.</span><span class="n">next</span><span class="p">()</span> <span class="c1">## 3</span>
+<span class="k">print</span> <span class="n">generator_iter</span><span class="o">.</span><span class="n">next</span><span class="p">()</span> <span class="c1">## 抛出 StopIteration 异常</span>
+</pre></div>
+</td></tr></table></div>
+<p><strong>生成器表达式</strong> （类似于列表推导式，只是把[]换成()）。</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">gen</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span> <span class="c1">## &lt;generator object &lt;genexpr&gt; at 0x0000000012BC4990&gt;</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">gen</span><span class="p">:</span>
+  <span class="k">print</span> <span class="n">item</span>
+
+<span class="c1">## fibonacci 数列</span>
+<span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+  <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+  <span class="k">while</span> <span class="n">b</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+      <span class="k">yield</span> <span class="n">b</span>
+      <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">fibonacci</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">item</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id2">
+<h2>5.3. 参考资料<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Python迭代器，生成器–精华中的精华</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/deeper/p/7565571.html">https://www.cnblogs.com/deeper/p/7565571.html</a></div></blockquote>
+<ol class="arabic simple" start="2">
+<li>python 生成器和迭代器有这篇就够了</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/wj-1314/p/8490822.html">https://www.cnblogs.com/wj-1314/p/8490822.html</a></div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="06_lambda.html" class="btn btn-neutral float-right" title="6. lambda用法" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="04_decorator.html" class="btn btn-neutral" title="4. 装饰器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'alpha',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

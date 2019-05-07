@@ -1,0 +1,359 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. 本地版本库 &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. 远程仓库" href="02_remoteRep.html" />
+    <link rel="prev" title="Git" href="index.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Git</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1. 本地版本库</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">1.1. 本地版本库</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">创建与修改</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">版本管理</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">1.2. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="02_remoteRep.html">2. 远程仓库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_branch.html">3. 分支管理</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Git</a> &raquo;</li>
+        
+      <li>1. 本地版本库</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/git/01_localRep.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>1. 本地版本库<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p><strong>Git</strong> 是目前世界上最先进的分布式版本控制系统。</p>
+<a class="reference internal image-reference" href="../_images/01_git-operations.png"><img alt="图片来源：http://blog.podrezo.com/git-introduction-for-cvssvntfs-users/" class="align-center" src="../_images/01_git-operations.png" style="width: 700px;" /></a>
+<p>（图片来源：<a class="reference external" href="http://blog.podrezo.com/git-introduction-for-cvssvntfs-users/">http://blog.podrezo.com/git-introduction-for-cvssvntfs-users/</a>）</p>
+<ul class="simple">
+<li><strong>workspace</strong> ：工作区</li>
+<li><strong>stage</strong> ：暂存区</li>
+<li><strong>local repository</strong> ：本地版本库</li>
+<li><strong>remote repository</strong> ：远程仓库</li>
+</ul>
+<div class="section" id="id2">
+<h2>1.1. 本地版本库<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h3>创建与修改<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code> 把当前目录变为Git可管理的仓库（目录下多了子目录.git/，自动创建的第一个分支master，以及指向master的一个指针叫 <code class="docutils literal notranslate"><span class="pre">HEAD</span></code> ）。</li>
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">my_file</span></code> 把文件加入暂存区。</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>git add . ：把工作时的 <strong>所有变化</strong> 提交到暂存区，包括文件内容 <strong>修改（modified）</strong> 以及 <strong>新文件（new）</strong> ，但不包括被删除的文件。</p>
+<p>git add -u ：git add - -update，仅监控已经被add的文件（即 <strong>tracked file</strong> ），他会将被修改的文件提交到暂存区。不会提交新文件（untracked file）。</p>
+<p class="last">git add -A ：git add - -all，是上面两个功能的合集。</p>
+</div>
+<ul>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;add</span> <span class="pre">my_file&quot;</span></code>  提交到本地版本库，并写log。</p>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> 查看当前仓库的状态（文件是不是被tracked？修改是不是已经commit？… 等）。</p>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code> 查看当前状态和最新的commit之间的不同（修改还没有add），命令可以加具体文件名以查看某个文件的修改。</p>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span> <span class="pre">&lt;版本号，如7ed6b16&gt;</span></code> 查看当前状态和之前某次commit之间的不同。</p>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> 查看commit记录。</p>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reflog</span></code> 查看之前每次commit之后的分支状态。</p>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ git reflog
+41c873a <span class="o">(</span>HEAD -&gt; master<span class="o">)</span> HEAD@<span class="o">{</span><span class="m">0</span><span class="o">}</span>: commit: update b
+3e2b7f2 HEAD@<span class="o">{</span><span class="m">1</span><span class="o">}</span>: reset: moving to HEAD
+3e2b7f2 HEAD@<span class="o">{</span><span class="m">2</span><span class="o">}</span>: commit: update out
+7ed6b16 HEAD@<span class="o">{</span><span class="m">3</span><span class="o">}</span>: reset: moving to HEAD
+7ed6b16 HEAD@<span class="o">{</span><span class="m">4</span><span class="o">}</span>: commit: add a
+<span class="m">8337301</span> HEAD@<span class="o">{</span><span class="m">5</span><span class="o">}</span>: commit <span class="o">(</span>initial<span class="o">)</span>: add readme
+</pre></div>
+</td></tr></table></div>
+</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h3>版本管理<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="../_images/01_head.jpg"><img alt="图片来源：https://www.liaoxuefeng.com/wiki/896043488029600/897271968352576" class="align-center" src="../_images/01_head.jpg" style="width: 500px;" /></a>
+<p>（图片来源：<a class="reference external" href="https://www.liaoxuefeng.com/wiki/896043488029600/897271968352576">https://www.liaoxuefeng.com/wiki/896043488029600/897271968352576</a>）</p>
+<p><strong>HEAD 指针指向当前版本的master分支。</strong></p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">--</span> <span class="pre">my_file</span></code> 如果修改或删除了已经commit的内容，这条指令可以丢弃该操作，一键还原。</li>
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">--hard</span></code> 撤销修改，回到上一次commit之后的状态。</li>
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">--hard</span> <span class="pre">&lt;版本号，如7ed6b16&gt;</span></code> 回到某一次commit之后的状态，同时会删除该次commit之后的commit log。</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>1.2. 参考资料<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Git和Github简单教程</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/schaepher/p/5561193.html#reset">https://www.cnblogs.com/schaepher/p/5561193.html#reset</a></div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Git教程</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.liaoxuefeng.com/wiki/896043488029600">https://www.liaoxuefeng.com/wiki/896043488029600</a></div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Git使用教程</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="http://www.cnblogs.com/tugenhua0707/p/4050072.html">http://www.cnblogs.com/tugenhua0707/p/4050072.html</a></div></blockquote>
+<ol class="arabic simple" start="4">
+<li>Git操作详解</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/bestzhang/p/6903338.html">https://www.cnblogs.com/bestzhang/p/6903338.html</a></div></blockquote>
+<ol class="arabic simple" start="5">
+<li>git add -A 和 git add . 的区别</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/skura23/p/5859243.html">https://www.cnblogs.com/skura23/p/5859243.html</a></div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="02_remoteRep.html" class="btn btn-neutral float-right" title="2. 远程仓库" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Git" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'alpha',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

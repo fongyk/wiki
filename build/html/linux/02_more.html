@@ -95,9 +95,16 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Linux/Shell</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="01_basic.html">1. 基本命令</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">2. 更多指令</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#tee">2.1. tee</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">2.2. 查找</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">2.3. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#debianpms">2.1. Debian系PMS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dpkg">dpkg</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#apt-get">apt-get</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#apt-cache">apt-cache</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#aptitude">aptitude</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tee">2.2. tee</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2.3. 查找</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.4. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="03_authority.html">3. 权限管理</a></li>
@@ -177,14 +184,65 @@
             
   <div class="section" id="id1">
 <h1>2. 更多指令<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="debianpms">
+<h2>2.1. Debian系PMS<a class="headerlink" href="#debianpms" title="Permalink to this headline">¶</a></h2>
+<p><strong>PMS</strong> : Package Management System，包管理系统。主要介绍：</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>dpkg</strong></li>
+<li><strong>apt-get</strong></li>
+<li><strong>apt-cache</strong></li>
+<li><strong>aptitude</strong></li>
+</ul>
+</div></blockquote>
+<div class="section" id="dpkg">
+<h3>dpkg<a class="headerlink" href="#dpkg" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>dpkg -L package_name：列出软件包所安装的所有文件</li>
+<li>dpkg -S absolute_file_name：查找特定的某个文件属于哪个软件包（使用绝对路径）</li>
+</ul>
+</div>
+<div class="section" id="apt-get">
+<h3>apt-get<a class="headerlink" href="#apt-get" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>apt-get install package_name：安装一个新软件包</li>
+<li>apt-get remove package_name：卸载一个已安装的软件包（保留配置文件）</li>
+<li>apt-get –purge remove package_name：卸载一个已安装的软件包（删除配置文件）</li>
+<li>apt-get clean：删除安装的软件的备份，不过不影响软件的使用。</li>
+<li>apt-get update：更新 <strong>软件包列表</strong></li>
+<li>apt-get upgrade：升级所有已安装的 <strong>软件包</strong> （upgrade之前先update，确保升级的是最新版本）</li>
+</ul>
+</div>
+<div class="section" id="apt-cache">
+<h3>apt-cache<a class="headerlink" href="#apt-cache" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>apt-cache showpkg package_name：显示软件包信息</li>
+<li>apt-cache policy package_name：显示软件包是否已经安装、版本号等</li>
+</ul>
+</div>
+<div class="section" id="aptitude">
+<h3>aptitude<a class="headerlink" href="#aptitude" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>aptitude install package_name：安装软件包</li>
+<li>aptitude remove package_name：删除软件包</li>
+<li>aptitude purge package_name：删除软件包及其配置文件</li>
+<li>aptitude search package_name：搜索软件包</li>
+<li>aptitude show package_name：显示软件包的详细信息</li>
+<li>aptitude clean：删除下载的软件包文件</li>
+<li>aptitude autoclean：仅删除过期的软件包文件</li>
+<li>aptitude update：更新可用的软件包列表</li>
+<li>aptitude upgrade：升级可用的软件包</li>
+</ul>
+</div>
+</div>
 <div class="section" id="tee">
-<h2>2.1. tee<a class="headerlink" href="#tee" title="Permalink to this headline">¶</a></h2>
+<h2>2.2. tee<a class="headerlink" href="#tee" title="Permalink to this headline">¶</a></h2>
 <p>读取标准输入的数据，并将其内容输出成文件。</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tee <span class="o">[</span>-ai<span class="o">]</span> <span class="o">[</span>--help<span class="o">]</span> <span class="o">[</span>--version<span class="o">]</span> <span class="o">[</span>file ...<span class="o">]</span>
 </pre></div>
 </div>
 <dl class="docutils">
-<dt>参数：</dt>
+<dt>参数</dt>
 <dd><ul class="first last simple">
 <li>-a或- -append：追加到既有文件</li>
 <li>-i或- -ignore-interrupts：忽略中断信号</li>
@@ -193,7 +251,9 @@
 </ul>
 </dd>
 </dl>
-<p>例子：</p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Example}\)</span></div>
 <div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -215,7 +275,7 @@
 $ tee out1 out2
 a b c d e f g <span class="c1"># 输入</span>
 a b c d e f g <span class="c1"># 反馈</span>
-^C
+^C            <span class="c1"># 结束输入</span>
 $ cat out1
 a b c d e f g
 $ cat out2
@@ -232,8 +292,12 @@ $ python test.py <span class="p">|</span> tee out
 </pre></div>
 </td></tr></table></div>
 </div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
 <div class="section" id="id2">
-<h2>2.2. 查找<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>2.3. 查找<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p><strong>which</strong></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>which <span class="o">[</span>可执行文件...<span class="o">]</span>
 </pre></div>
@@ -320,7 +384,7 @@ $ find /var/log -name <span class="s2">&quot;*.tmp&quot;</span> -ok rm <span cla
 </div>
 </div>
 <div class="section" id="id3">
-<h2>2.3. 参考资料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>2.4. 参考资料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>runoob.com</li>
 </ol>
@@ -333,6 +397,16 @@ $ find /var/log -name <span class="s2">&quot;*.tmp&quot;</span> -ok rm <span cla
 </ol>
 <blockquote>
 <div><a class="reference external" href="http://www.cnblogs.com/peida/archive/2012/12/05/2803591.html">http://www.cnblogs.com/peida/archive/2012/12/05/2803591.html</a></div></blockquote>
+<ol class="arabic simple" start="3">
+<li>aptitude和apt-get的区别和联系【转，有添加和修改】</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://blog.csdn.net/u010670794/article/details/42520209">https://blog.csdn.net/u010670794/article/details/42520209</a></div></blockquote>
+<ol class="arabic simple" start="4">
+<li>apt-get update与upgrade的区别</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.jianshu.com/p/42a1850bdcf6">https://www.jianshu.com/p/42a1850bdcf6</a></div></blockquote>
 </div>
 </div>
 

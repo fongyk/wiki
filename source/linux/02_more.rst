@@ -3,6 +3,72 @@
 
 .. highlight:: bash
 
+
+Debian系PMS
+---------------
+
+**PMS** : Package Management System，包管理系统。主要介绍：
+
+  - **dpkg**
+  - **apt-get**
+  - **apt-cache**
+  - **aptitude**
+
+dpkg
+^^^^^^^^^^
+
+
+- dpkg -L package_name：列出软件包所安装的所有文件
+
+- dpkg -S absolute_file_name：查找特定的某个文件属于哪个软件包（使用绝对路径）
+
+
+apt-get
+^^^^^^^^^^^^^
+
+- apt-get install package_name：安装一个新软件包
+
+- apt-get remove package_name：卸载一个已安装的软件包（保留配置文件）
+
+- apt-get –purge remove package_name：卸载一个已安装的软件包（删除配置文件）
+
+- apt-get clean：删除安装的软件的备份，不过不影响软件的使用。
+
+- apt-get update：更新 **软件包列表**
+
+- apt-get upgrade：升级所有已安装的 **软件包** （upgrade之前先update，确保升级的是最新版本）
+
+
+apt-cache
+^^^^^^^^^^^^^
+
+- apt-cache showpkg package_name：显示软件包信息
+
+- apt-cache policy package_name：显示软件包是否已经安装、版本号等
+
+
+aptitude
+^^^^^^^^^^^^^
+
+- aptitude install package_name：安装软件包
+
+- aptitude remove package_name：删除软件包
+
+- aptitude purge package_name：删除软件包及其配置文件
+
+- aptitude search package_name：搜索软件包
+
+- aptitude show package_name：显示软件包的详细信息
+
+- aptitude clean：删除下载的软件包文件
+
+- aptitude autoclean：仅删除过期的软件包文件
+
+- aptitude update：更新可用的软件包列表
+
+- aptitude upgrade：升级可用的软件包
+
+
 tee
 -----------
 
@@ -12,7 +78,7 @@ tee
 
   tee [-ai] [--help] [--version] [file ...]
 
-参数：
+参数
   - -a或\- \-append：追加到既有文件
 
   - -i或\- \-ignore-interrupts：忽略中断信号
@@ -21,30 +87,37 @@ tee
 
   - \- \-version：版本信息
 
-例子：
 
-.. code-block:: bash
-  :linenos:
+.. container:: toggle
 
-  ## 将用户输入的数据同时保存到 out1 out2
-  $ tee out1 out2
-  a b c d e f g # 输入
-  a b c d e f g # 反馈
-  ^C
-  $ cat out1
-  a b c d e f g
-  $ cat out2
-  a b c d e f g
+  .. container:: header
 
-  ## 管道：将屏幕的输出保存到文件
-  $ echo "hello world" | tee out
-  hello world
-  $ cat out
-  hello world
+    :math:`\color{darkgreen}{Example}`
 
-  ## 把python程序打印到屏幕的内容保存到文件
-  $ python test.py | tee out
+  .. code-block:: bash
+    :linenos:
 
+    ## 将用户输入的数据同时保存到 out1 out2
+    $ tee out1 out2
+    a b c d e f g # 输入
+    a b c d e f g # 反馈
+    ^C            # 结束输入
+    $ cat out1
+    a b c d e f g
+    $ cat out2
+    a b c d e f g
+
+    ## 管道：将屏幕的输出保存到文件
+    $ echo "hello world" | tee out
+    hello world
+    $ cat out
+    hello world
+
+    ## 把python程序打印到屏幕的内容保存到文件
+    $ python test.py | tee out
+
+
+|
 
 查找
 ------------
@@ -139,3 +212,11 @@ find是在硬盘文件树查找。参数：
 2. 每天一个linux命令目录
 
   http://www.cnblogs.com/peida/archive/2012/12/05/2803591.html
+
+3. aptitude和apt-get的区别和联系【转，有添加和修改】
+
+  https://blog.csdn.net/u010670794/article/details/42520209
+
+4. apt-get update与upgrade的区别
+
+  https://www.jianshu.com/p/42a1850bdcf6

@@ -1,5 +1,5 @@
-rst语法测试
-============
+rst语法
+=========
 
 ``makefile`` 规则：
 
@@ -221,6 +221,8 @@ command
   https://kyzhang.me/2018/05/08/Sphinx-Readthedocs-GitHub2build-wiki/
 
   https://www.jianshu.com/p/78e9e1b8553a
+
+  https://github.com/mathLab/PyGeM/issues/94
 
   https://jamwheeler.com/college-productivity/how-to-write-beautiful-code-documentation/
 

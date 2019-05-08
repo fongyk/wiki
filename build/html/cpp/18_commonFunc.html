@@ -115,9 +115,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#min-element-max-element-minmax-element">18.4. min_element，max_element，minmax_element</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#accumulate">18.5. accumulate</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#partial-sum">18.6. partial_sum</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#inner-product">18.7. inner_product</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">18.8. 附：头文件</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">18.9. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#iota">18.7. iota</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#inner-product">18.8. inner_product</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#memset">18.9. memset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">18.10. 附：头文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">18.11. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用STL类及容器</a></li>
@@ -125,10 +127,12 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
 </ul>
 
@@ -323,7 +327,10 @@
 22
 23
 24
-25</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+25
+26
+27
+28</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
@@ -345,6 +352,9 @@
   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
   <span class="n">for_each</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">print</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">);</span> <span class="c1">//  9 9 9 9</span>
   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+  <span class="kt">int</span> <span class="n">b</span><span class="p">[</span><span class="mi">10</span><span class="p">][</span><span class="mi">20</span><span class="p">];</span>
+        <span class="n">fill</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// b 所有元素为 2</span>
 
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -771,8 +781,54 @@
 <div class="line"><br /></div>
 </div>
 </div>
+<div class="section" id="iota">
+<h2>18.7. iota<a class="headerlink" href="#iota" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;numeric&gt;</span><span class="cp"></span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">ForwardIterator</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">iota</span> <span class="p">(</span><span class="n">ForwardIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">ForwardIterator</span> <span class="n">last</span><span class="p">,</span> <span class="n">T</span> <span class="n">val</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>采用递增的形式，将val开始的等差数列赋值给区间 [first,last) 的元素。</p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Example}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;     // std::cout</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;numeric&gt;      // std::iota</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="kt">float</span> <span class="n">numbers</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">iota</span> <span class="p">(</span><span class="n">numbers</span><span class="p">,</span><span class="n">numbers</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span><span class="mf">3.5</span><span class="p">);</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;numbers:&quot;</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">float</span><span class="o">&amp;</span> <span class="nl">i</span><span class="p">:</span><span class="n">numbers</span><span class="p">)</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">;</span> <span class="c1">// 3.5 4.5 5.5 6.5 7.5 8.5 9.5 10.5 11.5 12.5</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
 <div class="section" id="inner-product">
-<h2>18.7. inner_product<a class="headerlink" href="#inner-product" title="Permalink to this headline">¶</a></h2>
+<h2>18.8. inner_product<a class="headerlink" href="#inner-product" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;numeric&gt;</span><span class="cp"></span>
 
 <span class="c1">// sum/multiply</span>
@@ -863,8 +919,64 @@
 <div class="line"><br /></div>
 </div>
 </div>
+<div class="section" id="memset">
+<h2>18.9. memset<a class="headerlink" href="#memset" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp"></span>
+
+<span class="kt">void</span> <span class="o">*</span> <span class="nf">memset</span> <span class="p">(</span> <span class="kt">void</span> <span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">num</span> <span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>memset</strong> 按 <strong>字节</strong> 赋值， <strong>fill</strong> 按 <strong>元素</strong> 赋值。</p>
+<p>如果用memset给int型变量赋值，只能是0或-1。</p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Example}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="n">str</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;almost every programmer should know memset!&quot;</span><span class="p">;</span>
+  <span class="n">memset</span> <span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="sc">&#39;-&#39;</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">str</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// ------ every programmer should know memset!</span>
+
+  <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">10</span><span class="p">][</span><span class="mi">10</span><span class="p">];</span>
+  <span class="n">memset</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">a</span><span class="p">));</span> <span class="c1">// 或者 10*10*sizeof(int)，全部赋值为-1</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="nl">e</span><span class="p">:</span><span class="n">a</span><span class="p">)</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">bitset</span><span class="o">&lt;</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">*</span><span class="mi">8</span><span class="o">&gt;</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 11111111  11111111  11111111  11111111 （补码）</span>
+
+  <span class="kt">int</span> <span class="n">b</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+  <span class="n">memset</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">b</span><span class="p">));</span><span class="c1">// 或者 5*sizeof(int)，全部赋值为 16843009</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="nl">e</span><span class="p">:</span><span class="n">b</span><span class="p">)</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">bitset</span><span class="o">&lt;</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">*</span><span class="mi">8</span><span class="o">&gt;</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 00000001 00000001 00000001 00000001 （int型占4字节，每个字节都赋值为1）</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
 <div class="section" id="id2">
-<h2>18.8. 附：头文件<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>18.10. 附：头文件<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">cmath</span></code><ul>
 <li>pow()</li>
@@ -902,7 +1014,7 @@
 </ul>
 </div>
 <div class="section" id="id3">
-<h2>18.9. 参考资料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>18.11. 参考资料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>C++ reference</li>
 </ol>
@@ -915,7 +1027,9 @@
 <p><a class="reference external" href="http://www.cplusplus.com/reference/algorithm/min_element">http://www.cplusplus.com/reference/algorithm/min_element</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/numeric/accumulate">http://www.cplusplus.com/reference/numeric/accumulate</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/numeric/partial_sum">http://www.cplusplus.com/reference/numeric/partial_sum</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/numeric/iota">http://www.cplusplus.com/reference/numeric/iota</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/numeric/inner_product">http://www.cplusplus.com/reference/numeric/inner_product</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/cstring/memset">http://www.cplusplus.com/reference/cstring/memset</a></p>
 </div></blockquote>
 <ol class="arabic simple" start="2">
 <li>C/C++-STL中lower_bound与upper_bound的用法</li>

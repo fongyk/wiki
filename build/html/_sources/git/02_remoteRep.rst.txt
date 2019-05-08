@@ -50,11 +50,12 @@
 
     - git stash
     - git pull origin master（其中origin master表示git的主分支）
+    - ... （一些别的操作，直到结束了对pull到本地的代码的操作。例如，push之后。）
     - git stash pop
 
   - 完全地覆盖本地的代码，只保留服务器端代码，则直接回退到上一个版本，再进行pull。
 
-    - git reset --hard
+    - git reset \- \-hard
     - git pull origin master
 
 

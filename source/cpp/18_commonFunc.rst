@@ -124,6 +124,9 @@ fill，fill\_n，for\_each
       for_each(v.begin(), v.end(), print<int>); //  9 9 9 9
       cout << endl;
 
+      int b[10][20];
+	    fill(b[0], b[0] + 200, 2); // b 所有元素为 2
+
       return 0;
     }
 
@@ -423,6 +426,46 @@ partial_sum
       return 0;
     }
 
+
+|
+
+iota
+---------------
+
+::
+
+  #include <numeric>
+
+  template <class ForwardIterator, class T>
+  void iota (ForwardIterator first, ForwardIterator last, T val);
+
+采用递增的形式，将val开始的等差数列赋值给区间 [first,last) 的元素。
+
+.. container:: toggle
+
+  .. container:: header
+
+    :math:`\color{darkgreen}{Example}`
+
+  .. code-block:: cpp
+    :linenos:
+
+    #include <iostream>     // std::cout
+    #include <numeric>      // std::iota
+
+    int main () {
+      float numbers[10];
+
+      std::iota (numbers,numbers+10,3.5);
+
+      std::cout << "numbers:";
+      for (float& i:numbers) std::cout << ' ' << i; // 3.5 4.5 5.5 6.5 7.5 8.5 9.5 10.5 11.5 12.5
+      std::cout << '\n';
+
+      return 0;
+    }
+
+
 |
 
 inner\_product
@@ -492,6 +535,52 @@ inner\_product
       return 0;
     }
 
+
+|
+
+memset
+------------------
+
+::
+
+  #include <cstring>
+
+  void * memset ( void * ptr, int value, size_t num );
+
+**memset** 按 **字节** 赋值， **fill** 按 **元素** 赋值。
+
+如果用memset给int型变量赋值，只能是0或-1。
+
+.. container:: toggle
+
+  .. container:: header
+
+    :math:`\color{darkgreen}{Example}`
+
+  .. code-block:: cpp
+    :linenos:
+
+    #include <iostream>
+    #include <cstring>
+
+    int main()
+    {
+      char str[] = "almost every programmer should know memset!";
+      memset (str,'-',6);
+      cout << str << endl; // ------ every programmer should know memset!
+
+      int a[10][10];
+      memset(a, -1, sizeof(a)); // 或者 10*10*sizeof(int)，全部赋值为-1
+      for(int e:a) cout << bitset<sizeof(int)*8>(e) << endl; // 11111111  11111111  11111111  11111111 （补码）
+
+      int b[5];
+      memset(b, 1, sizeof(b));// 或者 5*sizeof(int)，全部赋值为 16843009
+      for(int e:b) cout << bitset<sizeof(int)*8>(e) << endl; // 00000001 00000001 00000001 00000001 （int型占4字节，每个字节都赋值为1）
+
+      return 0;
+    }
+
+
 |
 
 附：头文件
@@ -558,7 +647,11 @@ inner\_product
 
   http://www.cplusplus.com/reference/numeric/partial_sum
 
+  http://www.cplusplus.com/reference/numeric/iota
+
   http://www.cplusplus.com/reference/numeric/inner_product
+
+  http://www.cplusplus.com/reference/cstring/memset
 
 
 2. C/C++-STL中lower_bound与upper_bound的用法

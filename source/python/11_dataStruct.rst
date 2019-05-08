@@ -278,7 +278,11 @@ Hint：建立大小为K的小顶堆，对后续所有数进行遍历：如果大
 
   from collections import Counter
 
-Counter用于统计频率。
+Counter用于统计频率。属性与字典类似，有keys()，values()，items()等。
+
+.. note::
+
+  Counter统计之后并不一定是按照频率从高到低排列的。
 
 .. code-block:: python
   :linenos:

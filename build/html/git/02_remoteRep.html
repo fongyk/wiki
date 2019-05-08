@@ -219,11 +219,12 @@ origin  git@github.com:******/******.git <span class="o">(</span>push<span class
 <li>保留未push的本地代码，并把git服务器上的代码pull到本地（本地刚才修改的代码将会被暂时封存起来）。<ul>
 <li>git stash</li>
 <li>git pull origin master（其中origin master表示git的主分支）</li>
+<li>… （一些别的操作，直到结束了对pull到本地的代码的操作。例如，push之后。）</li>
 <li>git stash pop</li>
 </ul>
 </li>
 <li>完全地覆盖本地的代码，只保留服务器端代码，则直接回退到上一个版本，再进行pull。<ul>
-<li>git reset –hard</li>
+<li>git reset - -hard</li>
 <li>git pull origin master</li>
 </ul>
 </li>

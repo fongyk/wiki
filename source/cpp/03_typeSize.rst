@@ -6,7 +6,8 @@
 
 以下结果若非特别指出，均在Windows系统下由编译器Visual Studio测试得到。
 
-.. table::
+.. table:: 类型大小
+    :align: center
 
     =============   =====================  ========================
      类型             size/32位编译器           size/64位编译器
@@ -82,6 +83,48 @@ sizeof与strlen
       正确的定义应该是 ``strF`` 。
 
 
+float和double
+---------------------
+
+单精度浮点型 **float** 的精度为 **6 -- 7** 位有效数字，双精度浮点型 **double** 的精度为 **15 -- 16** 位有效数字。
+
+.. code-block:: cpp
+  :linenos:
+  :emphasize-lines: 17 - 20, 22
+
+  #include <iostream>
+  using namespace std;
+
+  int main(int argc, char ** argv)
+  {
+    int i = 200000003 / 100000002; // 1.9999999900000003
+
+    float f_i = 200000003 / (float)100000002; // 浮点型常数默认为 const double，或用 200000003.0f 指定为 float。
+    float f_f = (float)200000003.0 / (float)100000002.0; // 若不进行强制类型转换，会有 warning: truncation from 'double' to 'float'
+    float f_d = (float)200000003.0 / (double)100000002;// warning: truncation from 'double' to 'float'
+    double d_d = 200000003 / (double)100000002;
+
+    cout.setf(ios::fixed); // 浮点数定点输出
+    cout.setf(ios::showpoint); // 显示小数位
+    cout.precision(10); // 固定为10位精度（四舍五入）
+    cout << i << endl; // 1
+    cout << f_i << ends << static_cast<int>(f_i) << endl; // 2.0000000000 2
+    cout << f_f << ends << static_cast<int>(f_f) << endl; // 2.0000000000 2
+    cout << f_d << ends << static_cast<int>(f_d) << endl; // 2.0000000000 2
+    cout << d_d << ends << static_cast<int>(d_d) << endl; // 1.9999999900 1
+    cout.precision(2);
+    cout << d_d << ends << static_cast<int>(d_d) << endl; // 2.00 1
+
+    cout << boolalpha; // 设置布尔型输出格式
+    cout << (i == static_cast<int>(f_f)) << endl; // false
+    cout << (i == static_cast<int>(f_d)) << endl; // false
+    cout << (i == static_cast<int>(d_d)) << endl; // true （只有double转换到int的结果与 i 一致）
+
+    return 0;
+  }
+
+
+
 参考资料
 --------------
 
@@ -92,3 +135,7 @@ sizeof与strlen
 2. 关于strlen与sizeof的区别
 
   https://blog.csdn.net/zhengqijun\_/article/details/51815081
+
+3. C++ 中的 cout.setf() 函数
+
+  https://blog.csdn.net/baishuiniyaonulia/article/details/79144033

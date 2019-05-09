@@ -592,6 +592,12 @@ memset
 
   - sqrt()
 
+  - floor()
+
+  - ceil()
+
+  - round()
+
 - ``cstdlib``
 
   - abs()

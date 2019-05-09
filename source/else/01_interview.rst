@@ -400,7 +400,63 @@
       };
 
 
-c++
+16. [LeetCode] Spiral Matrix 环形打印矩阵
+
+  https://leetcode.com/problems/spiral-matrix/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Show/Hide\ Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution
+      {
+      public:
+          void tranverseMatrixAccorindTo4Directions(vector<vector<int>> &matrix, const unsigned int row, const unsigned int col, int start, vector<int>& vec)
+          {
+              // 特别注意
+              // 如果把 start, endX, endY, k 声明为 unsigned int 类型，在减到 0 的时候可能会死循环，因为 unsigned int 类型不会小于 0。
+
+              int endX = row-1 - start;
+              int endY = col-1 - start;
+
+              // 1 向右
+              for(int k = start; k <= endY; ++k) vec.push_back(matrix[start][k]);
+
+              // 2 向下
+              for(int k = start+1; k <= endX; ++k) vec.push_back(matrix[k][endY]);
+
+              // 3 向左：要求至少存在两行（不加判断会重复扫描同一行）
+              if(endX > start) for(int k = endY-1; k >= start; --k) vec.push_back(matrix[endX][k]);
+
+              // 4 向上：要求至少存在两列（不加判断会重复扫描同一列）
+              if(endY > start) for(int k = endX-1; k > start; --k) vec.push_back(matrix[k][start]);
+
+          }
+          vector<int> spiralOrder(vector<vector<int>>& matrix)
+          {
+              vector<int> vec;
+              unsigned int row = matrix.size();
+              if(row == 0) return vec;
+              unsigned int col = matrix[0].size();
+              if(col == 0) return vec;
+              int start = 0;
+              // 循环中止条件：圈数判断（ (start,start) 是每一圈的入口坐标）
+              while(start*2 < row && start*2 < col)
+              {
+                  tranverseMatrixAccorindTo4Directions(matrix, row, col, start, vec);
+                  ++ start;
+              }
+              return vec;
+          }
+      };
+
+
+C++
 ------------
 
 1. 虚函数

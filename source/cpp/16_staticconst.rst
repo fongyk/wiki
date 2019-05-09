@@ -37,6 +37,7 @@ static const
 .. code-block:: cpp
   :linenos:
 
+  // header.h
   class Solution {
   public:
   	static void print()
@@ -46,16 +47,21 @@ static const
   	}
 
   private:
-  	static const map<char, vector<char> > mapping;
-  	static const int var = 100; // 直接初始化
+  	static const map<char, vector<char> > mapping; // 常量声明式
+  	static const int var = 100; // 常量声明式（直接初始化）
   };
 
+  // source.cpp
   const map<char, vector<char> > Solution:: mapping = {{'2', {'a', 'b', 'c'}},
                                                       {'3', {'d', 'e', 'f'}},
-                                                      {'4', {'g', 'h', 'i'}}};
+                                                      {'4', {'g', 'h', 'i'}}}; // mapping 的定义
 
   /* 注：const map只能通过迭代器 const_iterator 访问元素（it->first, it->second）
    ，不能通过下标[]的方式访问。*/
+
+  // 对应类的 static const int/char/bool 成员常量，如果不取他们的地址，则可以直接声明并使用，而无需提供以下的定义式。
+  const int Solution:: var; // var 的定义。由于 常量var 在类内声明时已经获得了初始值，因此定义时不可以再设初始值。
+
 
 参考资料
 -------------

@@ -24,3 +24,4 @@ C/C++
     17_enum.rst
     18_commonFunc.rst
     19_stl.rst
+    20_define.rst

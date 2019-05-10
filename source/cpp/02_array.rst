@@ -1,6 +1,45 @@
 数组
 ========
 
+指针
+--------
+
+.. code-block:: cpp
+  :linenos:
+
+  #include <ctime>
+  using namespace std;
+
+  struct TreeNode
+  {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x) :val(x), left(nullptr), right(nullptr){} /* 唯一的构造函数，必须给的参数x */
+  };
+
+  int main(int argc, char ** argv)
+  {
+    //int* p = new int(1); /* 这两行与下面三行等效 */
+    //cout << *p << endl;
+    int* p = new int;
+    *p = 1;                /* p已经申请了内存空间，可以直接赋值 */
+    cout << *p << endl;
+
+    TreeNode* q = new TreeNode(10);
+    cout << q->val << endl;
+
+    TreeNode node(100);
+    TreeNode* r = &node;   /* r 不能delete */
+    cout << r->val << endl;
+
+    delete p;
+    delete q;
+
+    return 0;
+  }
+
+
 动态数组
 ----------
 
@@ -258,6 +297,21 @@ malloc/free与new/delete
     ``new/delete`` 可以重载成为函数，可以自定义申请过程，比如记录申请内存的长度以及跟踪每个对象的指针。
 
     ``malloc/free`` 不能重载。
+
+.. warning::
+
+  - new和delete一定要配对使用。
+
+  - 对空指针使用delete是安全的。
+
+  - 不能使用delete释放绑定到对象的指针。
+
+    ::
+
+      int val = 5;
+      int* p = &val;
+      delete p; // error, memory not allocated by new
+
 
 参考资料
 --------------

@@ -456,6 +456,43 @@
       };
 
 
+17. [LeetCode] Longest Consecutive Sequence 最长连续序列。Hint：方法一，排序；方法二，对于每个元素n，搜索n+1是否在数组中，使用 hash（set）可以获得 O(1) 的查找复杂度。
+
+  https://leetcode.com/problems/longest-consecutive-sequence/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Show/Hide\ Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution(object):
+      def longestConsecutive(self, nums):
+          """
+          :type nums: List[int]
+          :rtype: int
+          """
+
+          longest = 0
+          num_set = set(nums)
+
+          for num in nums:
+              if num-1 not in num_set:
+                  current_long = 1
+                  while num + 1 in num_set:
+                      current_long += 1
+                      num += 1
+                  longest = max(longest, current_long)
+
+          num_set.clear()
+
+          return longest
+
+
+
 C++
 ------------
 

@@ -895,6 +895,59 @@
 </td></tr></table></div>
 </div>
 </div></blockquote>
+<ol class="arabic simple" start="17">
+<li>[LeetCode] Longest Consecutive Sequence 最长连续序列。Hint：方法一，排序；方法二，对于每个元素n，搜索n+1是否在数组中，使用 hash（set）可以获得 O(1) 的查找复杂度。</li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://leetcode.com/problems/longest-consecutive-sequence/">https://leetcode.com/problems/longest-consecutive-sequence/</a></p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Show/Hide\ Code}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="n">object</span><span class="p">)</span><span class="o">:</span>
+<span class="n">def</span> <span class="n">longestConsecutive</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">)</span><span class="o">:</span>
+    <span class="s">&quot;&quot;&quot;</span>
+    <span class="o">:</span><span class="n">type</span> <span class="nl">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span>
+    <span class="o">:</span><span class="nl">rtype</span><span class="p">:</span> <span class="kt">int</span>
+    <span class="s">&quot;&quot;&quot;</span>
+
+    <span class="n">longest</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">num_set</span> <span class="o">=</span> <span class="n">set</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">num</span> <span class="n">in</span> <span class="nl">nums</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">num</span><span class="o">-</span><span class="mi">1</span> <span class="n">not</span> <span class="n">in</span> <span class="nl">num_set</span><span class="p">:</span>
+            <span class="n">current_long</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">while</span> <span class="n">num</span> <span class="o">+</span> <span class="mi">1</span> <span class="n">in</span> <span class="nl">num_set</span><span class="p">:</span>
+                <span class="n">current_long</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">longest</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">longest</span><span class="p">,</span> <span class="n">current_long</span><span class="p">)</span>
+
+    <span class="n">num_set</span><span class="p">.</span><span class="n">clear</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">longest</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div></blockquote>
 </div>
 <div class="section" id="c">
 <h2>1.3. C++<a class="headerlink" href="#c" title="Permalink to this headline">¶</a></h2>

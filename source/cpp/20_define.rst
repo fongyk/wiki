@@ -4,7 +4,6 @@
 .. highlight:: cpp
 
 **原则**
-
   - **对于单纯常量，最好以 const 对象或 enum 替换 #define。**
 
   - **对于形似函数的宏（macros），最好改用 inline 函数替换 #define。**
@@ -25,7 +24,7 @@ const
 可能没有进入记号表（symbol table）内。当运用此常量获得编译错误时，这个错误也许会提到  ``1.653`` 而不是 ``ASPECT_RATIO`` ，导致对其追踪
 变得困难。
 
-作为一个语言常量， ``AspectRation`` 一定会被编译器看到并及你如记号表。
+作为一个语言常量， ``AspectRation`` 一定会被编译器看到并记入记号表。
 
 此外，对浮点常量而言，使用常量可能比使用 #define 导致较小的代码量，因为预处理器将宏名称 ``ASPECT_RATIO`` 替换为  ``1.653`` ，可能导致
 目标码（object code）出现多份 ``1.653`` ，使用常量则不会。
@@ -87,6 +86,9 @@ inline
 
 .. code-block:: cpp
   :linenos:
+
+  #include <iostream>
+  using namespace std;
 
   #define CALL_WITH_MAX(a, b) f((a)>(b)? (a):(b))
 

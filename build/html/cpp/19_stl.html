@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Python" href="../python/index.html" />
+    <link rel="next" title="20. #define" href="20_define.html" />
     <link rel="prev" title="18. 常用函数" href="18_commonFunc.html" /> 
 
   
@@ -118,17 +118,25 @@
 <li class="toctree-l3"><a class="reference internal" href="#map">19.6. map</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#stack">19.7. stack</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#queue">19.8. queue</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id1">19.9. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#size-tsize-type">19.9. size_t和size_type</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#size-t">size_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#size-type">size_type</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">19.10. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
 </ul>
 
@@ -265,7 +273,13 @@
 </li>
 <li><p class="first">访问：[pos]，at(pos)</p>
 </li>
+<li><p class="first">头部元素：front()，返回的是引用</p>
+</li>
+<li><p class="first">尾部元素：back()，返回的是引用</p>
+</li>
 <li><p class="first">尾部插入：push_back(x)</p>
+</li>
+<li><p class="first">尾部弹出：pop_back()</p>
 </li>
 <li><p class="first">迭代器插入：在position <strong>之前</strong> 插入元素。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">iterator</span> <span class="n">insert</span> <span class="p">(</span><span class="n">iterator</span> <span class="n">position</span><span class="p">,</span> <span class="k">const</span> <span class="n">value_type</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">)</span>
@@ -317,6 +331,10 @@
 <ul>
 <li><p class="first">元素个数：size()，empty()</p>
 </li>
+<li><p class="first">表首元素：front()</p>
+</li>
+<li><p class="first">表尾元素：back()</p>
+</li>
 <li><p class="first">插入：push_front()，push_back()，emplace_front()，emplace_back()</p>
 </li>
 <li><p class="first">删除：pop_front()，pop_back()</p>
@@ -337,6 +355,10 @@
 <ul>
 <li><p class="first">元素个数：size()，empty()</p>
 </li>
+<li><p class="first">队首元素：front()</p>
+</li>
+<li><p class="first">队尾元素：back()</p>
+</li>
 <li><p class="first">插入：push_front(x)，push_back(x)</p>
 </li>
 <li><p class="first">删除：pop_front()，pop_back()</p>
@@ -347,6 +369,18 @@
 </div>
 </li>
 </ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>顺序容器构造函数</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">c;</span></code> // 默认构造函数，空容器</li>
+<li><code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">c1(c2);</span></code> // 拷贝构造函数</li>
+<li><code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">c(it_begin,</span> <span class="pre">it_end);</span></code> // 迭代器指定的范围 [it_begin, it_end) 内的元素赋值给c（array不支持）</li>
+<li><code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">c{a,</span> <span class="pre">b,</span> <span class="pre">c,...};</span></code> // 列表初始化</li>
+</ul>
+</div></blockquote>
+</div>
 </div>
 <div class="section" id="pair">
 <h2>19.5. pair<a class="headerlink" href="#pair" title="Permalink to this headline">¶</a></h2>
@@ -486,8 +520,70 @@
 </li>
 </ul>
 </div>
+<div class="section" id="size-tsize-type">
+<h2>19.9. size_t和size_type<a class="headerlink" href="#size-tsize-type" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="size-t">
+<h3>size_t<a class="headerlink" href="#size-t" title="Permalink to this headline">¶</a></h3>
+<p>size_t 提供了一种可移植（不同平台下）的方法声明与系统可寻址的内存区域一致的长度。
+size_t 是通过typedef定义的一些 <strong>无符号整型</strong> 的别名，通常是 unsigned int，unsigned long 甚至是unsigned long long。</p>
+<p>常用于循环计数器、数组索引，或指针的算术运算。</p>
+<p>VS 32位编译器：sizeof(size_t) = 32；VS 64位编译器：sizeof(size_t) = 64。</p>
+<dl class="docutils">
+<dt>头文件</dt>
+<dd><ul class="first last simple">
+<li>&lt;cstddef&gt;</li>
+<li>&lt;cstdio&gt;</li>
+<li>&lt;cstring&gt;</li>
+<li>&lt;ctime&gt;</li>
+<li>&lt;cstdlib&gt;</li>
+<li>&lt;cwchar&gt;</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="size-type">
+<h3>size_type<a class="headerlink" href="#size-type" title="Permalink to this headline">¶</a></h3>
+<p>size_type 是STL定义的类型属性，足够保持对应容器最大可能的容器大小。也是 <strong>无符号整型</strong> 。</p>
+<p>size() 的返回类型就是size_type。把 size() 赋值给一个 int 变量，会有 warning。</p>
+<dl class="docutils">
+<dt>VS 32位编译器</dt>
+<dd><ul class="first last simple">
+<li>sizeof(string::size_type) = 32</li>
+<li>sizeof(vector&lt;int&gt;::size_type) = 32</li>
+<li>…</li>
+</ul>
+</dd>
+<dt>VS 64位编译器</dt>
+<dd><ul class="first last simple">
+<li>sizeof(string::size_type) = 64</li>
+<li>sizeof(vector&lt;int&gt;::size_type) = 64</li>
+<li>…</li>
+</ul>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<blockquote>
+<div><p><strong>无符号整型</strong> 尤其是要注意下标为 0 时的边界情况。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">;</span> <span class="c1">// vec = {}</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">vec</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span> <span class="c1">// 判断改为: k + 1 &lt; vec.size()</span>
+<span class="p">{</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">vec</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">vec</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div></blockquote>
+<p class="last">上例中，本意是只有当 vec 至少包含2个元素时，才输出。但是，当 vec.size() = 0，vec.size() - 1 = 2^32 - 1 或2^64 - 1，
+而不是预想的 -1。</p>
+</div>
+</div>
+</div>
 <div class="section" id="id1">
-<h2>19.9. 参考资料<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>19.10. 参考资料<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>C++ reference</li>
 </ol>
@@ -515,6 +611,11 @@
 </ol>
 <blockquote>
 <div><a class="reference external" href="https://www.cnblogs.com/aminxu/p/4686320.html">https://www.cnblogs.com/aminxu/p/4686320.html</a></div></blockquote>
+<ol class="arabic simple" start="5">
+<li>std::size_t</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://zh.cppreference.com/w/cpp/types/size_t">https://zh.cppreference.com/w/cpp/types/size_t</a></div></blockquote>
 </div>
 </div>
 
@@ -526,7 +627,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../python/index.html" class="btn btn-neutral float-right" title="Python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="20_define.html" class="btn btn-neutral float-right" title="20. #define" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="18_commonFunc.html" class="btn btn-neutral" title="18. 常用函数" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

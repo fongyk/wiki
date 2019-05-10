@@ -197,13 +197,14 @@
             
   <div class="section" id="define">
 <h1>20. #define<a class="headerlink" href="#define" title="Permalink to this headline">¶</a></h1>
-<p><strong>原则</strong></p>
-<blockquote>
-<div><ul class="simple">
+<dl class="docutils">
+<dt><strong>原则</strong></dt>
+<dd><ul class="first last simple">
 <li><strong>对于单纯常量，最好以 const 对象或 enum 替换 #define。</strong></li>
 <li><strong>对于形似函数的宏（macros），最好改用 inline 函数替换 #define。</strong></li>
 </ul>
-</div></blockquote>
+</dd>
+</dl>
 <div class="section" id="const">
 <h2>20.1. const<a class="headerlink" href="#const" title="Permalink to this headline">¶</a></h2>
 <p>“宁可以编译器替换 <strong>预编译器</strong> ”。</p>
@@ -215,7 +216,7 @@
 <p>也许名称 <code class="docutils literal notranslate"><span class="pre">ASPECT_RATIO</span></code> 从未被编译器看见，也许在编译器开始处理源码之前它已经被预处理器移走了。于是，记号名称 <code class="docutils literal notranslate"><span class="pre">ASPECT_RATIO</span></code>
 可能没有进入记号表（symbol table）内。当运用此常量获得编译错误时，这个错误也许会提到  <code class="docutils literal notranslate"><span class="pre">1.653</span></code> 而不是 <code class="docutils literal notranslate"><span class="pre">ASPECT_RATIO</span></code> ，导致对其追踪
 变得困难。</p>
-<p>作为一个语言常量， <code class="docutils literal notranslate"><span class="pre">AspectRation</span></code> 一定会被编译器看到并及你如记号表。</p>
+<p>作为一个语言常量， <code class="docutils literal notranslate"><span class="pre">AspectRation</span></code> 一定会被编译器看到并记入记号表。</p>
 <p>此外，对浮点常量而言，使用常量可能比使用 #define 导致较小的代码量，因为预处理器将宏名称 <code class="docutils literal notranslate"><span class="pre">ASPECT_RATIO</span></code> 替换为  <code class="docutils literal notranslate"><span class="pre">1.653</span></code> ，可能导致
 目标码（object code）出现多份 <code class="docutils literal notranslate"><span class="pre">1.653</span></code> ，使用常量则不会。</p>
 <p>还可以在类定义 static const 成员。</p>
@@ -307,7 +308,13 @@
 30
 31
 32
-33</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#define CALL_WITH_MAX(a, b) f((a)&gt;(b)? (a):(b))</span>
+33
+34
+35
+36</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="cp">#define CALL_WITH_MAX(a, b) f((a)&gt;(b)? (a):(b))</span>
 
 <span class="cp">#define MAX_COMP_1(a, b) (a)&gt;(b)? (a):(b)</span>
 

@@ -31,20 +31,24 @@
 
     >>> s = "abcde"
     >>> "-".join(s)
-    >>> print s
     a-b-c-d-e
     >>> s = ['abc', 'def', 'ghi']
     >>> "-".join(s)
-    >>> print s
     abc_def_ghi
+    >>> s
+    ['abc', 'def', 'ghi']
 
     >>> s = "a-b-c-d-e"
     >>> s.partion('-') ## 只能分割为3部分
-    >>> print s
     ('a', '-', 'b-c-d-e')
     >>> s.split('-')
-    >>> print s
     ['a', 'b', 'c', 'd', 'e']
+    >>> s
+    "a-b-c-d-e"
+
+  .. warning::
+
+    **str** 是不可变对象，其所有方法都 **不改变对象本身** ，而是返回所创建的新对象。
 
 - **list**
 
@@ -69,29 +73,29 @@
 
     >>> a = [1,2,3]
     >>> a.append(4)
-    >>> print a
+    >>> a
     [1, 2, 3, 4]
     >>> a.extend([10,20,30])
-    >>> print a
+    >>> a
     [1, 2, 3, 4, 10, 20, 30]
 
     >>> a.insert(1, 5) ## 在第一个元素之后插入
-    >>> print a
+    >>> a
     [1, 5, 2, 3, 4, 10, 20, 30]
 
     >>> a.remove(2)
-    >>> print a
+    >>> a
     [1, 5, 3, 4, 10, 20, 30]
     >>> del a[3]
-    >>> print a
+    >>> a
     [1, 5, 3, 10, 20, 30]
 
     >>> a.sort(reverse=True)
-    >>> print a
+    >>> a
     [30, 20, 10, 5, 3, 1] ## 直接修改 a，无返回值。使用 sorted 返回排序后的副本。
 
     >>> a2 = a.pop(2)
-    >>> print a
+    >>> a
     [1, 5, 10, 20, 30] ## a
 
 
@@ -110,11 +114,11 @@
   .. code-block:: python
     :linenos:
 
-    info ={
-     "name":"Tom",
-     "age":25,
-     "sex":"man",
-    }
+    >>> info ={
+    ...      "name":"Tom",
+    ...       "age":25,
+    ...       "sex":"man",
+    ...      }
     >>> info.keys()
     ['age', 'name', 'sex']
     >>> info.values()
@@ -132,7 +136,7 @@
     >>> info
     {}
 
-  - collections.defaultdict：defaultdict类使用一种给定数据类型来初始化。当所访问的key不存在的时候，会实例化一个value作为默认值。因此，判断某个key是否存在，可使用get(key)。
+  - **collections.defaultdict** ：defaultdict类使用一种给定数据类型来初始化。当所访问的key不存在的时候，会实例化一个value作为默认值。因此，判断某个key是否存在，可使用get(key)。
 
   .. code-block:: python
     :linenos:
@@ -160,7 +164,7 @@
 
     >>> s1 = {'a', 'b', 'c'} ## 或者 s1 = set(['a', 'b', 'c'])
     >>> s1.update({'e','d'})
-    >>> print s1
+    >>> s1
     set(['a', 'c', 'b', 'e', 'd'])
 
 .. note::
@@ -193,18 +197,18 @@
     >>> b = alist ## 引用
     >>> c = alist[:] ## 复制
     >>> alist.append(5)
-    >>> print alist
+    >>> alist
     [1, 2, 3, 5]
-    >>> print b
+    >>> b
     [1, 2, 3, 5]
-    >>> print c
+    >>> c
     [1, 2, 3]
     >>> b[0] = -1
-    >>> print a
+    >>> a
     [-1, 2, 3, 5]
-    >>> print b
+    >>> b
     [-1, 2, 3, 5]
-    >>> print c
+    >>> c
     [1, 2, 3]
 
 - **浅复制** ：只会复制父对象，而不会复制对象的内部的子对象。
@@ -212,49 +216,82 @@
   .. code-block:: python
     :linenos:
 
-    from copy import copy
+    >>> from copy import copy
     >>> alist = [1,2,3,['a','b']] ## ['a','b'] 是列表，是一个子对象
     >>> a_copy = copy(alist) ## dict类有copy()方法，e.g.，d.copy()
     >>> alist.append(5) ## 非子对象的修改
-    >>> print alist
+    >>> alist
     [1, 2, 3, ['a', 'b'], 5]
-    >>> print a_copy
+    >>> a_copy
     [1, 2, 3, ['a', 'b']]
     >>> a_copy[0] = -1
-    >>> print alist
+    >>> alist
     [1, 2, 3, ['a', 'b'], 5]
-    >>> print a_copy
+    >>> a_copy
     [-1, 2, 3, ['a', 'b']]
 
     >>> alist[3].append('c') ## 子对象的修改
-    >>> print alist
+    >>> alist
     [1, 2, 3, ['a', 'b', 'c'], 5]
-    >>> print a_copy
+    >>> a_copy
     [-1, 2, 3, ['a', 'b', 'c']]
     >>> a_copy[3].append('d')
-    >>> print alist
+    >>> alist
     [1, 2, 3, ['a', 'b', 'c', 'd'], 5]
-    >>> print a_copy
+    >>> a_copy
     [-1, 2, 3, ['a', 'b', 'c', 'd']]
+
 
 - **深复制** ：复制对象及其子对象，原始对象的改变不会造成深复制里任何子元素的改变。
 
   .. code-block:: python
     :linenos:
 
-    from copy import deepcopy
+    >>> from copy import deepcopy
     >>> alist = [1,2,3,['a','b']] ## ['a','b'] 是列表，是一个子对象
     >>> a_copy = deepcopy(alist)
     >>> alist[3].append('c') ## 子对象的修改
-    >>> print alist
+    >>> alist
     [1, 2, 3, ['a', 'b', 'c']]
-    >>> print a_copy
+    >>> a_copy
     [1, 2, 3, ['a', 'b']]
     >>> a_copy[3].append('d')
-    >>> print alist
+    >>> alist
     [1, 2, 3, ['a', 'b', 'c']]
-    >>> print a_copy
+    >>> a_copy
     [1, 2, 3, ['a', 'b', 'd']]
+
+
+.. note::
+
+  对于可变对象 **dict** 和 **list** ，需要暂存临时对象或者作为函数参数传递时，如果不希望对象被更改，都需要使用深复制。
+
+
+再谈可变对象与不可变对象
+----------------------------
+
+第一章曾提到过可变对象与不可变对象。
+
+**dict** 和 **set** 的底层实现都是 **哈希表** 。哈希要求key唯一，因此 **dict** 和 **set** 的key都要求是 **不可变对象** 。
+
+.. code-block:: python
+  :linenos:
+
+  >>> x = 'abcd'
+  >>> id(x)
+  313010056L
+  >>> y = 'abcd'
+  >>> id(y)
+  313010056L
+  ## x 和 y 都是 str 对象，值相同，占用同一块内存。
+
+  >>> a = [5, 3, 4, 3]
+  >>> id(a)
+  314009096L
+  >>> b = [5, 3, 4, 3] ## b = a[:]
+  >>> id(b)
+  314011080L
+  ## a 和 b 的 id 不同，尽管值相同。因此 list 不能作为 key。
 
 参考资料
 ------------

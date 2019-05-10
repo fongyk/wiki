@@ -55,7 +55,10 @@ vector
 - 逐元素比较：==，!=，<，<=，>，>=
 - 内存空间：capcity()
 - 访问：[pos]，at(pos)
+- 头部元素：front()，返回的是引用
+- 尾部元素：back()，返回的是引用
 - 尾部插入：push_back(x)
+- 尾部弹出：pop_back()
 - 迭代器插入：在position **之前** 插入元素。
 
   ::
@@ -110,6 +113,8 @@ list
 **底层实现：双向链表。**
 
 - 元素个数：size()，empty()
+- 表首元素：front()
+- 表尾元素：back()
 - 插入：push_front()，push_back()，emplace_front()，emplace_back()
 - 删除：pop_front()，pop_back()
 - 迭代器插入：在position **之前** 插入元素。
@@ -128,6 +133,8 @@ deque
 **底层实现：循环队列。**
 
 - 元素个数：size()，empty()
+- 队首元素：front()
+- 队尾元素：back()
 - 插入：push_front(x)，push_back(x)
 - 删除：pop_front()，pop_back()
 - 迭代器插入：在position **之前** 插入元素。
@@ -135,6 +142,16 @@ deque
   ::
 
     iterator insert (iterator position, const value_type& val)
+
+
+.. note::
+
+  顺序容器构造函数
+
+    - ``C c;`` // 默认构造函数，空容器
+    - ``C c1(c2);`` // 拷贝构造函数
+    - ``C c(it_begin, it_end);`` // 迭代器指定的范围 [it_begin, it_end) 内的元素赋值给c（array不支持）
+    - ``C c{a, b, c,...};`` // 列表初始化
 
 
 pair
@@ -261,6 +278,61 @@ queue
     void pop();
 
 
+size\_t和size\_type
+------------------------
+
+size\_t
+^^^^^^^^^
+
+size\_t 提供了一种可移植（不同平台下）的方法声明与系统可寻址的内存区域一致的长度。
+size\_t 是通过typedef定义的一些 **无符号整型** 的别名，通常是 unsigned int，unsigned long 甚至是unsigned long long。
+
+常用于循环计数器、数组索引，或指针的算术运算。
+
+VS 32位编译器：sizeof(size_t) = 32；VS 64位编译器：sizeof(size_t) = 64。
+
+头文件
+  - <cstddef>
+  - <cstdio>
+  - <cstring>
+  - <ctime>
+  - <cstdlib>
+  - <cwchar>
+
+size\_type
+^^^^^^^^^^^^^^^
+
+size\_type 是STL定义的类型属性，足够保持对应容器最大可能的容器大小。也是 **无符号整型** 。
+
+size() 的返回类型就是size\_type。把 size() 赋值给一个 int 变量，会有 warning。
+
+VS 32位编译器
+  - sizeof(string::size\_type) = 32
+  - sizeof(vector<int>::size\_type) = 32
+  - ...
+
+VS 64位编译器
+  - sizeof(string::size\_type) = 64
+  - sizeof(vector<int>::size\_type) = 64
+  - ...
+
+.. warning::
+
+   **无符号整型** 尤其是要注意下标为 0 时的边界情况。
+
+   .. code-block:: cpp
+    :linenos:
+
+    vector<int> vec; // vec = {}
+    for(size_t k = 0; k < vec.size() - 1; ++k) // 判断改为: k + 1 < vec.size()
+    {
+      cout << vec[k+1] - vec[k] << endl;
+    }
+
+  上例中，本意是只有当 vec 至少包含2个元素时，才输出。但是，当 vec.size() = 0，vec.size() - 1 = 2^32 - 1 或2^64 - 1，
+  而不是预想的 -1。
+
+
 
 参考资料
 ------------
@@ -293,3 +365,7 @@ queue
 4. 标准C++中的string类的用法总结（转）
 
   https://www.cnblogs.com/aminxu/p/4686320.html
+
+5. std::size\_t
+
+  https://zh.cppreference.com/w/cpp/types/size_t

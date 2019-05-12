@@ -492,6 +492,9 @@
           return longest
 
 
+18. 最小公约数与最大公倍数。Hint：辗转相除法；最大公倍数等于两数乘积除以最大公约数。
+
+  https://www.cnblogs.com/Arvin-JIN/p/7247619.html
 
 C++
 ------------
@@ -503,6 +506,10 @@ C++
 2. 重载、重写（覆盖）和隐藏的区别
 
   https://blog.csdn.net/zx3517288/article/details/48976097
+
+3. C++ STL中vector内存用尽后，为啥每次是两倍的增长，而不是3倍或其他数值？
+
+  https://www.zhihu.com/question/36538542
 
 python
 -----------

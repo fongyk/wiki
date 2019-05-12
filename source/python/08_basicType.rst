@@ -157,7 +157,7 @@
 
   - 删除：删除元素不存在，remove()报错，discard()无反应。
 
-  - 集合操作：\&，\|，\-，交差补集 \^，issubset() 、isupperset()。
+  - 集合操作：\&，\|，\-，\^（交差补集，去除交集后剩下元素的并集），issubset() 、isupperset()。
 
   .. code-block:: python
     :linenos:

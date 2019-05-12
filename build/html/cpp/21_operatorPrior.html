@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>10. 强制类型转换 &mdash; fong alpha documentation</title>
+  <title>21. 运算符优先级 &mdash; fong alpha documentation</title>
   
 
   
@@ -31,8 +31,8 @@
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="11. 堆、栈" href="11_heapStack.html" />
-    <link rel="prev" title="9. strcpy函数" href="09_strcpy.html" /> 
+    <link rel="next" title="Python" href="../python/index.html" />
+    <link rel="prev" title="20. #define" href="20_define.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -100,14 +100,7 @@
 <li class="toctree-l2"><a class="reference internal" href="07_pointerReference.html">7. 指针与引用</a></li>
 <li class="toctree-l2"><a class="reference internal" href="08_overload.html">8. 重载，覆盖，隐藏</a></li>
 <li class="toctree-l2"><a class="reference internal" href="09_strcpy.html">9. strcpy函数</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">10. 强制类型转换</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#static-cast-type-expr">10.1. static_cast&lt;type&gt; (expr)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dynamic-cast-type-expr">10.2. dynamic_cast&lt;type&gt; (expr)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#const-cast-type-expr">10.3. const_cast&lt;type&gt; (expr)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#reinterpret-cast-type-expr">10.4. reinterpret_cast&lt;type&gt; (expr)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">10.5. 参考资料</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="10_cast.html">10. 强制类型转换</a></li>
 <li class="toctree-l2"><a class="reference internal" href="11_heapStack.html">11. 堆、栈</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12_argPass.html">12. 参数传递</a></li>
 <li class="toctree-l2"><a class="reference internal" href="13_nullClassPtr.html">13. 空类指针</a></li>
@@ -118,7 +111,7 @@
 <li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html">18. 常用函数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用STL类及容器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
-<li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">21. 运算符优先级</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -177,13 +170,13 @@
         
           <li><a href="index.html">C/C++</a> &raquo;</li>
         
-      <li>10. 强制类型转换</li>
+      <li>21. 运算符优先级</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/cpp/10_cast.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/cpp/21_operatorPrior.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -197,48 +190,150 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>10. 强制类型转换<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="static-cast-type-expr">
-<h2>10.1. static_cast&lt;type&gt; (expr)<a class="headerlink" href="#static-cast-type-expr" title="Permalink to this headline">¶</a></h2>
-<p><strong>1</strong>. <code class="docutils literal notranslate"><span class="pre">static_cast</span></code> 作用和C语言风格强制转换的效果基本一样，由于没有运行时类型检查来保证转换的安全性，所以这类型的强制转换和C语言风格的强制转换都有安全隐患。</p>
-<p><strong>2</strong>. 用于基本数据类型之间的转换，如把 <code class="docutils literal notranslate"><span class="pre">int</span></code> 转换成 <code class="docutils literal notranslate"><span class="pre">char</span></code> ，把 <code class="docutils literal notranslate"><span class="pre">int</span></code> 转换成 <code class="docutils literal notranslate"><span class="pre">enum</span></code> 。这种转换的安全性需要开发者来维护。</p>
-<p><strong>3</strong>. C++ 的任何的隐式转换都是使用 <code class="docutils literal notranslate"><span class="pre">static_cast</span></code> 来实现。</p>
-<p><strong>4</strong>. 基类和子类之间转换：其中子类指针转换成父类指针是安全的；但父类指针转换成子类指针是不安全的。(基类和子类之间的动态类型转换建议用dynamic_cast)</p>
-<p><strong>5</strong>. 把空指针转换成目标类型的空指针。</p>
-<p><strong>6</strong>. 把任何类型的表达式转换成void类型。</p>
-</div>
-<div class="section" id="dynamic-cast-type-expr">
-<h2>10.2. dynamic_cast&lt;type&gt; (expr)<a class="headerlink" href="#dynamic-cast-type-expr" title="Permalink to this headline">¶</a></h2>
-<p>有条件转换，动态类型转换，运行时类型安全检查(转换失败返回NULL)：</p>
-<p><strong>1</strong>. 安全的基类和子类之间转换。</p>
-<p><strong>2</strong>. 必须要有虚函数。</p>
-<p><strong>3</strong>. 相同基类不同子类之间的交叉转换。但结果是NULL。</p>
-</div>
-<div class="section" id="const-cast-type-expr">
-<h2>10.3. const_cast&lt;type&gt; (expr)<a class="headerlink" href="#const-cast-type-expr" title="Permalink to this headline">¶</a></h2>
-<p><strong>1</strong>. 去掉类型的const、volitale属性;</p>
-<p><strong>2</strong>. 常量指针被转化成非常量的指针，并且仍然指向原来的对象；</p>
-<p><strong>3</strong>. 常量引用被转换成非常量的引用，并且仍然指向原来的对象；</p>
-<p><strong>4</strong>. const_cast一般用于修改指针。如const char *p形式。</p>
-</div>
-<div class="section" id="reinterpret-cast-type-expr">
-<h2>10.4. reinterpret_cast&lt;type&gt; (expr)<a class="headerlink" href="#reinterpret-cast-type-expr" title="Permalink to this headline">¶</a></h2>
-<p><strong>1</strong>. reinterpret_cast是从底层对数据进行重新解释，依赖具体的平台，可移植性差。</p>
-<p><strong>2</strong>. reinterpret_cast可以将整型转换为指针，也可以把指针转换为数组。</p>
-<p><strong>3</strong>. reinterpret_cast可以在指针和引用里进行肆无忌惮的转换。</p>
-</div>
-<div class="section" id="id2">
-<h2>10.5. 参考资料<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic simple">
-<li>C++中四种强制类型转换区别详解</li>
-</ol>
-<blockquote>
-<div><a class="reference external" href="https://www.cnblogs.com/cauchy007/p/4968707.html">https://www.cnblogs.com/cauchy007/p/4968707.html</a></div></blockquote>
-<ol class="arabic simple" start="2">
-<li>c++ 四种强制类型转换介绍</li>
-</ol>
-<blockquote>
-<div><a class="reference external" href="https://blog.csdn.net/ydar95/article/details/69822540">https://blog.csdn.net/ydar95/article/details/69822540</a></div></blockquote>
+<h1>21. 运算符优先级<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<table border="1" class="docutils align-center" id="id2">
+<caption><span class="caption-text">运算符的优先级</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">priority</th>
+<th class="head">operator</th>
+<th class="head">meaning</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td rowspan="6">1</td>
+<td>[]</td>
+<td>下标运算</td>
+</tr>
+<tr class="row-odd"><td>()</td>
+<td>圆括号</td>
+</tr>
+<tr class="row-even"><td>-&gt;</td>
+<td>指向运算符</td>
+</tr>
+<tr class="row-odd"><td>.</td>
+<td>成员运算符</td>
+</tr>
+<tr class="row-even"><td>++</td>
+<td>自增（后缀）</td>
+</tr>
+<tr class="row-odd"><td>- -</td>
+<td>自减（后缀）</td>
+</tr>
+<tr class="row-even"><td rowspan="10">2</td>
+<td>!</td>
+<td>逻辑非</td>
+</tr>
+<tr class="row-odd"><td>~</td>
+<td>按位反</td>
+</tr>
+<tr class="row-even"><td>++</td>
+<td>自增（前缀）</td>
+</tr>
+<tr class="row-odd"><td>- -</td>
+<td>自减（前缀）</td>
+</tr>
+<tr class="row-even"><td>-</td>
+<td>负号</td>
+</tr>
+<tr class="row-odd"><td>+</td>
+<td>正号</td>
+</tr>
+<tr class="row-even"><td>(类型)</td>
+<td>类型转换</td>
+</tr>
+<tr class="row-odd"><td>*</td>
+<td>指针运算符</td>
+</tr>
+<tr class="row-even"><td>&amp;</td>
+<td>取地址</td>
+</tr>
+<tr class="row-odd"><td>sizeof</td>
+<td>长度运算</td>
+</tr>
+<tr class="row-even"><td rowspan="3">3</td>
+<td>*</td>
+<td>乘法</td>
+</tr>
+<tr class="row-odd"><td>/</td>
+<td>除法</td>
+</tr>
+<tr class="row-even"><td>%</td>
+<td>求余</td>
+</tr>
+<tr class="row-odd"><td rowspan="2">4</td>
+<td>+</td>
+<td>加法</td>
+</tr>
+<tr class="row-even"><td>-</td>
+<td>减法</td>
+</tr>
+<tr class="row-odd"><td rowspan="2">5</td>
+<td>&lt;&lt;</td>
+<td>左移位</td>
+</tr>
+<tr class="row-even"><td>&gt;&gt;</td>
+<td>右移位</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>&lt; &lt;= &gt; &gt;=</td>
+<td>关系运算符</td>
+</tr>
+<tr class="row-even"><td rowspan="2">7</td>
+<td>==</td>
+<td>等于</td>
+</tr>
+<tr class="row-odd"><td>!=</td>
+<td>不等于</td>
+</tr>
+<tr class="row-even"><td>8</td>
+<td>&amp;</td>
+<td>按位与</td>
+</tr>
+<tr class="row-odd"><td>9</td>
+<td>^</td>
+<td>按位异或</td>
+</tr>
+<tr class="row-even"><td>10</td>
+<td>|</td>
+<td>按位或</td>
+</tr>
+<tr class="row-odd"><td>11</td>
+<td>&amp;&amp;</td>
+<td>逻辑与</td>
+</tr>
+<tr class="row-even"><td>12</td>
+<td>||</td>
+<td>逻辑或</td>
+</tr>
+<tr class="row-odd"><td>13</td>
+<td>? :</td>
+<td>条件运算符</td>
+</tr>
+<tr class="row-even"><td rowspan="3">14</td>
+<td rowspan="3"><p class="first">=   +=  -=  *=</p>
+<p>/=  %=  &amp;=  |=</p>
+<p class="last">^=  &lt;&lt;=  &gt;&gt;=</p>
+</td>
+<td rowspan="3">赋值运算符</td>
+</tr>
+<tr class="row-odd"></tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td>15</td>
+<td>,</td>
+<td>逗号运算符</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>位运算的优先级是：<code class="docutils literal notranslate"><span class="pre">~</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">^</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">|</span></code> 。</p>
+<p>逻辑运算的优先级是：<code class="docutils literal notranslate"><span class="pre">!</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">||</span></code> 。</p>
+<p class="last">不能重载的运算符（5个）：<code class="docutils literal notranslate"><span class="pre">.</span></code> ， <code class="docutils literal notranslate"><span class="pre">.*</span></code> ， <code class="docutils literal notranslate"><span class="pre">::</span></code> ，<code class="docutils literal notranslate"><span class="pre">sizeof</span></code> ，<code class="docutils literal notranslate"><span class="pre">?</span> <span class="pre">:</span></code> 。</p>
 </div>
 </div>
 
@@ -250,10 +345,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="11_heapStack.html" class="btn btn-neutral float-right" title="11. 堆、栈" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../python/index.html" class="btn btn-neutral float-right" title="Python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="09_strcpy.html" class="btn btn-neutral" title="9. strcpy函数" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="20_define.html" class="btn btn-neutral" title="20. #define" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

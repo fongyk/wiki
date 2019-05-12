@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>17. 枚举类型 &mdash; fong alpha documentation</title>
+  <title>17. 枚举类型与共用体 &mdash; fong alpha documentation</title>
   
 
   
@@ -107,22 +107,30 @@
 <li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html">14. static和extern</a></li>
 <li class="toctree-l2"><a class="reference internal" href="15_classAccess.html">15. public、protected、private</a></li>
 <li class="toctree-l2"><a class="reference internal" href="16_staticconst.html">16. 类的static const成员</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">17. 枚举类型</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">17.1. 初始化</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">17.2. 枚举变量</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">17.3. 参考资料</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">17. 枚举类型与共用体</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">17.1. 枚举类型</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">初始化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">枚举变量</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">17.2. 共用体</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">17.3. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html">18. 常用函数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用STL类及容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
 </ul>
 
@@ -171,13 +179,13 @@
         
           <li><a href="index.html">C/C++</a> &raquo;</li>
         
-      <li>17. 枚举类型</li>
+      <li>17. 枚举类型与共用体</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/cpp/17_enum.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/cpp/17_enumUnion.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -191,14 +199,16 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>17. 枚举类型<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>17. 枚举类型与共用体<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>17.1. 枚举类型<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>枚举类型（enumeration）使我们可以将一组 <strong>整型常量</strong> 组织在一起。格式</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">enum</span> <span class="o">&lt;</span><span class="n">类型名</span><span class="o">&gt;</span> <span class="p">{</span><span class="o">&lt;</span><span class="n">枚举成员</span><span class="o">&gt;</span><span class="p">};</span>
 </pre></div>
 </div>
 <p>枚举成员不能是数值，即不能是类似于{1,2,3}。</p>
-<div class="section" id="id2">
-<h2>17.1. 初始化<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h3>初始化<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>默认情况下，每个枚举变量的值就是其序号，从0开始，依次加1。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">enum</span> <span class="n">Week</span> <span class="p">{</span><span class="n">Sun</span><span class="p">,</span> <span class="n">Mon</span><span class="p">,</span> <span class="n">Tue</span><span class="p">,</span> <span class="n">Wed</span><span class="p">,</span> <span class="n">Thu</span><span class="p">,</span> <span class="n">Fri</span><span class="p">,</span> <span class="n">Sat</span><span class="p">};</span>
 <span class="c1">//Sun=0, Mon=1, Tue=2, Wed=3, Thu=4, Fri=5, Sat=6</span>
@@ -210,8 +220,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="id3">
-<h2>17.2. 枚举变量<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h3>枚举变量<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>定义枚举类型之后，就可以定义该枚举类型的变量，或者与枚举类型同时定义。枚举变量的值只能取枚举常量表中所列的值。</p>
 <div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -279,8 +289,60 @@
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="section" id="id4">
-<h2>17.3. 参考资料<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id5">
+<h2>17.2. 共用体<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>共用体（union）及其变量的定义形式与结构体类似。共用体成员访问方式也是使用运算符 <code class="docutils literal notranslate"><span class="pre">.</span></code> 或 <code class="docutils literal notranslate"><span class="pre">-&gt;</span></code>。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">union</span> <span class="n">ifcd</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+  <span class="kt">float</span> <span class="n">f</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">d</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="o">*</span><span class="n">pu</span><span class="p">;</span>
+<span class="c1">// 同结构体一样，分号不能丢</span>
+</pre></div>
+</div>
+<p>与结构体的异同：</p>
+<blockquote>
+<div><ul>
+<li><p class="first">存储分配方式</p>
+<ul>
+<li><p class="first">结构体每个成员各自占有自己的存储单元、各自的地址，结构体占有的内存空间大小是所有成员所占存储单元的总和。</p>
+</li>
+<li><p class="first">共用体各个成员占用共同的存储单元，具有 <strong>相同的首地址</strong> ，占用存储单元最多的成员的长度就是共用体的长度。一个共用体
+可以包含多个不同类型的成员，但是每一时刻只有 <strong>一个成员有效</strong> ，即最后一次存放的数据成员起作用。虽然仍然可以访问无效的成员，但是结果是未知的。</p>
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span><span class="p">.</span><span class="n">i</span> <span class="o">=</span> <span class="mi">256</span><span class="p">;</span>
+<span class="n">x1</span><span class="p">.</span><span class="n">c</span> <span class="o">=</span> <span class="sc">&#39;A&#39;</span><span class="p">;</span>
+<span class="n">x1</span><span class="p">.</span><span class="n">f</span> <span class="o">=</span> <span class="mf">1.23</span><span class="p">;</span>
+<span class="c1">// 三步操作之后，只有 x1.f 有效。</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</li>
+<li><p class="first">初始化</p>
+<ul>
+<li><p class="first">结构变量或数组可以为所有成员初始化。</p>
+</li>
+<li><p class="first">共用体变量或数组在初始化时，只能对初始化它的 <strong>第一个成员</strong> ，对多个成员初始化是不允许的。</p>
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">union</span> <span class="n">ifcd</span> <span class="n">x3</span> <span class="o">=</span> <span class="p">{</span><span class="mi">256</span><span class="p">},</span> <span class="n">x4</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">};</span> <span class="c1">// 对成员 i 初始化</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</li>
+<li><p class="first">结构体和共用体可以相互出现在对方的类型定义中。</p>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id6">
+<h2>17.3. 参考资料<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <p>1.《C++ Primer 第5版 中文版》 Page 736 – 739。</p>
 <ol class="arabic simple" start="2">
 <li>C++ 枚举类型详解</li>

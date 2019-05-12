@@ -94,16 +94,17 @@
 <li class="toctree-l2"><a class="reference internal" href="01_main.html">1. main函数</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">2. 数组</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2">2.1. 指针</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">2.2. 动态数组</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">2.3. 另类的数组表达</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">2.4. 数组实参</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id6">2.5. 数组地址与加法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#malloc-freenew-delete">2.6. malloc/free与new/delete</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id7">相同点</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id8">不同点</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.2. 指向函数的指针</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">2.3. 动态数组</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">2.4. 另类的数组表达</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">2.5. 数组实参</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">2.6. 数组地址与加法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#malloc-freenew-delete">2.7. malloc/free与new/delete</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">相同点</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">不同点</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id9">2.7. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">2.8. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="03_typeSize.html">3. 数据类型</a></li>
@@ -120,10 +121,11 @@
 <li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html">14. static和extern</a></li>
 <li class="toctree-l2"><a class="reference internal" href="15_classAccess.html">15. public、protected、private</a></li>
 <li class="toctree-l2"><a class="reference internal" href="16_staticconst.html">16. 类的static const成员</a></li>
-<li class="toctree-l2"><a class="reference internal" href="17_enum.html">17. 枚举类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_enumUnion.html">17. 枚举类型与共用体</a></li>
 <li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html">18. 常用函数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用STL类及容器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -268,9 +270,92 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">两个指针变量的值相同，则这两个指针 <strong>指向同一内存单元地址</strong> 或都为 <strong>空指针</strong> 。不存在多个变量占用同一内存单元的情形。</p>
+</div>
 </div>
 <div class="section" id="id3">
-<h2>2.2. 动态数组<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>2.2. 指向函数的指针<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>定义形式:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">函数返回值类型</span> <span class="p">(</span><span class="o">*</span><span class="n">指针变量名</span><span class="p">)(</span><span class="n">参数列表</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>指向函数的指针是让函数的入口地址赋给指针变量，类似于指向数组的指针是把数组首地址赋给指针变量。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">double</span> <span class="nf">square</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="kt">double</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">)(</span><span class="kt">double</span> <span class="n">x</span><span class="p">);</span>
+  <span class="n">p</span> <span class="o">=</span> <span class="n">square</span><span class="p">;</span> <span class="c1">// 用函数名square初始化指针</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">square</span><span class="p">(</span><span class="mf">1.6</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">(</span><span class="mf">1.6</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">)(</span><span class="mf">1.6</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 三者等效</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>还可以定义指针数组，</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 定义一个指向函数的指针类型，名为 MenuFood。函数参数列表为空，返回值为空。</span>
+<span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span> <span class="n">MenuFood</span><span class="p">)();</span>
+
+<span class="kt">void</span> <span class="nf">food1</span><span class="p">();</span>
+<span class="kt">void</span> <span class="nf">food2</span><span class="p">();</span>
+<span class="kt">void</span> <span class="nf">food3</span><span class="p">();</span>
+<span class="kt">void</span> <span class="nf">food4</span><span class="p">();</span>
+
+<span class="n">MenuFood</span> <span class="n">p</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="n">food1</span><span class="p">,</span> <span class="n">food2</span><span class="p">,</span> <span class="n">food3</span><span class="p">,</span> <span class="n">food4</span><span class="p">};</span> <span class="c1">// 该数组的每一个元素都是指向函数的指针。</span>
+</pre></div>
+</td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>指针数组：<code class="docutils literal notranslate"><span class="pre">类型</span> <span class="pre">*数组名[长度]</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">char</span> <span class="o">*</span><span class="n">name</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;allen&quot;</span><span class="p">,</span> <span class="s2">&quot;martin&quot;</span><span class="p">,</span> <span class="s2">&quot;clark&quot;</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>指向行向量的指针变量：<code class="docutils literal notranslate"><span class="pre">类型</span> <span class="pre">(*变量名)[长度]</span></code></p>
+<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span>int (*pa)[10];
+int *p;
+int a[3][10];
+
+p = a[0]; // 或 &amp;a[0][0]
+pa = a; // 使用：*(*(pa + i) + j)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>2.3. 动态数组<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>声明与定义一个动态数组的格式一般如下：</p>
 <div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -305,7 +390,7 @@
 </div>
 <p>假如我们已经得到一个3x4的动态数组da，其指针关系如下：</p>
 <a class="reference internal image-reference" href="../_images/02_dynamicArray.png"><img alt="../_images/02_dynamicArray.png" class="align-center" src="../_images/02_dynamicArray.png" style="width: 500px;" /></a>
-<p>其中，da[0]、da[1]、da[2]的地址是连续的，依次相差 <code class="docutils literal notranslate"><span class="pre">sizeof(da[0])</span></code> (一个指针的大小，32位编译器下为4，64位编译器下为8)，比如:</p>
+<p>其中，da[0]、da[1]、da[2]的 <strong>地址</strong> 是连续的，依次相差 <code class="docutils literal notranslate"><span class="pre">sizeof(da[0])</span></code> (一个指针的大小，32位编译器下为4，64位编译器下为8)，比如:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">da</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">da</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">da</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -386,8 +471,8 @@ da[0][3]与da[1][0]地址不连续；
 </pre></div>
 </div>
 </div>
-<div class="section" id="id4">
-<h2>2.3. 另类的数组表达<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h2>2.4. 另类的数组表达<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p>有如下程序：</p>
 <div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -416,9 +501,15 @@ da[0][3]与da[1][0]地址不连续；
 <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">+</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="o">*</span><span class="p">(</span><span class="mi">0</span><span class="o">+</span><span class="n">b</span><span class="p">))</span> <span class="o">=</span> <span class="mi">1</span><span class="p">[</span><span class="mi">0</span><span class="p">[</span><span class="n">b</span><span class="p">]]</span>
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>b: 相当于 &amp;b[0]，第0行的首地址。</p>
+<p>*b: 相当于 b[0]，&amp;b[0][0]，第0行第0列的首地址。</p>
+<p class="last">b[0][1]等价于*(b[0] + 1)，*(*(b+0)+1)，(*(b+0))[1]（ [] 优先级高于 * ）。</p>
 </div>
-<div class="section" id="id5">
-<h2>2.4. 数组实参<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id6">
+<h2>2.5. 数组实参<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <p>以 <strong>非引用</strong> 类型传递数组实参时，数组会退化为指针，形参复制的是这个指针的值(指向数组的第一个元素)。通过指针形参做的任何改变，都是在修改数组元素本身。</p>
 <p>如果以 <strong>引用</strong> 形式传递数组实参，那么编译器不会将数组实参转化为指针，而是传递数组的引用本身。</p>
 <p>编译器会检查数组实参的大小与形参大小是否匹配。</p>
@@ -457,8 +548,8 @@ da[0][3]与da[1][0]地址不连续；
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="section" id="id6">
-<h2>2.5. 数组地址与加法<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id7">
+<h2>2.6. 数组地址与加法<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
 <p>假设我们已经定义了一个数组：</p>
 <div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Type</span> <span class="n">a</span><span class="p">[</span><span class="n">L</span><span class="p">][</span><span class="n">M</span><span class="p">][</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="o">...</span><span class="p">};</span>
 </pre></div>
@@ -483,13 +574,13 @@ sizeof(a) = L * M * N * sizeof(Type);// 整个数组的大小
 <p><strong>6</strong>. 定义指针 <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">*ptr</span> <span class="pre">=</span> <span class="pre">(int</span> <span class="pre">*)(&amp;a</span> <span class="pre">+</span> <span class="pre">1)</span></code> ，则 <code class="docutils literal notranslate"><span class="pre">(ptr</span> <span class="pre">-</span> <span class="pre">1)</span></code> 指向数组a的最后一个元素。</p>
 </div>
 <div class="section" id="malloc-freenew-delete">
-<h2>2.6. malloc/free与new/delete<a class="headerlink" href="#malloc-freenew-delete" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id7">
-<h3>相同点<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<h2>2.7. malloc/free与new/delete<a class="headerlink" href="#malloc-freenew-delete" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id8">
+<h3>相同点<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <p>都可用于申请动态内存和释放内存。</p>
 </div>
-<div class="section" id="id8">
-<h3>不同点<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id9">
+<h3>不同点<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic">
 <li><p class="first">属性</p>
 <blockquote>
@@ -553,8 +644,8 @@ sizeof(a) = L * M * N * sizeof(Type);// 整个数组的大小
 </div>
 </div>
 </div>
-<div class="section" id="id9">
-<h2>2.7. 参考资料<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id10">
+<h2>2.8. 参考资料<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>静态数组与动态数组：</li>
 </ol>

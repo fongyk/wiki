@@ -19,9 +19,17 @@ Tech
 
     https://codingstandards.iteye.com/blog/810900
 
+- 加速 git clone
+
+    https://blog.51cto.com/11887934/2051323
+
+    https://blog.lizebang.top/2018/02/git-clone-slow/
+
+
+
 问题
 -----------
 
 - Unable to locate package python-pip
 
-  https://askubuntu.com/questions/268539/unable-to-locate-package-python-pip-on-live-system
+    https://askubuntu.com/questions/268539/unable-to-locate-package-python-pip-on-live-system

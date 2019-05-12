@@ -21,7 +21,8 @@ C/C++
     14_staticExtern.rst
     15_classAccess.rst
     16_staticconst.rst
-    17_enum.rst
+    17_enumUnion.rst
     18_commonFunc.rst
     19_stl.rst
     20_define.rst
+    21_operatorPrior.rst

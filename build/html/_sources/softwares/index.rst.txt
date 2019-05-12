@@ -8,7 +8,7 @@ Listary
 
     Windows下快速查找文件及应用程序
 
-http://www.listary.com/
+    http://www.listary.com/
 
 
 FreeCommander
@@ -18,7 +18,7 @@ FreeCommander
 
     Windows下的资源管理器
 
-https://freecommander.com/en/summary/
+    https://freecommander.com/en/summary/
 
 
 MobaXterm
@@ -28,7 +28,7 @@ MobaXterm
 
     Windows下连接服务器的终端
 
-https://mobaxterm.mobatek.net/
+    https://mobaxterm.mobatek.net/
 
 
 TeamViewer
@@ -38,7 +38,8 @@ TeamViewer
 
     远程连接
 
-https://www.teamviewer.com/zhCN/
+    https://www.teamviewer.com/zhCN/
+
 
 Notepad++
 ----------
@@ -47,7 +48,7 @@ Notepad++
 
     强大的文本阅读/编辑器
 
-https://notepad-plus-plus.org/
+    https://notepad-plus-plus.org/
 
 
 cmder
@@ -57,4 +58,4 @@ cmder
 
     Windows下终端神器
 
-https://cmder.net/
+    https://cmder.net/

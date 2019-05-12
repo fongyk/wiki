@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="17. 枚举类型" href="17_enum.html" />
+    <link rel="next" title="17. 枚举类型与共用体" href="17_enumUnion.html" />
     <link rel="prev" title="15. public、protected、private" href="15_classAccess.html" /> 
 
   
@@ -113,9 +113,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#id2">16.4. 参考资料</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="17_enum.html">17. 枚举类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_enumUnion.html">17. 枚举类型与共用体</a></li>
 <li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html">18. 常用函数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用STL类及容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -274,6 +276,11 @@
 <span class="k">const</span> <span class="kt">int</span> <span class="n">Solution</span><span class="o">::</span> <span class="n">var</span><span class="p">;</span> <span class="c1">// var 的定义。由于 常量var 在类内声明时已经获得了初始值，因此定义时不可以再设初始值。</span>
 </pre></div>
 </td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p><strong>初始化</strong> ：变量还没有值，现在赋予它一个值。</p>
+<p class="last"><strong>赋值</strong> ：变量已经有一个值，现在擦除它之前的值，赋予一个新的值。</p>
+</div>
 </div>
 <div class="section" id="id2">
 <h2>16.4. 参考资料<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
@@ -315,7 +322,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="17_enum.html" class="btn btn-neutral float-right" title="17. 枚举类型" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="17_enumUnion.html" class="btn btn-neutral float-right" title="17. 枚举类型与共用体" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="15_classAccess.html" class="btn btn-neutral" title="15. public、protected、private" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

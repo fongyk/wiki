@@ -503,15 +503,19 @@ C++
 
   https://blog.csdn.net/fighting_coder/article/details/77187151
 
-2. 重载、重写（覆盖）和隐藏的区别
+2. C++构造函数和析构函数能否声明为虚函数？(转载)
+
+  https://www.cnblogs.com/hxb316/p/3853544.html
+
+3. 重载、重写（覆盖）和隐藏的区别
 
   https://blog.csdn.net/zx3517288/article/details/48976097
 
-3. C++ STL中vector内存用尽后，为啥每次是两倍的增长，而不是3倍或其他数值？
+4. C++ STL中vector内存用尽后，为啥每次是两倍的增长，而不是3倍或其他数值？
 
   https://www.zhihu.com/question/36538542
 
-python
+Python
 -----------
 
 1. 基本数据类型

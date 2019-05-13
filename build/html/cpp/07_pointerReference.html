@@ -191,8 +191,52 @@
             
   <div class="section" id="id1">
 <h1>7. 指针与引用<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p><strong>1</strong>. <strong>非常量</strong> 指针可以被重新赋值，指向另一个对象；引用是对象的别名，必须初始化并总是指向（代表）最初绑定的那个对象。</p>
-<p><strong>2</strong>. 有 <code class="docutils literal notranslate"><span class="pre">null</span> <span class="pre">pointer</span></code> ，没有 <code class="docutils literal notranslate"><span class="pre">null</span> <span class="pre">reference</span></code> ，故使用前无需检查是非为空。</p>
+<p><strong>1</strong>. 指针是一个对象，有存储的 <strong>值</strong> 和 <strong>地址</strong> ，存储的数据类型是数据的地址；非常量指针可以被重新赋值，指向另一个对象。引用是对象的别名，必须初始化并总是指向（代表）最初绑定的那个对象，对对象及其引用进行取地址操作得到的结果相同。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="kt">int</span><span class="o">*</span> <span class="n">pk</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">k</span><span class="p">;</span>
+  <span class="kt">int</span><span class="o">&amp;</span> <span class="n">rk</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span>
+
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;&amp;k:&quot;</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">k</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>   <span class="c1">// 0029FC44</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;k:&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">k</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>     <span class="c1">// 1</span>
+
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;&amp;pk:&quot;</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">pk</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 0029FC68</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;pk:&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">pk</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>   <span class="c1">// 0029FC44 (pk = &amp;k)</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;*pk&quot;</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">pk</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>  <span class="c1">// 1</span>
+
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;&amp;rk:&quot;</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">rk</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 0029FC44 (&amp;rk = &amp;k)</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;rk:&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">rk</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>   <span class="c1">// 1</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p><strong>2</strong>. 指针可以有多级，但是引用只能是一级（不存在 <em>引用的引用</em> ）。</p>
+<p><strong>3</strong>. 有 <code class="docutils literal notranslate"><span class="pre">null</span> <span class="pre">pointer</span></code> ，没有 <code class="docutils literal notranslate"><span class="pre">null</span> <span class="pre">reference</span></code> ，故使用前无需检查是非为空。</p>
 <div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -212,7 +256,7 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
-<p><strong>3</strong>. 例子。</p>
+<p><strong>4</strong>. 例子。</p>
 <div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3

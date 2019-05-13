@@ -87,4 +87,12 @@
 
   逻辑运算的优先级是：``!`` > ``&&`` > ``||`` 。
 
-  不能重载的运算符（5个）：``.`` ， ``.*`` ， ``::`` ，``sizeof`` ，``? :`` 。
+  不能重载的运算符：``.`` ，``? :`` ，``sizeof`` ，``.*`` ， ``::``。
+
+
+参考资料
+---------
+
+1. Operator Overloading
+
+  https://isocpp.org/wiki/faq/operator-overloading

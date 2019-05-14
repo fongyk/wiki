@@ -61,15 +61,15 @@
 
       https://blog.csdn.net/jiary5201314/article/details/50990349
 
-  - 单链表O(1)时间删除给定节点
+  - 单链表 :math:`\mathcal{O}(1)` 时间删除给定节点
 
       https://blog.csdn.net/qq_35546040/article/details/80341136
 
-7. 全排列的非递归和递归实现（含重复元素）。Hint：在交换第i个元素与第j个元素之前，要求数组的[i, j)区间中的元素没有与第j个元素重复。
+7. 全排列的非递归和递归实现（含重复元素）。Hint：在交换第 :math:`i` 个元素与第 :math:`j` 个元素之前，要求数组的 :math:`[i, j)` 区间中的元素没有与第 :math:`j` 个元素重复。
 
   https://blog.csdn.net/so_geili/article/details/71078945
 
-8. 排列组合 "n个球放入m个盒子"问题
+8. 排列组合：:math:`k` 个球放入 :math:`m` 个盒子
 
   https://blog.csdn.net/qwb492859377/article/details/50654627?tdsourcetag=s_pctim_aiomsg
 
@@ -115,7 +115,7 @@
 
   https://blog.csdn.net/princexiexiaofeng/article/details/79645511
 
-11. 找到数组第k大的数
+11. 找到数组第 :math:`k` 大的数
 
   https://leetcode.com/problems/kth-largest-element-in-an-array/
 
@@ -287,7 +287,7 @@
 
 
 15. [LeetCode] Find the Duplicate Number 寻找重复数。Hint：把数组元素的值当做下标，由于元素存在重复，因此必然会 **重复多次访问同一个位置** 。
-从另一个角度讲，访问序列中存在“环”。哈希不满足空间复杂度为O(1)的要求。
+从另一个角度讲，访问序列中存在“环”。哈希不满足空间复杂度为 :math:`\mathcal{O}(1)` 的要求。
 
   - 找到一个重复数字。
 
@@ -456,7 +456,7 @@
       };
 
 
-17. [LeetCode] Longest Consecutive Sequence 最长连续序列。Hint：方法一，排序；方法二，对于每个元素n，搜索n+1是否在数组中，使用 hash（set）可以获得 O(1) 的查找复杂度。
+17. [LeetCode] Longest Consecutive Sequence 最长连续序列。Hint：方法一，排序；方法二，对于每个元素 :math:`n` ，搜索 :math:`n+1` 是否在数组中，使用 hash（set）可以获得 :math:`\mathcal{O}(1)` 的查找复杂度。
 
   https://leetcode.com/problems/longest-consecutive-sequence/
 
@@ -495,6 +495,44 @@
 18. 最小公约数与最大公倍数。Hint：辗转相除法；最大公倍数等于两数乘积除以最大公约数。
 
   https://www.cnblogs.com/Arvin-JIN/p/7247619.html
+
+19. 跳跃的蚂蚱：从 0 点出发，往正或负向跳跃，第一次跳跃一个单位，之后每次跳跃距离比上一次多一个单位，跳跃多少次可到到达坐标 :math:`x` 处？
+Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数列（如 :math:`n=3` ，可到达 :math:`\{-3,-1,1,3\}` ）。
+只需找到第最小的 :math:`n` 使得
+
+.. math::
+
+  (1+2+...+n) - x = \frac{n(n+1)}{2} - x
+
+是非负偶数。跳到 :math:`x` 和跳到 :math:`-x` 的次数相同，
+因此只考虑 :math:`x` 为正的情况。
+
+  https://www.zhihu.com/question/50790221
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Show/Hide\ Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 作者：Rukia
+      // 链接：https://www.zhihu.com/question/50790221/answer/125213696
+
+      int minStep(int x)
+      {
+      	if (x==0) return 0;
+      	if (x<0) x=-x;
+      	int n=sqrt(2*x); // 快速找到一个接近答案的 n
+      	while ((n+1)*n/2-x & 1 || (n+1)*n/2 < x) // & 的优先级低
+      		++n;
+      	return n;
+      }
+
+
+
 
 C++
 ------------

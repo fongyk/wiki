@@ -11,3 +11,4 @@
     04_overfit.rst
     05_modelSave.rst
     06_cuda.rst
+    07_backprop.rst

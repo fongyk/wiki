@@ -182,9 +182,9 @@
 <h1>1. Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">¶</a></h1>
 <p>模型：</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}h_\theta(\mathbf{x}) = g(\theta^\top \mathbf{x}),\\
-g(z) = \frac{1}{1+e^{-z}},\\
-g^\prime(z) = (1-g(z))g(z) \in (0, 0.25].\end{split}\]</div>
+\[\begin{split}h_\theta(\mathbf{x}) &amp; = &amp; \  g(\theta^\top \mathbf{x}),\\
+g(z) &amp; = &amp; \  \frac{1}{1+e^{-z}},\\
+g^\prime(z) &amp; = &amp; \  (1-g(z))g(z) \in (0, 0.25].\end{split}\]</div>
 <p>对数损失函数（极大似然）：</p>
 <div class="math notranslate nohighlight">
 \[\mathcal{l}_\theta = -\frac{1}{m} \sum_{i=1}^m y^{(i)}log\  h_\theta(\mathbf{x}^{(i)}) + (1 - y^{(i)})log(1 - h_\theta(\mathbf{x}^{(i)}))\]</div>

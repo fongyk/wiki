@@ -70,7 +70,7 @@
     pb->f(); // derived
 
     Base b = Base(); // 基类对象
-    Base& rb = b; // 基类指针
+    Base& rb = b; // 基类引用
     rb.f(); // base
 
     return 0;

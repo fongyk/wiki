@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3. 主成分分析PCA &mdash; fong alpha documentation</title>
+  <title>3. 主成分分析 &mdash; fong alpha documentation</title>
   
 
   
@@ -97,10 +97,10 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">机器学习</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="01_lr.html">1. Logistic Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02_svm.html">2. 支持向量机</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">3. 主成分分析PCA</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">3.1. 优化目标</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">3.2. 求解</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">3.3. PCA白化</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. 主成分分析</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">3.1. 优化目标</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">3.2. 求解</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pca">3.3. PCA白化</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#svd">3.4. SVD分解</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id4">3.5. 参考资料</a></li>
 </ul>
@@ -159,7 +159,7 @@
         
           <li><a href="index.html">机器学习</a> &raquo;</li>
         
-      <li>3. 主成分分析PCA</li>
+      <li>3. 主成分分析</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -178,19 +178,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="pca">
-<h1>3. 主成分分析PCA<a class="headerlink" href="#pca" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="id1">
+<h1>3. 主成分分析<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p><strong>PCA</strong> : Principal Component Analysis.</p>
 <p><strong>最大可分性</strong> ：样本点到超平面的投影能尽可能分开（投影后样本点方差最大化）。</p>
-<div class="section" id="id1">
-<h2>3.1. 优化目标<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h2>3.1. 优化目标<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <div class="math notranslate nohighlight">
 \[\begin{split}\underset{W}{max} \ tr(W^TXX^TW) \\
 s.t. \ W^TW=I. \\
 X \in \mathbb{R}^{d \times m}, \\
 W \in \mathbb{R}^{d \times d^\prime}, \ d^\prime &lt; d.\end{split}\]</div>
 </div>
-<div class="section" id="id2">
-<h2>3.2. 求解<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h2>3.2. 求解<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
 <li><p class="first">计算样本的协方差矩阵 <span class="math notranslate nohighlight">\(C = XX^T\)</span> ；</p>
 </li>
@@ -204,8 +205,8 @@ W \in \mathbb{R}^{d \times d^\prime}, \ d^\prime &lt; d.\end{split}\]</div>
 </li>
 </ol>
 </div>
-<div class="section" id="id3">
-<h2>3.3. PCA白化<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="pca">
+<h2>3.3. PCA白化<a class="headerlink" href="#pca" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
 <dt>白化的目的是降低输入的冗余性：</dt>
 <dd><ul class="first last simple">

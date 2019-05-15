@@ -118,6 +118,7 @@
 <li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用STL类及容器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
 <li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -308,10 +309,30 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
+<dl class="docutils">
+<dt>抽象基类与纯虚函数</dt>
+<dd><ul class="first last simple">
+<li>纯虚函数无须定义（非要定义的话，必须发生在类外部），在该函数的声明语句中（分号之前）加入 <code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">0</span></code> 就可以将一个虚函数声明为纯虚函数。</li>
+<li>含有纯虚函数的类是抽象基类。抽象基类负责声明接口，派生类负责覆盖该接口。如果派生类不给出对应基类中纯虚函数的定义，该派生类也是一个抽象基类。</li>
+<li>不能直接创建抽象基类的对象。</li>
+</ul>
+</dd>
+</dl>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>基类中的虚函数在派生类中隐含地也是一个虚函数。当派生类覆盖了某个虚函数时，该函数在基类中的形参必须与派生类中的形参严格匹配。</p>
 <p class="last">我们可以将 <strong>基类的指针或引用</strong> 绑定到派生类的对象上。因此，当我们使用基类指针或引用时，实际上并不清楚该指针或引用所绑定的对象的真实类型。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>构造函数 <strong>不能声明</strong> 为虚函数：一方面，创建一个对象时总要明确指定对象的类型。另一方面，虚函数对应一个指向虚函数表的指针（vptr），在创建对象之前，
+vptr不存在，不可能完成动态绑定。</p>
+<p>析构函数 <strong>可以声明</strong> 为虚函数：当基类指针指向派生类，使用基类指针删除对象时，如果析构函数不定义成虚函数，派生类中派生的部分无法完成析构。</p>
+<p>构造函数 <strong>不要调用</strong> 虚函数。在基类构造的时候，虚函数是非虚，不会走到派生类中，即采用的静态绑定。显然，当我们构造一个子类的对象时，先调用基类的构造函数去构造子类中基类部分，此时子类部分还没有构造、初始化。
+如果在构造中调用虚函数，可能会调用一个还没有被初始化的对象，这是很危险的。</p>
+<p>析构函数 <strong>不要调用</strong> 虚函数。析构的时候，首先调用子类的析构函数，析构掉对象的子类部分，然后调用基类的析构函数析构基类部分。
+如果在基类的析构函数里面调用虚函数，会导致其调用已经析构了的子类对象里面的函数，这是非常危险的。</p>
+<p class="last">总而言之：在运行构造函数或者析构函数时，对象都是不完整的，这种情况下的虚函数调用不会调用到外层派生类的虚函数。</p>
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
@@ -331,7 +352,7 @@
 <blockquote>
 <div><a class="reference external" href="https://blog.csdn.net/zx3517288/article/details/48976097">https://blog.csdn.net/zx3517288/article/details/48976097</a></div></blockquote>
 <ol class="arabic simple" start="2">
-<li>《C++ Primer 第5版 中文版》 Page 538 – 539。</li>
+<li>《C++ Primer 第5版 中文版》 Page 538 – 540。</li>
 </ol>
 </div>
 </div>

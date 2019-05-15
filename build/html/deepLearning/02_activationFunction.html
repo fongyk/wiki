@@ -108,6 +108,7 @@
 <li class="toctree-l2"><a class="reference internal" href="04_overfit.html">4. 过拟合</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">5. pytorch模型保存与读取</a></li>
 <li class="toctree-l2"><a class="reference internal" href="06_cuda.html">6. pytorch: cuda()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_backprop.html">7. 反向传播</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
@@ -222,7 +223,7 @@
 <h2>2.2. tanh<a class="headerlink" href="#tanh" title="Permalink to this headline">¶</a></h2>
 <p><strong>tanh</strong> 函数的数学表达式如下：</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}tanh(z) = \frac{e^z-e^{-z}}{e^z+e^{-z}},\\tanh(z) = 2\sigma(2z)-1.\end{aligned}\end{align} \]</div>
+\[tanh(z) = \frac{e^z-e^{-z}}{e^z+e^{-z}} = 2\sigma(2z)-1.\]</div>
 <p>其函数曲线如下：</p>
 <a class="reference internal image-reference" href="../_images/02_tanh.jpeg"><img alt="../_images/02_tanh.jpeg" class="align-center" src="../_images/02_tanh.jpeg" style="width: 500px;" /></a>
 <p>与 <strong>sigmoid</strong> 一样， <strong>tanh</strong> 也会产生饱和现象，但是 <strong>tanh</strong> 的输出是零均值的(zero-centered)。</p>

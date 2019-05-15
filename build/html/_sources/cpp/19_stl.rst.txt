@@ -33,14 +33,40 @@ string
   #include<string>
 
 - 长度：length()，size()，empty()
-- 访问：[pos]，at(pos)。at()返回位置pos处元素的引用，越界则抛出out\_of\_range异常。
+- 访问：[pos]，at(pos)。at()返回位置pos处元素的引用，越界则抛出 ``out_of_range`` 异常。
 - 字典序比较：==，!=，<，<=，>，>=
 - 串接：+
-- c_str()：返回指向C类型字符串的指针。
+- c_str()：返回指向C类型字符串的指针。如果需要使用C的字符串函数如strcmp、strcpy等，需要使用c_str()。
+  ::
+
+    const char* c_str() const noexcept;
+
 - 子串
   ::
 
     string substr(size_t pos = 0, size_t len = npos) const
+
+- 插入：支持下标索引插入，在位置pos **之前** 插入元素。插入元素之后，该元素的位置为 position。（与python中list类的插入功能一致）
+  ::
+
+    // string (1)
+    string& insert (size_t pos, const string& str);
+    // substring (2)
+    string& insert (size_t pos, const string& str, size_t subpos, size_t sublen);
+    // c-string (3)
+    string& insert (size_t pos, const char* s);
+    // buffer (4)
+    string& insert (size_t pos, const char* s, size_t n);
+    // fill (5)
+    string& insert (size_t pos,   size_t n, char c);
+    iterator insert (const_iterator p, size_t n, char c);
+    // single character (6)
+    iterator insert (const_iterator p, char c);
+    // range (7)
+    template <class InputIterator>
+    iterator insert (iterator p, InputIterator first, InputIterator last);
+    // initializer list (8)
+    string& insert (const_iterator p, initializer_list<char> il);
 
 
 vector
@@ -278,6 +304,45 @@ queue
     void pop();
 
 
+
+to\_string函数
+--------------------
+
+::
+
+  #include <string>
+
+把val转化为字符串。
+
+::
+
+  string to_string (int val);
+  string to_string (long val);
+  string to_string (long long val);
+  string to_string (unsigned val);
+  string to_string (unsigned long val);
+  string to_string (unsigned long long val);
+  string to_string (float val);
+  string to_string (double val);
+  string to_string (long double val);
+
+
+atoi，atof，atol
+-------------------
+
+::
+
+  #include <cstdlib>
+
+把C类型的字符串转换为数字（C++的string需要使用 ``c_str()`` 转换）。
+
+::
+
+  int atoi (const char * str);
+  double atof (const char* str);
+  long int atol ( const char * str );
+
+
 size\_t和size\_type
 ------------------------
 
@@ -352,6 +417,8 @@ VS 64位编译器
   http://www.cplusplus.com/reference/stack/stack
 
   http://www.cplusplus.com/reference/queue/queue
+
+  http://www.cplusplus.com/reference/string/to_string
 
 
 2. C++ STL快速入门

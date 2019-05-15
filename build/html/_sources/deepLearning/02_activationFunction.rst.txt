@@ -50,9 +50,8 @@ tanh
 
 .. math::
 
-    tanh(z) = \frac{e^z-e^{-z}}{e^z+e^{-z}},
+    tanh(z) = \frac{e^z-e^{-z}}{e^z+e^{-z}} = 2\sigma(2z)-1.
 
-    tanh(z) = 2\sigma(2z)-1.
 
 其函数曲线如下：
 

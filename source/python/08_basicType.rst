@@ -149,6 +149,10 @@
     >>> dd['b'].append("hello")
     defaultdict(<type 'list'>, {'a': [], 'b': ['hello']})
 
+  .. warning::
+
+    如果一个defaultdict必须包含给定的key，则首先要 **显式** 地对所有的key进行访问和初始化。毕竟defaultdict只会为访问过的key关联一个默认值。
+
 - **set**
 
   - 特征：无重复，无须，每个元素为不可变类型

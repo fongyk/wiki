@@ -992,6 +992,126 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </td></tr></table></div>
 </div>
 </div></blockquote>
+<p>20. 求 <span class="math notranslate nohighlight">\(n\)</span> 的阶乘末尾有多少个 <span class="math notranslate nohighlight">\(0\)</span> 。Hint：1个 <span class="math notranslate nohighlight">\(5\)</span> 和1个 <span class="math notranslate nohighlight">\(2\)</span> 搭配可以得到1个 <span class="math notranslate nohighlight">\(0\)</span> ；<span class="math notranslate nohighlight">\(2\)</span> 的个数比 <span class="math notranslate nohighlight">\(5\)</span> 多，
+因此只关心 <span class="math notranslate nohighlight">\(5\)</span> 的个数；<span class="math notranslate nohighlight">\(25\)</span> 包含2个 <span class="math notranslate nohighlight">\(5\)</span> ，<span class="math notranslate nohighlight">\(125\)</span> 包含3个 <span class="math notranslate nohighlight">\(5\)</span> …。</p>
+<blockquote>
+<div><div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Show/Hide\ Code}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">trailingZeroes</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">res</span> <span class="o">+=</span> <span class="n">n</span> <span class="o">/</span> <span class="mi">5</span><span class="p">;</span>
+            <span class="n">n</span> <span class="o">/=</span> <span class="mi">5</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div></blockquote>
+<p>21. 求一个整数的二进制表示中 <span class="math notranslate nohighlight">\(1\)</span> 的个数。Hint：移位操作，负数可能造成死循环。
+注：指定移位次数大于或等于对象类型的比特数（如int型的32位），结果是未定义的。例如：<code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&gt;&gt;</span> <span class="pre">32</span></code> 是未定义的，但是允许 <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&gt;&gt;=</span> <span class="pre">1</span></code> 执行无限次，这是安全的。</p>
+<blockquote>
+<div><div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Show/Hide\ Code}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 方法一：不断右移n。如果n是负数，需要保持最高位为1，不断移位后这个数字会变成 0xFFFFFFFF 而陷入死循环。</span>
+<span class="kt">int</span> <span class="nf">Numberof1</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="n">cnt</span> <span class="o">++</span><span class="p">;</span>
+    <span class="n">n</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">cnt</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 方法二：n不动，左移一个比较子。</span>
+<span class="kt">int</span> <span class="nf">Numberof1</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">while</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span> <span class="c1">// 连续左移32次之后为0</span>
+  <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&amp;</span> <span class="n">flag</span><span class="p">)</span> <span class="n">cnt</span> <span class="o">++</span><span class="p">;</span>
+    <span class="n">flag</span> <span class="o">&lt;&lt;=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">cnt</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 方法三：把一个整数减1，再和原整数做逻辑与运算，会把该整数最右边的一个1变成0。</span>
+<span class="kt">int</span> <span class="nf">Numberof1</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">cnt</span> <span class="o">++</span><span class="p">;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">n</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">cnt</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div></blockquote>
 </div>
 <div class="section" id="c">
 <h2>1.3. C++<a class="headerlink" href="#c" title="Permalink to this headline">¶</a></h2>

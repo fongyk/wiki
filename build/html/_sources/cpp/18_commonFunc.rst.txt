@@ -239,6 +239,11 @@ sort
   sort(str.begin(), str.end());
 
 
+.. warning::
+
+  如果把自定义的 ``comparator`` 函数封装为类的成员函数，应该定义为 **静态成员函数（static）** 。
+
+
 min\_element，max\_element，minmax\_element
 --------------------------------------------------------
 ::

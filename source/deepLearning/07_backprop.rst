@@ -71,19 +71,19 @@
   \delta^{(l)}_i & = & \  \frac{\partial{\mathcal{L}}}{\partial{z^{(l)}_i}} \\
                   & = & \  \sum_{j=1}^{C_{l+1}} \frac{\partial{\mathcal{L}}}{\partial{z^{(l+1)}_j}} \frac{\partial{z^{(l+1)}_j}}{\partial{a^{(l)}_i}} \frac{\partial{a^{(l)}_i}}{\partial{z^{(l)}_i}} \\
                   & = & \  \sum_{j=1}^{C_{l+1}} \frac{\partial{\mathcal{L}}}{\partial{z^{(l+1)}_j}} \frac{\partial{\left ( b^{(l)}_i + \sum_{k=1}^{C_l}w^{(l)}_{jk}a^{(l)}_k \right )}}{\partial{a^{(l)}_i}} \frac{\partial{a^{(l)}_i}}{\partial{z^{(l)}_i}} \\
-                  & = & \  \sum_{j=1}^{C_{l+1}} \delta^{(l+1)}_j w_{ji}^{l} g^{\prime}(z^{(l)}_i) \\
-                  & = & \  g^{\prime}(z^{(l)}_i) \sum_{j=1}^{C_{l+1}} \delta^{(l+1)}_j w_{ji}^{l}
+                  & = & \  \sum_{j=1}^{C_{l+1}} \delta^{(l+1)}_j w_{ji}^{(l)} g^{\prime}(z^{(l)}_i) \\
+                  & = & \  g^{\prime}(z^{(l)}_i) \sum_{j=1}^{C_{l+1}} \delta^{(l+1)}_j w_{ji}^{(l)}
 
 
 权重和偏置的梯度：
 
 .. math::
 
-  \frac{\partial{\mathcal{L}}}{\partial{w_{ij}^{l}}} & = & \  \frac{\partial{\mathcal{L}}}{\partial{z^{(l+1)}_i}} \frac{\partial{z^{(l+1)}_i}}{\partial{w_{ij}^{l}}} \\
-                                                     & = & \  \delta^{(l+1)}_i \frac{\partial{z^{(l+1)}_i}}{\partial{w_{ij}^{l}}} \\
-                                                     & = & \  \delta^{(l+1)}_i \frac{\partial{\left ( b^{(l)}_i + \sum_{k=1}^{C_l}w^{(l)}_{ik}a^{(l)}_k \right )}}{\partial{w_{ij}^{l}}} \\
+  \frac{\partial{\mathcal{L}}}{\partial{w_{ij}^{(l)}}} & = & \  \frac{\partial{\mathcal{L}}}{\partial{z^{(l+1)}_i}} \frac{\partial{z^{(l+1)}_i}}{\partial{w_{ij}^{(l)}}} \\
+                                                     & = & \  \delta^{(l+1)}_i \frac{\partial{z^{(l+1)}_i}}{\partial{w_{ij}^{(l)}}} \\
+                                                     & = & \  \delta^{(l+1)}_i \frac{\partial{\left ( b^{(l)}_i + \sum_{k=1}^{C_l}w^{(l)}_{ik}a^{(l)}_k \right )}}{\partial{w_{ij}^{(l)}}} \\
                                                      & = & \  \delta^{(l+1)}_i a^{(l)}_j \\
-  \frac{\partial{\mathcal{L}}}{\partial{b_i^{l}}} & = & \  \delta^{(l+1)}_i
+  \frac{\partial{\mathcal{L}}}{\partial{b_i^{(l)}}} & = & \  \delta^{(l+1)}_i
 
 
 梯度下降
@@ -91,13 +91,13 @@
 
     .. math::
 
-      w_{ij}^{l} \leftarrow w_{ij}^{l} - \alpha \times \frac{1}{m} \sum_x \frac{\partial{\mathcal{L}}}{\partial{w_{ij}^{l}}} = w_{ij}^{l} - \frac{\alpha}{m} \sum_x \delta^{(l+1)}_i a^{(l)}_j
+      w_{ij}^{(l)} \leftarrow w_{ij}^{(l)} - \alpha \times \frac{1}{m} \sum_x \frac{\partial{\mathcal{L}}}{\partial{w_{ij}^{(l)}}} = w_{ij}^{(l)} - \frac{\alpha}{m} \sum_x \delta^{(l+1)}_i a^{(l)}_j
 
 
   - 偏置更新
 
     .. math::
-      b_i^{l}  \leftarrow b_i^{l} - \alpha \times \frac{1}{m} \sum_x \frac{\partial{\mathcal{L}}}{\partial{b_i^{l}}} = b_i^{l} - \frac{\alpha}{m} \sum_x \delta^{(l+1)}_i
+      b_i^{(l)}  \leftarrow b_i^{(l)} - \alpha \times \frac{1}{m} \sum_x \frac{\partial{\mathcal{L}}}{\partial{b_i^{(l)}}} = b_i^{(l)} - \frac{\alpha}{m} \sum_x \delta^{(l+1)}_i
 
 
 **Cross Entropy** （交叉熵）
@@ -114,9 +114,16 @@
 softmax偏导为：
 
 .. math::
+  :nowrap:
 
-  \frac{\partial{\hat{y}_j}}{\partial{a^{(n)}_i}} & = & \  - \hat{y}_j \hat{y}_i, \quad i \ne j. \\
-                                                  & = & \  \hat{y}_i (1 - \hat{y}_i), \quad i = j.
+  $$
+  \frac{\partial{\hat{y}_j}}{\partial{a^{(n)}_i}} =
+  \begin{cases}
+     - \hat{y}_j \hat{y}_i & & i \ne j \\
+     \hat{y}_i (1 - \hat{y}_i) & &  i = j
+  \end{cases}
+  $$
+
 
 另外，由链式法则（chain rule）：
 

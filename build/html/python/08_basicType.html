@@ -375,6 +375,10 @@
 <span class="go">defaultdict(&lt;type &#39;list&#39;&gt;, {&#39;a&#39;: [], &#39;b&#39;: [&#39;hello&#39;]})</span>
 </pre></div>
 </td></tr></table></div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">如果一个defaultdict必须包含给定的key，则首先要 <strong>显式</strong> 地对所有的key进行访问和初始化。毕竟defaultdict只会为访问过的key关联一个默认值。</p>
+</div>
 </li>
 <li><p class="first"><strong>set</strong></p>
 <ul class="simple">

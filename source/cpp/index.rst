@@ -26,3 +26,4 @@ C/C++
     19_stl.rst
     20_define.rst
     21_operatorPrior.rst
+    22_const.rst

@@ -1,4 +1,4 @@
-pytorch的多GPU模式
+pytorch：多GPU模式
 =========================
 
 **pytorch** 中可以通过 ``torch.nn.DataParallel`` 切换到多GPU(multi-GPU)模式，有两种使用方式：网络外指定、网络内指定。

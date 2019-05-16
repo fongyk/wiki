@@ -53,14 +53,14 @@
 
 .. math::
 
-  \mathcal{L} = \frac{1}{2} \sum_{j=1}^{C_n}(y_j - a^{(l)}_j)^2.
+  \mathcal{L} = \frac{1}{2} \sum_{j=1}^{C_n}(y_j - a^{(n)}_j)^2.
 
 最后一层的误差：
 
 .. math::
 
   \delta^{(n)}_i & = & \  \frac{\partial{\mathcal{L}}}{\partial{z^{(n)}_i}} \\
-                 & = & \  \frac{1}{2} \frac{\partial{\bigg [ \sum_{j=1}^{C_n}(y_j - a^{(N)}_j)^2 \bigg ]}}{\partial{z^{(n)}_i}} \\
+                 & = & \  \frac{1}{2} \frac{\partial{\bigg [ \sum_{j=1}^{C_n}(y_j - a^{(n)}_j)^2 \bigg ]}}{\partial{z^{(n)}_i}} \\
                  & = & \  \frac{1}{2} \frac{\partial{\bigg [ (y_i - g(z^{(n)}_i))^2 \bigg ]}}{\partial{z^{(n)}_i}} \\
                  & = & \  - (y_i - g(z^{(n)}_i)) g^{\prime}(z^{(n)}_i)
 

@@ -612,7 +612,7 @@
 </td></tr></table></div>
 </div>
 </div></blockquote>
-<p>15. [LeetCode] Find the Duplicate Number 寻找重复数。Hint：把数组元素的值当做下标，由于元素存在重复，因此必然会 <strong>重复多次访问同一个位置</strong> 。
+<p>15. [LeetCode] Find the Duplicate Number 寻找重复数。数值范围为 <span class="math notranslate nohighlight">\(\{ 1,2,3,...,n \}\)</span> 。Hint：把数组元素的值当做下标，由于元素存在重复，因此必然会 <strong>重复多次访问同一个位置</strong> 。
 从另一个角度讲，访问序列中存在“环”。哈希不满足空间复杂度为 <span class="math notranslate nohighlight">\(\mathcal{O}(1)\)</span> 的要求。</p>
 <blockquote>
 <div><ul>
@@ -669,7 +669,8 @@
 42
 43
 44
-45</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 解法一：快慢指针，寻找某个“环”的入口</span>
+45
+46</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 解法一：快慢指针，寻找某个“环”的入口</span>
 <span class="k">class</span> <span class="nc">Solution</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -709,6 +710,7 @@
                     <span class="k">break</span><span class="p">;</span>
                 <span class="p">}</span>
                 <span class="n">swap</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">nums</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
+                <span class="c1">// 一次交换之后，下标为 nums[k]-1 的元素就等于 nums[k] 了。</span>
             <span class="p">}</span>
         <span class="p">}</span>
         <span class="k">return</span> <span class="n">duplicate</span><span class="p">;</span>
@@ -762,7 +764,8 @@
 33
 34
 35
-36</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 解法一：将访问过的元素置为相反数（负数），如果下次访问到一个负数，说明这个元素被重复访问</span>
+36
+37</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 解法一：将访问过的元素置为相反数（负数），如果下次访问到一个负数，说明这个元素被重复访问</span>
 <span class="k">class</span> <span class="nc">Solution</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -773,9 +776,10 @@
         <span class="p">{</span>
             <span class="kt">int</span> <span class="n">idx</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">res</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-            <span class="n">nums</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">nums</span><span class="p">[</span><span class="n">idx</span><span class="p">];</span>
+            <span class="k">else</span> <span class="n">nums</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">nums</span><span class="p">[</span><span class="n">idx</span><span class="p">];</span>
         <span class="p">}</span>
         <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+        <span class="c1">// 这种方法得到的 res 可能多次包含同一个元素，可以使用 set</span>
     <span class="p">}</span>
 <span class="p">};</span>
 

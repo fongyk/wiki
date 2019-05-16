@@ -1,4 +1,4 @@
-pytorch模型保存与读取
+pytorch：模型保存与读取
 =========================
 
 简单
@@ -77,7 +77,7 @@ load部分参数
   pretrained_state = { k:v for k,v in pretrained_state.iteritems() if k in model_state and v.size() == model_state[k].size() }
   model_state.update(pretrained_state)
   my_model.load_state_dict(model_state)
-  
+
 
 参考资料
 -------------

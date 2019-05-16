@@ -286,7 +286,7 @@
       };
 
 
-15. [LeetCode] Find the Duplicate Number 寻找重复数。Hint：把数组元素的值当做下标，由于元素存在重复，因此必然会 **重复多次访问同一个位置** 。
+15. [LeetCode] Find the Duplicate Number 寻找重复数。数值范围为 :math:`\{ 1,2,3,...,n \}` 。Hint：把数组元素的值当做下标，由于元素存在重复，因此必然会 **重复多次访问同一个位置** 。
 从另一个角度讲，访问序列中存在“环”。哈希不满足空间复杂度为 :math:`\mathcal{O}(1)` 的要求。
 
   - 找到一个重复数字。
@@ -342,6 +342,7 @@
                           break;
                       }
                       swap(nums[k], nums[nums[k]-1]);
+                      // 一次交换之后，下标为 nums[k]-1 的元素就等于 nums[k] 了。
                   }
               }
               return duplicate;
@@ -373,9 +374,10 @@
               {
                   int idx = abs(nums[i]) - 1;
                   if (nums[idx] < 0) res.push_back(idx + 1);
-                  nums[idx] = -nums[idx];
+                  else nums[idx] = -nums[idx];
               }
               return res;
+              // 这种方法得到的 res 可能多次包含同一个元素，可以使用 set
           }
       };
 

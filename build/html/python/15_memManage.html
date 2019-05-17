@@ -1,0 +1,581 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>15. 内存管理 &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Linux/Shell" href="../linux/index.html" />
+    <link rel="prev" title="14. 类变量与类方法" href="14_classFunc.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_inplace.html">1. in-place 运算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_all.html">2. __all__ 的使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_is.html">3. is和==</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_decorator.html">4. 装饰器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_iterator.html">5. 迭代器和生成器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_lambda.html">6. lambda用法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_arg.html">7. *args和**kwargs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_basicType.html">8. 基本数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_random.html">9. random</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_normalize.html">10. 归一化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_dataStruct.html">11. 常用数据结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_bool.html">12. 逻辑运算与布尔测试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_name.html">13. 命名规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_classFunc.html">14. 类变量与类方法</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">15. 内存管理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">15.1. 变量与对象</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">15.1.1. 变量的改变</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">15.2. 引用计数</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">15.2.1. 普通引用</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">15.2.2. 容器对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">15.2.3. 循环引用</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">15.3. 垃圾回收</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id9">15.3.1. 垃圾检查</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">15.3.2. 分代回收</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">15.3.3. 标记-清除</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">15.4. 参考资料</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Python</a> &raquo;</li>
+        
+      <li>15. 内存管理</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/python/15_memManage.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>15. 内存管理<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>15.1. 变量与对象<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../_images/15_varRef.png"><img alt="../_images/15_varRef.png" class="align-center" src="../_images/15_varRef.png" style="width: 500px;" /></a>
+<p>（图片来源：<a class="reference external" href="https://www.cnblogs.com/geaozhang/p/7111961.html">https://www.cnblogs.com/geaozhang/p/7111961.html</a>）</p>
+<dl class="docutils">
+<dt>变量</dt>
+<dd>通过变量指针引用对象，变量指针指向具体对象的内存空间，取对象的值。</dd>
+<dt>对象</dt>
+<dd>类型已知，每个对象都包含一个头部信息（类型标识符和引用计数器）</dd>
+</dl>
+<p>变量名没有类型，类型属于对象。</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">==</span><span class="n">b</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="ow">is</span> <span class="n">b</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">140568052594368</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">140568052594368</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="s2">&quot;hello world&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="s2">&quot;hello world&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">==</span><span class="n">b</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="ow">is</span> <span class="n">b</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">140568052594752</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">140568052594320</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">==</span><span class="n">b</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="ow">is</span> <span class="n">b</span>
+<span class="go">True</span>
+</pre></div>
+</td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Python缓存了整数和短字符串，因此每个对象在内存中只存有一份，赋值语句只是创造新的引用，而不是对象。</p>
+<p class="last">Python没有缓存长字符串、列表及其他对象，可以有多个相同的对象，赋值语句创建出新的对象。</p>
+</div>
+<div class="section" id="id3">
+<h3>15.1.1. 变量的改变<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>不可变对象</dt>
+<dd>赋值、加减乘除这些操作实际上导致变量指向的对象发生了改变（已经不是指向原来的那个对象了），并不是通过这个变量来改变它指向的对象的值。</dd>
+</dl>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">21856416</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">21856440</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">*=</span> <span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">21856224</span>
+</pre></div>
+</td></tr></table></div>
+<dl class="docutils">
+<dt>可变对象</dt>
+<dd>对于list、dict对象，此时变量的指向没有改变。</dd>
+</dl>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">140568052448936</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">140568052448936</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>15.2. 引用计数<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sys</span> <span class="k">import</span> <span class="n">getrefcount</span>
+</pre></div>
+</div>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">sys</span></code> 包中的 <code class="docutils literal notranslate"><span class="pre">getrefcount()</span></code> ，来查看某个对象的引用计数。
+需要注意的是，当使用某个引用作为参数，传递给 <code class="docutils literal notranslate"><span class="pre">getrefcount()</span></code> 时，参数实际上创建了一个临时的引用。
+因此， <code class="docutils literal notranslate"><span class="pre">getrefcount()</span></code> 所得到的结果，会比期望的多 1。</p>
+<div class="section" id="id5">
+<h3>15.2.1. 普通引用<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">getrefcount</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">getrefcount</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">getrefcount</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">del</span> <span class="n">b</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">getrefcount</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">2</span>
+
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">getrefcount</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">2418</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">getrefcount</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">2419</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">n</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">getrefcount</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">2420</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">del</span> <span class="n">n</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">getrefcount</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">2419</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">getrefcount</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">2420</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">getrefcount</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">2419</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id6">
+<h3>15.2.2. 容器对象<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>Python的容器对象(container)，比如列表、元组、字典等，可以包含多个对象。<strong>容器对象中包含的并不是元素对象本身，是指向各个元素对象的引用。</strong></p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">getrefcount</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">getrefcount</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">4</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id7">
+<h3>15.2.3. 循环引用<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>只有容器对象才会产生循环引用的情况，比如列表、字典、用户自定义类的对象、元组等。而像数字、字符串这类简单类型不会出现循环引用。</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">getrefcount</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">getrefcount</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">9</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>15.3. 垃圾回收<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">gc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">gc</span><span class="o">.</span><span class="n">get_threshold</span><span class="p">()</span>
+<span class="go">(700, 10, 10)</span>
+<span class="go">## 700 是垃圾回收启动的阈值，10 是与分代回收相关的阈值</span>
+</pre></div>
+</div>
+<p>当Python的某个对象的引用计数降为 0 时，说明没有任何引用指向该对象，该对象就成为要被回收的垃圾了。
+频繁的垃圾回收（garbage collection），将大大降低Python的工作效率。
+如果内存中的对象不多，就没有必要总启动垃圾回收。所以，Python只会在特定条件下，自动启动垃圾回收。</p>
+<p>当Python运行时，会记录其中分配对象（object allocation）和取消分配对象（object deallocation）的次数。
+当两者的差值高于某个阈值时，垃圾回收才会启动，清除那些引用计数为0的对象。</p>
+<div class="section" id="id9">
+<h3>15.3.1. 垃圾检查<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">gc.get_count()</span></code> 获取一个三元组，如(488, 3, 0)。</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">488</span></code> 是指距离上一次0代垃圾检查，Python分配内存的数目减去释放内存的数目。</li>
+<li><code class="docutils literal notranslate"><span class="pre">3</span></code> 是指距离上一次1代垃圾检查，0代垃圾检查的次数。</li>
+<li><code class="docutils literal notranslate"><span class="pre">0</span></code> 是指距离上一次2代垃圾检查，1代垃圾检查的次数。</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id10">
+<h3>15.3.2. 分代回收<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>Python将所有的对象分为0，1，2三代。所有的新建对象都是0代对象。当某一代对象经历过垃圾回收，依然存活，那么它就被归入下一代对象。
+垃圾回收启动时，一定会扫描所有的0代对象。如果0代经过一定次数垃圾回收，那么就启动对0代和1代的扫描清理。
+当1代也经历了一定次数的垃圾回收后，那么会启动对0，1，2，即对所有对象进行扫描。</p>
+<p>(700, 10, 10)表明：每10次0代垃圾回收，会配合1次1代的垃圾回收；每10次1代的垃圾回收，才会有1次的2代垃圾回收。</p>
+</div>
+<div class="section" id="id11">
+<h3>15.3.3. 标记-清除<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<p>Python采用了“标记-清除”(Mark and Sweep)算法，解决容器对象可能产生的循环引用问题。</p>
+<ul class="simple">
+<li>标记阶段：遍历所有的对象，如果是可达的（reachable），也就是还有对象引用它，那么就标记该对象为可达；</li>
+<li>清除阶段：再次遍历对象，如果发现某个对象没有标记为可达，则就将其回收。</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id12">
+<h2>15.4. 参考资料<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Python内存管理机制</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/geaozhang/p/7111961.html">https://www.cnblogs.com/geaozhang/p/7111961.html</a></div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Python的内存管理</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/vamei/p/3232088.html">https://www.cnblogs.com/vamei/p/3232088.html</a></div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Python垃圾回收机制详解</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/Xjng/p/5128269.html">https://www.cnblogs.com/Xjng/p/5128269.html</a></div></blockquote>
+<ol class="arabic simple" start="4">
+<li>聊聊Python内存管理</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://andrewpqc.github.io/2018/10/08/python-memory-management/">https://andrewpqc.github.io/2018/10/08/python-memory-management/</a></div></blockquote>
+<ol class="arabic simple" start="5">
+<li><a class="reference external" href="https://chenrudan.github.io/blog/2016/04/23/pythonmemorycontrol.html">https://chenrudan.github.io/blog/2016/04/23/pythonmemorycontrol.html</a></li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../linux/index.html" class="btn btn-neutral float-right" title="Linux/Shell" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="14_classFunc.html" class="btn btn-neutral" title="14. 类变量与类方法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'alpha',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

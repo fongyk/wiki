@@ -611,9 +611,9 @@ memset
 
 - ``limits``
 
-  - INT_MIN
+  - INT_MIN: ``(signed int)0x80000000``
 
-  - INT_MAX
+  - INT_MAX: ``0x7fffffff``
 
 - ``algorithm``
 

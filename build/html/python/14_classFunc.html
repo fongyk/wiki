@@ -1,0 +1,400 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>14. 类变量与类方法 &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Linux/Shell" href="../linux/index.html" />
+    <link rel="prev" title="13. 命名规范" href="13_name.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_inplace.html">1. in-place 运算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_all.html">2. __all__ 的使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_is.html">3. is和==</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_decorator.html">4. 装饰器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_iterator.html">5. 迭代器和生成器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_lambda.html">6. lambda用法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_arg.html">7. *args和**kwargs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_basicType.html">8. 基本数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_random.html">9. random</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_normalize.html">10. 归一化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_dataStruct.html">11. 常用数据结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_bool.html">12. 逻辑运算与布尔测试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_name.html">13. 命名规范</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">14. 类变量与类方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">14.1. 类变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">14.2. 实例变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">14.3. 实例方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">14.4. 静态方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">14.5. 类方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">14.6. 参考资料</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Python</a> &raquo;</li>
+        
+      <li>14. 类变量与类方法</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/python/14_classFunc.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>14. 类变量与类方法<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>14.1. 类变量<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>定义在类的开始。</p>
+<ul class="simple">
+<li>类和实例都可以访问类变量</li>
+<li>实例只可以访问，不可以修改</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>14.2. 实例变量<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>类实例（对象）可使用的变量，以 <code class="docutils literal notranslate"><span class="pre">self.</span></code> 开头。</p>
+</div>
+<div class="section" id="id4">
+<h2>14.3. 实例方法<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>类实例（对象）可调用的函数，形参包括 <code class="docutils literal notranslate"><span class="pre">self</span></code> 。</p>
+</div>
+<div class="section" id="id5">
+<h2>14.4. 静态方法<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">&#64;staticmethod</span></code> 装饰，是定义在类内的普通函数。</p>
+<ul class="simple">
+<li>静态方法不能访问类变量、实例变量、实例方法</li>
+<li>类和实例都可以访问静态方法</li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h2>14.5. 类方法<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">&#64;classmethod</span></code> 装饰，形参包括 <code class="docutils literal notranslate"><span class="pre">cls</span></code> 。</p>
+<ul class="simple">
+<li>类方法可以访问和修改类变量，不能访问实例变量、实例方法</li>
+<li>类和实例都可以访问类方法</li>
+</ul>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
+  <span class="n">var</span> <span class="o">=</span> <span class="mi">100</span>        <span class="c1">## 类变量</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_a</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1">## 实例变量</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">__b</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">## 实例变量</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="mi">2</span>   <span class="c1">## 实例变量</span>
+
+  <span class="k">def</span> <span class="nf">_foo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="k">print</span> <span class="s2">&quot;_foo&quot;</span>
+
+  <span class="k">def</span> <span class="nf">__foo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="k">print</span> <span class="s2">&quot;__foo&quot;</span>
+
+  <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">__foo</span><span class="p">()</span>
+      <span class="k">print</span> <span class="s2">&quot;__b:&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__b</span>
+
+  <span class="nd">@staticmethod</span>
+  <span class="k">def</span> <span class="nf">static_func</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+      <span class="k">print</span> <span class="s2">&quot;static_method&quot;</span>
+      <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+
+  <span class="nd">@classmethod</span>
+  <span class="k">def</span> <span class="nf">class_func</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+      <span class="k">print</span> <span class="s2">&quot;class_method&quot;</span>
+      <span class="bp">cls</span><span class="o">.</span><span class="n">var</span> <span class="o">=</span> <span class="n">num</span>
+      <span class="k">print</span> <span class="bp">cls</span><span class="o">.</span><span class="n">static_func</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">A</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">obj</span><span class="o">.</span><span class="n">static_func</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">static_method</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">.</span><span class="n">class_func</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="go">class_method</span>
+<span class="go">static_method</span>
+<span class="go">0</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">A</span><span class="o">.</span><span class="n">var</span>
+<span class="go">200</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id7">
+<h2>14.6. 参考资料<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Python-类变量，成员变量，静态变量，类方法，静态方法，实例方法，普通函数</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/20150705-yilushangyouni-Jacksu/p/6238187.html">https://www.cnblogs.com/20150705-yilushangyouni-Jacksu/p/6238187.html</a></div></blockquote>
+<ol class="arabic simple" start="2">
+<li>一张图了解python 类方法与类变量 类变量与实例变量</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://blog.csdn.net/cgqdtc/article/details/80555319">https://blog.csdn.net/cgqdtc/article/details/80555319</a></div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../linux/index.html" class="btn btn-neutral float-right" title="Linux/Shell" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="13_name.html" class="btn btn-neutral" title="13. 命名规范" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'alpha',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

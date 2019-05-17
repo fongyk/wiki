@@ -5,20 +5,20 @@
 
 .. math::
 
-  r = \frac{|w^T x + b|}{\| w \|}
+  r = \frac{|w^{\top} x + b|}{\| w \|}
 
 原始问题：
 
 .. math::
 
   \underset{w,b}{min} \  \frac{1}{2} \left \| w \right \|^2 \\
-  s.t. \  y_i(w^T x + b) \geqslant 1, i=1,2,...,m
+  s.t. \  y_i(w^{\top} x + b) \geqslant 1, i=1,2,...,m
 
 拉格朗日函数：
 
 .. math::
 
-  L(w,b,\alpha) = \frac{1}{2}w^Tw + \sum_{i=1}^m \alpha_i(1 - y_i(w^T x + b)),\\
+  L(w,b,\alpha) = \frac{1}{2}w^{\top}w + \sum_{i=1}^m \alpha_i(1 - y_i(w^{\top} x + b)),\\
   \underset{w,b}{min}(\underset{\alpha_i>0}{max}L(w,b,\alpha))
 
 对偶问题：
@@ -31,22 +31,22 @@
 
 .. math::
 
-  \underset{\alpha>0}{max} \sum_{i=1}^m\alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y_i y_j x_i^T x_j,\  w=\sum_{i=1}^m\alpha_i y_i x_i
+  \underset{\alpha>0}{max} \sum_{i=1}^m\alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y_i y_j x_i^{\top} x_j,\  w=\sum_{i=1}^m\alpha_i y_i x_i
 
 KKT条件：
 
 .. math::
 
-  y_i(w^T x + b) \geqslant 1, \\
+  y_i(w^{\top} x + b) \geqslant 1, \\
   \sum_{i=1}^m \alpha_i y_i = 0,\\
-  \alpha_i (1 - y_i(w^T x + b)) = 0.
+  \alpha_i (1 - y_i(w^{\top} x + b)) = 0.
 
 核函数
 ------------
 
 核函数 :math:`\mathcal{K}`
 
-  - 对称半正定。( :math:`\mathcal{K} \geqslant 0: \forall z,\  z^T\mathcal{K}z \geqslant 0.` )
+  - 对称半正定。( :math:`\mathcal{K} \geqslant 0: \forall z,\  z^{\top}\mathcal{K}z \geqslant 0.` )
 
   - 主要使用线性核，高斯核（RBF）。
 

@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3. 主成分分析PCA" href="03_pca.html" />
+    <link rel="next" title="3. 主成分分析" href="03_pca.html" />
     <link rel="prev" title="1. Logistic Regression" href="01_lr.html" /> 
 
   
@@ -106,7 +106,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#id6">2.7. 参考资料</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="03_pca.html">3. 主成分分析PCA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_pca.html">3. 主成分分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_derivative.html">4. 常用矩阵求导公式</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
@@ -184,32 +185,32 @@
 <h1>2. 支持向量机<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>样本空间中任意点到超平面的距离为：</p>
 <div class="math notranslate nohighlight">
-\[r = \frac{|w^T x + b|}{\| w \|}\]</div>
+\[r = \frac{|w^{\top} x + b|}{\| w \|}\]</div>
 <p>原始问题：</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\underset{w,b}{min} \  \frac{1}{2} \left \| w \right \|^2 \\
-s.t. \  y_i(w^T x + b) \geqslant 1, i=1,2,...,m\end{split}\]</div>
+s.t. \  y_i(w^{\top} x + b) \geqslant 1, i=1,2,...,m\end{split}\]</div>
 <p>拉格朗日函数：</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}L(w,b,\alpha) = \frac{1}{2}w^Tw + \sum_{i=1}^m \alpha_i(1 - y_i(w^T x + b)),\\
+\[\begin{split}L(w,b,\alpha) = \frac{1}{2}w^{\top}w + \sum_{i=1}^m \alpha_i(1 - y_i(w^{\top} x + b)),\\
 \underset{w,b}{min}(\underset{\alpha_i&gt;0}{max}L(w,b,\alpha))\end{split}\]</div>
 <p>对偶问题：</p>
 <div class="math notranslate nohighlight">
 \[\underset{\alpha_i&gt;0}{max}(\underset{w,b}{min}L(w,b,\alpha))\]</div>
 <p>即：</p>
 <div class="math notranslate nohighlight">
-\[\underset{\alpha&gt;0}{max} \sum_{i=1}^m\alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y_i y_j x_i^T x_j,\  w=\sum_{i=1}^m\alpha_i y_i x_i\]</div>
+\[\underset{\alpha&gt;0}{max} \sum_{i=1}^m\alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y_i y_j x_i^{\top} x_j,\  w=\sum_{i=1}^m\alpha_i y_i x_i\]</div>
 <p>KKT条件：</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}y_i(w^T x + b) \geqslant 1, \\
+\[\begin{split}y_i(w^{\top} x + b) \geqslant 1, \\
 \sum_{i=1}^m \alpha_i y_i = 0,\\
-\alpha_i (1 - y_i(w^T x + b)) = 0.\end{split}\]</div>
+\alpha_i (1 - y_i(w^{\top} x + b)) = 0.\end{split}\]</div>
 <div class="section" id="id2">
 <h2>2.1. 核函数<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>核函数 <span class="math notranslate nohighlight">\(\mathcal{K}\)</span></p>
 <blockquote>
 <div><ul class="simple">
-<li>对称半正定。( <span class="math notranslate nohighlight">\(\mathcal{K} \geqslant 0: \forall z,\  z^T\mathcal{K}z \geqslant 0.\)</span> )</li>
+<li>对称半正定。( <span class="math notranslate nohighlight">\(\mathcal{K} \geqslant 0: \forall z,\  z^{\top}\mathcal{K}z \geqslant 0.\)</span> )</li>
 <li>主要使用线性核，高斯核（RBF）。</li>
 <li>当特征维度高且样本少，不宜使用高斯核，容易过拟合。</li>
 <li>当特征维度低，且样本够多，考虑使用高斯核。首先需要特征缩放（归一化）。若 <span class="math notranslate nohighlight">\(\sigma\)</span> 过大，导致特征间差异变小，欠拟合。</li>
@@ -328,7 +329,7 @@ s.t. \  y_i(w^T x + b) \geqslant 1, i=1,2,...,m\end{split}\]</div>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="03_pca.html" class="btn btn-neutral float-right" title="3. 主成分分析PCA" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="03_pca.html" class="btn btn-neutral float-right" title="3. 主成分分析" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="01_lr.html" class="btn btn-neutral" title="1. Logistic Regression" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

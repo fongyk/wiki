@@ -12,17 +12,43 @@ is和==
 .. code-block:: python
     :linenos:
 
-    a = "hello"
-    b = "hello"
-    print a==b # True
-    print a is b # False
-    print id(a)
-    print id(a)
+    >>> a = "hello"
+    >>> b = "hello"
+    >>> a==b
+    True
+    >>> a is b
+    True
+    >>> id(a)
+    140568052594368
+    >>> id(a)
+    140568052594368
 
-    a = [1,2,3]
-    b = a
-    print a==b # True
-    print a is b # True
+    >>> a = "hello world"
+    >>> b = "hello world"
+    >>> a==b
+    True
+    >>> a is b
+    False
+    >>> id(a)
+    140568052594752
+    >>> id(a)
+    140568052594320
+
+    >>> a = [1,2,3]
+    >>> b = a
+    >>> a==b
+    True
+    >>> a is b
+    True
+
+
+.. note::
+
+  Python缓存了整数和短字符串，因此每个对象在内存中只存有一份。
+
+  Python没有缓存长字符串、列表及其他对象，可以有多个相同的对象。
+
+
 
 None
 --------
@@ -34,13 +60,15 @@ None
 .. code-block:: python
     :linenos:
 
-    class Foo(object):
-        def __eq__(self, other):
-            return True
+    >>> class Foo(object):
+    ...    def __eq__(self, other):
+    ...        return True
 
-    foo = Foo()
-    print foo==None # True
-    print foo is None # False
+    >>> foo = Foo()
+    >>> foo == None
+    True
+    >>> foo is None
+    False
 
 参考资料
 ---------------------

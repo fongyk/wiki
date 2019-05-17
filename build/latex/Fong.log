@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2018.5.17)  12 MAY 2019 16:00
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2018.5.17)  16 MAY 2019 11:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1891,161 +1891,768 @@ Overfull \vbox (0.74414pt too high) detected at line 1002
 File: 04_virtualInheritance.png Graphic file (type QTm)
  <use  "04_virtualInheritance.png" > [20] [21] [22] [23]
 [24] [25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36] [37] [38]
-[39] [40] [41] [42] [43] [44] [45] [46]
-Underfull \vbox (badness 10000) detected at line 2958
+[39] [40] [41] [42] [43] [44] [45] [46] [47] [48] [49] [50] [51] [52] [53]
+[54] [55]
+Overfull \vbox (3.52798pt too high) detected at line 3423
  []
 
-
-Underfull \vbox (badness 10000) detected at line 2958
- []
-
-[47] [48] [49]
-Overfull \vbox (3.52798pt too high) detected at line 3124
- []
-
-[50]
-Overfull \vbox (3.87135pt too high) detected at line 3161
- []
-
-[51] [52] [53]
-Overfull \vbox (3.82796pt too high) detected at line 3312
- []
-
-[54] [55] [56] [57] [58] [59] [60] [61] [62] [63] [64] [65] [66] [67] [68]
+[56] [57] [58] [59] [60] [61] [62] [63] [64] [65] [66] [67] [68] [69] [70]
+[71] [72] [73] [74] [75] [76]
 Chapter 2.
-[69
+[77
 
 ]
 LaTeX Font Info:    Font shape `EU1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `EU1/lmtt/b/n' tried instead on input line 4601.
+(Font)              Font shape `EU1/lmtt/b/n' tried instead on input line 5069.
 
- [70] [71] [72] [73] [74]
+ [78] [79] [80] [81] [82]
 File: 05_iterator.png Graphic file (type QTm)
- <use  "05_iterator.png" > [75] [76] [77] [78]
-[79]
-Overfull \vbox (3.47131pt too high) detected at line 5274
+ <use  "05_iterator.png" > [83] [84] [85] [86]
+[87]
+Overfull \vbox (3.47131pt too high) detected at line 5742
  []
 
-[80] [81] [82] [83] [84] [85] [86] [87] [88] [89] [90] [91] [92] [93] [94]
-[95] [96] [97] [98]
+[88] [89] [90] [91] [92] [93] [94] [95] [96] [97]
+Overfull \vbox (3.27135pt too high) detected at line 6430
+ []
+
+[98] [99] [100] [101] [102] [103] [104] [105] [106] [107] [108
+
+]
 Chapter 3.
-[99
-
-] [100] [101] [102]
-Overfull \vbox (1.67113pt too high) detected at line 6812
+[109] [110] [111] [112]
+Overfull \vbox (1.67113pt too high) detected at line 7284
  []
 
-[103] [104] [105] [106]
+[113] [114] [115] [116]
 Chapter 4.
 File: 01_git-operations.png Graphic file (type QTm)
 <use  "01_git-operations.png" >
-Overfull \hbox (57.21031pt too wide) in paragraph at lines 7098--7099
+Overfull \hbox (57.21031pt too wide) in paragraph at lines 7570--7571
 | []|  
  []
 
-[107
+[117
 
 ]
 File: 01_head.jpg Graphic file (type QTm)
- <use  "01_head.jpg" > [108]
+ <use  "01_head.jpg" > [118]
 File: 01_git-operations.png Graphic file (type QTm)
  <use  "01_git-operations.png" >
-Overfull \hbox (57.21031pt too wide) in paragraph at lines 7244--7245
+Overfull \hbox (57.21031pt too wide) in paragraph at lines 7716--7717
 | []|  
  []
 
-[109] [110] [111]
+[119] [120] [121]
 File: 03_master.png Graphic file (type QTm)
  <use  "03_master.png" >
 File: 03_create_branch.png Graphic file (type QTm)
  <use  "03_create_branch.png" >
-[112]
+[122]
 File: 03_commit_branch.png Graphic file (type QTm)
  <use  "03_commit_branch.png" >
 File: 03_merge_branch.png Graphic file (type QTm)
  <use  "03_merge_branch.png" >
 File: 03_delete_branch.png Graphic file (type QTm)
 
-<use  "03_delete_branch.png" > [113] [114]
+<use  "03_delete_branch.png" > [123] [124]
 Chapter 5.
-[115
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.7967 ...  (1-g(z))g(z) \in (0, 0.25].\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.7967 ...  (1-g(z))g(z) \in (0, 0.25].\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.7967 ...  (1-g(z))g(z) \in (0, 0.25].\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.7967 ...  (1-g(z))g(z) \in (0, 0.25].\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.7967 ...  (1-g(z))g(z) \in (0, 0.25].\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.7967 ...  (1-g(z))g(z) \in (0, 0.25].\end{split}
+                                                  
+? 
+[125
 
-] [116] [117] [118] [119] [120] [121] [122
+] [126] [127] [128] [129] [130]
+File: 04_matrix.jpg Graphic file (type QTm)
+ <use  "04_matrix.jpg" >
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8427 ...athbf{a} \mathbf{a}^{\top} \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8427 ...athbf{a} \mathbf{a}^{\top} \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8427 ...athbf{a} \mathbf{a}^{\top} \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8427 ...athbf{a} \mathbf{a}^{\top} \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8427 ...athbf{a} \mathbf{a}^{\top} \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8427 ...athbf{a} \mathbf{a}^{\top} \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8427 ...athbf{a} \mathbf{a}^{\top} \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8427 ...athbf{a} \mathbf{a}^{\top} \\\end{split}
+                                                  
+? 
+[131]
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8434 ...athbf{b}\mathbf{a}^{\top}) \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8434 ...athbf{b}\mathbf{a}^{\top}) \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8434 ...athbf{b}\mathbf{a}^{\top}) \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8434 ...athbf{b}\mathbf{a}^{\top}) \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8434 ...athbf{b}\mathbf{a}^{\top}) \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8434 ...athbf{b}\mathbf{a}^{\top}) \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8449 ...mathbf{B}^{\top}\mathbf{X} \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8449 ...mathbf{B}^{\top}\mathbf{X} \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8449 ...mathbf{B}^{\top}\mathbf{X} \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8449 ...mathbf{B}^{\top}\mathbf{X} \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8449 ...mathbf{B}^{\top}\mathbf{X} \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8449 ...mathbf{B}^{\top}\mathbf{X} \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8449 ...mathbf{B}^{\top}\mathbf{X} \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8449 ...mathbf{B}^{\top}\mathbf{X} \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8449 ...mathbf{B}^{\top}\mathbf{X} \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8449 ...mathbf{B}^{\top}\mathbf{X} \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8449 ...mathbf{B}^{\top}\mathbf{X} \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8449 ...mathbf{B}^{\top}\mathbf{X} \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8449 ...mathbf{B}^{\top}\mathbf{X} \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8449 ...mathbf{B}^{\top}\mathbf{X} \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8449 ...mathbf{B}^{\top}\mathbf{X} \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8449 ...mathbf{B}^{\top}\mathbf{X} \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8449 ...mathbf{B}^{\top}\mathbf{X} \\\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.8449 ...mathbf{B}^{\top}\mathbf{X} \\\end{split}
+                                                  
+? 
+[132] [133] [134
 
 ]
 Chapter 6.
-[123]
+[135]
 File: 02_sigmoid.jpeg Graphic file (type QTm)
- <use  "02_sigmoid.jpeg" > [124]
+ <use  "02_sigmoid.jpeg" > [136]
 File: 02_tanh.jpeg Graphic file (type QTm)
- <use  "02_tanh.jpeg" > [125]
+ <use  "02_tanh.jpeg" > [137]
 File: 02_relu.jpeg Graphic file (type QTm)
 
-<use  "02_relu.jpeg" > [126]
+<use  "02_relu.jpeg" > [138]
 File: 02_alexplot.jpeg Graphic file (type QTm)
- <use  "02_alexplot.jpeg" > [127]
-Underfull \hbox (badness 10000) in paragraph at lines 1--8206
+ <use  "02_alexplot.jpeg" > [139]
+Underfull \hbox (badness 10000) in paragraph at lines 1--8742
 [][][]$[][][][] [] [] [] [][][][][][][][][][] [] [][][][][][] [] [][][] [] [][]
 [][][][][] [] [][][][] [] [][][][] [] [][][][][][] [] [][][][][] [] [][] [] [][
 ][][][] []
  []
 
-[128] [129] [130] [131] [132]
+[140] [141] [142] [143]
+File: 07_backprop.jpg Graphic file (type QTm)
+ <use  "07_backprop.jpg" >
+Overfull \hbox (57.21031pt too wide) in paragraph at lines 8967--8968
+| []|  
+ []
+
+[144]
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9053 a^{(l)}_i & = & \  g(z^{(l)}_i).\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9053 a^{(l)}_i & = & \  g(z^{(l)}_i).\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9053 a^{(l)}_i & = & \  g(z^{(l)}_i).\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9053 a^{(l)}_i & = & \  g(z^{(l)}_i).\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9053 a^{(l)}_i & = & \  g(z^{(l)}_i).\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9053 a^{(l)}_i & = & \  g(z^{(l)}_i).\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9053 a^{(l)}_i & = & \  g(z^{(l)}_i).\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9053 a^{(l)}_i & = & \  g(z^{(l)}_i).\end{split}
+                                                  
+? 
+[145]
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9074 ...n)}_i)) g^{\prime}(z^{(n)}_i)\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9074 ...n)}_i)) g^{\prime}(z^{(n)}_i)\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9074 ...n)}_i)) g^{\prime}(z^{(n)}_i)\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9074 ...n)}_i)) g^{\prime}(z^{(n)}_i)\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9074 ...n)}_i)) g^{\prime}(z^{(n)}_i)\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9074 ...n)}_i)) g^{\prime}(z^{(n)}_i)\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9074 ...n)}_i)) g^{\prime}(z^{(n)}_i)\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9074 ...n)}_i)) g^{\prime}(z^{(n)}_i)\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9082 ...\delta^{(l+1)}_j w_{ji}^{(l)}\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9082 ...\delta^{(l+1)}_j w_{ji}^{(l)}\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9082 ...\delta^{(l+1)}_j w_{ji}^{(l)}\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9082 ...\delta^{(l+1)}_j w_{ji}^{(l)}\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9082 ...\delta^{(l+1)}_j w_{ji}^{(l)}\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9082 ...\delta^{(l+1)}_j w_{ji}^{(l)}\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9082 ...\delta^{(l+1)}_j w_{ji}^{(l)}\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9082 ...\delta^{(l+1)}_j w_{ji}^{(l)}\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9082 ...\delta^{(l+1)}_j w_{ji}^{(l)}\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9082 ...\delta^{(l+1)}_j w_{ji}^{(l)}\end{split}
+                                                  
+? 
+[146]
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9090 ...}}} & = & \  \delta^{(l+1)}_i\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9090 ...}}} & = & \  \delta^{(l+1)}_i\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9090 ...}}} & = & \  \delta^{(l+1)}_i\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9090 ...}}} & = & \  \delta^{(l+1)}_i\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9090 ...}}} & = & \  \delta^{(l+1)}_i\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9090 ...}}} & = & \  \delta^{(l+1)}_i\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9090 ...}}} & = & \  \delta^{(l+1)}_i\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9090 ...}}} & = & \  \delta^{(l+1)}_i\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9090 ...}}} & = & \  \delta^{(l+1)}_i\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9090 ...}}} & = & \  \delta^{(l+1)}_i\end{split}
+                                                  
+? 
+[147]
+! Extra alignment tab has been changed to \cr.
+<template> ...\relax $\hfil $\relax $\endtemplate 
+                                                  
+l.9120    - \hat{y}_j \hat{y}_i & &
+                                    i \ne j \\
+? 
+! Extra alignment tab has been changed to \cr.
+<template> ...\relax $\hfil $\relax $\endtemplate 
+                                                  
+l.9121    \hat{y}_i (1 - \hat{y}_i) & &
+                                         i = j
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9128 ... & \  - \frac{y_j}{\hat{y}_j}\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9128 ... & \  - \frac{y_j}{\hat{y}_j}\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9128 ... & \  - \frac{y_j}{\hat{y}_j}\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9128 ... & \  - \frac{y_j}{\hat{y}_j}\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9128 ... & \  - \frac{y_j}{\hat{y}_j}\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9128 ... & \  - \frac{y_j}{\hat{y}_j}\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9137 ...   & = & \  - y_i + \hat{y}_i\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9137 ...   & = & \  - y_i + \hat{y}_i\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9137 ...   & = & \  - y_i + \hat{y}_i\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9137 ...   & = & \  - y_i + \hat{y}_i\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9137 ...   & = & \  - y_i + \hat{y}_i\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9137 ...   & = & \  - y_i + \hat{y}_i\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9137 ...   & = & \  - y_i + \hat{y}_i\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9137 ...   & = & \  - y_i + \hat{y}_i\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9137 ...   & = & \  - y_i + \hat{y}_i\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9137 ...   & = & \  - y_i + \hat{y}_i\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9137 ...   & = & \  - y_i + \hat{y}_i\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9137 ...   & = & \  - y_i + \hat{y}_i\end{split}
+                                                  
+? 
+[148]
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9143 ...t{y}_i) g^{\prime}(z^{(n)}_i)\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9143 ...t{y}_i) g^{\prime}(z^{(n)}_i)\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9143 ...t{y}_i) g^{\prime}(z^{(n)}_i)\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9143 ...t{y}_i) g^{\prime}(z^{(n)}_i)\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9143 ...t{y}_i) g^{\prime}(z^{(n)}_i)\end{split}
+                                                  
+? 
+! Extra alignment tab has been changed to \cr.
+<template> }$\hfill \endtemplate 
+                                 
+l.9143 ...t{y}_i) g^{\prime}(z^{(n)}_i)\end{split}
+                                                  
+? 
+[149] [150
+
+]
 Chapter 7.
-[133
-
-] [134]
+[151] [152]
 Chapter 8.
-[135
+[153
 
-] [136]
+] [154]
 Chapter 9.
 
-Overfull \hbox (15.825pt too wide) in paragraph at lines 1--8607
+Overfull \hbox (15.825pt too wide) in paragraph at lines 1--9346
 [][][]$[][][][][] [] [] [] [][][][][][][][][] [] [][][] [] [][][][][][][][][] [
 ] [][][][][][] [] [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][]$[][] 
  []
 
-[137
+[155
 
-] [138
+] [156
 
 ]
 Chapter 10.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1--8630
+Underfull \hbox (badness 10000) in paragraph at lines 1--9369
 [][][]$[][][][][] [] [] [] [][][][][][] [] [][][] [] [][][][][][][] [] [][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][] [] [][][][] [] [][][][][][] 
 [] [][][][][][][][][][][][] [] [][][][][][][][][][] []
  []
 
-[139] [140] [141] [142] [143] [144]
-Overfull \vbox (4.17133pt too high) detected at line 9129
+[157] [158] [159] [160] [161] [162]
+Overfull \vbox (4.17133pt too high) detected at line 9870
  []
 
-[145]
-Overfull \vbox (18.47134pt too high) detected at line 9186
+[163]
+Overfull \vbox (4.17131pt too high) detected at line 9927
  []
 
-[146] [147] [148] [149] [150] [151] [152] [153] (./Fong.ind)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 9779.
- [154]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 9779.
+[164] [165] [166] [167] [168] [169] [170] [171] [172] [173] (./Fong.ind)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 10634.
+
+[174]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 10634.
  (./Fong.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 9779.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 9779.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 10634.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 10634.
+
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 30810 strings out of 495225
- 591089 string characters out of 6180363
- 674586 words of memory out of 5000000
- 33660 multiletter control sequences out of 15000+600000
- 10003 words of font info for 80 fonts, out of 8000000 for 9000
+ 30861 strings out of 495225
+ 593117 string characters out of 6180363
+ 675659 words of memory out of 5000000
+ 33708 multiletter control sequences out of 15000+600000
+ 10011 words of font info for 81 fonts, out of 8000000 for 9000
  285 hyphenation exceptions out of 8191
- 53i,18n,77p,10436b,670s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 53i,21n,77p,10436b,670s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Fong.pdf (158 pages).
+Output written on Fong.pdf (178 pages).

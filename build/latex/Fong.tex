@@ -62,7 +62,7 @@
      
 
 \title{Fong Documentation}
-\date{May 12, 2019}
+\date{May 16, 2019}
 \release{alpha}
 \author{fong}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -1553,9 +1553,36 @@ C/C++位域知识小结
 
 \section{指针与引用}
 \label{\detokenize{cpp/07_pointerReference::doc}}\label{\detokenize{cpp/07_pointerReference:id1}}
-\sphinxstylestrong{1}. \sphinxstylestrong{非常量} 指针可以被重新赋值，指向另一个对象；引用是对象的别名，必须初始化并总是指向（代表）最初绑定的那个对象。
+\sphinxstylestrong{1}. 指针是一个对象，有存储的 \sphinxstylestrong{值} 和 \sphinxstylestrong{地址} ，存储的数据类型是数据的地址；非常量指针可以被重新赋值，指向另一个对象。引用是对象的别名，必须初始化并总是指向（代表）最初绑定的那个对象，对对象及其引用进行取地址操作得到的结果相同。
 
-\sphinxstylestrong{2}. 有 \sphinxcode{\sphinxupquote{null pointer}} ，没有 \sphinxcode{\sphinxupquote{null reference}} ，故使用前无需检查是非为空。
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include} \PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
+
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{argc}\PYG{p}{,} \PYG{k+kt}{char} \PYG{o}{*}\PYG{o}{*} \PYG{n}{argv}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+  \PYG{k+kt}{int} \PYG{n}{k} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+  \PYG{k+kt}{int}\PYG{o}{*} \PYG{n}{pk} \PYG{o}{=} \PYG{o}{\PYGZam{}}\PYG{n}{k}\PYG{p}{;}
+  \PYG{k+kt}{int}\PYG{o}{\PYGZam{}} \PYG{n}{rk} \PYG{o}{=} \PYG{n}{k}\PYG{p}{;}
+
+  \PYG{n}{cout} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZam{}k:}\PYG{l+s}{\PYGZdq{}} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{o}{\PYGZam{}}\PYG{n}{k} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{n}{endl}\PYG{p}{;}   \PYG{c+c1}{// 0029FC44}
+  \PYG{n}{cout} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{k:}\PYG{l+s}{\PYGZdq{}} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{n}{k} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{n}{endl}\PYG{p}{;}     \PYG{c+c1}{// 1}
+
+  \PYG{n}{cout} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZam{}pk:}\PYG{l+s}{\PYGZdq{}} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{o}{\PYGZam{}}\PYG{n}{pk} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{n}{endl}\PYG{p}{;} \PYG{c+c1}{// 0029FC68}
+  \PYG{n}{cout} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{pk:}\PYG{l+s}{\PYGZdq{}} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{n}{pk} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{n}{endl}\PYG{p}{;}   \PYG{c+c1}{// 0029FC44 (pk = \PYGZam{}k)}
+  \PYG{n}{cout} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{*pk}\PYG{l+s}{\PYGZdq{}} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{o}{*}\PYG{n}{pk} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{n}{endl}\PYG{p}{;}  \PYG{c+c1}{// 1}
+
+  \PYG{n}{cout} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZam{}rk:}\PYG{l+s}{\PYGZdq{}} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{o}{\PYGZam{}}\PYG{n}{rk} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{n}{endl}\PYG{p}{;} \PYG{c+c1}{// 0029FC44 (\PYGZam{}rk = \PYGZam{}k)}
+  \PYG{n}{cout} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{rk:}\PYG{l+s}{\PYGZdq{}} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{n}{rk} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{n}{endl}\PYG{p}{;}   \PYG{c+c1}{// 1}
+
+  \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\sphinxstylestrong{2}. 指针可以有多级，但是引用只能是一级（不存在 \sphinxstyleemphasis{引用的引用} ）。
+
+\sphinxstylestrong{3}. 有 \sphinxcode{\sphinxupquote{null pointer}} ，没有 \sphinxcode{\sphinxupquote{null reference}} ，故使用前无需检查是非为空。
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
@@ -1570,7 +1597,7 @@ C/C++位域知识小结
 \PYG{p}{\PYGZcb{}}
 \end{sphinxVerbatim}
 
-\sphinxstylestrong{3}. 例子。
+\sphinxstylestrong{4}. 例子。
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
@@ -1583,26 +1610,136 @@ C/C++位域知识小结
 \end{sphinxVerbatim}
 
 
-\section{重载，覆盖，隐藏}
+\section{重载、覆盖、隐藏}
 \label{\detokenize{cpp/08_overload::doc}}\label{\detokenize{cpp/08_overload:id1}}
 
-\subsection{重载}
-\label{\detokenize{cpp/08_overload:id2}}
+\subsection{重载（Overloading）}
+\label{\detokenize{cpp/08_overload:overloading}}
 同一可访问区内被声明的几个具有不同参数列表（参数个数，参数类型，参数顺序）的同名函数。不关心函数返回类型。
 
 
-\subsection{覆盖}
-\label{\detokenize{cpp/08_overload:id3}}
+\subsection{覆盖（Overriding）}
+\label{\detokenize{cpp/08_overload:overriding}}
 基类中被重写的函数，用 \sphinxcode{\sphinxupquote{virtual}} 修饰。派生类重写的函数与被重写的函数保持同样的函数名、参数列表、返回类型。
 
+使用 \sphinxcode{\sphinxupquote{virtual}} 的同时，配合使用 \sphinxcode{\sphinxupquote{override}} 关键字来说明派生类中的虚函数。这么做的好处是是的程序员的意图更加清晰（即：希望覆盖基类中的虚函数），同时让编译器发现错误。
+因为只有虚函数才能被覆盖。编译器会检查两个对应函数的声明是否匹配。
 
-\subsection{隐藏}
-\label{\detokenize{cpp/08_overload:id4}}
-派生类中的函数屏蔽了基类中的同名函数，不管参数列表是否相同。当参数不同时，无论基类中的函数是否被virtual修饰，基类函数都是被隐藏，而不是被覆盖。
+通过把某个函数指定为 \sphinxcode{\sphinxupquote{final}} ，拒绝对该函数进行覆盖。也在类名后面接 \sphinxcode{\sphinxupquote{final}} ，以禁止该类被继承。
+
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
+\PYG{k}{class} \PYG{n+nc}{Base}
+\PYG{p}{\PYGZob{}}
+  \PYG{k}{virtual} \PYG{k+kt}{void} \PYG{n}{f}\PYG{p}{(}\PYG{k+kt}{int}\PYG{p}{)} \PYG{k}{const} \PYG{k}{final}\PYG{p}{;}
+  \PYG{k}{virtual} \PYG{k+kt}{void} \PYG{n+nf}{f1}\PYG{p}{(}\PYG{k+kt}{int}\PYG{p}{)} \PYG{k}{const}\PYG{p}{;}
+  \PYG{k}{virtual} \PYG{k+kt}{void} \PYG{n+nf}{f2}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+  \PYG{k+kt}{void} \PYG{n+nf}{f3}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}\PYG{p}{;}
+
+\PYG{k}{class} \PYG{n+nc}{Derived}\PYG{o}{:} \PYG{n}{Base}
+\PYG{p}{\PYGZob{}}
+  \PYG{k+kt}{void} \PYG{n}{f}\PYG{p}{(}\PYG{k+kt}{int}\PYG{p}{)} \PYG{k}{const}\PYG{p}{;} \PYG{c+c1}{// 错误：f 禁止覆盖}
+  \PYG{k+kt}{void} \PYG{n+nf}{f1}\PYG{p}{(}\PYG{k+kt}{int}\PYG{p}{)} \PYG{k}{const} \PYG{k}{override}\PYG{p}{;} \PYG{c+c1}{// 正确}
+  \PYG{k+kt}{void} \PYG{n+nf}{f2}\PYG{p}{(}\PYG{k+kt}{int}\PYG{p}{)} \PYG{k}{override}\PYG{p}{;} \PYG{c+c1}{// 错误：基类中没有形如 f2(int) 的函数}
+  \PYG{k+kt}{void} \PYG{n+nf}{f3}\PYG{p}{(}\PYG{p}{)} \PYG{k}{override}\PYG{p}{;} \PYG{c+c1}{// 错误：f3 不是虚函数}
+  \PYG{k+kt}{void} \PYG{n+nf}{f4}\PYG{p}{(}\PYG{p}{)} \PYG{k}{override}\PYG{p}{;} \PYG{c+c1}{// 错误：基类中没有名为 f4 的函数}
+\PYG{p}{\PYGZcb{}}\PYG{p}{;}
+
+\PYG{k}{class} \PYG{n+nc}{NoDerived} \PYG{k}{final} \PYG{p}{\PYGZob{}} \PYG{c+cm}{/* */} \PYG{p}{\PYGZcb{}}\PYG{p}{;} \PYG{c+c1}{// NoDerived 不能作为基类}
+\end{sphinxVerbatim}
+\begin{description}
+\item[{多态性}] \leavevmode
+我们把具有继承关系的多个类型成为多态类型，因为我们能够使用这些类型的“多种形式”而无须在意它们的差异。引用或指针的静态类型与动态类型
+不同，这正是C++支持多态性的根本所在。
+
+对非虚函数的调用在 \sphinxstylestrong{编译时} 进行绑定。类似地，通过 \sphinxstylestrong{对象} 本身进行的函数（虚函数或非虚函数）调用也在 \sphinxstylestrong{编译时} 绑定。
+因为 \sphinxstylestrong{对象} 的类型是确定不变的，通过对象进行的函数调用将在编译时绑定到该对象所属类中的函数版本。
+
+当且仅当通过 \sphinxstylestrong{指针或引用} 调用虚函数时，才在 \sphinxstylestrong{运行时} 解析该调用，也只有在这种情况下对象的动态类型才有可能与静态类型不同（ \sphinxstylestrong{动态绑定} ）。
+
+\end{description}
+
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include} \PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
+
+\PYG{k}{class} \PYG{n+nc}{Base}
+\PYG{p}{\PYGZob{}}
+\PYG{k}{public}\PYG{o}{:}
+  \PYG{k}{virtual} \PYG{k+kt}{void} \PYG{n}{f}\PYG{p}{(}\PYG{p}{)}\PYG{p}{\PYGZob{}} \PYG{n}{cout} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{base}\PYG{l+s}{\PYGZdq{}} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{n}{endl}\PYG{p}{;} \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}\PYG{p}{;}
+
+\PYG{k}{class} \PYG{n+nc}{Derived} \PYG{o}{:} \PYG{k}{public} \PYG{n}{Base} \PYG{c+c1}{// 注意：这里必须为 public 继承}
+\PYG{p}{\PYGZob{}}
+\PYG{k}{public}\PYG{o}{:}
+  \PYG{k+kt}{void} \PYG{n}{f}\PYG{p}{(}\PYG{p}{)}\PYG{p}{\PYGZob{}} \PYG{n}{cout} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{derived}\PYG{l+s}{\PYGZdq{}} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{n}{endl}\PYG{p}{;} \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}\PYG{p}{;}
+
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{argc}\PYG{p}{,} \PYG{k+kt}{char} \PYG{o}{*}\PYG{o}{*} \PYG{n}{argv}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+  \PYG{n}{Derived} \PYG{n}{d} \PYG{o}{=} \PYG{n}{Derived}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;} \PYG{c+c1}{// 派生类对象}
+  \PYG{n}{Base}\PYG{o}{*} \PYG{n}{pb} \PYG{o}{=} \PYG{o}{\PYGZam{}}\PYG{n}{d}\PYG{p}{;} \PYG{c+c1}{// 基类指针}
+  \PYG{n}{pb}\PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZgt{}}\PYG{n}{f}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;} \PYG{c+c1}{// derived}
+
+  \PYG{n}{Base} \PYG{n}{b} \PYG{o}{=} \PYG{n}{Base}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;} \PYG{c+c1}{// 基类对象}
+  \PYG{n}{Base}\PYG{o}{\PYGZam{}} \PYG{n}{rb} \PYG{o}{=} \PYG{n}{b}\PYG{p}{;} \PYG{c+c1}{// 基类引用}
+  \PYG{n}{rb}\PYG{p}{.}\PYG{n}{f}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;} \PYG{c+c1}{// base}
+
+  \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+\begin{description}
+\item[{抽象基类与纯虚函数}] \leavevmode\begin{itemize}
+\item {} 
+纯虚函数无须定义（非要定义的话，必须发生在类外部），在该函数的声明语句中（分号之前）加入 \sphinxcode{\sphinxupquote{= 0}} 就可以将一个虚函数声明为纯虚函数。
+
+\item {} 
+含有纯虚函数的类是抽象基类。抽象基类负责声明接口，派生类负责覆盖该接口。如果派生类不给出对应基类中纯虚函数的定义，该派生类也是一个抽象基类。
+
+\item {} 
+不能直接创建抽象基类的对象。
+
+\end{itemize}
+
+\end{description}
+
+\begin{sphinxadmonition}{note}{Note:}
+基类中的虚函数在派生类中隐含地也是一个虚函数。当派生类覆盖了某个虚函数时，该函数在基类中的形参必须与派生类中的形参严格匹配。
+
+我们可以将 \sphinxstylestrong{基类的指针或引用} 绑定到派生类的对象上。因此，当我们使用基类指针或引用时，实际上并不清楚该指针或引用所绑定的对象的真实类型。
+\end{sphinxadmonition}
+
+\begin{sphinxadmonition}{note}{Note:}
+构造函数 \sphinxstylestrong{不能声明} 为虚函数：一方面，创建一个对象时总要明确指定对象的类型。另一方面，虚函数对应一个指向虚函数表的指针（vptr），在创建对象之前，
+vptr不存在，不可能完成动态绑定。
+
+析构函数 \sphinxstylestrong{可以声明} 为虚函数：当基类指针指向派生类，使用基类指针删除对象时，如果析构函数不定义成虚函数，派生类中派生的部分无法完成析构。
+
+构造函数 \sphinxstylestrong{不要调用} 虚函数。在基类构造的时候，虚函数是非虚，不会走到派生类中，即采用的静态绑定。显然，当我们构造一个子类的对象时，先调用基类的构造函数去构造子类中基类部分，此时子类部分还没有构造、初始化。
+如果在构造中调用虚函数，可能会调用一个还没有被初始化的对象，这是很危险的。
+
+析构函数 \sphinxstylestrong{不要调用} 虚函数。析构的时候，首先调用子类的析构函数，析构掉对象的子类部分，然后调用基类的析构函数析构基类部分。
+如果在基类的析构函数里面调用虚函数，会导致其调用已经析构了的子类对象里面的函数，这是非常危险的。
+
+总而言之：在运行构造函数或者析构函数时，对象都是不完整的，这种情况下的虚函数调用不会调用到外层派生类的虚函数。
+\end{sphinxadmonition}
+
+\begin{sphinxadmonition}{warning}{Warning:}
+error C2243: ‘type cast’ : conversion from ‘Derived *’ to ‘Base *’ exists, but is inaccessible.
+
+基类的指针和引用不能指向继承方式为 \sphinxcode{\sphinxupquote{protected}} 与 \sphinxcode{\sphinxupquote{private}} 的派生类对象，只能通过 \sphinxcode{\sphinxupquote{public}} 继承。
+\end{sphinxadmonition}
+
+
+\subsection{隐藏（Hiding）}
+\label{\detokenize{cpp/08_overload:hiding}}
+派生类中的函数屏蔽了基类中的同名函数，不管参数列表是否相同。当参数不同时，无论基类中的函数是否被 \sphinxcode{\sphinxupquote{virtual}} 修饰，基类函数都是被隐藏，而不是被覆盖。
 
 
 \subsection{参考资料}
-\label{\detokenize{cpp/08_overload:id5}}\begin{enumerate}
+\label{\detokenize{cpp/08_overload:id2}}\begin{enumerate}
 \item {} 
 C++中重载、重写（覆盖）和隐藏的区别
 
@@ -1611,6 +1748,12 @@ C++中重载、重写（覆盖）和隐藏的区别
 
 \sphinxurl{https://blog.csdn.net/zx3517288/article/details/48976097}
 \end{quote}
+\begin{enumerate}
+\setcounter{enumi}{1}
+\item {} 
+《C++ Primer 第5版 中文版》 Page 538 \textendash{} 540。
+
+\end{enumerate}
 
 
 \section{strcpy函数}
@@ -1675,46 +1818,166 @@ C++中重载、重写（覆盖）和隐藏的区别
 
 \sphinxstylestrong{3}. C++ 的任何的隐式转换都是使用 \sphinxcode{\sphinxupquote{static\_cast}} 来实现。
 
-\sphinxstylestrong{4}. 基类和子类之间转换：其中子类指针转换成父类指针是安全的；但父类指针转换成子类指针是不安全的。(基类和子类之间的动态类型转换建议用dynamic\_cast)
+\sphinxstylestrong{4}. 基类和子类之间转换：其中子类指针转换成父类指针是安全的；但父类指针转换成子类指针是不安全的。（基类和子类之间的动态类型转换建议用 \sphinxcode{\sphinxupquote{dynamic\_cast}} ）
 
 \sphinxstylestrong{5}. 把空指针转换成目标类型的空指针。
 
-\sphinxstylestrong{6}. 把任何类型的表达式转换成void类型。
+\sphinxstylestrong{6}. 把任何类型的表达式转换成 \sphinxcode{\sphinxupquote{void}} 类型。
 
 
 \subsection{dynamic\_cast\textless{}type\textgreater{} (expr)}
 \label{\detokenize{cpp/10_cast:dynamic-cast-type-expr}}
-有条件转换，动态类型转换，运行时类型安全检查(转换失败返回NULL)：
+有条件转换，动态类型转换，运行时类型安全检查（转换失败返回 \sphinxcode{\sphinxupquote{NULL}} ）：
 
 \sphinxstylestrong{1}. 安全的基类和子类之间转换。
 
 \sphinxstylestrong{2}. 必须要有虚函数。
 
-\sphinxstylestrong{3}. 相同基类不同子类之间的交叉转换。但结果是NULL。
+\sphinxstylestrong{3}. 相同基类不同子类之间的交叉转换，结果是 \sphinxcode{\sphinxupquote{NULL}} 。
+
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
+\PYG{c+c1}{// dynamic\PYGZus{}cast}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include} \PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include} \PYG{c+cpf}{\PYGZlt{}exception\PYGZgt{}}
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
+
+\PYG{k}{class} \PYG{n+nc}{Base} \PYG{p}{\PYGZob{}} \PYG{k}{virtual} \PYG{k+kt}{void} \PYG{n}{dummy}\PYG{p}{(}\PYG{p}{)} \PYG{p}{\PYGZob{}}\PYG{p}{\PYGZcb{}} \PYG{p}{\PYGZcb{}}\PYG{p}{;}
+\PYG{k}{class} \PYG{n+nc}{Derived}\PYG{o}{:} \PYG{k}{public} \PYG{n}{Base} \PYG{p}{\PYGZob{}} \PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{;} \PYG{p}{\PYGZcb{}}\PYG{p}{;}
+
+\PYG{k+kt}{int} \PYG{n+nf}{main} \PYG{p}{(}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+  \PYG{k}{try}
+  \PYG{p}{\PYGZob{}}
+    \PYG{n}{Base} \PYG{o}{*} \PYG{n}{pba} \PYG{o}{=} \PYG{k}{new} \PYG{n}{Derived}\PYG{p}{;}
+    \PYG{n}{Base} \PYG{o}{*} \PYG{n}{pbb} \PYG{o}{=} \PYG{k}{new} \PYG{n}{Base}\PYG{p}{;}
+    \PYG{n}{Derived} \PYG{o}{*} \PYG{n}{pd}\PYG{p}{;}
+
+    \PYG{n}{pd} \PYG{o}{=} \PYG{k}{dynamic\PYGZus{}cast}\PYG{o}{\PYGZlt{}}\PYG{n}{Derived}\PYG{o}{*}\PYG{o}{\PYGZgt{}}\PYG{p}{(}\PYG{n}{pba}\PYG{p}{)}\PYG{p}{;}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n}{pd}\PYG{o}{=}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)} \PYG{n}{cout} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{Null pointer on first type\PYGZhy{}cast.}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+
+    \PYG{n}{pd} \PYG{o}{=} \PYG{k}{dynamic\PYGZus{}cast}\PYG{o}{\PYGZlt{}}\PYG{n}{Derived}\PYG{o}{*}\PYG{o}{\PYGZgt{}}\PYG{p}{(}\PYG{n}{pbb}\PYG{p}{)}\PYG{p}{;}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n}{pd}\PYG{o}{=}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)} \PYG{n}{cout} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{Null pointer on second type\PYGZhy{}cast.}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+
+  \PYG{p}{\PYGZcb{}} \PYG{k}{catch} \PYG{p}{(}\PYG{n}{exception}\PYG{o}{\PYGZam{}} \PYG{n}{e}\PYG{p}{)} \PYG{p}{\PYGZob{}}\PYG{n}{cout} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{Exception: }\PYG{l+s}{\PYGZdq{}} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{n}{e}\PYG{p}{.}\PYG{n}{what}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}\PYG{p}{\PYGZcb{}}
+  \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{// 输出结果：Null pointer on second type\PYGZhy{}cast.}
+\end{sphinxVerbatim}
 
 
 \subsection{const\_cast\textless{}type\textgreater{} (expr)}
 \label{\detokenize{cpp/10_cast:const-cast-type-expr}}
-\sphinxstylestrong{1}. 去掉类型的const、volitale属性;
+\sphinxstylestrong{1}. 去掉或加上类型的 \sphinxcode{\sphinxupquote{const}}、\sphinxcode{\sphinxupquote{volitale}} 属性;
 
 \sphinxstylestrong{2}. 常量指针被转化成非常量的指针，并且仍然指向原来的对象；
 
 \sphinxstylestrong{3}. 常量引用被转换成非常量的引用，并且仍然指向原来的对象；
 
-\sphinxstylestrong{4}. const\_cast一般用于修改指针。如const char *p形式。
+\sphinxstylestrong{4}. \sphinxcode{\sphinxupquote{const\_cast}} 一般用于修改指针。如 \sphinxcode{\sphinxupquote{const char *p}} 形式。
+如果有一个函数，它的形参是 \sphinxcode{\sphinxupquote{non-const}} 类型变量，而且函数不会对实参的值进行改动，这时我们可以使用类型为 \sphinxcode{\sphinxupquote{const}} 的变量来调用函数，此时 \sphinxcode{\sphinxupquote{const\_cast}} 就派上用场了。
+
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
+\PYG{c+c1}{// const\PYGZus{}cast}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include} \PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
+
+\PYG{k+kt}{void} \PYG{n+nf}{print} \PYG{p}{(}\PYG{k+kt}{char} \PYG{o}{*} \PYG{n}{str}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+  \PYG{n}{cout} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{n}{str} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{l+s+sc}{\PYGZsq{}}\PYG{l+s+sc}{\PYGZbs{}n}\PYG{l+s+sc}{\PYGZsq{}}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{int} \PYG{n+nf}{main} \PYG{p}{(}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+  \PYG{k}{const} \PYG{k+kt}{char} \PYG{o}{*} \PYG{n}{c} \PYG{o}{=} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{sample text}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+  \PYG{n}{print} \PYG{p}{(} \PYG{k}{const\PYGZus{}cast}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{char} \PYG{o}{*}\PYG{o}{\PYGZgt{}} \PYG{p}{(}\PYG{n}{c}\PYG{p}{)} \PYG{p}{)}\PYG{p}{;}
+  \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{// 输出结果：sample text}
+\end{sphinxVerbatim}
 
 
 \subsection{reinterpret\_cast\textless{}type\textgreater{} (expr)}
 \label{\detokenize{cpp/10_cast:reinterpret-cast-type-expr}}
-\sphinxstylestrong{1}. reinterpret\_cast是从底层对数据进行重新解释，依赖具体的平台，可移植性差。
+\sphinxstylestrong{1}. \sphinxcode{\sphinxupquote{reinterpret\_cast}} 是从底层对数据进行重新解释，依赖具体的平台，可移植性差。
 
-\sphinxstylestrong{2}. reinterpret\_cast可以将整型转换为指针，也可以把指针转换为数组。
+\sphinxstylestrong{2}. \sphinxcode{\sphinxupquote{reinterpret\_cast}} 可以将整型转换为指针，也可以把指针转换为数组。
 
-\sphinxstylestrong{3}. reinterpret\_cast可以在指针和引用里进行肆无忌惮的转换。
+\sphinxstylestrong{3}. \sphinxcode{\sphinxupquote{reinterpret\_cast}} 可以在指针和引用里进行肆无忌惮的转换。
+
+
+\subsection{使用stringstream转换类型}
+\label{\detokenize{cpp/10_cast:stringstream}}
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include} \PYG{c+cpf}{\PYGZlt{}sstream\PYGZgt{}}
+\end{sphinxVerbatim}
+
+\sphinxstylestrong{sstream} 头文件定义了三个类型来支持内存IO：istringstream，ostringstream，stringstream。这些类型可以向 \sphinxstylestrong{string} 写入数据，或从 \sphinxstylestrong{string} 读取数据。
+
+\sphinxstylestrong{stringstream} 的一些操作：
+\begin{itemize}
+\item {} 
+stringstream strm; // strm是一个未绑定的stringstream类型
+
+\item {} 
+stringstream strm(s); // strm是一个stringstream对象，保存 string s 的一个拷贝
+
+\item {} 
+strm.str(); // 返回strm保存的拷贝
+
+\item {} 
+strm(s); // 将 string s 拷贝到 strm 中，返回void
+
+\end{itemize}
+
+
+\subsubsection{强制类型转换}
+\label{\detokenize{cpp/10_cast:id2}}
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include} \PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include} \PYG{c+cpf}{\PYGZlt{}sstream\PYGZgt{}}
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
+
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{output\PYGZus{}type}\PYG{p}{,} \PYG{k}{class} \PYG{n+nc}{input\PYGZus{}type}\PYG{o}{\PYGZgt{}}
+\PYG{n}{output\PYGZus{}type} \PYG{n}{Convert}\PYG{p}{(}\PYG{k}{const} \PYG{n}{input\PYGZus{}type} \PYG{o}{\PYGZam{}}\PYG{n}{input}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+  \PYG{n}{stringstream} \PYG{n}{strm}\PYG{p}{;}
+  \PYG{n}{strm} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{n}{input}\PYG{p}{;}
+  \PYG{n}{output\PYGZus{}type} \PYG{n}{result}\PYG{p}{;}
+  \PYG{n}{strm} \PYG{o}{\PYGZgt{}}\PYG{o}{\PYGZgt{}} \PYG{n}{result}\PYG{p}{;}
+  \PYG{n}{strm}\PYG{p}{.}\PYG{n}{clear}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+  \PYG{k}{return} \PYG{n}{result}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+
+\PYG{k+kt}{int} \PYG{n}{main}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{argc}\PYG{p}{,} \PYG{k+kt}{char} \PYG{o}{*}\PYG{o}{*} \PYG{n}{argv}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+  \PYG{n}{string} \PYG{n}{strNum} \PYG{o}{=} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZhy{}22.22}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+  \PYG{k+kt}{float} \PYG{n}{f} \PYG{o}{=} \PYG{n}{Convert}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{float}\PYG{o}{\PYGZgt{}}\PYG{p}{(}\PYG{n}{strNum}\PYG{p}{)}\PYG{p}{;}
+  \PYG{n}{cout} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{n}{f} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{n}{endl}\PYG{p}{;} \PYG{c+c1}{// \PYGZhy{}22.22}
+
+  \PYG{k+kt}{float} \PYG{n}{n} \PYG{o}{=} \PYG{l+m+mf}{22.22}\PYG{p}{;}
+  \PYG{n}{string} \PYG{n}{str} \PYG{o}{=} \PYG{n}{Convert}\PYG{o}{\PYGZlt{}}\PYG{n}{string}\PYG{o}{\PYGZgt{}}\PYG{p}{(}\PYG{n}{n}\PYG{p}{)}\PYG{p}{;}
+  \PYG{n}{cout} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{n}{str} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}} \PYG{n}{endl}\PYG{p}{;} \PYG{c+c1}{// 22.22}
+
+  \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\begin{sphinxadmonition}{note}{Note:}
+strm调用 \sphinxstylestrong{成对的} \sphinxcode{\sphinxupquote{\textless{}\textless{}}} 和 \sphinxcode{\sphinxupquote{\textgreater{}\textgreater{}}} 之后，状态为 \sphinxcode{\sphinxupquote{end-of-file}} ，必须进行 \sphinxcode{\sphinxupquote{clear}} 才能进行下一次 \sphinxcode{\sphinxupquote{\textless{}\textless{}}} 操作。
+
+\sphinxcode{\sphinxupquote{strm.clear()}} 重置了strm的状态标识，并没有清空数据。如果没有调用 \sphinxcode{\sphinxupquote{\textless{}\textless{}}} 之后没有使用 \sphinxcode{\sphinxupquote{\textgreater{}\textgreater{}}} ，可以使用  \sphinxcode{\sphinxupquote{strm.str("")}} 清空数据。
+\end{sphinxadmonition}
 
 
 \subsection{参考资料}
-\label{\detokenize{cpp/10_cast:id2}}\begin{enumerate}
+\label{\detokenize{cpp/10_cast:id3}}\begin{enumerate}
 \item {} 
 C++中四种强制类型转换区别详解
 
@@ -1732,6 +1995,38 @@ c++ 四种强制类型转换介绍
 \begin{quote}
 
 \sphinxurl{https://blog.csdn.net/ydar95/article/details/69822540}
+\end{quote}
+\begin{enumerate}
+\setcounter{enumi}{2}
+\item {} 
+C++中使用stringstream简化类型转换
+
+\end{enumerate}
+\begin{quote}
+
+\sphinxurl{https://www.cnblogs.com/Mr-Zhong/p/5312478.html}
+\end{quote}
+\begin{enumerate}
+\setcounter{enumi}{3}
+\item {} 
+c++ reference
+
+\end{enumerate}
+\begin{quote}
+
+\sphinxurl{http://www.cplusplus.com/reference/sstream/stringstream}
+
+\sphinxurl{http://www.cplusplus.com/doc/tutorial/typecasting/}
+\end{quote}
+\begin{enumerate}
+\setcounter{enumi}{4}
+\item {} 
+C++强制类型转换操作符 const\_cast
+
+\end{enumerate}
+\begin{quote}
+
+\sphinxurl{https://www.cnblogs.com/QG-whz/p/4513136.html}
 \end{quote}
 
 
@@ -2969,6 +3264,10 @@ C++枚举（enum）的优雅用法
 \PYG{n}{sort}\PYG{p}{(}\PYG{n}{str}\PYG{p}{.}\PYG{n}{begin}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,} \PYG{n}{str}\PYG{p}{.}\PYG{n}{end}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
+\begin{sphinxadmonition}{warning}{Warning:}
+如果把自定义的 \sphinxcode{\sphinxupquote{comparator}} 函数封装为类的成员函数，应该定义为 \sphinxstylestrong{静态成员函数（static）} 。
+\end{sphinxadmonition}
+
 
 \subsection{min\_element，max\_element，minmax\_element}
 \label{\detokenize{cpp/18_commonFunc:min-element-max-element-minmax-element}}
@@ -3532,7 +3831,7 @@ priority\_queue
 长度：length()，size()，empty()
 
 \item {} 
-访问：{[}pos{]}，at(pos)。at()返回位置pos处元素的引用，越界则抛出out\_of\_range异常。
+访问：{[}pos{]}，at(pos)。at()返回位置pos处元素的引用，越界则抛出 \sphinxcode{\sphinxupquote{out\_of\_range}} 异常。
 
 \item {} 
 字典序比较：==，!=，\textless{}，\textless{}=，\textgreater{}，\textgreater{}=
@@ -3541,7 +3840,12 @@ priority\_queue
 串接：+
 
 \item {} 
-c\_str()：返回指向C类型字符串的指针。
+c\_str()：返回指向C类型字符串的指针。如果需要使用C的字符串函数如strcmp、strcpy等，需要使用c\_str()。
+
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k}{const} \PYG{k+kt}{char}\PYG{o}{*} \PYG{n+nf}{c\PYGZus{}str}\PYG{p}{(}\PYG{p}{)} \PYG{k}{const} \PYG{k}{noexcept}\PYG{p}{;}
+\end{sphinxVerbatim}
 
 \item {} 
 子串
@@ -3549,6 +3853,31 @@ c\_str()：返回指向C类型字符串的指针。
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{string} \PYG{n}{substr}\PYG{p}{(}\PYG{k+kt}{size\PYGZus{}t} \PYG{n}{pos} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{k+kt}{size\PYGZus{}t} \PYG{n}{len} \PYG{o}{=} \PYG{n}{npos}\PYG{p}{)} \PYG{k}{const}
+\end{sphinxVerbatim}
+
+\item {} 
+插入：支持下标索引插入，在位置pos \sphinxstylestrong{之前} 插入元素。插入元素之后，该元素的位置为 position。（与python中list类的插入功能一致）
+
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// string (1)}
+\PYG{n}{string}\PYG{o}{\PYGZam{}} \PYG{n}{insert} \PYG{p}{(}\PYG{k+kt}{size\PYGZus{}t} \PYG{n}{pos}\PYG{p}{,} \PYG{k}{const} \PYG{n}{string}\PYG{o}{\PYGZam{}} \PYG{n}{str}\PYG{p}{)}\PYG{p}{;}
+\PYG{c+c1}{// substring (2)}
+\PYG{n}{string}\PYG{o}{\PYGZam{}} \PYG{n}{insert} \PYG{p}{(}\PYG{k+kt}{size\PYGZus{}t} \PYG{n}{pos}\PYG{p}{,} \PYG{k}{const} \PYG{n}{string}\PYG{o}{\PYGZam{}} \PYG{n}{str}\PYG{p}{,} \PYG{k+kt}{size\PYGZus{}t} \PYG{n}{subpos}\PYG{p}{,} \PYG{k+kt}{size\PYGZus{}t} \PYG{n}{sublen}\PYG{p}{)}\PYG{p}{;}
+\PYG{c+c1}{// c\PYGZhy{}string (3)}
+\PYG{n}{string}\PYG{o}{\PYGZam{}} \PYG{n}{insert} \PYG{p}{(}\PYG{k+kt}{size\PYGZus{}t} \PYG{n}{pos}\PYG{p}{,} \PYG{k}{const} \PYG{k+kt}{char}\PYG{o}{*} \PYG{n}{s}\PYG{p}{)}\PYG{p}{;}
+\PYG{c+c1}{// buffer (4)}
+\PYG{n}{string}\PYG{o}{\PYGZam{}} \PYG{n}{insert} \PYG{p}{(}\PYG{k+kt}{size\PYGZus{}t} \PYG{n}{pos}\PYG{p}{,} \PYG{k}{const} \PYG{k+kt}{char}\PYG{o}{*} \PYG{n}{s}\PYG{p}{,} \PYG{k+kt}{size\PYGZus{}t} \PYG{n}{n}\PYG{p}{)}\PYG{p}{;}
+\PYG{c+c1}{// fill (5)}
+\PYG{n}{string}\PYG{o}{\PYGZam{}} \PYG{n}{insert} \PYG{p}{(}\PYG{k+kt}{size\PYGZus{}t} \PYG{n}{pos}\PYG{p}{,}   \PYG{k+kt}{size\PYGZus{}t} \PYG{n}{n}\PYG{p}{,} \PYG{k+kt}{char} \PYG{n}{c}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{iterator} \PYG{n+nf}{insert} \PYG{p}{(}\PYG{n}{const\PYGZus{}iterator} \PYG{n}{p}\PYG{p}{,} \PYG{k+kt}{size\PYGZus{}t} \PYG{n}{n}\PYG{p}{,} \PYG{k+kt}{char} \PYG{n}{c}\PYG{p}{)}\PYG{p}{;}
+\PYG{c+c1}{// single character (6)}
+\PYG{n}{iterator} \PYG{n+nf}{insert} \PYG{p}{(}\PYG{n}{const\PYGZus{}iterator} \PYG{n}{p}\PYG{p}{,} \PYG{k+kt}{char} \PYG{n}{c}\PYG{p}{)}\PYG{p}{;}
+\PYG{c+c1}{// range (7)}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{InputIterator}\PYG{o}{\PYGZgt{}}
+\PYG{n}{iterator} \PYG{n}{insert} \PYG{p}{(}\PYG{n}{iterator} \PYG{n}{p}\PYG{p}{,} \PYG{n}{InputIterator} \PYG{n}{first}\PYG{p}{,} \PYG{n}{InputIterator} \PYG{n}{last}\PYG{p}{)}\PYG{p}{;}
+\PYG{c+c1}{// initializer list (8)}
+\PYG{n}{string}\PYG{o}{\PYGZam{}} \PYG{n}{insert} \PYG{p}{(}\PYG{n}{const\PYGZus{}iterator} \PYG{n}{p}\PYG{p}{,} \PYG{n}{initializer\PYGZus{}list}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{char}\PYG{o}{\PYGZgt{}} \PYG{n}{il}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
 \end{itemize}
@@ -3905,6 +4234,46 @@ at(key)，key不存在，抛出out\_of\_range异常。
 \end{itemize}
 
 
+\subsection{to\_string函数}
+\label{\detokenize{cpp/19_stl:to-string}}
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include} \PYG{c+cpf}{\PYGZlt{}string\PYGZgt{}}
+\end{sphinxVerbatim}
+
+把val转化为字符串。
+
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{string} \PYG{n+nf}{to\PYGZus{}string} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{val}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{string} \PYG{n+nf}{to\PYGZus{}string} \PYG{p}{(}\PYG{k+kt}{long} \PYG{n}{val}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{string} \PYG{n+nf}{to\PYGZus{}string} \PYG{p}{(}\PYG{k+kt}{long} \PYG{k+kt}{long} \PYG{n}{val}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{string} \PYG{n+nf}{to\PYGZus{}string} \PYG{p}{(}\PYG{k+kt}{unsigned} \PYG{n}{val}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{string} \PYG{n+nf}{to\PYGZus{}string} \PYG{p}{(}\PYG{k+kt}{unsigned} \PYG{k+kt}{long} \PYG{n}{val}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{string} \PYG{n+nf}{to\PYGZus{}string} \PYG{p}{(}\PYG{k+kt}{unsigned} \PYG{k+kt}{long} \PYG{k+kt}{long} \PYG{n}{val}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{string} \PYG{n+nf}{to\PYGZus{}string} \PYG{p}{(}\PYG{k+kt}{float} \PYG{n}{val}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{string} \PYG{n+nf}{to\PYGZus{}string} \PYG{p}{(}\PYG{k+kt}{double} \PYG{n}{val}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{string} \PYG{n+nf}{to\PYGZus{}string} \PYG{p}{(}\PYG{k+kt}{long} \PYG{k+kt}{double} \PYG{n}{val}\PYG{p}{)}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+
+\subsection{atoi，atof，atol}
+\label{\detokenize{cpp/19_stl:atoi-atof-atol}}
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include} \PYG{c+cpf}{\PYGZlt{}cstdlib\PYGZgt{}}
+\end{sphinxVerbatim}
+
+把C类型的字符串转换为数字（C++的string需要使用 \sphinxcode{\sphinxupquote{c\_str()}} 转换）。
+
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{int} \PYG{n+nf}{atoi} \PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{char} \PYG{o}{*} \PYG{n}{str}\PYG{p}{)}\PYG{p}{;}
+\PYG{k+kt}{double} \PYG{n+nf}{atof} \PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{char}\PYG{o}{*} \PYG{n}{str}\PYG{p}{)}\PYG{p}{;}
+\PYG{k+kt}{long} \PYG{k+kt}{int} \PYG{n+nf}{atol} \PYG{p}{(} \PYG{k}{const} \PYG{k+kt}{char} \PYG{o}{*} \PYG{n}{str} \PYG{p}{)}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+
 \subsection{size\_t和size\_type}
 \label{\detokenize{cpp/19_stl:size-tsize-type}}
 
@@ -4013,6 +4382,8 @@ C++ reference
 \sphinxurl{http://www.cplusplus.com/reference/stack/stack}
 
 \sphinxurl{http://www.cplusplus.com/reference/queue/queue}
+
+\sphinxurl{http://www.cplusplus.com/reference/string/to\_string}
 \end{quote}
 \begin{enumerate}
 \setcounter{enumi}{1}
@@ -4258,10 +4629,10 @@ C++内联函数详解
 \label{\detokenize{cpp/21_operatorPrior::doc}}\label{\detokenize{cpp/21_operatorPrior:id1}}
 
 \begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{|*{3}{\X{1}{3}|}}
-\caption{运算符的优先级\strut}\label{\detokenize{cpp/21_operatorPrior:id2}}\\*[\sphinxlongtablecapskipadjust]
+\caption{运算符的优先级\strut}\label{\detokenize{cpp/21_operatorPrior:id3}}\\*[\sphinxlongtablecapskipadjust]
 \hline
 \sphinxstyletheadfamily 
-prior
+priority
 &\sphinxstyletheadfamily 
 operator
 &\sphinxstyletheadfamily 
@@ -4274,7 +4645,7 @@ meaning
 {\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} -- continued from previous page}}}\\
 \hline
 \sphinxstyletheadfamily 
-prior
+priority
 &\sphinxstyletheadfamily 
 operator
 &\sphinxstyletheadfamily 
@@ -4348,7 +4719,7 @@ meaning
 \cline{2-3}\sphinxtablestrut{17}&
 - -
 &
-自增（前缀）
+自减（前缀）
 \\
 \cline{2-3}\sphinxtablestrut{17}&
 -
@@ -4538,8 +4909,105 @@ sizeof
 
 逻辑运算的优先级是：\sphinxcode{\sphinxupquote{!}} \textgreater{} \sphinxcode{\sphinxupquote{\&\&}} \textgreater{} \sphinxcode{\sphinxupquote{\textbar{}\textbar{}}} 。
 
-不能重载的运算符（5个）：\sphinxcode{\sphinxupquote{.}} ， \sphinxcode{\sphinxupquote{.*}} ， \sphinxcode{\sphinxupquote{::}} ，\sphinxcode{\sphinxupquote{sizeof}} ，\sphinxcode{\sphinxupquote{? :}} 。
+不能重载的运算符：\sphinxcode{\sphinxupquote{.}} ，\sphinxcode{\sphinxupquote{? :}} ，\sphinxcode{\sphinxupquote{sizeof}} ，\sphinxcode{\sphinxupquote{.*}} ， \sphinxcode{\sphinxupquote{::}}。
+
+逻辑与：\sphinxcode{\sphinxupquote{exp1 \&\& exp2}} ，如果 \sphinxcode{\sphinxupquote{exp1}} 值为 0，则不对 \sphinxcode{\sphinxupquote{exp2}} 求值。
+
+逻辑或：\sphinxcode{\sphinxupquote{exp1 \textbar{}\textbar{} exp2}} ，如果 \sphinxcode{\sphinxupquote{exp1}} 值为 1，则不对 \sphinxcode{\sphinxupquote{exp2}} 求值。
 \end{sphinxadmonition}
+
+
+\subsection{参考资料}
+\label{\detokenize{cpp/21_operatorPrior:id2}}\begin{enumerate}
+\item {} 
+Operator Overloading
+
+\end{enumerate}
+\begin{quote}
+
+\sphinxurl{https://isocpp.org/wiki/faq/operator-overloading}
+\end{quote}
+
+
+\section{const}
+\label{\detokenize{cpp/22_const:const}}\label{\detokenize{cpp/22_const::doc}}
+
+\subsection{顶层const与底层const}
+\label{\detokenize{cpp/22_const:constconst}}
+由于指针本身是一个对象，它有可以指向另一个对象，因此，指针本身是不是常量以及指针所指对象是不是常量就是两个相互独立的问题。
+
+\sphinxstylestrong{顶层const} （top-level const）表示 \sphinxstylestrong{对象本身} 是常量，\sphinxstylestrong{底层const} （low-level const）与指针或引用等复合类型的 \sphinxstylestrong{基本类型} 部分有关。
+对指针而言，既可以是顶层const，也可以是底层const。
+
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
+\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{o}{*}\PYG{k}{const} \PYG{n}{p1} \PYG{o}{=} \PYG{o}{\PYGZam{}}\PYG{n}{i}\PYG{p}{;} \PYG{c+c1}{// 顶层const，不能改变 p1 的值}
+
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{ci} \PYG{o}{=} \PYG{l+m+mi}{42}\PYG{p}{;} \PYG{c+c1}{// 顶层const，不能改变 ci 的值}
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{o}{*}\PYG{n}{p2} \PYG{o}{=} \PYG{o}{\PYGZam{}}\PYG{n}{ci}\PYG{p}{;}  \PYG{c+c1}{// 底层const，可以改变 p2 的值，但不能通过 p2 改变 ci 的值。}
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{o}{*}\PYG{k}{const} \PYG{n}{p3} \PYG{o}{=} \PYG{n}{p2}\PYG{p}{;}  \PYG{c+c1}{// 顶层const + 底层const}
+
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{o}{\PYGZam{}}\PYG{n}{r} \PYG{o}{=} \PYG{n}{ci}\PYG{p}{;} \PYG{c+c1}{// 用于声明引用的const都是底层const，r 不能改变 i}
+\end{sphinxVerbatim}
+
+执行拷贝操作，被拷贝对象的顶层const属性不受影响。而对于底层const，要求拷入和拷出的对象具有相同的底层const属性，或在两个对象的数据类型能够转换。
+
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
+\PYG{c+c1}{// 承接上例的定义}
+
+\PYG{n}{i} \PYG{o}{=} \PYG{n}{ci}\PYG{p}{;} \PYG{c+c1}{// 正确}
+\PYG{n}{p2} \PYG{o}{=} \PYG{n}{p3}\PYG{p}{;} \PYG{c+c1}{// 正确}
+
+\PYG{k+kt}{int} \PYG{o}{*}\PYG{n}{p} \PYG{o}{=} \PYG{n}{p3}\PYG{p}{;} \PYG{c+c1}{// 错误，p 没有底层const，防止通过 p 间接改变 p3 所指对象。}
+\PYG{n}{p2} \PYG{o}{=} \PYG{o}{\PYGZam{}}\PYG{n}{i}\PYG{p}{;} \PYG{c+c1}{// 正确，int* 能转换为 const int*}
+
+\PYG{k+kt}{int} \PYG{o}{\PYGZam{}}\PYG{n}{r1} \PYG{o}{=} \PYG{n}{ci}\PYG{p}{;} \PYG{c+c1}{// 错误，r1 没有底层const}
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{o}{\PYGZam{}}\PYG{n}{r2} \PYG{o}{=} \PYG{n}{i}\PYG{p}{;} \PYG{c+c1}{// 正确，const int\PYGZam{} 可以绑定到普通 int}
+\end{sphinxVerbatim}
+
+总结：可以使用 \sphinxstylestrong{非常量对象} 初始化一个 \sphinxstylestrong{底层const对象} ，但是不能使用 \sphinxstylestrong{底层const对象} 初始化一个 \sphinxstylestrong{非常量对象} 。同时，一个普通的引用
+必须使用同类型的对象初始化。同样的初始化规则可以应用到函数的 \sphinxstylestrong{参数传递} 上。
+
+
+\subsection{const形参和实参}
+\label{\detokenize{cpp/22_const:id1}}
+使用实参初始化形参时，会 \sphinxstylestrong{忽略掉顶层const} ，换句话说，形参的顶层const被忽略了。因此，当形参有顶层const时，传给它常量对象或非常量对象都是可以的 。
+
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{void} \PYG{n+nf}{fcn}\PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{i}\PYG{p}{)} \PYG{p}{\PYGZob{}}\PYG{c+cm}{/* */}\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{void} \PYG{n+nf}{fcn}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{p}{)} \PYG{p}{\PYGZob{}}\PYG{c+cm}{/* */}\PYG{p}{\PYGZcb{}} \PYG{c+c1}{// 重复定义了 fcn}
+\end{sphinxVerbatim}
+
+上例中其实重复定义了fcn，而不是重载。调用fcn时，既可以传入const int对象，也可以传入int对象。反之，如果参数类型是int，不能传入const int对象。
+
+
+\subsection{const成员函数}
+\label{\detokenize{cpp/22_const:id2}}
+默认情况下，\sphinxcode{\sphinxupquote{this}} 指针的类型是指向 \sphinxstylestrong{类类型非常量版本的常量指针} ，即 \sphinxcode{\sphinxupquote{ClassName *const}} 。尽管 this 是隐式的，但它仍然需要遵守初始化规则。
+意味着在默认情况下，我们不能把 this 绑定到一个常量对象上。这一情况也使得我们不能在一个常量对象上调用普通的成员函数。通过把关键字 const 放在成员函数参数列表后面，
+定义该成员函数为 \sphinxstylestrong{常量成员函数} 。
+
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Sale}
+\PYG{p}{\PYGZob{}}
+  \PYG{k+kt}{double} \PYG{n}{avg\PYGZus{}price}\PYG{p}{(}\PYG{p}{)} \PYG{k}{const}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+此时，this 成为指向常量的指针，所以常量成员函数 \sphinxstylestrong{不能改变调用它的对象的内容} 。
+
+\begin{sphinxadmonition}{note}{Note:}
+常量对象、常量对象的引用和指针都只能调用常量成员函数。
+\end{sphinxadmonition}
+
+
+\subsection{参考资料}
+\label{\detokenize{cpp/22_const:id3}}
+1.《C++ Primer 第5版 中文版》 Page 57 \textendash{} 58， Page 190 \textendash{} 191，Page 231 \textendash{} 232。
 
 
 \chapter{Python}
@@ -5567,6 +6035,10 @@ python函数——形参中的：*args和**kwargs
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{dd}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{b}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{hello}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \PYG{g+go}{defaultdict(\PYGZlt{}type \PYGZsq{}list\PYGZsq{}\PYGZgt{}, \PYGZob{}\PYGZsq{}a\PYGZsq{}: [], \PYGZsq{}b\PYGZsq{}: [\PYGZsq{}hello\PYGZsq{}]\PYGZcb{})}
 \end{sphinxVerbatim}
+
+\begin{sphinxadmonition}{warning}{Warning:}
+如果一个defaultdict必须包含给定的key，则首先要 \sphinxstylestrong{显式} 地对所有的key进行访问和初始化。毕竟defaultdict只会为访问过的key关联一个默认值。
+\end{sphinxadmonition}
 
 \item {} 
 \sphinxstylestrong{set}
@@ -7490,9 +7962,9 @@ Git操作详解
 \label{\detokenize{machineLearning/01_lr:logistic-regression}}\label{\detokenize{machineLearning/01_lr::doc}}
 模型：
 \begin{equation*}
-\begin{split}h_\theta(\mathbf{x}) = g(\theta^\top \mathbf{x}),\\
-g(z) = \frac{1}{1+e^{-z}},\\
-g^\prime(z) = (1-g(z))g(z) \in (0, 0.25].\end{split}
+\begin{split}h_\theta(\mathbf{x}) & = & \  g(\theta^\top \mathbf{x}),\\
+g(z) & = & \  \frac{1}{1+e^{-z}},\\
+g^\prime(z) & = & \  (1-g(z))g(z) \in (0, 0.25].\end{split}
 \end{equation*}
 对数损失函数（极大似然）：
 \begin{equation*}
@@ -7856,13 +8328,15 @@ SVM的优缺点
 \end{enumerate}
 
 
-\section{主成分分析PCA}
-\label{\detokenize{machineLearning/03_pca:pca}}\label{\detokenize{machineLearning/03_pca::doc}}
+\section{主成分分析}
+\label{\detokenize{machineLearning/03_pca::doc}}\label{\detokenize{machineLearning/03_pca:id1}}
+\sphinxstylestrong{PCA} : Principal Component Analysis.
+
 \sphinxstylestrong{最大可分性} ：样本点到超平面的投影能尽可能分开（投影后样本点方差最大化）。
 
 
 \subsection{优化目标}
-\label{\detokenize{machineLearning/03_pca:id1}}\begin{equation*}
+\label{\detokenize{machineLearning/03_pca:id2}}\begin{equation*}
 \begin{split}\underset{W}{max} \ tr(W^TXX^TW) \\
 s.t. \ W^TW=I. \\
 X \in \mathbb{R}^{d \times m}, \\
@@ -7870,7 +8344,7 @@ W \in \mathbb{R}^{d \times d^\prime}, \ d^\prime < d.\end{split}
 \end{equation*}
 
 \subsection{求解}
-\label{\detokenize{machineLearning/03_pca:id2}}\begin{enumerate}
+\label{\detokenize{machineLearning/03_pca:id3}}\begin{enumerate}
 \item {} 
 计算样本的协方差矩阵 \(C = XX^T\) ；
 
@@ -7888,7 +8362,7 @@ W \in \mathbb{R}^{d \times d^\prime}, \ d^\prime < d.\end{split}
 
 
 \subsection{PCA白化}
-\label{\detokenize{machineLearning/03_pca:id3}}\begin{description}
+\label{\detokenize{machineLearning/03_pca:pca}}\begin{description}
 \item[{白化的目的是降低输入的冗余性：}] \leavevmode\begin{itemize}
 \item {} 
 特征之间相关性降低
@@ -7934,11 +8408,74 @@ ufldl
 \end{quote}
 
 
+\section{常用矩阵求导公式}
+\label{\detokenize{machineLearning/04_derivative::doc}}\label{\detokenize{machineLearning/04_derivative:id1}}
+导数有两种不同的表示形式：
+
+\noindent{\hspace*{\fill}\sphinxincludegraphics[width=500\sphinxpxdimen]{{04_matrix}.jpg}\hspace*{\fill}}
+
+这里使用 \sphinxstylestrong{denominator layout} 。
+
+\(\mathbf{x},\mathbf{a},\mathbf{b}\) 均为 \sphinxstylestrong{列向量} 。
+
+
+\subsection{一阶}
+\label{\detokenize{machineLearning/04_derivative:id2}}\begin{equation*}
+\begin{split}\frac{\partial{(\mathbf{x}^{\top} \mathbf{a})}}{\partial{\mathbf{x}}} & = & \frac{\partial{(\mathbf{a}^{\top} \mathbf{x})}}{\partial{\mathbf{x}}} = \ \mathbf{a} \\
+\frac{\partial{(\mathbf{a}^{\top} \mathbf{X} \mathbf{b})}}{\partial{\mathbf{X}}} & = &  \mathbf{a} \mathbf{b}^{\top} \\
+\frac{\partial{(\mathbf{a}^{\top} \mathbf{X}^{\top} \mathbf{b})}}{\partial{\mathbf{X}}} & = &  \mathbf{b} \mathbf{a}^{\top} \\
+\frac{\partial{(\mathbf{a}^{\top} \mathbf{X} \mathbf{a})}}{\partial{\mathbf{X}}} & = &  \mathbf{a} \mathbf{a}^{\top} \\\end{split}
+\end{equation*}
+
+\subsection{二阶}
+\label{\detokenize{machineLearning/04_derivative:id3}}\begin{equation*}
+\begin{split}\frac{\partial{(\mathbf{x}^{\top} \mathbf{x})}}{\partial{\mathbf{x}}} & = & \ 2 \mathbf{x} \\
+\frac{\partial{(\mathbf{x}^{\top} \mathbf{B} \mathbf{x})}}{\partial{\mathbf{x}}} & = & \ (\mathbf{B} + \mathbf{B}^{\top}) \mathbf{x} \\
+\frac{\partial{(\mathbf{a}^{\top} \mathbf{X}^{\top} \mathbf{X} \mathbf{b})}}{\partial{\mathbf{X}}} & = & \  \mathbf{X} (\mathbf{a}\mathbf{b}^{\top} + \mathbf{b}\mathbf{a}^{\top}) \\\end{split}
+\end{equation*}
+
+\subsection{迹}
+\label{\detokenize{machineLearning/04_derivative:id4}}
+\(Tr(\mathbf{A}^{\top}\mathbf{B}) = Tr(\mathbf{B}^{\top}\mathbf{A})\)
+\begin{equation*}
+\begin{split}\frac{\partial{(Tr(\mathbf{X}))}}{\partial{\mathbf{X}}} & = & \ \mathbf{I} \\
+\frac{\partial{(Tr(\mathbf{X} \mathbf{A}))}}{\partial{\mathbf{X}}} & = & \ \mathbf{A}^{\top} \\
+\frac{\partial{(Tr(\mathbf{X}^{\top} \mathbf{A}))}}{\partial{\mathbf{X}}} & = & \ \frac{\partial{(Tr(\mathbf{A} \mathbf{X}^{\top}))}}{\partial{\mathbf{X}}} = \  \mathbf{A} \\
+\frac{\partial{(Tr(\mathbf{A} \mathbf{X} \mathbf{B}))}}{\partial{\mathbf{X}}} & = & \ \mathbf{A}^{\top}\mathbf{B}^{\top} \\
+\frac{\partial{(Tr(\mathbf{A} \mathbf{X}^{\top} \mathbf{B}))}}{\partial{\mathbf{X}}} & = & \ \mathbf{B}\mathbf{A} \\
+\frac{\partial{(Tr(\mathbf{X} \mathbf{X}^{\top}))}}{\partial{\mathbf{X}}} & = & \ 2 \mathbf{X} \\
+\frac{\partial{(Tr(\mathbf{X}^{2}))}}{\partial{\mathbf{X}}} & = & \ 2 \mathbf{X}^{\top} \\
+\frac{\partial{(Tr(\mathbf{X} \mathbf{B} \mathbf{X}^{\top}))}}{\partial{\mathbf{X}}} & = & \ \mathbf{X}\mathbf{B}^{\top} + \mathbf{X}\mathbf{B} \\
+\frac{\partial{(Tr(\mathbf{X}^{\top} \mathbf{B} \mathbf{X}))}}{\partial{\mathbf{X}}} & = & \ \mathbf{B}\mathbf{X} + \mathbf{B}^{\top}\mathbf{X} \\\end{split}
+\end{equation*}
+
+\subsection{参考资料}
+\label{\detokenize{machineLearning/04_derivative:id5}}\begin{enumerate}
+\item {} 
+The Matrix Cookbook
+
+\end{enumerate}
+\begin{quote}
+
+\sphinxurl{https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf}
+\end{quote}
+\begin{enumerate}
+\setcounter{enumi}{1}
+\item {} 
+Matrix Derivatives
+
+\end{enumerate}
+\begin{quote}
+
+\sphinxurl{https://www.comp.nus.edu.sg/~cs5240/lecture/matrix-differentiation.pdf}
+\end{quote}
+
+
 \chapter{深度学习}
 \label{\detokenize{deepLearning/index::doc}}\label{\detokenize{deepLearning/index:id1}}
 
-\section{pytorch的多GPU模式}
-\label{\detokenize{deepLearning/01_dataParallel::doc}}\label{\detokenize{deepLearning/01_dataParallel:pytorchgpu}}
+\section{pytorch：多GPU模式}
+\label{\detokenize{deepLearning/01_dataParallel::doc}}\label{\detokenize{deepLearning/01_dataParallel:pytorch-gpu}}
 \sphinxstylestrong{pytorch} 中可以通过 \sphinxcode{\sphinxupquote{torch.nn.DataParallel}} 切换到多GPU(multi-GPU)模式，有两种使用方式：网络外指定、网络内指定。
 
 
@@ -8013,9 +8550,9 @@ pytorch documentation
 \end{quote}
 
 
-\section{激活函数(Activation Function)}
-\label{\detokenize{deepLearning/02_activationFunction::doc}}\label{\detokenize{deepLearning/02_activationFunction:activation-function}}
-神经网络引入激活函数主要是为了增强网络的非线性，提升网络的拟合能力和学习能力。激活函数有以下几个性质：
+\section{激活函数}
+\label{\detokenize{deepLearning/02_activationFunction::doc}}\label{\detokenize{deepLearning/02_activationFunction:id1}}
+神经网络引入激活函数（Activation Function）主要是为了增强网络的非线性，提升网络的拟合能力和学习能力。激活函数有以下几个性质：
 \begin{itemize}
 \item {} 
 非线性
@@ -8071,10 +8608,9 @@ pytorch documentation
 \subsection{tanh}
 \label{\detokenize{deepLearning/02_activationFunction:tanh}}
 \sphinxstylestrong{tanh} 函数的数学表达式如下：
-\begin{align*}\!\begin{aligned}
-tanh(z) = \frac{e^z-e^{-z}}{e^z+e^{-z}},\\
-tanh(z) = 2\sigma(2z)-1.\\
-\end{aligned}\end{align*}
+\begin{equation*}
+\begin{split}tanh(z) = \frac{e^z-e^{-z}}{e^z+e^{-z}} = 2\sigma(2z)-1.\end{split}
+\end{equation*}
 其函数曲线如下：
 
 \noindent{\hspace*{\fill}\sphinxincludegraphics[width=500\sphinxpxdimen]{{02_tanh}.jpeg}\hspace*{\fill}}
@@ -8118,7 +8654,7 @@ tanh(z) = 2\sigma(2z)-1.\\
 
 
 \subsection{参考资料}
-\label{\detokenize{deepLearning/02_activationFunction:id1}}\begin{enumerate}
+\label{\detokenize{deepLearning/02_activationFunction:id2}}\begin{enumerate}
 \item {} 
 CS231n
 
@@ -8248,7 +8784,7 @@ Group Normalization
 \end{quote}
 
 
-\section{pytorch模型保存与读取}
+\section{pytorch：模型保存与读取}
 \label{\detokenize{deepLearning/05_modelSave:pytorch}}\label{\detokenize{deepLearning/05_modelSave::doc}}
 
 \subsection{简单}
@@ -8423,6 +8959,209 @@ pytorch documentation
 \sphinxurl{https://pytorch.org/docs/0.3.1/tensors.html?highlight=cuda\#torch.Tensor.cuda}
 
 \sphinxurl{https://pytorch.org/docs/0.3.1/nn.html?highlight=cuda\#torch.nn.Module.cuda}
+\end{quote}
+
+
+\section{反向传播}
+\label{\detokenize{deepLearning/07_backprop::doc}}\label{\detokenize{deepLearning/07_backprop:id1}}
+\noindent{\hspace*{\fill}\sphinxincludegraphics[width=700\sphinxpxdimen]{{07_backprop}.jpg}\hspace*{\fill}}
+
+
+\begin{savenotes}\sphinxattablestart
+\centering
+\sphinxcapstartof{table}
+\sphinxcaption{符号说明}\label{\detokenize{deepLearning/07_backprop:id5}}
+\sphinxaftercaption
+\begin{tabulary}{\linewidth}[t]{|T|T|}
+\hline
+\sphinxstyletheadfamily 
+符号
+&\sphinxstyletheadfamily 
+含义
+\\
+\hline
+\(n\)
+&
+网络层数
+\\
+\hline
+\(C_l\)
+&
+第 \(l\) 层神经元个数（不包括偏置）
+\\
+\hline
+\(g(x)\)
+&
+激活函数
+\\
+\hline
+\(w^{(l)}_{ji}\)
+&
+第 \(l\) 层第 \(i\) 个神经元与第 \(l+1\) 层第 \(j\) 个神经元的连接权重
+\\
+\hline
+\(b^{(l)}_i\)
+&
+第 \(l+1\) 层第 \(i\) 个神经元的偏置
+\\
+\hline
+\(z^{(l)}_i\)
+&
+第 \(l\) 层第 \(i\) 个神经元的输入
+\\
+\hline
+\(a^{(l)}_i\)
+&
+第 \(l\) 层第 \(i\) 个神经元的激活值
+\\
+\hline
+\(\delta^{(l)}_i\)
+&
+第 \(l\) 层第 \(i\) 个神经元的误差（error）
+\\
+\hline
+\(y_j\)
+&
+标签第 \(j\) 维（第 \(j\) 类）
+\\
+\hline
+\(\mathcal{L}_{w,b}(x)\)
+&
+损失函数，简称 \(\mathcal{L}\)
+\\
+\hline
+\(x\)
+&
+训练样本
+\\
+\hline
+\(m\)
+&
+小批量训练样本个数
+\\
+\hline
+\end{tabulary}
+\par
+\sphinxattableend\end{savenotes}
+
+
+\subsection{前向传播}
+\label{\detokenize{deepLearning/07_backprop:id2}}\begin{equation*}
+\begin{split}z^{(l+1)}_i & = & \  b^{(l)}_i + \sum_{j=1}^{C_l}w^{(l)}_{ij}a^{(l)}_j, \\
+g(t) & = & \  \frac{1}{1 + e^{-t}}, \\
+g^{\prime}(t) & = & \ (1 - g(t))g(t) , \\
+a^{(l)}_i & = & \  g(z^{(l)}_i).\end{split}
+\end{equation*}
+\sphinxstylestrong{误差} 定义为：
+\begin{equation*}
+\begin{split}\delta^{(l)}_i = \  \frac{\partial{\mathcal{L}}}{\partial{z^{(l)}_i}}\end{split}
+\end{equation*}
+
+\subsection{误差反向传播}
+\label{\detokenize{deepLearning/07_backprop:id3}}
+
+\subsubsection{\sphinxstylestrong{MSE} （Mean Squared Error）}
+\label{\detokenize{deepLearning/07_backprop:mse-mean-squared-error}}
+对每一个样本，损失为：
+\begin{equation*}
+\begin{split}\mathcal{L} = \frac{1}{2} \sum_{j=1}^{C_n}(y_j - a^{(n)}_j)^2.\end{split}
+\end{equation*}
+最后一层的误差：
+\begin{equation*}
+\begin{split}\delta^{(n)}_i & = & \  \frac{\partial{\mathcal{L}}}{\partial{z^{(n)}_i}} \\
+               & = & \  \frac{1}{2} \frac{\partial{\bigg [ \sum_{j=1}^{C_n}(y_j - a^{(n)}_j)^2 \bigg ]}}{\partial{z^{(n)}_i}} \\
+               & = & \  \frac{1}{2} \frac{\partial{\bigg [ (y_i - g(z^{(n)}_i))^2 \bigg ]}}{\partial{z^{(n)}_i}} \\
+               & = & \  - (y_i - g(z^{(n)}_i)) g^{\prime}(z^{(n)}_i)\end{split}
+\end{equation*}
+递推前层误差：
+\begin{equation*}
+\begin{split}\delta^{(l)}_i & = & \  \frac{\partial{\mathcal{L}}}{\partial{z^{(l)}_i}} \\
+                & = & \  \sum_{j=1}^{C_{l+1}} \frac{\partial{\mathcal{L}}}{\partial{z^{(l+1)}_j}} \frac{\partial{z^{(l+1)}_j}}{\partial{a^{(l)}_i}} \frac{\partial{a^{(l)}_i}}{\partial{z^{(l)}_i}} \\
+                & = & \  \sum_{j=1}^{C_{l+1}} \frac{\partial{\mathcal{L}}}{\partial{z^{(l+1)}_j}} \frac{\partial{\left ( b^{(l)}_i + \sum_{k=1}^{C_l}w^{(l)}_{jk}a^{(l)}_k \right )}}{\partial{a^{(l)}_i}} \frac{\partial{a^{(l)}_i}}{\partial{z^{(l)}_i}} \\
+                & = & \  \sum_{j=1}^{C_{l+1}} \delta^{(l+1)}_j w_{ji}^{(l)} g^{\prime}(z^{(l)}_i) \\
+                & = & \  g^{\prime}(z^{(l)}_i) \sum_{j=1}^{C_{l+1}} \delta^{(l+1)}_j w_{ji}^{(l)}\end{split}
+\end{equation*}
+权重和偏置的梯度：
+\begin{equation*}
+\begin{split}\frac{\partial{\mathcal{L}}}{\partial{w_{ij}^{(l)}}} & = & \  \frac{\partial{\mathcal{L}}}{\partial{z^{(l+1)}_i}} \frac{\partial{z^{(l+1)}_i}}{\partial{w_{ij}^{(l)}}} \\
+                                                   & = & \  \delta^{(l+1)}_i \frac{\partial{z^{(l+1)}_i}}{\partial{w_{ij}^{(l)}}} \\
+                                                   & = & \  \delta^{(l+1)}_i \frac{\partial{\left ( b^{(l)}_i + \sum_{k=1}^{C_l}w^{(l)}_{ik}a^{(l)}_k \right )}}{\partial{w_{ij}^{(l)}}} \\
+                                                   & = & \  \delta^{(l+1)}_i a^{(l)}_j \\
+\frac{\partial{\mathcal{L}}}{\partial{b_i^{(l)}}} & = & \  \delta^{(l+1)}_i\end{split}
+\end{equation*}\begin{description}
+\item[{梯度下降}] \leavevmode\begin{itemize}
+\item {} 
+权重更新
+\begin{equation*}
+\begin{split}w_{ij}^{(l)} \leftarrow w_{ij}^{(l)} - \alpha \times \frac{1}{m} \sum_x \frac{\partial{\mathcal{L}}}{\partial{w_{ij}^{(l)}}} = w_{ij}^{(l)} - \frac{\alpha}{m} \sum_x \delta^{(l+1)}_i a^{(l)}_j\end{split}
+\end{equation*}
+\item {} 
+偏置更新
+\begin{equation*}
+\begin{split}b_i^{(l)}  \leftarrow b_i^{(l)} - \alpha \times \frac{1}{m} \sum_x \frac{\partial{\mathcal{L}}}{\partial{b_i^{(l)}}} = b_i^{(l)} - \frac{\alpha}{m} \sum_x \delta^{(l+1)}_i\end{split}
+\end{equation*}
+\end{itemize}
+
+\end{description}
+
+
+\subsubsection{\sphinxstylestrong{Cross Entropy} （交叉熵）}
+\label{\detokenize{deepLearning/07_backprop:cross-entropy}}
+损失函数为：
+\begin{equation*}
+\begin{split}\mathcal{L} = - \sum_{j=1}^{C_n} y_j \ln \hat{y}_j, \\
+y_j \in \{ 0,1 \}, \\
+\hat{y}_j = softmax(\mathbb{a}^{(n)}, j) = \frac{e^{a^{(n)}_j}}{\sum_{k=1}^{C_n} e^{a^{(n)}_k}}.\end{split}
+\end{equation*}
+softmax偏导为：
+$$
+\frac{\partial{\hat{y}_j}}{\partial{a^{(n)}_i}} =
+\begin{cases}
+   - \hat{y}_j \hat{y}_i & & i \ne j \\
+   \hat{y}_i (1 - \hat{y}_i) & &  i = j
+\end{cases}
+$$
+另外，由链式法则（chain rule）：
+\begin{equation*}
+\begin{split}\frac{\partial{\mathcal{L}}}{\partial{z^{(n)}_i}} & = & \  \frac{\partial{\mathcal{L}}}{\partial{a^{(n)}_i}} \frac{\partial{a^{(n)}_i}}{\partial{z^{(n)}_i}} \\
+\frac{\partial{\mathcal{L}}}{\partial{a^{(n)}_i}} & = & \  \sum_{j=1}^{C_n} \frac{\partial{\mathcal{L}}}{\partial{\hat{y}_j}} \frac{\partial{\hat{y}_j}}{\partial{a^{(n)}_i}} \\
+\frac{\partial{\mathcal{L}}}{\partial{\hat{y}_j}} & = & \  - \frac{y_j}{\hat{y}_j}\end{split}
+\end{equation*}
+可推得：
+\begin{equation*}
+\begin{split}\frac{\partial{\mathcal{L}}}{\partial{a^{(n)}_i}} & = & \  \sum_{j=1}^{C_n} \frac{\partial{\mathcal{L}}}{\partial{\hat{y}_j}} \frac{\partial{\hat{y}_j}}{\partial{a^{(n)}_i}} \\
+                                                  & = & \  \frac{\partial{\mathcal{L}}}{\partial{\hat{y}_i}} \frac{\partial{\hat{y}_i}}{\partial{a^{(n)}_i}} + \sum_{j \ne i}^{C_n} \frac{\partial{\mathcal{L}}}{\partial{\hat{y}_j}} \frac{\partial{\hat{y}_j}}{\partial{a^{(n)}_i}} \\
+                                                  & = & \  - \frac{y_i}{\hat{y}_i} \times \hat{y}_i (1 - \hat{y}_i) + \sum_{j \ne i}^{C_n} - \frac{y_j}{\hat{y}_j} \times \left ( - \hat{y}_j \hat{y}_i \right) \\
+                                                  & = & \  - y_i \times (1 - \hat{y}_i) + \sum_{j \ne i}^{C_n}  y_j \times \hat{y}_i \\
+                                                  & = & \  - y_i + \sum_{j=1}^{C_n}  y_j \times \hat{y}_i \\
+                                                  & = & \  - y_i + \hat{y}_i\end{split}
+\end{equation*}
+最后一层的误差：
+\begin{equation*}
+\begin{split}\delta^{(n)}_i & = & \ \frac{\partial{\mathcal{L}}}{\partial{z^{(n)}_i}} \\
+               & = & \ \frac{\partial{\mathcal{L}}}{\partial{a^{(n)}_i}} \frac{\partial{a^{(n)}_i}}{\partial{z^{(n)}_i}} \\
+               & = & \ (- y_i + \hat{y}_i) g^{\prime}(z^{(n)}_i)\end{split}
+\end{equation*}
+
+\subsection{参考资料}
+\label{\detokenize{deepLearning/07_backprop:id4}}\begin{enumerate}
+\item {} 
+反向传播公式推导
+
+\end{enumerate}
+\begin{quote}
+
+\sphinxurl{https://www.cnblogs.com/nowgood/p/backprop2.html\#\_nav\_0}
+\end{quote}
+\begin{enumerate}
+\setcounter{enumi}{1}
+\item {} 
+神经网络\textendash{}反向传播详细推导过程
+
+\end{enumerate}
+\begin{quote}
+
+\sphinxurl{https://blog.csdn.net/qq\_29762941/article/details/80343185}
 \end{quote}
 
 
@@ -8744,7 +9483,7 @@ github
 \end{quote}
 
 \item {} 
-单链表O(1)时间删除给定节点
+单链表 \(\mathcal{O}(1)\) 时间删除给定节点
 \begin{quote}
 
 \sphinxurl{https://blog.csdn.net/qq\_35546040/article/details/80341136}
@@ -8754,7 +9493,7 @@ github
 \begin{enumerate}
 \setcounter{enumi}{6}
 \item {} 
-全排列的非递归和递归实现（含重复元素）。Hint：在交换第i个元素与第j个元素之前，要求数组的{[}i, j)区间中的元素没有与第j个元素重复。
+全排列的非递归和递归实现（含重复元素）。Hint：在交换第 \(i\) 个元素与第 \(j\) 个元素之前，要求数组的 \([i, j)\) 区间中的元素没有与第 \(j\) 个元素重复。
 
 \end{enumerate}
 \begin{quote}
@@ -8764,7 +9503,7 @@ github
 \begin{enumerate}
 \setcounter{enumi}{7}
 \item {} 
-排列组合 “n个球放入m个盒子”问题
+排列组合：\(k\) 个球放入 \(m\) 个盒子
 
 \end{enumerate}
 \begin{quote}
@@ -8823,7 +9562,7 @@ LeetCode 75. Sort Colors（三颜色排序\(\rightarrow\)K颜色排序）
 \begin{enumerate}
 \setcounter{enumi}{10}
 \item {} 
-找到数组第k大的数
+找到数组第 \(k\) 大的数
 
 \end{enumerate}
 \begin{quote}
@@ -9013,8 +9752,8 @@ LeetCode 75. Sort Colors（三颜色排序\(\rightarrow\)K颜色排序）
 \end{sphinxVerbatim}
 \end{quote}
 
-15. {[}LeetCode{]} Find the Duplicate Number 寻找重复数。Hint：把数组元素的值当做下标，由于元素存在重复，因此必然会 \sphinxstylestrong{重复多次访问同一个位置} 。
-从另一个角度讲，访问序列中存在“环”。哈希不满足空间复杂度为O(1)的要求。
+15. {[}LeetCode{]} Find the Duplicate Number 寻找重复数。数值范围为 \(\{ 1,2,3,...,n \}\) 。Hint：把数组元素的值当做下标，由于元素存在重复，因此必然会 \sphinxstylestrong{重复多次访问同一个位置} 。
+从另一个角度讲，访问序列中存在“环”。哈希不满足空间复杂度为 \(\mathcal{O}(1)\) 的要求。
 \begin{quote}
 \begin{itemize}
 \item {} 
@@ -9070,6 +9809,7 @@ LeetCode 75. Sort Colors（三颜色排序\(\rightarrow\)K颜色排序）
                     \PYG{k}{break}\PYG{p}{;}
                 \PYG{p}{\PYGZcb{}}
                 \PYG{n}{swap}\PYG{p}{(}\PYG{n}{nums}\PYG{p}{[}\PYG{n}{k}\PYG{p}{]}\PYG{p}{,} \PYG{n}{nums}\PYG{p}{[}\PYG{n}{nums}\PYG{p}{[}\PYG{n}{k}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+                \PYG{c+c1}{// 一次交换之后，下标为 nums[k]\PYGZhy{}1 的元素就等于 nums[k] 了。}
             \PYG{p}{\PYGZcb{}}
         \PYG{p}{\PYGZcb{}}
         \PYG{k}{return} \PYG{n}{duplicate}\PYG{p}{;}
@@ -9101,9 +9841,10 @@ LeetCode 75. Sort Colors（三颜色排序\(\rightarrow\)K颜色排序）
         \PYG{p}{\PYGZob{}}
             \PYG{k+kt}{int} \PYG{n}{idx} \PYG{o}{=} \PYG{n}{abs}\PYG{p}{(}\PYG{n}{nums}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{;}
             \PYG{k}{if} \PYG{p}{(}\PYG{n}{nums}\PYG{p}{[}\PYG{n}{idx}\PYG{p}{]} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{n}{res}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{idx} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
-            \PYG{n}{nums}\PYG{p}{[}\PYG{n}{idx}\PYG{p}{]} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{n}{nums}\PYG{p}{[}\PYG{n}{idx}\PYG{p}{]}\PYG{p}{;}
+            \PYG{k}{else} \PYG{n}{nums}\PYG{p}{[}\PYG{n}{idx}\PYG{p}{]} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{n}{nums}\PYG{p}{[}\PYG{n}{idx}\PYG{p}{]}\PYG{p}{;}
         \PYG{p}{\PYGZcb{}}
         \PYG{k}{return} \PYG{n}{res}\PYG{p}{;}
+        \PYG{c+c1}{// 这种方法得到的 res 可能多次包含同一个元素，可以使用 set}
     \PYG{p}{\PYGZcb{}}
 \PYG{p}{\PYGZcb{}}\PYG{p}{;}
 
@@ -9188,7 +9929,7 @@ LeetCode 75. Sort Colors（三颜色排序\(\rightarrow\)K颜色排序）
 \begin{enumerate}
 \setcounter{enumi}{16}
 \item {} 
-{[}LeetCode{]} Longest Consecutive Sequence 最长连续序列。Hint：方法一，排序；方法二，对于每个元素n，搜索n+1是否在数组中，使用 hash（set）可以获得 O(1) 的查找复杂度。
+{[}LeetCode{]} Longest Consecutive Sequence 最长连续序列。Hint：方法一，排序；方法二，对于每个元素 \(n\) ，搜索 \(n+1\) 是否在数组中，使用 hash（set）可以获得 \(\mathcal{O}(1)\) 的查找复杂度。
 
 \end{enumerate}
 \begin{quote}
@@ -9233,6 +9974,110 @@ LeetCode 75. Sort Colors（三颜色排序\(\rightarrow\)K颜色排序）
 \sphinxurl{https://www.cnblogs.com/Arvin-JIN/p/7247619.html}
 \end{quote}
 
+19. 跳跃的蚂蚱：从 0 点出发，往正或负向跳跃，第一次跳跃一个单位，之后每次跳跃距离比上一次多一个单位，跳跃多少次可到到达坐标 \(x\) 处？
+Hint：走 \(n\) 步之后能到达的坐标是一个差为 2 的等差数列（如 \(n=3\) ，可到达 \(\{-3,-1,1,3\}\) ）。
+只需找到第最小的 \(n\) 使得
+\begin{equation*}
+\begin{split}(1+2+...+n) - x = \frac{n(n+1)}{2} - x\end{split}
+\end{equation*}
+是非负偶数。跳到 \(x\) 和跳到 \(-x\) 的次数相同，
+因此只考虑 \(x\) 为正的情况。
+\begin{quote}
+
+\sphinxurl{https://www.zhihu.com/question/50790221}
+
+\(\color{darkgreen}{Show/Hide\ Code}\)
+
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
+\PYG{c+c1}{// 作者：Rukia}
+\PYG{c+c1}{// 链接：https://www.zhihu.com/question/50790221/answer/125213696}
+
+\PYG{k+kt}{int} \PYG{n+nf}{minStep}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+  \PYG{k}{if} \PYG{p}{(}\PYG{n}{x}\PYG{o}{=}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)} \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+  \PYG{k}{if} \PYG{p}{(}\PYG{n}{x}\PYG{o}{\PYGZlt{}}\PYG{l+m+mi}{0}\PYG{p}{)} \PYG{n}{x}\PYG{o}{=}\PYG{o}{\PYGZhy{}}\PYG{n}{x}\PYG{p}{;}
+  \PYG{k+kt}{int} \PYG{n}{n}\PYG{o}{=}\PYG{n}{sqrt}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{x}\PYG{p}{)}\PYG{p}{;} \PYG{c+c1}{// 快速找到一个接近答案的 n}
+  \PYG{k}{while} \PYG{p}{(}\PYG{p}{(}\PYG{n}{n}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{*}\PYG{n}{n}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{o}{\PYGZhy{}}\PYG{n}{x} \PYG{o}{\PYGZam{}} \PYG{l+m+mi}{1} \PYG{o}{\textbar{}}\PYG{o}{\textbar{}} \PYG{p}{(}\PYG{n}{n}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{*}\PYG{n}{n}\PYG{o}{/}\PYG{l+m+mi}{2} \PYG{o}{\PYGZlt{}} \PYG{n}{x}\PYG{p}{)} \PYG{c+c1}{// \PYGZam{} 的优先级低}
+          \PYG{o}{+}\PYG{o}{+}\PYG{n}{n}\PYG{p}{;}
+  \PYG{k}{return} \PYG{n}{n}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+\end{quote}
+
+20. 求 \(n\) 的阶乘末尾有多少个 \(0\) 。Hint：1个 \(5\) 和1个 \(2\) 搭配可以得到1个 \(0\) ；\(2\) 的个数比 \(5\) 多，
+因此只关心 \(5\) 的个数；\(25\) 包含2个 \(5\) ，\(125\) 包含3个 \(5\) …。
+\begin{quote}
+
+\(\color{darkgreen}{Show/Hide\ Code}\)
+
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
+\PYG{k}{class} \PYG{n+nc}{Solution}
+\PYG{p}{\PYGZob{}}
+\PYG{k}{public}\PYG{o}{:}
+    \PYG{k+kt}{int} \PYG{n}{trailingZeroes}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{if}\PYG{p}{(}\PYG{n}{n} \PYG{o}{\PYGZlt{}}\PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+        \PYG{k+kt}{int} \PYG{n}{res} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+        \PYG{k}{while}\PYG{p}{(}\PYG{n}{n}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{res} \PYG{o}{+}\PYG{o}{=} \PYG{n}{n} \PYG{o}{/} \PYG{l+m+mi}{5}\PYG{p}{;}
+            \PYG{n}{n} \PYG{o}{/}\PYG{o}{=} \PYG{l+m+mi}{5}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{return} \PYG{n}{res}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}\PYG{p}{;}
+\end{sphinxVerbatim}
+\end{quote}
+
+21. 求一个整数的二进制表示中 \(1\) 的个数。Hint：移位操作，负数可能造成死循环。
+注：指定移位次数大于或等于对象类型的比特数（如int型的32位），结果是未定义的。例如：\sphinxcode{\sphinxupquote{n \textgreater{}\textgreater{} 32}} 是未定义的，但是允许 \sphinxcode{\sphinxupquote{n \textgreater{}\textgreater{}= 1}} 执行无限次，这是安全的。
+\begin{quote}
+
+\(\color{darkgreen}{Show/Hide\ Code}\)
+
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
+\PYG{c+c1}{// 方法一：不断右移n。如果n是负数，需要保持最高位为1，不断移位后这个数字会变成 0xFFFFFFFF 而陷入死循环。}
+\PYG{k+kt}{int} \PYG{n+nf}{Numberof1}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+  \PYG{k+kt}{int} \PYG{n}{cnt} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+  \PYG{k}{while}\PYG{p}{(}\PYG{n}{n}\PYG{p}{)}
+  \PYG{p}{\PYGZob{}}
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{n} \PYG{o}{\PYGZam{}} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{n}{cnt} \PYG{o}{+}\PYG{o}{+}\PYG{p}{;}
+    \PYG{n}{n} \PYG{o}{\PYGZgt{}}\PYG{o}{\PYGZgt{}}\PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+  \PYG{p}{\PYGZcb{}}
+  \PYG{k}{return} \PYG{n}{cnt}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{// 方法二：n不动，左移一个比较子。}
+\PYG{k+kt}{int} \PYG{n+nf}{Numberof1}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+  \PYG{k+kt}{int} \PYG{n}{cnt} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+  \PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{flag} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+  \PYG{k}{while}\PYG{p}{(}\PYG{n}{flag}\PYG{p}{)} \PYG{c+c1}{// 连续左移32次之后为0}
+  \PYG{p}{\PYGZob{}}
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{n} \PYG{o}{\PYGZam{}} \PYG{n}{flag}\PYG{p}{)} \PYG{n}{cnt} \PYG{o}{+}\PYG{o}{+}\PYG{p}{;}
+    \PYG{n}{flag} \PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZlt{}}\PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+  \PYG{p}{\PYGZcb{}}
+  \PYG{k}{return} \PYG{n}{cnt}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{// 方法三：把一个整数减1，再和原整数做逻辑与运算，会把该整数最右边的一个1变成0。}
+\PYG{k+kt}{int} \PYG{n+nf}{Numberof1}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+  \PYG{k+kt}{int} \PYG{n}{cnt} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+  \PYG{k}{while}\PYG{p}{(}\PYG{n}{n}\PYG{p}{)}
+  \PYG{p}{\PYGZob{}}
+    \PYG{n}{cnt} \PYG{o}{+}\PYG{o}{+}\PYG{p}{;}
+    \PYG{n}{n} \PYG{o}{=} \PYG{p}{(}\PYG{n}{n} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{o}{\PYGZam{}} \PYG{n}{n}\PYG{p}{;}
+  \PYG{p}{\PYGZcb{}}
+  \PYG{k}{return} \PYG{n}{cnt}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+\end{quote}
+
 
 \subsection{C++}
 \label{\detokenize{else/01_interview:c}}\begin{enumerate}
@@ -9247,6 +10092,16 @@ LeetCode 75. Sort Colors（三颜色排序\(\rightarrow\)K颜色排序）
 \begin{enumerate}
 \setcounter{enumi}{1}
 \item {} 
+C++构造函数和析构函数能否声明为虚函数？(转载)
+
+\end{enumerate}
+\begin{quote}
+
+\sphinxurl{https://www.cnblogs.com/hxb316/p/3853544.html}
+\end{quote}
+\begin{enumerate}
+\setcounter{enumi}{2}
+\item {} 
 重载、重写（覆盖）和隐藏的区别
 
 \end{enumerate}
@@ -9255,7 +10110,7 @@ LeetCode 75. Sort Colors（三颜色排序\(\rightarrow\)K颜色排序）
 \sphinxurl{https://blog.csdn.net/zx3517288/article/details/48976097}
 \end{quote}
 \begin{enumerate}
-\setcounter{enumi}{2}
+\setcounter{enumi}{3}
 \item {} 
 C++ STL中vector内存用尽后，为啥每次是两倍的增长，而不是3倍或其他数值？
 
@@ -9266,7 +10121,7 @@ C++ STL中vector内存用尽后，为啥每次是两倍的增长，而不是3倍
 \end{quote}
 
 
-\subsection{python}
+\subsection{Python}
 \label{\detokenize{else/01_interview:python}}\begin{enumerate}
 \item {} 
 基本数据类型

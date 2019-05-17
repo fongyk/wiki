@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="深度学习" href="../deepLearning/index.html" />
+    <link rel="next" title="4. 常用矩阵求导公式" href="04_derivative.html" />
     <link rel="prev" title="2. 支持向量机" href="02_svm.html" /> 
 
   
@@ -105,6 +105,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#id4">3.5. 参考资料</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="04_derivative.html">4. 常用矩阵求导公式</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
@@ -185,15 +186,15 @@
 <div class="section" id="id2">
 <h2>3.1. 优化目标<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <div class="math notranslate nohighlight">
-\[\begin{split}\underset{W}{max} \ tr(W^TXX^TW) \\
-s.t. \ W^TW=I. \\
+\[\begin{split}\underset{W}{max} \ tr(W^{\top}XX^{\top}W) \\
+s.t. \ W^{\top}W=I. \\
 X \in \mathbb{R}^{d \times m}, \\
 W \in \mathbb{R}^{d \times d^\prime}, \ d^\prime &lt; d.\end{split}\]</div>
 </div>
 <div class="section" id="id3">
 <h2>3.2. 求解<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
-<li><p class="first">计算样本的协方差矩阵 <span class="math notranslate nohighlight">\(C = XX^T\)</span> ；</p>
+<li><p class="first">计算样本的协方差矩阵 <span class="math notranslate nohighlight">\(C = XX^{\top}\)</span> ；</p>
 </li>
 <li><p class="first">对协方差矩阵做特征值分解（EVD）；</p>
 </li>
@@ -216,20 +217,20 @@ W \in \mathbb{R}^{d \times d^\prime}, \ d^\prime &lt; d.\end{split}\]</div>
 </dd>
 </dl>
 <div class="math notranslate nohighlight">
-\[\begin{split}x_{rot} = W^T x, \\
+\[\begin{split}x_{rot} = W^{\top} x, \\
 x_{pca\ white, i} \ = \frac{x_{rot, i}}{\sqrt{\lambda_i}}\end{split}\]</div>
 </div>
 <div class="section" id="svd">
 <h2>3.4. SVD分解<a class="headerlink" href="#svd" title="Permalink to this headline">¶</a></h2>
 <div class="math notranslate nohighlight">
-\[\begin{split}A = U \Sigma V^T,\\
+\[\begin{split}A = U \Sigma V^{\top},\\
 A \in \mathbb{R}^{m \times n}, \\
 rank(A) = r,\\
 U \in \mathbb{R}^{m \times r}, \\
 \Sigma \in \mathbb{R}^{r \times r}, \\
 V \in \mathbb{R}^{n \times r}\end{split}\]</div>
-<p>其中 <span class="math notranslate nohighlight">\(U\)</span> 是 <span class="math notranslate nohighlight">\(AA^T\)</span> 的特征向量矩阵， <span class="math notranslate nohighlight">\(V\)</span> 是 <span class="math notranslate nohighlight">\(A^TA\)</span> 的特征向量矩阵。</p>
-<p>当 <span class="math notranslate nohighlight">\(d\)</span> 很大时， <span class="math notranslate nohighlight">\(C=XX^T\)</span> 是很高维的矩阵，计算该矩阵并求特征向量开销大。此时对 <span class="math notranslate nohighlight">\(X\)</span> 做SVD分解，得到 <span class="math notranslate nohighlight">\(U\)</span> 便是
+<p>其中 <span class="math notranslate nohighlight">\(U\)</span> 是 <span class="math notranslate nohighlight">\(AA^{\top}\)</span> 的特征向量矩阵， <span class="math notranslate nohighlight">\(V\)</span> 是 <span class="math notranslate nohighlight">\(A^{\top}A\)</span> 的特征向量矩阵。</p>
+<p>当 <span class="math notranslate nohighlight">\(d\)</span> 很大时， <span class="math notranslate nohighlight">\(C=XX^{\top}\)</span> 是很高维的矩阵，计算该矩阵并求特征向量开销大。此时对 <span class="math notranslate nohighlight">\(X\)</span> 做SVD分解，得到 <span class="math notranslate nohighlight">\(U\)</span> 便是
 协方差矩阵 <span class="math notranslate nohighlight">\(C\)</span> 的特征向量。</p>
 </div>
 <div class="section" id="id4">
@@ -251,7 +252,7 @@ V \in \mathbb{R}^{n \times r}\end{split}\]</div>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../deepLearning/index.html" class="btn btn-neutral float-right" title="深度学习" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="04_derivative.html" class="btn btn-neutral float-right" title="4. 常用矩阵求导公式" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="02_svm.html" class="btn btn-neutral" title="2. 支持向量机" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

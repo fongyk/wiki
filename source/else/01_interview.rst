@@ -166,7 +166,7 @@
               return r;
           }
 
-
+          // T(n) = 2T(n/2) + O(n)，时间复杂度 O(N)
           int quicksort(vector<int>& nums, int a, int b, int k)
           {
               int p = partition(nums, a, b);
@@ -563,8 +563,8 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
-21. 求一个整数的二进制表示中 :math:`1` 的个数。Hint：移位操作，负数可能造成死循环。
-注：指定移位次数大于或等于对象类型的比特数（如int型的32位），结果是未定义的。例如：``n >> 32`` 是未定义的，但是允许 ``n >>= 1`` 执行无限次，这是安全的。
+21. 求一个整数的二进制表示中 :math:`1` 的个数。Hint：移位操作，负数可能造成死循环。 **注：指定移位次数大于或等于对象类型的比特数（如int型的32位），或者对负数进行左移操作，结果都是未定义的** 。
+例如：``n >> 32`` 是未定义的，但是允许 ``n >>= 1`` 执行无限次，这是安全的。
 
   .. container:: toggle
 
@@ -611,6 +611,108 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
         }
         return cnt;
       }
+
+
+22. [LeetCode] Subarray Sum Equals K 子数组和为 :math:`K` 。Hint：依次求数组的前 :math:`n` 项和 :math:`sum[n]` ，:math:`n \in [0, arr\_size]` （注意：0也在内），
+将和作为哈希表的key，和的值出现次数作为value；如果存在 :math:`sum[i]−sum[j]=K \ (i \ge j)` ，则 :math:`sum[i]` 和 :math:`sum[j]` 都应该在哈希表中。
+
+  https://leetcode.com/problems/subarray-sum-equals-k/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Show/Hide\ Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // https://leetcode.com/problems/subarray-sum-equals-k/solution/ : Approach #4 Using hashmap
+
+      from collections import defaultdict
+      class Solution(object):
+      def subarraySum(self, nums, k):
+          """
+          :type nums: List[int]
+          :type k: int
+          :rtype: int
+          """
+
+          if len(nums) == 0:
+              return 0
+
+          N = len(nums)
+
+          sum_to_num = defaultdict(int)
+          sum_to_num[0] = 1 // 前 0 项和
+
+          cnt = 0
+          tmp_sum = 0
+          for n in nums:
+              tmp_sum += n
+              diff = tmp_sum - k
+              cnt += sum_to_num[diff]
+              sum_to_num[tmp_sum] += 1
+
+          return cnt
+
+
+23. 使用位运算进行加法运算。Hint：原位加法运算等效为 ``^`` 运算，进位等效为 ``&`` 和 ``移位`` 的复合。 **注：C++不允许对负数进行左移运算。**
+
+  https://leetcode.com/problems/sum-of-two-integers/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Show/Hide\ Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution {
+      public:
+          int getSum(int a, int b) {
+              int sum, carry;
+              do
+              {
+                  sum = (a ^ b);
+                  carry = (a & b & INT_MAX) << 1; // & INT_MAX 操作保证移位前的数是正数，否则结果是未定义的。
+                  a = sum;
+                  b = carry;
+              }while(b != 0);
+              return a;
+          }
+      };
+
+    .. code-block:: python
+      :linenos:
+
+      from numpy import int32
+
+      class Solution(object):
+          def getSum(self, a, b):
+              """
+              :type a: int
+              :type b: int
+              :rtype: int
+              """
+              a, b = int32(a), int32(b)
+
+              while True:
+                  a, b = a ^ b, (a & b) << 1
+                  print a, b
+                  if b == 0:
+                      break
+
+              return int(a)
+
+      ## 注意，这里并没有与 0x7fffffff 做 & 运算
+      ## 假设 a & b = -16，-16 & 0x7fffffff = 2147483632
+      ## C++ 中，对 2147483632 左移1位使得最高位符号位为 1，得到 -32
+      ## python中，2147483632的符号位为 0，继续左移1位，会直接做大整数运算，得到 4294967264L，导致不能得到正确结果
+      ## python 中，使用type()查看数据类型时发现，有时候系统会把 int32 转化为 int64，或者 int64 转为 int32，疑惑中。。。
+
 
 
 C++

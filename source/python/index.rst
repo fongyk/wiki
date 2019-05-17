@@ -16,3 +16,7 @@ Python
     09_random.rst
     10_normalize.rst
     11_dataStruct.rst
+    12_bool.rst
+    13_name.rst
+    14_classFunc.rst
+    15_memManage.rst

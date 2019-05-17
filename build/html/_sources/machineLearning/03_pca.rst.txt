@@ -10,15 +10,15 @@
 
 .. math::
 
-  \underset{W}{max} \ tr(W^TXX^TW) \\
-  s.t. \ W^TW=I. \\
+  \underset{W}{max} \ tr(W^{\top}XX^{\top}W) \\
+  s.t. \ W^{\top}W=I. \\
   X \in \mathbb{R}^{d \times m}, \\
   W \in \mathbb{R}^{d \times d^\prime}, \ d^\prime < d.
 
 求解
 ---------
 
-1. 计算样本的协方差矩阵 :math:`C = XX^T` ；
+1. 计算样本的协方差矩阵 :math:`C = XX^{\top}` ；
 
 2. 对协方差矩阵做特征值分解（EVD）；
 
@@ -37,7 +37,7 @@ PCA白化
 
 .. math::
 
-  x_{rot} = W^T x, \\
+  x_{rot} = W^{\top} x, \\
   x_{pca\ white, i} \ = \frac{x_{rot, i}}{\sqrt{\lambda_i}}
 
 SVD分解
@@ -45,16 +45,16 @@ SVD分解
 
 .. math::
 
-  A = U \Sigma V^T,\\
+  A = U \Sigma V^{\top},\\
   A \in \mathbb{R}^{m \times n}, \\
   rank(A) = r,\\
   U \in \mathbb{R}^{m \times r}, \\
   \Sigma \in \mathbb{R}^{r \times r}, \\
   V \in \mathbb{R}^{n \times r}
 
-其中 :math:`U` 是 :math:`AA^T` 的特征向量矩阵， :math:`V` 是 :math:`A^TA` 的特征向量矩阵。
+其中 :math:`U` 是 :math:`AA^{\top}` 的特征向量矩阵， :math:`V` 是 :math:`A^{\top}A` 的特征向量矩阵。
 
-当 :math:`d` 很大时， :math:`C=XX^T` 是很高维的矩阵，计算该矩阵并求特征向量开销大。此时对 :math:`X` 做SVD分解，得到 :math:`U` 便是
+当 :math:`d` 很大时， :math:`C=XX^{\top}` 是很高维的矩阵，计算该矩阵并求特征向量开销大。此时对 :math:`X` 做SVD分解，得到 :math:`U` 便是
 协方差矩阵 :math:`C` 的特征向量。
 
 参考资料

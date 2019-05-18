@@ -118,14 +118,15 @@
 <li class="toctree-l3"><a class="reference internal" href="#map">19.6. map</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#stack">19.7. stack</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#queue">19.8. queue</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#to-string">19.9. to_string函数</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#atoi-atof-atol">19.10. atoi，atof，atol</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#size-tsize-type">19.11. size_t和size_type</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#priority-queue">19.9. priority_queue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#to-string">19.10. to_string函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#atoi-atof-atol">19.11. atoi，atof，atol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#size-tsize-type">19.12. size_t和size_type</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#size-t">size_t</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#size-type">size_type</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id1">19.12. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">19.13. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
@@ -239,6 +240,7 @@
 </ul>
 </dd>
 </dl>
+<p>一个容器适配器接受一种已有的容器类型，使其行为看起来像一种不同的类型。默认情况下，stack和queue基于deque实现，priority_queue基于vector实现。</p>
 <div class="section" id="string">
 <h2>19.1. string<a class="headerlink" href="#string" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
@@ -306,12 +308,15 @@
 </li>
 <li><p class="first">尾部元素：back()，返回的是引用</p>
 </li>
-<li><p class="first">尾部插入：push_back(x)</p>
+<li><p class="first">尾部插入：push_back(x)，emplace_back(x)</p>
 </li>
 <li><p class="first">尾部弹出：pop_back()</p>
 </li>
 <li><p class="first">迭代器插入：在position <strong>之前</strong> 插入元素。</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">iterator</span> <span class="n">insert</span> <span class="p">(</span><span class="n">iterator</span> <span class="n">position</span><span class="p">,</span> <span class="k">const</span> <span class="n">value_type</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">)</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">iterator</span> <span class="nf">insert</span> <span class="p">(</span><span class="n">iterator</span> <span class="n">position</span><span class="p">,</span> <span class="k">const</span> <span class="n">value_type</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">);</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="n">class</span><span class="p">...</span> <span class="n">Args</span><span class="o">&gt;</span>
+<span class="n">iterator</span> <span class="n">emplace</span> <span class="p">(</span><span class="n">const_iterator</span> <span class="n">position</span><span class="p">,</span> <span class="n">Args</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">args</span><span class="p">);</span>
 </pre></div>
 </div>
 </li>
@@ -388,12 +393,15 @@
 </li>
 <li><p class="first">队尾元素：back()</p>
 </li>
-<li><p class="first">插入：push_front(x)，push_back(x)</p>
+<li><p class="first">插入：push_front(x)，push_back(x)，emplace_front(x)，emplace_back(x)</p>
 </li>
 <li><p class="first">删除：pop_front()，pop_back()</p>
 </li>
 <li><p class="first">迭代器插入：在position <strong>之前</strong> 插入元素。</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">iterator</span> <span class="n">insert</span> <span class="p">(</span><span class="n">iterator</span> <span class="n">position</span><span class="p">,</span> <span class="k">const</span> <span class="n">value_type</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">)</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">iterator</span> <span class="nf">insert</span> <span class="p">(</span><span class="n">iterator</span> <span class="n">position</span><span class="p">,</span> <span class="k">const</span> <span class="n">value_type</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">);</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="n">class</span><span class="p">...</span> <span class="n">Args</span><span class="o">&gt;</span>
+<span class="n">iterator</span> <span class="n">emplace</span> <span class="p">(</span><span class="n">const_iterator</span> <span class="n">position</span><span class="p">,</span> <span class="n">Args</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">args</span><span class="p">);</span>
 </pre></div>
 </div>
 </li>
@@ -519,7 +527,7 @@
 </li>
 <li><p class="first">栈顶元素：top()</p>
 </li>
-<li><p class="first">入栈：push(x)</p>
+<li><p class="first">入栈：push(x)，emplace(x)</p>
 </li>
 <li><p class="first">出栈：pop()</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">pop</span><span class="p">();</span>
@@ -540,7 +548,7 @@
 </li>
 <li><p class="first">队尾元素：back()</p>
 </li>
-<li><p class="first">入队：push(x)</p>
+<li><p class="first">入队：push(x)，emplace(x)</p>
 </li>
 <li><p class="first">出队：pop()</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">pop</span><span class="p">();</span>
@@ -549,8 +557,102 @@
 </li>
 </ul>
 </div>
+<div class="section" id="priority-queue">
+<h2>19.9. priority_queue<a class="headerlink" href="#priority-queue" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;queue&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p>实现 priority_queue 的底层容器默认是 vector，同时默认功能是大顶堆（值越大，优先级越高；队首元素值最大）。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="k">class</span> <span class="nc">Container</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="k">class</span> <span class="nc">Compare</span> <span class="o">=</span> <span class="n">less</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Container</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="k">class</span> <span class="nc">priority_queue</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>大小：size()，empty()</li>
+<li>最高优先级元素：top()</li>
+<li>入队：push(x)，emplace(x)</li>
+<li>最高优先级元素出队：pop()</li>
+</ul>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;queue&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">comparator</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>           <span class="c1">// 必须是 public</span>
+  <span class="kt">bool</span> <span class="k">operator</span><span class="p">()(</span><span class="n">T</span> <span class="n">a</span><span class="p">,</span> <span class="n">T</span> <span class="n">b</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// 相当于 greater&lt;T&gt;，小顶堆</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">comparator</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">mypq</span><span class="p">;</span>
+
+  <span class="n">mypq</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="s">&quot;orange&quot;</span><span class="p">);</span>
+  <span class="n">mypq</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="s">&quot;strawberry&quot;</span><span class="p">);</span>
+  <span class="n">mypq</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="s">&quot;apple&quot;</span><span class="p">);</span>
+  <span class="n">mypq</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="s">&quot;pear&quot;</span><span class="p">);</span>
+
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Popping out elements...&quot;</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">mypq</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
+  <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span> <span class="o">&lt;&lt;</span> <span class="n">mypq</span><span class="p">.</span><span class="n">top</span><span class="p">();</span>
+    <span class="n">mypq</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 输出结果</span>
+<span class="c1">// Popping out elements... apple orange pear strawberry</span>
+</pre></div>
+</td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>C++11标准引入了 <strong>emplace_front</strong> ，<strong>emplace</strong> ，<strong>emplace_back</strong> 这些操作构造而不是拷贝元素，分别对应 <strong>push_front</strong> ，<strong>insert/push</strong> ，<strong>push_back</strong> 。</p>
+<p>调用 push 或 insert 时，先创建一个元素类型的 <strong>临时对象</strong> ，这个对象被 <strong>拷贝</strong> 到容器中。</p>
+<p class="last">调用 emplace 时，将 <strong>参数</strong> 传递给元素类型的 <strong>构造函数</strong> ，在容器管理的内存空间中使用这些参数直接构造元素。传递给 emplace 的参数必须与构造函数匹配。</p>
+</div>
+</div>
 <div class="section" id="to-string">
-<h2>19.9. to_string函数<a class="headerlink" href="#to-string" title="Permalink to this headline">¶</a></h2>
+<h2>19.10. to_string函数<a class="headerlink" href="#to-string" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
@@ -568,7 +670,7 @@
 </div>
 </div>
 <div class="section" id="atoi-atof-atol">
-<h2>19.10. atoi，atof，atol<a class="headerlink" href="#atoi-atof-atol" title="Permalink to this headline">¶</a></h2>
+<h2>19.11. atoi，atof，atol<a class="headerlink" href="#atoi-atof-atol" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdlib&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
@@ -580,7 +682,7 @@
 </div>
 </div>
 <div class="section" id="size-tsize-type">
-<h2>19.11. size_t和size_type<a class="headerlink" href="#size-tsize-type" title="Permalink to this headline">¶</a></h2>
+<h2>19.12. size_t和size_type<a class="headerlink" href="#size-tsize-type" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="size-t">
 <h3>size_t<a class="headerlink" href="#size-t" title="Permalink to this headline">¶</a></h3>
 <p>size_t 提供了一种可移植（不同平台下）的方法声明与系统可寻址的内存区域一致的长度。
@@ -642,19 +744,20 @@ size_t 是通过typedef定义的一些 <strong>无符号整型</strong> 的别�
 </div>
 </div>
 <div class="section" id="id1">
-<h2>19.12. 参考资料<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>19.13. 参考资料<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>C++ reference</li>
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="http://www.cplusplus.com/reference/string/string">http://www.cplusplus.com/reference/string/string</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/string/to_string">http://www.cplusplus.com/reference/string/to_string</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/vector/vector">http://www.cplusplus.com/reference/vector/vector</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/list/list">http://www.cplusplus.com/reference/list/list</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/deque/deque">http://www.cplusplus.com/reference/deque/deque</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/map/map">http://www.cplusplus.com/reference/map/map</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/stack/stack">http://www.cplusplus.com/reference/stack/stack</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/queue/queue">http://www.cplusplus.com/reference/queue/queue</a></p>
-<p><a class="reference external" href="http://www.cplusplus.com/reference/string/to_string">http://www.cplusplus.com/reference/string/to_string</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/queue/priority_queue">http://www.cplusplus.com/reference/queue/priority_queue</a></p>
 </div></blockquote>
 <ol class="arabic simple" start="2">
 <li>C++ STL快速入门</li>

@@ -23,6 +23,10 @@
   - queue
   - priority_queue
 
+
+一个容器适配器接受一种已有的容器类型，使其行为看起来像一种不同的类型。默认情况下，stack和queue基于deque实现，priority_queue基于vector实现。
+
+
 .. highlight:: cpp
 
 
@@ -83,13 +87,16 @@ vector
 - 访问：[pos]，at(pos)
 - 头部元素：front()，返回的是引用
 - 尾部元素：back()，返回的是引用
-- 尾部插入：push_back(x)
+- 尾部插入：push_back(x)，emplace_back(x)
 - 尾部弹出：pop_back()
 - 迭代器插入：在position **之前** 插入元素。
 
   ::
 
-    iterator insert (iterator position, const value_type& val)
+    iterator insert (iterator position, const value_type& val);
+
+    template <class... Args>
+    iterator emplace (const_iterator position, Args&&... args);
 
 
 - 尾部删除：pop_back()
@@ -161,13 +168,16 @@ deque
 - 元素个数：size()，empty()
 - 队首元素：front()
 - 队尾元素：back()
-- 插入：push_front(x)，push_back(x)
+- 插入：push_front(x)，push_back(x)，emplace_front(x)，emplace_back(x)
 - 删除：pop_front()，pop_back()
 - 迭代器插入：在position **之前** 插入元素。
 
   ::
 
-    iterator insert (iterator position, const value_type& val)
+    iterator insert (iterator position, const value_type& val);
+
+    template <class... Args>
+    iterator emplace (const_iterator position, Args&&... args);
 
 
 .. note::
@@ -280,7 +290,7 @@ stack
 
 - 大小：size()，empty()
 - 栈顶元素：top()
-- 入栈：push(x)
+- 入栈：push(x)，emplace(x)
 - 出栈：pop()
 
   ::
@@ -296,12 +306,81 @@ queue
 - 大小：size()，empty()
 - 队首元素：front()
 - 队尾元素：back()
-- 入队：push(x)
+- 入队：push(x)，emplace(x)
 - 出队：pop()
 
   ::
 
     void pop();
+
+
+priority\_queue
+---------------------
+
+::
+
+  #include<queue>
+
+实现 priority_queue 的底层容器默认是 vector，同时默认功能是大顶堆（值越大，优先级越高；队首元素值最大）。
+
+::
+
+  template <class T, class Container = vector<T>,
+  class Compare = less<typename Container::value_type> > class priority_queue;
+
+- 大小：size()，empty()
+- 最高优先级元素：top()
+- 入队：push(x)，emplace(x)
+- 最高优先级元素出队：pop()
+
+.. code-block:: cpp
+  :linenos:
+
+  #include <iostream>
+  #include <queue>
+  using namespace std;
+
+  template<class T>
+  class comparator
+  {
+  public:           // 必须是 public
+    bool operator()(T a, T b)
+    {
+      return a > b; // 相当于 greater<T>，小顶堆
+    }
+  };
+
+  int main(int argc, char ** argv)
+  {
+    priority_queue<string, vector<string>, comparator<string> > mypq;
+
+    mypq.emplace("orange");
+    mypq.emplace("strawberry");
+    mypq.emplace("apple");
+    mypq.emplace("pear");
+
+    cout << "Popping out elements...";
+    while (!mypq.empty())
+    {
+      cout << ' ' << mypq.top();
+      mypq.pop();
+    }
+    cout << '\n';
+    return 0;
+  }
+
+  // 输出结果
+  // Popping out elements... apple orange pear strawberry
+
+
+
+.. note::
+
+  C++11标准引入了 **emplace_front** ，**emplace** ，**emplace_back** 这些操作构造而不是拷贝元素，分别对应 **push_front** ，**insert/push** ，**push_back** 。
+
+  调用 push 或 insert 时，先创建一个元素类型的 **临时对象** ，这个对象被 **拷贝** 到容器中。
+
+  调用 emplace 时，将 **参数** 传递给元素类型的 **构造函数** ，在容器管理的内存空间中使用这些参数直接构造元素。传递给 emplace 的参数必须与构造函数匹配。
 
 
 
@@ -406,6 +485,8 @@ VS 64位编译器
 
   http://www.cplusplus.com/reference/string/string
 
+  http://www.cplusplus.com/reference/string/to_string
+
   http://www.cplusplus.com/reference/vector/vector
 
   http://www.cplusplus.com/reference/list/list
@@ -418,7 +499,8 @@ VS 64位编译器
 
   http://www.cplusplus.com/reference/queue/queue
 
-  http://www.cplusplus.com/reference/string/to_string
+  http://www.cplusplus.com/reference/queue/priority_queue
+
 
 
 2. C++ STL快速入门

@@ -445,7 +445,7 @@
 当两者的差值高于某个阈值时，垃圾回收才会启动，清除那些引用计数为0的对象。</p>
 <div class="section" id="id9">
 <h3>15.3.1. 垃圾检查<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">gc.get_count()</span></code> 获取一个三元组，如(488, 3, 0)。</p>
+<p><code class="docutils literal notranslate"><span class="pre">gc.get_count()</span></code> 获取一个三元组，如 <code class="docutils literal notranslate"><span class="pre">(488,</span> <span class="pre">3,</span> <span class="pre">0)</span></code> 。</p>
 <blockquote>
 <div><ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">488</span></code> 是指距离上一次0代垃圾检查，Python分配内存的数目减去释放内存的数目。</li>
@@ -459,7 +459,7 @@
 <p>Python将所有的对象分为0，1，2三代。所有的新建对象都是0代对象。当某一代对象经历过垃圾回收，依然存活，那么它就被归入下一代对象。
 垃圾回收启动时，一定会扫描所有的0代对象。如果0代经过一定次数垃圾回收，那么就启动对0代和1代的扫描清理。
 当1代也经历了一定次数的垃圾回收后，那么会启动对0，1，2，即对所有对象进行扫描。</p>
-<p>(700, 10, 10)表明：每10次0代垃圾回收，会配合1次1代的垃圾回收；每10次1代的垃圾回收，才会有1次的2代垃圾回收。</p>
+<p><code class="docutils literal notranslate"><span class="pre">(700,</span> <span class="pre">10,</span> <span class="pre">10)</span></code> 表明：每10次0代垃圾回收，会配合1次1代的垃圾回收；每10次1代的垃圾回收，才会有1次的2代垃圾回收。</p>
 </div>
 <div class="section" id="id11">
 <h3>15.3.3. 标记-清除<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
@@ -493,8 +493,10 @@
 <blockquote>
 <div><a class="reference external" href="https://andrewpqc.github.io/2018/10/08/python-memory-management/">https://andrewpqc.github.io/2018/10/08/python-memory-management/</a></div></blockquote>
 <ol class="arabic simple" start="5">
-<li><a class="reference external" href="https://chenrudan.github.io/blog/2016/04/23/pythonmemorycontrol.html">https://chenrudan.github.io/blog/2016/04/23/pythonmemorycontrol.html</a></li>
+<li>[Python]内存管理</li>
 </ol>
+<blockquote>
+<div><a class="reference external" href="https://chenrudan.github.io/blog/2016/04/23/pythonmemorycontrol.html">https://chenrudan.github.io/blog/2016/04/23/pythonmemorycontrol.html</a></div></blockquote>
 </div>
 </div>
 

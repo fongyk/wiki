@@ -20,3 +20,4 @@ Python
     13_name.rst
     14_classFunc.rst
     15_memManage.rst
+    16_newInit.rst

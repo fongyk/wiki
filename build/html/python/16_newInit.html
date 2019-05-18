@@ -1,0 +1,517 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>16. __new__ 和 __init__ &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Linux/Shell" href="../linux/index.html" />
+    <link rel="prev" title="15. 内存管理" href="15_memManage.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_inplace.html">1. in-place 运算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_all.html">2. __all__ 的使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_is.html">3. is和==</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_decorator.html">4. 装饰器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_iterator.html">5. 迭代器和生成器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_lambda.html">6. lambda用法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_arg.html">7. *args和**kwargs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_basicType.html">8. 基本数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_random.html">9. random</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_normalize.html">10. 归一化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_dataStruct.html">11. 常用数据结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_bool.html">12. 逻辑运算与布尔测试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_name.html">13. 命名规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_classFunc.html">14. 类变量与类方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_memManage.html">15. 内存管理</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">16. __new__ 和 __init__</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">16.1. 老式类与新式类</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">16.2. 老式类</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">16.3. 新式类</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">16.3.1. 功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">16.3.2. 返回值</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#new">16.3.3. __new__ 实现单例</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#repr-str">16.4. 附：__repr__ 和 __str__</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">16.5. 参考资料</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Python</a> &raquo;</li>
+        
+      <li>16. __new__ 和 __init__</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/python/16_newInit.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="new-init">
+<h1>16. __new__ 和 __init__<a class="headerlink" href="#new-init" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>16.1. 老式类与新式类<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Python 2.x 中类的定义分为新式定义和老式定义两种。
+老式类定义时默认是继承自 <code class="docutils literal notranslate"><span class="pre">type</span></code> ，而新式类在定义时显示地继承 <code class="docutils literal notranslate"><span class="pre">object</span></code> 类。</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span><span class="p">:</span> <span class="c1">## 老式类</span>
+  <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span> <span class="c1">## 新式类</span>
+  <span class="k">pass</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">A</span><span class="o">.</span><span class="vm">__bases__</span>
+<span class="go">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="nb">dir</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="go">[&#39;__doc__&#39;, &#39;__module__&#39;]</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">B</span><span class="o">.</span><span class="vm">__bases__</span>
+<span class="go">(&lt;type &#39;object&#39;&gt;,)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="nb">dir</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="go">[&#39;__class__&#39;, &#39;__delattr__&#39;, &#39;__dict__&#39;, &#39;__doc__&#39;, &#39;__format__&#39;, &#39;__getattribute__&#39;, &#39;__hash__&#39;, &#39;__init__&#39;, &#39;__module__&#39;, &#39;__new__&#39;, &#39;__reduce__&#39;, &#39;__reduce_ex__&#39;, &#39;__repr__&#39;, &#39;__setattr__&#39;, &#39;__sizeof__&#39;, &#39;__str__&#39;, &#39;__subclasshook__&#39;, &#39;__weakref__&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">B</span><span class="o">.</span><span class="vm">__class__</span>
+<span class="go">&lt;type &#39;type&#39;&gt;</span>
+</pre></div>
+</td></tr></table></div>
+<p>Python 3.x中没有新式类和老式类之分，它们都继承自 <code class="docutils literal notranslate"><span class="pre">object</span></code> 类，因此可以不用显示地指定其基类。</p>
+</div>
+<div class="section" id="id2">
+<h2>16.2. 老式类<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>老式类中其实并没有 <code class="docutils literal notranslate"><span class="pre">__new__</span></code> 方法，因为 <code class="docutils literal notranslate"><span class="pre">__init__</span></code> 就是它的构造方法（函数）。即使重写 <code class="docutils literal notranslate"><span class="pre">__new__</span></code> 方法，也永远不会执行。</p>
+<p><code class="docutils literal notranslate"><span class="pre">__init__</span></code> 只能返回 <code class="docutils literal notranslate"><span class="pre">None</span></code>。</p>
+</div>
+<div class="section" id="id3">
+<h2>16.3. 新式类<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h3>16.3.1. 功能<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>新式类中，<code class="docutils literal notranslate"><span class="pre">__new__</span></code> （构造函数）单独地 <strong>创建</strong> 一个对象，而 <code class="docutils literal notranslate"><span class="pre">__init__</span></code> （初始化函数）负责 <strong>初始化</strong> 这个对象。</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">__new__</span></code> 至少要有一个参数 <code class="docutils literal notranslate"><span class="pre">cls</span></code>，代表要实例化的类，此参数在实例化时由Python解释器自动提供。</li>
+<li><code class="docutils literal notranslate"><span class="pre">__init__</span></code> 有一个参数 <code class="docutils literal notranslate"><span class="pre">self</span></code>，就是 <code class="docutils literal notranslate"><span class="pre">__new__</span></code> 返回的实例，<code class="docutils literal notranslate"><span class="pre">__init__</span></code> 在 <code class="docutils literal notranslate"><span class="pre">__new__</span></code> 的基础上可以完成一些其它初始化的动作，<code class="docutils literal notranslate"><span class="pre">__init__</span></code> 不需要返回值（或者说返回 <code class="docutils literal notranslate"><span class="pre">None</span></code> ）。</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h3>16.3.2. 返回值<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">__init__</span></code> 只能返回  <code class="docutils literal notranslate"><span class="pre">None</span></code>。</p>
+<p><code class="docutils literal notranslate"><span class="pre">__new__</span></code> 返回创建的实例对象并传递给 <code class="docutils literal notranslate"><span class="pre">__init__</span></code> 的 <code class="docutils literal notranslate"><span class="pre">self</span></code> 参数。如果 <code class="docutils literal notranslate"><span class="pre">__new__</span></code> 没有返回值，或者没有正确返回 <strong>当前类</strong> <code class="docutils literal notranslate"><span class="pre">cls</span></code> 的实例，则 <code class="docutils literal notranslate"><span class="pre">__init__</span></code> 不会被调用。</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+  <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+      <span class="k">print</span> <span class="s2">&quot;A.__new__ called&quot;</span>
+      <span class="k">print</span> <span class="bp">cls</span>
+      <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="k">print</span> <span class="s2">&quot;A.__init__ called&quot;</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">A</span><span class="p">()</span>
+<span class="go">A.__new__ called</span>
+<span class="go">&lt;class &#39;__main__.A&#39;&gt; ## cls</span>
+<span class="go">A.__init__ called</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="vm">__class__</span>     <span class="c1">## type(a)</span>
+<span class="go">&lt;class &#39;__main__.A&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">.</span><span class="vm">__class__</span>
+<span class="go">&lt;type &#39;type&#39;&gt;</span>
+</pre></div>
+</td></tr></table></div>
+<p><code class="docutils literal notranslate"><span class="pre">__new__</span></code> 返回父类的对象：</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+  <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s2">&quot;B.__new__ called&quot;</span>
+    <span class="k">return</span> <span class="n">A</span><span class="p">()</span> <span class="c1">## 或者写为： return super(B,cls).__new__(A)</span>
+
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1">## 不会被调用</span>
+    <span class="k">print</span> <span class="s2">&quot;B.__init__ called&quot;</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">B</span><span class="p">()</span>
+<span class="go">B.__new__ called</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="go">&lt;class &#39;__main__.A&#39;&gt;</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="new">
+<h3>16.3.3. __new__ 实现单例<a class="headerlink" href="#new" title="Permalink to this headline">¶</a></h3>
+<p>单例（singleton）：类只有一个对象。<code class="docutils literal notranslate"><span class="pre">None</span></code> 就是一个单例，所有的变量只要是 <code class="docutils literal notranslate"><span class="pre">None</span></code> ，它一定和 <code class="docutils literal notranslate"><span class="pre">None</span></code> 指向同一个内存地址。</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Singleton</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+  <span class="n">_instance</span> <span class="o">=</span> <span class="bp">None</span>
+  <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+      <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_instance</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+          <span class="bp">cls</span><span class="o">.</span><span class="n">_instance</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">Singleton</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+      <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_instance</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s1</span> <span class="o">=</span> <span class="n">Singleton</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="nb">id</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+<span class="go">317973448</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s2</span> <span class="o">=</span> <span class="n">Singleton</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="nb">id</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+<span class="go">317973448</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="repr-str">
+<h2>16.4. 附：__repr__ 和 __str__<a class="headerlink" href="#repr-str" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Base</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;fong&quot;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+<span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Class A(</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+<span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Class B(</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">A</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">Class A(fong)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">a</span>
+<span class="go">Class A(fong)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">B</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">&lt;B object at 0x0000000012B7FB70&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">b</span>
+<span class="go">Class B(fong)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id6">
+<h2>16.5. 参考资料<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>深入理解Python中的 __new__ 和 __init__</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://blog.csdn.net/luoweifu/article/details/82732313">https://blog.csdn.net/luoweifu/article/details/82732313</a></div></blockquote>
+<ol class="arabic simple" start="2">
+<li>详解Python中的 __init__ 和 __new__（静态方法）</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/nyist-xsk/p/8286941.html">https://www.cnblogs.com/nyist-xsk/p/8286941.html</a></div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Python面试之理解 __new__ 和 __init__ 的区别</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://juejin.im/post/5add4446f265da0b8d4186af">https://juejin.im/post/5add4446f265da0b8d4186af</a></div></blockquote>
+<ol class="arabic simple" start="4">
+<li>Python中__repr__和__str__区别</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://blog.csdn.net/luckytanggu/article/details/53649156">https://blog.csdn.net/luckytanggu/article/details/53649156</a></div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../linux/index.html" class="btn btn-neutral float-right" title="Linux/Shell" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="15_memManage.html" class="btn btn-neutral" title="15. 内存管理" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'alpha',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

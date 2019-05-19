@@ -290,7 +290,7 @@ r &amp; \leftarrow &amp;\ \gamma r + (1 - \gamma) g \odot g &amp;\  [\text{累�
 \[\begin{split}g &amp; \leftarrow &amp;\ \mathcal{L}(\theta) &amp;\  [\text{计算梯度}] \\
 t &amp; \leftarrow &amp;\ t + 1 &amp;\  [\text{迭代次数}] \\
 m &amp; \leftarrow &amp;\ \beta_1 m + (1 - \beta_1) g &amp;\  [\text{有偏一阶矩}] \\
-n &amp; \leftarrow &amp;\ \beta_1 2 + (1 - \beta_2) g \odot g &amp;\  [\text{有偏二阶矩}] \\
+n &amp; \leftarrow &amp;\ \beta_1 n + (1 - \beta_2) g \odot g &amp;\  [\text{有偏二阶矩}] \\
 \hat{m} &amp; \leftarrow &amp;\ \frac{m}{1 - \beta_1^t} &amp;\  [\text{修正一阶矩}] \\
 \hat{n} &amp; \leftarrow &amp;\ \frac{n}{1 - \beta_2^t} &amp;\  [\text{修正二阶矩}] \\
 \Delta \theta &amp; \leftarrow &amp;\  - \eta \frac{\hat{m}}{\sqrt{\hat{n}+\epsilon}} \odot g &amp;\ [\text{参数增量}] \\

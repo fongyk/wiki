@@ -125,7 +125,7 @@ Adam
   g & \leftarrow &\ \mathcal{L}(\theta) &\  [\text{计算梯度}] \\
   t & \leftarrow &\ t + 1 &\  [\text{迭代次数}] \\
   m & \leftarrow &\ \beta_1 m + (1 - \beta_1) g &\  [\text{有偏一阶矩}] \\
-  n & \leftarrow &\ \beta_1 2 + (1 - \beta_2) g \odot g &\  [\text{有偏二阶矩}] \\
+  n & \leftarrow &\ \beta_1 n + (1 - \beta_2) g \odot g &\  [\text{有偏二阶矩}] \\
   \hat{m} & \leftarrow &\ \frac{m}{1 - \beta_1^t} &\  [\text{修正一阶矩}] \\
   \hat{n} & \leftarrow &\ \frac{n}{1 - \beta_2^t} &\  [\text{修正二阶矩}] \\
   \Delta \theta & \leftarrow &\  - \eta \frac{\hat{m}}{\sqrt{\hat{n}+\epsilon}} \odot g &\ [\text{参数增量}] \\

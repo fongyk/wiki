@@ -27,3 +27,4 @@ C/C++
     20_define.rst
     21_operatorPrior.rst
     22_const.rst
+    23_copyControl.rst

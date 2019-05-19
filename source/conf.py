@@ -154,6 +154,7 @@ latex_elements = {
     'preamble': '''
 	    % Use some font with UTF-8 support with XeLaTeX
         \\usepackage[UTF8]{ctex}
+        \usepackage{amsmath,bm}
         \usepackage{color}
         \usepackage{xcolor}
         \definecolor{darkgreen}{rgb}{0.0, 0.2, 0.13}

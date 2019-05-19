@@ -118,6 +118,216 @@
 派生类中的函数屏蔽了基类中的同名函数，不管参数列表是否相同。当参数不同时，无论基类中的函数是否被 ``virtual`` 修饰，基类函数都是被隐藏，而不是被覆盖。
 
 
+例子
+-----------
+
+虚析构函数
+^^^^^^^^^^^^^^
+
+删除一个指向派生类对象的基类指针时，需要虚析构函数。
+
+.. code-block:: cpp
+  :linenos:
+
+  class A
+  {
+  public:
+    ~A();
+  // virtual ~A();
+  };
+  A::~A()
+  {
+    printf("delete A ");
+  }
+
+  class B : public A
+  {
+  public:
+    ~B();
+  };
+  B::~B()
+  {
+    printf("delete B ");
+  }
+
+基类析构函数未加virtual：
+
+.. code-block:: cpp
+  :linenos:
+
+  A *pa = new B();
+  delete pa;
+  // 输出： delete B
+
+  B *pb = new B();
+  delete pb;
+  // 输出： delete B delete A
+
+基类析构函数加virtual：
+
+.. code-block:: cpp
+  :linenos:
+
+  A *pa = new B();
+  delete pa;
+  // 输出： delete B delete A
+
+  B *pb = new B();
+  delete pb;
+  // 输出： delete B delete A
+
+
+析构顺序
+^^^^^^^^^^^^^^^
+
+.. code-block:: cpp
+  :linenos:
+
+  #include <iostream>
+  using namespace std;
+
+  class A
+  {
+  public:
+    A() {  cout << "create A" << endl;  }
+
+    A(A &obj) {  cout << "copy-construct A" << endl;  }
+
+    ~A() {  cout << "~A" << endl;  }
+  };
+
+  class B: public A
+  {
+  public:
+    B(A &a): _a(a) {  cout << "create B" << endl;  }
+
+    ~B() {  cout << "~B" << endl;  }
+  private:
+    A _a;
+  };
+
+  int main(void)
+  {
+    A a;
+
+    B b(a);
+
+    cout << "-----------" << endl;
+
+    return 0;
+  }
+
+运行结果::
+
+  create A
+  create A
+  copy-construct A
+  create B
+  -----------
+  ~B
+  ~A
+  ~A
+  ~A
+
+创建派生类对象时，调用构造函数的顺序如下:
+
+  - 先是父类的构造函数；（create A）
+  - 然后如果类成员变量中有某类（可能是父类，也可能不是）的对象，调用其相应的构造函数；（copy-construct A）
+  - 最后调用派生类自身的构造函数。（create B）
+
+析构函数的调用顺序正好相反。
+
+.. code-block:: cpp
+  :linenos:
+
+  #include <iostream>
+  using namespace std;
+  class A
+  {
+  public:
+    A()  {  cout<<"create A"<<endl;   }
+
+    A(const A& other) { cout<<"copy A"<<endl;} // 拷贝构造函数
+
+    ~A() {  cout<<"~A"<<endl;   }
+  };
+  class C
+  {
+  public:
+    C()  {  cout<<"create C"<<endl;   }
+
+    C(const A& other) { cout<<"copy C"<<endl;} // 拷贝构造函数
+
+    ~C() {  cout<<"~C"<<endl;   }
+  };
+  class B:public A
+  {
+  public:
+    B() {  cout<<"create B"<<endl;  }
+
+    ~B() {  cout<<"~B"<<endl;  }
+  private:
+    C _c;
+  };
+
+  int main(void)
+  {
+    B b;
+    cout<<"-----------"<<endl;
+    return 0;
+  }
+
+运行结果::
+
+  create A
+  create C
+  create B
+  -----------
+  ~B
+  ~C
+  ~A
+
+对象数组的析构
+^^^^^^^^^^^^^^^
+
+因为数组的多态会导致未定义的行为，即使将析构函数声明为虚函数。所以在对数组元素执行析构时，还是要用派生类的指针来 delete 。
+
+参考：https://www.nowcoder.com/profile/3704231/myFollowings/detail/8528425。
+
+.. code-block:: cpp
+  :linenos:
+
+  #include <iostream>
+  using namespace std;
+
+  class A
+  {
+  public:
+    A() { cout << "A" << ends; }
+    ~A() { cout << "~A" << ends; }
+  };
+  class B:public A
+  {
+  public:
+    B() { cout << "B" << ends; }
+    ~B() { cout << "~B" << ends; }
+  };
+
+  int main(void)
+  {
+    A arrA = new B[2];
+    delete [] arrA;
+    // 输出： A B A B ~A ~A
+
+    B arrB = new B[2];
+    delete [] arrB;
+    // 输出： A B A B ~B ~A ~B ~A
+
+    return 0;
+  }
+
+
+
 参考资料
 ------------
 

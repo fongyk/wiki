@@ -625,6 +625,8 @@ memset
 
   - pair
 
+  - move
+
 - ``functional``
 
   - less< *TYPE* >()

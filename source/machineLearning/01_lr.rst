@@ -64,7 +64,7 @@ Logistic Regression
 
     .. math::
 
-      \theta_j := \theta_j + \alpha \frac{1}{m} \sum_{i=1}^m (y^{(i)} - h_\theta(\mathbf{x}^{(i)}))\mathbf{x}_j^{(i)}
+      \theta_j \leftarrow \theta_j + \alpha \frac{1}{m} \sum_{i=1}^m (y^{(i)} - h_\theta(\mathbf{x}^{(i)}))\mathbf{x}_j^{(i)}
 
     只与 :math:`y^{(i)},\mathbf{x}^{(i)}` 有关，与 :math:`h_\theta` 的梯度无关。
 

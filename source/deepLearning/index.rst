@@ -12,3 +12,4 @@
     05_modelSave.rst
     06_cuda.rst
     07_backprop.rst
+    08_optimizer.rst

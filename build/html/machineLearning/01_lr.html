@@ -104,7 +104,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="02_svm.html">2. 支持向量机</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03_pca.html">3. 主成分分析PCA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_pca.html">3. 主成分分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_derivative.html">4. 常用矩阵求导公式</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
@@ -239,7 +240,7 @@ g^\prime(z) &amp; = &amp; \  (1-g(z))g(z) \in (0, 0.25].\end{split}\]</div>
 </li>
 <li><p class="first">将极大似然取对数后就等同于对数损失函数，在LR模型中，这个损失函数使参数更新速度较快：</p>
 <div class="math notranslate nohighlight">
-\[\theta_j := \theta_j + \alpha \frac{1}{m} \sum_{i=1}^m (y^{(i)} - h_\theta(\mathbf{x}^{(i)}))\mathbf{x}_j^{(i)}\]</div>
+\[\theta_j \leftarrow \theta_j + \alpha \frac{1}{m} \sum_{i=1}^m (y^{(i)} - h_\theta(\mathbf{x}^{(i)}))\mathbf{x}_j^{(i)}\]</div>
 <p>只与 <span class="math notranslate nohighlight">\(y^{(i)},\mathbf{x}^{(i)}\)</span> 有关，与 <span class="math notranslate nohighlight">\(h_\theta\)</span> 的梯度无关。</p>
 </li>
 <li><p class="first">为什么不用平方损失函数（多用于线性回归）？在线性回归中，前提假设是 <span class="math notranslate nohighlight">\(y\)</span> 服从正态分布，即 <span class="math notranslate nohighlight">\(y \sim \mathcal{N}(\mu, \sigma^2)\)</span> 。

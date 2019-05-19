@@ -1,0 +1,413 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8. 优化算法 &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="资源链接" href="../link/index.html" />
+    <link rel="prev" title="7. 反向传播" href="07_backprop.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">深度学习</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_dataParallel.html">1. pytorch：多GPU模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_activationFunction.html">2. 激活函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_batchnorm.html">3. Batch Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_overfit.html">4. 过拟合</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">5. pytorch：模型保存与读取</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">6. pytorch: cuda()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_backprop.html">7. 反向传播</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">8. 优化算法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">8.1. 可视化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sgd">8.2. SGD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#momentum">8.3. Momentum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adagrad">8.4. AdaGrad</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adadelta">8.5. Adadelta</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rmsprop">8.6. RMSProp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adam">8.7. Adam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">8.8. 参考资料</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">深度学习</a> &raquo;</li>
+        
+      <li>8. 优化算法</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/deepLearning/08_optimizer.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>8. 优化算法<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>8.1. 可视化<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p><strong>等高线</strong></p>
+<a class="reference internal image-reference" href="../_images/08_contours_evaluation_optimizers.gif"><img alt="../_images/08_contours_evaluation_optimizers.gif" class="align-center" src="../_images/08_contours_evaluation_optimizers.gif" style="width: 500px;" /></a>
+<p><strong>鞍点</strong></p>
+<a class="reference internal image-reference" href="../_images/08_saddle_point_evaluation_optimizers.gif"><img alt="../_images/08_saddle_point_evaluation_optimizers.gif" class="align-center" src="../_images/08_saddle_point_evaluation_optimizers.gif" style="width: 600px;" /></a>
+</div>
+<div class="section" id="sgd">
+<h2>8.2. SGD<a class="headerlink" href="#sgd" title="Permalink to this headline">¶</a></h2>
+<p>这里 <strong>SGD</strong> 指小批量梯度下降算法。</p>
+<p>小批量损失：<span class="math notranslate nohighlight">\(\mathcal{L}\)</span> ，学习率：<span class="math notranslate nohighlight">\(\eta\)</span> ，Hadamard积：<span class="math notranslate nohighlight">\(\odot\)</span> 。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}g &amp; \leftarrow &amp;\ \nabla_{\theta} \mathcal{L} (\theta; x^{(i:i+n)}; y^{(i:i+n)}) &amp;\  [\text{计算梯度}] \\
+\theta &amp; \leftarrow &amp;\  \theta - \eta g &amp;\  [\text{参数更新}]\end{split}\]</div>
+<dl class="docutils">
+<dt>特点</dt>
+<dd><ul class="first last simple">
+<li>相比于单样本SGD，可以降低参数更新时的方差，收敛更稳定；可以充分地利用深度学习库中高度优化的矩阵操作来进行更有效的梯度计算</li>
+<li>不能保证很好的收敛性：如果选择的太小，收敛速度会很慢；如果太大，损失函数就会在极小值处不停地震荡甚至偏离；容易困在鞍点。</li>
+<li>选择合适的学习率比较困难：对所有的参数更新使用同样的学习率。对于稀疏数据或者特征，有时我们可能想更快更新对应于不经常出现的特征的参数，对于常出现的特征更新慢一些。</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="momentum">
+<h2>8.3. Momentum<a class="headerlink" href="#momentum" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}v &amp; \leftarrow &amp;\  \gamma v - \eta \nabla_{\theta} \mathcal{L}(\theta) &amp;\  [\text{速度更新}] \\
+\theta &amp; \leftarrow &amp;\  \theta + v &amp;\ [\text{参数更新}]\end{split}\]</div>
+<p>动量（momentum）方法旨在加速学习，特别是处理高曲率、小但一致的梯度，或是带噪声的梯度。动量算法积累了之前梯度指数级衰减的移动平均，并且沿该方向继续移动。
+当许多连续的梯度指向相同的方向时，步长最大。</p>
+<dl class="docutils">
+<dt>特点</dt>
+<dd><ul class="first last simple">
+<li>下降初期，使用上一次参数更新；下降方向一致，乘上较大的 <span class="math notranslate nohighlight">\(\gamma\)</span> 能够进行很好的加速。</li>
+<li>下降中后期，在局部最小值来回震荡的时候，梯度接近0， <span class="math notranslate nohighlight">\(\gamma\)</span> 能够使得更新幅度增大，跳出陷阱。</li>
+<li>梯度改变方向时，能够减少更新。</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="adagrad">
+<h2>8.4. AdaGrad<a class="headerlink" href="#adagrad" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}g &amp; \leftarrow &amp;\ \nabla_{\theta} \mathcal{L}(\theta) &amp;\  [\text{计算梯度}] \\
+r &amp; \leftarrow &amp;\ r + g \odot g &amp;\  [\text{累计平方梯度}] \\
+\Delta \theta &amp; \leftarrow &amp;\ - \frac{\eta}{\sqrt{r+\epsilon}} \odot g &amp;\  [\text{梯度除以累计平方梯度的平方根}] \\
+\theta &amp; \leftarrow &amp;\  \theta + \Delta \theta &amp;\ [\text{参数更新}]\end{split}\]</div>
+<dl class="docutils">
+<dt>特点</dt>
+<dd><ul class="first last simple">
+<li>独立地适应所有模型参数的学习率，适合处理稀疏数据。对于梯度 <span class="math notranslate nohighlight">\(g\)</span> 较大的参数（这些参数关联着频繁出现的特征），有一个快速下降的学习率；
+对于梯度 <span class="math notranslate nohighlight">\(g\)</span> 较小的参数（这些参数关联着不频繁出现的特征），学习率有相对较小的下降。</li>
+<li>从训练开始累积平方梯度，导致有效学习率过早和过量减小，导致训练过早停止。</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="adadelta">
+<h2>8.5. Adadelta<a class="headerlink" href="#adadelta" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}g &amp; \leftarrow &amp;\ \nabla_{\theta} \mathcal{L}(\theta) &amp;\  [\text{计算梯度}] \\
+E[g^2] &amp; \leftarrow &amp;\ \gamma E[g^2] + (1 - \gamma) g \odot g  &amp;\  [\text{累计平方梯度：指数衰减平均}] \\
+RMS[g] &amp; \leftarrow &amp;\ \sqrt{E[g^2] + \epsilon} &amp;\  [\text{梯度均方根}] \\
+E[\Delta \theta^2] &amp; \leftarrow &amp;\ \gamma E[\Delta \theta^2] + (1 - \gamma) \Delta \theta \odot \Delta \theta  &amp;\  [\text{平方参数增量平滑}] \\
+RMS[\Delta \theta] &amp; \leftarrow &amp;\ \sqrt{E[\Delta \theta^2] + \epsilon} &amp;\  [\text{参数增量均方根}] \\
+\Delta \theta &amp; \leftarrow &amp;\  - \frac{RMS[\Delta \theta]}{RMS[g]} \odot g  &amp;\ [\text{参数增量}] \\
+\theta &amp; \leftarrow &amp;\  \theta + \Delta \theta &amp;\ [\text{参数更新}]\end{split}\]</div>
+<p>Adadelta 是 AdaGrad 的改进。</p>
+<dl class="docutils">
+<dt>特点</dt>
+<dd><ul class="first last simple">
+<li>使用指数衰减平均值，使得能够在找到凸碗状结构后快速收敛。</li>
+<li>不用依赖于全局学习率，然而引入了新的超参：衰减系数 <span class="math notranslate nohighlight">\(\gamma\)</span> 。</li>
+<li>训练初中期，加速效果很快。</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="rmsprop">
+<h2>8.6. RMSProp<a class="headerlink" href="#rmsprop" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}g &amp; \leftarrow &amp;\ \mathcal{L}(\theta) &amp;\  [\text{计算梯度}] \\
+r &amp; \leftarrow &amp;\ \gamma r + (1 - \gamma) g \odot g &amp;\  [\text{累计平方梯度：指数衰减平均}] \\
+\Delta \theta &amp; \leftarrow &amp;\  - \frac{\eta}{\sqrt{r+\epsilon}} \odot g &amp;\ [\text{参数增量}] \\
+\theta &amp; \leftarrow &amp;\  \theta + \Delta \theta &amp;\ [\text{参数更新}]\end{split}\]</div>
+<p>RMSProp 趋于 AdaGrad 和 Adadelta 之间。</p>
+<dl class="docutils">
+<dt>特点</dt>
+<dd><ul class="first last simple">
+<li>使用指数衰减平均值，使得能够在找到凸碗状结构后快速收敛。</li>
+<li>仍然依赖于全局学习率。</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="adam">
+<h2>8.7. Adam<a class="headerlink" href="#adam" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}g &amp; \leftarrow &amp;\ \mathcal{L}(\theta) &amp;\  [\text{计算梯度}] \\
+t &amp; \leftarrow &amp;\ t + 1 &amp;\  [\text{迭代次数}] \\
+m &amp; \leftarrow &amp;\ \beta_1 m + (1 - \beta_1) g &amp;\  [\text{有偏一阶矩}] \\
+n &amp; \leftarrow &amp;\ \beta_1 2 + (1 - \beta_2) g \odot g &amp;\  [\text{有偏二阶矩}] \\
+\hat{m} &amp; \leftarrow &amp;\ \frac{m}{1 - \beta_1^t} &amp;\  [\text{修正一阶矩}] \\
+\hat{n} &amp; \leftarrow &amp;\ \frac{n}{1 - \beta_2^t} &amp;\  [\text{修正二阶矩}] \\
+\Delta \theta &amp; \leftarrow &amp;\  - \eta \frac{\hat{m}}{\sqrt{\hat{n}+\epsilon}} \odot g &amp;\ [\text{参数增量}] \\
+\theta &amp; \leftarrow &amp;\  \theta + \Delta \theta &amp;\ [\text{参数更新}]\end{split}\]</div>
+<p>相当于 RMSprop + Momentum。</p>
+<dl class="docutils">
+<dt>特点</dt>
+<dd><ul class="first last simple">
+<li>结合了 Adagrad 善于处理稀疏梯度（不同的参数计算不同的自适应学习率）和 RMSprop 善于处理非平稳目标的优点。</li>
+<li>经过矩修正后，每一次迭代的学习率都有确定范围，使得参数更新比较平稳。</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="id3">
+<h2>8.8. 参考资料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>An overview of gradient descent optimization algorithms</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="http://ruder.io/optimizing-gradient-descent/">http://ruder.io/optimizing-gradient-descent/</a></div></blockquote>
+<ol class="arabic simple" start="2">
+<li>深度学习——优化器算法Optimizer详解</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://cloud.tencent.com/developer/article/1118673">https://cloud.tencent.com/developer/article/1118673</a></div></blockquote>
+<ol class="arabic simple" start="3">
+<li>深度学习——优化器算法Optimizer详解</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/guoyaohua/p/8542554.html">https://www.cnblogs.com/guoyaohua/p/8542554.html</a></div></blockquote>
+<ol class="arabic simple" start="4">
+<li>An overview of gradient descent optimization algorithms</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://arxiv.org/pdf/1609.04747.pdf">https://arxiv.org/pdf/1609.04747.pdf</a></div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../link/index.html" class="btn btn-neutral float-right" title="资源链接" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="07_backprop.html" class="btn btn-neutral" title="7. 反向传播" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'alpha',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

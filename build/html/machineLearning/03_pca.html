@@ -100,7 +100,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">3. 主成分分析</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2">3.1. 优化目标</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">3.2. 求解</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pca">3.3. PCA白化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pca-whitening">3.3. PCA-Whitening</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#svd">3.4. SVD分解</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id4">3.5. 参考资料</a></li>
 </ul>
@@ -186,10 +186,11 @@
 <div class="section" id="id2">
 <h2>3.1. 优化目标<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <div class="math notranslate nohighlight">
-\[\begin{split}\underset{W}{max} \ tr(W^{\top}XX^{\top}W) \\
-s.t. \ W^{\top}W=I. \\
-X \in \mathbb{R}^{d \times m}, \\
-W \in \mathbb{R}^{d \times d^\prime}, \ d^\prime &lt; d.\end{split}\]</div>
+\[\begin{split}\underset{W}{max} &amp; &amp; \ Tr(W^{\top}XX^{\top}W) \\
+s.t. &amp; &amp; \ W^{\top}W=I. \\
+&amp; &amp;\ X \in \mathbb{R}^{d \times m}, \\
+&amp; &amp;\ W \in \mathbb{R}^{d \times d^\prime}, \\
+&amp; &amp;\ d^\prime &lt; d.\end{split}\]</div>
 </div>
 <div class="section" id="id3">
 <h2>3.2. 求解<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
@@ -206,29 +207,26 @@ W \in \mathbb{R}^{d \times d^\prime}, \ d^\prime &lt; d.\end{split}\]</div>
 </li>
 </ol>
 </div>
-<div class="section" id="pca">
-<h2>3.3. PCA白化<a class="headerlink" href="#pca" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>白化的目的是降低输入的冗余性：</dt>
-<dd><ul class="first last simple">
+<div class="section" id="pca-whitening">
+<h2>3.3. PCA-Whitening<a class="headerlink" href="#pca-whitening" title="Permalink to this headline">¶</a></h2>
+<p>白化（Whitening）的目的是降低输入的冗余性：</p>
+<ul class="simple">
 <li>特征之间相关性降低</li>
 <li>所有特征具有相同的方差</li>
 </ul>
-</dd>
-</dl>
 <div class="math notranslate nohighlight">
-\[\begin{split}x_{rot} = W^{\top} x, \\
-x_{pca\ white, i} \ = \frac{x_{rot, i}}{\sqrt{\lambda_i}}\end{split}\]</div>
+\[\begin{split}x_{rot} &amp; = &amp;\  W^{\top} x, \\
+x_{pca\ white, i} &amp; = &amp;\  \frac{x_{rot, i}}{\sqrt{\lambda_i}}\end{split}\]</div>
 </div>
 <div class="section" id="svd">
 <h2>3.4. SVD分解<a class="headerlink" href="#svd" title="Permalink to this headline">¶</a></h2>
 <div class="math notranslate nohighlight">
-\[\begin{split}A = U \Sigma V^{\top},\\
-A \in \mathbb{R}^{m \times n}, \\
-rank(A) = r,\\
-U \in \mathbb{R}^{m \times r}, \\
-\Sigma \in \mathbb{R}^{r \times r}, \\
-V \in \mathbb{R}^{n \times r}\end{split}\]</div>
+\[\begin{split}A &amp; = &amp;\ U \Sigma V^{\top},\\
+A &amp; \in &amp;\ \mathbb{R}^{m \times n}, \\
+r &amp; = &amp;\ rank(A),\\
+U &amp; \in &amp;\ \mathbb{R}^{m \times r}, \\
+\Sigma &amp; \in &amp;\ \mathbb{R}^{r \times r}, \\
+V &amp; \in &amp;\ \mathbb{R}^{n \times r}.\end{split}\]</div>
 <p>其中 <span class="math notranslate nohighlight">\(U\)</span> 是 <span class="math notranslate nohighlight">\(AA^{\top}\)</span> 的特征向量矩阵， <span class="math notranslate nohighlight">\(V\)</span> 是 <span class="math notranslate nohighlight">\(A^{\top}A\)</span> 的特征向量矩阵。</p>
 <p>当 <span class="math notranslate nohighlight">\(d\)</span> 很大时， <span class="math notranslate nohighlight">\(C=XX^{\top}\)</span> 是很高维的矩阵，计算该矩阵并求特征向量开销大。此时对 <span class="math notranslate nohighlight">\(X\)</span> 做SVD分解，得到 <span class="math notranslate nohighlight">\(U\)</span> 便是
 协方差矩阵 <span class="math notranslate nohighlight">\(C\)</span> 的特征向量。</p>

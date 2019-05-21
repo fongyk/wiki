@@ -10,10 +10,11 @@
 
 .. math::
 
-  \underset{W}{max} \ tr(W^{\top}XX^{\top}W) \\
-  s.t. \ W^{\top}W=I. \\
-  X \in \mathbb{R}^{d \times m}, \\
-  W \in \mathbb{R}^{d \times d^\prime}, \ d^\prime < d.
+  \underset{W}{max} & & \ Tr(W^{\top}XX^{\top}W) \\
+  s.t. & & \ W^{\top}W=I. \\
+  & &\ X \in \mathbb{R}^{d \times m}, \\
+  & &\ W \in \mathbb{R}^{d \times d^\prime}, \\
+  & &\ d^\prime < d.
 
 求解
 ---------
@@ -28,29 +29,31 @@
 
       W = (w_1, w_2,...,w_{d^\prime})
 
-PCA白化
------------
+PCA-Whitening
+-------------------
 
-白化的目的是降低输入的冗余性：
-  - 特征之间相关性降低
-  - 所有特征具有相同的方差
+白化（Whitening）的目的是降低输入的冗余性：
+
+- 特征之间相关性降低
+
+- 所有特征具有相同的方差
 
 .. math::
 
-  x_{rot} = W^{\top} x, \\
-  x_{pca\ white, i} \ = \frac{x_{rot, i}}{\sqrt{\lambda_i}}
+  x_{rot} & = &\  W^{\top} x, \\
+  x_{pca\ white, i} & = &\  \frac{x_{rot, i}}{\sqrt{\lambda_i}}
 
 SVD分解
 ----------
 
 .. math::
 
-  A = U \Sigma V^{\top},\\
-  A \in \mathbb{R}^{m \times n}, \\
-  rank(A) = r,\\
-  U \in \mathbb{R}^{m \times r}, \\
-  \Sigma \in \mathbb{R}^{r \times r}, \\
-  V \in \mathbb{R}^{n \times r}
+  A & = &\ U \Sigma V^{\top},\\
+  A & \in &\ \mathbb{R}^{m \times n}, \\
+  r & = &\ rank(A),\\
+  U & \in &\ \mathbb{R}^{m \times r}, \\
+  \Sigma & \in &\ \mathbb{R}^{r \times r}, \\
+  V & \in &\ \mathbb{R}^{n \times r}.
 
 其中 :math:`U` 是 :math:`AA^{\top}` 的特征向量矩阵， :math:`V` 是 :math:`A^{\top}A` 的特征向量矩阵。
 

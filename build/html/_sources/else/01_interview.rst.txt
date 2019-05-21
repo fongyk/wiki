@@ -1033,7 +1033,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       void solve()
       {
         win[0] = false;
-        for(int j = 0; j <= X; ++j)
+        for(int j = 1; j <= X; ++j)
         {
           win[j] = false;
           for(int i = 0; i < K; ++i)
@@ -1091,9 +1091,73 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       }
 
 
+30. 给定一个十进制整数 :math:`N` ，统计从 :math:`1` 到 :math:`N` 所有的整数各位出现的 :math:`1` 的数目。Hint： :math:`1` 的数目 = 个位出现 :math:`1` 的数目 + 十位出现 :math:`1` 的数目 + 百位出现 :math:`1` 的数目  + ......。以百位为例：如果百位数字为0，则百位出现1的次数只由更高位决定，如12013，次数为12 * 100；如果百位数字为1，则百位出现1的次数由更高位和更低位同时决定，如12113，次数为12 * 100 + (113 + 1)；如果百位数字大于1，则百位出现1的次数只由更高位决定，如12213，次数为(12 + 1) * 100。时间复杂度 :math:`\mathcal{O}(\log_{10}(N))` 。
+
+  http://www.cnblogs.com/jy02414216/archive/2011/03/09/1977724.html
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Show/Hide\ Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      typedef unsigned long long ULL;
+      ULL number_of_1(ULL N)
+      {
+        ULL cnt = 0;
+        ULL factor = 1;
+        ULL lowerNum = 0;
+        ULL currNum = 0;
+        ULL highNum = 0;
+        while(N / factor)
+        {
+          lowerNum = N - (N / factor) * factor;
+          currNum = (N / factor) % 10;
+          highNum = N / (factor * 10);
+          switch(currNum)
+          {
+            case 0:
+              cnt += highNum * factor;
+              break;
+            case 1:
+              cnt += highNum * factor + (lowerNum + 1);
+              break;
+            default:
+              cnt += (highNum + 1) * factor;
+              break;
+          }
+          factor *= 10;
+        }
+        return cnt;
+      }
 
 
+31. 数组循环移位：循环右移 :math:`K` 位，时间复杂度 :math:`\mathcal{O}(N)` 。Hint：三次翻转。
 
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Show/Hide\ Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      void reverse(int *arr, int begin, int end)
+      {
+        for(; begin < end; begin++, end--) swap(arr[begin], arr[end]);
+      }
+
+      void right_shift(int *arr, int N, int K)
+      {
+        K %= N;
+        reverse(arr, 0, N-K-1);
+        reverse(arr, N-K, N-1);
+        reverse(arr, 0, N-1);
+      }
 
 
 C++

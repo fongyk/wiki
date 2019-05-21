@@ -132,6 +132,7 @@
 <li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
 <li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
 <li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -432,6 +433,18 @@
 </div>
 </li>
 <li><p class="first">访问：成员 <code class="docutils literal notranslate"><span class="pre">first</span></code> 访问第一个元素，成员 <code class="docutils literal notranslate"><span class="pre">second</span></code> 访问第二个元素。</p>
+</li>
+<li><p class="first">关系运算：支持 ==，!=，&lt;，&lt;=，&gt;，&gt;=，从而可以直接排序</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// 如果 first 相等，则比较 second</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T2</span><span class="o">&gt;</span>
+<span class="kt">bool</span> <span class="k">operator</span><span class="o">&lt;</span>  <span class="p">(</span><span class="k">const</span> <span class="n">pair</span><span class="o">&lt;</span><span class="n">T1</span><span class="p">,</span><span class="n">T2</span><span class="o">&gt;&amp;</span> <span class="n">lhs</span><span class="p">,</span> <span class="k">const</span> <span class="n">pair</span><span class="o">&lt;</span><span class="n">T1</span><span class="p">,</span><span class="n">T2</span><span class="o">&gt;&amp;</span> <span class="n">rhs</span><span class="p">)</span>
+<span class="p">{</span> <span class="k">return</span> <span class="n">lhs</span><span class="p">.</span><span class="n">first</span><span class="o">&lt;</span><span class="n">rhs</span><span class="p">.</span><span class="n">first</span> <span class="o">||</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">rhs</span><span class="p">.</span><span class="n">first</span><span class="o">&lt;</span><span class="n">lhs</span><span class="p">.</span><span class="n">first</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">lhs</span><span class="p">.</span><span class="n">second</span><span class="o">&lt;</span><span class="n">rhs</span><span class="p">.</span><span class="n">second</span><span class="p">);</span> <span class="p">}</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T2</span><span class="o">&gt;</span>
+<span class="kt">bool</span> <span class="k">operator</span><span class="o">&gt;</span>  <span class="p">(</span><span class="k">const</span> <span class="n">pair</span><span class="o">&lt;</span><span class="n">T1</span><span class="p">,</span><span class="n">T2</span><span class="o">&gt;&amp;</span> <span class="n">lhs</span><span class="p">,</span> <span class="k">const</span> <span class="n">pair</span><span class="o">&lt;</span><span class="n">T1</span><span class="p">,</span><span class="n">T2</span><span class="o">&gt;&amp;</span> <span class="n">rhs</span><span class="p">)</span>
+<span class="p">{</span> <span class="k">return</span> <span class="n">rhs</span><span class="o">&lt;</span><span class="n">lhs</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+</div>
 </li>
 </ul>
 </div>
@@ -754,6 +767,7 @@ size_t 是通过typedef定义的一些 <strong>无符号整型</strong> 的别�
 <p><a class="reference external" href="http://www.cplusplus.com/reference/vector/vector">http://www.cplusplus.com/reference/vector/vector</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/list/list">http://www.cplusplus.com/reference/list/list</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/deque/deque">http://www.cplusplus.com/reference/deque/deque</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/utility/pair/operators">http://www.cplusplus.com/reference/utility/pair/operators</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/map/map">http://www.cplusplus.com/reference/map/map</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/stack/stack">http://www.cplusplus.com/reference/stack/stack</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/queue/queue">http://www.cplusplus.com/reference/queue/queue</a></p>

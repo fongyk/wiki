@@ -57,7 +57,7 @@ Momentum
  - 梯度改变方向时，能够减少更新。
 
 
-AdaGrad
+Adagrad
 -------------
 
 .. math::
@@ -88,7 +88,7 @@ Adadelta
   \Delta \theta & \leftarrow &\  - \frac{RMS[\Delta \theta]}{RMS[g]} \odot g  &\ [\text{参数增量}] \\
   \theta & \leftarrow &\  \theta + \Delta \theta &\ [\text{参数更新}]
 
-Adadelta 是 AdaGrad 的改进。
+Adadelta 是 Adagrad 的改进。
 
 特点
   - 使用指数衰减平均值，使得能够在找到凸碗状结构后快速收敛。
@@ -98,7 +98,7 @@ Adadelta 是 AdaGrad 的改进。
   - 训练初中期，加速效果很快。
 
 
-RMSProp
+RMSprop
 -----------------
 
 .. math::
@@ -109,7 +109,7 @@ RMSProp
   \theta & \leftarrow &\  \theta + \Delta \theta &\ [\text{参数更新}]
 
 
-RMSProp 趋于 AdaGrad 和 Adadelta 之间。
+RMSprop 趋于 Adagrad 和 Adadelta 之间。
 
 特点
   - 使用指数衰减平均值，使得能够在找到凸碗状结构后快速收敛。

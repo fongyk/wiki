@@ -205,6 +205,18 @@ pair
 
 - 访问：成员 ``first`` 访问第一个元素，成员 ``second`` 访问第二个元素。
 
+- 关系运算：支持 ==，!=，<，<=，>，>=，从而可以直接排序
+
+  ::
+
+    // 如果 first 相等，则比较 second
+    template <class T1, class T2>
+    bool operator<  (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs)
+    { return lhs.first<rhs.first || (!(rhs.first<lhs.first) && lhs.second<rhs.second); }
+
+    template <class T1, class T2>
+    bool operator>  (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs)
+    { return rhs<lhs; }
 
 map
 --------
@@ -492,6 +504,8 @@ VS 64位编译器
   http://www.cplusplus.com/reference/list/list
 
   http://www.cplusplus.com/reference/deque/deque
+
+  http://www.cplusplus.com/reference/utility/pair/operators
 
   http://www.cplusplus.com/reference/map/map
 

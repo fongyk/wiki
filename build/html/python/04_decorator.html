@@ -108,6 +108,11 @@
 <li class="toctree-l2"><a class="reference internal" href="09_random.html">9. random</a></li>
 <li class="toctree-l2"><a class="reference internal" href="10_normalize.html">10. 归一化</a></li>
 <li class="toctree-l2"><a class="reference internal" href="11_dataStruct.html">11. 常用数据结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_bool.html">12. 逻辑运算与布尔测试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_name.html">13. 命名规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_classFunc.html">14. 类变量与类方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_memManage.html">15. 内存管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_newInit.html">16. __new__ 和 __init__</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
@@ -212,21 +217,25 @@
 15
 16
 17
-18</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
 <span class="kn">import</span> <span class="nn">time</span>
 
 <span class="k">def</span> <span class="nf">timer</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
     <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">function_timer</span><span class="p">(</span><span class="o">*</span><span class="n">arg</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">function_timer</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="k">print</span> <span class="s2">&quot;time (s): &quot;</span><span class="p">,</span> <span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span>
         <span class="k">return</span> <span class="n">result</span>
     <span class="k">return</span> <span class="n">function_timer</span>
 
 <span class="nd">@timer</span>
 <span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
     <span class="k">print</span> <span class="s2">&quot;hello&quot;</span>
+    <span class="k">return</span> <span class="mi">0</span>
 
 <span class="k">print</span> <span class="n">foo</span><span class="o">.</span><span class="vm">__name__</span>
 <span class="k">print</span> <span class="n">foo</span><span class="o">.</span><span class="vm">__doc__</span>

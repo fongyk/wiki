@@ -20,17 +20,19 @@
 
     def timer(func):
         @wraps(func)
-        def function_timer(*arg, **kwargs):
+        def function_timer(*args, **kwargs):
             start_time = time.time()
             result = func(*args, **kwargs)
             end_time = time.time()
+            print "time (s): ", end_time - start_time
             return result
         return function_timer
 
     @timer
     def foo():
         print "hello"
-    
+        return 0
+
     print foo.__name__
     print foo.__doc__
 

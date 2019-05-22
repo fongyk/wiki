@@ -109,6 +109,11 @@
 <li class="toctree-l2"><a class="reference internal" href="09_random.html">9. random</a></li>
 <li class="toctree-l2"><a class="reference internal" href="10_normalize.html">10. 归一化</a></li>
 <li class="toctree-l2"><a class="reference internal" href="11_dataStruct.html">11. 常用数据结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_bool.html">12. 逻辑运算与布尔测试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_name.html">13. 命名规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_classFunc.html">14. 类变量与类方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_memManage.html">15. 内存管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_newInit.html">16. __new__ 和 __init__</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
@@ -277,7 +282,9 @@
 23
 24
 25
-26</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+26
+27
+28</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <span class="go">[1, 2, 3, 4]</span>
@@ -301,8 +308,10 @@
 <span class="go">[30, 20, 10, 5, 3, 1] ## 直接修改 a，无返回值。使用 sorted 返回排序后的副本。</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a2</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a2</span>
+<span class="go">10</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
-<span class="go">[1, 5, 10, 20, 30] ## a</span>
+<span class="go">[30, 20, 5, 3, 1]</span>
 </pre></div>
 </td></tr></table></div>
 </li>
@@ -558,13 +567,19 @@
 12
 13
 14
-15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;abcd&#39;</span>
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;abcd&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="go">313010056L</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;abcd&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="go">313010056L</span>
-<span class="go">## x 和 y 都是 str 对象，值相同，占用同一块内存。</span>
+<span class="go">## x 和 y 都是 str 对象的引用，值相同，占用同一块内存。</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
@@ -572,7 +587,13 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="c1">## b = a[:]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 <span class="go">314011080L</span>
-<span class="go">## a 和 b 的 id 不同，尽管值相同。因此 list 不能作为 key。</span>
+<span class="go">## a 和 b 的 id 不同，尽管值相同</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">[5, 3, 4, 3, 1]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="go">314011080L</span>
+<span class="go">## 改变 b，仍然是同一个对象，因此是可变对象</span>
 </pre></div>
 </td></tr></table></div>
 </div>

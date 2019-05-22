@@ -95,7 +95,7 @@
 <li class="toctree-l2"><a class="reference internal" href="02_array.html">2. 数组</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_typeSize.html">3. 数据类型</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_classSize.html">4. 类的大小</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_swap.html">5. 交换函数swap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_swap.html">5. 交换函数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="06_arrayArg.html">6. 数组形参</a></li>
 <li class="toctree-l2"><a class="reference internal" href="07_pointerReference.html">7. 指针与引用</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">8. 重载、覆盖、隐藏</a><ul>
@@ -125,6 +125,7 @@
 <li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
 <li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
 <li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -210,8 +211,8 @@
 </div>
 <div class="section" id="overriding">
 <h2>8.2. 覆盖（Overriding）<a class="headerlink" href="#overriding" title="Permalink to this headline">¶</a></h2>
-<p>基类中被重写的函数，用 <code class="docutils literal notranslate"><span class="pre">virtual</span></code> 修饰。派生类重写的函数与被重写的函数保持同样的函数名、参数列表、返回类型。</p>
-<p>使用 <code class="docutils literal notranslate"><span class="pre">virtual</span></code> 的同时，配合使用 <code class="docutils literal notranslate"><span class="pre">override</span></code> 关键字来说明派生类中的虚函数。这么做的好处是是的程序员的意图更加清晰（即：希望覆盖基类中的虚函数），同时让编译器发现错误。
+<p>基类中被重写的函数，用 <code class="docutils literal notranslate"><span class="pre">virtual</span></code> 修饰。派生类重写的函数与被重写的函数保持同样的 <strong>函数名、参数列表、返回类型</strong> 。</p>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">virtual</span></code> 的同时，配合使用 <code class="docutils literal notranslate"><span class="pre">override</span></code> 关键字来说明派生类中的虚函数。这么做的好处是使得程序员的意图更加清晰（即：希望覆盖基类中的虚函数），同时让编译器发现错误。
 因为只有虚函数才能被覆盖。编译器会检查两个对应函数的声明是否匹配。</p>
 <p>通过把某个函数指定为 <code class="docutils literal notranslate"><span class="pre">final</span></code> ，拒绝对该函数进行覆盖。也在类名后面接 <code class="docutils literal notranslate"><span class="pre">final</span></code> ，以禁止该类被继承。</p>
 <div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -605,7 +606,7 @@ vptr不存在，不可能完成动态绑定。</p>
 </div>
 <div class="section" id="id5">
 <h3>对象数组的析构<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
-<p>因为数组的多态会导致未定义的行为，即使将析构函数声明为虚函数。所以在对数组元素执行析构时，还是要用派生类的指针来 delete 。</p>
+<p>数组的多态会导致未定义的行为，不管析构函数是否声明为虚函数。所以在对数组元素执行析构时，还是要用 <strong>派生类的指针</strong> 来 delete 。</p>
 <p>参考：<a class="reference external" href="https://www.nowcoder.com/profile/3704231/myFollowings/detail/8528425">https://www.nowcoder.com/profile/3704231/myFollowings/detail/8528425</a>。</p>
 <div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2

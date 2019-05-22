@@ -1,6 +1,8 @@
 常用函数
 ==============
 
+以下函数基于 C++11 标准。
+
 lower\_bound，upper\_bound
 -------------------------------
 
@@ -125,7 +127,7 @@ fill，fill\_n，for\_each
       cout << endl;
 
       int b[10][20];
-	    fill(b[0], b[0] + 200, 2); // b 所有元素为 2
+      fill(b[0], b[0] + 200, 2); // b 所有元素为 2
 
       return 0;
     }
@@ -141,19 +143,21 @@ fill，fill\_n，for\_each
   /* https://leetcode.com/problems/longest-increasing-subsequence/ */
   /* O(nlogn) in time.*/
 
-  class Solution {
+  class Solution
+  {
   public:
-      int lengthOfLIS(vector<int>& nums) {
-          if(nums.size()<=1) return nums.size();
-          int inf = INT_MAX;
-          int len = nums.size();
-          int* dp = new int[len];
-          fill(dp, dp+len, inf);
-          for(int k = 0; k < len; ++k) *lower_bound(dp, dp+len, nums[k]) = nums[k];
-          int length = lower_bound(dp, dp+len, inf) - dp;
-          delete[] dp;
-          return length;
-      }
+    int lengthOfLIS(vector<int>& nums)
+    {
+      if(nums.size()<=1) return nums.size();
+      int inf = INT_MAX;
+      int len = nums.size();
+      int* dp = new int[len];
+      fill(dp, dp+len, inf);
+      for(int k = 0; k < len; ++k) *lower_bound(dp, dp+len, nums[k]) = nums[k];
+      int length = lower_bound(dp, dp+len, inf) - dp;
+      delete[] dp;
+      return length;
+    }
   };
 
 sort
@@ -270,7 +274,8 @@ reverse
     #include <numeric>      // std::iota
     #include <vector>       // std::vector
 
-    int main () {
+    int main ()
+    {
       std::vector<int> myvector;
 
       // set some values:
@@ -565,7 +570,8 @@ inner\_product
     int myaccumulator (int x, int y) {return x-y;}
     int myproduct (int x, int y) {return x+y;}
 
-    int main () {
+    int main ()
+    {
       int init = 100;
       int series1[] = {10,20,30};
       int series2[] = {1,2,3};

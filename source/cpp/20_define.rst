@@ -113,7 +113,7 @@ inline
     int a = 5, b = 0;
     CALL_WITH_MAX(++a, b); // a 自增2次，变为7（++a > b => ++a）
     cout << a << endl;
-    CALL_WITH_MAX(++a, b+10); // a 自增1次，变为8（++a < b => b）
+    CALL_WITH_MAX(++a, b+10); // a 自增1次，变为8（++a < b+10 => b）
     cout << a << endl;
 
     f(-10 + MAX_COMP_1(a, b)); // -10 + a > b ? a : b; 结果为 0

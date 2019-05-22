@@ -392,10 +392,10 @@
 
 <span class="k">class</span> <span class="nc">Derived</span><span class="o">:</span> <span class="k">public</span> <span class="n">Base</span>
 <span class="p">{</span>
-    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">f1</span><span class="p">();</span><span class="c1">// 覆盖了基类中的f1()， **多态**</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">f1</span><span class="p">();</span><span class="c1">// 覆盖了基类中的f1()，多态</span>
     <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">f3</span><span class="p">();</span>
 <span class="p">};</span>
-<span class="c1">// sizeof(Derived) = 4 + 4 = 8</span>
+<span class="c1">// sizeof(Derived) = 4</span>
 </pre></div>
 </td></tr></table></div>
 </div>
@@ -403,7 +403,7 @@
 <h3>多继承<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <p>每个基类都有自己的虚表(vtable)。</p>
 <p>派生类的成员函数被放到了第一个基类的表中。</p>
-<p>派生类的大小 = 派生类的普通数据成员的大小 + 基类的普通数据成员的大小 + <strong>n</strong> 个vptr指针的大小。 <strong>n</strong> 是继承的基类的个数。</p>
+<p>派生类的大小 = 派生类的普通数据成员的大小 + 基类的普通数据成员的大小 + <strong>n</strong> 个vptr指针的大小。 <strong>n</strong> 是继承的有虚函数的基类的个数。</p>
 <div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -559,7 +559,7 @@
 <li><strong>每个变量</strong> 相对于起始位置的偏移量必须是 <strong>该变量类型大小的整数倍</strong> ，如果不是整数倍则空出内存，直到偏移量是整数倍为止。</li>
 <li>结构体内存对齐要求结构体内每一个成员变量都是内存对齐的。</li>
 <li>整个结构体的大小必须是结构体里面变量类型最大值的整数倍。</li>
-<li>如果一个结构里有某些结构体成员，则结构体成员要从其内部”最宽基本类型成员”的整数倍地址开始存储。比如，struct A里存有struct B，B里有char, int, double等类型的成员变量，那B应该从8的整数倍开始存储。</li>
+<li>如果一个结构里有某些结构体成员，则结构体成员要从其内部”最宽基本类型成员”的整数倍偏移地址开始存储。比如，struct A里存有struct B，B里有char, int, double等类型的成员变量，那B应该从8的整数倍开始存储。</li>
 </ul>
 </dd>
 <dt>内存对齐的作用：</dt>

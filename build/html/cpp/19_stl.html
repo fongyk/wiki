@@ -95,7 +95,7 @@
 <li class="toctree-l2"><a class="reference internal" href="02_array.html">2. 数组</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_typeSize.html">3. 数据类型</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_classSize.html">4. 类的大小</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_swap.html">5. 交换函数swap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_swap.html">5. 交换函数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="06_arrayArg.html">6. 数组形参</a></li>
 <li class="toctree-l2"><a class="reference internal" href="07_pointerReference.html">7. 指针与引用</a></li>
 <li class="toctree-l2"><a class="reference internal" href="08_overload.html">8. 重载、覆盖、隐藏</a></li>
@@ -213,6 +213,7 @@
   <div class="section" id="stl">
 <h1>19. 常用STL类及容器<a class="headerlink" href="#stl" title="Permalink to this headline">¶</a></h1>
 <p><strong>STL: Standard Template Library</strong> ，标准模板库。</p>
+<p>以下基于 C++11 标准。</p>
 <dl class="docutils">
 <dt>顺序容器</dt>
 <dd><ul class="first last simple">
@@ -758,7 +759,7 @@ size_t 是通过typedef定义的一些 <strong>无符号整型</strong> 的别�
 </td></tr></table></div>
 </div></blockquote>
 <p class="last">上例中，本意是只有当 vec 至少包含2个元素时，才输出。但是，当 vec.size() = 0，vec.size() - 1 = 2^32 - 1 或2^64 - 1，
-而不是预想的 -1。</p>
+而不是预想的 -1，陷入死循环。</p>
 </div>
 </div>
 </div>

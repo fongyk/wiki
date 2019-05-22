@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5. pytorch模型保存与读取" href="05_modelSave.html" />
+    <link rel="next" title="5. pytorch：模型保存与读取" href="05_modelSave.html" />
     <link rel="prev" title="3. Batch Normalization" href="03_batchnorm.html" /> 
 
   
@@ -96,8 +96,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">深度学习</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="01_dataParallel.html">1. pytorch的多GPU模式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02_activationFunction.html">2. 激活函数(Activation Function)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01_dataParallel.html">1. pytorch：多GPU模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_activationFunction.html">2. 激活函数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_batchnorm.html">3. Batch Normalization</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">4. 过拟合</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2">4.1. 表现</a></li>
@@ -105,8 +105,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#id4">4.3. 解决方案</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">5. pytorch模型保存与读取</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">5. pytorch：模型保存与读取</a></li>
 <li class="toctree-l2"><a class="reference internal" href="06_cuda.html">6. pytorch: cuda()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_backprop.html">7. 反向传播</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_optimizer.html">8. 优化算法</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
@@ -188,9 +190,11 @@
 </div>
 <div class="section" id="id3">
 <h2>4.2. 原因<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>训练集大小与模型复杂度不匹配；</p>
-<p>样本的噪声太大甚至掩盖了真实样本的分布规律；</p>
-<p>训练迭代次数太多（over-training）。</p>
+<ul class="simple">
+<li>训练集大小与模型复杂度不匹配；</li>
+<li>样本的噪声太大甚至掩盖了真实样本的分布规律；</li>
+<li>训练迭代次数太多（over-training）。</li>
+</ul>
 </div>
 <div class="section" id="id4">
 <h2>4.3. 解决方案<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
@@ -201,9 +205,11 @@
 <p><strong>5</strong>. 集成学习。Bagging：并行化模型生成，减小模型variance。Boosting：串行化模型生成，减小模型bias。</p>
 <p><strong>6</strong>. 正则化。</p>
 <blockquote>
-<div><p>&lt;1&gt;. L0正则化（非0元素个数），难以优化求解（NP-hard）。</p>
-<p>&lt;2&gt;. L1正则化（元素绝对值之和， Lasso regression），是L0范数的最优凸近似，使权值稀疏。权值稀疏的好处：特征选择 &amp;&amp; 可解释性。</p>
-<p>&lt;3&gt;. L2正则化（元素平方和，Ridge regression / weight dacay），使权值分布均匀且值较小。</p>
+<div><ul class="simple">
+<li>L0正则化（非0元素个数），难以优化求解（NP-Hard）。</li>
+<li>L1正则化（元素绝对值之和， Lasso regression），是L0范数的最优凸近似，使权值稀疏。权值稀疏的好处：特征选择 &amp;&amp; 可解释性。</li>
+<li>L2正则化（元素平方和，Ridge regression / weight dacay），使权值分布均匀且值较小。</li>
+</ul>
 </div></blockquote>
 </div>
 </div>
@@ -216,7 +222,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="05_modelSave.html" class="btn btn-neutral float-right" title="5. pytorch模型保存与读取" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="05_modelSave.html" class="btn btn-neutral float-right" title="5. pytorch：模型保存与读取" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="03_batchnorm.html" class="btn btn-neutral" title="3. Batch Normalization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

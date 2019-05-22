@@ -11,35 +11,50 @@
 
 .. math::
 
-  \underset{w,b}{min} \  \frac{1}{2} \left \| w \right \|^2 \\
-  s.t. \  y_i(w^{\top} x + b) \geqslant 1, i=1,2,...,m
+  \underset{w,b}{min} & &\  \frac{1}{2} \left \| w \right \|^2 \\
+  s.t. & &\  y_i(w^{\top} x_i + b) \geqslant 1, i=1,2,...,m
 
 拉格朗日函数：
 
 .. math::
 
-  L(w,b,\alpha) = \frac{1}{2}w^{\top}w + \sum_{i=1}^m \alpha_i(1 - y_i(w^{\top} x + b)),\\
-  \underset{w,b}{min}(\underset{\alpha_i>0}{max}L(w,b,\alpha))
+  L(w,b,\alpha) = \frac{1}{2}w^{\top}w + \sum_{i=1}^m \alpha_i(1 - y_i(w^{\top} x_i + b))
+
+目标函数：
+
+.. math::
+
+  \underset{w,b}{min}(\underset{\alpha \geqslant 0}{max}L(w,b,\alpha))
 
 对偶问题：
 
 .. math::
 
-  \underset{\alpha_i>0}{max}(\underset{w,b}{min}L(w,b,\alpha))
+  \underset{\alpha \geqslant 0}{max}(\underset{w,b}{min}L(w,b,\alpha))
 
-即：
+令 :math:`L` 对  :math:`w` 和  :math:`b` 的偏导为 0 得：
 
 .. math::
 
-  \underset{\alpha>0}{max} \sum_{i=1}^m\alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y_i y_j x_i^{\top} x_j,\  w=\sum_{i=1}^m\alpha_i y_i x_i
+  w & = &\ \sum_{i=1}^m \alpha_i y_i x_i,\\
+  0 & = &\ \sum_{i=1}^m \alpha_i y_i.
+
+对偶问题变成：
+
+.. math::
+
+  \underset{\alpha \geqslant 0}{max} &  &\  \sum_{i=1}^m\alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y_i y_j x_i^{\top} x_j,\\
+  s.t.  &  &\  \sum_{i=1}^m \alpha_i y_i = 0,\\
+        &  &\  \alpha \geqslant 0, \ i=1,2,...,m.
+
 
 KKT条件：
 
 .. math::
 
-  y_i(w^{\top} x + b) \geqslant 1, \\
+  y_i(w^{\top} x_i + b) \geqslant 1, \\
   \sum_{i=1}^m \alpha_i y_i = 0,\\
-  \alpha_i (1 - y_i(w^{\top} x + b)) = 0.
+  \alpha_i (1 - y_i(w^{\top} x_i + b)) = 0.
 
 核函数
 ------------
@@ -125,7 +140,7 @@ SVM与LR的异同
 
   - SVM依赖样本间的距离测度，样本特征需要归一化，也就是说SVM基于距离，LR基于概率。
 
-  - SVM是结构风险最小化算法（在训练误差和模型复杂度之间的折中，防止过拟合，从而达到真实误差最小化）。因为SVM自带正则（ :math:`\left \| w \right \|^2` ）。
+  - SVM是 **结构风险最小化** 算法（在训练误差和模型复杂度之间的折中，防止过拟合，从而达到真实误差最小化），因为SVM自带正则（ :math:`\left \| w \right \|^2` ）。
 
 参考资料
 --------------

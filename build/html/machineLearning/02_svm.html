@@ -188,23 +188,31 @@
 \[r = \frac{|w^{\top} x + b|}{\| w \|}\]</div>
 <p>原始问题：</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\underset{w,b}{min} \  \frac{1}{2} \left \| w \right \|^2 \\
-s.t. \  y_i(w^{\top} x + b) \geqslant 1, i=1,2,...,m\end{split}\]</div>
+\[\begin{split}\underset{w,b}{min} &amp; &amp;\  \frac{1}{2} \left \| w \right \|^2 \\
+s.t. &amp; &amp;\  y_i(w^{\top} x_i + b) \geqslant 1, i=1,2,...,m\end{split}\]</div>
 <p>拉格朗日函数：</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}L(w,b,\alpha) = \frac{1}{2}w^{\top}w + \sum_{i=1}^m \alpha_i(1 - y_i(w^{\top} x + b)),\\
-\underset{w,b}{min}(\underset{\alpha_i&gt;0}{max}L(w,b,\alpha))\end{split}\]</div>
+\[L(w,b,\alpha) = \frac{1}{2}w^{\top}w + \sum_{i=1}^m \alpha_i(1 - y_i(w^{\top} x_i + b))\]</div>
+<p>目标函数：</p>
+<div class="math notranslate nohighlight">
+\[\underset{w,b}{min}(\underset{\alpha \geqslant 0}{max}L(w,b,\alpha))\]</div>
 <p>对偶问题：</p>
 <div class="math notranslate nohighlight">
-\[\underset{\alpha_i&gt;0}{max}(\underset{w,b}{min}L(w,b,\alpha))\]</div>
-<p>即：</p>
+\[\underset{\alpha \geqslant 0}{max}(\underset{w,b}{min}L(w,b,\alpha))\]</div>
+<p>令 <span class="math notranslate nohighlight">\(L\)</span> 对  <span class="math notranslate nohighlight">\(w\)</span> 和  <span class="math notranslate nohighlight">\(b\)</span> 的偏导为 0 得：</p>
 <div class="math notranslate nohighlight">
-\[\underset{\alpha&gt;0}{max} \sum_{i=1}^m\alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y_i y_j x_i^{\top} x_j,\  w=\sum_{i=1}^m\alpha_i y_i x_i\]</div>
+\[\begin{split}w &amp; = &amp;\ \sum_{i=1}^m \alpha_i y_i x_i,\\
+0 &amp; = &amp;\ \sum_{i=1}^m \alpha_i y_i.\end{split}\]</div>
+<p>对偶问题变成：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\underset{\alpha \geqslant 0}{max} &amp;  &amp;\  \sum_{i=1}^m\alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y_i y_j x_i^{\top} x_j,\\
+s.t.  &amp;  &amp;\  \sum_{i=1}^m \alpha_i y_i = 0,\\
+      &amp;  &amp;\  \alpha \geqslant 0, \ i=1,2,...,m.\end{split}\]</div>
 <p>KKT条件：</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}y_i(w^{\top} x + b) \geqslant 1, \\
+\[\begin{split}y_i(w^{\top} x_i + b) \geqslant 1, \\
 \sum_{i=1}^m \alpha_i y_i = 0,\\
-\alpha_i (1 - y_i(w^{\top} x + b)) = 0.\end{split}\]</div>
+\alpha_i (1 - y_i(w^{\top} x_i + b)) = 0.\end{split}\]</div>
 <div class="section" id="id2">
 <h2>2.1. 核函数<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>核函数 <span class="math notranslate nohighlight">\(\mathcal{K}\)</span></p>
@@ -284,7 +292,7 @@ s.t. \  y_i(w^{\top} x + b) \geqslant 1, i=1,2,...,m\end{split}\]</div>
 <li>SVM只有支持向量影响模型，LR中每个样本都有作用。</li>
 <li>SVM针对线性不可分问题有核函数。</li>
 <li>SVM依赖样本间的距离测度，样本特征需要归一化，也就是说SVM基于距离，LR基于概率。</li>
-<li>SVM是结构风险最小化算法（在训练误差和模型复杂度之间的折中，防止过拟合，从而达到真实误差最小化）。因为SVM自带正则（ <span class="math notranslate nohighlight">\(\left \| w \right \|^2\)</span> ）。</li>
+<li>SVM是 <strong>结构风险最小化</strong> 算法（在训练误差和模型复杂度之间的折中，防止过拟合，从而达到真实误差最小化），因为SVM自带正则（ <span class="math notranslate nohighlight">\(\left \| w \right \|^2\)</span> ）。</li>
 </ul>
 </div></blockquote>
 </div>

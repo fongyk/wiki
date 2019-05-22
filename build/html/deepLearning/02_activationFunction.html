@@ -109,6 +109,7 @@
 <li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">5. pytorch：模型保存与读取</a></li>
 <li class="toctree-l2"><a class="reference internal" href="06_cuda.html">6. pytorch: cuda()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="07_backprop.html">7. 反向传播</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_optimizer.html">8. 优化算法</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
@@ -200,7 +201,7 @@
 <p>其导数具有如下性质：</p>
 <div class="math notranslate nohighlight">
 \[\sigma^\prime(z) = \sigma(z)(1-\sigma(z)).\]</div>
-<p><strong>sigmoid</strong> 函数能够把输入的连续值压缩到(0, 1)范围内，其函数曲线如下：</p>
+<p><strong>sigmoid</strong> 函数能够把输入的连续值压缩到 (0, 1) 范围内，其函数曲线如下：</p>
 <a class="reference internal image-reference" href="../_images/02_sigmoid.jpeg"><img alt="../_images/02_sigmoid.jpeg" class="align-center" src="../_images/02_sigmoid.jpeg" style="width: 500px;" /></a>
 <p>优点：</p>
 <blockquote>
@@ -212,9 +213,9 @@
 <p>缺点：</p>
 <blockquote>
 <div><ul class="simple">
-<li>容易饱和。当输入很大、很小时(saturation, 饱和)，神经元的梯度接近0，出现“梯度消失”(gradient vanishing)，导致无法完成深层网络的训练。</li>
-<li>输出不是零均值的(not zero-centered)。假设某个神经元的输入一直是正的，即 <span class="math notranslate nohighlight">\(x&gt;0\)</span> . 对于 <span class="math notranslate nohighlight">\(f(x)=w^Tx+b\)</span> ，则 <span class="math notranslate nohighlight">\(w\)</span> 获得的梯度将是恒正或者恒负
-（取决于 <span class="math notranslate nohighlight">\(f\)</span> 得到的梯度的符号），导致 <span class="math notranslate nohighlight">\(w\)</span> 的更新非常“曲折”(zig-zagging)。
+<li>容易饱和。当输入很大/很小时（saturation, 饱和），神经元的梯度接近0，出现“梯度消失”（gradient vanishing），导致无法完成深层网络的训练。</li>
+<li>输出不是零均值的（not zero-centered）。假设某个神经元的输入一直是正的，即 <span class="math notranslate nohighlight">\(x&gt;0\)</span> . 对于 <span class="math notranslate nohighlight">\(f(x)=w^Tx+b\)</span> ，则 <span class="math notranslate nohighlight">\(w\)</span> 获得的梯度将是恒正或者恒负
+（取决于 <span class="math notranslate nohighlight">\(f\)</span> 得到的梯度的符号），导致 <span class="math notranslate nohighlight">\(w\)</span> 的更新非常“曲折”（zig-zagging）。
 当然，如果是按batch训练，最终梯度是各个样本下梯度的和，而每个样本下的梯度可能是符号各异的，因此在一定程度上可以缓解这个问题。</li>
 </ul>
 </div></blockquote>
@@ -226,7 +227,7 @@
 \[tanh(z) = \frac{e^z-e^{-z}}{e^z+e^{-z}} = 2\sigma(2z)-1.\]</div>
 <p>其函数曲线如下：</p>
 <a class="reference internal image-reference" href="../_images/02_tanh.jpeg"><img alt="../_images/02_tanh.jpeg" class="align-center" src="../_images/02_tanh.jpeg" style="width: 500px;" /></a>
-<p>与 <strong>sigmoid</strong> 一样， <strong>tanh</strong> 也会产生饱和现象，但是 <strong>tanh</strong> 的输出是零均值的(zero-centered)。</p>
+<p>与 <strong>sigmoid</strong> 一样， <strong>tanh</strong> 也会产生饱和现象，但是 <strong>tanh</strong> 的输出是零均值的（zero-centered）。</p>
 </div>
 <div class="section" id="relu">
 <h2>2.3. ReLU<a class="headerlink" href="#relu" title="Permalink to this headline">¶</a></h2>
@@ -250,7 +251,7 @@
 <p>缺点:</p>
 <blockquote>
 <div><ul class="simple">
-<li>容易产生死亡节点(dead ReLU)。一个非常大的梯度流过一个 <strong>ReLU</strong> 神经元，更新过参数之后，这个神经元对很多输入数据都输出0，则梯度一直为0。
+<li>容易产生死亡节点（dead ReLU）。一个非常大的梯度流过一个 <strong>ReLU</strong> 神经元，更新过参数之后，这个神经元对很多输入数据都输出0，则梯度一直为0。
 当然 <strong>ReLU</strong> 的输出依靠 <span class="math notranslate nohighlight">\(w\)</span> 和 <span class="math notranslate nohighlight">\(x\)</span> 的共同作用，死亡节点可能会被重新激活。</li>
 </ul>
 </div></blockquote>

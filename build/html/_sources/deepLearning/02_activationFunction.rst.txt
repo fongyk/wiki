@@ -24,7 +24,7 @@ sigmoid
 
     \sigma^\prime(z) = \sigma(z)(1-\sigma(z)).
 
-**sigmoid** 函数能够把输入的连续值压缩到(0, 1)范围内，其函数曲线如下：
+**sigmoid** 函数能够把输入的连续值压缩到 (0, 1) 范围内，其函数曲线如下：
 
 .. image:: ./02_sigmoid.jpeg
     :width: 500px
@@ -37,9 +37,9 @@ sigmoid
 
 缺点：
 
-  - 容易饱和。当输入很大、很小时(saturation, 饱和)，神经元的梯度接近0，出现“梯度消失”(gradient vanishing)，导致无法完成深层网络的训练。
-  - 输出不是零均值的(not zero-centered)。假设某个神经元的输入一直是正的，即 :math:`x>0` . 对于 :math:`f(x)=w^Tx+b` ，则 :math:`w` 获得的梯度将是恒正或者恒负
-    （取决于 :math:`f` 得到的梯度的符号），导致 :math:`w` 的更新非常“曲折”(zig-zagging)。
+  - 容易饱和。当输入很大/很小时（saturation, 饱和），神经元的梯度接近0，出现“梯度消失”（gradient vanishing），导致无法完成深层网络的训练。
+  - 输出不是零均值的（not zero-centered）。假设某个神经元的输入一直是正的，即 :math:`x>0` . 对于 :math:`f(x)=w^Tx+b` ，则 :math:`w` 获得的梯度将是恒正或者恒负
+    （取决于 :math:`f` 得到的梯度的符号），导致 :math:`w` 的更新非常“曲折”（zig-zagging）。
     当然，如果是按batch训练，最终梯度是各个样本下梯度的和，而每个样本下的梯度可能是符号各异的，因此在一定程度上可以缓解这个问题。
 
 
@@ -59,7 +59,7 @@ tanh
     :width: 500px
     :align: center
 
-与 **sigmoid** 一样， **tanh** 也会产生饱和现象，但是 **tanh** 的输出是零均值的(zero-centered)。
+与 **sigmoid** 一样， **tanh** 也会产生饱和现象，但是 **tanh** 的输出是零均值的（zero-centered）。
 
 
 ReLU
@@ -88,7 +88,7 @@ ReLU
 
 缺点:
 
- - 容易产生死亡节点(dead ReLU)。一个非常大的梯度流过一个 **ReLU** 神经元，更新过参数之后，这个神经元对很多输入数据都输出0，则梯度一直为0。
+ - 容易产生死亡节点（dead ReLU）。一个非常大的梯度流过一个 **ReLU** 神经元，更新过参数之后，这个神经元对很多输入数据都输出0，则梯度一直为0。
    当然 **ReLU** 的输出依靠 :math:`w` 和 :math:`x` 的共同作用，死亡节点可能会被重新激活。
 
 **LeakyReLU** 可以有效应对上述缺点。

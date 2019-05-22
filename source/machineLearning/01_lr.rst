@@ -13,14 +13,14 @@ Logistic Regression
 
 .. math::
 
-  \mathcal{l}_\theta = -\frac{1}{m} \sum_{i=1}^m y^{(i)}log\  h_\theta(\mathbf{x}^{(i)}) + (1 - y^{(i)})log(1 - h_\theta(\mathbf{x}^{(i)}))
+  \mathcal{l}_\theta = -\frac{1}{m} \sum_{i=1}^m y^{(i)} \log h_\theta(\mathbf{x}^{(i)}) + (1 - y^{(i)}) \log(1 - h_\theta(\mathbf{x}^{(i)}))
 
 虽然使用了sigmoid函数，但该模型仍然是线性分类器，因为即使不经过sigmoid函数也可以得出分类结果（与0比较），sigmoid将其转化为概率。
 
 基本假设
 -----------
 
-1. 数据服从伯努利分布， :math:`y \sim Bernoulli(\phi)`
+1. 数据服从伯努利分布 :math:`y \sim Bernoulli(\phi)`
 
 2. 样例为正例的概率为 :math:`\phi=h_\theta(\mathbf{x})`
 
@@ -64,7 +64,7 @@ Logistic Regression
 
     .. math::
 
-      \theta_j \leftarrow \theta_j + \alpha \frac{1}{m} \sum_{i=1}^m (y^{(i)} - h_\theta(\mathbf{x}^{(i)}))\mathbf{x}_j^{(i)}
+      \theta_j \leftarrow \theta_j + \alpha \times \frac{1}{m} \sum_{i=1}^m (y^{(i)} - h_\theta(\mathbf{x}^{(i)}))\mathbf{x}_j^{(i)}
 
     只与 :math:`y^{(i)},\mathbf{x}^{(i)}` 有关，与 :math:`h_\theta` 的梯度无关。
 

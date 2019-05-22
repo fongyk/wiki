@@ -244,6 +244,53 @@ sort
   如果把自定义的 ``comparator`` 函数封装为类的成员函数，应该定义为 **静态成员函数（static）** 。
 
 
+reverse
+-------------------
+
+::
+
+  #include <algorithm>
+
+  template <class BidirectionalIterator>
+  void reverse (BidirectionalIterator first, BidirectionalIterator last);
+
+翻转区间 [first,last) 内的元素。适用于 vector、string 以及 静态数组、动态数组等。
+
+.. container:: toggle
+
+  .. container:: header
+
+    :math:`\color{darkgreen}{Example}`
+
+  .. code-block:: cpp
+    :linenos:
+
+    #include <iostream>     // std::cout
+    #include <algorithm>    // std::reverse
+    #include <numeric>      // std::iota
+    #include <vector>       // std::vector
+
+    int main () {
+      std::vector<int> myvector;
+
+      // set some values:
+      myvector.resize(9);
+      std::iota(myvector.begin(), myvector.end(), 1);   // 1 2 3 4 5 6 7 8 9
+
+      std::reverse(myvector.begin(),myvector.end());    // 9 8 7 6 5 4 3 2 1
+
+      // print out content:
+      std::cout << "myvector contains:";
+      for (std::vector<int>::iterator it=myvector.begin(); it!=myvector.end(); ++it)
+        std::cout << ' ' << *it;
+      std::cout << '\n';
+
+      return 0;
+    }
+
+|
+
+
 min\_element，max\_element，minmax\_element
 --------------------------------------------------------
 ::
@@ -653,6 +700,8 @@ memset
   http://www.cplusplus.com/reference/algorithm/for_each
 
   http://www.cplusplus.com/reference/algorithm/sort
+
+  http://www.cplusplus.com/reference/algorithm/reverse
 
   http://www.cplusplus.com/reference/algorithm/min_element
 

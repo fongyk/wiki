@@ -323,8 +323,14 @@
 </li>
 <li><p class="first">尾部删除：pop_back()</p>
 </li>
-<li><p class="first">申请空间：至少能容纳n个元素。</p>
+<li><p class="first">申请空间：至少能容纳n个元素（capcity()为n）。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">reserve</span> <span class="p">(</span><span class="n">size_type</span> <span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">改变大小：将元素个数变为n。如果指定val且n大于原来的size，则使用val填充新元素，原来的元素不变；如果n小于原来的size，则丢弃尾部元素。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">resize</span> <span class="p">(</span><span class="n">size_type</span> <span class="n">n</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">resize</span> <span class="p">(</span><span class="n">size_type</span> <span class="n">n</span><span class="p">,</span> <span class="k">const</span> <span class="n">value_type</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">);</span>
 </pre></div>
 </div>
 </li>

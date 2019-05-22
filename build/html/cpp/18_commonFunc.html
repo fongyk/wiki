@@ -112,14 +112,15 @@
 <li class="toctree-l3"><a class="reference internal" href="#lower-bound-upper-bound">18.1. lower_bound，upper_bound</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#fill-fill-n-for-each">18.2. fill，fill_n，for_each</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sort">18.3. sort</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#min-element-max-element-minmax-element">18.4. min_element，max_element，minmax_element</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#accumulate">18.5. accumulate</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#partial-sum">18.6. partial_sum</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#iota">18.7. iota</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#inner-product">18.8. inner_product</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#memset">18.9. memset</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">18.10. 附：头文件</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">18.11. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reverse">18.4. reverse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#min-element-max-element-minmax-element">18.5. min_element，max_element，minmax_element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#accumulate">18.6. accumulate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#partial-sum">18.7. partial_sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#iota">18.8. iota</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#inner-product">18.9. inner_product</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#memset">18.10. memset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">18.11. 附：头文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">18.12. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用STL类及容器</a></li>
@@ -534,8 +535,70 @@
 <p class="last">如果把自定义的 <code class="docutils literal notranslate"><span class="pre">comparator</span></code> 函数封装为类的成员函数，应该定义为 <strong>静态成员函数（static）</strong> 。</p>
 </div>
 </div>
+<div class="section" id="reverse">
+<h2>18.4. reverse<a class="headerlink" href="#reverse" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">BidirectionalIterator</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">reverse</span> <span class="p">(</span><span class="n">BidirectionalIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">BidirectionalIterator</span> <span class="n">last</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>翻转区间 [first,last) 内的元素。适用于 vector、string 以及 静态数组、动态数组等。</p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Example}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;     // std::cout</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;    // std::reverse</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;numeric&gt;      // std::iota</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;       // std::vector</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">myvector</span><span class="p">;</span>
+
+  <span class="c1">// set some values:</span>
+  <span class="n">myvector</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">iota</span><span class="p">(</span><span class="n">myvector</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">myvector</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">1</span><span class="p">);</span>   <span class="c1">// 1 2 3 4 5 6 7 8 9</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">reverse</span><span class="p">(</span><span class="n">myvector</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">myvector</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>    <span class="c1">// 9 8 7 6 5 4 3 2 1</span>
+
+  <span class="c1">// print out content:</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;myvector contains:&quot;</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">it</span><span class="o">=</span><span class="n">myvector</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">it</span><span class="o">!=</span><span class="n">myvector</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="o">++</span><span class="n">it</span><span class="p">)</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">it</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
 <div class="section" id="min-element-max-element-minmax-element">
-<h2>18.4. min_element，max_element，minmax_element<a class="headerlink" href="#min-element-max-element-minmax-element" title="Permalink to this headline">¶</a></h2>
+<h2>18.5. min_element，max_element，minmax_element<a class="headerlink" href="#min-element-max-element-minmax-element" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
@@ -604,7 +667,7 @@
 </div>
 </div>
 <div class="section" id="accumulate">
-<h2>18.5. accumulate<a class="headerlink" href="#accumulate" title="Permalink to this headline">¶</a></h2>
+<h2>18.6. accumulate<a class="headerlink" href="#accumulate" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;numeric&gt;</span><span class="cp"></span>
 
 <span class="c1">// sum</span>
@@ -695,7 +758,7 @@
 </div>
 </div>
 <div class="section" id="partial-sum">
-<h2>18.6. partial_sum<a class="headerlink" href="#partial-sum" title="Permalink to this headline">¶</a></h2>
+<h2>18.7. partial_sum<a class="headerlink" href="#partial-sum" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;numeric&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
@@ -790,7 +853,7 @@
 </div>
 </div>
 <div class="section" id="iota">
-<h2>18.7. iota<a class="headerlink" href="#iota" title="Permalink to this headline">¶</a></h2>
+<h2>18.8. iota<a class="headerlink" href="#iota" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;numeric&gt;</span><span class="cp"></span>
 
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">ForwardIterator</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
@@ -836,7 +899,7 @@
 </div>
 </div>
 <div class="section" id="inner-product">
-<h2>18.8. inner_product<a class="headerlink" href="#inner-product" title="Permalink to this headline">¶</a></h2>
+<h2>18.9. inner_product<a class="headerlink" href="#inner-product" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;numeric&gt;</span><span class="cp"></span>
 
 <span class="c1">// sum/multiply</span>
@@ -928,7 +991,7 @@
 </div>
 </div>
 <div class="section" id="memset">
-<h2>18.9. memset<a class="headerlink" href="#memset" title="Permalink to this headline">¶</a></h2>
+<h2>18.10. memset<a class="headerlink" href="#memset" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp"></span>
 
 <span class="kt">void</span> <span class="o">*</span> <span class="nf">memset</span> <span class="p">(</span> <span class="kt">void</span> <span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">num</span> <span class="p">);</span>
@@ -984,7 +1047,7 @@
 </div>
 </div>
 <div class="section" id="id2">
-<h2>18.10. 附：头文件<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>18.11. 附：头文件<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">cmath</span></code><ul>
 <li>pow()</li>
@@ -1026,7 +1089,7 @@
 </ul>
 </div>
 <div class="section" id="id3">
-<h2>18.11. 参考资料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>18.12. 参考资料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>C++ reference</li>
 </ol>
@@ -1036,6 +1099,7 @@
 <p><a class="reference external" href="http://www.cplusplus.com/reference/algorithm/fill">http://www.cplusplus.com/reference/algorithm/fill</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/algorithm/for_each">http://www.cplusplus.com/reference/algorithm/for_each</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/algorithm/sort">http://www.cplusplus.com/reference/algorithm/sort</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/algorithm/reverse">http://www.cplusplus.com/reference/algorithm/reverse</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/algorithm/min_element">http://www.cplusplus.com/reference/algorithm/min_element</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/numeric/accumulate">http://www.cplusplus.com/reference/numeric/accumulate</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/numeric/partial_sum">http://www.cplusplus.com/reference/numeric/partial_sum</a></p>

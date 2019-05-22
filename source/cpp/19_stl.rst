@@ -100,12 +100,18 @@ vector
 
 
 - 尾部删除：pop_back()
-- 申请空间：至少能容纳n个元素。
+- 申请空间：至少能容纳n个元素（capcity()为n）。
 
   ::
 
     void reserve (size_type n)
 
+- 改变大小：将元素个数变为n。如果指定val且n大于原来的size，则使用val填充新元素，原来的元素不变；如果n小于原来的size，则丢弃尾部元素。
+
+  ::
+
+    void resize (size_type n);
+    void resize (size_type n, const value_type& val);
 
 - 赋值
 

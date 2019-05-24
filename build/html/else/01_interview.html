@@ -544,7 +544,7 @@
         <span class="k">return</span> <span class="n">r</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="c1">// T(n) = 2T(n/2) + O(n)，时间复杂度 O(N)</span>
+    <span class="c1">// T(n) = T(n/2) + O(n)，时间复杂度 O(N)</span>
     <span class="kt">int</span> <span class="n">quicksort</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">partition</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
@@ -1304,9 +1304,13 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 11
 12
 13
-14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span>
+<span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-    <span class="kt">int</span> <span class="n">getSum</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">getSum</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+    <span class="p">{</span>
         <span class="kt">int</span> <span class="n">sum</span><span class="p">,</span> <span class="n">carry</span><span class="p">;</span>
         <span class="k">do</span>
         <span class="p">{</span>

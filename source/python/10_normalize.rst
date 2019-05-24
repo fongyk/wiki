@@ -48,6 +48,48 @@ torch.nn.functional.normalize
   0.7071  0.7071  0.4472
   [torch.FloatTensor of size 2x3]
 
+
+k-means 实现
+-------------------
+
+.. code-block:: python
+  :linenos:
+
+  import numpy as np
+
+  ## feature initialization
+  np.random.seed(1)
+  n = 10000
+  d = 3
+  K = 50
+  data = np.random.randn(n, d) ## n x d
+
+  ## feature  normalization
+  data = data / np.tile(np.linalg.norm(data, axis=1, keepdims=True), (1, data.shape[1]))
+
+  ## center initialization
+  center = data[np.random.permutation(n)[0:K]]
+
+  itr = 0
+  ## loop
+  while itr < 20:
+      itr += 1
+      ## quantization
+      similarity = np.dot(data, center.T)
+      quan_id = np.argsort(-similarity, axis=1)[:, 0]
+
+      ## update center
+      new_error = 0.0
+      for c in range(K):
+        data_c = data[quan_id == c]
+        if data_c.shape[0] != 0:
+            center[c] = np.mean(data_c, axis=0)
+        new_error += np.sum((data_c - center[c])**2)
+
+      if itr > 1 and abs(1 - new_error/old_error) < 1e-3:
+          break
+      old_error = new_error
+
 参考资料
 --------------
 

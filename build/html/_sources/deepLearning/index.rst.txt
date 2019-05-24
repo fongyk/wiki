@@ -13,3 +13,4 @@
     06_cuda.rst
     07_backprop.rst
     08_optimizer.rst
+    09_addModule.rst

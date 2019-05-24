@@ -238,7 +238,7 @@
               return r;
           }
 
-          // T(n) = 2T(n/2) + O(n)，时间复杂度 O(N)
+          // T(n) = T(n/2) + O(n)，时间复杂度 O(N)
           int quicksort(vector<int>& nums, int a, int b, int k)
           {
               int p = partition(nums, a, b);
@@ -742,9 +742,11 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
     .. code-block:: cpp
       :linenos:
 
-      class Solution {
+      class Solution
+      {
       public:
-          int getSum(int a, int b) {
+          int getSum(int a, int b)
+          {
               int sum, carry;
               do
               {

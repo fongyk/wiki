@@ -1384,6 +1384,140 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       }
 
 
+33. [LeetCode] Divide Two Integers 整数除法。Hint：先取绝对值，做正整数之间的除法；防止溢出。
+
+  https://leetcode.com/problems/divide-two-integers/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Show/Hide\ Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution
+      {
+      public:
+          int divide(int dividend, int divisor)
+          {
+              if(dividend == INT_MIN && divisor == -1) return INT_MAX; // 越界则输出最大值
+              if(dividend == INT_MIN && divisor == 1) return INT_MIN;
+              if(divisor == INT_MIN && dividend == INT_MIN) return 1; // 枚举分子为最小整数时的情形
+              if(divisor == INT_MIN) return 0;
+
+              bool sign = (dividend>0) ^ (divisor>0) ? false : true;
+
+              int res = 0;
+
+              bool max_flow = false;
+              if(dividend == INT_MIN)
+              {
+                  dividend = abs(1 + INT_MIN); // 防止取绝对值之后溢出
+                  max_flow = true;
+              }
+              else dividend = abs(dividend);
+              divisor = abs(divisor);
+
+              while(dividend >= divisor)
+              {
+                  int diff = divisor;
+                  int n = 1;
+                  while(diff <= (dividend >> 1))
+                  {
+                      diff <<= 1;
+                      n <<= 1;
+                  }
+                  dividend -= diff;
+                  res += n;
+              }
+              if(max_flow && dividend == divisor-1) res += 1;
+
+              return sign? res : -res;
+          }
+      };
+
+
+34. [LeetCode] Fraction to Recurring Decimal 循环小数。Hint：小数除法：余数乘以10再求余；如果余数出现重复，则说明是循环小数。
+
+  https://leetcode.com/problems/fraction-to-recurring-decimal/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Show/Hide\ Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution
+      {
+      public:
+          string fractionToDecimal(int numerator, int denominator)
+          {
+              if(numerator == 0 || denominator == 0) return "0";
+              int sign_num = numerator > 0? 1:-1;
+              int sign_den = denominator > 0? 1:-1;
+
+              long long num = abs((long long)numerator);
+              long long den = abs((long long)denominator);
+
+              long long integer = num / den;
+              long long rem = num % den;
+
+              string int_part = to_string(integer);
+              if(rem) int_part += ".";
+
+              string frac_part = "";
+              unordered_map<long long, int> mp;
+              int idx = 0;
+
+              while(rem)
+              {
+                  if(mp.find(rem) != mp.end()) // 余数重复
+                  {
+                      frac_part.insert(mp[rem], "(");
+                      frac_part += ")";
+                      break;
+                  }
+                  mp[rem] = idx ++;
+                  frac_part += to_string((10*rem) / den);
+                  rem = (10*rem) % den;
+              }
+
+              string res = "";
+              if(sign_num * sign_den < 0) res += "-";
+              res += int_part + frac_part;
+              return res;
+          }
+      };
+
+
+35. 正整数质因数分解。
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Show/Hide\ Code}`
+
+    .. code-block:: python
+      :linenos:
+
+      ## 不断除以 2 之后，2 的倍数都不可能再整除 n；3 同理。
+      ## 思想类似于：找到 n 以内的素数，即把素数的倍数都排除。
+      def decomp(n):
+          prime = 2
+          while n >= prime:
+              if n % prime == 0:
+                  print prime
+                  n /= prime
+              else:
+                  prime += 1
+
+
 
 C++
 ------------

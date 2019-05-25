@@ -292,7 +292,8 @@
 30
 31
 32
-33</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+33
+34</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
 <span class="c1">## feature initialization</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -318,9 +319,10 @@
     <span class="c1">## update center</span>
     <span class="n">new_error</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
-        <span class="n">data_c</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">quan_id</span> <span class="o">==</span> <span class="n">c</span><span class="p">]</span>
-        <span class="n">center</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data_c</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">new_error</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">data_c</span> <span class="o">-</span> <span class="n">center</span><span class="p">[</span><span class="n">c</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+      <span class="n">data_c</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">quan_id</span> <span class="o">==</span> <span class="n">c</span><span class="p">]</span>
+      <span class="k">if</span> <span class="n">data_c</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+          <span class="n">center</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data_c</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+      <span class="n">new_error</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">data_c</span> <span class="o">-</span> <span class="n">center</span><span class="p">[</span><span class="n">c</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">itr</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="nb">abs</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">new_error</span><span class="o">/</span><span class="n">old_error</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-3</span><span class="p">:</span>
         <span class="k">break</span>

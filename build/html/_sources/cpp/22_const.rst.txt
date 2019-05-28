@@ -50,7 +50,8 @@ const形参和实参
   void fcn(const int i) {/* */}
   void fcn(int i) {/* */} // 重复定义了 fcn
 
-上例中其实重复定义了fcn，而不是重载。调用fcn时，既可以传入const int对象，也可以传入int对象。反之，如果参数类型是int，不能传入const int对象。
+上例中其实重复定义了fcn，而不是重载。调用fcn时，既可以传入const int对象，也可以传入int对象。
+反之，如果参数类型是int，也可传入const int对象（传值调用，函数拷贝了实参）。
 
 
 const成员函数

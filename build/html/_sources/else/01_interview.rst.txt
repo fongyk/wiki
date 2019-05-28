@@ -1518,6 +1518,63 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
                   prime += 1
 
 
+36. 旋转数组查找最小值。Hint：采用二分查找的思路。
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Show/Hide\ Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // preliminary: binary search，时间复杂度 O(logN)
+      template<class T>
+      int binarySearch(T *arr, int n, const T& target)
+      {
+        if (arr == nullptr || n <= 0) return -1;
+        int low = 0;
+        int high = n - 1;
+        while (low <= high)
+        {
+          int mid = low + (high - low) / 2; // mid = (low + high)/2 可能导致溢出
+          if (arr[mid] == target) return mid;
+          if (arr[mid] < target) low = mid + 1;
+          else high = mid - 1;
+        }
+        return -1;
+      }
+
+      // 旋转数组最小值
+      // 第一个指针总指向前面递增数组的元素
+      // 第二个指针总指向后面递增数组的元素
+      // 最终两个指针指向相邻元素：第一个指针指向前面递增数组的最后一个元素，第二个指针指向后面递增数组的第一个元素（也就是最小元素）
+      template<class T>
+      int findRotateMin(T* arr, int n)
+      {
+        if (arr == nullptr || n <= 0) return -1;
+        int low = 0;
+        int high = n - 1;
+        while (arr[low] >= arr[high])
+        {
+          if (high - 1 == low) return high;
+          
+          int mid = low + (high - low) / 2;
+
+          // 如果这三个元素相等，只能在区间 [low, high] 内顺序查找
+          if (arr[low] == arr[mid] && arr[mid] == arr[high]) return (min_element(arr + low, arr + high + 1) - arr);
+
+          if (arr[mid] >= arr[low]) low = mid;
+          else high = mid;
+        }
+        // 如果数组本身是有序的，即 arr[0] < arr[n-1]，则第一个元素就是最小值
+        return 0;
+      }
+
+
+
+
 
 C++
 ------------

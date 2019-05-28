@@ -4,7 +4,7 @@
 牛顿方法（Newton's method, Newton-Raphson method）可以有效地近似实值函数的根。
 
 
-一阶
+一维
 ----------
 
 .. math::
@@ -16,7 +16,7 @@
   :align: center
 
 
-高阶
+高维
 ------------
 
 .. math::
@@ -64,13 +64,13 @@
 
 - 最大/最小化问题
 
-  - 一阶
+  - 一维
 
     .. math::
 
         x_{n+1} = x_n - \frac{f^{\prime}(x_n)}{f^{\prime\prime}(x_n)}
 
-  - 高阶
+  - 高维
 
     .. math::
 

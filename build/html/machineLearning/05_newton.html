@@ -100,8 +100,8 @@
 <li class="toctree-l2"><a class="reference internal" href="03_pca.html">3. 主成分分析</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_derivative.html">4. 常用矩阵求导公式</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">5. 牛顿方法</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">5.1. 一阶</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">5.2. 高阶</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">5.1. 一维</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">5.2. 高维</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id4">5.3. 收敛问题</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id5">5.4. 应用</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id6">5.5. 参考资料</a></li>
@@ -184,13 +184,13 @@
 <h1>5. 牛顿方法<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>牛顿方法（Newton’s method, Newton-Raphson method）可以有效地近似实值函数的根。</p>
 <div class="section" id="id2">
-<h2>5.1. 一阶<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>5.1. 一维<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <div class="math notranslate nohighlight">
 \[x_{n+1} = \  x_n - \frac{f(x_n)}{f^{\prime}(x_n)}\]</div>
 <a class="reference internal image-reference" href="../_images/05_newton.gif"><img alt="../_images/05_newton.gif" class="align-center" src="../_images/05_newton.gif" style="width: 420px;" /></a>
 </div>
 <div class="section" id="id3">
-<h2>5.2. 高阶<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>5.2. 高维<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <div class="math notranslate nohighlight">
 \[\begin{split}x_{n+1} &amp; = &amp; \  x_n - J^{-1} F(x_n). \\
 x &amp; \in &amp; \ \mathbb{R}^k,\\
@@ -231,11 +231,11 @@ x_1 &amp; = &amp;\  1, x_2 = 0, x_3 = 1, ... .\end{split}\]</div>
 <ul>
 <li><p class="first">最大/最小化问题</p>
 <ul>
-<li><p class="first">一阶</p>
+<li><p class="first">一维</p>
 <div class="math notranslate nohighlight">
 \[x_{n+1} = x_n - \frac{f^{\prime}(x_n)}{f^{\prime\prime}(x_n)}\]</div>
 </li>
-<li><p class="first">高阶</p>
+<li><p class="first">高维</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}x_{n+1} &amp; = &amp;\ x_n - H^{-1} \nabla F(x),\\
 H_{ij} &amp; = &amp;\ \frac{\partial^2 F}{\partial x_i \ \partial x_j}. [\text{Hessian matrix}]\end{split}\]</div>

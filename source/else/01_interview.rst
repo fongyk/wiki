@@ -1518,7 +1518,9 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
                   prime += 1
 
 
-36. 旋转数组查找最小值。Hint：采用二分查找的思路。
+36. 旋转数组查找。Hint：采用二分查找的思路。
+
+  - 二分查找
 
   .. container:: toggle
 
@@ -1546,7 +1548,20 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
         return -1;
       }
 
-      // 旋转数组最小值
+  - 查找旋转数组最小值（含重复元素）
+
+      https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Show/Hide\ Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 方法一
       // 第一个指针总指向前面递增数组的元素
       // 第二个指针总指向后面递增数组的元素
       // 最终两个指针指向相邻元素：第一个指针指向前面递增数组的最后一个元素，第二个指针指向后面递增数组的第一个元素（也就是最小元素）
@@ -1559,19 +1574,130 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
         while (arr[low] >= arr[high])
         {
           if (high - 1 == low) return high;
-          
+
           int mid = low + (high - low) / 2;
 
-          // 如果这三个元素相等，只能在区间 [low, high] 内顺序查找
+          // 如果这三个元素相等，则在区间 [low, high] 内顺序查找
           if (arr[low] == arr[mid] && arr[mid] == arr[high]) return (min_element(arr + low, arr + high + 1) - arr);
 
-          if (arr[mid] >= arr[low]) low = mid;
-          else high = mid;
+          if (arr[mid] <= arr[high]) high = mid;
+          else low = mid;
         }
         // 如果数组本身是有序的，即 arr[0] < arr[n-1]，则第一个元素就是最小值
         return 0;
       }
 
+      // 方法二
+      // 如果 arr[mid] < arr[mid-1]，则 arr[mid] 是最小值
+      // 每次比较 nums[mid] 与 nums[high]，如果两者相等，则 --high
+      template<class T>
+      int findRotateMin(T* arr, int n)
+      {
+        if (arr == nullptr || n <= 0) return -1;
+        int low = 0;
+        int high = n - 1;
+        while (low <= high)
+        {
+          int mid = low + (high - low) / 2;
+          if (mid > 0 && arr[mid] < arr[mid-1]) return mid;
+
+          if (arr[mid] == arr[high]) --high;
+
+          else if (arr[mid] < arr[high]) high = mid - 1;
+
+          else low = mid + 1;
+        }
+        return 0;
+      }
+
+  - 在旋转数组查找目标值（无重复元素）
+
+      https://leetcode.com/problems/search-in-rotated-sorted-array/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Show/Hide\ Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 每次比较 nums[mid] 与 nums[high]
+      class Solution
+      {
+      public:
+          int search(vector<int>& nums, int target)
+          {
+              int n = nums.size();
+              if(n == 0) return -1;
+              int low = 0;
+              int high = n - 1;
+              while(low <= high)
+              {
+                  int mid = low + (high - low) / 2;
+                  if(nums[mid] == target) return mid;
+
+                  if(nums[mid] < nums[high]) // 注：只有当 low == high，才会出现： mid == high，nums[mid] == nums[high]
+                  {
+                      if(nums[mid] < target && target <= nums[high]) low = mid + 1;
+                      else high = mid - 1;
+                  }
+                  else
+                  {
+                      if(nums[mid] > target && target >= nums[low]) high = mid - 1;
+                      else low = mid + 1;
+                  }
+              }
+              return -1;
+          }
+      };
+
+  - 在旋转数组查找目标值（含重复元素）
+
+      https://leetcode.com/problems/search-in-rotated-sorted-array-ii/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Show/Hide\ Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // https://www.cnblogs.com/grandyang/p/4325840.html
+      // 相对于上例，需要增加一个判断：如果 nums[mid] 与 nums[high] 相等，则 --high
+      class Solution
+      {
+      public:
+          bool search(vector<int>& nums, int target)
+          {
+              int n = nums.size();
+              if(n == 0) return false;
+              int low = 0;
+              int high = n - 1;
+              while(low <= high)
+              {
+                  int mid = low + (high - low) / 2;
+                  if(nums[mid] == target) return true;
+
+                  if(nums[mid] == nums[high]) -- high; // 增加这个判断。注：只有当 low == high，才会出现： mid == high 。
+
+                  else if(nums[mid] < nums[high])
+                  {
+                      if(nums[mid] < target && target <= nums[high]) low = mid + 1;
+                      else high = mid - 1;
+                  }
+                  else
+                  {
+                      if(nums[mid] > target && target >= nums[low]) high = mid - 1;
+                      else low = mid + 1;
+                  }
+              }
+              return false;
+          }
+      };
 
 
 

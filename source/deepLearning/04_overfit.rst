@@ -39,3 +39,19 @@
     - L1正则化（元素绝对值之和， Lasso regression），是L0范数的最优凸近似，使权值稀疏。权值稀疏的好处：特征选择 && 可解释性。
 
     - L2正则化（元素平方和，Ridge regression / weight dacay），使权值分布均匀且值较小。
+
+
+附：正则化
+----------------
+
+.. math::
+
+    L_q\text{-norm}: \ \| w \|^q_q = \sum_j | w_j |^q.
+
+.. image:: ./04_norm.jpg
+  :width: 600px
+  :align: center
+
+.. image:: ./04_norm2.jpg
+  :width: 400px
+  :align: center

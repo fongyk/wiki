@@ -25,6 +25,9 @@ Tech
 
     https://blog.lizebang.top/2018/02/git-clone-slow/
 
+- 在windows下安装Jupyter Notebook的安装和使用
+
+    https://www.cnblogs.com/gengyi/p/9769471.html
 
 
 问题

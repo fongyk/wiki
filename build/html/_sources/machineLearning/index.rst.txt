@@ -9,3 +9,4 @@
     02_svm.rst
     03_pca.rst
     04_derivative.rst
+    05_newton.rst

@@ -183,9 +183,12 @@
             
   <div class="section" id="id1">
 <h1>2. 支持向量机<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>样本空间中任意点到超平面的距离为：</p>
+<p>样本空间中任意点到超平面的距离（几何间隔，geometric margin）为：</p>
 <div class="math notranslate nohighlight">
-\[r = \frac{|w^{\top} x + b|}{\| w \|}\]</div>
+\[r = \frac{|w^{\top} x + b|}{\| w \|}.\]</div>
+<p>函数间隔（functional margin）：</p>
+<div class="math notranslate nohighlight">
+\[y(w^{\top} x + b).\]</div>
 <p>原始问题：</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\underset{w,b}{min} &amp; &amp;\  \frac{1}{2} \left \| w \right \|^2 \\

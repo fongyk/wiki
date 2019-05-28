@@ -1,11 +1,17 @@
 支持向量机
 ================
 
-样本空间中任意点到超平面的距离为：
+样本空间中任意点到超平面的距离（几何间隔，geometric margin）为：
 
 .. math::
 
-  r = \frac{|w^{\top} x + b|}{\| w \|}
+  r = \frac{|w^{\top} x + b|}{\| w \|}.
+
+函数间隔（functional margin）：
+
+.. math::
+
+  y(w^{\top} x + b).
 
 原始问题：
 

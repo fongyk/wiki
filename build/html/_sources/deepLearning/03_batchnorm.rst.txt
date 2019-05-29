@@ -40,12 +40,16 @@ BN回滚
 BN统计均值、方差与batch size有关，batch size太小会导致性能变差。而某些任务受内存限制，batch size难以设置很大，因此BN作用难以显现。
 这时候出现了Group Normalization。
 
+.. image:: ./03_groupNorm.jpg
+  :width: 700px
+  :align: center
+
 
 参考资料
 -----------
 
 1. Batch Normalization
-  
+
   https://arxiv.org/pdf/1502.03167.pdf
 
 2. Group Normalization

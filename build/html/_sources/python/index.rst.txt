@@ -21,3 +21,4 @@ Python
     14_classFunc.rst
     15_memManage.rst
     16_newInit.rst
+    17_pip.rst

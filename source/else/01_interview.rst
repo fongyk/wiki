@@ -1700,6 +1700,123 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
+37. [LeetCode] Maximum Gap 最大间隔。Hint：方法一，普通排序，逐个比较；方法二，桶排序。将 :math:`n` 个数放到 :math:`n+1` 个桶中，最小值放第一个桶，
+最大值放最后一个桶，每个桶的大小为 :math:`\frac{max-min}{n}` 。根据鸽巢原理，至少存在一个桶为空。最大间隔必然出现在空桶两侧，且只与左侧桶的最大值、
+右侧桶的最小值有关。（事实上，可以将 :math:`n` 个数放到 :math:`n` 个桶中，如果没有空桶，则刚好每个桶有且仅有一个数，最大间隔出现在相邻桶中；如果某个桶有2个数以上，
+说明存在有空桶，最大间隔出现在非空的相邻桶中。总之，最大间隔不会出现在一个桶中。）
+
+  https://leetcode.com/problems/maximum-gap/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Show/Hide\ Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 建立 n 个桶
+      class Solution
+      {
+      public:
+          int maximumGap(vector<int>& nums)
+          {
+              size_t n = nums.size();
+              if(n < 2) return 0;
+
+              int MIN = *min_element(nums.begin(), nums.end());
+              int MAX = *max_element(nums.begin(), nums.end());
+              if(MIN == MAX) return 0;
+
+              vector<vector<int>> bucket(n, vector<int>{});
+
+              double delta = (MAX - MIN) / double(n - 1);
+              for(size_t k = 0; k < n; ++k)
+              {
+                  int idx = (nums[k] - MIN) / delta;
+                  bucket[idx].push_back(nums[k]);
+              }
+
+              int gap = 0;
+              size_t pre = 0;
+              size_t curr = 1;
+              while(curr < bucket.size())
+              {
+                  if(bucket[curr].size() == 0) curr ++;
+                  else
+                  {
+                      if(curr - pre >= 1)
+                      {
+                          int pre_max = *max_element(bucket[pre].begin(), bucket[pre].end());
+                          int curr_min = *min_element(bucket[curr].begin(), bucket[curr].end());
+                          gap = max(gap, curr_min - pre_max);
+                      }
+                      pre = curr;
+                      curr ++;
+                  }
+              }
+              return gap;
+          }
+      };
+
+
+38. 耗时最短路径，某些顶点有自行车，骑上自行车之后耗时减半。Hint：广度优先遍历，使用优先队列/堆，最早到达终点的一定是耗时最短路径。
+
+  https://www.nowcoder.com/practice/7689b595f3eb419b9e7816c4f45a400d?tpId=90&tqId=30852&tPage=4&rp=4&ru=/ta/2018test&qru=/ta/2018test/question-ranking
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Show/Hide\ Code}`
+
+    .. code-block:: python
+      :linenos:
+
+      import sys
+      import heapq as hq
+
+      n, m = map(int, sys.stdin.readline().strip().split())
+      edges = [[] for _ in range(n)]
+      for _ in range(m):
+          begin, end, cost = map(int, sys.stdin.readline().strip().split())
+          begin -= 1
+          end -= 1
+          edges[begin].append((end, cost)) ## 无向边
+          edges[end].append((begin, cost))
+      have_bike = [False for _ in range(n)]
+      k = int(sys.stdin.readline().strip())
+      for _ in range(k):
+          v = int(sys.stdin.readline().strip())
+          v -= 1
+          have_bike[v] = True
+
+      INF = float('inf') ## 无穷大
+      ## 根据当前顶点是否有自行车，需要定义两个全局数组，存储当前最短耗时
+      global_cost = {False: [INF for _ in range(n)], True: [INF for _ in range(n)]}
+      global_cost[have_bike[0]][0] = 0
+      ans = -1
+      h = []
+      ## 堆元素：(cost, v, have_bike)
+      hq.heappush(h, (0, 0, have_bike[0]))
+      while len(h) > 0:
+          v_cost, v, v_bike = hq.heappop(h)
+          if v == n-1:
+              ans = v_cost
+              break
+          for u, uv_cost in edges[v]:
+              if v_bike:
+                  uv_cost /= 2
+              u_cost = v_cost + uv_cost
+              u_bike = have_bike[u] or v_bike
+
+              if u_cost >= global_cost[u_bike][u]:
+                  continue
+              global_cost[u_bike][u] = u_cost
+              hq.heappush(h, (u_cost, u, u_bike))
+
+      print ans
 
 
 C++

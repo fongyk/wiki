@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Linux/Shell" href="../linux/index.html" />
+    <link rel="next" title="12. 逻辑运算与布尔测试" href="12_bool.html" />
     <link rel="prev" title="10. 归一化" href="10_normalize.html" /> 
 
   
@@ -120,6 +120,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#id9">11.5. 参考资料</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="12_bool.html">12. 逻辑运算与布尔测试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_name.html">13. 命名规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_classFunc.html">14. 类变量与类方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_memManage.html">15. 内存管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_newInit.html">16. __new__ 和 __init__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_pip.html">17. pip</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
@@ -342,6 +348,7 @@ maxsize指明了队列中能存放的数据个数的上限。
 <ul>
 <li><p class="first"><strong>heappush()</strong></p>
 <p>基于空列表[]，使用 <code class="docutils literal notranslate"><span class="pre">heappush()</span></code> 把元素逐个插入堆中。 <code class="docutils literal notranslate"><span class="pre">heappop(h)</span></code> 弹出并返回堆顶元素。h[0]是最小值。</p>
+<p>如果插入元素是元组（tuple），则元组的第一项自动成为优先级，值越小，优先级越高。堆顶元素优先级最高，值最小。</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -622,7 +629,7 @@ maxsize指明了队列中能存放的数据个数的上限。
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../linux/index.html" class="btn btn-neutral float-right" title="Linux/Shell" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="12_bool.html" class="btn btn-neutral float-right" title="12. 逻辑运算与布尔测试" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="10_normalize.html" class="btn btn-neutral" title="10. 归一化" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

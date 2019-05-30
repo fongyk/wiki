@@ -88,6 +88,12 @@ pip
     python -m pip <pip arguments>
     py -m pip <pip arguments> ## Windows
 
+  使用清华源加速安装::
+
+    pip install <包名> -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+
+
 参考资料
 --------------
 

@@ -17,15 +17,31 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'alpha',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -33,21 +49,16 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="17. 枚举类型与共用体" href="17_enumUnion.html" />
     <link rel="prev" title="15. public、protected、private" href="15_classAccess.html" /> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -251,8 +262,7 @@
 20
 21
 22
-23
-24</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// header.h</span>
+23</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// header.h</span>
 <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
       <span class="k">static</span> <span class="kt">void</span> <span class="n">print</span><span class="p">()</span>
@@ -271,8 +281,7 @@
                                                     <span class="p">{</span><span class="sc">&#39;3&#39;</span><span class="p">,</span> <span class="p">{</span><span class="sc">&#39;d&#39;</span><span class="p">,</span> <span class="sc">&#39;e&#39;</span><span class="p">,</span> <span class="sc">&#39;f&#39;</span><span class="p">}},</span>
                                                     <span class="p">{</span><span class="sc">&#39;4&#39;</span><span class="p">,</span> <span class="p">{</span><span class="sc">&#39;g&#39;</span><span class="p">,</span> <span class="sc">&#39;h&#39;</span><span class="p">,</span> <span class="sc">&#39;i&#39;</span><span class="p">}}};</span> <span class="c1">// mapping 的定义</span>
 
-<span class="cm">/* 注：const map只能通过迭代器 const_iterator 访问元素（it-&gt;first, it-&gt;second）</span>
-<span class="cm"> ，不能通过下标[]的方式访问。*/</span>
+<span class="c1">// 注：const map只能通过迭代器 const_iterator 访问元素（it-&gt;first, it-&gt;second），不能通过下标[]的方式访问。</span>
 
 <span class="c1">// 对应类的 static const int/char/bool 成员常量，如果不取他们的地址，则可以直接声明并使用，而无需提供以下的定义式。</span>
 <span class="k">const</span> <span class="kt">int</span> <span class="n">Solution</span><span class="o">::</span> <span class="n">var</span><span class="p">;</span> <span class="c1">// var 的定义。由于 常量var 在类内声明时已经获得了初始值，因此定义时不可以再设初始值。</span>
@@ -282,6 +291,11 @@
 <p class="first admonition-title">Note</p>
 <p><strong>初始化</strong> ：变量还没有值，现在赋予它一个值。</p>
 <p class="last"><strong>赋值</strong> ：变量已经有一个值，现在擦除它之前的值，赋予一个新的值。</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last"><strong>static const</strong> 只能修饰成员变量，不能修饰成员函数。
+因为常量成员函数（const）拥有一个 <strong>this</strong> 指针，是一个指向常量类类型的常量指针，而静态成员函数（static）没有 <strong>this</strong> 指针。</p>
 </div>
 </div>
 <div class="section" id="id2">
@@ -327,7 +341,7 @@
         <a href="17_enumUnion.html" class="btn btn-neutral float-right" title="17. 枚举类型与共用体" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="15_classAccess.html" class="btn btn-neutral" title="15. public、protected、private" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="15_classAccess.html" class="btn btn-neutral float-left" title="15. public、protected、private" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -336,7 +350,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, fong.
+        &copy; Copyright 2018, fong
 
     </p>
   </div>
@@ -353,36 +367,16 @@
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'alpha',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
+  
 <script type="text/javascript">
     $(document).ready(function() {
      $(".toggle > *").hide();

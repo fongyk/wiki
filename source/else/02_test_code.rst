@@ -230,6 +230,8 @@ command
 
   https://daler.github.io/sphinxdoc-test/includeme.html
 
+  https://github.com/rtfd/sphinx_rtd_theme
+
 6. latex 颜色
 
   http://latexcolor.com/

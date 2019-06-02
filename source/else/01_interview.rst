@@ -25,7 +25,7 @@
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: python
       :linenos:
@@ -74,7 +74,7 @@
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: python
       :linenos:
@@ -153,7 +153,7 @@
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -195,7 +195,7 @@
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -287,7 +287,7 @@
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: python
       :linenos:
@@ -326,7 +326,7 @@
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -369,7 +369,7 @@
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -430,7 +430,7 @@
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -482,7 +482,7 @@
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -538,7 +538,7 @@
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -587,7 +587,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -613,7 +613,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -642,7 +642,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -694,7 +694,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -737,7 +737,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -797,7 +797,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -848,7 +848,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: python
       :linenos:
@@ -866,7 +866,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -925,7 +925,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -1017,7 +1017,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -1060,7 +1060,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -1101,7 +1101,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -1143,7 +1143,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -1170,7 +1170,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -1190,7 +1190,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -1234,7 +1234,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -1278,7 +1278,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -1364,7 +1364,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -1392,7 +1392,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -1447,7 +1447,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -1501,7 +1501,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: python
       :linenos:
@@ -1526,7 +1526,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -1556,7 +1556,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -1618,7 +1618,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -1661,7 +1661,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -1711,7 +1711,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -1769,7 +1769,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
     .. container:: header
 
-      :math:`\color{darkgreen}{Show/Hide\ Code}`
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: python
       :linenos:
@@ -1817,6 +1817,176 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
               hq.heappush(h, (u_cost, u, u_bike))
 
       print ans
+
+
+39. 数组操作模拟大数乘法。Hint：从低位到高位，采用竖式计算，记录所有位的乘积，再将对应位的结果相加，最后进位。假设数组 :math:`a` 和 :math:`b` 从低位到高位存储了两个大数（可能存在小数点），则乘积为 :math:`ans[i+j] = ans[i+j] + a[i] + b[j]` 。
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: python
+      :linenos:
+
+      def preProcess(a):
+          ## input: str
+          ## output: list, l
+          pf = a.find('.')
+          lf = 0
+          if pf != -1:
+              lf = len(a) - 1 - pf ## 小数位数
+              a = a[:pf] + a[pf+1:] ## 去掉小数点
+          a = list(a)
+          a = a[::-1] ## 翻转数组，a[0] 表示最低位
+          return a, lf
+
+      def strMul(a, b):
+          a, la = preProcess(a)
+          b, lb = preProcess(b)
+          lf = la + lb
+
+          ans = [0 for _ in range(len(a) + len(b))]
+          for ia in range(len(a)):
+              for ib in range(len(b)):
+                  ans[ia+ib] += int(a[ia]) * int(b[ib])
+          carry = 0
+          for i in range(len(ans)):
+              tmp = ans[i] + carry
+              ans[i] = tmp % 10
+              carry = tmp / 10
+          ans = ans[::-1] ## 翻转数组
+
+          if lf > 0:
+              ans.insert(len(ans) - lf, '.') ## 插入小数点
+          if ans[0] == 0:
+              ans = ans[1:] ## 最高位是 0 则去掉
+          iz = len(ans)-1
+          while lf > 0 and ans[iz] == 0: ## 去掉小数点末尾的 0
+              iz -= 1
+
+          s = ''
+          for e in ans[:iz+1]:
+              s += str(e)
+
+          return s
+
+
+40. 蓄水池抽样。随机从一个数据流中选取1个或k个数，保证每个数被选中的概率是相同的。数据流的长度 :math:`n` 未知或者是非常大。
+
+  https://blog.csdn.net/huagong_adu/article/details/7619665
+
+  - 随机选择1个数。Hint：在数据流中，依次以概率 :math:`1` 选择第一个数，以概率 :math:`\frac{1}{2}` 选择第二个数（替换已选中的数），...，以此类推，以概率 :math:`\frac{1}{m}` 选择第 m 个数（替换已选中的数）。结束时（遍历完了整个数据流），
+    每个数被选中的概率都是 :math:`\frac{1}{n}` 。证明：第 m 个对象最终被选中的概率 :math:`=` 选择第 m 个数的概率 :math:`\times` 后续所有数都不被选择的概率，即
+
+    .. math::
+
+        P = \frac{1}{m} \times \left( \frac{m}{m+1} \times \frac{m+1}{m+2} \times \cdots \times \frac{n-1}{n} \right) = \frac{1}{n}.
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      #include <iostream>
+      #include <vector>
+      #include <utility> // swap
+      #include <ctime>
+      #include <cstdlib> // rand, srand
+      using namespace std;
+
+      typedef vector<int> VecInt;
+      typedef VecInt::iterator Itr;
+      typedef VecInt::const_iterator CItr;
+
+      // 等概率产生区间 [a, b] 之间的随机数
+      int RandInt(int a, int b)
+      {
+        if (a > b) swap(a, b);
+        return a + rand() % (b - a + 1);
+      }
+
+      bool Sample(const VecInt data, int &result)
+      {
+        if (data.size() <= 0) return false;
+
+        //srand(time(nullptr)); // 设置随机seed
+
+        CItr it = data.begin();
+        result = *it;
+        int m;
+        for (m = 1, it = data.begin() + 1; it != data.end(); ++m, ++it)
+        {
+          int rd = RandInt(0, m); // rd < 1 的概率为 1/(m+1)
+          if (rd < 1) result = *it;
+        }
+        return true;
+      }
+
+
+  - 随机选择k个数。Hint：在数据流中，先把读到的前 k 个数放入“池”中，然后依次以概率 :math:`\frac{k}{k+1}` 选择第 k+1 个数，以概率 :math:`\frac{k}{k+2}` 选择第 k+2 个数，...，
+    以概率 :math:`\frac{k}{m}` 选择第 m 个数（m > k）。如果某个数被选中，则 **随机替换** “池”中的一个数。最终每个数被选中的概率都为  :math:`\frac{k}{n}` 。 证明：
+    第 m 个对象最终被选中的概率 :math:`=` 选择第 m 个数的概率 :math:`\times` （其后元素不被选择的概率 + 其后元素被选择的概率 :math:`\times` 不替换第 m 个数的概率），即
+
+    .. math::
+
+        P & = &\ \frac{k}{m} \times \left[ \left( (1-\frac{k}{m+1}) + \frac{k}{m+1} \times \frac{k-1}{k}  \right) \times \left( (1-\frac{k}{m+2}) + \frac{k}{m+2} \times \frac{k-1}{k}  \right) \times \right. \\
+          &   &\ \quad \left. \cdots \times \left( (1-\frac{k}{n}) + \frac{k}{n} \times \frac{k-1}{k}  \right) \right] \\
+          & = &\ \frac{k}{m} \times \frac{m}{m+1} \times \frac{m+1}{m+2} \times \cdots \times \frac{n-1}{n} \\
+          & = &\ \frac{k}{n}.
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      #include <iostream>
+      #include <vector>
+      #include <utility> // swap
+      #include <ctime>
+      #include <cstdlib> // rand, srand
+      using namespace std;
+
+      typedef vector<int> VecInt;
+      typedef VecInt::iterator Itr;
+      typedef VecInt::const_iterator CItr;
+
+      const int k = 10;
+      int result[k];
+
+      // 等概率产生区间 [a, b] 之间的随机数
+      int RandInt(int a, int b)
+      {
+        if (a > b) swap(a, b);
+        return a + rand() % (b - a + 1);
+      }
+
+      bool Sample(const VecInt data)
+      {
+        if (data.size() < k) return false;
+
+        //srand(time(nullptr)); // 设置随机seed
+
+        CItr it = data.begin();
+        for(int m = 0; m < k; ++m) result[m] = *it++;
+
+        for (int m = k; it != data.end(); ++m, ++it)
+        {
+          int rd = RandInt(0, m);
+          if (rd < k) result[rd] = *it; // rd < k 的概率为 k/(m+1)
+        }
+        return true;
+      }
+
 
 
 C++

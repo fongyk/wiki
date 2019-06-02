@@ -56,8 +56,7 @@ static const
                                                       {'3', {'d', 'e', 'f'}},
                                                       {'4', {'g', 'h', 'i'}}}; // mapping 的定义
 
-  /* 注：const map只能通过迭代器 const_iterator 访问元素（it->first, it->second）
-   ，不能通过下标[]的方式访问。*/
+  // 注：const map只能通过迭代器 const_iterator 访问元素（it->first, it->second），不能通过下标[]的方式访问。
 
   // 对应类的 static const int/char/bool 成员常量，如果不取他们的地址，则可以直接声明并使用，而无需提供以下的定义式。
   const int Solution:: var; // var 的定义。由于 常量var 在类内声明时已经获得了初始值，因此定义时不可以再设初始值。
@@ -68,6 +67,12 @@ static const
   **初始化** ：变量还没有值，现在赋予它一个值。
 
   **赋值** ：变量已经有一个值，现在擦除它之前的值，赋予一个新的值。
+
+.. warning::
+
+  **static const** 只能修饰成员变量，不能修饰成员函数。
+  因为常量成员函数（const）拥有一个 **this** 指针，是一个指向常量类类型的常量指针，而静态成员函数（static）没有 **this** 指针。
+
 
 参考资料
 -------------

@@ -113,7 +113,7 @@
 
   https://blog.csdn.net/haolexiao/article/details/60511164
 
-6. 海量数据处理
+6. 海量数据处理。Hint：哈希方法，把大文件划分成小文件，读进内存依次处理；Bitmap，用一个（或几个）比特位来标记某个元素对应的值。
 
   - 面试题集锦
 
@@ -858,242 +858,15 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           return sum(AB[-c-d] for c in C for d in D)
 
 
-27. 最短路径
 
-  - Bellman-Ford 算法，时间复杂度 :math:`\mathcal{O}(VE)` 。如果不存在负圈（一条回路的代价和为负），那么每一条最短路径都不会经过同一个顶点两次，因此 while 循环最多执行 V-1 次。
-
-  .. container:: toggle
-
-    .. container:: header
-
-      :math:`\color{darkgreen}{Code}`
-
-    .. code-block:: cpp
-      :linenos:
-
-      struct edge {int from, to, cost;};
-
-      edge es[MAX_E];
-
-      int d[MAX_V]; // 最短距离
-      int V, E; // 顶点数，边数
-
-      // 从顶点 s 出发的最短距离（假设不存在负圈）
-      void shortest_path(int s)
-      {
-        fill(d, d+V, INF);
-        d[s] = 0;
-        while(true)
-        {
-          bool update = false;
-          for(int i = 0; i < E; ++i)
-          {
-            edge e = es[i];
-            if(d[e.from] != INF && d[e.to] > d[e.from] + e.cost)
-            {
-              d[e.to] = d[e.from] + e.cost;
-              update = true;
-            }
-          }
-          if(!update) break;
-        }
-      }
-
-      // 检查负圈（如果第 V 次循环还有更新，则表明存在负圈，返回 true）
-      bool find_negative_loop()
-      {
-        fill(d, d+V, 0); // 初始化为 0，防止因为是 d[e.from] == INF 而停止更新
-        for(int i = 0; i < V; ++i)
-        {
-          for(int j = 0; j < E; ++j)
-          {
-            edge e = es[j];
-            if(d[e.to] > d[e.from] + e.cost)
-            {
-              d[e.to] = d[e.from] + e.cost;
-              if(i == V-1) return true;
-            }
-          }
-        }
-        return false;
-      }
-
-
-  - Dijkstra 算法。适合处理没有负边的情形。每一次循环，在尚未确定最短距离的顶点中，d[i] 最小的顶点就是下一个确定的顶点。但是如果存在负边，d[i] 在之后的更新中还会变小，因此算法失效。
-
-  .. container:: toggle
-
-    .. container:: header
-
-      :math:`\color{darkgreen}{Code}`
-
-    .. code-block:: cpp
-      :linenos:
-
-      // 方法一：直接使用邻接矩阵，时间复杂度 O(V^2)
-
-      int cost[MAX_V][MAX_V];
-      int d[MAX_V];
-      bool used[MAX_V];
-      int V;
-
-      void dijkstra(int s)
-      {
-        fill(d, d+V, INF);
-        d[s] = 0;
-        fill(used, used+V, false);
-
-        while(true)
-        {
-          int v = -1;
-          for(int u = 0; u < V; ++u)
-          {
-            if(!used[u] && (v==-1 || d[u] < d[v])) v = u;
-          }
-
-          if(v == -1 || d[v] == INF) break;
-          // v == -1 表示所有顶点都找到了最短距离
-          // d[v] == INF 表示后面所有的顶点都已经不可达，直接结束循环
-
-          used[v] = true;
-          for(int u = 0; u < V; ++u)
-          {
-            d[u] = min(d[u], d[v] + cost[v][u]);
-          }
-        }
-      }
-
-
-      // 方法二：使用最小堆（优先队列），堆中元素个数为 O(V)，出队（取出最小值）的次数为 O(E)，时间复杂度 O(ElogV)
-
-      struct edge {int to, cost;};
-      typedef pair<int, int> P; // first：最短距离，second：顶点
-
-      int V;
-      vector<edge> G[MAX_V]; // 边
-      int d[MAX_V];
-
-      void dijkstra(int s)
-      {
-        priority_queue<P, vector<P>, greater<P>> que;
-
-        fill(d, d+V, INF);
-        d[s] = 0;
-
-        que.push(P(0, s));
-        while(!que.empty())
-        {
-          P p = que.top();
-          que.pop();
-
-          int v = p.second;
-          if(d[v] < p.first) continue;
-
-          for(int i = 0; i < G[v].size(); ++ i)
-          {
-            edge e = G[v][i];
-            if(d[e.to] > d[v] + e.cost)
-            {
-              d[e.to] = d[v] + e.cost;
-              que.push(P(d[e.to], e.to));
-            }
-          }
-        }
-      }
-
-
-
-28. [LeetCode] Maximum Product Subarray 求连续子数组的最大乘积。Hint：数组中存在负数，负负得正，因此相比于连续子数组最大和问题，不仅需要记录以每个元素结尾的连续乘积的最大值，还需要记录最小值。
+27. [LeetCode] Maximum Product Subarray 求连续子数组的最大乘积。Hint：数组中存在负数，负负得正，因此相比于连续子数组最大和问题，不仅需要记录以每个元素结尾的连续乘积的最大值，还需要记录最小值。
 
   https://blog.csdn.net/xblog\_/article/details/72872263
 
 
-29. 游戏与必胜策略
-
-  - 硬币游戏：有 :math:`x` 枚硬币，A 和 B 两个人轮流取，每次所取的硬币数量要在 :math:`a_1, a_2,...,a_k` 当中（其中包含 :math:`1` ）。A 先取，取走最后一枚硬币的一方获胜。
-    当双方都采取最优策略，谁会获胜？
-
-  .. container:: toggle
-
-    .. container:: header
-
-      :math:`\color{darkgreen}{Code}`
-
-    .. code-block:: cpp
-      :linenos:
-
-      // 动态规划
-      // 考虑轮到 A 时，还剩下 j 枚硬币
-      // 当 j = 0，A 必败
-      // 如果存在 a[i]，使得 j - a[i] 是必败态，则 j 就是必胜态
-      // 如果对于所有的 a[i]，1 <= i <= k，使得 j - a[i] 都是必胜态，则 j 是必败态
-
-      int X, K, A[MAX_K];
-
-      bool win[MAX_X + 1];
-
-      void solve()
-      {
-        win[0] = false;
-        for(int j = 1; j <= X; ++j)
-        {
-          win[j] = false;
-          for(int i = 0; i < K; ++i)
-          {
-            win[j] = win[j] | (A[i]<=j && !win[j-A[i]]);
-          }
-        }
-      }
 
 
-  - Nim 游戏：有 :math:`n` 堆石子，每堆 :math:`a_i` 颗石子。A 和 B 两个人轮流取，每次从石子堆中至少取走一颗。A 先取，最后取光所有石子的一方获胜。当双方都采取最优策略，谁会获胜？
-
-    Hint： :math:`a_1\ \oplus\ a_2\ \oplus\ ...\ \oplus\ a_n \ne 0` （异或运算），则 A 必胜； :math:`a_1\ \oplus\ a_2\ \oplus\ ...\ \oplus\ a_n = 0` ，则 A 必败。
-
-  - Grundy 数：有 :math:`n` 堆硬币，每堆 :math:`x_i` 枚硬币。A 和 B 两个人轮流取，每次所取的硬币数量要在 :math:`a_1, a_2,...,a_k` 当中（其中包含 :math:`1` ）。A 先取，取走最后一枚硬币的一方获胜。
-    当双方都采取最优策略，谁会获胜？
-
-    Hint：转换成 Nim， :math:`grundy(x_1)\ \oplus\ grundy(x_2)\ \oplus\ ...\ \oplus\ grundy(x_n) \ne 0` 则 A 必胜，否则必败。
-    当前状态的 grundy 值表示：从该状态出发，一步可达状态的 grundy 值的集合之外的最小非负整数。
-
-  .. container:: toggle
-
-    .. container:: header
-
-      :math:`\color{darkgreen}{Code}`
-
-    .. code-block:: cpp
-      :linenos:
-
-      int N, K, X[MAX_N], A[MAX_K];
-
-      int grundy[MAX_X + 1]; // 全局数组，初始化为 0
-
-      void solve()
-      {
-        grundy[0] = 0;
-
-        int max_x = *max_element(X, X+N);
-        for(int j = 0; j <= max_x; ++j)
-        {
-          set<int> s;
-          for(int i = 0; i < K; ++i)
-          {
-            if(A[i] < j) s.insert(grundy[j - A[i]]); // 一步可达状态的 grundy 值
-          }
-          int g = 0; // 集合之外的最小非负整数
-          while(s.count(g) != 0) g++;
-          grundy[j] = g;
-        }
-
-        int res = 0;
-        for(int n = 0; n < N; ++n) res ^= grundy[X[n]];
-        if(res != 0) cout << "A wins." << endl;
-        else cout << "B wins." << endl;
-      }
-
-
-30. 给定一个十进制整数 :math:`N` ，统计从 :math:`1` 到 :math:`N` 所有的整数各位出现的 :math:`1` 的数目。Hint： :math:`1` 的数目 = 个位出现 :math:`1` 的数目 + 十位出现 :math:`1` 的数目 + 百位出现 :math:`1` 的数目  + ......。以百位为例：如果百位数字为0，则百位出现1的次数只由更高位决定，如12013，次数为12 * 100；如果百位数字为1，则百位出现1的次数由更高位和更低位同时决定，如12113，次数为12 * 100 + (113 + 1)；如果百位数字大于1，则百位出现1的次数只由更高位决定，如12213，次数为(12 + 1) * 100。时间复杂度 :math:`\mathcal{O}(\log_{10}(N))` 。
+28. 给定一个十进制整数 :math:`N` ，统计从 :math:`1` 到 :math:`N` 所有的整数各位出现的 :math:`1` 的数目。Hint： :math:`1` 的数目 = 个位出现 :math:`1` 的数目 + 十位出现 :math:`1` 的数目 + 百位出现 :math:`1` 的数目  + ......。以百位为例：如果百位数字为0，则百位出现1的次数只由更高位决定，如12013，次数为12 * 100；如果百位数字为1，则百位出现1的次数由更高位和更低位同时决定，如12113，次数为12 * 100 + (113 + 1)；如果百位数字大于1，则百位出现1的次数只由更高位决定，如12213，次数为(12 + 1) * 100。时间复杂度 :math:`\mathcal{O}(\log_{10}(N))` 。
 
   http://www.cnblogs.com/jy02414216/archive/2011/03/09/1977724.html
 
@@ -1137,7 +910,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       }
 
 
-31. 数组循环移位：循环右移 :math:`K` 位，时间复杂度 :math:`\mathcal{O}(N)` 。Hint：三次翻转。
+29. 数组循环移位：循环右移 :math:`K` 位，时间复杂度 :math:`\mathcal{O}(N)` 。Hint：三次翻转。
 
   .. container:: toggle
 
@@ -1162,229 +935,10 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       }
 
 
-32. 二叉树遍历
-
-  - 定义
-
-  .. container:: toggle
-
-    .. container:: header
-
-      :math:`\color{darkgreen}{Code}`
-
-    .. code-block:: cpp
-      :linenos:
-
-      // Definition for a binary tree node.
-      struct TreeNode
-      {
-         int val;
-         TreeNode *left;
-         TreeNode *right;
-         TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-      };
-
-  - 先序遍历
-
-  .. container:: toggle
-
-    .. container:: header
-
-      :math:`\color{darkgreen}{Code}`
-
-    .. code-block:: cpp
-      :linenos:
-
-      // 递归
-      void preOrder_Recur(TreeNode* T)
-      {
-        if(!T) return;
-        else
-        {
-          visite(T -> val);
-          preOrder_Recur(T -> left);
-          preOrder_Recur(T -> right);
-        }
-      }
-
-      // 非递归
-      void preOrder_NonRecur(TreeNode* T)
-      {
-        stack<TreeNode*> stk;
-        while(T || !stk.empty())
-        {
-          while(T)
-          {
-            visite(T -> val);
-            stk.push(T);
-            T = T -> left;
-          }
-          if(! stk.empty)
-          {
-            T = stk.top();
-            stk.pop();
-            T = T -> right;
-          }
-        }
-      }
-
-  - 中序遍历
-
-  .. container:: toggle
-
-    .. container:: header
-
-      :math:`\color{darkgreen}{Code}`
-
-    .. code-block:: cpp
-      :linenos:
-
-      // 递归
-      void inOrder_Recur(TreeNode* T)
-      {
-        if(!T) return;
-        else
-        {
-          inOrder_Recur(T -> left);
-          visite(T -> val);
-          inOrder_Recur(T -> right);
-        }
-      }
-
-      // 非递归
-      void inOrder_NonRecur(TreeNode* T)
-      {
-        stack<TreeNode*> stk;
-        while(T || !stk.empty())
-        {
-          while(T)
-          {
-            stk.push(T);
-            T = T -> left;
-          }
-          if(! stk.empty)
-          {
-            T = stk.top();
-            stk.pop();
-            visite(T -> val);
-            T = T -> right;
-          }
-        }
-      }
-
-  - 后序遍历
-
-  .. container:: toggle
-
-    .. container:: header
-
-      :math:`\color{darkgreen}{Code}`
-
-    .. code-block:: cpp
-      :linenos:
-
-      // 递归
-      void postOrder_Recur(TreeNode* T)
-      {
-        if(!T) return;
-        else
-        {
-          postOrder_Recur(T -> left);
-          postOrder_Recur(T -> right);
-          visite(T -> val);
-        }
-      }
-
-      // 非递归，方法一
-      // 后序遍历顺序是：left - right - root；先序遍历顺序是：root - left - right。
-      // 采用先序遍历的方式，用栈来存储节点（FILO），得到的是按 root - right - left 顺序遍历的临时结果；
-      // 把临时结果逆序输出，就是后序遍历的结果。
-      // https://www.cnblogs.com/demian/p/8117888.html
-      vector<int> postOrder_NonRecur(TreeNode* T)
-      {
-        vector<int> res;
-        stack<TreeNode*> nodePtr;
-        if(T) nodePtr.push(T);
-        while(! nodePtr.empty())
-        {
-          T = nodePtr.top();
-          nodePtr.pop();
-
-          res.push_back(T -> val);
-          if(T -> left) nodePtr.push(T -> left);
-          if(T -> right) nodePtr.push(T -> right);
-        }
-        reverse(res.begin(), res.end());
-        return res;
-      }
-
-      // 非递归，方法二
-      // 一个节点如果不存在右子树，则遍历完左子树之后可以直接访问该节点的值；
-      // 如果存在右子树，用一个额外的栈（inNode）来临时保存该节点。
-      // 访问完该节点的右子树之后，就从栈弹出该节点进行访问。
-      vector<int> postOrder_NonRecur(TreeNode* T)
-      {
-        vector<int> res;
-        stack<TreeNode*> nodePtr;
-        stack<TreeNode*> inNode;
-        while(T || ! nodePtr.empty())
-        {
-            while(T)
-            {
-                nodePtr.push(T);
-                T = T -> left;
-            }
-            T = nodePtr.top();
-            nodePtr.pop();
-
-            if(T -> right)
-            {
-                inNode.push(T);
-                T = T -> right;
-            }
-            else
-            {
-                res.push_back(T -> val);
-                while(!inNode.empty() && T == inNode.top() -> right)
-                // 访问完节点的右子树之后，就从栈弹出该节点进行访问
-                {
-                    res.push_back(inNode.top() -> val);
-                    T = inNode.top();
-                    inNode.pop();
-                }
-                T = NULL;
-            }
-        }
-        return res;
-      }
-
-  - 层次遍历
-
-  .. container:: toggle
-
-    .. container:: header
-
-      :math:`\color{darkgreen}{Code}`
-
-    .. code-block:: cpp
-      :linenos:
-
-      void layerTraversal(TreeNode* T)
-      {
-        queue<TreeNode*> Q;
-        if(T) Q.push(T);
-        while(!Q.empty())
-        {
-          T = Q.front();
-          Q.pop();
-          visite(T -> val);
-          if(T -> left) Q.push(T -> left);
-          if(T -> right) Q.push(T -> right);
-        }
-      }
 
 
-33. [LeetCode] Divide Two Integers 整数除法。Hint：先取绝对值，做正整数之间的除法；防止溢出。
+
+30. [LeetCode] Divide Two Integers 整数除法。Hint：先取绝对值，做正整数之间的除法；防止溢出。
 
   https://leetcode.com/problems/divide-two-integers/
 
@@ -1439,7 +993,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
-34. [LeetCode] Fraction to Recurring Decimal 循环小数。Hint：小数除法：余数乘以10再求余；如果余数出现重复，则说明是循环小数。
+31. [LeetCode] Fraction to Recurring Decimal 循环小数。Hint：小数除法：余数乘以10再求余；如果余数出现重复，则说明是循环小数。
 
   https://leetcode.com/problems/fraction-to-recurring-decimal/
 
@@ -1495,7 +1049,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
-35. 正整数质因数分解。
+32. 正整数质因数分解。
 
   .. container:: toggle
 
@@ -1518,7 +1072,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
                   prime += 1
 
 
-36. 旋转数组查找。Hint：采用二分查找的思路。
+33. 旋转数组查找。Hint：采用二分查找的思路。
 
   - 二分查找
 
@@ -1700,7 +1254,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
-37. [LeetCode] Maximum Gap 最大间隔。Hint：方法一，普通排序，逐个比较；方法二，桶排序。将 :math:`n` 个数放到 :math:`n+1` 个桶中，最小值放第一个桶，
+34. [LeetCode] Maximum Gap 最大间隔。Hint：方法一，普通排序，逐个比较；方法二，桶排序。将 :math:`n` 个数放到 :math:`n+1` 个桶中，最小值放第一个桶，
 最大值放最后一个桶，每个桶的大小为 :math:`\frac{max-min}{n}` 。根据鸽巢原理，至少存在一个桶为空。最大间隔必然出现在空桶两侧，且只与左侧桶的最大值、
 右侧桶的最小值有关。（事实上，可以将 :math:`n` 个数放到 :math:`n` 个桶中，如果没有空桶，则刚好每个桶有且仅有一个数，最大间隔出现在相邻桶中；如果某个桶有2个数以上，
 说明存在有空桶，最大间隔出现在非空的相邻桶中。总之，最大间隔不会出现在一个桶中。）
@@ -1761,7 +1315,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
-38. 耗时最短路径，某些顶点有自行车，骑上自行车之后耗时减半。Hint：广度优先遍历，使用优先队列/堆，最早到达终点的一定是耗时最短路径。
+35. 耗时最短路径，某些顶点有自行车，骑上自行车之后耗时减半。Hint：广度优先遍历，使用优先队列/堆，最早到达终点的一定是耗时最短路径。
 
   https://www.nowcoder.com/practice/7689b595f3eb419b9e7816c4f45a400d?tpId=90&tqId=30852&tPage=4&rp=4&ru=/ta/2018test&qru=/ta/2018test/question-ranking
 
@@ -1819,7 +1373,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       print ans
 
 
-39. 数组操作模拟大数乘法。Hint：从低位到高位，采用竖式计算，记录所有位的乘积，再将对应位的结果相加，最后进位。假设数组 :math:`a` 和 :math:`b` 从低位到高位存储了两个大数（可能存在小数点），则乘积为 :math:`ans[i+j] = ans[i+j] + a[i] + b[j]` 。
+36. 数组操作模拟大数乘法。Hint：从低位到高位，采用竖式计算，记录所有位的乘积，再将对应位的结果相加，最后进位。假设数组 :math:`a` 和 :math:`b` 从低位到高位存储了两个大数（可能存在小数点），则乘积为 :math:`ans[i+j] = ans[i+j] + a[i] + b[j]` 。
 
   .. container:: toggle
 
@@ -1871,121 +1425,6 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
               s += str(e)
 
           return s
-
-
-40. 蓄水池抽样。随机从一个数据流中选取1个或k个数，保证每个数被选中的概率是相同的。数据流的长度 :math:`n` 未知或者是非常大。
-
-  https://blog.csdn.net/huagong_adu/article/details/7619665
-
-  - 随机选择1个数。Hint：在数据流中，依次以概率 :math:`1` 选择第一个数，以概率 :math:`\frac{1}{2}` 选择第二个数（替换已选中的数），...，以此类推，以概率 :math:`\frac{1}{m}` 选择第 m 个数（替换已选中的数）。结束时（遍历完了整个数据流），
-    每个数被选中的概率都是 :math:`\frac{1}{n}` 。证明：第 m 个对象最终被选中的概率 :math:`=` 选择第 m 个数的概率 :math:`\times` 后续所有数都不被选择的概率，即
-
-    .. math::
-
-        P = \frac{1}{m} \times \left( \frac{m}{m+1} \times \frac{m+1}{m+2} \times \cdots \times \frac{n-1}{n} \right) = \frac{1}{n}.
-
-  .. container:: toggle
-
-    .. container:: header
-
-      :math:`\color{darkgreen}{Code}`
-
-    .. code-block:: cpp
-      :linenos:
-
-      #include <iostream>
-      #include <vector>
-      #include <utility> // swap
-      #include <ctime>
-      #include <cstdlib> // rand, srand
-      using namespace std;
-
-      typedef vector<int> VecInt;
-      typedef VecInt::iterator Itr;
-      typedef VecInt::const_iterator CItr;
-
-      // 等概率产生区间 [a, b] 之间的随机数
-      int RandInt(int a, int b)
-      {
-        if (a > b) swap(a, b);
-        return a + rand() % (b - a + 1);
-      }
-
-      bool Sample(const VecInt data, int &result)
-      {
-        if (data.size() <= 0) return false;
-
-        //srand(time(nullptr)); // 设置随机seed
-
-        CItr it = data.begin();
-        result = *it;
-        int m;
-        for (m = 1, it = data.begin() + 1; it != data.end(); ++m, ++it)
-        {
-          int rd = RandInt(0, m); // rd < 1 的概率为 1/(m+1)
-          if (rd < 1) result = *it;
-        }
-        return true;
-      }
-
-
-  - 随机选择k个数。Hint：在数据流中，先把读到的前 k 个数放入“池”中，然后依次以概率 :math:`\frac{k}{k+1}` 选择第 k+1 个数，以概率 :math:`\frac{k}{k+2}` 选择第 k+2 个数，...，
-    以概率 :math:`\frac{k}{m}` 选择第 m 个数（m > k）。如果某个数被选中，则 **随机替换** “池”中的一个数。最终每个数被选中的概率都为  :math:`\frac{k}{n}` 。 证明：
-    第 m 个对象最终被选中的概率 :math:`=` 选择第 m 个数的概率 :math:`\times` （其后元素不被选择的概率 + 其后元素被选择的概率 :math:`\times` 不替换第 m 个数的概率），即
-
-    .. math::
-
-        P & = &\ \frac{k}{m} \times \left[ \left( (1-\frac{k}{m+1}) + \frac{k}{m+1} \times \frac{k-1}{k}  \right) \times \left( (1-\frac{k}{m+2}) + \frac{k}{m+2} \times \frac{k-1}{k}  \right) \times \right. \\
-          &   &\ \quad \left. \cdots \times \left( (1-\frac{k}{n}) + \frac{k}{n} \times \frac{k-1}{k}  \right) \right] \\
-          & = &\ \frac{k}{m} \times \frac{m}{m+1} \times \frac{m+1}{m+2} \times \cdots \times \frac{n-1}{n} \\
-          & = &\ \frac{k}{n}.
-
-  .. container:: toggle
-
-    .. container:: header
-
-      :math:`\color{darkgreen}{Code}`
-
-    .. code-block:: cpp
-      :linenos:
-
-      #include <iostream>
-      #include <vector>
-      #include <utility> // swap
-      #include <ctime>
-      #include <cstdlib> // rand, srand
-      using namespace std;
-
-      typedef vector<int> VecInt;
-      typedef VecInt::iterator Itr;
-      typedef VecInt::const_iterator CItr;
-
-      const int k = 10;
-      int result[k];
-
-      // 等概率产生区间 [a, b] 之间的随机数
-      int RandInt(int a, int b)
-      {
-        if (a > b) swap(a, b);
-        return a + rand() % (b - a + 1);
-      }
-
-      bool Sample(const VecInt data)
-      {
-        if (data.size() < k) return false;
-
-        //srand(time(nullptr)); // 设置随机seed
-
-        CItr it = data.begin();
-        for(int m = 0; m < k; ++m) result[m] = *it++;
-
-        for (int m = k; it != data.end(); ++m, ++it)
-        {
-          int rd = RandInt(0, m);
-          if (rd < k) result[rd] = *it; // rd < k 的概率为 k/(m+1)
-        }
-        return true;
-      }
 
 
 

@@ -63,7 +63,7 @@ TCP
       因为当 ``Server`` 收到 ``Client`` 的SYN连接请求报文后，可以直接同时发送SYN+ACK报文。其中ACK报文是用来应答的，SYN报文是用来同步的。但是关闭连接时，当 ``Server`` 端收到FIN报文时，很可能并不会立即关闭SOCKET，所以只能先回复一个ACK报文，告诉 ``Client`` 端：“你发的FIN报文我收到了，只有等到我 ``Server`` 端所有的报文都发送完了，我才能发送FIN报文”。
       即FIN和ACK不能一起发送，故需要四步握手。
 
-  - 为什么 ``Client`` 需要经过2MSL(最大报文段生存时间)才能从TIME_WAIT状态进入CLOSE状态？
+  - 为什么 ``Client`` 需要经过2MSL（最大报文段生存时间）才能从TIME_WAIT状态进入CLOSE状态？
       最后一个ACK有可能丢失，所以TIME_WAIT状态就是用来重发可能丢失的ACK报文。
 
 

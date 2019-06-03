@@ -1,0 +1,364 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5. 游戏与必胜策略 &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'alpha',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. 蓄水池抽样" href="06_randomSample.html" />
+    <link rel="prev" title="4. 二叉树遍历" href="04_treeTraversal.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">数理与算法</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_complexity.html">1. 算法复杂度与主定理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_redblackTree.html">2. 红黑树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_shortestPath.html">3. 最短路径</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_treeTraversal.html">4. 二叉树遍历</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5. 游戏与必胜策略</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">5.1. 硬币游戏</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nim">5.2. Nim 游戏</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#grundy">5.3. Grundy 数</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="06_randomSample.html">6. 蓄水池抽样</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">数理与算法</a> &raquo;</li>
+        
+      <li>5. 游戏与必胜策略</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/mathematicsAlgorithm/05_game.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>5. 游戏与必胜策略<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>5.1. 硬币游戏<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p><strong>描述</strong> ：有 <span class="math notranslate nohighlight">\(x\)</span> 枚硬币，A 和 B 两个人轮流取，每次所取的硬币数量要在 <span class="math notranslate nohighlight">\(a_1, a_2,...,a_k\)</span> 当中（其中包含 <span class="math notranslate nohighlight">\(1\)</span> ）。
+A 先取，取走最后一枚硬币的一方获胜。当双方都采取最优策略，谁会获胜？</p>
+<p><strong>策略</strong> ：动态规划。考虑轮到 A 时，还剩下 <span class="math notranslate nohighlight">\(j\)</span> 枚硬币。当 <span class="math notranslate nohighlight">\(j=0\)</span> ，A 必败；如果存在 <span class="math notranslate nohighlight">\(a_i\)</span> ，使得 <span class="math notranslate nohighlight">\(j - a_i\)</span> 是必败态，则 <span class="math notranslate nohighlight">\(j\)</span> 就是必胜态；
+如果对于所有的 <span class="math notranslate nohighlight">\(a_i\)</span> ， <span class="math notranslate nohighlight">\(1 \leqslant i \leqslant k\)</span> ，使得 <span class="math notranslate nohighlight">\(j - a_i\)</span> 都是必胜态，则 <span class="math notranslate nohighlight">\(j\)</span> 是必败态。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">X</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">A</span><span class="p">[</span><span class="n">MAX_K</span><span class="p">];</span>
+
+<span class="kt">bool</span> <span class="n">win</span><span class="p">[</span><span class="n">MAX_X</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+
+<span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">win</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">X</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">win</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">K</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">win</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">win</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">|</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">j</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">win</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]]);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="nim">
+<h2>5.2. Nim 游戏<a class="headerlink" href="#nim" title="Permalink to this headline">¶</a></h2>
+<p><strong>描述</strong> ：有 <span class="math notranslate nohighlight">\(n\)</span> 堆石子，每堆 <span class="math notranslate nohighlight">\(a_i\)</span> 颗石子。A 和 B 两个人轮流取，每次从石子堆中至少取走一颗。A 先取，最后取光所有石子的一方获胜。当双方都采取最优策略，谁会获胜？</p>
+<p><strong>策略</strong> ： <span class="math notranslate nohighlight">\(a_1\ \oplus\ a_2\ \oplus\ ...\ \oplus\ a_n \ne 0\)</span> （异或运算），则 A 必胜； <span class="math notranslate nohighlight">\(a_1\ \oplus\ a_2\ \oplus\ ...\ \oplus\ a_n = 0\)</span> ，则 A 必败。</p>
+</div>
+<div class="section" id="grundy">
+<h2>5.3. Grundy 数<a class="headerlink" href="#grundy" title="Permalink to this headline">¶</a></h2>
+<p><strong>描述</strong> ：有 <span class="math notranslate nohighlight">\(n\)</span> 堆硬币，每堆 <span class="math notranslate nohighlight">\(x_i\)</span> 枚硬币。A 和 B 两个人轮流取，每次所取的硬币数量要在 <span class="math notranslate nohighlight">\(a_1, a_2,...,a_k\)</span> 当中（其中包含 <span class="math notranslate nohighlight">\(1\)</span> ）。
+A 先取，取走最后一枚硬币的一方获胜。当双方都采取最优策略，谁会获胜？</p>
+<p><strong>策略</strong> ：转换成 Nim， <span class="math notranslate nohighlight">\(grundy(x_1)\ \oplus\ grundy(x_2)\ \oplus\ ...\ \oplus\ grundy(x_n) \ne 0\)</span> 则 A 必胜，否则必败。
+当前状态的 grundy 值表示：从该状态出发，一步可达状态的 grundy 值的集合之外的最小非负整数。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">X</span><span class="p">[</span><span class="n">MAX_N</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="n">MAX_K</span><span class="p">];</span>
+
+<span class="kt">int</span> <span class="n">grundy</span><span class="p">[</span><span class="n">MAX_X</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span> <span class="c1">// 全局数组，初始化为 0</span>
+
+<span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">grundy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="kt">int</span> <span class="n">max_x</span> <span class="o">=</span> <span class="o">*</span><span class="n">max_element</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">X</span><span class="o">+</span><span class="n">N</span><span class="p">);</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">max_x</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">s</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">K</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">)</span> <span class="n">s</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">grundy</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]]);</span> <span class="c1">// 一步可达状态的 grundy 值</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">g</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 集合之外的最小非负整数</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">g</span><span class="o">++</span><span class="p">;</span>
+    <span class="n">grundy</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">n</span><span class="p">)</span> <span class="n">res</span> <span class="o">^=</span> <span class="n">grundy</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="n">n</span><span class="p">]];</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">res</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;A wins.&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="k">else</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;B wins.&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="06_randomSample.html" class="btn btn-neutral float-right" title="6. 蓄水池抽样" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="04_treeTraversal.html" class="btn btn-neutral float-left" title="4. 二叉树遍历" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

@@ -23,6 +23,7 @@
    git/index
    machineLearning/index
    deepLearning/index
+   mathematicsAlgorithm/index
    computerNetwork/index
    link/index
    softwares/index

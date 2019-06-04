@@ -11,3 +11,4 @@
     04_treeTraversal.rst
     05_game.rst
     06_randomSample.rst
+    07_sort.rst

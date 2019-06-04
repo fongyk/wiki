@@ -51,7 +51,7 @@
         stk.push(T);
         T = T -> left;
       }
-      if(! stk.empty)
+      if(! stk.empty())
       {
         T = stk.top();
         stk.pop();
@@ -94,7 +94,7 @@
         stk.push(T);
         T = T -> left;
       }
-      if(! stk.empty)
+      if(! stk.empty())
       {
         T = stk.top();
         stk.pop();

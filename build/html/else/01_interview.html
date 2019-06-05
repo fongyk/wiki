@@ -214,139 +214,16 @@
 <div class="section" id="id3">
 <h2>1.2. 编程算法<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>有面值1,5,10,20,50,100的人民币，求问10000有多少种组成方法？</li>
-</ol>
-<blockquote>
-<div><p><a class="reference external" href="https://www.zhihu.com/question/315108379">https://www.zhihu.com/question/315108379</a></p>
-<div class="toggle docutils container">
-<div class="header docutils container">
-<span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></div>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="n">money</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
-<span class="n">dp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="o">+</span><span class="mi">1</span><span class="p">)],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
-<span class="c1">## dp[m,n]: first m currency values, make money n</span>
-<span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">dp</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10000</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="n">money</span><span class="p">[</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
-            <span class="n">dp</span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="n">money</span><span class="p">[</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="n">dp</span><span class="p">[</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">dp</span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">]</span>
-<span class="k">print</span> <span class="n">dp</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">10000</span><span class="p">]</span>
-</pre></div>
-</td></tr></table></div>
-<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 作者：李泽政</span>
-<span class="c1">// 链接：https://www.zhihu.com/question/315108379/answer/620254961</span>
-
-<span class="cp">#include</span><span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
-<span class="cp">#define maxn 10001</span>
-<span class="kt">long</span> <span class="kt">long</span> <span class="n">dp</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="kt">int</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">num</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">};</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">maxn</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-        <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 作者把 1 从 num[] 中去掉了，转化到初始化中。全用 1 元只能得到一种组成方案</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-        <span class="k">for</span><span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">maxn</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
-            <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">]];</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%lld&quot;</span><span class="p">,</span> <span class="n">dp</span><span class="p">[</span><span class="n">maxn</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]);</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</td></tr></table></div>
-</div>
-</div></blockquote>
-<ol class="arabic simple" start="2">
-<li>如何用最少的次数测出鸡蛋会在哪一层摔碎？</li>
-</ol>
-<blockquote>
-<div><p><a class="reference external" href="https://www.zhihu.com/question/19690210">https://www.zhihu.com/question/19690210</a></p>
-<div class="toggle docutils container">
-<div class="header docutils container">
-<span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></div>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">## 作者：知乎用户</span>
-<span class="c1">## 链接：https://www.zhihu.com/question/19690210/answer/18079633</span>
-<span class="c1">## f(n,m)：n 层楼，m 个鸡蛋所需最少次数</span>
-<span class="c1">## f(0, m) = 0</span>
-<span class="c1">## f(n, 1) = n</span>
-<span class="c1">## f(n, m) = min{max{f(k-1, m-1), f(n-k, m)}} + 1, 1 &lt;= k &lt;= n。 k 表示尝试在第 k 层扔下鸡蛋。</span>
-
-<span class="kn">import</span> <span class="nn">functools</span>
-<span class="nd">@functools.lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">0</span>
-    <span class="k">if</span> <span class="n">m</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">n</span>
-
-    <span class="n">ans</span> <span class="o">=</span> <span class="nb">min</span><span class="p">([</span><span class="nb">max</span><span class="p">([</span><span class="n">f</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">i</span><span class="p">,</span> <span class="n">m</span><span class="p">)])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)])</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="k">return</span> <span class="n">ans</span>
-
-<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>  <span class="c1"># 14</span>
-<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>  <span class="c1"># 20</span>
-</pre></div>
-</td></tr></table></div>
-</div>
-</div></blockquote>
-<ol class="arabic simple" start="3">
 <li>找出数组中N个出现1（或奇数次）次的数字</li>
 </ol>
 <blockquote>
 <div><a class="reference external" href="https://www.jianshu.com/p/e1331664c8cf">https://www.jianshu.com/p/e1331664c8cf</a></div></blockquote>
-<ol class="arabic simple" start="4">
+<ol class="arabic simple" start="2">
 <li>均匀分布生成其他分布的方法</li>
 </ol>
 <blockquote>
 <div><a class="reference external" href="https://blog.csdn.net/haolexiao/article/details/60511164">https://blog.csdn.net/haolexiao/article/details/60511164</a></div></blockquote>
-<ol class="arabic simple" start="5">
+<ol class="arabic simple" start="3">
 <li>海量数据处理。Hint：哈希方法，把大文件划分成小文件，读进内存依次处理；Bitmap，用一个（或几个）比特位来标记某个元素对应的值。</li>
 </ol>
 <blockquote>
@@ -363,46 +240,87 @@
 </li>
 </ul>
 </div></blockquote>
-<ol class="arabic simple" start="6">
+<ol class="arabic simple" start="4">
 <li>链表</li>
 </ol>
 <blockquote>
-<div><ul>
-<li><p class="first">求有环单链表中的环长、环起点、链表长</p>
-<blockquote>
-<div><p><a class="reference external" href="https://www.cnblogs.com/xudong-bupt/p/3667729.html">https://www.cnblogs.com/xudong-bupt/p/3667729.html</a></p>
-</div></blockquote>
-</li>
-<li><p class="first">判断两个链表是否相交并找出交点</p>
-<blockquote>
-<div><p><a class="reference external" href="https://blog.csdn.net/jiary5201314/article/details/50990349">https://blog.csdn.net/jiary5201314/article/details/50990349</a></p>
-</div></blockquote>
-</li>
-<li><p class="first">单链表 <span class="math notranslate nohighlight">\(\mathcal{O}(1)\)</span> 时间删除给定节点</p>
-<blockquote>
-<div><p><a class="reference external" href="https://blog.csdn.net/qq_35546040/article/details/80341136">https://blog.csdn.net/qq_35546040/article/details/80341136</a></p>
-</div></blockquote>
-</li>
+<div><ul class="simple">
+<li>反转链表。Hint：方法一，逐个反转；方法二，递归；方法三，使用栈保存节点的值，反向赋给所有节点。</li>
 </ul>
-</div></blockquote>
-<ol class="arabic simple" start="7">
-<li>全排列的非递归和递归实现（含重复元素）。Hint：在交换第 <span class="math notranslate nohighlight">\(i\)</span> 个元素与第 <span class="math notranslate nohighlight">\(j\)</span> 个元素之前，要求数组的 <span class="math notranslate nohighlight">\([i, j)\)</span> 区间中的元素没有与第 <span class="math notranslate nohighlight">\(j\)</span> 个元素重复。</li>
-</ol>
-<blockquote>
-<div><a class="reference external" href="https://blog.csdn.net/so_geili/article/details/71078945">https://blog.csdn.net/so_geili/article/details/71078945</a></div></blockquote>
-<ol class="arabic simple" start="8">
-<li>排列组合：<span class="math notranslate nohighlight">\(k\)</span> 个球放入 <span class="math notranslate nohighlight">\(m\)</span> 个盒子</li>
-</ol>
-<blockquote>
-<div><a class="reference external" href="https://blog.csdn.net/qwb492859377/article/details/50654627?tdsourcetag=s_pctim_aiomsg">https://blog.csdn.net/qwb492859377/article/details/50654627?tdsourcetag=s_pctim_aiomsg</a></div></blockquote>
-<ol class="arabic simple" start="9">
-<li>Next Permutation 下一个排列</li>
-</ol>
-<blockquote>
-<div><p><a class="reference external" href="https://www.cnblogs.com/grandyang/p/4428207.html">https://www.cnblogs.com/grandyang/p/4428207.html</a></p>
 <div class="toggle docutils container">
 <div class="header docutils container">
 <span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">ListNode</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">val</span><span class="p">;</span>
+    <span class="n">ListNode</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
+    <span class="n">ListNode</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="o">:</span> <span class="n">val</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">next</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 方法一，逐个反转</span>
+<span class="n">ListNode</span><span class="o">*</span> <span class="nf">reverseList</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">head</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">head</span><span class="o">==</span><span class="nb">NULL</span> <span class="o">||</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">==</span><span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+    <span class="n">ListNode</span><span class="o">*</span> <span class="n">newHead</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+    <span class="n">ListNode</span><span class="o">*</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">head</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">;</span>
+    <span class="n">ListNode</span><span class="o">*</span> <span class="n">post</span> <span class="o">=</span> <span class="n">curr</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">;</span>
+    <span class="n">newHead</span> <span class="o">-&gt;</span> <span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">curr</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">curr</span> <span class="o">-&gt;</span> <span class="n">next</span> <span class="o">=</span> <span class="n">newHead</span><span class="p">;</span>
+        <span class="n">newHead</span> <span class="o">=</span> <span class="n">curr</span><span class="p">;</span>
+        <span class="n">curr</span> <span class="o">=</span> <span class="n">post</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">post</span><span class="p">)</span> <span class="n">post</span> <span class="o">=</span> <span class="n">post</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">newHead</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 方法二，递归</span>
+<span class="n">ListNode</span><span class="o">*</span> <span class="nf">reverseList</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">head</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">head</span><span class="o">==</span><span class="nb">NULL</span> <span class="o">||</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">==</span><span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+    <span class="k">else</span><span class="p">{</span>
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">newHead</span> <span class="o">=</span> <span class="n">reverseList</span><span class="p">(</span><span class="n">head</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">);</span>
+        <span class="n">head</span> <span class="o">-&gt;</span> <span class="n">next</span> <span class="o">-&gt;</span> <span class="n">next</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span> <span class="c1">// head 指向的下一个节点是 newHead 的最后一个节点</span>
+        <span class="n">head</span> <span class="o">-&gt;</span> <span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">newHead</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
 <div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -422,42 +340,58 @@
 17
 18
 19
-20
-21
-22
-23</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 从后往前先找到第一个开始下降的数字x（下标i），再从后往前找到第一个比x大的数y（下标j）；交换x，y；翻转区间 [i+1, end)。</span>
-<span class="k">class</span> <span class="nc">Solution</span>
+20</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 方法三，使用栈保存节点的值，占用 O(n) 额外空间</span>
+<span class="n">ListNode</span><span class="o">*</span> <span class="nf">reverseList</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">head</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="kt">void</span> <span class="n">nextPermutation</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">head</span><span class="o">==</span><span class="nb">NULL</span> <span class="o">||</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">==</span><span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+    <span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">stk</span><span class="p">;</span>
+    <span class="n">ListNode</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">num</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-            <span class="p">{</span>
-                <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="n">i</span><span class="p">;</span> <span class="o">--</span><span class="n">j</span><span class="p">)</span>
-                <span class="p">{</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">break</span><span class="p">;</span>
-                <span class="p">}</span>
-                <span class="n">swap</span><span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">num</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
-                <span class="n">reverse</span><span class="p">(</span><span class="n">num</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
-                <span class="k">return</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-        <span class="n">reverse</span><span class="p">(</span><span class="n">num</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">num</span><span class="p">.</span><span class="n">end</span><span class="p">());</span> <span class="c1">// 当前排列是最大的排列，则翻转为最小的排列</span>
+        <span class="n">stk</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">val</span><span class="p">);</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">;</span>
     <span class="p">}</span>
-<span class="p">};</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">p</span> <span class="o">-&gt;</span> <span class="n">val</span> <span class="o">=</span> <span class="n">stk</span><span class="p">.</span><span class="n">top</span><span class="p">();</span>
+        <span class="n">stk</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
 </div>
+<ul>
+<li><p class="first">求有环单链表中的环长、环起点、链表长。</p>
+<blockquote>
+<div><p><a class="reference external" href="https://www.cnblogs.com/xudong-bupt/p/3667729.html">https://www.cnblogs.com/xudong-bupt/p/3667729.html</a></p>
 </div></blockquote>
-<ol class="arabic simple" start="10">
-<li>LeetCode 75. Sort Colors（三颜色排序→K颜色排序）</li>
+</li>
+<li><p class="first">判断两个链表是否相交并找出交点。</p>
+<blockquote>
+<div><p><a class="reference external" href="https://blog.csdn.net/jiary5201314/article/details/50990349">https://blog.csdn.net/jiary5201314/article/details/50990349</a></p>
+</div></blockquote>
+</li>
+<li><p class="first">单链表 <span class="math notranslate nohighlight">\(\mathcal{O}(1)\)</span> 时间删除给定节点。Hint：交换当前节点与下一个节点的值，删除下一个节点。</p>
+<blockquote>
+<div><p><a class="reference external" href="https://blog.csdn.net/qq_35546040/article/details/80341136">https://blog.csdn.net/qq_35546040/article/details/80341136</a></p>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li>排列组合：<span class="math notranslate nohighlight">\(k\)</span> 个球放入 <span class="math notranslate nohighlight">\(m\)</span> 个盒子</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://blog.csdn.net/qwb492859377/article/details/50654627?tdsourcetag=s_pctim_aiomsg">https://blog.csdn.net/qwb492859377/article/details/50654627?tdsourcetag=s_pctim_aiomsg</a></div></blockquote>
+<ol class="arabic simple" start="6">
+<li>[LeetCode] Sort Colors（三颜色排序→K颜色排序）</li>
 </ol>
 <blockquote>
 <div><a class="reference external" href="https://blog.csdn.net/princexiexiaofeng/article/details/79645511">https://blog.csdn.net/princexiexiaofeng/article/details/79645511</a></div></blockquote>
-<ol class="arabic simple" start="11">
+<ol class="arabic simple" start="7">
 <li>找到数组第 <span class="math notranslate nohighlight">\(k\)</span> 大的数</li>
 </ol>
 <blockquote>
@@ -570,7 +504,7 @@
 </td></tr></table></div>
 </div>
 </div></blockquote>
-<ol class="arabic simple" start="12">
+<ol class="arabic simple" start="8">
 <li>[LeetCode] Best Time to Buy and Sell Stock 买卖股票的最佳时间</li>
 </ol>
 <blockquote>
@@ -603,7 +537,7 @@
 </li>
 </ul>
 </div></blockquote>
-<ol class="arabic simple" start="13">
+<ol class="arabic simple" start="9">
 <li>[LeetCode] Partition Equal Subset Sum 数组分成两个子集，和相等</li>
 </ol>
 <blockquote>
@@ -660,7 +594,7 @@
 </td></tr></table></div>
 </div>
 </div></blockquote>
-<ol class="arabic simple" start="14">
+<ol class="arabic simple" start="10">
 <li>[LeetCode] Find All Anagrams in a String 统计变位词出现的位置。Hint：采用滑动窗口和 <strong>计数器</strong> 进行比较。</li>
 </ol>
 <blockquote>
@@ -721,7 +655,7 @@
 </td></tr></table></div>
 </div>
 </div></blockquote>
-<p>15. [LeetCode] Find the Duplicate Number 寻找重复数。数值范围为 <span class="math notranslate nohighlight">\(\{ 1,2,3,...,n \}\)</span> 。Hint：把数组元素的值当做下标，由于元素存在重复，因此必然会 <strong>重复多次访问同一个位置</strong> 。
+<p>11. [LeetCode] Find the Duplicate Number 寻找重复数。数值范围为 <span class="math notranslate nohighlight">\(\{ 1,2,3,...,n \}\)</span> 。Hint：把数组元素的值当做下标，由于元素存在重复，因此必然会 <strong>重复多次访问同一个位置</strong> 。
 从另一个角度讲，访问序列中存在“环”。哈希不满足空间复杂度为 <span class="math notranslate nohighlight">\(\mathcal{O}(1)\)</span> 的要求。</p>
 <blockquote>
 <div><ul>
@@ -755,31 +689,7 @@
 19
 20
 21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 解法一：快慢指针，寻找某个“环”的入口</span>
+22</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 解法一：快慢指针，寻找某个“环”的入口</span>
 <span class="k">class</span> <span class="nc">Solution</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -801,8 +711,31 @@
         <span class="k">return</span> <span class="n">slow</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">};</span>
-
-<span class="c1">// 解法二：不断交换位置，找到第一个重复访问的元素</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 解法二：不断交换位置，找到第一个重复访问的元素</span>
 <span class="k">class</span> <span class="nc">Solution</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -854,27 +787,7 @@
 14
 15
 16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 解法一：将访问过的元素置为相反数（负数），如果下次访问到一个负数，说明这个元素被重复访问</span>
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 解法一：将访问过的元素置为相反数（负数），如果下次访问到一个负数，说明这个元素被重复访问</span>
 <span class="k">class</span> <span class="nc">Solution</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -891,8 +804,27 @@
         <span class="c1">// 这种方法得到的 res 可能多次包含同一个元素，可以使用 set</span>
     <span class="p">}</span>
 <span class="p">};</span>
-
-<span class="c1">// 解法二：不断交换位置使得 i == nums[i]-1</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 解法二：不断交换位置使得 i == nums[i]-1</span>
 <span class="k">class</span> <span class="nc">Solution</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -915,7 +847,7 @@
 </td></tr></table></div>
 </div>
 </div></blockquote>
-<ol class="arabic simple" start="16">
+<ol class="arabic simple" start="12">
 <li>[LeetCode] Spiral Matrix 环形打印矩阵</li>
 </ol>
 <blockquote>
@@ -1008,7 +940,7 @@
 </td></tr></table></div>
 </div>
 </div></blockquote>
-<ol class="arabic simple" start="17">
+<ol class="arabic simple" start="13">
 <li>[LeetCode] Longest Consecutive Sequence 最长连续序列。Hint：方法一，排序；方法二，对于每个元素 <span class="math notranslate nohighlight">\(n\)</span> ，搜索 <span class="math notranslate nohighlight">\(n+1\)</span> 是否在数组中，使用 hash（set）可以获得 <span class="math notranslate nohighlight">\(\mathcal{O}(1)\)</span> 的查找复杂度。</li>
 </ol>
 <blockquote>
@@ -1061,12 +993,12 @@
 </td></tr></table></div>
 </div>
 </div></blockquote>
-<ol class="arabic simple" start="18">
+<ol class="arabic simple" start="14">
 <li>最小公约数与最大公倍数。Hint：辗转相除法；最大公倍数等于两数乘积除以最大公约数。</li>
 </ol>
 <blockquote>
 <div><a class="reference external" href="https://www.cnblogs.com/Arvin-JIN/p/7247619.html">https://www.cnblogs.com/Arvin-JIN/p/7247619.html</a></div></blockquote>
-<p>19. 跳跃的蚂蚱：从 0 点出发，往正或负向跳跃，第一次跳跃一个单位，之后每次跳跃距离比上一次多一个单位，跳跃多少次可到到达坐标 <span class="math notranslate nohighlight">\(x\)</span> 处？
+<p>15. 跳跃的蚂蚱：从 0 点出发，往正或负向跳跃，第一次跳跃一个单位，之后每次跳跃距离比上一次多一个单位，跳跃多少次可到到达坐标 <span class="math notranslate nohighlight">\(x\)</span> 处？
 Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能到达的坐标是一个差为 2 的等差数列（如 <span class="math notranslate nohighlight">\(n=3\)</span> ，可到达 <span class="math notranslate nohighlight">\(\{-3,-1,1,3\}\)</span> ）。
 只需找到第最小的 <span class="math notranslate nohighlight">\(n\)</span> 使得</p>
 <div class="math notranslate nohighlight">
@@ -1105,7 +1037,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </td></tr></table></div>
 </div>
 </div></blockquote>
-<p>20. 求 <span class="math notranslate nohighlight">\(n\)</span> 的阶乘末尾有多少个 <span class="math notranslate nohighlight">\(0\)</span> 。Hint：1个 <span class="math notranslate nohighlight">\(5\)</span> 和1个 <span class="math notranslate nohighlight">\(2\)</span> 搭配可以得到1个 <span class="math notranslate nohighlight">\(0\)</span> ；<span class="math notranslate nohighlight">\(2\)</span> 的个数比 <span class="math notranslate nohighlight">\(5\)</span> 多，
+<p>16. 求 <span class="math notranslate nohighlight">\(n\)</span> 的阶乘末尾有多少个 <span class="math notranslate nohighlight">\(0\)</span> 。Hint：1个 <span class="math notranslate nohighlight">\(5\)</span> 和1个 <span class="math notranslate nohighlight">\(2\)</span> 搭配可以得到1个 <span class="math notranslate nohighlight">\(0\)</span> ；<span class="math notranslate nohighlight">\(2\)</span> 的个数比 <span class="math notranslate nohighlight">\(5\)</span> 多，
 因此只关心 <span class="math notranslate nohighlight">\(5\)</span> 的个数；<span class="math notranslate nohighlight">\(25\)</span> 包含2个 <span class="math notranslate nohighlight">\(5\)</span> ，<span class="math notranslate nohighlight">\(125\)</span> 包含3个 <span class="math notranslate nohighlight">\(5\)</span> …。</p>
 <blockquote>
 <div><div class="toggle docutils container">
@@ -1144,7 +1076,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </td></tr></table></div>
 </div>
 </div></blockquote>
-<p>21. 求一个整数的二进制表示中 <span class="math notranslate nohighlight">\(1\)</span> 的个数。Hint：移位操作，负数可能造成死循环。 <strong>注：指定移位次数大于或等于对象类型的比特数（如int型的32位），或者对负数进行左移操作，结果都是未定义的</strong> 。
+<p>17. 求一个整数的二进制表示中 <span class="math notranslate nohighlight">\(1\)</span> 的个数。Hint：移位操作，负数可能造成死循环。 <strong>注：指定移位次数大于或等于对象类型的比特数（如int型的32位），或者对负数进行左移操作，结果都是未定义的</strong> 。
 例如：<code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&gt;&gt;</span> <span class="pre">32</span></code> 是未定义的，但是允许 <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&gt;&gt;=</span> <span class="pre">1</span></code> 执行无限次，这是安全的。</p>
 <blockquote>
 <div><div class="toggle docutils container">
@@ -1160,32 +1092,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
  8
  9
 10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 方法一：不断右移n。如果n是负数，需要保持最高位为1，不断移位后这个数字会变成 0xFFFFFFFF 而陷入死循环。</span>
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 方法一：不断右移n。如果n是负数，需要保持最高位为1，不断移位后这个数字会变成 0xFFFFFFFF 而陷入死循环。</span>
 <span class="kt">int</span> <span class="nf">Numberof1</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -1196,8 +1103,20 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
   <span class="p">}</span>
   <span class="k">return</span> <span class="n">cnt</span><span class="p">;</span>
 <span class="p">}</span>
-
-<span class="c1">// 方法二：n不动，左移一个比较子。</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 方法二：n不动，左移一个比较子。</span>
 <span class="kt">int</span> <span class="nf">Numberof1</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -1209,8 +1128,19 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
   <span class="p">}</span>
   <span class="k">return</span> <span class="n">cnt</span><span class="p">;</span>
 <span class="p">}</span>
-
-<span class="c1">// 方法三：把一个整数减1，再和原整数做逻辑与运算，会把该整数最右边的一个1变成0。</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 方法三：把一个整数减1，再和原整数做逻辑与运算，会把该整数最右边的一个1变成0。</span>
 <span class="kt">int</span> <span class="nf">Numberof1</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -1225,7 +1155,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </td></tr></table></div>
 </div>
 </div></blockquote>
-<p>22. [LeetCode] Subarray Sum Equals K 子数组和为 <span class="math notranslate nohighlight">\(K\)</span> 。Hint：依次求数组的前 <span class="math notranslate nohighlight">\(n\)</span> 项和 <span class="math notranslate nohighlight">\(sum[n]\)</span> ，<span class="math notranslate nohighlight">\(n \in [0, arr\_size]\)</span> （注意：0也在内），
+<p>18. [LeetCode] Subarray Sum Equals K 子数组和为 <span class="math notranslate nohighlight">\(K\)</span> 。Hint：依次求数组的前 <span class="math notranslate nohighlight">\(n\)</span> 项和 <span class="math notranslate nohighlight">\(sum[n]\)</span> ，<span class="math notranslate nohighlight">\(n \in [0, arr\_size]\)</span> （注意：0也在内），
 将和作为哈希表的key，和的值出现次数作为value；如果存在 <span class="math notranslate nohighlight">\(sum[i]−sum[j]=K \ (i \ge j)\)</span> ，则 <span class="math notranslate nohighlight">\(sum[i]\)</span> 和 <span class="math notranslate nohighlight">\(sum[j]\)</span> 都应该在哈希表中。</p>
 <blockquote>
 <div><p><a class="reference external" href="https://leetcode.com/problems/subarray-sum-equals-k/">https://leetcode.com/problems/subarray-sum-equals-k/</a></p>
@@ -1291,7 +1221,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </td></tr></table></div>
 </div>
 </div></blockquote>
-<ol class="arabic simple" start="23">
+<ol class="arabic simple" start="19">
 <li>使用位运算进行加法运算。Hint：原位加法运算等效为 <code class="docutils literal notranslate"><span class="pre">^</span></code> 运算，进位等效为 <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> 和 <code class="docutils literal notranslate"><span class="pre">移位</span></code> 的复合。 <strong>注：C++不允许对负数进行左移运算。</strong></li>
 </ol>
 <blockquote>
@@ -1383,7 +1313,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </td></tr></table></div>
 </div>
 </div></blockquote>
-<p>24. [LeetCode] Longest Substring with At Least K Repeating Characters 包含重复字符的最长子串。Hint：由于该字符串只包含小写字母，因此
+<p>20. [LeetCode] Longest Substring with At Least K Repeating Characters 包含重复字符的最长子串。Hint：由于该字符串只包含小写字母，因此
 直接使用长度为26的静态数组来统计字符频率更为简洁高效，不需要使用map。</p>
 <blockquote>
 <div><p><a class="reference external" href="https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/">https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/</a></p>
@@ -1465,7 +1395,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </td></tr></table></div>
 </div>
 </div></blockquote>
-<ol class="arabic simple" start="25">
+<ol class="arabic simple" start="21">
 <li>[LeetCode] 4Sum II 4个数和为0的组合数。Hint：两两之和存入哈希表，时间复杂度和空间复杂度 <span class="math notranslate nohighlight">\(\mathcal{O}(N^2)\)</span> 。</li>
 </ol>
 <blockquote>
@@ -1482,12 +1412,12 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </td></tr></table></div>
 </div>
 </div></blockquote>
-<ol class="arabic simple" start="26">
+<ol class="arabic simple" start="22">
 <li>[LeetCode] Maximum Product Subarray 求连续子数组的最大乘积。Hint：数组中存在负数，负负得正，因此相比于连续子数组最大和问题，不仅需要记录以每个元素结尾的连续乘积的最大值，还需要记录最小值。</li>
 </ol>
 <blockquote>
 <div><a class="reference external" href="https://blog.csdn.net/xblog_/article/details/72872263">https://blog.csdn.net/xblog_/article/details/72872263</a></div></blockquote>
-<ol class="arabic simple" start="27">
+<ol class="arabic simple" start="23">
 <li>给定一个十进制整数 <span class="math notranslate nohighlight">\(N\)</span> ，统计从 <span class="math notranslate nohighlight">\(1\)</span> 到 <span class="math notranslate nohighlight">\(N\)</span> 所有的整数各位出现的 <span class="math notranslate nohighlight">\(1\)</span> 的数目。Hint： <span class="math notranslate nohighlight">\(1\)</span> 的数目 = 个位出现 <span class="math notranslate nohighlight">\(1\)</span> 的数目 + 十位出现 <span class="math notranslate nohighlight">\(1\)</span> 的数目 + 百位出现 <span class="math notranslate nohighlight">\(1\)</span> 的数目  + ……。以百位为例：如果百位数字为0，则百位出现1的次数只由更高位决定，如12013，次数为12 * 100；如果百位数字为1，则百位出现1的次数由更高位和更低位同时决定，如12113，次数为12 * 100 + (113 + 1)；如果百位数字大于1，则百位出现1的次数只由更高位决定，如12213，次数为(12 + 1) * 100。时间复杂度 <span class="math notranslate nohighlight">\(\mathcal{O}(\log_{10}(N))\)</span> 。</li>
 </ol>
 <blockquote>
@@ -1556,7 +1486,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </td></tr></table></div>
 </div>
 </div></blockquote>
-<ol class="arabic simple" start="28">
+<ol class="arabic simple" start="24">
 <li>数组循环移位：循环右移 <span class="math notranslate nohighlight">\(K\)</span> 位，时间复杂度 <span class="math notranslate nohighlight">\(\mathcal{O}(N)\)</span> 。Hint：三次翻转。</li>
 </ol>
 <blockquote>
@@ -1590,7 +1520,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </td></tr></table></div>
 </div>
 </div></blockquote>
-<ol class="arabic simple" start="29">
+<ol class="arabic simple" start="25">
 <li>[LeetCode] Divide Two Integers 整数除法。Hint：先取绝对值，做正整数之间的除法；防止溢出。</li>
 </ol>
 <blockquote>
@@ -1681,7 +1611,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </td></tr></table></div>
 </div>
 </div></blockquote>
-<ol class="arabic simple" start="30">
+<ol class="arabic simple" start="26">
 <li>[LeetCode] Fraction to Recurring Decimal 循环小数。Hint：小数除法：余数乘以10再求余；如果余数出现重复，则说明是循环小数。</li>
 </ol>
 <blockquote>
@@ -1774,7 +1704,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </td></tr></table></div>
 </div>
 </div></blockquote>
-<ol class="arabic simple" start="31">
+<ol class="arabic simple" start="27">
 <li>正整数质因数分解。</li>
 </ol>
 <blockquote>
@@ -1804,7 +1734,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </td></tr></table></div>
 </div>
 </div></blockquote>
-<ol class="arabic simple" start="32">
+<ol class="arabic simple" start="28">
 <li>旋转数组查找。Hint：采用二分查找的思路。</li>
 </ol>
 <blockquote>
@@ -1882,30 +1812,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 22
 23
 24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 方法一</span>
+25</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 方法一</span>
 <span class="c1">// 第一个指针总指向前面递增数组的元素</span>
 <span class="c1">// 第二个指针总指向后面递增数组的元素</span>
 <span class="c1">// 最终两个指针指向相邻元素：第一个指针指向前面递增数组的最后一个元素，第二个指针指向后面递增数组的第一个元素（也就是最小元素）</span>
@@ -1930,8 +1837,30 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
   <span class="c1">// 如果数组本身是有序的，即 arr[0] &lt; arr[n-1]，则第一个元素就是最小值</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-
-<span class="c1">// 方法二</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 方法二</span>
 <span class="c1">// 如果 arr[mid] &lt; arr[mid-1]，则 arr[mid] 是最小值</span>
 <span class="c1">// 每次比较 nums[mid] 与 nums[high]，如果两者相等，则 --high</span>
 <span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
@@ -2103,7 +2032,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </td></tr></table></div>
 </div>
 </div></blockquote>
-<p>33. [LeetCode] Maximum Gap 最大间隔。Hint：方法一，普通排序，逐个比较；方法二，桶排序。将 <span class="math notranslate nohighlight">\(n\)</span> 个数放到 <span class="math notranslate nohighlight">\(n+1\)</span> 个桶中，最小值放第一个桶，
+<p>29. [LeetCode] Maximum Gap 最大间隔。Hint：方法一，普通排序，逐个比较；方法二，桶排序。将 <span class="math notranslate nohighlight">\(n\)</span> 个数放到 <span class="math notranslate nohighlight">\(n+1\)</span> 个桶中，最小值放第一个桶，
 最大值放最后一个桶，每个桶的大小为 <span class="math notranslate nohighlight">\(\frac{max-min}{n}\)</span> 。根据鸽巢原理，至少存在一个桶为空。最大间隔必然出现在空桶两侧，且只与左侧桶的最大值、
 右侧桶的最小值有关。（事实上，可以将 <span class="math notranslate nohighlight">\(n\)</span> 个数放到 <span class="math notranslate nohighlight">\(n\)</span> 个桶中，如果没有空桶，则刚好每个桶有且仅有一个数，最大间隔出现在相邻桶中；如果某个桶有2个数以上，
 说明存在有空桶，最大间隔出现在非空的相邻桶中。总之，最大间隔不会出现在一个桶中。）</p>
@@ -2201,104 +2130,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </td></tr></table></div>
 </div>
 </div></blockquote>
-<ol class="arabic simple" start="34">
-<li>耗时最短路径，某些顶点有自行车，骑上自行车之后耗时减半。Hint：广度优先遍历，使用优先队列/堆，最早到达终点的一定是耗时最短路径。</li>
-</ol>
-<blockquote>
-<div><p><a class="reference external" href="https://www.nowcoder.com/practice/7689b595f3eb419b9e7816c4f45a400d?tpId=90&amp;tqId=30852&amp;tPage=4&amp;rp=4&amp;ru=/ta/2018test&amp;qru=/ta/2018test/question-ranking">https://www.nowcoder.com/practice/7689b595f3eb419b9e7816c4f45a400d?tpId=90&amp;tqId=30852&amp;tPage=4&amp;rp=4&amp;ru=/ta/2018test&amp;qru=/ta/2018test/question-ranking</a></p>
-<div class="toggle docutils container">
-<div class="header docutils container">
-<span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></div>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">heapq</span> <span class="kn">as</span> <span class="nn">hq</span>
-
-<span class="n">n</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-<span class="n">edges</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
-<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
-    <span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">cost</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-    <span class="n">begin</span> <span class="o">-=</span> <span class="mi">1</span>
-    <span class="n">end</span> <span class="o">-=</span> <span class="mi">1</span>
-    <span class="n">edges</span><span class="p">[</span><span class="n">begin</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">end</span><span class="p">,</span> <span class="n">cost</span><span class="p">))</span> <span class="c1">## 无向边</span>
-    <span class="n">edges</span><span class="p">[</span><span class="n">end</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">begin</span><span class="p">,</span> <span class="n">cost</span><span class="p">))</span>
-<span class="n">have_bike</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
-<span class="n">k</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
-    <span class="n">v</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-    <span class="n">v</span> <span class="o">-=</span> <span class="mi">1</span>
-    <span class="n">have_bike</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
-
-<span class="n">INF</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span> <span class="c1">## 无穷大</span>
-<span class="c1">## 根据当前顶点是否有自行车，需要定义两个全局数组，存储当前最短耗时</span>
-<span class="n">global_cost</span> <span class="o">=</span> <span class="p">{</span><span class="bp">False</span><span class="p">:</span> <span class="p">[</span><span class="n">INF</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)],</span> <span class="bp">True</span><span class="p">:</span> <span class="p">[</span><span class="n">INF</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]}</span>
-<span class="n">global_cost</span><span class="p">[</span><span class="n">have_bike</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">ans</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-<span class="n">h</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="c1">## 堆元素：(cost, v, have_bike)</span>
-<span class="n">hq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">have_bike</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">v_cost</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">v_bike</span> <span class="o">=</span> <span class="n">hq</span><span class="o">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-        <span class="n">ans</span> <span class="o">=</span> <span class="n">v_cost</span>
-        <span class="k">break</span>
-    <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">uv_cost</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>
-        <span class="k">if</span> <span class="n">v_bike</span><span class="p">:</span>
-            <span class="n">uv_cost</span> <span class="o">/=</span> <span class="mi">2</span>
-        <span class="n">u_cost</span> <span class="o">=</span> <span class="n">v_cost</span> <span class="o">+</span> <span class="n">uv_cost</span>
-        <span class="n">u_bike</span> <span class="o">=</span> <span class="n">have_bike</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="ow">or</span> <span class="n">v_bike</span>
-
-        <span class="k">if</span> <span class="n">u_cost</span> <span class="o">&gt;=</span> <span class="n">global_cost</span><span class="p">[</span><span class="n">u_bike</span><span class="p">][</span><span class="n">u</span><span class="p">]:</span>
-            <span class="k">continue</span>
-        <span class="n">global_cost</span><span class="p">[</span><span class="n">u_bike</span><span class="p">][</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_cost</span>
-        <span class="n">hq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="p">(</span><span class="n">u_cost</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">u_bike</span><span class="p">))</span>
-
-<span class="k">print</span> <span class="n">ans</span>
-</pre></div>
-</td></tr></table></div>
-</div>
-</div></blockquote>
-<ol class="arabic simple" start="35">
+<ol class="arabic simple" start="30">
 <li>数组操作模拟大数乘法。Hint：从低位到高位，采用竖式计算，记录所有位的乘积，再将对应位的结果相加，最后进位。假设数组 <span class="math notranslate nohighlight">\(a\)</span> 和 <span class="math notranslate nohighlight">\(b\)</span> 从低位到高位存储了两个大数（可能存在小数点），则乘积为 <span class="math notranslate nohighlight">\(ans[i+j] = ans[i+j] + a[i] + b[j]\)</span> 。</li>
 </ol>
 <blockquote>
@@ -2386,6 +2218,133 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
         <span class="n">s</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">s</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="31">
+<li>[LeetCode] Number of Islands 孤岛个数。Hint：使用队列，广度优先遍历（BFS）。</li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://leetcode.com/problems/number-of-islands/">https://leetcode.com/problems/number-of-islands/</a></p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+   <span class="kt">void</span> <span class="n">traverseIsland</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;&gt;&amp;</span> <span class="n">grid</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">M</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">N</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">queue</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">que</span><span class="p">;</span>
+
+        <span class="n">que</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">));</span>
+        <span class="n">grid</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;0&#39;</span><span class="p">;</span>
+
+        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">que</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">p</span> <span class="o">=</span> <span class="n">que</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
+            <span class="n">que</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">first</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">grid</span><span class="p">[</span><span class="n">p</span><span class="p">.</span><span class="n">first</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">p</span><span class="p">.</span><span class="n">second</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;1&#39;</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">grid</span><span class="p">[</span><span class="n">p</span><span class="p">.</span><span class="n">first</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">p</span><span class="p">.</span><span class="n">second</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;0&#39;</span><span class="p">;</span>
+                <span class="n">que</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">first</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">second</span><span class="p">));</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">first</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">M</span> <span class="o">&amp;&amp;</span> <span class="n">grid</span><span class="p">[</span><span class="n">p</span><span class="p">.</span><span class="n">first</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">p</span><span class="p">.</span><span class="n">second</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;1&#39;</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">grid</span><span class="p">[</span><span class="n">p</span><span class="p">.</span><span class="n">first</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">p</span><span class="p">.</span><span class="n">second</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;0&#39;</span><span class="p">;</span>
+                <span class="n">que</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">first</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">second</span><span class="p">));</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">second</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">grid</span><span class="p">[</span><span class="n">p</span><span class="p">.</span><span class="n">first</span><span class="p">][</span><span class="n">p</span><span class="p">.</span><span class="n">second</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;1&#39;</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">grid</span><span class="p">[</span><span class="n">p</span><span class="p">.</span><span class="n">first</span><span class="p">][</span><span class="n">p</span><span class="p">.</span><span class="n">second</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;0&#39;</span><span class="p">;</span>
+                <span class="n">que</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">first</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">second</span> <span class="o">-</span> <span class="mi">1</span><span class="p">));</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">second</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">N</span> <span class="o">&amp;&amp;</span> <span class="n">grid</span><span class="p">[</span><span class="n">p</span><span class="p">.</span><span class="n">first</span><span class="p">][</span><span class="n">p</span><span class="p">.</span><span class="n">second</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;1&#39;</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">grid</span><span class="p">[</span><span class="n">p</span><span class="p">.</span><span class="n">first</span><span class="p">][</span><span class="n">p</span><span class="p">.</span><span class="n">second</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;0&#39;</span><span class="p">;</span>
+                <span class="n">que</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">first</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">second</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kt">int</span> <span class="n">numIslands</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;&gt;&amp;</span> <span class="n">grid</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">grid</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">M</span> <span class="o">=</span> <span class="n">grid</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+        <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="n">grid</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">size</span><span class="p">();</span>
+        <span class="kt">int</span> <span class="n">island</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">m</span> <span class="o">&lt;</span> <span class="n">M</span><span class="p">;</span> <span class="o">++</span><span class="n">m</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">n</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">grid</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="n">n</span><span class="p">]</span><span class="o">==</span><span class="sc">&#39;1&#39;</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">island</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+                    <span class="n">traverseIsland</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">N</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">island</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
 </pre></div>
 </td></tr></table></div>
 </div>

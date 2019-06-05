@@ -17,99 +17,15 @@
 编程算法
 ------------
 
-1. 有面值1,5,10,20,50,100的人民币，求问10000有多少种组成方法？
-
-  https://www.zhihu.com/question/315108379
-
-  .. container:: toggle
-
-    .. container:: header
-
-      :math:`\color{darkgreen}{Code}`
-
-    .. code-block:: python
-      :linenos:
-
-      import numpy as np
-      money = np.array([1, 5, 10, 20, 50, 100])
-      dp = np.array([[0 for i in range(10000+1)] for j in range(6+1)], dtype=np.int64)
-      ## dp[m,n]: first m currency values, make money n
-      dp[0,:] = 0
-      dp[:,0] = 1
-      for m in range(1,6+1):
-          for n in range(1, 10000+1):
-              if n >= money[m-1]:
-                  dp[m,n] = dp[m,n-money[m-1]] + dp[m-1,n]
-              else:
-                  dp[m,n] = dp[m-1,n]
-      print dp[6, 10000]
-
-    .. code-block:: cpp
-      :linenos:
-
-      // 作者：李泽政
-      // 链接：https://www.zhihu.com/question/315108379/answer/620254961
-
-      #include<cstdio>
-      #define maxn 10001
-      long long dp[maxn];
-      int main(void)
-      {
-          int i,j,num[] = {5, 10, 20, 50, 100};
-          for(i = 0; i < maxn; ++i)
-              dp[i] = 1; // 作者把 1 从 num[] 中去掉了，转化到初始化中。全用 1 元只能得到一种组成方案
-          for(i = 0; i < 5; ++i)
-              for(j = num[i]; j < maxn; ++j)
-                  dp[j] += dp[j - num[i]];
-          printf("%lld", dp[maxn - 1]);
-          return 0;
-      }
-
-
-2. 如何用最少的次数测出鸡蛋会在哪一层摔碎？
-
-  https://www.zhihu.com/question/19690210
-
-  .. container:: toggle
-
-    .. container:: header
-
-      :math:`\color{darkgreen}{Code}`
-
-    .. code-block:: python
-      :linenos:
-
-      ## 作者：知乎用户
-      ## 链接：https://www.zhihu.com/question/19690210/answer/18079633
-      ## f(n,m)：n 层楼，m 个鸡蛋所需最少次数
-      ## f(0, m) = 0
-      ## f(n, 1) = n
-      ## f(n, m) = min{max{f(k-1, m-1), f(n-k, m)}} + 1, 1 <= k <= n。 k 表示尝试在第 k 层扔下鸡蛋。
-
-      import functools
-      @functools.lru_cache(maxsize=None)
-      def f(n, m):
-          if n == 0:
-              return 0
-          if m == 1:
-              return n
-
-          ans = min([max([f(i - 1, m - 1), f(n - i, m)]) for i in range(1, n + 1)]) + 1
-          return ans
-
-      print(f(100, 2))	# 14
-      print(f(200, 2))	# 20
-
-
-3. 找出数组中N个出现1（或奇数次）次的数字
+1. 找出数组中N个出现1（或奇数次）次的数字
 
   https://www.jianshu.com/p/e1331664c8cf
 
-4. 均匀分布生成其他分布的方法
+2. 均匀分布生成其他分布的方法
 
   https://blog.csdn.net/haolexiao/article/details/60511164
 
-5. 海量数据处理。Hint：哈希方法，把大文件划分成小文件，读进内存依次处理；Bitmap，用一个（或几个）比特位来标记某个元素对应的值。
+3. 海量数据处理。Hint：哈希方法，把大文件划分成小文件，读进内存依次处理；Bitmap，用一个（或几个）比特位来标记某个元素对应的值。
 
   - 面试题集锦
 
@@ -119,31 +35,10 @@
 
       https://blog.csdn.net/tiankong\_/article/details/77240283
 
-6. 链表
+4. 链表
 
-  - 求有环单链表中的环长、环起点、链表长
+  - 反转链表。Hint：方法一，逐个反转；方法二，递归；方法三，使用栈保存节点的值，反向赋给所有节点。
 
-      https://www.cnblogs.com/xudong-bupt/p/3667729.html
-
-  - 判断两个链表是否相交并找出交点
-
-      https://blog.csdn.net/jiary5201314/article/details/50990349
-
-  - 单链表 :math:`\mathcal{O}(1)` 时间删除给定节点
-
-      https://blog.csdn.net/qq_35546040/article/details/80341136
-
-7. 全排列的非递归和递归实现（含重复元素）。Hint：在交换第 :math:`i` 个元素与第 :math:`j` 个元素之前，要求数组的 :math:`[i, j)` 区间中的元素没有与第 :math:`j` 个元素重复。
-
-  https://blog.csdn.net/so_geili/article/details/71078945
-
-8. 排列组合：:math:`k` 个球放入 :math:`m` 个盒子
-
-  https://blog.csdn.net/qwb492859377/article/details/50654627?tdsourcetag=s_pctim_aiomsg
-
-9. Next Permutation 下一个排列
-
-  https://www.cnblogs.com/grandyang/p/4428207.html
 
   .. container:: toggle
 
@@ -154,36 +49,99 @@
     .. code-block:: cpp
       :linenos:
 
-      // 从后往前先找到第一个开始下降的数字x（下标i），再从后往前找到第一个比x大的数y（下标j）；交换x，y；翻转区间 [i+1, end)。
-      class Solution
+      struct ListNode
       {
-      public:
-          void nextPermutation(vector<int> &num)
-          {
-              int i, j, n = num.size();
-              for (i = n - 2; i >= 0; --i)
-              {
-                  if (num[i + 1] > num[i])
-                  {
-                      for (j = n - 1; j > i; --j)
-                      {
-                          if (num[j] > num[i]) break;
-                      }
-                      swap(num[i], num[j]);
-                      reverse(num.begin() + i + 1, num.end());
-                      return;
-                  }
-              }
-              reverse(num.begin(), num.end()); // 当前排列是最大的排列，则翻转为最小的排列
-          }
+          int val;
+          ListNode *next;
+          ListNode(int x) : val(x), next(NULL) {}
       };
 
+    .. code-block:: cpp
+      :linenos:
 
-10. LeetCode 75. Sort Colors（三颜色排序→K颜色排序）
+      // 方法一，逐个反转
+      ListNode* reverseList(ListNode* head)
+      {
+          if(head==NULL || head->next==NULL) return head;
+          ListNode* newHead = head;
+          ListNode* curr = head -> next;
+          ListNode* post = curr -> next;
+          newHead -> next = NULL;
+          while(curr)
+          {
+              curr -> next = newHead;
+              newHead = curr;
+              curr = post;
+              if(post) post = post -> next;
+          }
+          return newHead;
+      }
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 方法二，递归
+      ListNode* reverseList(ListNode* head)
+      {
+          if(head==NULL || head->next==NULL) return head;
+          else{
+              ListNode* newHead = reverseList(head -> next);
+              head -> next -> next = head; // head 指向的下一个节点是 newHead 的最后一个节点
+              head -> next = NULL;
+              return newHead;
+          }
+      }
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 方法三，使用栈保存节点的值，占用 O(n) 额外空间
+      ListNode* reverseList(ListNode* head)
+      {
+          if(head==NULL || head->next==NULL) return head;
+          stack<int> stk;
+          ListNode* p = head;
+          while(p)
+          {
+              stk.emplace(p -> val);
+              p = p -> next;
+          }
+          p = head;
+          while(p)
+          {
+              p -> val = stk.top();
+              stk.pop();
+              p = p -> next;
+          }
+          return head;
+      }
+
+
+
+  - 求有环单链表中的环长、环起点、链表长。
+
+      https://www.cnblogs.com/xudong-bupt/p/3667729.html
+
+  - 判断两个链表是否相交并找出交点。
+
+      https://blog.csdn.net/jiary5201314/article/details/50990349
+
+  - 单链表 :math:`\mathcal{O}(1)` 时间删除给定节点。Hint：交换当前节点与下一个节点的值，删除下一个节点。
+
+      https://blog.csdn.net/qq_35546040/article/details/80341136
+
+
+
+5. 排列组合：:math:`k` 个球放入 :math:`m` 个盒子
+
+  https://blog.csdn.net/qwb492859377/article/details/50654627?tdsourcetag=s_pctim_aiomsg
+
+
+6. [LeetCode] Sort Colors（三颜色排序→K颜色排序）
 
   https://blog.csdn.net/princexiexiaofeng/article/details/79645511
 
-11. 找到数组第 :math:`k` 大的数
+7. 找到数组第 :math:`k` 大的数
 
   https://leetcode.com/problems/kth-largest-element-in-an-array/
 
@@ -251,7 +209,7 @@
 
 
 
-12. [LeetCode] Best Time to Buy and Sell Stock 买卖股票的最佳时间
+8. [LeetCode] Best Time to Buy and Sell Stock 买卖股票的最佳时间
 
   - 最多一次交易
 
@@ -275,7 +233,7 @@
 
       https://www.cnblogs.com/grandyang/p/4997417.html
 
-13. [LeetCode] Partition Equal Subset Sum 数组分成两个子集，和相等
+9. [LeetCode] Partition Equal Subset Sum 数组分成两个子集，和相等
 
   https://leetcode.com/problems/partition-equal-subset-sum/
 
@@ -314,7 +272,7 @@
           return self.backtrack(nums, sum_nums, 0, 0) ## self
 
 
-14. [LeetCode] Find All Anagrams in a String 统计变位词出现的位置。Hint：采用滑动窗口和 **计数器** 进行比较。
+10. [LeetCode] Find All Anagrams in a String 统计变位词出现的位置。Hint：采用滑动窗口和 **计数器** 进行比较。
 
   https://leetcode.com/problems/find-all-anagrams-in-a-string/
 
@@ -354,7 +312,7 @@
       };
 
 
-15. [LeetCode] Find the Duplicate Number 寻找重复数。数值范围为 :math:`\{ 1,2,3,...,n \}` 。Hint：把数组元素的值当做下标，由于元素存在重复，因此必然会 **重复多次访问同一个位置** 。
+11. [LeetCode] Find the Duplicate Number 寻找重复数。数值范围为 :math:`\{ 1,2,3,...,n \}` 。Hint：把数组元素的值当做下标，由于元素存在重复，因此必然会 **重复多次访问同一个位置** 。
 从另一个角度讲，访问序列中存在“环”。哈希不满足空间复杂度为 :math:`\mathcal{O}(1)` 的要求。
 
   - 找到一个重复数字。
@@ -392,6 +350,9 @@
               return slow;
           }
       };
+
+    .. code-block:: cpp
+      :linenos:
 
       // 解法二：不断交换位置，找到第一个重复访问的元素
       class Solution
@@ -449,6 +410,9 @@
           }
       };
 
+    .. code-block:: cpp
+      :linenos:
+
       // 解法二：不断交换位置使得 i == nums[i]-1
       class Solution
       {
@@ -470,7 +434,7 @@
       };
 
 
-16. [LeetCode] Spiral Matrix 环形打印矩阵
+12. [LeetCode] Spiral Matrix 环形打印矩阵
 
   https://leetcode.com/problems/spiral-matrix/
 
@@ -526,7 +490,7 @@
       };
 
 
-17. [LeetCode] Longest Consecutive Sequence 最长连续序列。Hint：方法一，排序；方法二，对于每个元素 :math:`n` ，搜索 :math:`n+1` 是否在数组中，使用 hash（set）可以获得 :math:`\mathcal{O}(1)` 的查找复杂度。
+13. [LeetCode] Longest Consecutive Sequence 最长连续序列。Hint：方法一，排序；方法二，对于每个元素 :math:`n` ，搜索 :math:`n+1` 是否在数组中，使用 hash（set）可以获得 :math:`\mathcal{O}(1)` 的查找复杂度。
 
   https://leetcode.com/problems/longest-consecutive-sequence/
 
@@ -562,11 +526,11 @@
           return longest
 
 
-18. 最小公约数与最大公倍数。Hint：辗转相除法；最大公倍数等于两数乘积除以最大公约数。
+14. 最小公约数与最大公倍数。Hint：辗转相除法；最大公倍数等于两数乘积除以最大公约数。
 
   https://www.cnblogs.com/Arvin-JIN/p/7247619.html
 
-19. 跳跃的蚂蚱：从 0 点出发，往正或负向跳跃，第一次跳跃一个单位，之后每次跳跃距离比上一次多一个单位，跳跃多少次可到到达坐标 :math:`x` 处？
+15. 跳跃的蚂蚱：从 0 点出发，往正或负向跳跃，第一次跳跃一个单位，之后每次跳跃距离比上一次多一个单位，跳跃多少次可到到达坐标 :math:`x` 处？
 Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数列（如 :math:`n=3` ，可到达 :math:`\{-3,-1,1,3\}` ）。
 只需找到第最小的 :math:`n` 使得
 
@@ -602,7 +566,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       }
 
 
-20. 求 :math:`n` 的阶乘末尾有多少个 :math:`0` 。Hint：1个 :math:`5` 和1个 :math:`2` 搭配可以得到1个 :math:`0` ；:math:`2` 的个数比 :math:`5` 多，
+16. 求 :math:`n` 的阶乘末尾有多少个 :math:`0` 。Hint：1个 :math:`5` 和1个 :math:`2` 搭配可以得到1个 :math:`0` ；:math:`2` 的个数比 :math:`5` 多，
 因此只关心 :math:`5` 的个数；:math:`25` 包含2个 :math:`5` ，:math:`125` 包含3个 :math:`5` ...。
 
   .. container:: toggle
@@ -631,7 +595,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
-21. 求一个整数的二进制表示中 :math:`1` 的个数。Hint：移位操作，负数可能造成死循环。 **注：指定移位次数大于或等于对象类型的比特数（如int型的32位），或者对负数进行左移操作，结果都是未定义的** 。
+17. 求一个整数的二进制表示中 :math:`1` 的个数。Hint：移位操作，负数可能造成死循环。 **注：指定移位次数大于或等于对象类型的比特数（如int型的32位），或者对负数进行左移操作，结果都是未定义的** 。
 例如：``n >> 32`` 是未定义的，但是允许 ``n >>= 1`` 执行无限次，这是安全的。
 
   .. container:: toggle
@@ -655,6 +619,9 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
         return cnt;
       }
 
+    .. code-block:: cpp
+      :linenos:
+
       // 方法二：n不动，左移一个比较子。
       int Numberof1(int n)
       {
@@ -667,6 +634,10 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
         }
         return cnt;
       }
+
+
+    .. code-block:: cpp
+      :linenos:
 
       // 方法三：把一个整数减1，再和原整数做逻辑与运算，会把该整数最右边的一个1变成0。
       int Numberof1(int n)
@@ -681,7 +652,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       }
 
 
-22. [LeetCode] Subarray Sum Equals K 子数组和为 :math:`K` 。Hint：依次求数组的前 :math:`n` 项和 :math:`sum[n]` ，:math:`n \in [0, arr\_size]` （注意：0也在内），
+18. [LeetCode] Subarray Sum Equals K 子数组和为 :math:`K` 。Hint：依次求数组的前 :math:`n` 项和 :math:`sum[n]` ，:math:`n \in [0, arr\_size]` （注意：0也在内），
 将和作为哈希表的key，和的值出现次数作为value；如果存在 :math:`sum[i]−sum[j]=K \ (i \ge j)` ，则 :math:`sum[i]` 和 :math:`sum[j]` 都应该在哈希表中。
 
   https://leetcode.com/problems/subarray-sum-equals-k/
@@ -725,7 +696,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           return cnt
 
 
-23. 使用位运算进行加法运算。Hint：原位加法运算等效为 ``^`` 运算，进位等效为 ``&`` 和 ``移位`` 的复合。 **注：C++不允许对负数进行左移运算。**
+19. 使用位运算进行加法运算。Hint：原位加法运算等效为 ``^`` 运算，进位等效为 ``&`` 和 ``移位`` 的复合。 **注：C++不允许对负数进行左移运算。**
 
   https://leetcode.com/problems/sum-of-two-integers/
 
@@ -784,7 +755,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       ## python 中，使用type()查看数据类型时发现，有时候系统会把 int32 转化为 int64，或者 int64 转为 int32，疑惑中。。。
 
 
-24. [LeetCode] Longest Substring with At Least K Repeating Characters 包含重复字符的最长子串。Hint：由于该字符串只包含小写字母，因此
+20. [LeetCode] Longest Substring with At Least K Repeating Characters 包含重复字符的最长子串。Hint：由于该字符串只包含小写字母，因此
 直接使用长度为26的静态数组来统计字符频率更为简洁高效，不需要使用map。
 
   https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/
@@ -836,7 +807,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
-25. [LeetCode] 4Sum II 4个数和为0的组合数。Hint：两两之和存入哈希表，时间复杂度和空间复杂度 :math:`\mathcal{O}(N^2)` 。
+21. [LeetCode] 4Sum II 4个数和为0的组合数。Hint：两两之和存入哈希表，时间复杂度和空间复杂度 :math:`\mathcal{O}(N^2)` 。
 
   https://leetcode.com/problems/4sum-ii/
 
@@ -855,14 +826,14 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
 
 
-26. [LeetCode] Maximum Product Subarray 求连续子数组的最大乘积。Hint：数组中存在负数，负负得正，因此相比于连续子数组最大和问题，不仅需要记录以每个元素结尾的连续乘积的最大值，还需要记录最小值。
+22. [LeetCode] Maximum Product Subarray 求连续子数组的最大乘积。Hint：数组中存在负数，负负得正，因此相比于连续子数组最大和问题，不仅需要记录以每个元素结尾的连续乘积的最大值，还需要记录最小值。
 
   https://blog.csdn.net/xblog\_/article/details/72872263
 
 
 
 
-27. 给定一个十进制整数 :math:`N` ，统计从 :math:`1` 到 :math:`N` 所有的整数各位出现的 :math:`1` 的数目。Hint： :math:`1` 的数目 = 个位出现 :math:`1` 的数目 + 十位出现 :math:`1` 的数目 + 百位出现 :math:`1` 的数目  + ......。以百位为例：如果百位数字为0，则百位出现1的次数只由更高位决定，如12013，次数为12 * 100；如果百位数字为1，则百位出现1的次数由更高位和更低位同时决定，如12113，次数为12 * 100 + (113 + 1)；如果百位数字大于1，则百位出现1的次数只由更高位决定，如12213，次数为(12 + 1) * 100。时间复杂度 :math:`\mathcal{O}(\log_{10}(N))` 。
+23. 给定一个十进制整数 :math:`N` ，统计从 :math:`1` 到 :math:`N` 所有的整数各位出现的 :math:`1` 的数目。Hint： :math:`1` 的数目 = 个位出现 :math:`1` 的数目 + 十位出现 :math:`1` 的数目 + 百位出现 :math:`1` 的数目  + ......。以百位为例：如果百位数字为0，则百位出现1的次数只由更高位决定，如12013，次数为12 * 100；如果百位数字为1，则百位出现1的次数由更高位和更低位同时决定，如12113，次数为12 * 100 + (113 + 1)；如果百位数字大于1，则百位出现1的次数只由更高位决定，如12213，次数为(12 + 1) * 100。时间复杂度 :math:`\mathcal{O}(\log_{10}(N))` 。
 
   http://www.cnblogs.com/jy02414216/archive/2011/03/09/1977724.html
 
@@ -906,7 +877,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       }
 
 
-28. 数组循环移位：循环右移 :math:`K` 位，时间复杂度 :math:`\mathcal{O}(N)` 。Hint：三次翻转。
+24. 数组循环移位：循环右移 :math:`K` 位，时间复杂度 :math:`\mathcal{O}(N)` 。Hint：三次翻转。
 
   .. container:: toggle
 
@@ -934,7 +905,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
 
 
-29. [LeetCode] Divide Two Integers 整数除法。Hint：先取绝对值，做正整数之间的除法；防止溢出。
+25. [LeetCode] Divide Two Integers 整数除法。Hint：先取绝对值，做正整数之间的除法；防止溢出。
 
   https://leetcode.com/problems/divide-two-integers/
 
@@ -989,7 +960,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
-30. [LeetCode] Fraction to Recurring Decimal 循环小数。Hint：小数除法：余数乘以10再求余；如果余数出现重复，则说明是循环小数。
+26. [LeetCode] Fraction to Recurring Decimal 循环小数。Hint：小数除法：余数乘以10再求余；如果余数出现重复，则说明是循环小数。
 
   https://leetcode.com/problems/fraction-to-recurring-decimal/
 
@@ -1045,7 +1016,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
-31. 正整数质因数分解。
+27. 正整数质因数分解。
 
   .. container:: toggle
 
@@ -1068,7 +1039,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
                   prime += 1
 
 
-32. 旋转数组查找。Hint：采用二分查找的思路。
+28. 旋转数组查找。Hint：采用二分查找的思路。
 
   - 二分查找
 
@@ -1136,6 +1107,10 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
         // 如果数组本身是有序的，即 arr[0] < arr[n-1]，则第一个元素就是最小值
         return 0;
       }
+
+
+    .. code-block:: cpp
+      :linenos:
 
       // 方法二
       // 如果 arr[mid] < arr[mid-1]，则 arr[mid] 是最小值
@@ -1250,7 +1225,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
-33. [LeetCode] Maximum Gap 最大间隔。Hint：方法一，普通排序，逐个比较；方法二，桶排序。将 :math:`n` 个数放到 :math:`n+1` 个桶中，最小值放第一个桶，
+29. [LeetCode] Maximum Gap 最大间隔。Hint：方法一，普通排序，逐个比较；方法二，桶排序。将 :math:`n` 个数放到 :math:`n+1` 个桶中，最小值放第一个桶，
 最大值放最后一个桶，每个桶的大小为 :math:`\frac{max-min}{n}` 。根据鸽巢原理，至少存在一个桶为空。最大间隔必然出现在空桶两侧，且只与左侧桶的最大值、
 右侧桶的最小值有关。（事实上，可以将 :math:`n` 个数放到 :math:`n` 个桶中，如果没有空桶，则刚好每个桶有且仅有一个数，最大间隔出现在相邻桶中；如果某个桶有2个数以上，
 说明存在有空桶，最大间隔出现在非空的相邻桶中。总之，最大间隔不会出现在一个桶中。）
@@ -1311,65 +1286,8 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
-34. 耗时最短路径，某些顶点有自行车，骑上自行车之后耗时减半。Hint：广度优先遍历，使用优先队列/堆，最早到达终点的一定是耗时最短路径。
 
-  https://www.nowcoder.com/practice/7689b595f3eb419b9e7816c4f45a400d?tpId=90&tqId=30852&tPage=4&rp=4&ru=/ta/2018test&qru=/ta/2018test/question-ranking
-
-  .. container:: toggle
-
-    .. container:: header
-
-      :math:`\color{darkgreen}{Code}`
-
-    .. code-block:: python
-      :linenos:
-
-      import sys
-      import heapq as hq
-
-      n, m = map(int, sys.stdin.readline().strip().split())
-      edges = [[] for _ in range(n)]
-      for _ in range(m):
-          begin, end, cost = map(int, sys.stdin.readline().strip().split())
-          begin -= 1
-          end -= 1
-          edges[begin].append((end, cost)) ## 无向边
-          edges[end].append((begin, cost))
-      have_bike = [False for _ in range(n)]
-      k = int(sys.stdin.readline().strip())
-      for _ in range(k):
-          v = int(sys.stdin.readline().strip())
-          v -= 1
-          have_bike[v] = True
-
-      INF = float('inf') ## 无穷大
-      ## 根据当前顶点是否有自行车，需要定义两个全局数组，存储当前最短耗时
-      global_cost = {False: [INF for _ in range(n)], True: [INF for _ in range(n)]}
-      global_cost[have_bike[0]][0] = 0
-      ans = -1
-      h = []
-      ## 堆元素：(cost, v, have_bike)
-      hq.heappush(h, (0, 0, have_bike[0]))
-      while len(h) > 0:
-          v_cost, v, v_bike = hq.heappop(h)
-          if v == n-1:
-              ans = v_cost
-              break
-          for u, uv_cost in edges[v]:
-              if v_bike:
-                  uv_cost /= 2
-              u_cost = v_cost + uv_cost
-              u_bike = have_bike[u] or v_bike
-
-              if u_cost >= global_cost[u_bike][u]:
-                  continue
-              global_cost[u_bike][u] = u_cost
-              hq.heappush(h, (u_cost, u, u_bike))
-
-      print ans
-
-
-35. 数组操作模拟大数乘法。Hint：从低位到高位，采用竖式计算，记录所有位的乘积，再将对应位的结果相加，最后进位。假设数组 :math:`a` 和 :math:`b` 从低位到高位存储了两个大数（可能存在小数点），则乘积为 :math:`ans[i+j] = ans[i+j] + a[i] + b[j]` 。
+30. 数组操作模拟大数乘法。Hint：从低位到高位，采用竖式计算，记录所有位的乘积，再将对应位的结果相加，最后进位。假设数组 :math:`a` 和 :math:`b` 从低位到高位存储了两个大数（可能存在小数点），则乘积为 :math:`ans[i+j] = ans[i+j] + a[i] + b[j]` 。
 
   .. container:: toggle
 
@@ -1422,6 +1340,78 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
           return s
 
+
+31. [LeetCode] Number of Islands 孤岛个数。Hint：使用队列，广度优先遍历（BFS）。
+
+  https://leetcode.com/problems/number-of-islands/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution
+      {
+      public:
+         void traverseIsland(vector<vector<char>>& grid, int m, int n, const int M, const int N)
+          {
+              queue<pair<int, int>> que;
+
+              que.push(make_pair(m, n));
+              grid[m][n] = '0';
+
+              while (!que.empty())
+              {
+                  pair<int, int> p = que.front();
+                  que.pop();
+
+                  if (p.first - 1 >= 0 && grid[p.first - 1][p.second] == '1')
+                  {
+                      grid[p.first - 1][p.second] = '0';
+                      que.push(make_pair(p.first - 1, p.second));
+                  }
+                  if (p.first + 1 < M && grid[p.first + 1][p.second] == '1')
+                  {
+                      grid[p.first + 1][p.second] = '0';
+                      que.push(make_pair(p.first + 1, p.second));
+                  }
+                  if (p.second - 1 >= 0 && grid[p.first][p.second - 1] == '1')
+                  {
+                      grid[p.first][p.second - 1] = '0';
+                      que.push(make_pair(p.first, p.second - 1));
+                  }
+                  if (p.second + 1 < N && grid[p.first][p.second + 1] == '1')
+                  {
+                      grid[p.first][p.second + 1] = '0';
+                      que.push(make_pair(p.first, p.second + 1));
+                  }
+              }
+          }
+
+          int numIslands(vector<vector<char>>& grid)
+          {
+              if(grid.size()==0) return 0;
+              int M = grid.size();
+              int N = grid[0].size();
+              int island = 0;
+              for(int m = 0; m < M; ++m)
+              {
+                  for(int n = 0; n < N; ++n)
+                  {
+                      if(grid[m][n]=='1')
+                      {
+                          island += 1;
+                          traverseIsland(grid, m, n, M, N);
+                      }
+                  }
+              }
+              return island;
+          }
+      };
 
 
 C++

@@ -145,3 +145,65 @@ Dijkstra 算法
       }
     }
   }
+
+
+实例
+-------------
+
+- 耗时最短的路径：某些顶点有自行车，骑上自行车之后耗时减半。Hint：广度优先遍历，使用优先队列/堆，最早到达终点的一定是耗时最短路径。这里
+  需要设置两个全局数组，一个记录当前顶点有自行车的最短耗时，另一个记录当前顶点没有自行车的最短耗时。
+
+  https://www.nowcoder.com/practice/7689b595f3eb419b9e7816c4f45a400d?tpId=90&tqId=30852&tPage=4&rp=4&ru=/ta/2018test&qru=/ta/2018test/question-ranking
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: python
+      :linenos:
+
+      import sys
+      import heapq as hq
+
+      n, m = map(int, sys.stdin.readline().strip().split())
+      edges = [[] for _ in range(n)]
+      for _ in range(m):
+          begin, end, cost = map(int, sys.stdin.readline().strip().split())
+          begin -= 1
+          end -= 1
+          edges[begin].append((end, cost)) ## 无向边
+          edges[end].append((begin, cost))
+      have_bike = [False for _ in range(n)]
+      k = int(sys.stdin.readline().strip())
+      for _ in range(k):
+          v = int(sys.stdin.readline().strip())
+          v -= 1
+          have_bike[v] = True
+
+      INF = float('inf') ## 无穷大
+      ## 根据当前顶点是否有自行车，需要定义两个全局数组，存储当前最短耗时
+      global_cost = {False: [INF for _ in range(n)], True: [INF for _ in range(n)]}
+      global_cost[have_bike[0]][0] = 0
+      ans = -1
+      h = []
+      ## 堆元素：(cost, v, have_bike)
+      hq.heappush(h, (0, 0, have_bike[0]))
+      while len(h) > 0:
+          v_cost, v, v_bike = hq.heappop(h)
+          if v == n-1:
+              ans = v_cost
+              break
+          for u, uv_cost in edges[v]:
+              if v_bike:
+                  uv_cost /= 2
+              u_cost = v_cost + uv_cost
+              u_bike = have_bike[u] or v_bike
+
+              if u_cost >= global_cost[u_bike][u]:
+                  continue
+              global_cost[u_bike][u] = u_cost
+              hq.heappush(h, (u_cost, u, u_bike))
+
+      print ans

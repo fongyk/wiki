@@ -138,6 +138,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
@@ -265,15 +267,15 @@
 23</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// header.h</span>
 <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-      <span class="k">static</span> <span class="kt">void</span> <span class="n">print</span><span class="p">()</span>
-      <span class="p">{</span>
-              <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">var</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 100</span>
-              <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">mapping</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// &#39;a&#39;</span>
-      <span class="p">}</span>
+  <span class="k">static</span> <span class="kt">void</span> <span class="n">print</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">var</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 100</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">mapping</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// &#39;a&#39;</span>
+  <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-      <span class="k">static</span> <span class="k">const</span> <span class="n">map</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">mapping</span><span class="p">;</span> <span class="c1">// 常量声明式</span>
-      <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">var</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span> <span class="c1">// 常量声明式（直接初始化）</span>
+  <span class="k">static</span> <span class="k">const</span> <span class="n">map</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">mapping</span><span class="p">;</span> <span class="c1">// 常量声明式</span>
+  <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">var</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span> <span class="c1">// 常量声明式（直接初始化）</span>
 <span class="p">};</span>
 
 <span class="c1">// source.cpp</span>

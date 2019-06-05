@@ -12,3 +12,5 @@
     05_game.rst
     06_randomSample.rst
     07_sort.rst
+    08_dynamicProgramming.rst
+    09_backtrack.rst

@@ -40,15 +40,15 @@ static const
   // header.h
   class Solution {
   public:
-  	static void print()
-  	{
-  		cout << var << endl; // 100
-  		cout << (mapping.begin()->second)[0] << endl; // 'a'
-  	}
+    static void print()
+    {
+      cout << var << endl; // 100
+      cout << (mapping.begin()->second)[0] << endl; // 'a'
+    }
 
   private:
-  	static const map<char, vector<char> > mapping; // 常量声明式
-  	static const int var = 100; // 常量声明式（直接初始化）
+    static const map<char, vector<char> > mapping; // 常量声明式
+    static const int var = 100; // 常量声明式（直接初始化）
   };
 
   // source.cpp

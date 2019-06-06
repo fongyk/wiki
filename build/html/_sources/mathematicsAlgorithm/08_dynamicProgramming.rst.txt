@@ -89,7 +89,7 @@
   .. code-block:: cpp
     :linenos:
 
-    void lcsLength(char* x, int m, char* y, int n, int** c)
+    void lcsLength(char* x, int m, char* y, int n, int** c) // c 对应的实参为 int *c[]
     {
       for(int i = 0; i <= m; ++i) c[i][0] = 0;
       for(int j = 0; j <= n; ++j) c[0][j] = 0;
@@ -101,6 +101,53 @@
           else c[i][j] = max(c[i-1][j], c[i][j-1]);
         }
       }
+    }
+
+  .. code-block:: cpp
+    :linenos:
+
+    /* 记录并构造公共子序列 */
+
+    void lcsLength(char* x, int m, char* y, int n, int** c, int** b)
+    {
+      for(int i = 0; i <= m; ++i) c[i][0] = 0;
+      for(int j = 0; j <= n; ++j) c[0][j] = 0;
+      for(int i = 1; i <= m; ++i)
+      {
+        for(int j = 1; j <=n; ++j)
+        {
+          if(x[i-1] == y[j-1])
+          {
+            c[i][j] = c[i-1][j-1] + 1;
+            b[i][j] = 0;
+          }
+          else
+          {
+            if(c[i-1][j] > c[i][j-1])
+            {
+              c[i][j] = c[i-1][j];
+              b[i][j] = 1;
+            }
+            else
+            {
+              c[i][j] = c[i][j-1];
+              b[i][j] = 2;
+            }
+          }
+        }
+      }
+    }
+
+    void lcs(char* x, int m, int n, int** b)
+    {
+      if(m == 0 || n == 0) return;
+      if(b[m][n] == 0)
+      {
+        lcs(x, m-1, n-1, b);
+        cout << x[m-1];
+      }
+      else if(b[m][n] == 1) lcs(x, m-1, n, b);
+      else lcs(x, m, n-1, b);
     }
 
 |

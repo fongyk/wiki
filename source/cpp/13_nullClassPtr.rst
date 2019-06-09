@@ -13,22 +13,27 @@
 .. code-block:: cpp
   :linenos:
 
-  class TestNullPtr {
+  class TestNullPtr
+  {
   public:
-    void print() {
-        cout << "print" << endl;
+    void print()
+    {
+      cout << "print" << endl;
     }
 
-    void getA() {
-        cout << a << endl;
+    void getA()
+    {
+      cout << a << endl;
     }
 
-    void setA(int x) {
-        a = x;
+    void setA(int x)
+    {
+      a = x;
     }
 
-    virtual test() {
-        cout << "test" << endl;
+    virtual test()
+    {
+      cout << "test" << endl;
     }
 
   private:

@@ -29,7 +29,7 @@ const
 此外，对浮点常量而言，使用常量可能比使用 #define 导致较小的代码量，因为预处理器将宏名称 ``ASPECT_RATIO`` 替换为  ``1.653`` ，可能导致
 目标码（object code）出现多份 ``1.653`` ，使用常量则不会。
 
-还可以在类定义 static const 成员。
+还可以在类内声明 static const 成员。
 
 .. code-block:: cpp
   :linenos:

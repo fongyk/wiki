@@ -1,8 +1,8 @@
 类的static const成员
 =======================
 
-const
-----------
+const 成员
+-------------------
 const数据成员的初始化只能在类的构造函数的初始化列表中进行。声明const变量时不能初始化。
 
 .. note::
@@ -19,26 +19,21 @@ const数据成员的初始化只能在类的构造函数的初始化列表中进
 
 	成员是按照他们在类中 **声明** 的顺序进行初始化的，而不是按照他们在初始化列表出现的顺序初始化的。
 
-static
------------
-不能在定义对象时对变量进行 **定义和初始化** ，即不能用构造函数进行初始化。
+static 成员
+----------------
+不能在定义对象时对静态变量进行 **定义和初始化** ，即不能用构造函数进行初始化。
 初始化在类体外进行，前面不加static修饰符。
 
-.. note::
-
-  const全局变量和类static成员变量都可以在 **定义类的头文件** 中初始化。不会因为头文件重复包含而导致变量重复定义的编译错误。
-
-  但是在定义指针时要注意， ``const char* p = "name"`` 定义的指针不是const，可能导致错误；而 ``char* const p = "name"`` 不会。
-
-static const
------------------
+static const 成员
+--------------------
 静态常量成员，可以直接初始化（static cosnt 和 const static 含义相同）。
 
 .. code-block:: cpp
   :linenos:
 
-  // header.h
-  class Solution {
+  /* header.h */
+  class Solution
+  {
   public:
     static void print()
     {
@@ -51,7 +46,7 @@ static const
     static const int var = 100; // 常量声明式（直接初始化）
   };
 
-  // source.cpp
+  /* source.cpp */
   const map<char, vector<char> > Solution:: mapping = {{'2', {'a', 'b', 'c'}},
                                                       {'3', {'d', 'e', 'f'}},
                                                       {'4', {'g', 'h', 'i'}}}; // mapping 的定义
@@ -70,9 +65,26 @@ static const
 
 .. warning::
 
-  **static const** 只能修饰成员变量，不能修饰成员函数。
+  **static** 和 **const**  不能 **同时** 修饰成员函数，只能修饰成员变量。
   因为常量成员函数（const）拥有一个 **this** 指针，是一个指向常量类类型的常量指针，而静态成员函数（static）没有 **this** 指针。
 
+.. note::
+
+  头文件中应该写什么？
+    - 变量和函数的声明，而不是定义。如：``extern int a; void f();`` 是允许的，而 ``int a; void f() {};`` 是不允许的。
+
+    - const全局变量可以定义在头文件中，不会因为头文件重复包含而导致变量重复定义的编译错误。
+      但是在定义指针时要注意， ``const char* p = "name"`` 定义的指针不是const，可能导致错误；而 ``char* const p = "name"`` 不会。
+
+    - 内联函数。
+
+    - 类的定义。成员函数定义在类的定义体内，编译器会视其为内联函数；如果定义在类的头文件内，而没有写进类定义体内，是不合法的，需要定义
+      在别的源文件（.cpp）文件内。
+
+    - 函数模板和类模板成员函数。
+
+  把声明在头文件（header.h）中的函数或类成员函数定义在一个源文件（source1.cpp）中，需要包含该头文件（#include "header.h"），当
+  另一个源文件（source2.cpp）需要调用上述函数时，只需要包含头文件（#include "header.h"），而不是包含函数定义的源文件（source1.cpp）。
 
 参考资料
 -------------
@@ -85,15 +97,19 @@ static const
 
   https://blog.csdn.net/mafuli007/article/details/8499585
 
-3. C++ 初始化列表
+3. 头文件重复包含和变量重复定义
+
+  https://blog.csdn.net/u014557232/article/details/50354127
+
+4. C++ 初始化列表
 
   https://www.cnblogs.com/graphics/archive/2010/07/04/1770900.html
 
-4. C++的一大误区——深入解释直接初始化与复制初始化的区别
+5. C++的一大误区——深入解释直接初始化与复制初始化的区别
 
   https://blog.csdn.net/ljianhui/article/details/9245661
 
-5. C++构造函数初始化列表与赋值
+6. C++构造函数初始化列表与赋值
 
   https://www.cnblogs.com/sz-leez/p/7082865.html
 

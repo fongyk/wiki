@@ -81,10 +81,10 @@ k-means 实现
       ## update center
       new_error = 0.0
       for c in range(K):
-        data_c = data[quan_id == c]
-        if data_c.shape[0] != 0:
+          data_c = data[quan_id == c]
+          if data_c.shape[0] != 0:
             center[c] = np.mean(data_c, axis=0)
-        new_error += np.sum((data_c - center[c])**2)
+            new_error += np.sum((data_c - center[c])**2)
 
       if itr > 1 and abs(1 - new_error/old_error) < 1e-3:
           break

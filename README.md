@@ -1,2 +1,2 @@
 # wiki
-Sphix + ReadtheDocs + Github Page
+Sphinx + ReadtheDocs + Github Page

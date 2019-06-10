@@ -84,7 +84,8 @@
       ListNode* reverseList(ListNode* head)
       {
           if(head==NULL || head->next==NULL) return head;
-          else{
+          else
+          {
               ListNode* newHead = reverseList(head -> next);
               head -> next -> next = head; // head 指向的下一个节点是 newHead 的最后一个节点
               head -> next = NULL;
@@ -360,7 +361,7 @@
       public:
           int findDuplicate(vector<int>& nums)
           {
-              int duplicate;
+              int duplicate = -1;
               for(int k = 0; k < nums.size(); ++k)
               {
                   while(nums[k]-1 != k)
@@ -373,6 +374,7 @@
                       swap(nums[k], nums[nums[k]-1]);
                       // 一次交换之后，下标为 nums[k]-1 的元素就等于 nums[k] 了。
                   }
+                  if(duplicate != -1) break;
               }
               return duplicate;
           }

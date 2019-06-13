@@ -112,8 +112,13 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">3. Batch Normalization</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">3.1. 加速训练</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#bn">3.2. BN消除</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">3.3. 缺点</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">3.4. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">3.3. 训练与测试</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">训练</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">测试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">3.4. 缺点</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">3.5. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="04_overfit.html">4. 过拟合</a></li>
@@ -199,8 +204,13 @@
   <div class="section" id="batch-normalization">
 <h1>3. Batch Normalization<a class="headerlink" href="#batch-normalization" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
-\[\begin{split}\hat{x}^{(k)} &amp;=&amp;\ \frac{x^{(k)} - E[x^{(k)}]}{\sqrt{Var[x^{{(k)}}] + \epsilon}} \\
-y^{(k)} &amp;=&amp;\ \gamma^{(k)} \hat{x}^{(k)} + \beta^{(k)}\end{split}\]</div>
+\[\begin{split}\hat{x}^{(k)} &amp;=&amp;\ \frac{x^{(k)} - E[x^{(k)}]}{\sqrt{Var[x^{{(k)}}] + \epsilon}}, \\
+y^{(k)} &amp;=&amp;\ \gamma^{(k)} \hat{x}^{(k)} + \beta^{(k)}.\end{split}\]</div>
+<p>随着网络深度加深或者在训练过程中，神经元激活值的分布逐渐发生偏移或者变动，之所以训练收敛慢，一般是整体分布逐渐往激活函数函数的取值区间的上下限两端靠近（饱和），
+导致反向传播时低层神经网络的梯度消失。这是训练深层神经网络收敛越来越慢的本质原因。</p>
+<p>BN 通过一定的规范化手段，把每层神经网络任意神经元的激活值的分布强行拉回到 <strong>均值为 0 方差为 1 的标准正态分布</strong> ，其实就是把越来越偏的分布强制拉回比较标准的分布，这样使得激活值落在激活函数的线性区域（0 附近）。
+这样避免了梯度消失，梯度变大意味着学习收敛速度快，能大大加快训练速度。</p>
+<p>BN 一般用在全连接层或卷积层之后，激活函数之前。</p>
 <div class="section" id="id1">
 <h2>3.1. 加速训练<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -212,20 +222,44 @@ y^{(k)} &amp;=&amp;\ \gamma^{(k)} \hat{x}^{(k)} + \beta^{(k)}\end{split}\]</div>
 </div>
 <div class="section" id="bn">
 <h2>3.2. BN消除<a class="headerlink" href="#bn" title="Permalink to this headline">¶</a></h2>
-<p>如果网络发现这种 normalization 是多余的，可以通过学习使得：</p>
+<p>如果在训练过程中，网络发现这种 normalization 是多余的，可以通过学习使得：</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\gamma^{(k)} &amp;=&amp;\ \sqrt{Var[x^{{(k)}}]} \\
-\beta^{(k)} &amp;=&amp;\ E[x^{(k)}]\end{split}\]</div>
+\[\begin{split}\gamma^{(k)} &amp;=&amp;\ \sqrt{Var[x^{{(k)}}]}, \\
+\beta^{(k)} &amp;=&amp;\ E[x^{(k)}].\end{split}\]</div>
 <p>从而消除 BN 的作用。</p>
 </div>
 <div class="section" id="id2">
-<h2>3.3. 缺点<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>3.3. 训练与测试<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h3>训练<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>训练过程中，均值与方差是在每一个batch中分别计算得到的。</p>
+<p>学习的参数为：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\gamma &amp;=&amp;\ [\gamma^{(1)}, \gamma^{(2)}, ..., \gamma^{(C)}], \\
+\beta &amp;=&amp;\ [\beta^{(1)}, \beta^{(2)}, ..., \beta^{(C)}].\end{split}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(C\)</span> 是通道数（channel）。</p>
+</div>
+<div class="section" id="id4">
+<h3>测试<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>测试（Inference）过程中的均值和方差不再是在每一个测试batch中计算得到，而是使用由训练集得到的全局统计量。因此，训练过程中需要记录每个batch的均值和方差。</p>
+<p>测试时使用的全局统计量如下（省略维度上标）：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}E[x] &amp; \leftarrow &amp;\ E_B[\mu_B], \\
+Var[x] &amp; \leftarrow &amp;\ \frac{m}{m-1}E_B[\sigma_B^2].\end{split}\]</div>
+<p>而实际实现过程中，一般使用指数加权平均（Exponentially Weighted Averges，也称“移动平均”）来获得全局统计量，即在训练过程中使用下式更新全局统计量：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}mean &amp;=&amp;\ (1 - momentum) \times mean + momentum \times E_B[\mu_B],\\
+std &amp;=&amp;\ (1 - momentum) \times std + momentum \times E_B[\sigma_B^2].\end{split}\]</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>3.4. 缺点<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p>BN统计均值、方差与batch size有关，batch size太小会导致性能变差。而某些任务受内存限制，batch size难以设置很大，因此BN作用难以显现。
 这时候出现了Group Normalization。</p>
 <a class="reference internal image-reference" href="../_images/03_groupNorm.jpg"><img alt="../_images/03_groupNorm.jpg" class="align-center" src="../_images/03_groupNorm.jpg" style="width: 700px;" /></a>
 </div>
-<div class="section" id="id3">
-<h2>3.4. 参考资料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h2>3.5. 参考资料<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Batch Normalization</li>
 </ol>
@@ -236,6 +270,16 @@ y^{(k)} &amp;=&amp;\ \gamma^{(k)} \hat{x}^{(k)} + \beta^{(k)}\end{split}\]</div>
 </ol>
 <blockquote>
 <div><a class="reference external" href="http://openaccess.thecvf.com/content_ECCV_2018/papers/Yuxin_Wu_Group_Normalization_ECCV_2018_paper.pdf">http://openaccess.thecvf.com/content_ECCV_2018/papers/Yuxin_Wu_Group_Normalization_ECCV_2018_paper.pdf</a></div></blockquote>
+<ol class="arabic simple" start="3">
+<li>深入理解Batch Normalization批标准化</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/wmr95/articles/9450252.html">https://www.cnblogs.com/wmr95/articles/9450252.html</a></div></blockquote>
+<ol class="arabic simple" start="4">
+<li>Batch Normalization 学习笔记</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://blog.csdn.net/hjimce/article/details/50866313">https://blog.csdn.net/hjimce/article/details/50866313</a></div></blockquote>
 </div>
 </div>
 

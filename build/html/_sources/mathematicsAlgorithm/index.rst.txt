@@ -14,3 +14,4 @@
     07_sort.rst
     08_dynamicProgramming.rst
     09_backtrack.rst
+    10_topoSort.rst

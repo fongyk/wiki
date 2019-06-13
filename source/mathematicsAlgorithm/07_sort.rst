@@ -290,6 +290,45 @@
       delete[] atmp;
     }
 
+  .. code-block:: cpp
+    :linenos:
+
+    /* 非递归形式：2-路归并 */
+
+    // 依次把相邻的两个长度为 gap 的子数组合并为长度为 2*gap 的数组（调用 merge 函数）
+    template<class T>
+    void mergePass(T* arr, T* atmp, int n, int gap)
+    {
+      int start = 0;
+      while (start + 2 * gap < n)
+      {
+        merge(arr, atmp, start, start + gap - 1, start + 2 * gap - 1);
+        start += 2 * gap;
+      }
+      if (start + gap - 1 < n - 1) merge(arr, atmp, start, start + gap - 1, n - 1); // 最后的两个子数组不等长，一个长为 gap ，一个长小于 gap
+      else // 只剩下一个子数组
+      {
+        for (int j = start; j < n; ++j) atmp[j] = arr[j];
+      }
+    }
+
+    template<class T>
+    void mergeSort(T* arr, int n)
+    {
+      if (!arr || n <= 1) return;
+      T* atmp = new T[n];
+      int gap = 1;
+      while (gap < n)
+      {
+        mergePass(arr, atmp, n, gap);
+        for (int i = 0; i < n; ++i) arr[i] = atmp[i];
+        gap *= 2;
+      }
+      delete[] atmp;
+    }
+
+
+
 |
 
 希尔排序

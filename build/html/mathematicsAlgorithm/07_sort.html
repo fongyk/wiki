@@ -47,7 +47,7 @@
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="计算机网络" href="../computerNetwork/index.html" />
+    <link rel="next" title="8. 动态规划" href="08_dynamicProgramming.html" />
     <link rel="prev" title="6. 蓄水池抽样" href="06_randomSample.html" /> 
 </head>
 
@@ -129,6 +129,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#id13">7.12. 参考资料</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="08_dynamicProgramming.html">8. 动态规划</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_backtrack.html">9. 回溯</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
@@ -585,6 +587,73 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/* 非递归形式：2-路归并 */</span>
+
+<span class="c1">// 依次把相邻的两个长度为 gap 的子数组合并为长度为 2*gap 的数组（调用 merge 函数）</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">mergePass</span><span class="p">(</span><span class="n">T</span><span class="o">*</span> <span class="n">arr</span><span class="p">,</span> <span class="n">T</span><span class="o">*</span> <span class="n">atmp</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">gap</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">start</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">gap</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">merge</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">atmp</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">start</span> <span class="o">+</span> <span class="n">gap</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">start</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">gap</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">start</span> <span class="o">+=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">gap</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">start</span> <span class="o">+</span> <span class="n">gap</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="n">merge</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">atmp</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">start</span> <span class="o">+</span> <span class="n">gap</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// 最后的两个子数组不等长，一个长为 gap ，一个长小于 gap</span>
+  <span class="k">else</span> <span class="c1">// 只剩下一个子数组</span>
+  <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">start</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="n">atmp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">mergeSort</span><span class="p">(</span><span class="n">T</span><span class="o">*</span> <span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">arr</span> <span class="o">||</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+  <span class="n">T</span><span class="o">*</span> <span class="n">atmp</span> <span class="o">=</span> <span class="k">new</span> <span class="n">T</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+  <span class="kt">int</span> <span class="n">gap</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">gap</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">mergePass</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">atmp</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">gap</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">atmp</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="n">gap</span> <span class="o">*=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">delete</span><span class="p">[]</span> <span class="n">atmp</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
 </div>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -1017,7 +1086,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../computerNetwork/index.html" class="btn btn-neutral float-right" title="计算机网络" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="08_dynamicProgramming.html" class="btn btn-neutral float-right" title="8. 动态规划" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="06_randomSample.html" class="btn btn-neutral float-left" title="6. 蓄水池抽样" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

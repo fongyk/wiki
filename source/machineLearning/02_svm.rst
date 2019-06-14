@@ -51,7 +51,7 @@
 
   \underset{\alpha \geqslant 0}{max} &  &\  \sum_{i=1}^m\alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y_i y_j x_i^{\top} x_j,\\
   s.t.  &  &\  \sum_{i=1}^m \alpha_i y_i = 0,\\
-        &  &\  \alpha \geqslant 0, \ i=1,2,...,m.
+        &  &\  \alpha_i \geqslant 0, \ i=1,2,...,m.
 
 
 KKT条件：

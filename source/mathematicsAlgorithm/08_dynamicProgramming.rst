@@ -33,7 +33,7 @@
     void matrixChain(int* p, int n, int** m, int** s)
     {
       for(int i = 0; i < n; ++i) m[i][i] = 0;
-      for(int gap = 1; gap < n - 1; ++gap)
+      for(int gap = 1; gap < n; ++gap)
       {
         for(int i = 0; i + gap < n; ++i)
         {

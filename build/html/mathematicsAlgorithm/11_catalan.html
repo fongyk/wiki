@@ -1,0 +1,371 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>11. 卡特兰数 &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'alpha',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="计算机网络" href="../computerNetwork/index.html" />
+    <link rel="prev" title="10. 拓扑排序" href="10_topoSort.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">数理与算法</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_complexity.html">1. 算法复杂度与主定理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_redblackTree.html">2. 红黑树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_shortestPath.html">3. 最短路径</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_treeTraversal.html">4. 二叉树遍历</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_game.html">5. 游戏与必胜策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_randomSample.html">6. 蓄水池抽样</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_sort.html">7. 排序算法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_dynamicProgramming.html">8. 动态规划</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_backtrack.html">9. 回溯</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_topoSort.html">10. 拓扑排序</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">11. 卡特兰数</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">11.1. 公式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">11.2. 应用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">11.3. 参考资料</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">数理与算法</a> &raquo;</li>
+        
+      <li>11. 卡特兰数</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/mathematicsAlgorithm/11_catalan.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>11. 卡特兰数<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>11.1. 公式<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>卡特兰数（Catalan number）的递推式如下：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbb{C}_n &amp; = &amp;\ \mathbb{C}_0 \mathbb{C}_{n-1} + \mathbb{C}_1 \mathbb{C}_{n-2} + \mathbb{C}_2 \mathbb{C}_{n-3} + \cdots + \mathbb{C}_{n-2} \mathbb{C}_1 + \mathbb{C}_{n-1} \mathbb{C}_0 \\
+              &amp; = &amp;\ C_{2n}^n - C_{2n}^{n-1} \\
+              &amp; = &amp;\ \frac{1}{n+1} C_{2n}^n \\
+              &amp; = &amp;\ \frac{1}{n+1} \frac{(2n)!}{n!n!} \\
+              &amp; = &amp;\ \frac{4n-2}{n+1} \mathbb{C}_{n-1} \\\end{split}\]</div>
+<p>前几项卡特兰数是：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}index &amp; : &amp;\  0 &amp;,&amp; 1 &amp;,&amp; 2 &amp;,&amp; 3 &amp;,&amp; 4 &amp;,&amp; 5 &amp;,&amp; 6 &amp;,&amp; 7 &amp;,&amp; 8 &amp;,&amp; 9 &amp;,&amp; 10 &amp;,&amp; 11 &amp;,&amp; 12 &amp;,&amp; 13 &amp;,&amp; 14 &amp;,&amp;  ... \\
+number &amp; : &amp;\ 1 &amp;,&amp; 1 &amp;,&amp; 2 &amp;,&amp; 5 &amp;,&amp; 14 &amp;,&amp; 42 &amp;,&amp; 132 &amp;,&amp; 429 &amp;,&amp; 1430 &amp;,&amp; 4862 &amp;,&amp; 16796 &amp;,&amp; 58786 &amp;,&amp; 208012 &amp;,&amp; 742900 &amp;,&amp; 2674440 &amp;,&amp;  ...\end{split}\]</div>
+</div>
+<div class="section" id="id3">
+<h2>11.2. 应用<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>卡特兰数的应用非常广泛，基本上可以转化为左右匹配的问题，解题最重要的是确定 <span class="math notranslate nohighlight">\(n\)</span> 的大小。</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>计算矩阵连乘的不同计算次序。</dt>
+<dd>两个矩阵连乘对应 <span class="math notranslate nohighlight">\(\mathbb{C}_1\)</span> ，三个矩阵连乘对应 <span class="math notranslate nohighlight">\(\mathbb{C}_2\)</span> ，四个矩阵连乘对应 <span class="math notranslate nohighlight">\(\mathbb{C}_3\)</span> 。要求在任一左括号的左边，右括号的数量不多于左括号的数量。</dd>
+</dl>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/11_matrix.jpg"><img alt="../_images/11_matrix.jpg" class="align-center" src="../_images/11_matrix.jpg" style="width: 250px;" /></a>
+<a class="reference internal image-reference" href="../_images/11_mtree.jpg"><img alt="../_images/11_mtree.jpg" class="align-center" src="../_images/11_mtree.jpg" style="width: 500px;" /></a>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>凸多边形的三角剖分。</dt>
+<dd>正六边形的剖分对应 <span class="math notranslate nohighlight">\(\mathbb{C}_4\)</span> 。</dd>
+</dl>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/11_polygon.png"><img alt="../_images/11_polygon.png" class="align-center" src="../_images/11_polygon.png" style="width: 500px;" /></a>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>阶梯形的矩形剖分。</dt>
+<dd>使用 <span class="math notranslate nohighlight">\(n\)</span> 个矩形拼成 <span class="math notranslate nohighlight">\(n\)</span> 阶梯形，对应 <span class="math notranslate nohighlight">\(\mathbb{C}_n\)</span> 。</dd>
+</dl>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/11_rectangle.jpg"><img alt="../_images/11_rectangle.jpg" class="align-center" src="../_images/11_rectangle.jpg" style="width: 600px;" /></a>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>满位置二叉树（每个节点有0或2个子节点，且左子节点和右子节点是不同的）的计数。</dt>
+<dd>有 <span class="math notranslate nohighlight">\(n\)</span> 个叶子节点的满位置二叉树对应  <span class="math notranslate nohighlight">\(\mathbb{C}_{n-2}\)</span> 。</dd>
+</dl>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/11_tree.jpg"><img alt="../_images/11_tree.jpg" class="align-center" src="../_images/11_tree.jpg" style="width: 500px;" /></a>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>在 <span class="math notranslate nohighlight">\(n \times n\)</span> 的格子中，只在下三角行走，每次横或竖走一格，有多少种走法？</dt>
+<dd>对应 <span class="math notranslate nohighlight">\(\mathbb{C}_n\)</span> 。要求所有走过的步数中，向右走的步数不比向上走的步数少，即 <span class="math notranslate nohighlight">\(C_{2n}^n - C_{2n}^{n-1}\)</span> 。</dd>
+</dl>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/11_grid.png"><img alt="../_images/11_grid.png" class="align-center" src="../_images/11_grid.png" style="width: 600px;" /></a>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>长度为 <span class="math notranslate nohighlight">\(n\)</span> 的序列的出栈方式有多少种？</dt>
+<dd>对应 <span class="math notranslate nohighlight">\(\mathbb{C}_n\)</span> 。要求进栈的数不少于出栈的数。</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>在圆上选择 <span class="math notranslate nohighlight">\(2n\)</span> 个点，将这些点成对连接起来使得所得到的 <span class="math notranslate nohighlight">\(n\)</span> 条线段不相交的方法数。</dt>
+<dd>对应 <span class="math notranslate nohighlight">\(\mathbb{C}_n\)</span> 。</dd>
+</dl>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/11_circle.jpg"><img alt="../_images/11_circle.jpg" class="align-center" src="../_images/11_circle.jpg" style="width: 500px;" /></a>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>16个人按顺序去买烧饼，其中8个人每人身上只有一张5块钱，另外8个人每人身上只有一张10块钱。烧饼5块一个，开始时烧饼店老板身上没有钱。16个顾客互相不通气，每人只买一个。这16个人共有多少种排列方法能避免找不开钱的情况出现？</dt>
+<dd>对应 <span class="math notranslate nohighlight">\(\mathbb{C}_8\)</span> 。要求队列前方有5块钱的人数不少于有10块钱的人数。</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>12个高矮不同的人，排成两排，每排必须是从矮到高排列，而且第二排比对应的第一排的人高，问排列方式有多少种?</dt>
+<dd>对应 <span class="math notranslate nohighlight">\(\mathbb{C}_6\)</span> 。</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2>11.3. 参考资料<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>卡特兰数（Catalan number）（二）</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://zhuanlan.zhihu.com/p/31526354">https://zhuanlan.zhihu.com/p/31526354</a></div></blockquote>
+<ol class="arabic simple" start="2">
+<li>卡特兰数</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/caiyishuai/articles/9047777.html">https://www.cnblogs.com/caiyishuai/articles/9047777.html</a></div></blockquote>
+<ol class="arabic simple" start="3">
+<li>卡特兰数</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.zybuluo.com/xunuo/note/657512">https://www.zybuluo.com/xunuo/note/657512</a></div></blockquote>
+<ol class="arabic simple" start="4">
+<li>卡特兰数</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.jianshu.com/p/12c5a161d26d">https://www.jianshu.com/p/12c5a161d26d</a></div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../computerNetwork/index.html" class="btn btn-neutral float-right" title="计算机网络" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="10_topoSort.html" class="btn btn-neutral float-left" title="10. 拓扑排序" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

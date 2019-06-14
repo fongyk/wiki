@@ -57,6 +57,7 @@
     def foo(self):
         self.__foo()
         print "__b:", self.__b
+        print self.static_func(1, 5)
 
     @staticmethod
     def static_func(a, b):
@@ -83,6 +84,13 @@
 
   >>> print A.var
   200
+
+  >>> obj.foo()
+  __foo
+  __b: 1
+  static_method
+  6
+
 
 
 参考资料

@@ -1560,6 +1560,58 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
+33. [LeetCode] Sort List 链表排序。Hint：方法一，快速排序或归并排序；方法二，遍历链表把值存入数组，使用数组的排序方法，再把值赋回链表。
+
+  https://leetcode.com/problems/sort-list/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution
+      {
+      public:
+          ListNode* sortList(ListNode* head)
+          {
+              quickSort(head, NULL);
+              return head;
+          }
+      private:
+          // 由于链表无法反向遍历，需要重新考虑如何交换两个位置的数值
+          // pre 指向 curr 的前一个数，或者指向第一个比 key 大的数的前一个数
+          // 当 curr 指向的数比 key 小，pre 移到下一位，交换两者的值
+          ListNode* partion(ListNode* head, ListNode* tail)
+          {
+              int key = head -> val;
+              ListNode* pre = head;
+              ListNode* curr = head -> next;
+              while(curr != tail)
+              {
+                  if(curr -> val < key)
+                  {
+                      pre = pre -> next;
+                      swap(pre -> val, curr -> val);
+                  }
+                  curr = curr -> next;
+              }
+              swap(head -> val, pre -> val);
+              return pre;
+          }
+          void quickSort(ListNode* head, ListNode* tail)
+          {
+              if(head == tail || (head -> next) == tail) return;
+              ListNode* mid = partion(head, tail);
+              quickSort(head, mid);
+              quickSort(mid->next, tail);
+          }
+      };
+
+
 C++
 ------------
 

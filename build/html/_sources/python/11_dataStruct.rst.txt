@@ -294,7 +294,7 @@ Counter用于统计频率。属性与字典类似，有keys()，values()，items
   ...     cnt[word] += 1
   >>> cnt
   Counter({'blue': 3, 'red': 2, 'green': 1})
-  >>> cnt = ['red', 'blue', 'red', 'green', 'blue', 'blue']
+  >>> cnt = Counter(['red', 'blue', 'red', 'green', 'blue', 'blue'])
   >>> cnt
   Counter({'blue': 3, 'red': 2, 'green': 1})
 

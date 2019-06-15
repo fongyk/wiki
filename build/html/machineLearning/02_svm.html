@@ -108,13 +108,15 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">机器学习</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="01_lr.html">1. Logistic Regression</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">2. 支持向量机</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">2.1. 核函数</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">2.2. 多分类</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#svm">2.3. SVM库</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">2.4. 优缺点</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">2.5. 解析</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#svmlr">2.6. SVM与LR的异同</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id6">2.7. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2.1. 最大间隔划分超平面</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.2. 软间隔</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">2.3. 核函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">2.4. 多分类</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#svm">2.5. SVM库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">2.6. 优缺点</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">2.7. 解析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#svmlr">2.8. SVM与LR的异同</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">2.9. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="03_pca.html">3. 主成分分析</a></li>
@@ -197,10 +199,13 @@
             
   <div class="section" id="id1">
 <h1>2. 支持向量机<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>样本空间中任意点到超平面的距离（几何间隔，geometric margin）为：</p>
+<div class="section" id="id2">
+<h2>2.1. 最大间隔划分超平面<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../_images/02_margin.png"><img alt="../_images/02_margin.png" class="align-center" src="../_images/02_margin.png" style="width: 360px;" /></a>
+<p>样本空间中任意点到超平面的距离（几何间隔，Geometric margin）为：</p>
 <div class="math notranslate nohighlight">
 \[r = \frac{|w^{\top} x + b|}{\| w \|}.\]</div>
-<p>函数间隔（functional margin）：</p>
+<p>函数间隔（Functional margin）：</p>
 <div class="math notranslate nohighlight">
 \[y(w^{\top} x + b).\]</div>
 <p>原始问题：</p>
@@ -230,20 +235,80 @@ s.t.  &amp;  &amp;\  \sum_{i=1}^m \alpha_i y_i = 0,\\
 \[\begin{split}y_i(w^{\top} x_i + b) \geqslant 1, \\
 \sum_{i=1}^m \alpha_i y_i = 0,\\
 \alpha_i (1 - y_i(w^{\top} x_i + b)) = 0.\end{split}\]</div>
-<div class="section" id="id2">
-<h2>2.1. 核函数<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>核函数 <span class="math notranslate nohighlight">\(\mathcal{K}\)</span></p>
+</div>
+<div class="section" id="id3">
+<h2>2.2. 软间隔<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>引入松弛变量 <span class="math notranslate nohighlight">\(\xi_i \geqslant 0\)</span> ，用以表征样本不满足约束的程度。</p>
+<p>原始问题：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\underset{w,b,\xi_i}{min} &amp; &amp;\  \frac{1}{2} \left \| w \right \|^2 + C \sum_{i=1}^m \xi_i \\
+s.t. &amp; &amp;\  y_i(w^{\top} x_i + b) \geqslant 1 - \xi_i \\
+     &amp; &amp;\ \xi_i \geqslant 0,\ i=1,2,...,m\end{split}\]</div>
+<p>拉格朗日函数：</p>
+<div class="math notranslate nohighlight">
+\[L(w,b,\alpha,\xi,\mu) = \frac{1}{2}w^{\top}w + C \sum_{i=1}^m \xi_i  + \sum_{i=1}^m \alpha_i(1 - \xi_i - y_i(w^{\top} x_i + b)) - \sum_{i=1}^m \mu_i \xi_i\]</div>
+<p>令 <span class="math notranslate nohighlight">\(L\)</span> 对  <span class="math notranslate nohighlight">\(w\)</span> ， <span class="math notranslate nohighlight">\(b\)</span> 和 <span class="math notranslate nohighlight">\(\xi_i\)</span> 的偏导为 0 得：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}w &amp; = &amp;\ \sum_{i=1}^m \alpha_i y_i x_i,\\
+0 &amp; = &amp;\ \sum_{i=1}^m \alpha_i y_i, \\
+C &amp; = &amp;\ \alpha_i + \mu_i.\end{split}\]</div>
+<p>对偶问题：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\underset{\alpha \geqslant 0}{max} &amp;  &amp;\  \sum_{i=1}^m\alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y_i y_j x_i^{\top} x_j,\\
+s.t.  &amp;  &amp;\  \sum_{i=1}^m \alpha_i y_i = 0,\\
+      &amp;  &amp;\  0 \leqslant \alpha_i \leqslant C, \ i=1,2,...,m.\end{split}\]</div>
+<p>KKT条件：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}y_i(w^{\top} x_i + b) \geqslant 1 - \xi_i, \\
+\sum_{i=1}^m \alpha_i y_i = 0,\\
+\alpha_i (1 - \xi_i - y_i(w^{\top} x_i + b)) = 0, \\
+\xi_i \geqslant 0,\ \mu_i \xi_i = 0, \\
+\alpha_i \geqslant 0,\ \mu_i \geqslant 0.\end{split}\]</div>
+<dl class="docutils">
+<dt>惩罚因子 <span class="math notranslate nohighlight">\(C\)</span> ：</dt>
+<dd><ul class="first last simple">
+<li><span class="math notranslate nohighlight">\(C\)</span> 太大，导致过拟合（低偏差、高方差）</li>
+<li><span class="math notranslate nohighlight">\(C\)</span> 太小，导致欠拟合（高偏差、低方差）</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="id4">
+<h2>2.3. 核函数<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>核矩阵 <span class="math notranslate nohighlight">\(\mathcal{K} = \{ \kappa(x_i, x_j) \} \in \mathbb{R}^{m \times m}\)</span> 。</p>
 <blockquote>
-<div><ul class="simple">
-<li>对称半正定。( <span class="math notranslate nohighlight">\(\mathcal{K} \geqslant 0: \forall z,\  z^{\top}\mathcal{K}z \geqslant 0.\)</span> )</li>
-<li>主要使用线性核，高斯核（RBF）。</li>
-<li>当特征维度高且样本少，不宜使用高斯核，容易过拟合。</li>
-<li>当特征维度低，且样本够多，考虑使用高斯核。首先需要特征缩放（归一化）。若 <span class="math notranslate nohighlight">\(\sigma\)</span> 过大，导致特征间差异变小，欠拟合。</li>
+<div><ul>
+<li><p class="first">核矩阵对称半正定，<span class="math notranslate nohighlight">\(\mathcal{K} \geqslant 0: \forall z,\  z^{\top}\mathcal{K}z \geqslant 0;\)</span> <span class="math notranslate nohighlight">\(z^{\top}\mathcal{K}z=0\)</span> 当且仅当 <span class="math notranslate nohighlight">\(z=0\)</span> 。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}z^{\top}\mathcal{K}z &amp; = &amp;\ \sum_{i=1}^m \sum_{j=1}^m z^{(i)} \kappa(x_i, x_j) z^{(j)} \\
+                     &amp; = &amp;\ \sum_{i=1}^m \sum_{j=1}^m z^{(i)} \phi(x_i)^{\top} \phi(x_j) z^{(j)} \\
+                     &amp; = &amp;\ \sum_{i=1}^m \sum_{j=1}^m z^{(i)} \cdot \sum_{k=1}^D \phi^{(k)}(x_i)\phi^{(k)}(x_j) \cdot z^{(j)} \\
+                     &amp; = &amp;\ \sum_{i=1}^m \sum_{j=1}^m \sum_{k=1}^D z^{(i)} \phi^{(k)}(x_i) \cdot z^{(j)} \phi^{(k)}(x_j) \\
+                     &amp; = &amp;\ \sum_{k=1}^D \sum_{i=1}^m \sum_{j=1}^m z^{(i)} \phi^{(k)}(x_i) \cdot z^{(j)} \phi^{(k)}(x_j) \\
+                     &amp; = &amp;\ \sum_{k=1}^D \left( \sum_{l=1}^m z^{(l)} \phi^{(k)}(x_l) \right)^2 \\
+                     &amp; \geqslant &amp;\ 0.\end{split}\]</div>
+<p>其中上标 <span class="math notranslate nohighlight">\((i),(j),(k),(l)\)</span> 分别表示向量的第 <span class="math notranslate nohighlight">\(i,j,k,l\)</span> 维分量。当 <span class="math notranslate nohighlight">\(\phi\)</span> 维度很高，单独计算 <span class="math notranslate nohighlight">\(\phi(x_i)\)</span> 和  <span class="math notranslate nohighlight">\(\phi(x_j)\)</span> 复杂度较高，
+而直接计算 <span class="math notranslate nohighlight">\(\kappa(x_i, x_j)\)</span> 则简单得多。</p>
+</li>
+<li><p class="first">常见核函数有：</p>
+<ul class="simple">
+<li>线性核：<span class="math notranslate nohighlight">\(\kappa(x_i, x_j) = x_i^{\top}x_j\)</span></li>
+<li>多项式核：<span class="math notranslate nohighlight">\(\kappa(x_i, x_j) = (x_i^{\top}x_j)^d\)</span></li>
+<li>高斯核：<span class="math notranslate nohighlight">\(\kappa(x_i, x_j) = exp(-\frac{\| x_i - x_j \|^2}{2 \sigma^2})\)</span></li>
+<li>拉普拉斯核：<span class="math notranslate nohighlight">\(\kappa(x_i, x_j) = exp(-\frac{\| x_i - x_j \|}{\sigma})\)</span></li>
+</ul>
+</li>
+<li><p class="first">主要使用线性核，高斯核（RBF）。</p>
+</li>
+<li><p class="first">当特征维度高且样本少，不宜使用高斯核，容易过拟合。</p>
+</li>
+<li><p class="first">当特征维度低，且样本够多，考虑使用高斯核。首先需要特征缩放（归一化）。若 <span class="math notranslate nohighlight">\(\sigma\)</span> 过大，导致特征间差异变小，欠拟合。</p>
+</li>
 </ul>
 </div></blockquote>
 </div>
-<div class="section" id="id3">
-<h2>2.2. 多分类<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h2>2.4. 多分类<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>一对一（ <span class="math notranslate nohighlight">\(O(N^2)\)</span> ）</li>
 <li>一对多（ <span class="math notranslate nohighlight">\(O(N)\)</span> ）</li>
@@ -251,11 +316,11 @@ s.t.  &amp;  &amp;\  \sum_{i=1}^m \alpha_i y_i = 0,\\
 </ol>
 </div>
 <div class="section" id="svm">
-<h2>2.3. SVM库<a class="headerlink" href="#svm" title="Permalink to this headline">¶</a></h2>
+<h2>2.5. SVM库<a class="headerlink" href="#svm" title="Permalink to this headline">¶</a></h2>
 <p>sklearn, libsvm</p>
 </div>
-<div class="section" id="id4">
-<h2>2.4. 优缺点<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h2>2.6. 优缺点<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
 <dt>优点</dt>
 <dd><ul class="first last simple">
@@ -274,8 +339,8 @@ s.t.  &amp;  &amp;\  \sum_{i=1}^m \alpha_i y_i = 0,\\
 </dd>
 </dl>
 </div>
-<div class="section" id="id5">
-<h2>2.5. 解析<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id7">
+<h2>2.7. 解析<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>为什么要间隔最大化？</li>
 </ol>
@@ -292,7 +357,7 @@ s.t.  &amp;  &amp;\  \sum_{i=1}^m \alpha_i y_i = 0,\\
 </div></blockquote>
 </div>
 <div class="section" id="svmlr">
-<h2>2.6. SVM与LR的异同<a class="headerlink" href="#svmlr" title="Permalink to this headline">¶</a></h2>
+<h2>2.8. SVM与LR的异同<a class="headerlink" href="#svmlr" title="Permalink to this headline">¶</a></h2>
 <p>相同点：</p>
 <blockquote>
 <div><ul class="simple">
@@ -313,8 +378,8 @@ s.t.  &amp;  &amp;\  \sum_{i=1}^m \alpha_i y_i = 0,\\
 </ul>
 </div></blockquote>
 </div>
-<div class="section" id="id6">
-<h2>2.7. 参考资料<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id8">
+<h2>2.9. 参考资料<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>LR与SVM的异同</li>
 </ol>
@@ -342,7 +407,10 @@ s.t.  &amp;  &amp;\  \sum_{i=1}^m \alpha_i y_i = 0,\\
 <div><a class="reference external" href="https://www.jianshu.com/p/de882f0fc434">https://www.jianshu.com/p/de882f0fc434</a></div></blockquote>
 <ol class="arabic simple" start="6">
 <li>周志华《机器学习》Page 121 – 124。</li>
+<li>Support-vector machine</li>
 </ol>
+<blockquote>
+<div><a class="reference external" href="https://en.wikipedia.org/wiki/Support-vector_machine#Soft-margin">https://en.wikipedia.org/wiki/Support-vector_machine#Soft-margin</a></div></blockquote>
 </div>
 </div>
 

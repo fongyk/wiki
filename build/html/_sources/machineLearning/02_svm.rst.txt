@@ -1,13 +1,20 @@
 支持向量机
 ================
 
-样本空间中任意点到超平面的距离（几何间隔，geometric margin）为：
+最大间隔划分超平面
+--------------------
+
+.. image:: ./02_margin.png
+    :align: center
+    :width: 360px
+
+样本空间中任意点到超平面的距离（几何间隔，Geometric margin）为：
 
 .. math::
 
   r = \frac{|w^{\top} x + b|}{\| w \|}.
 
-函数间隔（functional margin）：
+函数间隔（Functional margin）：
 
 .. math::
 
@@ -62,18 +69,90 @@ KKT条件：
   \sum_{i=1}^m \alpha_i y_i = 0,\\
   \alpha_i (1 - y_i(w^{\top} x_i + b)) = 0.
 
+
+软间隔
+------------
+
+引入松弛变量 :math:`\xi_i \geqslant 0` ，用以表征样本不满足约束的程度。
+
+原始问题：
+
+.. math::
+
+  \underset{w,b,\xi_i}{min} & &\  \frac{1}{2} \left \| w \right \|^2 + C \sum_{i=1}^m \xi_i \\
+  s.t. & &\  y_i(w^{\top} x_i + b) \geqslant 1 - \xi_i \\
+       & &\ \xi_i \geqslant 0,\ i=1,2,...,m
+
+拉格朗日函数：
+
+.. math::
+
+ L(w,b,\alpha,\xi,\mu) = \frac{1}{2}w^{\top}w + C \sum_{i=1}^m \xi_i  + \sum_{i=1}^m \alpha_i(1 - \xi_i - y_i(w^{\top} x_i + b)) - \sum_{i=1}^m \mu_i \xi_i
+
+令 :math:`L` 对  :math:`w` ， :math:`b` 和 :math:`\xi_i` 的偏导为 0 得：
+
+.. math::
+
+ w & = &\ \sum_{i=1}^m \alpha_i y_i x_i,\\
+ 0 & = &\ \sum_{i=1}^m \alpha_i y_i, \\
+ C & = &\ \alpha_i + \mu_i.
+
+对偶问题：
+
+.. math::
+
+ \underset{\alpha \geqslant 0}{max} &  &\  \sum_{i=1}^m\alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y_i y_j x_i^{\top} x_j,\\
+ s.t.  &  &\  \sum_{i=1}^m \alpha_i y_i = 0,\\
+       &  &\  0 \leqslant \alpha_i \leqslant C, \ i=1,2,...,m.
+
+
+KKT条件：
+
+.. math::
+
+ y_i(w^{\top} x_i + b) \geqslant 1 - \xi_i, \\
+ \sum_{i=1}^m \alpha_i y_i = 0,\\
+ \alpha_i (1 - \xi_i - y_i(w^{\top} x_i + b)) = 0, \\
+ \xi_i \geqslant 0,\ \mu_i \xi_i = 0, \\
+ \alpha_i \geqslant 0,\ \mu_i \geqslant 0.
+
+惩罚因子 :math:`C` ：
+  - :math:`C` 太大，导致过拟合（低偏差、高方差）
+  - :math:`C` 太小，导致欠拟合（高偏差、低方差）
+
 核函数
 ------------
 
-核函数 :math:`\mathcal{K}`
+核矩阵 :math:`\mathcal{K} = \{ \kappa(x_i, x_j) \} \in \mathbb{R}^{m \times m}` 。
 
-  - 对称半正定。( :math:`\mathcal{K} \geqslant 0: \forall z,\  z^{\top}\mathcal{K}z \geqslant 0.` )
+  - 核矩阵对称半正定，:math:`\mathcal{K} \geqslant 0: \forall z,\  z^{\top}\mathcal{K}z \geqslant 0;` :math:`z^{\top}\mathcal{K}z=0` 当且仅当 :math:`z=0` 。
+
+    .. math::
+
+        z^{\top}\mathcal{K}z & = &\ \sum_{i=1}^m \sum_{j=1}^m z^{(i)} \kappa(x_i, x_j) z^{(j)} \\
+                             & = &\ \sum_{i=1}^m \sum_{j=1}^m z^{(i)} \phi(x_i)^{\top} \phi(x_j) z^{(j)} \\
+                             & = &\ \sum_{i=1}^m \sum_{j=1}^m z^{(i)} \cdot \sum_{k=1}^D \phi^{(k)}(x_i)\phi^{(k)}(x_j) \cdot z^{(j)} \\
+                             & = &\ \sum_{i=1}^m \sum_{j=1}^m \sum_{k=1}^D z^{(i)} \phi^{(k)}(x_i) \cdot z^{(j)} \phi^{(k)}(x_j) \\
+                             & = &\ \sum_{k=1}^D \sum_{i=1}^m \sum_{j=1}^m z^{(i)} \phi^{(k)}(x_i) \cdot z^{(j)} \phi^{(k)}(x_j) \\
+                             & = &\ \sum_{k=1}^D \left( \sum_{l=1}^m z^{(l)} \phi^{(k)}(x_l) \right)^2 \\
+                             & \geqslant &\ 0.
+
+    其中上标 :math:`(i),(j),(k),(l)` 分别表示向量的第 :math:`i,j,k,l` 维分量。当 :math:`\phi` 维度很高，单独计算 :math:`\phi(x_i)` 和  :math:`\phi(x_j)` 复杂度较高，
+    而直接计算 :math:`\kappa(x_i, x_j)` 则简单得多。
+
+  - 常见核函数有：
+
+    - 线性核：:math:`\kappa(x_i, x_j) = x_i^{\top}x_j`
+    - 多项式核：:math:`\kappa(x_i, x_j) = (x_i^{\top}x_j)^d`
+    - 高斯核：:math:`\kappa(x_i, x_j) = exp(-\frac{\| x_i - x_j \|^2}{2 \sigma^2})`
+    - 拉普拉斯核：:math:`\kappa(x_i, x_j) = exp(-\frac{\| x_i - x_j \|}{\sigma})`
 
   - 主要使用线性核，高斯核（RBF）。
 
   - 当特征维度高且样本少，不宜使用高斯核，容易过拟合。
 
   - 当特征维度低，且样本够多，考虑使用高斯核。首先需要特征缩放（归一化）。若 :math:`\sigma` 过大，导致特征间差异变小，欠拟合。
+
 
 多分类
 --------
@@ -172,3 +251,7 @@ SVM与LR的异同
   https://www.jianshu.com/p/de882f0fc434
 
 6. 周志华《机器学习》Page 121 -- 124。
+
+7. Support-vector machine
+
+  https://en.wikipedia.org/wiki/Support-vector_machine#Soft-margin

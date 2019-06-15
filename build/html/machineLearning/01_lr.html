@@ -121,6 +121,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
@@ -195,18 +197,18 @@
 <h1>1. Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">¶</a></h1>
 <p>模型：</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}h_\theta(\mathbf{x}) &amp; = &amp; \  g(\theta^\top \mathbf{x}),\\
+\[\begin{split}h_\theta(x) &amp; = &amp; \  g(\theta^\top x),\\
 g(z) &amp; = &amp; \  \frac{1}{1+e^{-z}},\\
 g^\prime(z) &amp; = &amp; \  (1-g(z))g(z) \in (0, 0.25].\end{split}\]</div>
 <p>对数损失函数（极大似然）：</p>
 <div class="math notranslate nohighlight">
-\[\mathcal{l}_\theta = -\frac{1}{m} \sum_{i=1}^m y^{(i)} \log h_\theta(\mathbf{x}^{(i)}) + (1 - y^{(i)}) \log(1 - h_\theta(\mathbf{x}^{(i)}))\]</div>
-<p>虽然使用了sigmoid函数，但该模型仍然是线性分类器，因为即使不经过sigmoid函数也可以得出分类结果（与0比较），sigmoid将其转化为概率。</p>
+\[\mathcal{l}_\theta = -\frac{1}{m} \sum_{i=1}^m y_i \log h_\theta(x_i) + (1 - y_i) \log(1 - h_\theta(x_i))\]</div>
+<p>虽然使用了 sigmoid 函数，但该模型仍然是线性分类器，因为即使不经过 sigmoid 函数也可以得出分类结果（与 0 比较），sigmoid 将其转化为概率。</p>
 <div class="section" id="id1">
 <h2>1.1. 基本假设<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>数据服从伯努利分布 <span class="math notranslate nohighlight">\(y \sim Bernoulli(\phi)\)</span></li>
-<li>样例为正例的概率为 <span class="math notranslate nohighlight">\(\phi=h_\theta(\mathbf{x})\)</span></li>
+<li>样例为正例的概率为 <span class="math notranslate nohighlight">\(\phi=h_\theta(x)\)</span></li>
 </ol>
 </div>
 <div class="section" id="id2">
@@ -250,13 +252,13 @@ g^\prime(z) &amp; = &amp; \  (1-g(z))g(z) \in (0, 0.25].\end{split}\]</div>
 <div><ul>
 <li><p class="first">极大似然：希望最大化每个样本的分类正确概率，样本服从伯努利分布。</p>
 </li>
-<li><p class="first">将极大似然取对数后就等同于对数损失函数，在LR模型中，这个损失函数使参数更新速度较快：</p>
+<li><p class="first">将极大似然取对数后就等同于对数损失函数，在 LR 模型中，这个损失函数使参数更新速度较快：</p>
 <div class="math notranslate nohighlight">
-\[\theta_j \leftarrow \theta_j + \alpha \times \frac{1}{m} \sum_{i=1}^m (y^{(i)} - h_\theta(\mathbf{x}^{(i)}))\mathbf{x}_j^{(i)}\]</div>
-<p>只与 <span class="math notranslate nohighlight">\(y^{(i)},\mathbf{x}^{(i)}\)</span> 有关，与 <span class="math notranslate nohighlight">\(h_\theta\)</span> 的梯度无关。</p>
+\[\theta^{(j)} \leftarrow \theta^{(j)} + \alpha \times \frac{1}{m} \sum_{i=1}^m (y_i - h_\theta(x_i))x_i^{(j)}\]</div>
+<p>可见梯度只与 <span class="math notranslate nohighlight">\(y_i,x_i\)</span> 有关，与 <span class="math notranslate nohighlight">\(h_\theta\)</span> 的导数无关。其中上标 <span class="math notranslate nohighlight">\((j)\)</span> 表示向量的第 <span class="math notranslate nohighlight">\(j\)</span> 维分量。</p>
 </li>
 <li><p class="first">为什么不用平方损失函数（多用于线性回归）？在线性回归中，前提假设是 <span class="math notranslate nohighlight">\(y\)</span> 服从正态分布，即 <span class="math notranslate nohighlight">\(y \sim \mathcal{N}(\mu, \sigma^2)\)</span> 。
-另外，如果使用平方损失函数， <span class="math notranslate nohighlight">\(\theta\)</span> 更新与 <span class="math notranslate nohighlight">\(h_\theta\)</span> 的梯度有关，而sigmoid函数的梯度在定义域内小于0.25，导致参数更新慢。</p>
+另外，如果使用平方损失函数， <span class="math notranslate nohighlight">\(\theta\)</span> 更新与 <span class="math notranslate nohighlight">\(h_\theta\)</span> 的梯度有关，而 sigmoid 函数的梯度在定义域内小于0.25，导致参数更新慢。</p>
 </li>
 </ul>
 </div></blockquote>

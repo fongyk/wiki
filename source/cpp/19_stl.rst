@@ -74,6 +74,17 @@ string
     // initializer list (8)
     string& insert (const_iterator p, initializer_list<char> il);
 
+- 查找：可以指定查找的起始位置 pos （缺省为0）以及长度 n。没有找到则返回 ``string::npos`` 。
+  ::
+
+    // string (1)
+    size_t find (const string& str, size_t pos = 0) const noexcept;
+    // c-string (2)
+    size_t find (const char* s, size_t pos = 0) const;
+    // buffer (3)
+    size_t find (const char* s, size_t pos, size_type n) const;
+    // character (4)
+    size_t find (char c, size_t pos = 0) const noexcept;
 
 vector
 ------------

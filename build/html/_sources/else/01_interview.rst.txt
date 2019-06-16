@@ -131,7 +131,60 @@
 
       https://blog.csdn.net/qq_35546040/article/details/80341136
 
+  .. container:: toggle
 
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      bool removeNode(ListNode* pNode)
+      {
+          if(pNode == NULL) return true;
+          if(pNode -> next == NULL) return false;
+          pNode -> val = pNode -> next -> val;
+          ListNode* tmp = pNode -> next;
+          pNode -> next = pNode -> next -> next;
+          delete tmp;
+          return true;
+      }
+      // 注：如果需要删除最后一个节点，直接令 pNode -> next = NULL 是无法改变实参的（传值）
+      // 必须从链表头节点开始遍历，找到该节点并删除
+
+  - 输出该链表中倒数第 :math:`k` 个结点。Hint：双指针法，第一个指针先走 :math:`k-1` 步，然后第二个指针从头节点开始，与第一个指针同步往后移；当第一个指针移到最后一个节点，第二个指针即指向倒数第 :math:`k` 个结点。
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      ListNode* FindKthToTail(ListNode* pListHead, unsigned int k)
+      {
+          if(!pListHead || k == 0) return NULL;
+
+          unsigned int tk = 1;
+          ListNode* p = pListHead;
+          while(tk < k)
+          {
+              p = p -> next;
+              if(!p) return NULL;
+              tk += 1;
+          }
+
+          ListNode* pk = pListHead;
+          while(p -> next)
+          {
+              p = p -> next;
+              pk = pk -> next;
+          }
+          return pk;
+      }
 
 5. 排列组合：:math:`k` 个球放入 :math:`m` 个盒子
 
@@ -1611,6 +1664,24 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           }
       };
 
+34. 给定两个字符串 s1 和 s2，检查 s2 是否由 s1 旋转得到。Hint：对 s1 做循环移位，所得字符串都将是字符串 s1s1 的子字符串。
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      bool checkReverseEqual(string s1, string s2)
+      {
+          if(s1.size()==0 || s2.size()==0) return false;
+          string s1s1 = s1 + s1;
+          if(s1s1.find(s2) == string::npos) return false;
+          return true;
+      }
 
 C++
 ------------

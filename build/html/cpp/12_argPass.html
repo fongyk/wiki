@@ -116,7 +116,8 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">12. 参数传递</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2">12.1. 传值参数</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">12.2. 传引用参数</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">12.3. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">12.3. 删除指针</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">12.4. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="13_nullClassPtr.html">13. 空类指针</a></li>
@@ -137,6 +138,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
@@ -276,7 +279,73 @@
 <p>使用引用形参返回额外信息：通过给函数传入一个额外的引用形参，让其保存需要的值，而不需要作为函数返回值返回（避免函数返回值太多）。</p>
 </div>
 <div class="section" id="id4">
-<h2>12.3. 参考资料<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2>12.3. 删除指针<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>如果实参是一个动态申请的指针（new），在函数内 delete 该指针需要慎重。下例基于 Visual Studio 2013。</p>
+<ul>
+<li><p class="first">值传递：删除之后实参指针本身的值不变，指向的值仍然可以访问，但结果是未知的。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">delPtr</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">p</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">delete</span> <span class="n">p</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="kt">int</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">p</span> <span class="o">&lt;&lt;</span> <span class="n">ends</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 00746AE0 6</span>
+  <span class="n">delPtr</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">p</span> <span class="o">&lt;&lt;</span> <span class="n">ends</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 00746AE0 -572662307</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</li>
+<li><p class="first">引用传递：删除之后实参指针本身改变，指向的值不能访问（报错），说明空间得到释放。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">delPtr</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">delete</span> <span class="n">p</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="kt">int</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">p</span> <span class="o">&lt;&lt;</span> <span class="n">ends</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 006F6AE0 6</span>
+  <span class="n">delPtr</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">p</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 00008123</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// runtime error</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2>12.4. 参考资料<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>《C++ Primer 第5版 中文版》 Page 187 – 190。</li>
 </ol>

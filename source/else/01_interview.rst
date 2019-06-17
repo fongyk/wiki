@@ -145,13 +145,12 @@
           if(pNode == NULL) return true;
           if(pNode -> next == NULL) return false;
           pNode -> val = pNode -> next -> val;
-          ListNode* tmp = pNode -> next;
           pNode -> next = pNode -> next -> next;
-          delete tmp;
           return true;
       }
-      // 注：如果需要删除最后一个节点，直接令 pNode -> next = NULL 是无法改变实参的（传值）
-      // 必须从链表头节点开始遍历，找到该节点并删除
+      // 注：如果需要删除最后一个节点，直接令 pNode -> next = NULL 是无法改变实参的（传值调用）
+      // 必须从链表头节点开始遍历，找到该节点的前驱节点
+      // 另外，该函数内不要 delete 该指针，同样是因为 pNode 不是引用形参
 
   - 输出该链表中倒数第 :math:`k` 个结点。Hint：双指针法，第一个指针先走 :math:`k-1` 步，然后第二个指针从头节点开始，与第一个指针同步往后移；当第一个指针移到最后一个节点，第二个指针即指向倒数第 :math:`k` 个结点。
 

@@ -146,6 +146,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
@@ -642,11 +644,11 @@ sizeof(a) = L * M * N * sizeof(Type);// 整个数组的大小
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <ul class="last">
-<li><p class="first">new和delete一定要配对使用。</p>
+<li><p class="first">new 和 delete 一定要配对使用；new 对应 delete，new [] 对应 delete []。</p>
 </li>
-<li><p class="first">对空指针使用delete是安全的。</p>
+<li><p class="first">对空指针使用 delete 是安全的。</p>
 </li>
-<li><p class="first">不能使用delete释放绑定到对象的指针。</p>
+<li><p class="first">不能使用 delete 释放绑定到对象的指针。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
 <span class="nb">int</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">val</span><span class="p">;</span>
 <span class="n">delete</span> <span class="n">p</span><span class="p">;</span> <span class="o">//</span> <span class="n">error</span><span class="p">,</span> <span class="n">memory</span> <span class="ow">not</span> <span class="n">allocated</span> <span class="n">by</span> <span class="n">new</span>

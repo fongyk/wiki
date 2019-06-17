@@ -372,11 +372,11 @@ malloc/free与new/delete
 
 .. warning::
 
-  - new和delete一定要配对使用。
+  - new 和 delete 一定要配对使用；new 对应 delete，new [] 对应 delete []。
 
-  - 对空指针使用delete是安全的。
+  - 对空指针使用 delete 是安全的。
 
-  - 不能使用delete释放绑定到对象的指针。
+  - 不能使用 delete 释放绑定到对象的指针。
 
     ::
 

@@ -66,6 +66,51 @@
 使用引用形参返回额外信息：通过给函数传入一个额外的引用形参，让其保存需要的值，而不需要作为函数返回值返回（避免函数返回值太多）。
 
 
+删除指针
+----------
+
+如果实参是一个动态申请的指针（new），在函数内 delete 该指针需要慎重。下例基于 Visual Studio 2013。
+
+- 值传递：删除之后实参指针本身的值不变，指向的值仍然可以访问，但结果是未知的。
+
+  .. code-block:: cpp
+    :linenos:
+
+    void delPtr(int* p)
+    {
+      delete p;
+    }
+
+    int main()
+    {
+      int* p = new int(6);
+      cout << p << ends << *p << endl; // 00746AE0 6
+      delPtr(p);
+      cout << p << ends << *p << endl; // 00746AE0 -572662307
+      return 0;
+    }
+
+
+- 引用传递：删除之后实参指针本身改变，指向的值不能访问（报错），说明空间得到释放。
+
+  .. code-block:: cpp
+    :linenos:
+
+    void delPtr(int* &p)
+    {
+      delete p;
+    }
+
+    int main()
+    {
+      int* p = new int(6);
+      cout << p << ends << *p << endl; // 006F6AE0 6
+      delPtr(p);
+      cout << p << endl; // 00008123
+      cout << *p << endl; // runtime error
+      return 0;
+    }
+
 参考资料
 -----------
 

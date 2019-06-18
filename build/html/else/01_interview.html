@@ -1080,7 +1080,7 @@
 <blockquote>
 <div><a class="reference external" href="https://www.cnblogs.com/Arvin-JIN/p/7247619.html">https://www.cnblogs.com/Arvin-JIN/p/7247619.html</a></div></blockquote>
 <p>15. 跳跃的蚂蚱：从 0 点出发，往正或负向跳跃，第一次跳跃一个单位，之后每次跳跃距离比上一次多一个单位，跳跃多少次可到到达坐标 <span class="math notranslate nohighlight">\(x\)</span> 处？
-Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能到达的坐标是一个差为 2 的等差数列（如 <span class="math notranslate nohighlight">\(n=3\)</span> ，可到达 <span class="math notranslate nohighlight">\(\{-3,-1,1,3\}\)</span> ）。
+Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能到达的坐标是一个差为 2 的等差数列（如 <span class="math notranslate nohighlight">\(n=2\)</span> ，可到达 <span class="math notranslate nohighlight">\(\{-3,-1,1,3\}\)</span> ）。
 只需找到第最小的 <span class="math notranslate nohighlight">\(n\)</span> 使得</p>
 <div class="math notranslate nohighlight">
 \[(1+2+...+n) - x = \frac{n(n+1)}{2} - x\]</div>
@@ -2762,6 +2762,55 @@ $$</div></li>
     <span class="k">if</span><span class="p">(</span><span class="n">s1s1</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span> <span class="o">==</span> <span class="n">string</span><span class="o">::</span><span class="n">npos</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
     <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
 <span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="35">
+<li>[LeetCode] Validate Binary Search Tree 检查一棵二叉树是否为二叉查找树。Hint：不仅要求左节点比当前节点小，右节点比当前节点大，而是要求左子树所有节点都小于当前节点，右子树所有节点都大于当前节点；利用二叉树的中序遍历，BST 得到的序列是升序排列的。</li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://leetcode.com/problems/validate-binary-search-tree/">https://leetcode.com/problems/validate-binary-search-tree/</a></p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="kt">bool</span> <span class="n">isValidBST</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="kt">long</span> <span class="kt">long</span> <span class="n">pre</span> <span class="o">=</span> <span class="p">(</span><span class="kt">long</span> <span class="kt">long</span><span class="p">)(</span><span class="n">INT_MIN</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nf">checkBST</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">pre</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+  <span class="c1">// 中序遍历，检查上一个遍历的数是否小于当前数, O(1) 空间复杂度</span>
+  <span class="kt">bool</span> <span class="n">checkBST</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">long</span><span class="o">&amp;</span> <span class="n">pre</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">root</span><span class="p">)</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">checkBST</span><span class="p">(</span><span class="n">root</span> <span class="o">-&gt;</span> <span class="n">left</span><span class="p">,</span> <span class="n">pre</span><span class="p">))</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">pre</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="kt">long</span> <span class="kt">long</span><span class="p">)(</span><span class="n">root</span> <span class="o">-&gt;</span> <span class="n">val</span><span class="p">))</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="n">pre</span> <span class="o">=</span> <span class="n">root</span> <span class="o">-&gt;</span> <span class="n">val</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nf">checkBST</span><span class="p">(</span><span class="n">root</span> <span class="o">-&gt;</span> <span class="n">right</span><span class="p">,</span> <span class="n">pre</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
 </pre></div>
 </td></tr></table></div>
 </div>

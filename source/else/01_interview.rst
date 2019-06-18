@@ -585,7 +585,7 @@
   https://www.cnblogs.com/Arvin-JIN/p/7247619.html
 
 15. 跳跃的蚂蚱：从 0 点出发，往正或负向跳跃，第一次跳跃一个单位，之后每次跳跃距离比上一次多一个单位，跳跃多少次可到到达坐标 :math:`x` 处？
-Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数列（如 :math:`n=3` ，可到达 :math:`\{-3,-1,1,3\}` ）。
+Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数列（如 :math:`n=2` ，可到达 :math:`\{-3,-1,1,3\}` ）。
 只需找到第最小的 :math:`n` 使得
 
 .. math::
@@ -1681,6 +1681,40 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           if(s1s1.find(s2) == string::npos) return false;
           return true;
       }
+
+35. [LeetCode] Validate Binary Search Tree 检查一棵二叉树是否为二叉查找树。Hint：不仅要求左节点比当前节点小，右节点比当前节点大，而是要求左子树所有节点都小于当前节点，右子树所有节点都大于当前节点；利用二叉树的中序遍历，BST 得到的序列是升序排列的。
+
+  https://leetcode.com/problems/validate-binary-search-tree/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution
+      {
+      public:
+        bool isValidBST(TreeNode* root)
+        {
+          long long pre = (long long)(INT_MIN) - 1;
+          return checkBST(root, pre);
+        }
+      private:
+        // 中序遍历，检查上一个遍历的数是否小于当前数, O(1) 空间复杂度
+        bool checkBST(TreeNode* root, long long& pre)
+        {
+          if(!root) return true;
+          if(!checkBST(root -> left, pre)) return false;
+          if(pre >= (long long)(root -> val)) return false;
+          pre = root -> val;
+          return checkBST(root -> right, pre);
+        }
+      };
+
 
 C++
 ------------

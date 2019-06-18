@@ -656,6 +656,12 @@ memset
 
   - round()
 
+  - log()
+
+  - log10()
+
+  - exp()
+
 - ``cstdlib``
 
   - abs()

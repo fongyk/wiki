@@ -1,0 +1,500 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>24. 异常 &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'alpha',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="25. 命名空间" href="25_namespace.html" />
+    <link rel="prev" title="23. 拷贝控制" href="23_copyControl.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C/C++</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_main.html">1. main函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_array.html">2. 数组</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_typeSize.html">3. 数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_classSize.html">4. 类的大小</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_swap.html">5. 交换函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_arrayArg.html">6. 数组形参</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_pointerReference.html">7. 指针与引用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_overload.html">8. 重载、覆盖、隐藏</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_strcpy.html">9. strcpy函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_cast.html">10. 强制类型转换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html">11. 堆、栈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_argPass.html">12. 参数传递</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_nullClassPtr.html">13. 空类指针</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html">14. static和extern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_classAccess.html">15. public、protected、private</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_staticconst.html">16. 类的static const成员</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_enumUnion.html">17. 枚举类型与共用体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html">18. 常用函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用STL类及容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">24. 异常</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">24.1. 异常类层次</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#try">24.2. try 语句块</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">24.3. 抛出异常</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">栈展开</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">析构函数与异常</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">异常对象</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">24.4. 捕获异常</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">查找匹配的处理代码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">重新抛出</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">捕获所有异常</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#noexcept">24.5. noexcept 异常说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">24.6. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">C/C++</a> &raquo;</li>
+        
+      <li>24. 异常</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/cpp/24_exception.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>24. 异常<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>异常处理（exception handling）使得我们能够将问题的 <strong>检测</strong> 和 <strong>解决过程</strong> 分离开；程序的一部分负责检测问题的出现，然后解决该问题
+的任务传递给程序的另一部分；检测环节无须知道问题处理模块的所有细节，反之亦然。</p>
+<p>以下基于 C++ 11 标准。</p>
+<div class="section" id="id2">
+<h2>24.1. 异常类层次<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>标准库异常类的继承体系如下：</p>
+<a class="reference internal image-reference" href="../_images/24_exception.jpg"><img alt="../_images/24_exception.jpg" class="align-center" src="../_images/24_exception.jpg" style="width: 600px;" /></a>
+<dl class="docutils">
+<dt>头文件</dt>
+<dd><ul class="first last">
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">&lt;exception&gt;</span></code> ：定义了最通用的异常类 exception，它只报告异常的发生，不提供任何额外信息。包括拷贝构造函数、拷贝赋值函数、虚析构函数、what 虚函数。
+what 负责返回一个 const char* 指针，指向一个字符数组，包含了用于初始化异常对象的信息。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">exception</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="n">exception</span> <span class="p">()</span> <span class="k">noexcept</span><span class="p">;</span>
+  <span class="n">exception</span> <span class="p">(</span><span class="k">const</span> <span class="n">exception</span><span class="o">&amp;</span><span class="p">)</span> <span class="k">noexcept</span><span class="p">;</span>
+  <span class="n">exception</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span> <span class="p">(</span><span class="k">const</span> <span class="n">exception</span><span class="o">&amp;</span><span class="p">)</span> <span class="k">noexcept</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="o">~</span><span class="n">exception</span><span class="p">();</span>
+  <span class="k">virtual</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="nf">what</span><span class="p">()</span> <span class="k">const</span> <span class="k">noexcept</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">&lt;stdexcept&gt;</span></code> ：定义了 runtime_error 和 logic_error 及其派生类。</p>
+<ul class="simple">
+<li>runtime_error：运行时错误，只有在程序运行时才能检测到的错误。</li>
+<li>logic_error：逻辑错误，在程序代码中发现的错误。</li>
+</ul>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">&lt;new&gt;</span></code> ：定义了 bad_alloc 异常类型。</p>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">&lt;type_info&gt;</span></code> ：定义了 bad_cast 异常类型。</p>
+</li>
+</ul>
+</dd>
+</dl>
+<ul class="simple">
+<li>exception、bad_cast、bad_alloc 定义了默认构造函数。</li>
+<li>runtime_error 和 logic_error 没有默认构造函数，可以接受 C 风格字符串或 string 类型实参的构造函数。初始值蕴含了错误相关的信息。</li>
+</ul>
+</div>
+<div class="section" id="try">
+<h2>24.2. try 语句块<a class="headerlink" href="#try" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">try</span>
+<span class="p">{</span>
+  <span class="c1">// program-statements</span>
+  <span class="c1">// throw 抛出异常（异常对象拷贝初始化）</span>
+<span class="p">}</span>
+<span class="k">catch</span> <span class="p">(</span><span class="n">exception</span><span class="o">-</span><span class="n">declaration</span><span class="p">)</span> <span class="c1">// 捕捉异常</span>
+<span class="p">{</span>
+  <span class="c1">// handle-statements</span>
+<span class="p">}</span>
+<span class="k">catch</span> <span class="p">(</span><span class="n">exception</span><span class="o">-</span><span class="n">declaration</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// handle-statements</span>
+<span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+</td></tr></table></div>
+<p>一个例子：</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdexcept&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">StringAtI</span><span class="p">(</span><span class="n">string</span> <span class="n">str</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">try</span>
+  <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">throw</span> <span class="n">runtime_error</span><span class="p">(</span><span class="s">&quot;empty string&quot;</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">str</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">runtime_error</span> <span class="o">&amp;</span><span class="n">re</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">re</span><span class="p">.</span><span class="n">what</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// empty string</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">out_of_range</span> <span class="o">&amp;</span><span class="n">oe</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">oe</span><span class="p">.</span><span class="n">what</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// invalid string position</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id3">
+<h2>24.3. 抛出异常<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>当执行 <code class="docutils literal notranslate"><span class="pre">throw</span></code> 之后，跟在 <code class="docutils literal notranslate"><span class="pre">throw</span></code> 后面的语句不再执行（类似于 <code class="docutils literal notranslate"><span class="pre">return</span></code> 的作用），程序的控制权从 <code class="docutils literal notranslate"><span class="pre">throw</span></code> 转移到与之匹配的 <code class="docutils literal notranslate"><span class="pre">catch</span></code> 模块。</p>
+<div class="section" id="id4">
+<h3>栈展开<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>栈展开（stack unwinding）过程演着嵌套函数的调用链不断查找，直到找到了与异常匹配的 <code class="docutils literal notranslate"><span class="pre">catch</span></code> 子句为止。</p>
+<p>当 <code class="docutils literal notranslate"><span class="pre">throw</span></code> 出现在一个 <code class="docutils literal notranslate"><span class="pre">try</span></code> 语句块，检测与该块关联的 <code class="docutils literal notranslate"><span class="pre">catch</span></code> 子句。如果找到匹配的 <code class="docutils literal notranslate"><span class="pre">throw</span></code> ，就是用该 <code class="docutils literal notranslate"><span class="pre">throw</span></code> 处理异常。
+如果没找到且该 <code class="docutils literal notranslate"><span class="pre">try</span></code> 语句嵌套在其他try块中，则继续检查与外层 <code class="docutils literal notranslate"><span class="pre">try</span></code> 匹配的 <code class="docutils literal notranslate"><span class="pre">catch</span></code> 子句。如果还是找不到，则退出当前函数，在调用当前函数的外层函数中继续寻找。</p>
+<p>当找不到匹配的 <code class="docutils literal notranslate"><span class="pre">catch</span></code> ，程序将调用标准库函数 <code class="docutils literal notranslate"><span class="pre">terminate</span></code> 以中止程序的执行过程。</p>
+</div>
+<div class="section" id="id5">
+<h3>析构函数与异常<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p><strong>析构函数不应该抛出不能被它自身处理的异常</strong> 。换句话说，如果析构函数需要执行某个可能抛出异常的操作，则该操作应该被放置在一个 <code class="docutils literal notranslate"><span class="pre">try</span></code> 语句块当中，
+并且在析构函数内部得到处理。</p>
+<p>析构函数常常仅仅是为了释放资源，因此不太可能抛出异常。</p>
+</div>
+<div class="section" id="id6">
+<h3>异常对象<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>编译器使用异常抛出表达式对异常对象进行拷贝初始化。</p>
+<p>当我们抛出一条表达式时，该表达式的静态编译时类型决定了异常对象的类型。如果 <code class="docutils literal notranslate"><span class="pre">throw</span></code> 表达式解引用（ <code class="docutils literal notranslate"><span class="pre">*</span></code> ）一个基类指针，而该指针实际指向的是
+派生类对象，则抛出的对象只保留了基类部分。</p>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>24.4. 捕获异常<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id8">
+<h3>查找匹配的处理代码<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">catch</span></code> 中的异常声明的类型决定了处理代码能捕获的异常类型。它可以是左值引用，不能是右值引用。</p>
+<p>通常情况下，如果 <code class="docutils literal notranslate"><span class="pre">catch</span></code> 接受的异常与某个继承体系有关，最好将 <code class="docutils literal notranslate"><span class="pre">catch</span></code> 的参数定义为引用类型。此时改变了形参，也就改变了异常对象。</p>
+<p>如果多个 <code class="docutils literal notranslate"><span class="pre">catch</span></code> 语句的类型之间存在继承关系，应该把继承链最底端的类放在最前面，最顶端的类放在最后面。</p>
+</div></blockquote>
+</div>
+<div class="section" id="id9">
+<h3>重新抛出<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">catch</span></code> 语句可以重新抛出异常（rethrowing），将异常传递给另外一个 <code class="docutils literal notranslate"><span class="pre">catch</span></code> 语句。重新抛出语句不包含额外的表达式，</p>
+<div class="code cpp highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">throw</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>空的 <code class="docutils literal notranslate"><span class="pre">throw</span></code> 语句只能出现在 <code class="docutils literal notranslate"><span class="pre">catch</span></code> 语句或 <code class="docutils literal notranslate"><span class="pre">catch</span></code> 直接/间接调用的函数之内，否则编译器将调用 <code class="docutils literal notranslate"><span class="pre">terminate</span></code> 。</p>
+</div>
+<div class="section" id="id10">
+<h3>捕获所有异常<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>一条捕获所有异常的语句可以和任意类型的异常匹配。通常与重新抛出语句一起使用。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">catch</span><span class="p">(...)</span>
+<span class="p">{</span>
+  <span class="c1">// 处理异常</span>
+  <span class="k">throw</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="noexcept">
+<h2>24.5. noexcept 异常说明<a class="headerlink" href="#noexcept" title="Permalink to this headline">¶</a></h2>
+<p>通过关键字 <code class="docutils literal notranslate"><span class="pre">noexcept</span></code> 指定某个函数不会抛出异常。 <code class="docutils literal notranslate"><span class="pre">noexcept</span></code> 紧跟在函数参数列表的后面。</p>
+<p>尽管函数声明了不会抛出异常，但是仍然可以抛出异常。一旦 <code class="docutils literal notranslate"><span class="pre">noexcept</span></code> 函数抛出了异常，程序就会调用 <code class="docutils literal notranslate"><span class="pre">terminate</span></code> 以中止程序。</p>
+</div>
+<div class="section" id="id11">
+<h2>24.6. 参考资料<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<p>1.《C++ Primer 第5版 中文版》 Page 173 – 176, Page 684 – 695。</p>
+<ol class="arabic simple" start="2">
+<li>C++ reference</li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="http://www.cplusplus.com/reference/exception/exception/?kw=exception">http://www.cplusplus.com/reference/exception/exception/?kw=exception</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/stdexcept/?kw=stdexcept">http://www.cplusplus.com/reference/stdexcept/?kw=stdexcept</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>C++ 异常</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/nzbbody/p/3418989.html">https://www.cnblogs.com/nzbbody/p/3418989.html</a></div></blockquote>
+<ol class="arabic simple" start="4">
+<li>C++ 异常处理</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.runoob.com/cplusplus/cpp-exceptions-handling.html">https://www.runoob.com/cplusplus/cpp-exceptions-handling.html</a></div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="25_namespace.html" class="btn btn-neutral float-right" title="25. 命名空间" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="23_copyControl.html" class="btn btn-neutral float-left" title="23. 拷贝控制" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

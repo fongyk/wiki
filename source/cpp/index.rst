@@ -28,3 +28,5 @@ C/C++
     21_operatorPrior.rst
     22_const.rst
     23_copyControl.rst
+    24_exception.rst
+    25_namespace.rst

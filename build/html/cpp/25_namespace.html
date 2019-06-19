@@ -1,0 +1,476 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>25. 命名空间 &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'alpha',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Python" href="../python/index.html" />
+    <link rel="prev" title="24. 异常" href="24_exception.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C/C++</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_main.html">1. main函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_array.html">2. 数组</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_typeSize.html">3. 数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_classSize.html">4. 类的大小</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_swap.html">5. 交换函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_arrayArg.html">6. 数组形参</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_pointerReference.html">7. 指针与引用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_overload.html">8. 重载、覆盖、隐藏</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_strcpy.html">9. strcpy函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_cast.html">10. 强制类型转换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html">11. 堆、栈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_argPass.html">12. 参数传递</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_nullClassPtr.html">13. 空类指针</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html">14. static和extern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_classAccess.html">15. public、protected、private</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_staticconst.html">16. 类的static const成员</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_enumUnion.html">17. 枚举类型与共用体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html">18. 常用函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用STL类及容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">25. 命名空间</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">25.1. 命名空间的定义</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">作用域</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">不连续性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">全局命名空间</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">内联命名空间</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">未命名的命名空间</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">25.2. 使用命名空间</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id9">使用别名</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using">using 声明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">using 指示</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">25.3. 参考资料</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">C/C++</a> &raquo;</li>
+        
+      <li>25. 命名空间</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/cpp/25_namespace.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>25. 命名空间<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>命名空间（namespace）为防止名字冲突提供了更加可控的机制。命名空间分割了全局命名空间，每个命名空间是一个作用域。通过在某个命名空间中定义库的名字，可以避免全局名字固有的限制。</p>
+<div class="section" id="id2">
+<h2>25.1. 命名空间的定义<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>只要能出现在全局作用域中的声明都能置于命名空间内。</p>
+<blockquote>
+<div><ul class="simple">
+<li>类</li>
+<li>变量（及其初始化）</li>
+<li>函数（及其定义）</li>
+<li>模板</li>
+<li>其他命名空间</li>
+</ul>
+</div></blockquote>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">cpp</span>
+<span class="p">{</span>
+  <span class="k">class</span> <span class="nc">A</span><span class="p">{</span> <span class="cm">/* ... */</span><span class="p">};</span>
+  <span class="n">A</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span> <span class="n">A</span><span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">A</span><span class="o">&amp;</span><span class="p">);</span>
+  <span class="k">class</span> <span class="nc">B</span><span class="o">:</span> <span class="k">public</span> <span class="n">A</span><span class="p">{</span> <span class="cm">/* ... */</span><span class="p">};</span>
+<span class="p">}</span><span class="c1">// 这里没有分号</span>
+</pre></div>
+</td></tr></table></div>
+<p>命名空间可以定义在全局作用域，也可以定义在其他命名空间中（嵌套命名空间，内层命名空间声明的名字将隐藏外层命名空间的名字），但是不能定义在函数或类的内部。</p>
+<div class="section" id="id3">
+<h3>作用域<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>不同命名空间的作用域不同，因此不同命名空间内可以有相同名字的成员。</p>
+<blockquote>
+<div><ul>
+<li><p class="first">定义在某个命名空间中的名字可以被该命名空间内的其他成员直接访问，也可以被这些成员内嵌作用域中的任何单位访问。</p>
+</li>
+<li><p class="first">位于命名空间之外的代码必须明确指出所用的名字属于哪个命名空间（ <code class="docutils literal notranslate"><span class="pre">::</span></code> ）。</p>
+<div class="code cpp highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cpp</span><span class="p">::</span><span class="n">B</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">cpp</span><span class="p">::</span><span class="n">B</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id4">
+<h3>不连续性<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">cpp</span>
+<span class="p">{</span>
+  <span class="cm">/* ... */</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>同一个命名空间可以定义在几个不同的地方。如果之前没有命名为 cpp 的命名空间，则上述代码创建一个新的命名空间；否则，上述代码打开已经存在的命名空间定义，并添加新的成员的声明。</p>
+<dl class="docutils">
+<dt>命名空间的组织形式</dt>
+<dd><ul class="first last simple">
+<li>命名空间的一部分成员的作用是定义类，以及声明作为类接口的函数及对象，这些成员应该放在头文件中。使用命名空间成员的文件需要包含这个头文件。</li>
+<li>命名空间成员的定义部分放在另外的源文件中。</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="id5">
+<h3>全局命名空间<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>全局作用域（即在所有类、函数、命名空间之外）中定义的名字就是定义在全局命名空间中。全局命名空间以隐式的方式声明，并在所有的程序中存在。</p>
+<p>作用域运算符 <code class="docutils literal notranslate"><span class="pre">::</span></code> 可以用于全局作用域的成员。由于全局作用域是隐式的，所以它并没有名字，</p>
+<div class="code cpp highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">::</span><span class="n">global_var</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>内联命名空间<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>内联命名空间中的名字可以被外层命名空间直接使用而无需添加命名空间的前缀（ <code class="docutils literal notranslate"><span class="pre">::</span></code> ）。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// FifthEd.h</span>
+<span class="kr">inline</span> <span class="k">namespace</span> <span class="n">FifthEd</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// FourthEd.h</span>
+<span class="k">namespace</span> <span class="n">FourthEd</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// cpp.h</span>
+<span class="kr">inline</span> <span class="k">namespace</span> <span class="n">cpp</span>
+<span class="p">{</span>
+  <span class="cp">#include</span> <span class="cpf">&quot;FifthEd.h&quot;</span><span class="cp"></span>
+  <span class="cp">#include</span> <span class="cpf">&quot;FourthEd.h&quot;</span><span class="cp"></span>
+  <span class="c1">// 访问 a：cpp::a</span>
+  <span class="c1">// 访问 b：cpp::FourthEd::a</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id7">
+<h3>未命名的命名空间<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>关键字 <code class="docutils literal notranslate"><span class="pre">namespace</span></code> 紧跟花括号括起来的一系列声明语句。一个未命名的命名空间可以在某个给定的文件内不连续，但是不能跨越多个文件。每个文件定义的未命名的命名空间互不相关。</p>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>25.2. 使用命名空间<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id9">
+<h3>使用别名<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="code cpp highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">namespace</span> <span class="n">primer</span> <span class="o">=</span> <span class="n">cplusplus_primer</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using">
+<h3>using 声明<a class="headerlink" href="#using" title="Permalink to this headline">¶</a></h3>
+<p>一条 using 声明（declaration）语句一次只引入命名空间的一个成员；</p>
+<div class="code cpp highlight-default notranslate"><div class="highlight"><pre><span></span>using std::cout;// cout 的调用不再需要作用域运算符，其他 std 命名空间中的名字仍然需要作用域运算符
+</pre></div>
+</div>
+<p>using 声明可以出现在全局作用域、局部作用域、命名空间作用域、类的作用域中（只能指向基类成员）。</p>
+</div>
+<div class="section" id="id10">
+<h3>using 指示<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>using 指示（directive）语句使得该命名空间内的所有名字都可见。</p>
+<div class="code cpp highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>using 指示可以出现在全局作用域、局部作用域、命名空间作用域中，不能出现在类的作用域中。</p>
+<p>例子：</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">cpp</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">23</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">foo</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">cpp</span><span class="p">;</span>
+  <span class="o">++</span> <span class="n">i</span><span class="p">;</span> <span class="c1">// cpp::i</span>
+  <span class="o">++</span> <span class="n">j</span><span class="p">;</span> <span class="c1">// 二义性</span>
+  <span class="o">++</span> <span class="o">::</span><span class="n">j</span><span class="p">;</span> <span class="c1">// 全局作用域的 j</span>
+  <span class="o">++</span> <span class="n">cpp</span><span class="o">::</span><span class="n">j</span><span class="p">;</span> <span class="c1">// cpp::j</span>
+  <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 局部 k 隐藏了 cpp::k</span>
+  <span class="o">++</span> <span class="n">k</span><span class="p">;</span> <span class="c1">// 局部 k</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="id11">
+<h2>25.3. 参考资料<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<p>1.《C++ Primer 第5版 中文版》 Page 695 – 710。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../python/index.html" class="btn btn-neutral float-right" title="Python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="24_exception.html" class="btn btn-neutral float-left" title="24. 异常" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,7 +1,7 @@
 异常
 ===========
 
-异常处理（exception handling）使得我们能够将问题的 **检测** 和 **解决过程** 分离开；程序的一部分负责检测问题的出现，然后解决该问题
+异常处理（exception handling）使得我们能够将问题的 **检测** 和 **解决** 过程分离开；程序的一部分负责检测问题的出现，然后解决该问题
 的任务传递给程序的另一部分；检测环节无须知道问题处理模块的所有细节，反之亦然。
 
 以下基于 C++ 11 标准。
@@ -179,9 +179,9 @@ noexcept 异常说明
 
 2. C++ reference
 
-  http://www.cplusplus.com/reference/exception/exception/?kw=exception
+  http://www.cplusplus.com/reference/exception/exception
 
-  http://www.cplusplus.com/reference/stdexcept/?kw=stdexcept
+  http://www.cplusplus.com/reference/stdexcept
 
 3. C++ 异常
 

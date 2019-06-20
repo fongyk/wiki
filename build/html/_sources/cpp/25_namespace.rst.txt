@@ -100,8 +100,8 @@
   {
     #include "FifthEd.h"
     #include "FourthEd.h"
-    // 访问 a：cpp::a
-    // 访问 b：cpp::FourthEd::a
+    // 访问 a，cpp::a
+    // 访问 b，cpp::FourthEd::a
   }
 
 

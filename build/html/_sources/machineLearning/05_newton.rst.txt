@@ -74,7 +74,7 @@
 
     .. math::
 
-        x_{n+1} & = &\ x_n - H^{-1} \nabla F(x),\\
+        x_{n+1} & = &\ x_n - H^{-1} \nabla F(x_n),\\
         H_{ij} & = &\ \frac{\partial^2 F}{\partial x_i \ \partial x_j}. [\text{Hessian matrix}]
 
 
@@ -92,7 +92,7 @@
 
       f(x) & = &\  x^2 - a,\\
       x_{n+1} & = &\ x_n - \frac{f(x_n)}{f^{\prime}(x_n)} \\
-      & = &\ x_n - \frac{x^2 - a}{2x}.
+      & = &\ x_n - \frac{x_n^2 - a}{2x_n}.
 
   .. code-block:: python
     :linenos:

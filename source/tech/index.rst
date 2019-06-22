@@ -33,6 +33,10 @@ Tech
 
     https://blog.csdn.net/raby_gyl/article/details/73613601
 
+- Google 和 Baidu 常用的搜索技巧
+
+    https://zhuanlan.zhihu.com/p/23722372
+
 问题
 -----------
 

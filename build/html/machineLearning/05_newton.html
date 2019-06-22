@@ -121,6 +121,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
@@ -248,7 +250,7 @@ x_1 &amp; = &amp;\  1, x_2 = 0, x_3 = 1, ... .\end{split}\]</div>
 </li>
 <li><p class="first">高维</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}x_{n+1} &amp; = &amp;\ x_n - H^{-1} \nabla F(x),\\
+\[\begin{split}x_{n+1} &amp; = &amp;\ x_n - H^{-1} \nabla F(x_n),\\
 H_{ij} &amp; = &amp;\ \frac{\partial^2 F}{\partial x_i \ \partial x_j}. [\text{Hessian matrix}]\end{split}\]</div>
 </li>
 </ul>
@@ -263,7 +265,7 @@ x_{n+1} &amp; = &amp;\ x_n - \frac{f(x_n)}{f^{\prime}(x_n)} \\
 <div class="math notranslate nohighlight">
 \[\begin{split}f(x) &amp; = &amp;\  x^2 - a,\\
 x_{n+1} &amp; = &amp;\ x_n - \frac{f(x_n)}{f^{\prime}(x_n)} \\
-&amp; = &amp;\ x_n - \frac{x^2 - a}{2x}.\end{split}\]</div>
+&amp; = &amp;\ x_n - \frac{x_n^2 - a}{2x_n}.\end{split}\]</div>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3

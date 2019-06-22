@@ -124,6 +124,9 @@
       }
     }
 
+  .. code-block:: cpp
+    :linenos:
+
     // 上起泡：小的数上浮
     template<class T>
     void bubbleSort(T* arr, int len)

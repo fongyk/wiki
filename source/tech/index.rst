@@ -37,6 +37,11 @@ Tech
 
     https://zhuanlan.zhihu.com/p/23722372
 
+- 史上最全Vim快捷键键位图（入门到进阶）
+
+    https://www.runoob.com/w3cnote/all-vim-cheatsheat.html
+
+
 问题
 -----------
 

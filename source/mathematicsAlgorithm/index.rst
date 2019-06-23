@@ -16,3 +16,4 @@
     09_backtrack.rst
     10_topoSort.rst
     11_catalan.rst
+    12_entropy.rst

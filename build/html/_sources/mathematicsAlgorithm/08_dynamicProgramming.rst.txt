@@ -302,17 +302,35 @@
       int dp[MAX_N+1][MAX_W+1];
       int solve()
       {
-        for(int i = 1; i <= n; ++i)
+        for(int i = 0; i < n; ++i)
         {
           for(int j = 0; j <= W; ++j)
           {
-            if(j < w[i]) dp[i][j] = dp[i-1][j];
-            else dp[i][j] = max(dp[i][j], dp[i-1][j-w[i]] + v[i]);
+            if(j < w[i]) dp[i+1][j] = dp[i][j];
+            else dp[i+1][j] = max(dp[i][j], dp[i][j-w[i]] + v[i]);
           }
         }
         return dp[n][W];
       }
 
+  .. code-block:: cpp
+      :linenos:
+
+      // 由于计算 dp[i+1] 只需要用到 dp[i] 和 dp[i+1]，因此可以进一步降低空间复杂度
+      int dp[2][MAX_W+1];
+      int solve()
+      {
+        for(int i = 1; i <= n; ++i)
+        {
+          for(int j = 0; j <= W; ++j)
+          {
+            if (j < w[i - 1]) dp[i & 1][j] = dp[(i - 1) & 1][j];
+            else dp[i & 1][j] = max(dp[(i - 1) & 1][j], dp[(i - 1) & 1][j - w[i - 1]] + v[i - 1]);
+          }
+        }
+        return dp[n & 1][W];
+      }
+      
 |
 
 实例

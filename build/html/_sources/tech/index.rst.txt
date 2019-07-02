@@ -54,3 +54,7 @@ Tech
     https://pytorch.org/tutorials/beginner/pytorch_with_examples.html#pytorch-custom-nn-modules
 
     https://pytorch.org/tutorials/beginner/pytorch_with_examples.html#pytorch-defining-new-autograd-functions
+
+- python 四舍五入
+
+    https://zhuanlan.zhihu.com/p/60952919

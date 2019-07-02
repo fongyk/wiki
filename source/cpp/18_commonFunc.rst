@@ -668,6 +668,8 @@ memset
 
   - fabs()
 
+  - rand()
+
 - ``limits``
 
   - INT_MIN: ``(signed int)0x80000000``

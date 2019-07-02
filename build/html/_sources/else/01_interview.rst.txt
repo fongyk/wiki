@@ -1775,6 +1775,76 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       }
 
 
+37. [LeetCode] Valid Number 验证一个字符串是否表示某个有效数字。Hint：完整的数字表达是“空格+正负号+整数+小数点+整数+e+正负号+整数+空格”；小数点的相邻两边至少要有一边是整数；如果出现 e，其两边都必须出现整数，但不要求相邻；如 05.e-3 是一个有效数字。
+
+  https://leetcode.com/problems/valid-number/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution
+      {
+      public:
+          bool isNumber(string s)
+          {
+              size_t idx = 0;
+              bool hasDigit = false;
+
+              scanSpace(s, idx);
+              scanSign(s, idx);
+              hasDigit = scanDigit(s, idx);
+              scanPoint(s, idx);
+              hasDigit |= scanDigit(s, idx);
+              if(hasDigit) // 小数点的相邻两边至少要有一边是整数；e 的左边必须出现整数；如果既没有小数点，又没有 e，则要求该字符串中必须包含整数。总而言之，这里必须是 true 才有可能是有效数字
+              {
+                  if(scanExp(s, idx))
+                  {
+                      scanSign(s, idx);
+                      hasDigit = scanDigit(s, idx); // e 的右边必须出现整数
+                  }
+                  scanSpace(s, idx);
+                  if(idx == s.size() && hasDigit) return true;
+              }
+              return false;
+          }
+      private:
+          void scanSpace(string& s, size_t& idx)
+          {
+              while(idx < s.size() && s.at(idx) == ' ') ++idx;
+          }
+          void scanSign(string& s, size_t& idx)
+          {
+              if(idx < s.size() && (s.at(idx) == '+' || s.at(idx) == '-')) ++idx;
+          }
+          bool scanDigit(string& s, size_t& idx)
+          {
+              if(idx >= s.size()) return false;
+              if(s.at(idx) < '0' || s.at(idx) > '9') return false;
+              while(idx < s.size() && '0' <= s.at(idx) && s.at(idx) <= '9') ++idx;
+              return true;
+          }
+          void scanPoint(string& s, size_t& idx)
+          {
+              if(idx < s.size() && s.at(idx) == '.') ++idx;
+          }
+          bool scanExp(string& s, size_t& idx)
+          {
+              if(idx < s.size() && s.at(idx) == 'e')
+              {
+                  ++idx;
+                  return true;
+              }
+              return false;
+          }
+      };
+
+
 C++
 ------------
 
@@ -1793,6 +1863,10 @@ C++
 4. C++ STL中vector内存用尽后，为啥每次是两倍的增长，而不是3倍或其他数值？
 
   https://www.zhihu.com/question/36538542
+
+5. 常见C++笔试面试题整理
+
+  https://zhuanlan.zhihu.com/p/69999591
 
 Python
 -----------

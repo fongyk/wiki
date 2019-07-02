@@ -118,6 +118,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
@@ -214,6 +216,11 @@ tail log.txt
 head -5 log.txt
 
 wc file -c -w -l
+
+ls -l <span class="p">|</span> grep <span class="s2">&quot;^-&quot;</span> <span class="p">|</span> wc -l <span class="c1">## 统计当前目录下的文件个数（不包括子目录中的文件）</span>
+ls -lR <span class="p">|</span> grep <span class="s2">&quot;^-&quot;</span> <span class="p">|</span> wc -l <span class="c1">## 统计当前目录下的文件个数（包括子目录中的文件）</span>
+ls -lR b*/ <span class="p">|</span> grep <span class="s2">&quot;^-&quot;</span> <span class="p">|</span> wc -l <span class="c1">## 统计以 b 开头的目录下的全部文件个数（包括子目录中的文件）</span>
+ls -l <span class="p">|</span> grep <span class="s2">&quot;^d&quot;</span> <span class="p">|</span> wc -l <span class="c1">## 统计当前目录下的目录/文件夹个数（不包括子目录中的文件）</span>
 </pre></div>
 </div>
 </div>

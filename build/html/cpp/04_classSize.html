@@ -143,6 +143,8 @@
 <li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
 <li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const</a></li>
 <li class="toctree-l2"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -150,6 +152,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
@@ -570,12 +574,12 @@
 <li><strong>每个变量</strong> 相对于起始位置的偏移量必须是 <strong>该变量类型大小的整数倍</strong> ，如果不是整数倍则空出内存，直到偏移量是整数倍为止。</li>
 <li>结构体内存对齐要求结构体内每一个成员变量都是内存对齐的。</li>
 <li>整个结构体的大小必须是结构体里面变量类型最大值的整数倍。</li>
-<li>如果一个结构里有某些结构体成员，则结构体成员要从其内部”最宽基本类型成员”的整数倍偏移地址开始存储。比如，struct A里存有struct B，B里有char, int, double等类型的成员变量，那B应该从8的整数倍开始存储。</li>
+<li>如果一个结构里有某些结构体成员，则结构体成员要从其内部“最宽基本类型成员”的整数倍偏移地址开始存储。比如，struct A里存有struct B，B里有char, int, double等类型的成员变量，那B应该从8的整数倍开始存储。</li>
 </ul>
 </dd>
 <dt>内存对齐的作用：</dt>
 <dd><ul class="first last simple">
-<li>平台原因(移植原因)：不是所有的硬件平台都能访问任意地址上的任意数据的；某些硬件平台只能在某些地址处取某些特定类型的数据，否则抛出硬件异常。</li>
+<li>平台原因（移植原因）：不是所有的硬件平台都能访问任意地址上的任意数据的；某些硬件平台只能在某些地址处取某些特定类型的数据，否则抛出硬件异常。</li>
 <li>性能原因：经过内存对齐后，CPU的内存访问速度大大提升。</li>
 </ul>
 </dd>

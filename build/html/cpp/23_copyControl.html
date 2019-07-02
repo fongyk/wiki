@@ -47,7 +47,7 @@
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Python" href="../python/index.html" />
+    <link rel="next" title="24. 异常" href="24_exception.html" />
     <link rel="prev" title="22. const" href="22_const.html" /> 
 </head>
 
@@ -132,6 +132,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#id4">23.5. 参考资料</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -139,6 +141,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
@@ -333,19 +337,19 @@ ClassTest ct2 = &quot;ab&quot;;         // 拷贝初始化
 // 首先调用构造函数 ClassTest(const char *pc) 函数创建一个临时对象；然后调用拷贝构造函数，把这个临时对象作为参数，构造对象ct2
 // 然而结果并没有输出 ClassTest(const ClassTest&amp; ct)。有说法是编译器优化之后，直接匹配了 ClassTest(const char *pc)，不再调用拷贝构造函数
 
-//ClassTest ct3 = ct1;        // 拷贝初始化
+ClassTest ct3 = ct1;          // 拷贝初始化
 // 输出： ClassTest(const ClassTest&amp; ct)
 // ct1 已经存在，直接调用拷贝构造函数
 
-//ClassTest ct4(ct1);         // 直接初始化
+ClassTest ct4(ct1);           // 直接初始化
 // 输出： ClassTest(const ClassTest&amp; ct)
 // ct1 已经存在，直接调用拷贝构造函数
 
-//ClassTest ct5 = ClassTest();// 拷贝初始化
+ClassTest ct5 = ClassTest();  // 拷贝初始化
 // 输出： ClassTest()
 // 首先调用默认构造函数产生一个临时对象；然后调用拷贝构造函数，把这个临时对象作为参数，构造对象ct5
 
-//ct3 = ct2;                  // 赋值
+ct3 = ct2;                    // 赋值
 // 输出： ClassTest&amp; operator=(const ClassTest &amp;ct)
 </pre></div>
 </div>
@@ -532,7 +536,7 @@ ClassTest ct2 = &quot;ab&quot;;         // 拷贝初始化
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../python/index.html" class="btn btn-neutral float-right" title="Python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="24_exception.html" class="btn btn-neutral float-right" title="24. 异常" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="22_const.html" class="btn btn-neutral float-left" title="22. const" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

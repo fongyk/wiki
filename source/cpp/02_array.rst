@@ -286,7 +286,7 @@
 
 .. code::
 
-  Type a[L][M][N] = {...};
+  int a[L][M][N];
 
 **1**. ``a`` , ``a[0]`` , ``a[0][0]`` , ``&a`` , ``&a[0]`` , ``&a[0][0]`` , ``&a[0][0][0]`` 的数值都是一样的。
 
@@ -297,10 +297,10 @@
 **4**. 大小计算如下::
 
     sizeof(&a) = 4;// 指针的大小，32位编译器
-    sizeof(a[0][0][0]) = sizeof(Type);
-    sizeof(a[0][0]) = N * sizeof(Type);
-    sizeof(a[0]) = M * N * sizeof(Type);
-    sizeof(a) = L * M * N * sizeof(Type);// 整个数组的大小
+    sizeof(a[0][0][0]) = sizeof(int);
+    sizeof(a[0][0]) = N * sizeof(int);
+    sizeof(a[0]) = M * N * sizeof(int);
+    sizeof(a) = L * M * N * sizeof(int);// 整个数组的大小
 
 **5**. 加法运算::
 

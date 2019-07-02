@@ -139,6 +139,8 @@
 <li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
 <li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const</a></li>
 <li class="toctree-l2"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -566,7 +568,7 @@ da[0][3]与da[1][0]地址不连续；
 <div class="section" id="id7">
 <h2>2.6. 数组地址与加法<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
 <p>假设我们已经定义了一个数组：</p>
-<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Type</span> <span class="n">a</span><span class="p">[</span><span class="n">L</span><span class="p">][</span><span class="n">M</span><span class="p">][</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="o">...</span><span class="p">};</span>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">a</span><span class="p">[</span><span class="n">L</span><span class="p">][</span><span class="n">M</span><span class="p">][</span><span class="n">N</span><span class="p">];</span>
 </pre></div>
 </div>
 <p><strong>1</strong>. <code class="docutils literal notranslate"><span class="pre">a</span></code> , <code class="docutils literal notranslate"><span class="pre">a[0]</span></code> , <code class="docutils literal notranslate"><span class="pre">a[0][0]</span></code> , <code class="docutils literal notranslate"><span class="pre">&amp;a</span></code> , <code class="docutils literal notranslate"><span class="pre">&amp;a[0]</span></code> , <code class="docutils literal notranslate"><span class="pre">&amp;a[0][0]</span></code> , <code class="docutils literal notranslate"><span class="pre">&amp;a[0][0][0]</span></code> 的数值都是一样的。</p>
@@ -574,10 +576,10 @@ da[0][3]与da[1][0]地址不连续；
 <p><strong>3</strong>. <code class="docutils literal notranslate"><span class="pre">a</span></code> 是3级指针，类型是 <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">(*)[M][N]</span></code> ，三维数组的数组名，是数组a的首地址。</p>
 <p><strong>4</strong>. 大小计算如下:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sizeof(&amp;a) = 4;// 指针的大小，32位编译器
-sizeof(a[0][0][0]) = sizeof(Type);
-sizeof(a[0][0]) = N * sizeof(Type);
-sizeof(a[0]) = M * N * sizeof(Type);
-sizeof(a) = L * M * N * sizeof(Type);// 整个数组的大小
+sizeof(a[0][0][0]) = sizeof(int);
+sizeof(a[0][0]) = N * sizeof(int);
+sizeof(a[0]) = M * N * sizeof(int);
+sizeof(a) = L * M * N * sizeof(int);// 整个数组的大小
 </pre></div>
 </div>
 <p><strong>5</strong>. 加法运算:</p>

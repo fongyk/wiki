@@ -103,19 +103,19 @@ default 和 delete
   // 首先调用构造函数 ClassTest(const char *pc) 函数创建一个临时对象；然后调用拷贝构造函数，把这个临时对象作为参数，构造对象ct2
   // 然而结果并没有输出 ClassTest(const ClassTest& ct)。有说法是编译器优化之后，直接匹配了 ClassTest(const char *pc)，不再调用拷贝构造函数
 
-  //ClassTest ct3 = ct1;        // 拷贝初始化
+  ClassTest ct3 = ct1;          // 拷贝初始化
   // 输出： ClassTest(const ClassTest& ct)
   // ct1 已经存在，直接调用拷贝构造函数
 
-  //ClassTest ct4(ct1);         // 直接初始化
+  ClassTest ct4(ct1);           // 直接初始化
   // 输出： ClassTest(const ClassTest& ct)
   // ct1 已经存在，直接调用拷贝构造函数
 
-  //ClassTest ct5 = ClassTest();// 拷贝初始化
+  ClassTest ct5 = ClassTest();  // 拷贝初始化
   // 输出： ClassTest()
   // 首先调用默认构造函数产生一个临时对象；然后调用拷贝构造函数，把这个临时对象作为参数，构造对象ct5
 
-  //ct3 = ct2;                  // 赋值
+  ct3 = ct2;                    // 赋值
   // 输出： ClassTest& operator=(const ClassTest &ct)
 
 当把拷贝构造函数设置为 ``private`` ，ct3、ct4、ct5的初始化都无法完成。

@@ -52,7 +52,7 @@ string
 
     string substr(size_t pos = 0, size_t len = npos) const
 
-- 插入：支持下标索引插入，在位置pos **之前** 插入元素。插入元素之后，该元素的位置为 position。（与python中list类的插入功能一致）
+- 插入：支持下标索引插入，在位置pos **之前** 插入元素。插入元素之后，该元素的位置为 pos。（与python中list类的插入功能一致）
   ::
 
     // string (1)

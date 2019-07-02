@@ -129,6 +129,9 @@
 .. code-block:: cpp
   :linenos:
 
+  #include <iostream>
+  using namespace std;
+
   class A
   {
   public:
@@ -137,7 +140,7 @@
   };
   A::~A()
   {
-    printf("delete A ");
+    cout << "delete A ";
   }
 
   class B : public A
@@ -147,7 +150,7 @@
   };
   B::~B()
   {
-    printf("delete B ");
+    cout << "delete B ";
   }
 
 基类析构函数未加virtual：
@@ -315,11 +318,11 @@
 
   int main(void)
   {
-    A arrA = new B[2];
+    A *arrA = new B[2];
     delete [] arrA;
     // 输出： A B A B ~A ~A
 
-    B arrB = new B[2];
+    B *arrB = new B[2];
     delete [] arrB;
     // 输出： A B A B ~B ~A ~B ~A
 

@@ -647,28 +647,28 @@
 21
 22
 23</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<span class="hll"><span class="k">def</span> <span class="nf">backtrack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">sum_nums</span><span class="p">,</span> <span class="n">sum_current</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span> <span class="c1">## self</span>
-</span>    <span class="k">if</span> <span class="n">sum_current</span> <span class="o">==</span> <span class="n">sum_nums</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">True</span>
-    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+<span class="hll">    <span class="k">def</span> <span class="nf">backtrack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">sum_nums</span><span class="p">,</span> <span class="n">sum_current</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span> <span class="c1">## self</span>
+</span>        <span class="k">if</span> <span class="n">sum_current</span> <span class="o">==</span> <span class="n">sum_nums</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">False</span>
+<span class="hll">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">backtrack</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">sum_nums</span><span class="p">,</span> <span class="n">sum_current</span><span class="o">+</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span> <span class="c1">## self</span>
+</span>            <span class="k">return</span> <span class="bp">True</span>
+<span class="hll">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">backtrack</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">sum_nums</span><span class="p">,</span> <span class="n">sum_current</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span> <span class="c1">## self</span>
+</span>            <span class="k">return</span> <span class="bp">True</span>
         <span class="k">return</span> <span class="bp">False</span>
-<span class="hll">    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">backtrack</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">sum_nums</span><span class="p">,</span> <span class="n">sum_current</span><span class="o">+</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span> <span class="c1">## self</span>
-</span>        <span class="k">return</span> <span class="bp">True</span>
-<span class="hll">    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">backtrack</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">sum_nums</span><span class="p">,</span> <span class="n">sum_current</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span> <span class="c1">## self</span>
-</span>        <span class="k">return</span> <span class="bp">True</span>
-    <span class="k">return</span> <span class="bp">False</span>
 
-<span class="k">def</span> <span class="nf">canPartition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    :type nums: List[int]</span>
-<span class="sd">    :rtype: bool</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">False</span>
-    <span class="n">sum_nums</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">sum_nums</span> <span class="o">%</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">False</span>
-<span class="hll">    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">backtrack</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">sum_nums</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1">## self</span>
+    <span class="k">def</span> <span class="nf">canPartition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :type nums: List[int]</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="n">sum_nums</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">sum_nums</span> <span class="o">%</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+<span class="hll">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">backtrack</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">sum_nums</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1">## self</span>
 </span></pre></div>
 </td></tr></table></div>
 </div>
@@ -734,13 +734,14 @@
 </td></tr></table></div>
 </div>
 </div></blockquote>
-<p>11. [LeetCode] Find the Duplicate Number 寻找重复数。数值范围为 <span class="math notranslate nohighlight">\(\{ 1,2,3,...,n \}\)</span> 。Hint：把数组元素的值当做下标，由于元素存在重复，因此必然会 <strong>重复多次访问同一个位置</strong> 。
-从另一个角度讲，访问序列中存在“环”。哈希不满足空间复杂度为 <span class="math notranslate nohighlight">\(\mathcal{O}(1)\)</span> 的要求。</p>
+<p>11. 寻找重复数。数值范围为 <span class="math notranslate nohighlight">\(\{ 1,2,3,...,n \}\)</span> ，有的出现 2 次，有的出现 1 次。Hint：把数组元素的值当做下标，由于元素存在重复，因此必然会 <strong>重复多次访问同一个位置</strong> 。
+从另一个角度讲，访问序列中存在“环”。排序的时间复杂度高，哈希不满足空间复杂度为 <span class="math notranslate nohighlight">\(\mathcal{O}(1)\)</span> 的要求。</p>
 <blockquote>
 <div><ul>
-<li><p class="first">找到一个重复数字。</p>
+<li><p class="first">[LeetCode] Find the Duplicate Number 找到一个重复数字（共有 <span class="math notranslate nohighlight">\(n+1\)</span> 个数）。</p>
 <blockquote>
-<div><p><a class="reference external" href="http://www.cnblogs.com/grandyang/p/4843654.html">http://www.cnblogs.com/grandyang/p/4843654.html</a></p>
+<div><p><a class="reference external" href="https://leetcode.com/problems/find-the-duplicate-number/">https://leetcode.com/problems/find-the-duplicate-number/</a></p>
+<p><a class="reference external" href="http://www.cnblogs.com/grandyang/p/4843654.html">http://www.cnblogs.com/grandyang/p/4843654.html</a></p>
 </div></blockquote>
 </li>
 </ul>
@@ -777,7 +778,7 @@
         <span class="kt">int</span> <span class="n">slow</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">fast</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
         <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
         <span class="p">{</span>
-            <span class="n">slow</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">slow</span><span class="p">];</span>
+            <span class="n">slow</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">slow</span><span class="p">];</span> <span class="c1">// 注意，这里下标没有减 1</span>
             <span class="n">fast</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">fast</span><span class="p">]];</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">slow</span> <span class="o">==</span> <span class="n">fast</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
         <span class="p">}</span>
@@ -843,9 +844,10 @@
 </td></tr></table></div>
 </div>
 <ul>
-<li><p class="first">找到所有重复数字。</p>
+<li><p class="first">[LeetCode] Find All Duplicates in an Array 找到所有重复数字（共有 <span class="math notranslate nohighlight">\(n\)</span> 个数）。</p>
 <blockquote>
-<div><p><a class="reference external" href="http://www.cnblogs.com/grandyang/p/6209746.html">http://www.cnblogs.com/grandyang/p/6209746.html</a></p>
+<div><p><a class="reference external" href="https://leetcode.com/problems/find-all-duplicates-in-an-array/">https://leetcode.com/problems/find-all-duplicates-in-an-array/</a></p>
+<p><a class="reference external" href="http://www.cnblogs.com/grandyang/p/6209746.html">http://www.cnblogs.com/grandyang/p/6209746.html</a></p>
 </div></blockquote>
 </li>
 </ul>
@@ -867,8 +869,7 @@
 13
 14
 15
-16
-17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 解法一：将访问过的元素置为相反数（负数），如果下次访问到一个负数，说明这个元素被重复访问</span>
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 解法一：将访问过的元素置为相反数（负数），如果下次访问到一个负数，说明这个元素被重复访问</span>
 <span class="k">class</span> <span class="nc">Solution</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -882,7 +883,6 @@
             <span class="k">else</span> <span class="n">nums</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">nums</span><span class="p">[</span><span class="n">idx</span><span class="p">];</span>
         <span class="p">}</span>
         <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
-        <span class="c1">// 这种方法得到的 res 可能多次包含同一个元素，可以使用 set</span>
     <span class="p">}</span>
 <span class="p">};</span>
 </pre></div>
@@ -1075,7 +1075,7 @@
 </div>
 </div></blockquote>
 <ol class="arabic simple" start="14">
-<li>最小公约数与最大公倍数。Hint：辗转相除法；最大公倍数等于两数乘积除以最大公约数。</li>
+<li>最大公约数与最小公倍数。Hint：辗转相除法；最小公倍数等于两数乘积除以最大公约数。</li>
 </ol>
 <blockquote>
 <div><a class="reference external" href="https://www.cnblogs.com/Arvin-JIN/p/7247619.html">https://www.cnblogs.com/Arvin-JIN/p/7247619.html</a></div></blockquote>
@@ -1541,7 +1541,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 <blockquote>
 <div><a class="reference external" href="https://blog.csdn.net/xblog_/article/details/72872263">https://blog.csdn.net/xblog_/article/details/72872263</a></div></blockquote>
 <ol class="arabic simple" start="23">
-<li>给定一个十进制整数 <span class="math notranslate nohighlight">\(N\)</span> ，统计从 <span class="math notranslate nohighlight">\(1\)</span> 到 <span class="math notranslate nohighlight">\(N\)</span> 所有的整数各位出现的 <span class="math notranslate nohighlight">\(1\)</span> 的数目。Hint： <span class="math notranslate nohighlight">\(1\)</span> 的数目 = 个位出现 <span class="math notranslate nohighlight">\(1\)</span> 的数目 + 十位出现 <span class="math notranslate nohighlight">\(1\)</span> 的数目 + 百位出现 <span class="math notranslate nohighlight">\(1\)</span> 的数目  + ……。以百位为例：如果百位数字为0，则百位出现1的次数只由更高位决定，如12013，次数为12 * 100；如果百位数字为1，则百位出现1的次数由更高位和更低位同时决定，如12113，次数为12 * 100 + (113 + 1)；如果百位数字大于1，则百位出现1的次数只由更高位决定，如12213，次数为(12 + 1) * 100。时间复杂度 <span class="math notranslate nohighlight">\(\mathcal{O}(\log_{10}(N))\)</span> 。</li>
+<li>给定一个十进制整数 <span class="math notranslate nohighlight">\(N\)</span> ，统计从 <span class="math notranslate nohighlight">\(1\)</span> 到 <span class="math notranslate nohighlight">\(N\)</span> 所有的整数各位出现的 <span class="math notranslate nohighlight">\(1\)</span> 的数目。Hint： <span class="math notranslate nohighlight">\(1\)</span> 的数目 = 个位出现 <span class="math notranslate nohighlight">\(1\)</span> 的数目 + 十位出现 <span class="math notranslate nohighlight">\(1\)</span> 的数目 + 百位出现 <span class="math notranslate nohighlight">\(1\)</span> 的数目  + ……。以百位为例：如果百位数字为0，则百位出现1的次数只由更高位决定，如12013，次数为12 * 100；如果百位数字为1，则百位出现1的次数由更高位和更低位同时决定，如12113，次数为12 * 100 + (13 + 1)；如果百位数字大于1，则百位出现1的次数只由更高位决定，如12213，次数为(12 + 1) * 100。时间复杂度 <span class="math notranslate nohighlight">\(\mathcal{O}(\log_{10}(N))\)</span> 。</li>
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="http://www.cnblogs.com/jy02414216/archive/2011/03/09/1977724.html">http://www.cnblogs.com/jy02414216/archive/2011/03/09/1977724.html</a></p>
@@ -1697,7 +1697,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
     <span class="p">{</span>
         <span class="k">if</span><span class="p">(</span><span class="n">dividend</span> <span class="o">==</span> <span class="n">INT_MIN</span> <span class="o">&amp;&amp;</span> <span class="n">divisor</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">INT_MAX</span><span class="p">;</span> <span class="c1">// 越界则输出最大值</span>
         <span class="k">if</span><span class="p">(</span><span class="n">dividend</span> <span class="o">==</span> <span class="n">INT_MIN</span> <span class="o">&amp;&amp;</span> <span class="n">divisor</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">INT_MIN</span><span class="p">;</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">divisor</span> <span class="o">==</span> <span class="n">INT_MIN</span> <span class="o">&amp;&amp;</span> <span class="n">dividend</span> <span class="o">==</span> <span class="n">INT_MIN</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 枚举分子为最小整数时的情形</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">dividend</span> <span class="o">==</span> <span class="n">INT_MIN</span> <span class="o">&amp;&amp;</span> <span class="n">divisor</span> <span class="o">==</span> <span class="n">INT_MIN</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 枚举分子为最小整数时的情形</span>
         <span class="k">if</span><span class="p">(</span><span class="n">divisor</span> <span class="o">==</span> <span class="n">INT_MIN</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 
         <span class="kt">bool</span> <span class="n">sign</span> <span class="o">=</span> <span class="p">(</span><span class="n">dividend</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="o">^</span> <span class="p">(</span><span class="n">divisor</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="nb">false</span> <span class="o">:</span> <span class="nb">true</span><span class="p">;</span>
@@ -1843,7 +1843,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
  7
  8
  9
-10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">## 不断除以 2 之后，2 的倍数都不可能再整除 n；3 同理。</span>
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">## 不断除以 2 之后，2 的倍数都不可能再整除 n；3,5,7,... 同理。</span>
 <span class="c1">## 思想类似于：找到 n 以内的素数，即把素数的倍数都排除。</span>
 <span class="k">def</span> <span class="nf">decomp</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="n">prime</span> <span class="o">=</span> <span class="mi">2</span>
@@ -2206,7 +2206,14 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 40
 41
 42
-43</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 建立 n 个桶</span>
+43
+44
+45
+46
+47
+48
+49
+50</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 建立 n 个桶</span>
 <span class="k">class</span> <span class="nc">Solution</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -2219,13 +2226,20 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
         <span class="kt">int</span> <span class="n">MAX</span> <span class="o">=</span> <span class="o">*</span><span class="n">max_element</span><span class="p">(</span><span class="n">nums</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">nums</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
         <span class="k">if</span><span class="p">(</span><span class="n">MIN</span> <span class="o">==</span> <span class="n">MAX</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 
-        <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">bucket</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">{});</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">bucket</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span> <span class="c1">// 大小为 n * 2</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">bucket</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">INT_MAX</span><span class="p">;</span>
+            <span class="n">bucket</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">INT_MIN</span><span class="p">;</span>
+        <span class="p">}</span>
+
 
         <span class="kt">double</span> <span class="n">delta</span> <span class="o">=</span> <span class="p">(</span><span class="n">MAX</span> <span class="o">-</span> <span class="n">MIN</span><span class="p">)</span> <span class="o">/</span> <span class="kt">double</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
         <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="kt">int</span> <span class="n">idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">MIN</span><span class="p">)</span> <span class="o">/</span> <span class="n">delta</span><span class="p">;</span>
-            <span class="n">bucket</span><span class="p">[</span><span class="n">idx</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">k</span><span class="p">]);</span>
+            <span class="n">bucket</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">bucket</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="mi">0</span><span class="p">]);</span>
+            <span class="n">bucket</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">bucket</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="mi">1</span><span class="p">]);</span>
         <span class="p">}</span>
 
         <span class="kt">int</span> <span class="n">gap</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -2233,13 +2247,13 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
         <span class="kt">size_t</span> <span class="n">curr</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
         <span class="k">while</span><span class="p">(</span><span class="n">curr</span> <span class="o">&lt;</span> <span class="n">bucket</span><span class="p">.</span><span class="n">size</span><span class="p">())</span>
         <span class="p">{</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">bucket</span><span class="p">[</span><span class="n">curr</span><span class="p">].</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">curr</span> <span class="o">++</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">bucket</span><span class="p">[</span><span class="n">curr</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">INT_MAX</span> <span class="o">&amp;&amp;</span> <span class="n">bucket</span><span class="p">[</span><span class="n">curr</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">INT_MIN</span><span class="p">)</span> <span class="n">curr</span> <span class="o">++</span><span class="p">;</span> <span class="c1">// 空桶</span>
             <span class="k">else</span>
             <span class="p">{</span>
                 <span class="k">if</span><span class="p">(</span><span class="n">curr</span> <span class="o">-</span> <span class="n">pre</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">)</span>
                 <span class="p">{</span>
-                    <span class="kt">int</span> <span class="n">pre_max</span> <span class="o">=</span> <span class="o">*</span><span class="n">max_element</span><span class="p">(</span><span class="n">bucket</span><span class="p">[</span><span class="n">pre</span><span class="p">].</span><span class="n">begin</span><span class="p">(),</span> <span class="n">bucket</span><span class="p">[</span><span class="n">pre</span><span class="p">].</span><span class="n">end</span><span class="p">());</span>
-                    <span class="kt">int</span> <span class="n">curr_min</span> <span class="o">=</span> <span class="o">*</span><span class="n">min_element</span><span class="p">(</span><span class="n">bucket</span><span class="p">[</span><span class="n">curr</span><span class="p">].</span><span class="n">begin</span><span class="p">(),</span> <span class="n">bucket</span><span class="p">[</span><span class="n">curr</span><span class="p">].</span><span class="n">end</span><span class="p">());</span>
+                    <span class="kt">int</span> <span class="n">pre_max</span> <span class="o">=</span> <span class="n">bucket</span><span class="p">[</span><span class="n">pre</span><span class="p">][</span><span class="mi">1</span><span class="p">];</span>
+                    <span class="kt">int</span> <span class="n">curr_min</span> <span class="o">=</span> <span class="n">bucket</span><span class="p">[</span><span class="n">curr</span><span class="p">][</span><span class="mi">0</span><span class="p">];</span>
                     <span class="n">gap</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">gap</span><span class="p">,</span> <span class="n">curr_min</span> <span class="o">-</span> <span class="n">pre_max</span><span class="p">);</span>
                 <span class="p">}</span>
                 <span class="n">pre</span> <span class="o">=</span> <span class="n">curr</span><span class="p">;</span>
@@ -2477,7 +2491,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </ol>
 <blockquote>
 <div><ul>
-<li><p class="first">[LeetCode] Longest Palindromic Substring 最长回文子串（子串连续）。Hint：中心扩展法，回文中心的两侧互为镜像，将每一个位置作为中心进行扩展，回文分偶数和奇数；动态规划，类似于矩阵连乘问题，逐渐增大步长。</p>
+<li><p class="first">[LeetCode] Longest Palindromic Substring 最长回文子串（子串连续）。Hint：方法一，中心扩展法，回文中心的两侧互为镜像，将每一个位置作为中心进行扩展，回文分偶数和奇数；方法二，动态规划，类似于矩阵连乘问题，逐渐增大步长。</p>
 <blockquote>
 <div><p><a class="reference external" href="https://leetcode.com/problems/longest-palindromic-substring/">https://leetcode.com/problems/longest-palindromic-substring/</a></p>
 </div></blockquote>
@@ -2489,7 +2503,7 @@ $$
 $$
 dp[i][j] =
 \begin{cases}
-true &amp; &amp;\ s[i] = s[j]\ \&amp;\&amp;\ (i \leqslant j \leqslant i+1\ ||\ dp[i+1][j-1]) \\
+true &amp; &amp;\ s[i] = s[j]\ \&amp;\&amp;\ (i \leqslant j \leqslant i+1\ ||\ dp[i+1][j-1] = true) \\
 false &amp; &amp;\ else
 \end{cases}
 $$</div></li>
@@ -2698,6 +2712,146 @@ $$</div></li>
 </pre></div>
 </td></tr></table></div>
 </div>
+<ul>
+<li><p class="first">[LeetCode] Count Different Palindromic Subsequences 统计不同回文子序列的个数（子序列可以不连续）。</p>
+<blockquote>
+<div><p><a class="reference external" href="https://leetcode.com/problems/count-different-palindromic-subsequences/">https://leetcode.com/problems/count-different-palindromic-subsequences/</a></p>
+<p><a class="reference external" href="https://leetcode.com/problems/count-different-palindromic-subsequences/discuss/272297/DP-C%2B%2B-Clear-solution-explained">https://leetcode.com/problems/count-different-palindromic-subsequences/discuss/272297/DP-C%2B%2B-Clear-solution-explained</a></p>
+<p><a class="reference external" href="https://blog.csdn.net/lili0710432/article/details/78659583">https://blog.csdn.net/lili0710432/article/details/78659583</a></p>
+</div></blockquote>
+</li>
+</ul>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Analysis}\)</span></div>
+<p>用 <span class="math notranslate nohighlight">\(dp[i][j]\)</span> 表示字符串 <span class="math notranslate nohighlight">\([i,j]\)</span> 区间内的的回文子序列个数。</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><span class="math notranslate nohighlight">\(S[i] \ne S[j]\)</span> 。下式的第三项是前两项重复计算的部分。</p>
+<div class="math notranslate nohighlight">
+\[dp[i][j] = dp[i+1][j] + dp[i][j-1] - dp[i+1][j-1]\]</div>
+</li>
+<li><p class="first"><span class="math notranslate nohighlight">\(S[i] = S[j]\)</span></p>
+<ul>
+<li><p class="first">如果相同的回文子序列可以多次统计，递推式如下。其中 <span class="math notranslate nohighlight">\(+1\)</span> 统计的是长度为 2 的回文子序列 “ <span class="math notranslate nohighlight">\(S[i]S[j]\)</span> ”；
+<span class="math notranslate nohighlight">\(+ dp[i+1][j-1]\)</span> 统计的是以 “ <span class="math notranslate nohighlight">\(S[i]\)</span> ”开头，以 “ <span class="math notranslate nohighlight">\(S[j]\)</span> ”结尾，且中间部分取自区间 <span class="math notranslate nohighlight">\([i+1,j-1]\)</span> 的回文子序列。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}dp[i][j] &amp; = &amp;\ dp[i+1][j] + dp[i][j-1] - dp[i+1][j-1] + 1 + dp[i+1][j-1] \\
+         &amp; = &amp;\ dp[i+1][j] + dp[i][j-1] + 1\end{split}\]</div>
+</li>
+<li><p class="first">如果只统计不同回文子序列的个数，分三种情况。</p>
+<blockquote>
+<div><ul>
+<li><p class="first">若 <span class="math notranslate nohighlight">\(S[i]\)</span> 不再出现在区间 <span class="math notranslate nohighlight">\([i+1,j-1]\)</span> 内，递推式如下。其中 <span class="math notranslate nohighlight">\(\times 2\)</span> 统计了两类回文子序列：一类是以 “ <span class="math notranslate nohighlight">\(S[i]\)</span> ”开头，以 “ <span class="math notranslate nohighlight">\(S[j]\)</span> ”结尾，且中间部分取自区间 <span class="math notranslate nohighlight">\([i+1,j-1]\)</span> 的回文子序列，另一类是只取自区间 <span class="math notranslate nohighlight">\([i+1,j-1]\)</span> 的回文子序列；
+<span class="math notranslate nohighlight">\(+2\)</span> 统计的是长度为 1 的回文子序列 “ <span class="math notranslate nohighlight">\(S[i]\)</span> ”和长度为 2 的回文子序列 “ <span class="math notranslate nohighlight">\(S[i]S[j]\)</span> ”。</p>
+<div class="math notranslate nohighlight">
+\[dp[i][j] = dp[i+1][j-1] \times 2 + 2\]</div>
+</li>
+<li><p class="first">若 <span class="math notranslate nohighlight">\(S[i]\)</span> 在区间 <span class="math notranslate nohighlight">\([i+1,j-1]\)</span> 内又出现 1 次，递推式如下。 <span class="math notranslate nohighlight">\(+1\)</span> 统计的是长度为 2 的回文子序列 “ <span class="math notranslate nohighlight">\(S[i]S[j]\)</span> ”，长度为 1 的回文子序列 “ <span class="math notranslate nohighlight">\(S[i]\)</span> ”在区间 <span class="math notranslate nohighlight">\([i+1,j-1]\)</span> 内已经统计过了。</p>
+<div class="math notranslate nohighlight">
+\[dp[i][j] = dp[i+1][j-1] \times 2 + 1\]</div>
+</li>
+<li><p class="first">若 <span class="math notranslate nohighlight">\(S[i]\)</span> 在区间 <span class="math notranslate nohighlight">\([i+1,j-1]\)</span> 内又出现多次，设出现的第一个位置是 <span class="math notranslate nohighlight">\(l\)</span> ，最后一个位置是 <span class="math notranslate nohighlight">\(r\)</span> ，递推式如下。这种情况下，以 “ <span class="math notranslate nohighlight">\(S[i]\)</span> ”开头，以 “ <span class="math notranslate nohighlight">\(S[j]\)</span> ”结尾，且中间部分取自区间 <span class="math notranslate nohighlight">\([i+1,j-1]\)</span> 的回文子序列也会被重复统计。</p>
+<div class="math notranslate nohighlight">
+\[dp[i][j] = dp[i+1][j-1] \times 2 - dp[l+1][r-1]\]</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">countPalindromicSubsequences</span><span class="p">(</span><span class="n">string</span> <span class="n">S</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">S</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">long</span> <span class="kt">long</span><span class="o">&gt;&gt;</span> <span class="n">dp</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">long</span> <span class="kt">long</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span> <span class="c1">// long long 防止溢出</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+        <span class="kt">long</span> <span class="kt">long</span> <span class="n">modulo</span> <span class="o">=</span> <span class="mi">1000000007</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">gap</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">gap</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">gap</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">+</span> <span class="n">gap</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">gap</span><span class="p">;</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">S</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+                <span class="p">{</span>
+                    <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+                <span class="p">}</span>
+                <span class="k">else</span>
+                <span class="p">{</span>
+                    <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// 先计算这部分，避免后面重复计算</span>
+                    <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+                    <span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+                    <span class="k">while</span><span class="p">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">j</span> <span class="o">&amp;&amp;</span> <span class="n">S</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">!=</span> <span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="n">left</span><span class="o">++</span><span class="p">;</span>
+                    <span class="k">while</span><span class="p">(</span><span class="n">right</span> <span class="o">&gt;</span> <span class="n">i</span> <span class="o">&amp;&amp;</span> <span class="n">S</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">!=</span> <span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="n">right</span><span class="o">--</span><span class="p">;</span>
+
+                    <span class="k">if</span><span class="p">(</span><span class="n">left</span> <span class="o">&gt;</span> <span class="n">right</span><span class="p">)</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">;</span>
+                    <span class="k">else</span> <span class="nf">if</span><span class="p">(</span><span class="n">left</span> <span class="o">==</span> <span class="n">right</span><span class="p">)</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+                    <span class="k">else</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">-=</span> <span class="n">dp</span><span class="p">[</span><span class="n">left</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">right</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+                <span class="p">}</span>
+                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">modulo</span><span class="p">)</span> <span class="o">%</span> <span class="n">modulo</span><span class="p">;</span> <span class="c1">// 前面有减法操作，因此 dp[i][j] 可能是负数</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+        <span class="n">dp</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+        <span class="n">dp</span><span class="p">.</span><span class="n">shrink_to_fit</span><span class="p">();</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+</div>
 </div></blockquote>
 <ol class="arabic simple" start="33">
 <li>[LeetCode] Sort List 链表排序。Hint：方法一，快速排序或归并排序；方法二，遍历链表把值存入数组，使用数组的排序方法，再把值赋回链表。</li>
@@ -2851,7 +3005,7 @@ $$</div></li>
     <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">root</span><span class="p">)</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
     <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">checkBST</span><span class="p">(</span><span class="n">root</span> <span class="o">-&gt;</span> <span class="n">left</span><span class="p">,</span> <span class="n">pre</span><span class="p">))</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
     <span class="k">if</span><span class="p">(</span><span class="n">pre</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="kt">long</span> <span class="kt">long</span><span class="p">)(</span><span class="n">root</span> <span class="o">-&gt;</span> <span class="n">val</span><span class="p">))</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-    <span class="n">pre</span> <span class="o">=</span> <span class="n">root</span> <span class="o">-&gt;</span> <span class="n">val</span><span class="p">;</span>
+    <span class="n">pre</span> <span class="o">=</span> <span class="p">(</span><span class="kt">long</span> <span class="kt">long</span><span class="p">)(</span><span class="n">root</span> <span class="o">-&gt;</span> <span class="n">val</span><span class="p">);</span>
     <span class="k">return</span> <span class="nf">checkBST</span><span class="p">(</span><span class="n">root</span> <span class="o">-&gt;</span> <span class="n">right</span><span class="p">,</span> <span class="n">pre</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">};</span>

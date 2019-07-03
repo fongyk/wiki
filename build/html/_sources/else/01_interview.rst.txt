@@ -301,28 +301,28 @@
       :emphasize-lines: 2,7,9,23
 
       class Solution(object):
-      def backtrack(self, nums, sum_nums, sum_current, i): ## self
-          if sum_current == sum_nums/2:
-              return True
-          if i == len(nums):
+          def backtrack(self, nums, sum_nums, sum_current, i): ## self
+              if sum_current == sum_nums/2:
+                  return True
+              if i == len(nums):
+                  return False
+              if self.backtrack(nums, sum_nums, sum_current+nums[i],i+1): ## self
+                  return True
+              if self.backtrack(nums, sum_nums, sum_current, i+1): ## self
+                  return True
               return False
-          if self.backtrack(nums, sum_nums, sum_current+nums[i],i+1): ## self
-              return True
-          if self.backtrack(nums, sum_nums, sum_current, i+1): ## self
-              return True
-          return False
 
-      def canPartition(self, nums):
-          """
-          :type nums: List[int]
-          :rtype: bool
-          """
-          if len(nums) <= 1:
-              return False
-          sum_nums = sum(nums)
-          if sum_nums % 2:
-              return False
-          return self.backtrack(nums, sum_nums, 0, 0) ## self
+          def canPartition(self, nums):
+              """
+              :type nums: List[int]
+              :rtype: bool
+              """
+              if len(nums) <= 1:
+                  return False
+              sum_nums = sum(nums)
+              if sum_nums % 2:
+                  return False
+              return self.backtrack(nums, sum_nums, 0, 0) ## self
 
 
 10. [LeetCode] Find All Anagrams in a String 统计变位词出现的位置。Hint：采用滑动窗口和 **计数器** 进行比较。
@@ -365,10 +365,12 @@
       };
 
 
-11. [LeetCode] Find the Duplicate Number 寻找重复数。数值范围为 :math:`\{ 1,2,3,...,n \}` 。Hint：把数组元素的值当做下标，由于元素存在重复，因此必然会 **重复多次访问同一个位置** 。
-从另一个角度讲，访问序列中存在“环”。哈希不满足空间复杂度为 :math:`\mathcal{O}(1)` 的要求。
+11. 寻找重复数。数值范围为 :math:`\{ 1,2,3,...,n \}` ，有的出现 2 次，有的出现 1 次。Hint：把数组元素的值当做下标，由于元素存在重复，因此必然会 **重复多次访问同一个位置** 。
+从另一个角度讲，访问序列中存在“环”。排序的时间复杂度高，哈希不满足空间复杂度为 :math:`\mathcal{O}(1)` 的要求。
 
-  - 找到一个重复数字。
+  - [LeetCode] Find the Duplicate Number 找到一个重复数字（共有 :math:`n+1` 个数）。
+
+      https://leetcode.com/problems/find-the-duplicate-number/
 
       http://www.cnblogs.com/grandyang/p/4843654.html
 
@@ -390,7 +392,7 @@
               int slow = 0, fast = 0, t = 0;
               while (true)
               {
-                  slow = nums[slow];
+                  slow = nums[slow]; // 注意，这里下标没有减 1
                   fast = nums[nums[fast]];
                   if (slow == fast) break;
               }
@@ -433,7 +435,9 @@
       };
 
 
-  - 找到所有重复数字。
+  - [LeetCode] Find All Duplicates in an Array 找到所有重复数字（共有 :math:`n` 个数）。
+
+      https://leetcode.com/problems/find-all-duplicates-in-an-array/
 
       http://www.cnblogs.com/grandyang/p/6209746.html
 
@@ -460,7 +464,6 @@
                   else nums[idx] = -nums[idx];
               }
               return res;
-              // 这种方法得到的 res 可能多次包含同一个元素，可以使用 set
           }
       };
 
@@ -580,7 +583,7 @@
           return longest
 
 
-14. 最小公约数与最大公倍数。Hint：辗转相除法；最大公倍数等于两数乘积除以最大公约数。
+14. 最大公约数与最小公倍数。Hint：辗转相除法；最小公倍数等于两数乘积除以最大公约数。
 
   https://www.cnblogs.com/Arvin-JIN/p/7247619.html
 
@@ -918,7 +921,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
 
 
-23. 给定一个十进制整数 :math:`N` ，统计从 :math:`1` 到 :math:`N` 所有的整数各位出现的 :math:`1` 的数目。Hint： :math:`1` 的数目 = 个位出现 :math:`1` 的数目 + 十位出现 :math:`1` 的数目 + 百位出现 :math:`1` 的数目  + ......。以百位为例：如果百位数字为0，则百位出现1的次数只由更高位决定，如12013，次数为12 * 100；如果百位数字为1，则百位出现1的次数由更高位和更低位同时决定，如12113，次数为12 * 100 + (113 + 1)；如果百位数字大于1，则百位出现1的次数只由更高位决定，如12213，次数为(12 + 1) * 100。时间复杂度 :math:`\mathcal{O}(\log_{10}(N))` 。
+23. 给定一个十进制整数 :math:`N` ，统计从 :math:`1` 到 :math:`N` 所有的整数各位出现的 :math:`1` 的数目。Hint： :math:`1` 的数目 = 个位出现 :math:`1` 的数目 + 十位出现 :math:`1` 的数目 + 百位出现 :math:`1` 的数目  + ......。以百位为例：如果百位数字为0，则百位出现1的次数只由更高位决定，如12013，次数为12 * 100；如果百位数字为1，则百位出现1的次数由更高位和更低位同时决定，如12113，次数为12 * 100 + (13 + 1)；如果百位数字大于1，则百位出现1的次数只由更高位决定，如12213，次数为(12 + 1) * 100。时间复杂度 :math:`\mathcal{O}(\log_{10}(N))` 。
 
   http://www.cnblogs.com/jy02414216/archive/2011/03/09/1977724.html
 
@@ -1010,7 +1013,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           {
               if(dividend == INT_MIN && divisor == -1) return INT_MAX; // 越界则输出最大值
               if(dividend == INT_MIN && divisor == 1) return INT_MIN;
-              if(divisor == INT_MIN && dividend == INT_MIN) return 1; // 枚举分子为最小整数时的情形
+              if(dividend == INT_MIN && divisor == INT_MIN) return 1; // 枚举分子为最小整数时的情形
               if(divisor == INT_MIN) return 0;
 
               bool sign = (dividend>0) ^ (divisor>0) ? false : true;
@@ -1112,7 +1115,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
     .. code-block:: python
       :linenos:
 
-      ## 不断除以 2 之后，2 的倍数都不可能再整除 n；3 同理。
+      ## 不断除以 2 之后，2 的倍数都不可能再整除 n；3,5,7,... 同理。
       ## 思想类似于：找到 n 以内的素数，即把素数的倍数都排除。
       def decomp(n):
           prime = 2
@@ -1339,13 +1342,20 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
               int MAX = *max_element(nums.begin(), nums.end());
               if(MIN == MAX) return 0;
 
-              vector<vector<int>> bucket(n, vector<int>{});
+              vector<vector<int>> bucket(n, vector<int>(2, 0)); // 大小为 n * 2
+              for(size_t k = 0; k < n; ++k)
+              {
+                  bucket[k][0] = INT_MAX;
+                  bucket[k][1] = INT_MIN;
+              }
+
 
               double delta = (MAX - MIN) / double(n - 1);
               for(size_t k = 0; k < n; ++k)
               {
                   int idx = (nums[k] - MIN) / delta;
-                  bucket[idx].push_back(nums[k]);
+                  bucket[idx][0] = min(nums[k], bucket[idx][0]);
+                  bucket[idx][1] = max(nums[k], bucket[idx][1]);
               }
 
               int gap = 0;
@@ -1353,13 +1363,13 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
               size_t curr = 1;
               while(curr < bucket.size())
               {
-                  if(bucket[curr].size() == 0) curr ++;
+                  if(bucket[curr][0] == INT_MAX && bucket[curr][1] == INT_MIN) curr ++; // 空桶
                   else
                   {
                       if(curr - pre >= 1)
                       {
-                          int pre_max = *max_element(bucket[pre].begin(), bucket[pre].end());
-                          int curr_min = *min_element(bucket[curr].begin(), bucket[curr].end());
+                          int pre_max = bucket[pre][1];
+                          int curr_min = bucket[curr][0];
                           gap = max(gap, curr_min - pre_max);
                       }
                       pre = curr;
@@ -1501,7 +1511,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
 32. 回文。
 
-  - [LeetCode] Longest Palindromic Substring 最长回文子串（子串连续）。Hint：中心扩展法，回文中心的两侧互为镜像，将每一个位置作为中心进行扩展，回文分偶数和奇数；动态规划，类似于矩阵连乘问题，逐渐增大步长。
+  - [LeetCode] Longest Palindromic Substring 最长回文子串（子串连续）。Hint：方法一，中心扩展法，回文中心的两侧互为镜像，将每一个位置作为中心进行扩展，回文分偶数和奇数；方法二，动态规划，类似于矩阵连乘问题，逐渐增大步长。
 
       https://leetcode.com/problems/longest-palindromic-substring/
 
@@ -1515,7 +1525,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
        $$
        dp[i][j] =
        \begin{cases}
-       true & &\ s[i] = s[j]\ \&\&\ (i \leqslant j \leqslant i+1\ ||\ dp[i+1][j-1]) \\
+       true & &\ s[i] = s[j]\ \&\&\ (i \leqslant j \leqslant i+1\ ||\ dp[i+1][j-1] = true) \\
        false & &\ else
        \end{cases}
        $$
@@ -1642,6 +1652,110 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           }
       };
 
+  - [LeetCode] Count Different Palindromic Subsequences 统计不同回文子序列的个数（子序列可以不连续）。
+
+      https://leetcode.com/problems/count-different-palindromic-subsequences/
+
+      https://leetcode.com/problems/count-different-palindromic-subsequences/discuss/272297/DP-C%2B%2B-Clear-solution-explained
+
+      https://blog.csdn.net/lili0710432/article/details/78659583
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Analysis}`
+
+    用 :math:`dp[i][j]` 表示字符串 :math:`[i,j]` 区间内的的回文子序列个数。
+
+      - :math:`S[i] \ne S[j]` 。下式的第三项是前两项重复计算的部分。
+
+        .. math::
+
+          dp[i][j] = dp[i+1][j] + dp[i][j-1] - dp[i+1][j-1]
+
+      - :math:`S[i] = S[j]`
+
+        - 如果相同的回文子序列可以多次统计，递推式如下。其中 :math:`+1` 统计的是长度为 2 的回文子序列 “ :math:`S[i]S[j]` ”；
+          :math:`+ dp[i+1][j-1]` 统计的是以 “ :math:`S[i]` ”开头，以 “ :math:`S[j]` ”结尾，且中间部分取自区间 :math:`[i+1,j-1]` 的回文子序列。
+
+          .. math::
+
+            dp[i][j] & = &\ dp[i+1][j] + dp[i][j-1] - dp[i+1][j-1] + 1 + dp[i+1][j-1] \\
+                     & = &\ dp[i+1][j] + dp[i][j-1] + 1
+
+        - 如果只统计不同回文子序列的个数，分三种情况。
+
+            - 若 :math:`S[i]` 不再出现在区间 :math:`[i+1,j-1]` 内，递推式如下。其中 :math:`\times 2` 统计了两类回文子序列：一类是以 “ :math:`S[i]` ”开头，以 “ :math:`S[j]` ”结尾，且中间部分取自区间 :math:`[i+1,j-1]` 的回文子序列，另一类是只取自区间 :math:`[i+1,j-1]` 的回文子序列；
+              :math:`+2` 统计的是长度为 1 的回文子序列 “ :math:`S[i]` ”和长度为 2 的回文子序列 “ :math:`S[i]S[j]` ”。
+
+              .. math::
+
+                dp[i][j] = dp[i+1][j-1] \times 2 + 2
+
+            - 若 :math:`S[i]` 在区间 :math:`[i+1,j-1]` 内又出现 1 次，递推式如下。 :math:`+1` 统计的是长度为 2 的回文子序列 “ :math:`S[i]S[j]` ”，长度为 1 的回文子序列 “ :math:`S[i]` ”在区间 :math:`[i+1,j-1]` 内已经统计过了。
+
+              .. math::
+
+                dp[i][j] = dp[i+1][j-1] \times 2 + 1
+
+            - 若 :math:`S[i]` 在区间 :math:`[i+1,j-1]` 内又出现多次，设出现的第一个位置是 :math:`l` ，最后一个位置是 :math:`r` ，递推式如下。这种情况下，以 “ :math:`S[i]` ”开头，以 “ :math:`S[j]` ”结尾，且中间部分取自区间 :math:`[i+1,j-1]` 的回文子序列也会被重复统计。
+
+              .. math::
+
+                dp[i][j] = dp[i+1][j-1] \times 2 - dp[l+1][r-1]
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution
+      {
+      public:
+          int countPalindromicSubsequences(string S)
+          {
+              int n = S.size();
+              if(n <= 1) return n;
+              vector<vector<long long>> dp(n, vector<long long>(n, 0)); // long long 防止溢出
+              for(int i = 0; i < n; ++i) dp[i][i] = 1;
+
+              long long modulo = 1000000007;
+              for(int gap = 1; gap < n; ++gap)
+              {
+                  for(int i = 0; i + gap < n; ++i)
+                  {
+                      int j = i + gap;
+                      if(S[i] != S[j])
+                      {
+                          dp[i][j] = dp[i+1][j] + dp[i][j-1] - dp[i+1][j-1];
+                      }
+                      else
+                      {
+                          dp[i][j] = dp[i+1][j-1] * 2; // 先计算这部分，避免后面重复计算
+                          int left = i + 1;
+                          int right = j - 1;
+                          while(left < j && S[left] != S[i]) left++;
+                          while(right > i && S[right] != S[i]) right--;
+
+                          if(left > right) dp[i][j] += 2;
+                          else if(left == right) dp[i][j] += 1;
+                          else dp[i][j] -= dp[left+1][right-1];
+                      }
+                      dp[i][j] = (dp[i][j] + modulo) % modulo; // 前面有减法操作，因此 dp[i][j] 可能是负数
+                  }
+              }
+
+              int res = dp[0][n-1];
+              dp.clear();
+              dp.shrink_to_fit();
+              return res;
+          }
+      };
 
 33. [LeetCode] Sort List 链表排序。Hint：方法一，快速排序或归并排序；方法二，遍历链表把值存入数组，使用数组的排序方法，再把值赋回链表。
 
@@ -1742,7 +1856,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           if(!root) return true;
           if(!checkBST(root -> left, pre)) return false;
           if(pre >= (long long)(root -> val)) return false;
-          pre = root -> val;
+          pre = (long long)(root -> val);
           return checkBST(root -> right, pre);
         }
       };

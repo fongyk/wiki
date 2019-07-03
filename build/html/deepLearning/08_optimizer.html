@@ -128,6 +128,8 @@
 <li class="toctree-l2"><a class="reference internal" href="09_addModule.html">9. pytorch：add_module</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
@@ -282,7 +284,7 @@ RMS[\Delta \theta] &amp; \leftarrow &amp;\ \sqrt{E[\Delta \theta^2] + \epsilon} 
 <div class="section" id="rmsprop">
 <h2>8.6. RMSprop<a class="headerlink" href="#rmsprop" title="Permalink to this headline">¶</a></h2>
 <div class="math notranslate nohighlight">
-\[\begin{split}g &amp; \leftarrow &amp;\ \mathcal{L}(\theta) &amp;\  [\text{计算梯度}] \\
+\[\begin{split}g &amp; \leftarrow &amp;\ \nabla_{\theta} \mathcal{L}(\theta) &amp;\  [\text{计算梯度}] \\
 r &amp; \leftarrow &amp;\ \gamma r + (1 - \gamma) g \odot g &amp;\  [\text{累计平方梯度：指数衰减平均}] \\
 \Delta \theta &amp; \leftarrow &amp;\  - \frac{\eta}{\sqrt{r+\epsilon}} \odot g &amp;\ [\text{参数增量}] \\
 \theta &amp; \leftarrow &amp;\  \theta + \Delta \theta &amp;\ [\text{参数更新}]\end{split}\]</div>
@@ -299,7 +301,7 @@ r &amp; \leftarrow &amp;\ \gamma r + (1 - \gamma) g \odot g &amp;\  [\text{累�
 <div class="section" id="adam">
 <h2>8.7. Adam<a class="headerlink" href="#adam" title="Permalink to this headline">¶</a></h2>
 <div class="math notranslate nohighlight">
-\[\begin{split}g &amp; \leftarrow &amp;\ \mathcal{L}(\theta) &amp;\  [\text{计算梯度}] \\
+\[\begin{split}g &amp; \leftarrow &amp;\ \nabla_{\theta} \mathcal{L}(\theta) &amp;\  [\text{计算梯度}] \\
 t &amp; \leftarrow &amp;\ t + 1 &amp;\  [\text{迭代次数}] \\
 m &amp; \leftarrow &amp;\ \beta_1 m + (1 - \beta_1) g &amp;\  [\text{有偏一阶矩}] \\
 n &amp; \leftarrow &amp;\ \beta_1 n + (1 - \beta_2) g \odot g &amp;\  [\text{有偏二阶矩}] \\

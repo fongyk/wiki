@@ -103,7 +103,7 @@ RMSprop
 
 .. math::
 
-  g & \leftarrow &\ \mathcal{L}(\theta) &\  [\text{计算梯度}] \\
+  g & \leftarrow &\ \nabla_{\theta} \mathcal{L}(\theta) &\  [\text{计算梯度}] \\
   r & \leftarrow &\ \gamma r + (1 - \gamma) g \odot g &\  [\text{累计平方梯度：指数衰减平均}] \\
   \Delta \theta & \leftarrow &\  - \frac{\eta}{\sqrt{r+\epsilon}} \odot g &\ [\text{参数增量}] \\
   \theta & \leftarrow &\  \theta + \Delta \theta &\ [\text{参数更新}]
@@ -122,7 +122,7 @@ Adam
 
 .. math::
 
-  g & \leftarrow &\ \mathcal{L}(\theta) &\  [\text{计算梯度}] \\
+  g & \leftarrow &\ \nabla_{\theta} \mathcal{L}(\theta) &\  [\text{计算梯度}] \\
   t & \leftarrow &\ t + 1 &\  [\text{迭代次数}] \\
   m & \leftarrow &\ \beta_1 m + (1 - \beta_1) g &\  [\text{有偏一阶矩}] \\
   n & \leftarrow &\ \beta_1 n + (1 - \beta_2) g \odot g &\  [\text{有偏二阶矩}] \\

@@ -459,6 +459,92 @@
 </pre></div>
 </td></tr></table></div>
 </div>
+<ul class="simple">
+<li>链表排序。Hint：方法一，快速排序或归并排序；方法二，遍历链表把值存入数组，使用数组的排序方法，再把值赋回链表。</li>
+</ul>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// https://leetcode.com/problems/sort-list/</span>
+
+<span class="k">class</span> <span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">ListNode</span><span class="o">*</span> <span class="n">sortList</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">head</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">quickSort</span><span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="c1">// 由于链表无法反向遍历，需要重新考虑如何交换两个位置的数值</span>
+    <span class="c1">// pre 指向 curr 的前一个数，或者指向第一个比 key 大的数的前一个数</span>
+    <span class="c1">// 当 curr 指向的数比 key 小，pre 移到下一位，交换两者的值</span>
+    <span class="n">ListNode</span><span class="o">*</span> <span class="n">partion</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">head</span><span class="p">,</span> <span class="n">ListNode</span><span class="o">*</span> <span class="n">tail</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">key</span> <span class="o">=</span> <span class="n">head</span> <span class="o">-&gt;</span> <span class="n">val</span><span class="p">;</span>
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">pre</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">head</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">curr</span> <span class="o">!=</span> <span class="n">tail</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">curr</span> <span class="o">-&gt;</span> <span class="n">val</span> <span class="o">&lt;</span> <span class="n">key</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">pre</span> <span class="o">=</span> <span class="n">pre</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">;</span>
+                <span class="n">swap</span><span class="p">(</span><span class="n">pre</span> <span class="o">-&gt;</span> <span class="n">val</span><span class="p">,</span> <span class="n">curr</span> <span class="o">-&gt;</span> <span class="n">val</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">swap</span><span class="p">(</span><span class="n">head</span> <span class="o">-&gt;</span> <span class="n">val</span><span class="p">,</span> <span class="n">pre</span> <span class="o">-&gt;</span> <span class="n">val</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">pre</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">quickSort</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">head</span><span class="p">,</span> <span class="n">ListNode</span><span class="o">*</span> <span class="n">tail</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">head</span> <span class="o">==</span> <span class="n">tail</span> <span class="o">||</span> <span class="p">(</span><span class="n">head</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">)</span> <span class="o">==</span> <span class="n">tail</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">partion</span><span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="n">tail</span><span class="p">);</span>
+        <span class="n">quickSort</span><span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="n">mid</span><span class="p">);</span>
+        <span class="n">quickSort</span><span class="p">(</span><span class="n">mid</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">,</span> <span class="n">tail</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+</div>
 </div></blockquote>
 <ol class="arabic simple" start="5">
 <li>排列组合：<span class="math notranslate nohighlight">\(k\)</span> 个球放入 <span class="math notranslate nohighlight">\(m\)</span> 个盒子</li>
@@ -1022,14 +1108,14 @@
 </div>
 </div></blockquote>
 <ol class="arabic simple" start="13">
-<li>[LeetCode] Longest Consecutive Sequence 最长连续序列。Hint：方法一，排序；方法二，对于每个元素 <span class="math notranslate nohighlight">\(n\)</span> ，搜索 <span class="math notranslate nohighlight">\(n+1\)</span> 是否在数组中，使用 hash（set）可以获得 <span class="math notranslate nohighlight">\(\mathcal{O}(1)\)</span> 的查找复杂度。</li>
+<li>[LeetCode] Longest Consecutive Sequence 最长连续序列。Hint：方法一，排序；方法二，对于每个元素 <span class="math notranslate nohighlight">\(n\)</span> ，搜索 <span class="math notranslate nohighlight">\(n+1\)</span> 是否在数组中，使用 hash/set 可以获得 <span class="math notranslate nohighlight">\(\mathcal{O}(1)\)</span> 的查找复杂度。</li>
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://leetcode.com/problems/longest-consecutive-sequence/">https://leetcode.com/problems/longest-consecutive-sequence/</a></p>
 <div class="toggle docutils container">
 <div class="header docutils container">
 <span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></div>
-<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -1049,27 +1135,27 @@
 18
 19
 20
-21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="n">object</span><span class="p">)</span><span class="o">:</span>
-<span class="n">def</span> <span class="n">longestConsecutive</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">)</span><span class="o">:</span>
-    <span class="s">&quot;&quot;&quot;</span>
-    <span class="o">:</span><span class="n">type</span> <span class="nl">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span>
-    <span class="o">:</span><span class="nl">rtype</span><span class="p">:</span> <span class="kt">int</span>
-    <span class="s">&quot;&quot;&quot;</span>
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">longestConsecutive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :type nums: List[int]</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
-    <span class="n">longest</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">num_set</span> <span class="o">=</span> <span class="n">set</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+        <span class="n">longest</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">num_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
 
-    <span class="k">for</span> <span class="n">num</span> <span class="n">in</span> <span class="nl">nums</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">num</span><span class="o">-</span><span class="mi">1</span> <span class="n">not</span> <span class="n">in</span> <span class="nl">num_set</span><span class="p">:</span>
-            <span class="n">current_long</span> <span class="o">=</span> <span class="mi">1</span>
-            <span class="k">while</span> <span class="n">num</span> <span class="o">+</span> <span class="mi">1</span> <span class="n">in</span> <span class="nl">num_set</span><span class="p">:</span>
-                <span class="n">current_long</span> <span class="o">+=</span> <span class="mi">1</span>
-                <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="n">longest</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">longest</span><span class="p">,</span> <span class="n">current_long</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">num</span><span class="o">-</span><span class="mi">1</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">num_set</span><span class="p">:</span>
+                <span class="n">current_long</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="k">while</span> <span class="n">num</span> <span class="o">+</span> <span class="mi">1</span> <span class="ow">in</span> <span class="n">num_set</span><span class="p">:</span>
+                    <span class="n">current_long</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">longest</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">longest</span><span class="p">,</span> <span class="n">current_long</span><span class="p">)</span>
 
-    <span class="n">num_set</span><span class="p">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="n">num_set</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 
-    <span class="k">return</span> <span class="n">longest</span>
+        <span class="k">return</span> <span class="n">longest</span>
 </pre></div>
 </td></tr></table></div>
 </div>
@@ -1285,7 +1371,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 <div class="toggle docutils container">
 <div class="header docutils container">
 <span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></div>
-<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -1312,34 +1398,34 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 25
 26
 27
-28</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// https://leetcode.com/problems/subarray-sum-equals-k/solution/ : Approach #4 Using hashmap</span>
+28</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">## https://leetcode.com/problems/subarray-sum-equals-k/solution/ : Approach #4 Using hashmap</span>
 
-<span class="n">from</span> <span class="n">collections</span> <span class="n">import</span> <span class="n">defaultdict</span>
-<span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="n">object</span><span class="p">)</span><span class="o">:</span>
-<span class="n">def</span> <span class="n">subarraySum</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span><span class="o">:</span>
-    <span class="s">&quot;&quot;&quot;</span>
-    <span class="o">:</span><span class="n">type</span> <span class="nl">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span>
-    <span class="o">:</span><span class="n">type</span> <span class="nl">k</span><span class="p">:</span> <span class="kt">int</span>
-    <span class="o">:</span><span class="nl">rtype</span><span class="p">:</span> <span class="kt">int</span>
-    <span class="s">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">subarraySum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :type nums: List[int]</span>
+<span class="sd">        :type k: int</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
-    <span class="k">if</span> <span class="n">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="o">:</span>
-        <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
 
-    <span class="n">N</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
 
-    <span class="n">sum_to_num</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
-    <span class="n">sum_to_num</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">// 前 0 项和</span>
+        <span class="n">sum_to_num</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">sum_to_num</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">## 前 0 项和</span>
 
-    <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">tmp_sum</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="n">in</span> <span class="nl">nums</span><span class="p">:</span>
-        <span class="n">tmp_sum</span> <span class="o">+=</span> <span class="n">n</span>
-        <span class="n">diff</span> <span class="o">=</span> <span class="n">tmp_sum</span> <span class="o">-</span> <span class="n">k</span>
-        <span class="n">cnt</span> <span class="o">+=</span> <span class="n">sum_to_num</span><span class="p">[</span><span class="n">diff</span><span class="p">]</span>
-        <span class="n">sum_to_num</span><span class="p">[</span><span class="n">tmp_sum</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">tmp_sum</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+            <span class="n">tmp_sum</span> <span class="o">+=</span> <span class="n">n</span>
+            <span class="n">diff</span> <span class="o">=</span> <span class="n">tmp_sum</span> <span class="o">-</span> <span class="n">k</span>
+            <span class="n">cnt</span> <span class="o">+=</span> <span class="n">sum_to_num</span><span class="p">[</span><span class="n">diff</span><span class="p">]</span>
+            <span class="n">sum_to_num</span><span class="p">[</span><span class="n">tmp_sum</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 
-    <span class="k">return</span> <span class="n">cnt</span>
+        <span class="k">return</span> <span class="n">cnt</span>
 </pre></div>
 </td></tr></table></div>
 </div>
@@ -1888,7 +1974,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">arr</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="o">||</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
   <span class="kt">int</span> <span class="n">low</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">high</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">high</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 查找区间： [0, n)</span>
   <span class="k">while</span> <span class="p">(</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span><span class="p">)</span>
   <span class="p">{</span>
     <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">low</span> <span class="o">+</span> <span class="p">(</span><span class="n">high</span> <span class="o">-</span> <span class="n">low</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// mid = (low + high)/2 可能导致溢出</span>
@@ -1898,6 +1984,74 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
   <span class="p">}</span>
   <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 浮点数二分，不存在区间取整，要求达到某个精度</span>
+
+<span class="c1">// 例：在区间 [low, high] 二分查找开方数</span>
+
+<span class="cp">#define eps 1e-5</span>
+
+<span class="kt">bool</span> <span class="nf">judge</span><span class="p">(</span><span class="kt">double</span> <span class="n">mid</span><span class="p">,</span> <span class="kt">double</span> <span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">mid</span> <span class="o">&gt;=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">mid</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">double</span> <span class="nf">search</span><span class="p">(</span><span class="kt">double</span> <span class="n">low</span><span class="p">,</span> <span class="kt">double</span> <span class="n">high</span><span class="p">,</span> <span class="kt">double</span> <span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">high</span> <span class="o">-</span> <span class="n">low</span> <span class="o">&gt;</span> <span class="n">eps</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="kt">double</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">low</span> <span class="o">+</span> <span class="p">(</span><span class="n">high</span> <span class="o">-</span> <span class="n">low</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">judge</span><span class="p">(</span><span class="n">mid</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span> <span class="n">high</span> <span class="o">=</span> <span class="n">mid</span><span class="p">;</span>
+    <span class="k">else</span> <span class="n">low</span> <span class="o">=</span> <span class="n">mid</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">low</span> <span class="o">+</span> <span class="p">(</span><span class="n">high</span> <span class="o">-</span> <span class="n">low</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// 此时 low 和 high 比较接近，取它们的均值作为最终结果</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">## 返回区间 [first, last) 内第一个不小于 target 的位置</span>
+<span class="c1">## 如果所有数都小于 target，则返回 last</span>
+<span class="k">def</span> <span class="nf">lower_bound</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">first</span> <span class="o">&gt;</span> <span class="n">last</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">None</span>
+    <span class="k">while</span> <span class="n">first</span> <span class="o">&lt;</span> <span class="n">last</span><span class="p">:</span> <span class="c1">## [first, last)不为空</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="n">first</span> <span class="o">+</span> <span class="p">(</span><span class="n">last</span> <span class="o">-</span> <span class="n">first</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">first</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">last</span> <span class="o">=</span> <span class="n">mid</span>
+    <span class="k">return</span> <span class="n">first</span>  <span class="c1">## 返回 last 也行，因为 [first, last) 为空的时候它们相等</span>
 </pre></div>
 </td></tr></table></div>
 </div>
@@ -2854,91 +3008,6 @@ $$</div></li>
 </div>
 </div></blockquote>
 <ol class="arabic simple" start="33">
-<li>[LeetCode] Sort List 链表排序。Hint：方法一，快速排序或归并排序；方法二，遍历链表把值存入数组，使用数组的排序方法，再把值赋回链表。</li>
-</ol>
-<blockquote>
-<div><p><a class="reference external" href="https://leetcode.com/problems/sort-list/">https://leetcode.com/problems/sort-list/</a></p>
-<div class="toggle docutils container">
-<div class="header docutils container">
-<span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></div>
-<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span>
-<span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="n">ListNode</span><span class="o">*</span> <span class="n">sortList</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">head</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">quickSort</span><span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
-        <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="k">private</span><span class="o">:</span>
-    <span class="c1">// 由于链表无法反向遍历，需要重新考虑如何交换两个位置的数值</span>
-    <span class="c1">// pre 指向 curr 的前一个数，或者指向第一个比 key 大的数的前一个数</span>
-    <span class="c1">// 当 curr 指向的数比 key 小，pre 移到下一位，交换两者的值</span>
-    <span class="n">ListNode</span><span class="o">*</span> <span class="n">partion</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">head</span><span class="p">,</span> <span class="n">ListNode</span><span class="o">*</span> <span class="n">tail</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">key</span> <span class="o">=</span> <span class="n">head</span> <span class="o">-&gt;</span> <span class="n">val</span><span class="p">;</span>
-        <span class="n">ListNode</span><span class="o">*</span> <span class="n">pre</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
-        <span class="n">ListNode</span><span class="o">*</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">head</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">;</span>
-        <span class="k">while</span><span class="p">(</span><span class="n">curr</span> <span class="o">!=</span> <span class="n">tail</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">curr</span> <span class="o">-&gt;</span> <span class="n">val</span> <span class="o">&lt;</span> <span class="n">key</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="n">pre</span> <span class="o">=</span> <span class="n">pre</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">;</span>
-                <span class="n">swap</span><span class="p">(</span><span class="n">pre</span> <span class="o">-&gt;</span> <span class="n">val</span><span class="p">,</span> <span class="n">curr</span> <span class="o">-&gt;</span> <span class="n">val</span><span class="p">);</span>
-            <span class="p">}</span>
-            <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="n">swap</span><span class="p">(</span><span class="n">head</span> <span class="o">-&gt;</span> <span class="n">val</span><span class="p">,</span> <span class="n">pre</span> <span class="o">-&gt;</span> <span class="n">val</span><span class="p">);</span>
-        <span class="k">return</span> <span class="n">pre</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="kt">void</span> <span class="n">quickSort</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">head</span><span class="p">,</span> <span class="n">ListNode</span><span class="o">*</span> <span class="n">tail</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">head</span> <span class="o">==</span> <span class="n">tail</span> <span class="o">||</span> <span class="p">(</span><span class="n">head</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">)</span> <span class="o">==</span> <span class="n">tail</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-        <span class="n">ListNode</span><span class="o">*</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">partion</span><span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="n">tail</span><span class="p">);</span>
-        <span class="n">quickSort</span><span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="n">mid</span><span class="p">);</span>
-        <span class="n">quickSort</span><span class="p">(</span><span class="n">mid</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">,</span> <span class="n">tail</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</pre></div>
-</td></tr></table></div>
-</div>
-</div></blockquote>
-<ol class="arabic simple" start="34">
 <li>给定两个字符串 s1 和 s2，检查 s2 是否由 s1 旋转得到。Hint：对 s1 做循环移位，所得字符串都将是字符串 s1s1 的子字符串。</li>
 </ol>
 <blockquote>
@@ -2962,7 +3031,7 @@ $$</div></li>
 </td></tr></table></div>
 </div>
 </div></blockquote>
-<ol class="arabic simple" start="35">
+<ol class="arabic simple" start="34">
 <li>[LeetCode] Validate Binary Search Tree 检查一棵二叉树是否为二叉查找树。Hint：不仅要求左节点比当前节点小，右节点比当前节点大，而是要求左子树所有节点都小于当前节点，右子树所有节点都大于当前节点；利用二叉树的中序遍历，BST 得到的序列是升序排列的。</li>
 </ol>
 <blockquote>
@@ -3013,7 +3082,7 @@ $$</div></li>
 </td></tr></table></div>
 </div>
 </div></blockquote>
-<p>36. 判断一个数是否是奇数。Hint：考虑负数的情形；方法一，判断模 2 结果不为 0；方法二，位运算判断最低位为 1。延伸：判断两个数是否相等（或判断某个数是否为 0），
+<p>35. 判断一个数是否是奇数。Hint：考虑负数的情形；方法一，判断模 2 结果不为 0；方法二，位运算判断最低位为 1。延伸：判断两个数是否相等（或判断某个数是否为 0），
 如果是浮点数，应该判断两者差的绝对值是否小于一个阈值，而不是直接使用 ==。</p>
 <blockquote>
 <div><div class="toggle docutils container">
@@ -3050,7 +3119,7 @@ $$</div></li>
 </td></tr></table></div>
 </div>
 </div></blockquote>
-<ol class="arabic simple" start="37">
+<ol class="arabic simple" start="36">
 <li>[LeetCode] Valid Number 验证一个字符串是否表示某个有效数字。Hint：完整的数字表达是“空格+正负号+整数+小数点+整数+e+正负号+整数+空格”；小数点的相邻两边至少要有一边是整数；如果出现 e，其两边都必须出现整数，但不要求相邻；如 05.e-3 是一个有效数字。</li>
 </ol>
 <blockquote>

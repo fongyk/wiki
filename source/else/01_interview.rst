@@ -185,6 +185,59 @@
           return pk;
       }
 
+
+  - 链表排序。Hint：方法一，快速排序或归并排序；方法二，遍历链表把值存入数组，使用数组的排序方法，再把值赋回链表。
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // https://leetcode.com/problems/sort-list/
+
+      class Solution
+      {
+      public:
+          ListNode* sortList(ListNode* head)
+          {
+              quickSort(head, NULL);
+              return head;
+          }
+      private:
+          // 由于链表无法反向遍历，需要重新考虑如何交换两个位置的数值
+          // pre 指向 curr 的前一个数，或者指向第一个比 key 大的数的前一个数
+          // 当 curr 指向的数比 key 小，pre 移到下一位，交换两者的值
+          ListNode* partion(ListNode* head, ListNode* tail)
+          {
+              int key = head -> val;
+              ListNode* pre = head;
+              ListNode* curr = head -> next;
+              while(curr != tail)
+              {
+                  if(curr -> val < key)
+                  {
+                      pre = pre -> next;
+                      swap(pre -> val, curr -> val);
+                  }
+                  curr = curr -> next;
+              }
+              swap(head -> val, pre -> val);
+              return pre;
+          }
+          void quickSort(ListNode* head, ListNode* tail)
+          {
+              if(head == tail || (head -> next) == tail) return;
+              ListNode* mid = partion(head, tail);
+              quickSort(head, mid);
+              quickSort(mid->next, tail);
+          }
+      };
+
+
 5. 排列组合：:math:`k` 个球放入 :math:`m` 个盒子
 
   https://blog.csdn.net/qwb492859377/article/details/50654627?tdsourcetag=s_pctim_aiomsg
@@ -547,7 +600,7 @@
       };
 
 
-13. [LeetCode] Longest Consecutive Sequence 最长连续序列。Hint：方法一，排序；方法二，对于每个元素 :math:`n` ，搜索 :math:`n+1` 是否在数组中，使用 hash（set）可以获得 :math:`\mathcal{O}(1)` 的查找复杂度。
+13. [LeetCode] Longest Consecutive Sequence 最长连续序列。Hint：方法一，排序；方法二，对于每个元素 :math:`n` ，搜索 :math:`n+1` 是否在数组中，使用 hash/set 可以获得 :math:`\mathcal{O}(1)` 的查找复杂度。
 
   https://leetcode.com/problems/longest-consecutive-sequence/
 
@@ -557,30 +610,30 @@
 
       :math:`\color{darkgreen}{Code}`
 
-    .. code-block:: cpp
+    .. code-block:: python
       :linenos:
 
       class Solution(object):
-      def longestConsecutive(self, nums):
-          """
-          :type nums: List[int]
-          :rtype: int
-          """
+          def longestConsecutive(self, nums):
+              """
+              :type nums: List[int]
+              :rtype: int
+              """
 
-          longest = 0
-          num_set = set(nums)
+              longest = 0
+              num_set = set(nums)
 
-          for num in nums:
-              if num-1 not in num_set:
-                  current_long = 1
-                  while num + 1 in num_set:
-                      current_long += 1
-                      num += 1
-                  longest = max(longest, current_long)
+              for num in nums:
+                  if num-1 not in num_set:
+                      current_long = 1
+                      while num + 1 in num_set:
+                          current_long += 1
+                          num += 1
+                      longest = max(longest, current_long)
 
-          num_set.clear()
+              num_set.clear()
 
-          return longest
+              return longest
 
 
 14. 最大公约数与最小公倍数。Hint：辗转相除法；最小公倍数等于两数乘积除以最大公约数。
@@ -751,37 +804,37 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
       :math:`\color{darkgreen}{Code}`
 
-    .. code-block:: cpp
+    .. code-block:: python
       :linenos:
 
-      // https://leetcode.com/problems/subarray-sum-equals-k/solution/ : Approach #4 Using hashmap
+      ## https://leetcode.com/problems/subarray-sum-equals-k/solution/ : Approach #4 Using hashmap
 
       from collections import defaultdict
       class Solution(object):
-      def subarraySum(self, nums, k):
-          """
-          :type nums: List[int]
-          :type k: int
-          :rtype: int
-          """
+          def subarraySum(self, nums, k):
+              """
+              :type nums: List[int]
+              :type k: int
+              :rtype: int
+              """
 
-          if len(nums) == 0:
-              return 0
+              if len(nums) == 0:
+                  return 0
 
-          N = len(nums)
+              N = len(nums)
 
-          sum_to_num = defaultdict(int)
-          sum_to_num[0] = 1 // 前 0 项和
+              sum_to_num = defaultdict(int)
+              sum_to_num[0] = 1 ## 前 0 项和
 
-          cnt = 0
-          tmp_sum = 0
-          for n in nums:
-              tmp_sum += n
-              diff = tmp_sum - k
-              cnt += sum_to_num[diff]
-              sum_to_num[tmp_sum] += 1
+              cnt = 0
+              tmp_sum = 0
+              for n in nums:
+                  tmp_sum += n
+                  diff = tmp_sum - k
+                  cnt += sum_to_num[diff]
+                  sum_to_num[tmp_sum] += 1
 
-          return cnt
+              return cnt
 
 
 19. 使用位运算进行加法运算。Hint：原位加法运算等效为 ``^`` 运算，进位等效为 ``&`` 和 ``移位`` 的复合。 **注：C++不允许对负数进行左移运算。**
@@ -1146,7 +1199,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       {
         if (arr == nullptr || n <= 0) return -1;
         int low = 0;
-        int high = n - 1;
+        int high = n - 1; // 查找区间： [0, n)
         while (low <= high)
         {
           int mid = low + (high - low) / 2; // mid = (low + high)/2 可能导致溢出
@@ -1156,6 +1209,47 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
         }
         return -1;
       }
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 浮点数二分，不存在区间取整，要求达到某个精度
+
+      // 例：在区间 [low, high] 二分查找开方数
+
+      #define eps 1e-5
+
+      bool judge(double mid, double x)
+      {
+        return mid >= x / mid;
+      }
+
+      double search(double low, double high, double x)
+      {
+        while (high - low > eps)
+        {
+          double mid = low + (high - low) / 2;
+          if (judge(mid, x)) high = mid;
+          else low = mid;
+        }
+        return low + (high - low) / 2; // 此时 low 和 high 比较接近，取它们的均值作为最终结果
+      }
+
+    .. code-block:: python
+      :linenos:
+
+      ## 返回区间 [first, last) 内第一个不小于 target 的位置
+      ## 如果所有数都小于 target，则返回 last
+      def lower_bound(a, first, last, target):
+          if first > last:
+              return None
+          while first < last: ## [first, last)不为空
+              mid = first + (last - first) // 2
+              if a[mid] < target:
+                  first = mid + 1
+              else:
+                  last = mid
+          return first  ## 返回 last 也行，因为 [first, last) 为空的时候它们相等
 
   - 查找旋转数组最小值（含重复元素）
 
@@ -1757,58 +1851,8 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           }
       };
 
-33. [LeetCode] Sort List 链表排序。Hint：方法一，快速排序或归并排序；方法二，遍历链表把值存入数组，使用数组的排序方法，再把值赋回链表。
 
-  https://leetcode.com/problems/sort-list/
-
-  .. container:: toggle
-
-    .. container:: header
-
-      :math:`\color{darkgreen}{Code}`
-
-    .. code-block:: cpp
-      :linenos:
-
-      class Solution
-      {
-      public:
-          ListNode* sortList(ListNode* head)
-          {
-              quickSort(head, NULL);
-              return head;
-          }
-      private:
-          // 由于链表无法反向遍历，需要重新考虑如何交换两个位置的数值
-          // pre 指向 curr 的前一个数，或者指向第一个比 key 大的数的前一个数
-          // 当 curr 指向的数比 key 小，pre 移到下一位，交换两者的值
-          ListNode* partion(ListNode* head, ListNode* tail)
-          {
-              int key = head -> val;
-              ListNode* pre = head;
-              ListNode* curr = head -> next;
-              while(curr != tail)
-              {
-                  if(curr -> val < key)
-                  {
-                      pre = pre -> next;
-                      swap(pre -> val, curr -> val);
-                  }
-                  curr = curr -> next;
-              }
-              swap(head -> val, pre -> val);
-              return pre;
-          }
-          void quickSort(ListNode* head, ListNode* tail)
-          {
-              if(head == tail || (head -> next) == tail) return;
-              ListNode* mid = partion(head, tail);
-              quickSort(head, mid);
-              quickSort(mid->next, tail);
-          }
-      };
-
-34. 给定两个字符串 s1 和 s2，检查 s2 是否由 s1 旋转得到。Hint：对 s1 做循环移位，所得字符串都将是字符串 s1s1 的子字符串。
+33. 给定两个字符串 s1 和 s2，检查 s2 是否由 s1 旋转得到。Hint：对 s1 做循环移位，所得字符串都将是字符串 s1s1 的子字符串。
 
   .. container:: toggle
 
@@ -1827,7 +1871,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           return true;
       }
 
-35. [LeetCode] Validate Binary Search Tree 检查一棵二叉树是否为二叉查找树。Hint：不仅要求左节点比当前节点小，右节点比当前节点大，而是要求左子树所有节点都小于当前节点，右子树所有节点都大于当前节点；利用二叉树的中序遍历，BST 得到的序列是升序排列的。
+34. [LeetCode] Validate Binary Search Tree 检查一棵二叉树是否为二叉查找树。Hint：不仅要求左节点比当前节点小，右节点比当前节点大，而是要求左子树所有节点都小于当前节点，右子树所有节点都大于当前节点；利用二叉树的中序遍历，BST 得到的序列是升序排列的。
 
   https://leetcode.com/problems/validate-binary-search-tree/
 
@@ -1861,7 +1905,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
         }
       };
 
-36. 判断一个数是否是奇数。Hint：考虑负数的情形；方法一，判断模 2 结果不为 0；方法二，位运算判断最低位为 1。延伸：判断两个数是否相等（或判断某个数是否为 0），
+35. 判断一个数是否是奇数。Hint：考虑负数的情形；方法一，判断模 2 结果不为 0；方法二，位运算判断最低位为 1。延伸：判断两个数是否相等（或判断某个数是否为 0），
 如果是浮点数，应该判断两者差的绝对值是否小于一个阈值，而不是直接使用 ==。
 
   .. container:: toggle
@@ -1889,7 +1933,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       }
 
 
-37. [LeetCode] Valid Number 验证一个字符串是否表示某个有效数字。Hint：完整的数字表达是“空格+正负号+整数+小数点+整数+e+正负号+整数+空格”；小数点的相邻两边至少要有一边是整数；如果出现 e，其两边都必须出现整数，但不要求相邻；如 05.e-3 是一个有效数字。
+36. [LeetCode] Valid Number 验证一个字符串是否表示某个有效数字。Hint：完整的数字表达是“空格+正负号+整数+小数点+整数+e+正负号+整数+空格”；小数点的相邻两边至少要有一边是整数；如果出现 e，其两边都必须出现整数，但不要求相邻；如 05.e-3 是一个有效数字。
 
   https://leetcode.com/problems/valid-number/
 

@@ -330,7 +330,7 @@
         }
         return dp[n & 1][W];
       }
-      
+
 |
 
 实例
@@ -418,3 +418,47 @@
 
       print(f(100, 2))	# 14
       print(f(200, 2))	# 20
+
+- 机器人走方格。从 :math:`(0,0)` 走到 :math:`(x-1,y-1)` ，每一步只能往右或往下走。网格图 :math:`map` 定义了一些障碍点（ :math:`map[i][j] \ne 1` )，不能从障碍点通过。有多少种走法？
+  延伸：如果没有障碍点，一共有 :math:`C_{(x-1)+(y-1)}^{(x-1)}` 种走法。
+
+  https://www.nowcoder.com/practice/b3ae8b9782af4cf29253afb2f6d6907d?tpId=8&tqId=11034&rp=1&ru=%2Fta%2Fcracking-the-coding-interview&qru=%2Fta%2Fcracking-the-coding-interview%2Fquestion-ranking
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // dp(i, j) = dp(i-1, j) + dp(i, j-1)
+      // 注意边界
+
+      int countWays(vector<vector<int> > map, int x, int y)
+      {
+          vector<int> dp(y, 0);
+          if(map[0][0] != 1) dp[0] = 0; // 起点初始化
+          else dp[0] = 1;
+
+          for(int row = 0; row < x; ++row)
+          {
+              for(int col = 0; col < y; ++col)
+              {
+                  if(row || col) // 忽略起点处
+                  {
+                      if(map[row][col] != 1) dp[col] = 0;
+                      else
+                      {
+                          long long fromUp = 0; // long long 防止溢出
+                          if(row > 0) fromUp = dp[col];
+                          long long fromLeft = 0;
+                          if(col > 0) fromLeft = dp[col-1];
+                          dp[col] = (int)((fromUp + fromLeft)%1000000007);
+                      }
+                  }
+              }
+          }
+          return dp[y-1];
+      }

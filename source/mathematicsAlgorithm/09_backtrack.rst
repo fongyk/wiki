@@ -171,6 +171,104 @@
           }
       };
 
+
+- 输出序列 :math:`1,2,...,n` 的所有子集（组合），共 :math:`2^n` 组。Hint：方法一，回溯，二叉子集树；方法二，递归，序列每增加一个数，组合数增加一倍，增加的这些组合是在之前的组合的基础上插入该数得到的；
+  方法三，当 :math:`n < 32` ，可以使用一个 int 型的变量 :math:`k` （ :math:`1 \leqslant k \leqslant 2^n` ）来表示组合的状态，当该变量的二进制表示的第 :math:`i` 位为 1，则表示当前组合中包含数字 :math:`i` 。
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 方法一，回溯
+
+      void backtrack(int n, vector<int>& tmp, vector<vector<int>>& res)
+      {
+        if (n == 0)
+        {
+          res.push_back(tmp);
+          return;
+        }
+        backtrack(n - 1, tmp, res); // 包含 n
+        tmp.push_back(n);
+        backtrack(n - 1, tmp, res); // 不包含 n
+        tmp.pop_back();
+      }
+
+      vector<vector<int>> combination(int n)
+      {
+        assert(n > 0);
+        vector<vector<int>> res;
+        vector<int> tmp;
+        backtrack(n, tmp, res);
+        return res;
+      }
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 方法二，递归
+
+      void combinationRecursive(int n, vector<vector<int>>& res)
+      {
+        if (n == 1)
+        {
+          res[1].push_back(1);
+          return;
+        }
+
+        combinationRecursive(n - 1, res);
+
+        int pre_num = pow(2, n - 1); // 在 1 ~ n-1 的组合上插入数字 n 
+        for (int i = 0; i < pre_num; ++i)
+        {
+          res[i + pre_num].push_back(n);
+          for (int j = 0; j < res[i].size(); ++j)
+          {
+            res[i + pre_num].push_back(res[i][j]);
+          }
+        }
+      }
+
+      vector<vector<int>> combination(int n)
+      {
+        assert(n > 0);
+        int num = pow(2, n);
+        vector<vector<int>> res(num, vector < int > {});
+        combinationRecursive(n, res);
+        return res;
+      }
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 方法三，统计二进制中 1 的个数
+
+      vector<vector<int>> combination(int n)
+      {
+        assert(n > 0);
+        int num = pow(2, n);
+        vector<vector<int>> res(num, vector < int > {});
+        int k = num;
+        while (k)
+        {
+          int pos = n - 1;
+          while (pos >= 0)
+          {
+            if (k & (1 << pos)) res[k - 1].push_back(pos + 1);
+            --pos;
+          }
+          --k;
+        }
+        return res;
+      }
+
+
+
 - Word search 查找字符串路径。
 
     https://leetcode.com/problems/word-search/

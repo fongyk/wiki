@@ -85,6 +85,37 @@
       }
     }
 
+八皇后问题
+--------------
+
+八皇后问题共有 92 组解。
+
+.. code-block:: cpp
+    :linenos:
+
+    bool place(int t, int* x)
+    {
+      for(int j = 0; j < t; ++j)
+      {
+        if(x[j] == x[t] || abs(j - t) == abs(x[j] - x[t])) return false; // 在同一列或同一斜线上
+      }
+      return true;
+    }
+
+    void Backtrack(int t, int n, int* x, int& sum)
+    {
+      if(t == n) ++sum;
+      else
+      {
+        for(int i = 0; i < n; ++i)
+        {
+          x[t] = i;
+          if(place(t, x)) Backtrack(t+1, n, x, sum);
+        }
+      }
+    }
+
+
 实例
 ------------
 

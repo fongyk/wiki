@@ -193,9 +193,9 @@
           res.push_back(tmp);
           return;
         }
-        backtrack(n - 1, tmp, res); // 包含 n
-        tmp.push_back(n);
         backtrack(n - 1, tmp, res); // 不包含 n
+        tmp.push_back(n);
+        backtrack(n - 1, tmp, res); // 包含 n
         tmp.pop_back();
       }
 
@@ -223,7 +223,7 @@
 
         combinationRecursive(n - 1, res);
 
-        int pre_num = pow(2, n - 1); // 在 1 ~ n-1 的组合上插入数字 n 
+        int pre_num = pow(2, n - 1); // 在 1 ~ n-1 的组合上插入数字 n
         for (int i = 0; i < pre_num; ++i)
         {
           res[i + pre_num].push_back(n);

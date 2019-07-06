@@ -487,9 +487,9 @@
     <span class="n">res</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">tmp</span><span class="p">);</span>
     <span class="k">return</span><span class="p">;</span>
   <span class="p">}</span>
-  <span class="n">backtrack</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">tmp</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span> <span class="c1">// 包含 n</span>
-  <span class="n">tmp</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
   <span class="n">backtrack</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">tmp</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span> <span class="c1">// 不包含 n</span>
+  <span class="n">tmp</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+  <span class="n">backtrack</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">tmp</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span> <span class="c1">// 包含 n</span>
   <span class="n">tmp</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
 <span class="p">}</span>
 

@@ -241,7 +241,7 @@
 </ul>
 </div></blockquote>
 <ol class="arabic simple" start="4">
-<li>链表</li>
+<li>链表（注：对每一个节点操作之前，应先考虑该节点是否为空）</li>
 </ol>
 <blockquote>
 <div><ul class="simple">
@@ -542,6 +542,84 @@
         <span class="n">ListNode</span><span class="o">*</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">partion</span><span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="n">tail</span><span class="p">);</span>
         <span class="n">quickSort</span><span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="n">mid</span><span class="p">);</span>
         <span class="n">quickSort</span><span class="p">(</span><span class="n">mid</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">,</span> <span class="n">tail</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<ul class="simple">
+<li>将二叉搜索树转换为升序排序的双向链表。Hint：中序遍历。</li>
+</ul>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">TreeNode</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">val</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">TreeNode</span> <span class="o">*</span><span class="n">left</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">TreeNode</span> <span class="o">*</span><span class="n">right</span><span class="p">;</span>
+    <span class="n">TreeNode</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="o">:</span> <span class="n">val</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">left</span><span class="p">(</span><span class="nb">NULL</span><span class="p">),</span> <span class="n">right</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">TreeNode</span><span class="o">*</span> <span class="n">Convert</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">pRootOfTree</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">pRootOfTree</span> <span class="o">=</span> <span class="n">converTree2List</span><span class="p">(</span><span class="n">pRootOfTree</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">pRootOfTree</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="c1">// 返回的是转换之后的链表的头节点</span>
+    <span class="n">TreeNode</span><span class="o">*</span> <span class="n">converTree2List</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">root</span><span class="p">)</span> <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+
+        <span class="n">TreeNode</span><span class="o">*</span> <span class="n">l</span> <span class="o">=</span> <span class="n">converTree2List</span><span class="p">(</span><span class="n">root</span> <span class="o">-&gt;</span> <span class="n">left</span><span class="p">);</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">l</span> <span class="o">&amp;&amp;</span> <span class="n">l</span> <span class="o">-&gt;</span> <span class="n">right</span><span class="p">)</span> <span class="n">l</span> <span class="o">=</span> <span class="n">l</span> <span class="o">-&gt;</span> <span class="n">right</span><span class="p">;</span> <span class="c1">// 根节点应该接在左子树链表的尾节点之后</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="n">l</span> <span class="o">-&gt;</span> <span class="n">right</span> <span class="o">=</span> <span class="n">root</span><span class="p">;</span>
+        <span class="n">root</span> <span class="o">-&gt;</span> <span class="n">left</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span>
+
+        <span class="n">TreeNode</span><span class="o">*</span> <span class="n">r</span> <span class="o">=</span> <span class="n">converTree2List</span><span class="p">(</span><span class="n">root</span> <span class="o">-&gt;</span> <span class="n">right</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="n">r</span> <span class="o">-&gt;</span> <span class="n">left</span> <span class="o">=</span> <span class="n">root</span><span class="p">;</span>
+        <span class="n">root</span> <span class="o">-&gt;</span> <span class="n">right</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span> <span class="c1">// 根节点应该接在右子树链表的头节点之前</span>
+
+        <span class="k">while</span><span class="p">(</span><span class="n">root</span> <span class="o">-&gt;</span> <span class="n">left</span><span class="p">)</span> <span class="n">root</span> <span class="o">=</span> <span class="n">root</span> <span class="o">-&gt;</span> <span class="n">left</span><span class="p">;</span> <span class="c1">// 找到头节点</span>
+        <span class="k">return</span> <span class="n">root</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">};</span>
 </pre></div>

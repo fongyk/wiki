@@ -35,7 +35,7 @@
 
       https://blog.csdn.net/tiankong\_/article/details/77240283
 
-4. 链表
+4. 链表（注：对每一个节点操作之前，应先考虑该节点是否为空）
 
   - 反转链表。Hint：方法一，逐个反转；方法二，递归；方法三，使用栈保存节点的值，反向赋给所有节点。
 
@@ -235,6 +235,53 @@
               ListNode* mid = partion(head, tail);
               quickSort(head, mid);
               quickSort(mid->next, tail);
+          }
+      };
+
+  - 将二叉搜索树转换为升序排序的双向链表。Hint：中序遍历。
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      struct TreeNode
+      {
+          int val;
+          struct TreeNode *left;
+          struct TreeNode *right;
+          TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+      };
+
+      class Solution
+      {
+      public:
+          TreeNode* Convert(TreeNode* pRootOfTree)
+          {
+              pRootOfTree = converTree2List(pRootOfTree);
+              return pRootOfTree;
+          }
+      private:
+          // 返回的是转换之后的链表的头节点
+          TreeNode* converTree2List(TreeNode* root)
+          {
+              if(!root) return NULL;
+
+              TreeNode* l = converTree2List(root -> left);
+              while(l && l -> right) l = l -> right; // 根节点应该接在左子树链表的尾节点之后
+              if(l) l -> right = root;
+              root -> left = l;
+
+              TreeNode* r = converTree2List(root -> right);
+              if(r) r -> left = root;
+              root -> right = r; // 根节点应该接在右子树链表的头节点之前
+
+              while(root -> left) root = root -> left; // 找到头节点
+              return root;
           }
       };
 

@@ -285,6 +285,64 @@
           }
       };
 
+  - 删除链表中的重复节点。Hint：可能会删除头节点；注意尾节点处是否有重复元素。
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution
+      {
+      public:
+          ListNode* deleteDuplication(ListNode* pHead)
+          {
+              if(!pHead || !(pHead -> next)) return pHead;
+
+              ListNode* newHead = new ListNode(0); // 临时申请一个新的节点，以处理头节点被删除的情形
+              newHead -> next = pHead;
+              ListNode* th = newHead;
+
+              ListNode* curr = pHead;
+              ListNode* post = curr -> next;
+              while(true)
+              {
+                  if(post && curr -> val != post -> val)
+                  {
+                      th -> next = curr;
+                      th = curr; // curr是不重复的节点
+                      curr = post;
+                      post = post -> next;
+                      if(!post) break; // 尾节点处不是重复元素
+                  }
+                  else
+                  {
+                      while(post && curr -> val == post -> val) post = post -> next;
+                      curr = post;
+
+                      if(!post) // 尾节点处是重复元素
+                      {
+                          th -> next = NULL;
+                          break;
+                      }
+                      else post = post -> next;
+
+                      if(!post) // 尾节点处不是重复元素
+                      {
+                          th -> next = curr;
+                          break;
+                      }
+                  }
+              }
+              th = newHead -> next;
+              delete newHead; // 删除临时节点
+              return th; // 返回的是临时节点指向的下一个节点
+          }
+      };
 
 5. 排列组合：:math:`k` 个球放入 :math:`m` 个盒子
 

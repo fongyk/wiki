@@ -625,6 +625,108 @@
 </pre></div>
 </td></tr></table></div>
 </div>
+<ul class="simple">
+<li>删除链表中的重复节点。Hint：可能会删除头节点；注意尾节点处是否有重复元素。</li>
+</ul>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">ListNode</span><span class="o">*</span> <span class="n">deleteDuplication</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">pHead</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">pHead</span> <span class="o">||</span> <span class="o">!</span><span class="p">(</span><span class="n">pHead</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">))</span> <span class="k">return</span> <span class="n">pHead</span><span class="p">;</span>
+
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">newHead</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// 临时申请一个新的节点，以处理头节点被删除的情形</span>
+        <span class="n">newHead</span> <span class="o">-&gt;</span> <span class="n">next</span> <span class="o">=</span> <span class="n">pHead</span><span class="p">;</span>
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">th</span> <span class="o">=</span> <span class="n">newHead</span><span class="p">;</span>
+
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">pHead</span><span class="p">;</span>
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">post</span> <span class="o">=</span> <span class="n">curr</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">post</span> <span class="o">&amp;&amp;</span> <span class="n">curr</span> <span class="o">-&gt;</span> <span class="n">val</span> <span class="o">!=</span> <span class="n">post</span> <span class="o">-&gt;</span> <span class="n">val</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">th</span> <span class="o">-&gt;</span> <span class="n">next</span> <span class="o">=</span> <span class="n">curr</span><span class="p">;</span>
+                <span class="n">th</span> <span class="o">=</span> <span class="n">curr</span><span class="p">;</span> <span class="c1">// curr是不重复的节点</span>
+                <span class="n">curr</span> <span class="o">=</span> <span class="n">post</span><span class="p">;</span>
+                <span class="n">post</span> <span class="o">=</span> <span class="n">post</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">;</span>
+                <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">post</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span> <span class="c1">// 尾节点处不是重复元素</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="k">while</span><span class="p">(</span><span class="n">post</span> <span class="o">&amp;&amp;</span> <span class="n">curr</span> <span class="o">-&gt;</span> <span class="n">val</span> <span class="o">==</span> <span class="n">post</span> <span class="o">-&gt;</span> <span class="n">val</span><span class="p">)</span> <span class="n">post</span> <span class="o">=</span> <span class="n">post</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">;</span>
+                <span class="n">curr</span> <span class="o">=</span> <span class="n">post</span><span class="p">;</span>
+
+                <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">post</span><span class="p">)</span> <span class="c1">// 尾节点处是重复元素</span>
+                <span class="p">{</span>
+                    <span class="n">th</span> <span class="o">-&gt;</span> <span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">else</span> <span class="n">post</span> <span class="o">=</span> <span class="n">post</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">;</span>
+
+                <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">post</span><span class="p">)</span> <span class="c1">// 尾节点处不是重复元素</span>
+                <span class="p">{</span>
+                    <span class="n">th</span> <span class="o">-&gt;</span> <span class="n">next</span> <span class="o">=</span> <span class="n">curr</span><span class="p">;</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">th</span> <span class="o">=</span> <span class="n">newHead</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">;</span>
+        <span class="k">delete</span> <span class="n">newHead</span><span class="p">;</span> <span class="c1">// 删除临时节点</span>
+        <span class="k">return</span> <span class="n">th</span><span class="p">;</span> <span class="c1">// 返回的是临时节点指向的下一个节点</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+</div>
 </div></blockquote>
 <ol class="arabic simple" start="5">
 <li>排列组合：<span class="math notranslate nohighlight">\(k\)</span> 个球放入 <span class="math notranslate nohighlight">\(m\)</span> 个盒子</li>

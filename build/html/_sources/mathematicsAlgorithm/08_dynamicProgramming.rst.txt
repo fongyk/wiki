@@ -510,3 +510,60 @@
           ## (0 + x + x^2 + x^3 + x^4 + x^5 + x^6) ^ n
           p = Polynomial((0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0)) ** n
           return p.coef
+
+- 正则表达式匹配。pattern 中 '.' 可以表示任意一个字符，'\*' 表示它前面的字符可以出现任意次（包括 0 次）。
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: python
+      :linenos:
+
+      ## 动态规划，top-down
+      ## dp[i][j] 表示 string：[i, len(string)) 与 pattern：[j, len(pattern)) 的匹配结果
+      ## 空间复杂度：O(len(string) * len(pattern))
+
+      class Solution(object):
+          def isMatch(self, string, pattern):
+              """
+              :type s: str
+              :type p: str
+              :rtype: bool
+              """
+              dp = [[False] * (len(pattern) + 1) for _ in range(len(string) + 1)]
+              dp[-1][-1] = True ## 初始化
+
+              for s in range(len(string), -1, -1):
+                  for p in range(len(pattern)-1, -1, -1):
+                      flag = s < len(string) and pattern[p] in {string[s], '.'}
+                      if p+1 < len(pattern) and pattern[p+1] == '*':
+                          dp[s][p] = dp[s][p+2] or (flag and dp[s+1][p]) ## 匹配 0 次 or 多次
+                      else:
+                          dp[s][p] = flag and dp[s+1][p+1]
+              return dp[0][0]
+
+    .. code-block:: python
+      :linenos:
+
+      ## 存储复用，空间复杂度：O(2 * len(pattern))
+      ## 注意：有些值需要更新，不能复用错误的值
+
+      class Solution(object):
+          def isMatch(self, string, pattern):
+              dp = [[False] * (len(pattern) + 1) for _ in range(2)]
+
+              for s in range(len(string), -1, -1):
+                  if s == len(string):
+                      dp[s&1][-1] = True ## 初始化
+                  else:
+                      dp[s&1][-1] = False ## 由于后面的循环不会更新 dp[s&1][-1]，如果直接复用之前的值，那么一直是 True，将导致错误
+                  for p in range(len(pattern)-1, -1, -1):
+                      flag = s < len(string) and pattern[p] in {string[s], '.'}
+                      if p+1 < len(pattern) and pattern[p+1] == '*':
+                          dp[s&1][p] = dp[s&1][p+2] or (flag and dp[(s+1)&1][p])
+                      else:
+                          dp[s&1][p] = flag and dp[(s+1)&1][p+1]
+              return dp[0][0]

@@ -338,7 +338,7 @@
               if(board.size()==0) return false;
               int M = board.size();
               int N = board[0].size();
-              bool** flag = new bool*[M+2];
+              bool** flag = new bool*[M+2]; // 设置一圈边界，标记为 false，后面访问 board 中的 4 个领域不用再判断是否越界；flag 的大小为 (M+2)x(N+2)
               for(int m = 0; m < M+2; ++m)
               {
                   flag[m] = new bool[N+2];

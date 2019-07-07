@@ -1982,6 +1982,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
 
 36. [LeetCode] Valid Number 验证一个字符串是否表示某个有效数字。Hint：完整的数字表达是“空格+正负号+整数+小数点+整数+e+正负号+整数+空格”；小数点的相邻两边至少要有一边是整数；如果出现 e，其两边都必须出现整数，但不要求相邻；如 05.e-3 是一个有效数字。
+    延伸：将字符串转换为整数，需要考虑：空串、正负号、无效字符、溢出。
 
   https://leetcode.com/problems/valid-number/
 
@@ -1994,6 +1995,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
     .. code-block:: cpp
       :linenos:
 
+      // 验证一个字符串是否表示某个有效数字
       class Solution
       {
       public:
@@ -2050,6 +2052,143 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           }
       };
 
+    .. code-block:: cpp
+      :linenos:
+
+      // 将字符串转换为整数
+      class Solution
+      {
+      public:
+          int myAtoi(string str)
+          {
+              unsigned int idx = 0;
+              scanSpace(str, idx);
+
+              bool sign = true;
+              if(idx < str.size() && str[idx] == '-' || str[idx] == '+')
+              {
+                  if(str[idx] == '-') sign = false;
+                  ++idx;
+              }
+
+              long long ans = 0;
+              bool hasDigit = false;
+              while(idx < str.size() && '0' <= str[idx] && str[idx] <= '9')
+              {
+                  hasDigit = true;
+                  ans = 10 * ans + str[idx] - '0';
+                  if(sign && ans > INT_MAX)
+                  {
+                      validInt = false;
+                      return INT_MAX;
+                  }
+                  if(!sign && -ans < INT_MIN)
+                  {
+                      validInt = false;
+                      return INT_MIN;
+                  }
+                  ++idx;
+              }
+              scanSpace(str, idx);
+              if(idx == str.size() && hasDigit)
+              {
+                  if(!sign) ans = - ans;
+                  validInt = true;
+                  return static_cast<int>(ans);
+              }
+
+              validInt = false;
+              return 0;
+          }
+      private:
+          bool validInt; // 标志符，输出 0 / INT_MAX / INT_MIN 时，有可能是异常情形
+          void scanSpace(string str, unsigned int& idx) // 扫描首尾空格
+          {
+              while(idx < str.size() && str[idx] == ' ') ++idx;
+          }
+      };
+
+37. 求 :math:`1+2+3+ \cdots +n` ，不使用：乘除法，判断，循环，库函数。
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 方法一，构造函数
+      class A
+      {
+      public:
+        A()
+        {
+          id++;
+          sum += id;
+        }
+        static void reset()
+        {
+          id = 0;
+          sum = 0;
+        }
+        static unsigned int getSum()
+        {
+          return sum;
+        }
+      private:
+        static unsigned int id;
+        static unsigned int sum;
+      };
+
+      unsigned int A::id = 0;
+      unsigned int A::sum = 0;
+
+      unsigned int sumFrom1ToN(unsigned int N)
+      {
+        A::reset();
+
+        A* arr = new A[N];
+        delete[] arr;
+
+        return A::getSum();
+      }
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 方法二，虚函数
+
+      class A; // 前向声明
+      A* arr[2]; // 这里可以声明类 A 的指针，但是不能声明类 A 的变量，类 A 还未定义
+
+      class A
+      {
+      public:
+        virtual unsigned int getSum(unsigned int n)
+        {
+          return 0;
+        }
+      };
+
+      class B: public A
+      {
+      public:
+        unsigned int getSum(unsigned int n) override
+        {
+          return n + arr[!!n] -> getSum(n - 1); // !!n：当 n>0，arr[1] 调用 B::getSum(n)；当 n=0，arr[0] 调用 A::getSum(n)
+        }
+      };
+
+      unsigned int sumFrom1ToN(unsigned int N)
+      {
+        A a;
+        B b;
+        arr[0] = &a;
+        arr[1] = &b;
+        return arr[1] -> getSum(N);
+      }
 
 C++
 ------------

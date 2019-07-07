@@ -462,3 +462,51 @@
           }
           return dp[y-1];
       }
+
+- :math:`n` 个骰子点数之和及其频数。
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 方法一：动态规划
+      // dp[k, n] 表示 k 个骰子，点数和为 n 的频数
+      // dp[k, n] = dp[k-1, n-1] + dp[k-1, n-2] + dp[k-1, n-3] + dp[k-1, n-4] + dp[k-1, n-5] + dp[k-1, n-6]
+
+      vector<int> diceSum(int n)
+      {
+        assert(n > 0);
+        vector<vector<int>> dp(2, vector<int>(n*6+1, 0)); // n 个骰子，最大和为 6n
+        fill(dp[1].begin()+1, dp[1].begin()+7, 1); // 1 个骰子，初始化
+
+        for (int k = 2; k <= n; ++k)
+        {
+          fill(dp[k & 1].begin(), dp[k & 1].end(), 0); // k 个骰子，最小和为 k，最大和为 6k
+          for (int s = k; s <= k * 6; ++s)
+          {
+            for (int i = 1; i <= 6 && s - i >= k-1; ++i) // k-1 个骰子，最小和为 k-1
+            {
+              dp[k & 1][s] += dp[(k - 1) & 1][s - i];
+            }
+          }
+        }
+        return dp[n & 1];
+      }
+
+    .. code-block:: python
+      :linenos:
+
+      ## 方法二：多项式系数
+      ## 多项式 (x + x^2 + x^3 + x^4 + x^5 + x^6) ^ n 的系数就是点数和的频数，阶次对应点数和
+
+      from numpy.polynomial.polynomial import Polynomial
+
+      def diceSum(n):
+          ## (0 + x + x^2 + x^3 + x^4 + x^5 + x^6) ^ n
+          p = Polynomial((0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0)) ** n
+          return p.coef

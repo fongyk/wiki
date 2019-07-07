@@ -3200,7 +3200,8 @@ $$</div></li>
 </div>
 </div></blockquote>
 <ol class="arabic simple" start="36">
-<li>[LeetCode] Valid Number 验证一个字符串是否表示某个有效数字。Hint：完整的数字表达是“空格+正负号+整数+小数点+整数+e+正负号+整数+空格”；小数点的相邻两边至少要有一边是整数；如果出现 e，其两边都必须出现整数，但不要求相邻；如 05.e-3 是一个有效数字。</li>
+<li>[LeetCode] Valid Number 验证一个字符串是否表示某个有效数字。Hint：完整的数字表达是“空格+正负号+整数+小数点+整数+e+正负号+整数+空格”；小数点的相邻两边至少要有一边是整数；如果出现 e，其两边都必须出现整数，但不要求相邻；如 05.e-3 是一个有效数字。
+延伸：将字符串转换为整数，需要考虑：空串、正负号、无效字符、溢出。</li>
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://leetcode.com/problems/valid-number/">https://leetcode.com/problems/valid-number/</a></p>
@@ -3261,7 +3262,9 @@ $$</div></li>
 52
 53
 54
-55</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span>
+55
+56</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 验证一个字符串是否表示某个有效数字</span>
+<span class="k">class</span> <span class="nc">Solution</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="kt">bool</span> <span class="n">isNumber</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">)</span>
@@ -3316,6 +3319,254 @@ $$</div></li>
         <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 将字符串转换为整数</span>
+<span class="k">class</span> <span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">myAtoi</span><span class="p">(</span><span class="n">string</span> <span class="n">str</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">scanSpace</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">idx</span><span class="p">);</span>
+
+        <span class="kt">bool</span> <span class="n">sign</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">idx</span> <span class="o">&lt;</span> <span class="n">str</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">str</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span> <span class="o">||</span> <span class="n">str</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;+&#39;</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span><span class="p">)</span> <span class="n">sign</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+            <span class="o">++</span><span class="n">idx</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="kt">long</span> <span class="kt">long</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kt">bool</span> <span class="n">hasDigit</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">idx</span> <span class="o">&lt;</span> <span class="n">str</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="sc">&#39;0&#39;</span> <span class="o">&lt;=</span> <span class="n">str</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">str</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">hasDigit</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">ans</span> <span class="o">+</span> <span class="n">str</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">-</span> <span class="sc">&#39;0&#39;</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">sign</span> <span class="o">&amp;&amp;</span> <span class="n">ans</span> <span class="o">&gt;</span> <span class="n">INT_MAX</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">validInt</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+                <span class="k">return</span> <span class="n">INT_MAX</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">sign</span> <span class="o">&amp;&amp;</span> <span class="o">-</span><span class="n">ans</span> <span class="o">&lt;</span> <span class="n">INT_MIN</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">validInt</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+                <span class="k">return</span> <span class="n">INT_MIN</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="o">++</span><span class="n">idx</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">scanSpace</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">idx</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">idx</span> <span class="o">==</span> <span class="n">str</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">hasDigit</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">sign</span><span class="p">)</span> <span class="n">ans</span> <span class="o">=</span> <span class="o">-</span> <span class="n">ans</span><span class="p">;</span>
+            <span class="n">validInt</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+            <span class="k">return</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ans</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="n">validInt</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="kt">bool</span> <span class="n">validInt</span><span class="p">;</span> <span class="c1">// 标志符，输出 0 / INT_MAX / INT_MIN 时，有可能是异常情形</span>
+    <span class="kt">void</span> <span class="nf">scanSpace</span><span class="p">(</span><span class="n">string</span> <span class="n">str</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">idx</span><span class="p">)</span> <span class="c1">// 扫描首尾空格</span>
+    <span class="p">{</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">idx</span> <span class="o">&lt;</span> <span class="n">str</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">str</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="p">)</span> <span class="o">++</span><span class="n">idx</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="37">
+<li>求 <span class="math notranslate nohighlight">\(1+2+3+ \cdots +n\)</span> ，不使用：乘除法，判断，循环，库函数。</li>
+</ol>
+<blockquote>
+<div><div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 方法一，构造函数</span>
+<span class="k">class</span> <span class="nc">A</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="n">A</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">id</span><span class="o">++</span><span class="p">;</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">id</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">static</span> <span class="kt">void</span> <span class="n">reset</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">id</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">getSum</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+  <span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">id</span><span class="p">;</span>
+  <span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">sum</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">A</span><span class="o">::</span><span class="n">id</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">A</span><span class="o">::</span><span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">unsigned</span> <span class="kt">int</span> <span class="nf">sumFrom1ToN</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">N</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">A</span><span class="o">::</span><span class="n">reset</span><span class="p">();</span>
+
+  <span class="n">A</span><span class="o">*</span> <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">A</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+  <span class="k">delete</span><span class="p">[]</span> <span class="n">arr</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="n">A</span><span class="o">::</span><span class="n">getSum</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 方法二，虚函数</span>
+
+<span class="k">class</span> <span class="nc">A</span><span class="p">;</span> <span class="c1">// 前向声明</span>
+<span class="n">A</span><span class="o">*</span> <span class="n">arr</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span> <span class="c1">// 这里可以声明类 A 的指针，但是不能声明类 A 的变量，类 A 还未定义</span>
+
+<span class="k">class</span> <span class="nc">A</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="k">virtual</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">getSum</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">B</span><span class="o">:</span> <span class="k">public</span> <span class="n">A</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">getSum</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="k">override</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="n">n</span> <span class="o">+</span> <span class="n">arr</span><span class="p">[</span><span class="o">!!</span><span class="n">n</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="n">getSum</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// !!n：当 n&gt;0，arr[1] 调用 B::getSum(n)；当 n=0，arr[0] 调用 A::getSum(n)</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">unsigned</span> <span class="kt">int</span> <span class="nf">sumFrom1ToN</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">N</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">A</span> <span class="n">a</span><span class="p">;</span>
+  <span class="n">B</span> <span class="n">b</span><span class="p">;</span>
+  <span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+  <span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="n">getSum</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
 </div>

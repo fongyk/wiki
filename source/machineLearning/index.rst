@@ -10,3 +10,4 @@
     03_pca.rst
     04_derivative.rst
     05_newton.rst
+    06_roc.rst

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>机器学习 &mdash; fong alpha documentation</title>
+  <title>6. ROC 曲线 &mdash; fong alpha documentation</title>
   
 
   
@@ -47,8 +47,8 @@
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1. Logistic Regression" href="01_lr.html" />
-    <link rel="prev" title="3. 分支管理" href="../git/03_branch.html" /> 
+    <link rel="next" title="深度学习" href="../deepLearning/index.html" />
+    <link rel="prev" title="5. 牛顿方法" href="05_newton.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -105,13 +105,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">机器学习</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">机器学习</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="01_lr.html">1. Logistic Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02_svm.html">2. 支持向量机</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_pca.html">3. 主成分分析</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_derivative.html">4. 常用矩阵求导公式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05_newton.html">5. 牛顿方法</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06_roc.html">6. ROC 曲线</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6. ROC 曲线</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">6.1. 基本概念</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auc">6.2. AUC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">6.3. 参考资料</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
@@ -166,13 +171,15 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>机器学习</li>
+          <li><a href="index.html">机器学习</a> &raquo;</li>
+        
+      <li>6. ROC 曲线</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/machineLearning/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/machineLearning/06_roc.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -185,60 +192,97 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="id1">
-<h1>机器学习<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="01_lr.html">1. Logistic Regression</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="01_lr.html#id1">1.1. 基本假设</a></li>
-<li class="toctree-l2"><a class="reference internal" href="01_lr.html#id2">1.2. 求解方法</a></li>
-<li class="toctree-l2"><a class="reference internal" href="01_lr.html#id3">1.3. 优缺点</a></li>
-<li class="toctree-l2"><a class="reference internal" href="01_lr.html#id4">1.4. 解析</a></li>
-<li class="toctree-l2"><a class="reference internal" href="01_lr.html#id5">1.5. 参考资料</a></li>
+  <div class="section" id="roc">
+<h1>6. ROC 曲线<a class="headerlink" href="#roc" title="Permalink to this headline">¶</a></h1>
+<p><strong>ROC</strong> ：Receiver operating characteristic curve，接收者操作特征曲线。</p>
+<blockquote>
+<div><ul class="simple">
+<li>横坐标：false positive rate（FPR），即负例样本的预测错误率（越小越好）</li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="02_svm.html">2. 支持向量机</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="02_svm.html#id2">2.1. 最大间隔划分超平面</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02_svm.html#id3">2.2. 软间隔</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02_svm.html#id4">2.3. 核函数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02_svm.html#id5">2.4. 多分类</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02_svm.html#svm">2.5. SVM库</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02_svm.html#id6">2.6. 优缺点</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02_svm.html#id7">2.7. 解析</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02_svm.html#svmlr">2.8. SVM与LR的异同</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02_svm.html#id8">2.9. 参考资料</a></li>
+<div class="math notranslate nohighlight">
+\[FPR = \frac{FP}{N} = \frac{FP}{TN + FP}\]</div>
+<ul class="simple">
+<li>纵坐标：true positive rate（TPR），recall，hit rate，sensitivity，即正例样本的预测正确率（越大越好）</li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="03_pca.html">3. 主成分分析</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="03_pca.html#id2">3.1. 优化目标</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03_pca.html#id3">3.2. 求解</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03_pca.html#pca-whitening">3.3. PCA-Whitening</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03_pca.html#svd">3.4. SVD分解</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03_pca.html#id4">3.5. 参考资料</a></li>
+<div class="math notranslate nohighlight">
+\[TPR = \frac{TP}{P} = \frac{TP}{TP + FN}\]</div>
+</div></blockquote>
+<a class="reference internal image-reference" href="../_images/06_roc.png"><img alt="../_images/06_roc.png" class="align-center" src="../_images/06_roc.png" style="width: 500px;" /></a>
+<ul class="simple">
+<li>离左上角越近的点预测 accuracy 越高。</li>
+<li>在A、B、C三者当中，最好的结果是 A 方法。</li>
+<li>B 的 accuracy 是 50%。</li>
+<li>C’ 与 C 互为镜像点。不管 C 预测了什么，C’ 就做相反的预测。</li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="04_derivative.html">4. 常用矩阵求导公式</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="04_derivative.html#id2">4.1. 一阶</a></li>
-<li class="toctree-l2"><a class="reference internal" href="04_derivative.html#id3">4.2. 二阶</a></li>
-<li class="toctree-l2"><a class="reference internal" href="04_derivative.html#id4">4.3. 迹</a></li>
-<li class="toctree-l2"><a class="reference internal" href="04_derivative.html#id5">4.4. 参考资料</a></li>
+<div class="section" id="id1">
+<h2>6.1. 基本概念<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>ROC 分析的是二元分类模型。</p>
+<p>2 类标签：</p>
+<ul class="simple">
+<li>Positive（P）：正例</li>
+<li>Negative（N）：负例</li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="05_newton.html">5. 牛顿方法</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="05_newton.html#id2">5.1. 一维</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_newton.html#id3">5.2. 高维</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_newton.html#id4">5.3. 收敛问题</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_newton.html#id5">5.4. 应用</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_newton.html#id6">5.5. 参考资料</a></li>
+<p>4 种预测结果：</p>
+<ul class="simple">
+<li>True Positive（TP）：预测为正例，且预测正确。</li>
+<li>False Positive（FP）：预测为正例，但预测错误。</li>
+<li>True Negative（TN）：预测为负例，且预测正确。</li>
+<li>False Negative（FN）：预测为负例，但预测错误。</li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="06_roc.html">6. ROC 曲线</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="06_roc.html#id1">6.1. 基本概念</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06_roc.html#auc">6.2. AUC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06_roc.html#id2">6.3. 参考资料</a></li>
+<p>常用评价指标：</p>
+<ul class="simple">
+<li>正确率（accuracy）</li>
 </ul>
-</li>
+<div class="math notranslate nohighlight">
+\[ACC = \frac{TP + TN}{P + N}\]</div>
+<ul class="simple">
+<li>准确率（precision，positive predictive value - PPV）</li>
 </ul>
+<div class="math notranslate nohighlight">
+\[PPV = \frac{TP}{TP + FP}\]</div>
+<ul class="simple">
+<li>召回率（recall，hit rate，sensitivity，true positive rate - TPR）</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[TPR = \frac{TP}{P} = \frac{TP}{TP + FN}\]</div>
+<ul class="simple">
+<li>F1 Score（准确率和召回率的调和平均）</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[F_1 = \frac{2}{\frac{1}{PPV} + \frac{1}{TPR}} = 2 \times \frac{PPV \times TPR}{PPV + TPR} = \frac{2 \cdot TP}{2 \cdot TP + FP + FN}\]</div>
+<p><span class="math notranslate nohighlight">\(2 \times 2\)</span> 混淆矩阵（confusion matrix）：</p>
+<a class="reference internal image-reference" href="../_images/06_confusionMatrix.jpg"><img alt="../_images/06_confusionMatrix.jpg" class="align-center" src="../_images/06_confusionMatrix.jpg" style="width: 800px;" /></a>
+</div>
+<div class="section" id="auc">
+<h2>6.2. AUC<a class="headerlink" href="#auc" title="Permalink to this headline">¶</a></h2>
+<p>ROC 空间里的单点，是给定分类模型且给定阈值后得出的。但同一个二元分类模型的阈值可能设定为高或低，每种阈值的设定会得出不同的 FPR 和 TPR。
+将同一模型每个阈值的 (FPR, TPR) 坐标都画在 ROC 空间里，就成为特定模型的 ROC 曲线。</p>
+<a class="reference internal image-reference" href="../_images/06_rocCurve.png"><img alt="../_images/06_rocCurve.png" class="align-center" src="../_images/06_rocCurve.png" style="width: 600px;" /></a>
+<p>在比较不同的分类模型时，可以将每个模型的 ROC 曲线都画出来，比较曲线下面积作为模型优劣的指标。</p>
+<p><strong>AUC</strong> ：Area under the curve of ROC。</p>
+<ul class="simple">
+<li>因为是在 1x1 的方格里求面积，AUC 必在 0 ~ 1 之间。</li>
+<li>AUC 值 = 分类器把一个随机抽取的正例排在一个随机抽取的负例之前的概率（给予正例更高的得分）。</li>
+<li>AUC 值越大的分类器，accuracy 越高。</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>6.3. 参考资料<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>机器学习之分类性能度量指标 : ROC曲线、AUC值、正确率、召回率</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.jianshu.com/p/c61ae11cc5f6">https://www.jianshu.com/p/c61ae11cc5f6</a></div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Receiver operating characteristic</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic">https://en.wikipedia.org/wiki/Receiver_operating_characteristic</a></div></blockquote>
+<ol class="arabic simple" start="3">
+<li>ROC曲线</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://zh.wikipedia.org/wiki/ROC%E6%9B%B2%E7%BA%BF">https://zh.wikipedia.org/wiki/ROC%E6%9B%B2%E7%BA%BF</a></div></blockquote>
 </div>
 </div>
 
@@ -250,10 +294,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="01_lr.html" class="btn btn-neutral float-right" title="1. Logistic Regression" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../deepLearning/index.html" class="btn btn-neutral float-right" title="深度学习" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../git/03_branch.html" class="btn btn-neutral float-left" title="3. 分支管理" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="05_newton.html" class="btn btn-neutral float-left" title="5. 牛顿方法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

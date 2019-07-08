@@ -427,9 +427,56 @@
 
       http://www.cnblogs.com/grandyang/p/4280131.html
 
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution
+      {
+      public:
+          int maxProfit(vector<int>& prices)
+          {
+              if(prices.size() <= 1) return 0;
+              int profit = 0;
+              int minimal = INT_MAX;
+              for(int p: prices)
+              {
+                  profit = max(profit, p - minimal);
+                  minimal = min(p, minimal);
+              }
+              return profit;
+          }
+      };
+
   - 无限次交易
 
       http://www.cnblogs.com/grandyang/p/4280803.html
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution
+      {
+      public:
+          int maxProfit(vector<int>& prices)
+          {
+              if(prices.size() <= 1) return 0;
+              int profit = 0;
+              for(int i = 0; i < prices.size() - 1; ++i) profit += max(prices[i+1] - prices[i], 0);
+              return profit;
+          }
+      };
 
   - 最多两次交易
 
@@ -444,6 +491,40 @@
   - 交易冷却
 
       https://www.cnblogs.com/grandyang/p/4997417.html
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // buy[i] = max(buy[i-1], cool[i-1] - prices[i])
+      // sell[i] = max(sell[i-1], buy[i-1] + prices[i])
+      // cool[i] = sell[i-1] => buy[i] = max(buy[i-1], sell[i-2] - prices[i])
+
+      class Solution
+      {
+      public:
+          int maxProfit(vector<int>& prices)
+          {
+              if(prices.size() <= 1) return 0;
+              int pre_sell = 0;
+              int sell = 0;
+              int pre_buy = INT_MIN;
+              int buy = 0;
+              for(int p : prices)
+              {
+                  buy = max(pre_buy, pre_sell - p); // 这里的 pre_sell 其实是 pre_pre_sell
+                  pre_sell = sell; // pre_sell 更新晚一步
+                  sell = max(pre_sell, pre_buy + p);
+                  pre_buy = buy;
+              }
+              return sell;
+          }
+      };
 
 9. [LeetCode] Partition Equal Subset Sum 数组分成两个子集，和相等
 

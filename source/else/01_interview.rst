@@ -2248,6 +2248,65 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
         return arr[1] -> getSum(N);
       }
 
+38. [LeetCode] Lexicographical Numbers 按字典序排列 :math:`1 \sim n` 。Hint：方法一，定义排序规则，按字符串的字典序排序；方法二，回溯，递归深度只与 :math:`n` 的位数有关。
+
+  https://leetcode.com/problems/lexicographical-numbers/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 方法一，定义排序规则
+
+      class Solution
+      {
+      public:
+          vector<int> lexicalOrder(int n)
+          {
+              vector<int> res;
+              if(n < 1) return res;
+              res.resize(n);
+              iota(res.begin(), res.end(), 1);
+              sort(res.begin(), res.end(), comparator);
+              return res;
+          }
+      private:
+          static bool comparator(int x, int y)
+          {
+              return strcmp(to_string(x).c_str(), to_string(y).c_str()) < 0 ? true: false;
+          }
+      };
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 方法二，回溯，从高位往低位进行
+
+      class Solution
+      {
+      public:
+          vector<int> lexicalOrder(int n)
+          {
+              vector<int> res;
+              for(int high = 1; high <= 9; ++high) DFS(high, n, res); // 最高位不能为 0
+              return res;
+          }
+      private:
+          void DFS(int high, int n, vector<int>& res)
+          {
+              if(high > n) return;
+              res.push_back(high); // 只有高位，没有低位。这是同一前缀的数字中最小的数
+              for(int low = 0; low <= 9; ++low) DFS(high * 10 + low, n, res); // 高位 + 低位
+          }
+      };
+
+
+
 C++
 ------------
 

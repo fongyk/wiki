@@ -3673,6 +3673,96 @@ $$</div></li>
 </td></tr></table></div>
 </div>
 </div></blockquote>
+<ol class="arabic simple" start="38">
+<li>[LeetCode] Lexicographical Numbers 按字典序排列 <span class="math notranslate nohighlight">\(1 \sim n\)</span> 。Hint：方法一，定义排序规则，按字符串的字典序排序；方法二，回溯，递归深度只与 <span class="math notranslate nohighlight">\(n\)</span> 的位数有关。</li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://leetcode.com/problems/lexicographical-numbers/">https://leetcode.com/problems/lexicographical-numbers/</a></p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 方法一，定义排序规则</span>
+
+<span class="k">class</span> <span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">lexicalOrder</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">res</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+        <span class="n">res</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+        <span class="n">iota</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">res</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="n">sort</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">res</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">comparator</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="k">static</span> <span class="kt">bool</span> <span class="n">comparator</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">to_string</span><span class="p">(</span><span class="n">x</span><span class="p">).</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">to_string</span><span class="p">(</span><span class="n">y</span><span class="p">).</span><span class="n">c_str</span><span class="p">())</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="nb">true</span><span class="o">:</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 方法二，回溯，从高位往低位进行</span>
+
+<span class="k">class</span> <span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">lexicalOrder</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">res</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">high</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">high</span> <span class="o">&lt;=</span> <span class="mi">9</span><span class="p">;</span> <span class="o">++</span><span class="n">high</span><span class="p">)</span> <span class="n">DFS</span><span class="p">(</span><span class="n">high</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span> <span class="c1">// 最高位不能为 0</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">DFS</span><span class="p">(</span><span class="kt">int</span> <span class="n">high</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">res</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">high</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+        <span class="n">res</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">high</span><span class="p">);</span> <span class="c1">// 只有高位，没有低位。这是同一前缀的数字中最小的数</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">low</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">low</span> <span class="o">&lt;=</span> <span class="mi">9</span><span class="p">;</span> <span class="o">++</span><span class="n">low</span><span class="p">)</span> <span class="n">DFS</span><span class="p">(</span><span class="n">high</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">low</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span> <span class="c1">// 高位 + 低位</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div></blockquote>
 </div>
 <div class="section" id="c">
 <h2>1.3. C++<a class="headerlink" href="#c" title="Permalink to this headline">¶</a></h2>

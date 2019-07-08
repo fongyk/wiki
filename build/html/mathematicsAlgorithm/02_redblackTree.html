@@ -111,7 +111,8 @@
 <li class="toctree-l2"><a class="reference internal" href="01_complexity.html">1. 算法复杂度与主定理</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">2. 红黑树</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2">2.1. 特性</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">2.2. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bst-avl">2.2. BST 与 AVL 树</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.3. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="03_shortestPath.html">3. 最短路径</a></li>
@@ -199,28 +200,35 @@
             
   <div class="section" id="id1">
 <h1>2. 红黑树<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>R-B Tree，全称是 Red-Black Tree，又称为“红黑树”，它一种特殊的二叉查找树。
+<p>R-B Tree，全称是 Red-Black Tree，又称为“红黑树”，它是一种特殊的二叉查找树。
 红黑树的每个节点上都有存储位表示节点的颜色，可以是红（Red）或黑（Black）。</p>
 <div class="section" id="id2">
 <h2>2.1. 特性<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
+<li>满足二叉查找树的性质。</li>
 <li>每个节点或者是黑色，或者是红色。</li>
 <li>根节点是黑色。</li>
-<li>每个叶子节点（NIL）是黑色。 [注意：这里的叶子节点是指为空(NIL或NULL)的叶子节点！]</li>
+<li>每个叶子节点（NIL）是黑色。 [注意：这里的叶子节点是指为空（NIL 或 NULL）的叶子节点！]</li>
 <li>如果一个节点是红色的，则它的子节点必须是黑色的。</li>
 <li>从一个节点到该节点的子孙叶子节点的所有路径上包含相同数目的黑节点（black-height）。</li>
 </ul>
-<a class="reference internal image-reference" href="../_images/02_rbTree.jpg"><img alt="../_images/02_rbTree.jpg" class="align-center" src="../_images/02_rbTree.jpg" style="width: 700px;" /></a>
-<p>红黑树的应用比较广泛，主要是用它来存储有序的数据，查找、插入、删除操作的时间复杂度是 <span class="math notranslate nohighlight">\(\mathcal{O}(\log n)\)</span> ，效率非常之高。C++ STL中的set、map，以及Linux虚拟内存的管理，都是通过红黑树去实现的。</p>
-<p>定理：一颗具有 <span class="math notranslate nohighlight">\(n\)</span> 个键值的红黑树，其高度 <span class="math notranslate nohighlight">\(h\)</span> 满足：</p>
+<a class="reference internal image-reference" href="../_images/02_rbTree.png"><img alt="../_images/02_rbTree.png" class="align-center" src="../_images/02_rbTree.png" style="width: 700px;" /></a>
+<p>红黑树的应用比较广泛，主要是用它来存储有序的数据，查找、插入、删除操作的平均和最坏情况下的时间复杂度是 <span class="math notranslate nohighlight">\(\mathcal{O}(\log n)\)</span> ，效率非常之高。C++ STL中的set、map，以及Linux虚拟内存的管理，都是通过红黑树去实现的。</p>
+<p>一颗具有 <span class="math notranslate nohighlight">\(n\)</span> 个键值的红黑树，其高度 <span class="math notranslate nohighlight">\(h\)</span> 满足：</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
 \[h \leqslant 2 \log (n+1).\]</div>
 </div></blockquote>
-<p>另外，AVL树是最早被发明的自平衡二叉查找树。在AVL树中，任一节点对应的两棵子树的最大高度差为1，因此它也被称为高度平衡树。查找、插入和删除在平均和最坏情况下的时间复杂度都是 <span class="math notranslate nohighlight">\(\mathcal{O}(\log n)\)</span> 。</p>
+</div>
+<div class="section" id="bst-avl">
+<h2>2.2. BST 与 AVL 树<a class="headerlink" href="#bst-avl" title="Permalink to this headline">¶</a></h2>
+<p>BST（二叉查找树）的特点是左子树的所有节点值比父亲节点小，而右子树的所有节点值比父亲节点大。查找的平均时间复杂度是 <span class="math notranslate nohighlight">\(\mathcal{O}(\log n)\)</span> ，但是如果二叉查找树很不平衡，甚至退化为“链表”（除了叶子节点，每个节点只有一个子节点），则时间复杂度是 <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span> 。</p>
+<p>AVL 树是最早被发明的自平衡二叉查找树。在 AVL 树中，任一节点对应的两棵子树的最大高度差为 1，因此它也被称为高度平衡树。查找、插入和删除在平均和最坏情况下的时间复杂度都是 <span class="math notranslate nohighlight">\(\mathcal{O}(\log n)\)</span> 。
+然而，这种高度平衡性是很严格的条件，如果需要频繁插入、删除节点，那么需要较大的代价来维护树的平衡性。</p>
+<p>对红黑树而言，一方面，在最坏情况下，查找的时间复杂度也是 <span class="math notranslate nohighlight">\(\mathcal{O}(\log n)\)</span> ，查找性能有保证；另一方面，即使需要频繁插入、删除节点，红黑树的维护代价也比 AVL 树更低。</p>
 </div>
 <div class="section" id="id3">
-<h2>2.2. 参考资料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>2.3. 参考资料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>红黑树(一)之 原理和算法详细介绍</li>
 </ol>
@@ -231,6 +239,11 @@
 </ol>
 <blockquote>
 <div><a class="reference external" href="http://developer.51cto.com/art/201901/590926.htm">http://developer.51cto.com/art/201901/590926.htm</a></div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Red–black tree</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://en.wikipedia.org/wiki/Red%E2%80%93black_tree">https://en.wikipedia.org/wiki/Red%E2%80%93black_tree</a></div></blockquote>
 </div>
 </div>
 

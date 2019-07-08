@@ -17,7 +17,7 @@ ROC 曲线
 
 .. image:: ./06_roc.png
   :align: center
-  :width: 500
+  :width: 500px
 
 - 离左上角越近的点预测 accuracy 越高。
 
@@ -80,7 +80,7 @@ ROC 分析的是二元分类模型。
 
 .. image:: ./06_confusionMatrix.jpg
   :align: center
-  :width: 800
+  :width: 800px
 
 
 AUC
@@ -91,7 +91,7 @@ ROC 空间里的单点，是给定分类模型且给定阈值后得出的。但�
 
 .. image:: ./06_rocCurve.png
   :align: center
-  :width: 600
+  :width: 600px
 
 在比较不同的分类模型时，可以将每个模型的 ROC 曲线都画出来，比较曲线下面积作为模型优劣的指标。
 

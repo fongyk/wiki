@@ -54,7 +54,7 @@
   :width: 600 px
 
 - 满位置二叉树（每个节点有0或2个子节点，且左子节点和右子节点是不同的）的计数。
-    有 :math:`n` 个叶子节点的满位置二叉树对应  :math:`\mathbb{C}_{n-2}` 。
+    有 :math:`n` 个叶子节点的满位置二叉树对应  :math:`\mathbb{C}_{n-1}` 。
 
 .. image:: ./11_tree.jpg
   :align: center
@@ -106,3 +106,7 @@
 4. 卡特兰数
 
   https://www.jianshu.com/p/12c5a161d26d
+
+5. Catalan number
+
+  https://en.wikipedia.org/wiki/Catalan_number

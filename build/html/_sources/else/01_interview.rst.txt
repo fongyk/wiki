@@ -2387,6 +2387,65 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
+39. [LeetCode] Merge k Sorted Lists 合并 :math:`k` 条有序链表为一条有序链表（都是升序）。Hint：建立大小为 :math:`k` 的小顶堆，每次弹出一个节点，并把该节点的下一个节点插入小顶堆中。时间复杂度 :math:`\mathcal{O}(n \log k)` ，:math:`n` 是节点个数。
+
+  https://leetcode.com/problems/merge-k-sorted-lists/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      struct ListNode
+      {
+          int val;
+          ListNode *next;
+          ListNode(int x) : val(x), next(NULL) {}
+      };
+
+      struct comparator
+      {
+          bool operator()(ListNode* a, ListNode* b)
+          {
+              return a -> val > b -> val; // 小顶堆
+          }
+      };
+
+      class Solution
+      {
+      public:
+          ListNode* mergeKLists(vector<ListNode*>& lists)
+          {
+              if(lists.size() == 0) return NULL;
+              if(lists.size() == 1) return lists[0];
+
+              ListNode* head = new ListNode(0); // 合并链表的临时头节点
+
+              priority_queue<ListNode*, vector<ListNode*>, comparator> pq;
+              for(auto & list : lists)
+              {
+                  if(list) pq.emplace(list); // 建堆
+              }
+              ListNode* curr = head;
+              while(!pq.empty())
+              {
+                  ListNode* p = pq.top();
+                  pq.pop();
+                  curr -> next = p;
+                  curr = p;
+                  if(p -> next) pq.push(p -> next);
+              }
+
+              curr = head -> next;
+              delete head;
+              return curr;
+          }
+      };
+
 
 C++
 ------------

@@ -256,8 +256,7 @@
         int res = 0;
         for(int i = 0; i < n; ++i)
         {
-          if(dp > 0) dp += a[i];
-          else dp = a[i];
+          dp = max(dp + a[i], a[i]);
           res = max(res, dp);
         }
         return res;
@@ -567,3 +566,50 @@
                       else:
                           dp[s&1][p] = flag and dp[(s+1)&1][p+1]
               return dp[0][0]
+
+
+- 最大子矩阵的和。Hint：行区间遍历，列区间采用动态规划，时间复杂度 :math:`\mathcal{O}(n^3)` 。
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class SubMatrix
+      {
+      public:
+          int sumOfSubMatrix(vector<vector<int> > mat, int n)
+          {
+              if(n <= 0) return 0;
+              for(int r = 1; r < n; ++r)
+              {
+                  for(int c = 0; c < n; ++c)
+                  {
+                      mat[r][c] += mat[r-1][c]; // 计算前 r 行和，避免后面重复计算
+                  }
+              }
+              int res = INT_MIN;
+              for(int r1 = 0; r1 < n; ++r1)
+              {
+                  for(int r2 = r1; r2 < n; ++r2)
+                  {
+                      vector<int> subMat(mat[r2].begin(), mat[r2].end());
+                      if(r1 > 0)
+                      {
+                          for(int c = 0; c < n; ++c) subMat[c] -= mat[r1-1][c]; // subMat 是行区间 [r1, r2] 的和
+                      }
+                      int dp = 0;
+                      for(int c = 0; c < n; ++c)
+                      {
+                          dp = max(dp + subMat[c], subMat[c]);
+                          res = max(res, dp);
+                      }
+                  }
+              }
+              return res;
+          }
+      };

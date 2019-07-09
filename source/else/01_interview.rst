@@ -1717,7 +1717,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           return s
 
 
-31. [LeetCode] Number of Islands 孤岛个数。Hint：使用队列，广度优先遍历（BFS）。
+31. [LeetCode] Number of Islands 孤岛个数。Hint：使用队列，广度优先遍历（BFS）。延伸：从坐标 :math:`(0, 0)` 到 :math:`(n-1, m-1)` 的最短时间，只能走四邻域，:math:`map[i][j] = 1` 表示有障碍。Hint：BFS，第一个到达的就是时间最短的。
 
   https://leetcode.com/problems/number-of-islands/
 
@@ -1730,6 +1730,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
     .. code-block:: cpp
       :linenos:
 
+      // 孤岛个数
       class Solution
       {
       public:
@@ -1747,7 +1748,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
                   if (p.first - 1 >= 0 && grid[p.first - 1][p.second] == '1')
                   {
-                      grid[p.first - 1][p.second] = '0';
+                      grid[p.first - 1][p.second] = '0'; // 入队需要改变标志位，避免后续过程中同一坐标重复入队
                       que.push(make_pair(p.first - 1, p.second));
                   }
                   if (p.first + 1 < M && grid[p.first + 1][p.second] == '1')
@@ -1789,6 +1790,60 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           }
       };
 
+    .. code-block:: cpp
+      :linenos:
+
+      // 最短时间
+      // https://www.nowcoder.com/practice/365493766c514d0da0cd774d3d40fd49?tpId=8&tqId=11040&tPage=1&rp=1&ru=/ta/cracking-the-coding-interview&qru=/ta/cracking-the-coding-interview/question-ranking
+
+      struct point
+      {
+          int x;
+          int y;
+          int time;
+          point(int _x, int _y, int _time): x(_x), y(_y), time(_time){}
+      };
+
+      class Flood
+      {
+      public:
+          int floodFill(vector<vector<int> > map, int n, int m)
+          {
+              queue<point> q;
+              if(map[0][0] != 1)
+              {
+                  q.push(point(0, 0, 0));
+                  map[0][0] = 1;
+              }
+              while(!q.empty())
+              {
+                  auto p = q.front();
+                  q.pop();
+                  if(p.x == n-1 && p.y == m-1) return p.time;
+                  if(p.y >= 1 && map[p.x][p.y-1] != 1)
+                  {
+                      q.push(point(p.x, p.y-1, p.time+1));
+                      map[p.x][p.y-1] = 1; // 入队需要改变标志位，避免后续过程中同一坐标重复入队
+                  }
+                  if(p.x >= 1 && map[p.x-1][p.y] != 1)
+                  {
+                      q.push(point(p.x-1, p.y, p.time+1));
+                      map[p.x-1][p.y] = 1;
+                  }
+                  if(p.x < n-1 && map[p.x+1][p.y] != 1)
+                  {
+                      q.push(point(p.x+1, p.y, p.time+1));
+                      map[p.x+1][p.y] = 1;
+                  }
+                  if(p.y < m-1 && map[p.x][p.y+1] != 1)
+                  {
+                      q.push(point(p.x, p.y+1, p.time+1));
+                      map[p.x][p.y+1] = 1;
+                  }
+              }
+              return INT_MAX;
+          }
+      };
 
 32. 回文。
 

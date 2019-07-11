@@ -377,3 +377,23 @@
       };
 
       const int Solution::mv[4][2] = {{-1,0},{0,-1},{0,1},{1,0}};
+
+
+- Knuth-Shuffle，公平的洗牌算法。
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      void shuffle(int* arr, int n)
+      {
+        for(int i = n - 1; i >= 0; --i)
+        {
+          swap(arr[i], arr[rand()%(i+1)]);
+        }
+      }

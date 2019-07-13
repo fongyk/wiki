@@ -78,3 +78,53 @@ A 先取，取走最后一枚硬币的一方获胜。当双方都采取最优策
     if(res != 0) cout << "A wins." << endl;
     else cout << "B wins." << endl;
   }
+
+
+两端取数
+---------------
+
+**描述** ：有一串数字，A 和 B 两人轮流从两端取任意个数（至少取 1 个），直到取完所有的数。A 先取，两个人都采取最优策略，求 A 所取数的和比 B 所取数的和大多少？
+
+**策略** ：动态规划。:math:`dp[i][j]` 表示从闭区间 :math:`[i,j]` 取完所有数字之后，先取的那个人所取数的和与后取的那个人所取数的和的差值。
+假设第一个人先从区间 :math:`[i,j]` 取 :math:`k\ (1 \leqslant k \leqslant j-i+1)` 个数，可以从左端取，也可以从右端取。
+如果从左端取，先取的人得到的和为 :math:`sum[i+k] - sum[i]` ，后取的人得到的和为 :math:`dp[i+k][j]` ；如果从右端取，先取的人得到的和为 :math:`sum[j+1] - sum[j-k+1]` ，后取的人得到的和为 :math:`dp[i][j-k]` 。
+因此，
+
+.. math::
+
+  dp[i][j] = max\{ sum[i+k] - sum[i] - dp[i+k][j], sum[j+1] - sum[j-k+1] - dp[i][j-k] \},\ 1 \leqslant k \leqslant j-i+1.
+
+其中 :math:`sum[i]` 表示数列区间 :math:`[0,i-1]` 的和（前 :math:`i` 项和）。
+
+.. code-block:: cpp
+  :linenos:
+
+  int maxSum(vector<int> num)
+  {
+    int n = num.size();
+    assert(n > 0);
+
+    vector<vector<int>> dp(n, vector<int>(n, 0));
+    for (int i = 0; i < n; ++i) dp[i][i] = num[i];
+
+    vector<int> sum(n + 1, 0);
+    partial_sum(num.begin(), num.end(), sum.begin()+1);
+
+    for (int gap = 1; gap < n; ++gap)
+    {
+      for (int i = 0; i + gap < n; ++i)
+      {
+        int j = i + gap;
+        dp[i][j] = sum[j+1] - sum[i]; // 第一个人一次取完区间内所有的数，则第二个人取的数和为 0
+        for (int k = 1; k < j-i+1; ++k)
+        {
+          dp[i][j] = max(dp[i][j], max(sum[i+k] - sum[i] - dp[i+k][j], sum[j+1] - sum[j-k+1] - dp[i][j-k])); // 第一个人取 k 个数
+        }
+      }
+    }
+
+    int res = dp[0][n - 1];
+    dp.clear(); dp.shrink_to_fit();
+    sum.clear(); sum.shrink_to_fit();
+    return res;
+  }

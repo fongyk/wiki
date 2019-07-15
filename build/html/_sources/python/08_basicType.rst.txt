@@ -12,11 +12,15 @@
 
   - 查找：若字符/序列不在字符串内，index()报错 ValueError，find()返回-1。
 
-  - 判断字符串内容：字母，isalpha()；数字，isdigit()；数字或字母，isalnum()。
+  - 判断字符串内容：字母，isalpha()；数字，isdigit()；数字或字母，isalnum()；大小写，isupper()，islower()。
 
   - 大小写转换：capitalize()、lower()、upper()。
 
-  - 判断以什么开头结尾：startswith()、endswith()。
+  - 获取字符 ASCII 码：ord(c)
+
+  - 根据 ASCII 码转换为字符：chr(n)，ASCII 码在 0 到 255 之间。
+
+  - 判断开头结尾：startswith()、endswith()。
 
   - 连接：join()，将字符串、元组、列表中的元素以指定的字符(分隔符)连接生成一个新的字符串。
 

@@ -46,7 +46,7 @@ dropout 的 numpy 实现
 
 前向传播：生成 mask，乘以当前层的激活函数输出。新的输出需要除以 keep_prob，保证能量一致。
 
-反向传播：也要关闭对应的神经元，同样也需要除以 keep_prob。
+反向传播：也要关闭 mask 对应的神经元，同样也需要除以 keep_prob。
 
 .. container:: toggle
 

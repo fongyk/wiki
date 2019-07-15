@@ -126,6 +126,7 @@
 <li class="toctree-l2"><a class="reference internal" href="15_memManage.html">15. 内存管理</a></li>
 <li class="toctree-l2"><a class="reference internal" href="16_newInit.html">16. __new__ 和 __init__</a></li>
 <li class="toctree-l2"><a class="reference internal" href="17_pip.html">17. pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_exception.html">18. 异常</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
@@ -214,9 +215,11 @@
 <li>索引、切片：[ind]，[first:last]获取区间 [first, last) 内的元素。</li>
 <li>长度：len()</li>
 <li>查找：若字符/序列不在字符串内，index()报错 ValueError，find()返回-1。</li>
-<li>判断字符串内容：字母，isalpha()；数字，isdigit()；数字或字母，isalnum()。</li>
+<li>判断字符串内容：字母，isalpha()；数字，isdigit()；数字或字母，isalnum()；大小写，isupper()，islower()。</li>
 <li>大小写转换：capitalize()、lower()、upper()。</li>
-<li>判断以什么开头结尾：startswith()、endswith()。</li>
+<li>获取字符 ASCII 码：ord(c)</li>
+<li>根据 ASCII 码转换为字符：chr(n)，ASCII 码在 0 到 255 之间。</li>
+<li>判断开头结尾：startswith()、endswith()。</li>
 <li>连接：join()，将字符串、元组、列表中的元素以指定的字符(分隔符)连接生成一个新的字符串。</li>
 <li>分割：split()、partition()。 <strong>如果想把字符串分割成独立的字符，用 list(string)。</strong></li>
 <li>替代：replace()</li>

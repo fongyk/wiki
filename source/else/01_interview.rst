@@ -344,6 +344,64 @@
           }
       };
 
+
+  - 重组链表，首尾交错，L0→L1→…→Ln-1→Ln 转换为 L0→Ln→L1→Ln-1→L2→Ln-2→…。Hint：首先，链表中间截断；然后，第二段链表翻转；最后，合并两个子链表。
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution
+      {
+      public:
+          void reorderList(ListNode* head)
+          {
+              if(!head || !head -> next || !head -> next -> next) return;
+
+              // 第一步：找到中间节点
+              ListNode* slow = head;
+              ListNode* fast = head;
+              while(fast && fast -> next)
+              {
+                  slow = slow -> next;
+                  fast = fast -> next -> next;
+              }
+
+              // 第二步：翻转第二段链表
+              ListNode* secondHead = slow -> next;
+              slow -> next = NULL; // 第一段链表的尾节点
+              ListNode* p = secondHead -> next;
+              secondHead -> next = NULL; // 第二段链表的尾节点
+              ListNode* q;
+              while(p)
+              {
+                  q = p -> next;
+                  p -> next = secondHead;
+                  secondHead = p;
+                  p = q;
+              }
+
+              // 第三步：交叉合并两个子链表
+              ListNode* h1 = head;
+              ListNode* h2 = secondHead;
+              while(h1 && h2)
+              {
+                  ListNode* h1Post = h1 -> next;
+                  ListNode* h2Post = h2 -> next;
+                  h1 -> next = h2;
+                  h2 -> next = h1Post;
+                  h1 = h1Post;
+                  h2 = h2Post;
+              }
+          }
+      };
+
+
 5. 排列组合：:math:`k` 个球放入 :math:`m` 个盒子
 
   https://blog.csdn.net/qwb492859377/article/details/50654627?tdsourcetag=s_pctim_aiomsg
@@ -2592,7 +2650,7 @@ C++
 
   https://blog.csdn.net/zx3517288/article/details/48976097
 
-4. C++ STL中vector内存用尽后，为啥每次是两倍的增长，而不是3倍或其他数值？
+4. C++ STL中vector内存用尽后，为啥每次是两倍的增长，而不是3倍或其他数值？Hint：:math:`1 + 2 + 1 + 4 + 1 + 1 + 1 + 8 + \cdots + n = \mathcal{O}(n)` ，每一次 push_back 操作的摊还代价为 :math:`\mathcal{O}(1)` 。
 
   https://www.zhihu.com/question/36538542
 

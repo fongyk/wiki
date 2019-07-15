@@ -727,6 +727,102 @@
 </pre></div>
 </td></tr></table></div>
 </div>
+<ul class="simple">
+<li>重组链表，首尾交错，L0→L1→…→Ln-1→Ln 转换为 L0→Ln→L1→Ln-1→L2→Ln-2→…。Hint：首先，链表中间截断；然后，第二段链表翻转；最后，合并两个子链表。</li>
+</ul>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">reorderList</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">head</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">head</span> <span class="o">||</span> <span class="o">!</span><span class="n">head</span> <span class="o">-&gt;</span> <span class="n">next</span> <span class="o">||</span> <span class="o">!</span><span class="n">head</span> <span class="o">-&gt;</span> <span class="n">next</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+        <span class="c1">// 第一步：找到中间节点</span>
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">slow</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">fast</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">fast</span> <span class="o">&amp;&amp;</span> <span class="n">fast</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">slow</span> <span class="o">=</span> <span class="n">slow</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">;</span>
+            <span class="n">fast</span> <span class="o">=</span> <span class="n">fast</span> <span class="o">-&gt;</span> <span class="n">next</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// 第二步：翻转第二段链表</span>
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">secondHead</span> <span class="o">=</span> <span class="n">slow</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">;</span>
+        <span class="n">slow</span> <span class="o">-&gt;</span> <span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span> <span class="c1">// 第一段链表的尾节点</span>
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="n">secondHead</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">;</span>
+        <span class="n">secondHead</span> <span class="o">-&gt;</span> <span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span> <span class="c1">// 第二段链表的尾节点</span>
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">q</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">q</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">;</span>
+            <span class="n">p</span> <span class="o">-&gt;</span> <span class="n">next</span> <span class="o">=</span> <span class="n">secondHead</span><span class="p">;</span>
+            <span class="n">secondHead</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">q</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// 第三步：交叉合并两个子链表</span>
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">h1</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">h2</span> <span class="o">=</span> <span class="n">secondHead</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">h1</span> <span class="o">&amp;&amp;</span> <span class="n">h2</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">ListNode</span><span class="o">*</span> <span class="n">h1Post</span> <span class="o">=</span> <span class="n">h1</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">;</span>
+            <span class="n">ListNode</span><span class="o">*</span> <span class="n">h2Post</span> <span class="o">=</span> <span class="n">h2</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">;</span>
+            <span class="n">h1</span> <span class="o">-&gt;</span> <span class="n">next</span> <span class="o">=</span> <span class="n">h2</span><span class="p">;</span>
+            <span class="n">h2</span> <span class="o">-&gt;</span> <span class="n">next</span> <span class="o">=</span> <span class="n">h1Post</span><span class="p">;</span>
+            <span class="n">h1</span> <span class="o">=</span> <span class="n">h1Post</span><span class="p">;</span>
+            <span class="n">h2</span> <span class="o">=</span> <span class="n">h2Post</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+</div>
 </div></blockquote>
 <ol class="arabic simple" start="5">
 <li>排列组合：<span class="math notranslate nohighlight">\(k\)</span> 个球放入 <span class="math notranslate nohighlight">\(m\)</span> 个盒子</li>
@@ -4242,7 +4338,7 @@ $$</div></li>
 <blockquote>
 <div><a class="reference external" href="https://blog.csdn.net/zx3517288/article/details/48976097">https://blog.csdn.net/zx3517288/article/details/48976097</a></div></blockquote>
 <ol class="arabic simple" start="4">
-<li>C++ STL中vector内存用尽后，为啥每次是两倍的增长，而不是3倍或其他数值？</li>
+<li>C++ STL中vector内存用尽后，为啥每次是两倍的增长，而不是3倍或其他数值？Hint：<span class="math notranslate nohighlight">\(1 + 2 + 1 + 4 + 1 + 1 + 1 + 8 + \cdots + n = \mathcal{O}(n)\)</span> ，每一次 push_back 操作的摊还代价为 <span class="math notranslate nohighlight">\(\mathcal{O}(1)\)</span> 。</li>
 </ol>
 <blockquote>
 <div><a class="reference external" href="https://www.zhihu.com/question/36538542">https://www.zhihu.com/question/36538542</a></div></blockquote>

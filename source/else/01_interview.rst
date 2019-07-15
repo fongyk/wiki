@@ -2502,6 +2502,81 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
+40. [LeetCode] Max Points on a Line 统计共线的最多点数。Hint：直线需要考虑三种斜率：水平，垂直，斜线，还要考虑点重合的情形；由于浮点运算的精度问题，将斜率表示为两个整数的分数形式，保存到哈希表中。
+
+  https://leetcode.com/problems/max-points-on-a-line/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution
+      {
+      public:
+          int maxPoints(vector<vector<int>>& points)
+          {
+              int res = 0;
+              for(size_t i = 0; i < points.size(); ++i) // points.size() == 0，返回 0；points.size() == 1，返回 1
+              {
+                  unordered_map<string, int> mp; // 对每个点 i 统计其与其他点所成直线的斜率。由于这些直线都通过点 i，因此斜率相同就表示共线
+                  int samePointNum = 0;
+                  int verticalLineNum = 0;
+                  int horizontalLineNum = 0;
+                  int slantLineNum = 0;
+                  for(size_t j = i + 1; j < points.size(); ++j) // 往后遍历每个点
+                  {
+                      if(points[i][0] == points[j][0] && points[i][1] == points[j][1]) ++samePointNum; // 点重合
+                      else if(points[i][0] == points[j][0]) ++verticalLineNum; // 垂直线
+                      else if(points[i][1] == points[j][1]) ++horizontalLineNum; // 水平线，可以计算斜率，但是由于垂直方向差异为 0，不好计算公约数
+                      else // 斜线
+                      {
+                          int dx = points[j][0] - points[i][0];
+                          int dy = points[j][1] - points[i][1];
+                          int g = _gcd(dy, dx);
+                          dx /= g;
+                          dy /= g;
+                          if(dy < 0) // 符号统一令 dy > 0
+                          {
+                              dy = -dy;
+                              dx = -dx;
+                          }
+                          stringstream ss;
+                          ss << dx << " " << dy;
+                          string slope = ss.str();
+                          ss.clear();
+                          if(mp.find(slope) == mp.end()) mp[slope] = 1;
+                          else ++mp[slope];
+                          slantLineNum = max(slantLineNum, mp[slope]);
+                      }
+                  }
+
+                  int currMax = max(slantLineNum, max(verticalLineNum, horizontalLineNum));
+                  currMax += samePointNum + 1; // + 1 表示点 i 本身
+                  res = max(res, currMax);
+              }
+              return res;
+          }
+      private:
+          int _gcd(int a, int b) // 辗转相除，计算最大公约数
+          {
+              a = abs(a);
+              b = abs(b);
+              if(a < b) swap(a, b);
+              while(a % b)
+              {
+                  int tmp = a;
+                  a = b;
+                  b = tmp % b;
+              }
+              return b;
+          }
+      };
+
 C++
 ------------
 

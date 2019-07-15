@@ -4090,6 +4090,139 @@ $$</div></li>
 </td></tr></table></div>
 </div>
 </div></blockquote>
+<ol class="arabic simple" start="40">
+<li>[LeetCode] Max Points on a Line 统计共线的最多点数。Hint：直线需要考虑三种斜率：水平，垂直，斜线，还要考虑点重合的情形；由于浮点运算的精度问题，将斜率表示为两个整数的分数形式，保存到哈希表中。</li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://leetcode.com/problems/max-points-on-a-line/">https://leetcode.com/problems/max-points-on-a-line/</a></p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">maxPoints</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span> <span class="n">points</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">points</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="c1">// points.size() == 0，返回 0；points.size() == 1，返回 1</span>
+        <span class="p">{</span>
+            <span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">mp</span><span class="p">;</span> <span class="c1">// 对每个点 i 统计其与其他点所成直线的斜率。由于这些直线都通过点 i，因此斜率相同就表示共线</span>
+            <span class="kt">int</span> <span class="n">samePointNum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">verticalLineNum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">horizontalLineNum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">slantLineNum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">points</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="c1">// 往后遍历每个点</span>
+            <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">points</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">points</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">++</span><span class="n">samePointNum</span><span class="p">;</span> <span class="c1">// 点重合</span>
+                <span class="k">else</span> <span class="nf">if</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">points</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">++</span><span class="n">verticalLineNum</span><span class="p">;</span> <span class="c1">// 垂直线</span>
+                <span class="k">else</span> <span class="nf">if</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">points</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">++</span><span class="n">horizontalLineNum</span><span class="p">;</span> <span class="c1">// 水平线，可以计算斜率，但是由于垂直方向差异为 0，不好计算公约数</span>
+                <span class="k">else</span> <span class="c1">// 斜线</span>
+                <span class="p">{</span>
+                    <span class="kt">int</span> <span class="n">dx</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">];</span>
+                    <span class="kt">int</span> <span class="n">dy</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">];</span>
+                    <span class="kt">int</span> <span class="n">g</span> <span class="o">=</span> <span class="n">_gcd</span><span class="p">(</span><span class="n">dy</span><span class="p">,</span> <span class="n">dx</span><span class="p">);</span>
+                    <span class="n">dx</span> <span class="o">/=</span> <span class="n">g</span><span class="p">;</span>
+                    <span class="n">dy</span> <span class="o">/=</span> <span class="n">g</span><span class="p">;</span>
+                    <span class="k">if</span><span class="p">(</span><span class="n">dy</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="c1">// 符号统一令 dy &gt; 0</span>
+                    <span class="p">{</span>
+                        <span class="n">dy</span> <span class="o">=</span> <span class="o">-</span><span class="n">dy</span><span class="p">;</span>
+                        <span class="n">dx</span> <span class="o">=</span> <span class="o">-</span><span class="n">dx</span><span class="p">;</span>
+                    <span class="p">}</span>
+                    <span class="n">stringstream</span> <span class="n">ss</span><span class="p">;</span>
+                    <span class="n">ss</span> <span class="o">&lt;&lt;</span> <span class="n">dx</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">dy</span><span class="p">;</span>
+                    <span class="n">string</span> <span class="n">slope</span> <span class="o">=</span> <span class="n">ss</span><span class="p">.</span><span class="n">str</span><span class="p">();</span>
+                    <span class="n">ss</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+                    <span class="k">if</span><span class="p">(</span><span class="n">mp</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">slope</span><span class="p">)</span> <span class="o">==</span> <span class="n">mp</span><span class="p">.</span><span class="n">end</span><span class="p">())</span> <span class="n">mp</span><span class="p">[</span><span class="n">slope</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+                    <span class="k">else</span> <span class="o">++</span><span class="n">mp</span><span class="p">[</span><span class="n">slope</span><span class="p">];</span>
+                    <span class="n">slantLineNum</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">slantLineNum</span><span class="p">,</span> <span class="n">mp</span><span class="p">[</span><span class="n">slope</span><span class="p">]);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="kt">int</span> <span class="n">currMax</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">slantLineNum</span><span class="p">,</span> <span class="n">max</span><span class="p">(</span><span class="n">verticalLineNum</span><span class="p">,</span> <span class="n">horizontalLineNum</span><span class="p">));</span>
+            <span class="n">currMax</span> <span class="o">+=</span> <span class="n">samePointNum</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// + 1 表示点 i 本身</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">currMax</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">_gcd</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="c1">// 辗转相除，计算最大公约数</span>
+    <span class="p">{</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">)</span> <span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">tmp</span> <span class="o">%</span> <span class="n">b</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">b</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div></blockquote>
 </div>
 <div class="section" id="c">
 <h2>1.3. C++<a class="headerlink" href="#c" title="Permalink to this headline">¶</a></h2>

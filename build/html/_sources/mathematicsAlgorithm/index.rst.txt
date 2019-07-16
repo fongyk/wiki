@@ -18,3 +18,4 @@
     11_catalan.rst
     12_entropy.rst
     13_cltLLN.rst
+    14_coinWeigh.rst

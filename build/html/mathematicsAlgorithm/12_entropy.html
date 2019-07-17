@@ -47,7 +47,7 @@
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="计算机网络" href="../computerNetwork/index.html" />
+    <link rel="next" title="13. 大数定律和中心极限定理" href="13_cltLLN.html" />
     <link rel="prev" title="11. 卡特兰数" href="11_catalan.html" /> 
 </head>
 
@@ -123,10 +123,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#id2">12.1. 信息熵</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">12.2. 互信息</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#kl">12.3. KL 散度</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#jensen-s-inequality">12.4. Jensen’s inequality</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">12.5. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">12.4. 交叉熵</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jensen-s-inequality">12.5. Jensen’s inequality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">12.6. 参考资料</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="13_cltLLN.html">13. 大数定律和中心极限定理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_coinWeigh.html">14. 称重问题</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
@@ -242,8 +245,22 @@
 <div class="math notranslate nohighlight">
 \[I(X, Y)  =\ D_{KL} ( p(X, Y)\ \| \ p(X)p(Y) )\]</div>
 </div>
+<div class="section" id="id4">
+<h2>12.4. 交叉熵<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>交叉熵（Cross entropy）在信息论中的含义：基于相同事件测度的两个概率分布 <span class="math notranslate nohighlight">\(p\)</span> （“真实”分布）和 <span class="math notranslate nohighlight">\(q\)</span> （“估测”分布），当基于概率分布 <span class="math notranslate nohighlight">\(q\)</span> 进行编码时，在事件集合中唯一标识一个事件所需要的平均比特数。</p>
+<p>定义：</p>
+<div class="math notranslate nohighlight">
+\[H(p, q) = E_p [- \log q] = H(p) + D_{KL}(p \| q)\]</div>
+<p>离散分布：</p>
+<div class="math notranslate nohighlight">
+\[H(p, q) = - \sum_x p(x) \log q(x)\]</div>
+<p>连续分布（假设 <span class="math notranslate nohighlight">\(p\)</span> 和 <span class="math notranslate nohighlight">\(q\)</span> 在测度 <span class="math notranslate nohighlight">\(r\)</span> 上是绝对连续的， <span class="math notranslate nohighlight">\(P\)</span> 和 <span class="math notranslate nohighlight">\(Q\)</span> 分别为 <span class="math notranslate nohighlight">\(p\)</span> 的 <span class="math notranslate nohighlight">\(q\)</span> 在测度 <span class="math notranslate nohighlight">\(r\)</span> 上的概率密度函数）：</p>
+<div class="math notranslate nohighlight">
+\[H(p, q) = - \int P(x) \log Q(x) dr(x)\]</div>
+<p>最小化 KL 散度就是最小化分布之间的交叉熵。</p>
+</div>
 <div class="section" id="jensen-s-inequality">
-<h2>12.4. Jensen’s inequality<a class="headerlink" href="#jensen-s-inequality" title="Permalink to this headline">¶</a></h2>
+<h2>12.5. Jensen’s inequality<a class="headerlink" href="#jensen-s-inequality" title="Permalink to this headline">¶</a></h2>
 <a class="reference internal image-reference" href="../_images/12_jensen.png"><img alt="../_images/12_jensen.png" class="align-center" src="../_images/12_jensen.png" style="width: 500px;" /></a>
 <dl class="docutils">
 <dt>凸函数</dt>
@@ -274,8 +291,8 @@
 </dd>
 </dl>
 </div>
-<div class="section" id="id4">
-<h2>12.5. 参考资料<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h2>12.6. 参考资料<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Entropy</li>
 </ol>
@@ -292,6 +309,13 @@
 <blockquote>
 <div><a class="reference external" href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence</a></div></blockquote>
 <ol class="arabic simple" start="4">
+<li>Cross entropy</li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://en.wikipedia.org/wiki/Cross_entropy">https://en.wikipedia.org/wiki/Cross_entropy</a></p>
+<p><a class="reference external" href="https://zh.wikipedia.org/wiki/%E4%BA%A4%E5%8F%89%E7%86%B5">https://zh.wikipedia.org/wiki/%E4%BA%A4%E5%8F%89%E7%86%B5</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="5">
 <li>Jensen’s inequality</li>
 </ol>
 <blockquote>
@@ -307,7 +331,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../computerNetwork/index.html" class="btn btn-neutral float-right" title="计算机网络" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="13_cltLLN.html" class="btn btn-neutral float-right" title="13. 大数定律和中心极限定理" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="11_catalan.html" class="btn btn-neutral float-left" title="11. 卡特兰数" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

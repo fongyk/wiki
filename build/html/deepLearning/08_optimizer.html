@@ -207,6 +207,7 @@
 <p><strong>等高线</strong></p>
 <a class="reference internal image-reference" href="../_images/08_contours_evaluation_optimizers.gif"><img alt="../_images/08_contours_evaluation_optimizers.gif" class="align-center" src="../_images/08_contours_evaluation_optimizers.gif" style="width: 500px;" /></a>
 <p><strong>鞍点</strong></p>
+<p>不是局部极值点的驻点（一阶梯度为零）。在鞍点处，Hessian 矩阵同时具有正、负特征值。</p>
 <a class="reference internal image-reference" href="../_images/08_saddle_point_evaluation_optimizers.gif"><img alt="../_images/08_saddle_point_evaluation_optimizers.gif" class="align-center" src="../_images/08_saddle_point_evaluation_optimizers.gif" style="width: 600px;" /></a>
 </div>
 <div class="section" id="sgd">
@@ -220,7 +221,7 @@
 <dt>特点</dt>
 <dd><ul class="first last simple">
 <li>相比于单样本SGD，可以降低参数更新时的方差，收敛更稳定；可以充分地利用深度学习库中高度优化的矩阵操作来进行更有效的梯度计算</li>
-<li>不能保证很好的收敛性：如果选择的太小，收敛速度会很慢；如果太大，损失函数就会在极小值处不停地震荡甚至偏离；容易困在鞍点。鞍点：不是局部极值点的驻点（一阶梯度为零）。</li>
+<li>不能保证很好的收敛性：如果选择的太小，收敛速度会很慢；如果太大，损失函数就会在极小值处不停地震荡甚至偏离；容易困在鞍点。</li>
 <li>选择合适的学习率比较困难：对所有的参数更新使用同样的学习率。对于稀疏数据或者特征，有时我们可能想更快更新对应于不经常出现的特征的参数，对于常出现的特征更新慢一些。</li>
 </ul>
 </dd>

@@ -112,7 +112,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#sigmoid">2.1. sigmoid</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tanh">2.2. tanh</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#relu">2.3. ReLU</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">2.4. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#softmax">2.4. softmax 与最大化对数似然</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2.5. 梯度消失与梯度爆炸</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.6. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="03_batchnorm.html">3. Batch Normalization</a></li>
@@ -253,6 +255,8 @@
 <p>优点：</p>
 <blockquote>
 <div><ul>
+<li><p class="first">避免梯度消失。</p>
+</li>
 <li><p class="first">计算简单。 <strong>sigmoid</strong> 和 <strong>tanh</strong> 都需要计算指数。</p>
 </li>
 <li><p class="first">收敛速度快。 <a class="reference external" href="http://www.cs.toronto.edu/~fritz/absps/imagenet.pdf">Krizhevsky et al. 论文</a> 指出 <strong>ReLU</strong> 收敛速度比 <strong>tanh</strong> 快6倍。</p>
@@ -267,12 +271,41 @@
 <div><ul class="simple">
 <li>容易产生死亡节点（dead ReLU）。一个非常大的梯度流过一个 <strong>ReLU</strong> 神经元，更新过参数之后，这个神经元对很多输入数据都输出0，则梯度一直为0。
 当然 <strong>ReLU</strong> 的输出依靠 <span class="math notranslate nohighlight">\(w\)</span> 和 <span class="math notranslate nohighlight">\(x\)</span> 的共同作用，死亡节点可能会被重新激活。</li>
+<li>输出不是零均值的。</li>
 </ul>
 </div></blockquote>
 <p><strong>LeakyReLU</strong> 可以有效应对上述缺点。</p>
 </div>
+<div class="section" id="softmax">
+<h2>2.4. softmax 与最大化对数似然<a class="headerlink" href="#softmax" title="Permalink to this headline">¶</a></h2>
+<p>对数似然之外的许多目标函数对 softmax 单元不起作用。本质原因：若目标函数中不使用对数抵消 softmax 中的指数，当指数函数的变量取非常小的负值时，
+会造成梯度消失，从而无法学习。</p>
+<p>当 softmax 单元的输入值之间差异变得极端时，softmax 的输出会饱和，因此许多基于 softmax 的代价函数也会饱和，除非它们能够转换饱和的激活函数（例如，取对数）。
+特别是平方误差，对 softmax 单元来说，它是一个很差的损失函数。</p>
+</div>
 <div class="section" id="id2">
-<h2>2.4. 参考资料<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>2.5. 梯度消失与梯度爆炸<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>梯度消失（gradient vanishing）：梯度太小，难以确定参数更新方向。解决策略：</p>
+<blockquote>
+<div><ul class="simple">
+<li>使用激活函数 ReLU（正部导数恒为 1）</li>
+<li>Batch Normalization（将输出从饱和区拉到非饱和区）</li>
+<li>残差网络</li>
+<li>LSTM（long-short term memory networks）：遗忘门、输入门、输出门。</li>
+</ul>
+</div></blockquote>
+<p>梯度爆炸（gradient exploding）：梯度太大，学习不稳定。解决策略：</p>
+<blockquote>
+<div><ul class="simple">
+<li>梯度截断（gradient clipping/clamping）</li>
+<li>权重正则化</li>
+<li>使用激活函数 ReLU（正部导数恒为 1）</li>
+<li>Batch Normalization（有正则化的作用）</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id3">
+<h2>2.6. 参考资料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>CS231n</li>
 </ol>
@@ -288,6 +321,11 @@
 </ol>
 <blockquote>
 <div><a class="reference external" href="https://www.quora.com/What-is-the-dying-ReLU-problem-in-neural-networks">https://www.quora.com/What-is-the-dying-ReLU-problem-in-neural-networks</a></div></blockquote>
+<ol class="arabic simple" start="4">
+<li>详解机器学习中的梯度消失、爆炸原因及其解决方法</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://blog.csdn.net/qq_25737169/article/details/78847691">https://blog.csdn.net/qq_25737169/article/details/78847691</a></div></blockquote>
 </div>
 </div>
 

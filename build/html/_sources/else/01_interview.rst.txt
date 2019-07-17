@@ -17,15 +17,32 @@
 编程算法
 ------------
 
-1. 找出数组中N个出现1（或奇数次）次的数字
+1. 找出数组中的特异数字（Single Number）
 
-  https://www.jianshu.com/p/e1331664c8cf
+  - 1 个数字出现奇数次，其余数字出现偶数次。Hint：异或运算。
 
-2. 均匀分布生成其他分布的方法
+  - 2 个数字出现奇数次，其余数字出现偶数次。Hint：先做异或运算，得到的是这两个数的异或结果；找到该结果的二进制表示中为 1 的某一位，根据该位为 0/1 将数组分为两组，分别做异或运算。
+
+      https://www.jianshu.com/p/e1331664c8cf
+
+  - 1 个数字出现 :math:`1` 次，其余数字出现 :math:`k` 次。Hint：利用大小为 32 的数组，统计二进制各位出现 1 的次数，对 :math:`k` 取模；最终 32 位数组的值就是 Single Number 的二进制表示。
+
+      https://cloud.tencent.com/developer/article/1131946
+
+  - 一般情形：1 个数字出现 :math:`p` 次，其余数字出现 :math:`k` 次。
+
+      https://blog.csdn.net/wlwh90/article/details/89712795
+
+      https://cloud.tencent.com/developer/article/1131945
+
+      https://leetcode.com/problems/single-number-ii/discuss/43295/Detailed-explanation-and-generalization-of-the-bitwise-operation-method-for-single-numbers
+
+
+2. 均匀分布生成其他分布的方法。Hint：中心极限定理。
 
   https://blog.csdn.net/haolexiao/article/details/60511164
 
-3. 海量数据处理。Hint：哈希方法，把大文件划分成小文件，读进内存依次处理；Bitmap，用一个（或几个）比特位来标记某个元素对应的值。
+3. 海量数据处理。Hint：哈希方法，把大文件划分成小文件，读进内存依次处理，如果需要统计频率/个数，再利用哈希；Bitmap，用一个（或几个）比特位来标记某个元素对应的值。
 
   - 面试题集锦
 
@@ -2632,6 +2649,118 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
                   b = tmp % b;
               }
               return b;
+          }
+      };
+
+41. [LeetCode] Word Break 字符串按字典切分。Hint：回溯；动态规划。
+
+  https://leetcode.com/problems/word-break/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 方法一，回溯
+      // 测试用例超时
+      // "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab" ["a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"]
+
+      class Solution
+      {
+      public:
+          bool wordBreak(string s, vector<string>& wordDict)
+          {
+              if(s=="") return true;
+              if(wordDict.size()==0) return false;
+              return word_find(s, wordDict, 0);
+          }
+      private:
+          bool word_find(string& s, vector<string>& wordDict, int k)
+          {
+              if(k==s.size()) return true;
+              for(int w = 0; w < wordDict.size(); ++w)
+              {
+                  if(k+wordDict[w].size()<=s.size() && s.substr(k, wordDict[w].size()) == wordDict[w])
+                  {
+                      if(word_find(s, wordDict, k + wordDict[w].size())) return true;
+                  }
+              }
+              return false;
+          }
+      };
+
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 方法二，动态规划，空间复杂度 O(n^2)
+      // dp[i][j] 表示字符串区间 [i, j] 的切分情况
+      // 解法类似于矩阵连乘问题
+
+      class Solution
+      {
+      public:
+          bool wordBreak(string s, vector<string>& wordDict)
+          {
+              if(s.empty() || wordDict.empty()) return false;
+              int n = s.size();
+              vector<vector<bool>> dp(n, vector<bool>(n, false));
+              for(int gap = 0; gap < n; ++gap)
+              {
+                  for(int i = 0; i + gap < n; ++i)
+                  {
+                      int j = i + gap;
+                      for(string& word: wordDict)
+                      {
+                          // 这里用 ||，只要有一个 word 匹配就行
+                          if(gap + 1 == word.size()) dp[i][j] = dp[i][j] || (s.substr(i, word.size()) == word);
+                          else if(gap + 1 > word.size()) dp[i][j] = dp[i][j] || (s.substr(i, word.size()) == word && dp[i+word.size()][j]);
+                      }
+                  }
+              }
+              return dp[0][n-1];
+          }
+      };
+
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 方法三，动态规划，空间复杂度 O(n)
+      // dp[i] 表示字符串区间 [0, i-1] 的切分情况
+
+      class Solution {
+      public:
+          bool wordBreak(string s, vector<string>& wordDict) {
+              if(s.empty() || wordDict.empty()) return false;
+
+              int n = s.size();
+              vector<bool> dp(n+1, false);
+              dp[0] = true; // 初始化
+
+              for(unsigned int i = 1; i <= n; ++i)
+              {
+                 for(unsigned int j = 0; j < i; ++j)
+                 {
+                     if(dp[j]) // 两段子串：[0, j-1], [j, i]
+                     {
+                         string str = s.substr(j, i-j);
+                         for(string& word: wordDict)
+                         {
+                             if(str == word)
+                             {
+                                 dp[i] = true;
+                                 break;
+                             }
+                         }
+                     }
+                 }
+              }
+              return dp[n];
           }
       };
 

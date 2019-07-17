@@ -65,6 +65,31 @@ KL 散度（Kullback–Leibler divergence 或 relative entropy），衡量了两
     I(X, Y)  =\ D_{KL} ( p(X, Y)\ \| \ p(X)p(Y) )
 
 
+交叉熵
+-------------
+
+交叉熵（Cross entropy）在信息论中的含义：基于相同事件测度的两个概率分布 :math:`p` （“真实”分布）和 :math:`q` （“估测”分布），当基于概率分布 :math:`q` 进行编码时，在事件集合中唯一标识一个事件所需要的平均比特数。
+
+定义：
+
+.. math::
+
+    H(p, q) = E_p [- \log q] = H(p) + D_{KL}(p \| q)
+
+离散分布：
+
+.. math::
+
+    H(p, q) = - \sum_x p(x) \log q(x)
+
+连续分布（假设 :math:`p` 和 :math:`q` 在测度 :math:`r` 上是绝对连续的， :math:`P` 和 :math:`Q` 分别为 :math:`p` 的 :math:`q` 在测度 :math:`r` 上的概率密度函数）：
+
+.. math::
+
+    H(p, q) = - \int P(x) \log Q(x) dr(x)
+
+最小化 KL 散度就是最小化分布之间的交叉熵。
+
 Jensen's inequality
 -------------------------
 
@@ -133,6 +158,12 @@ Jensen 不等式
 
   https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence
 
-4. Jensen's inequality
+4. Cross entropy
+
+  https://en.wikipedia.org/wiki/Cross_entropy
+
+  https://zh.wikipedia.org/wiki/%E4%BA%A4%E5%8F%89%E7%86%B5
+
+5. Jensen's inequality
 
   https://en.wikipedia.org/wiki/Jensen%27s_inequality

@@ -19,3 +19,4 @@
     12_entropy.rst
     13_cltLLN.rst
     14_coinWeigh.rst
+    15_probability.rst

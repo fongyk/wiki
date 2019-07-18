@@ -82,14 +82,14 @@
           if(head==NULL || head->next==NULL) return head;
           ListNode* newHead = head;
           ListNode* curr = head -> next;
-          ListNode* post = curr -> next;
           newHead -> next = NULL;
+          ListNode* post;
           while(curr)
           {
+              post = curr -> next;
               curr -> next = newHead;
               newHead = curr;
               curr = post;
-              if(post) post = post -> next;
           }
           return newHead;
       }
@@ -2761,6 +2761,46 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
                  }
               }
               return dp[n];
+          }
+      };
+
+
+42. [LeetCode] Gas Station 加油站回路。Hint：只要 gas 总和不小于 cost 总和，一定存在可以完成回路的出发点。延伸：从起点到终点的最少加油次数。Hint：贪心算法，把路过的每个加油站的油量存入优先队列，当需要加油时，
+弹出队列中的最大油量。
+
+  https://leetcode.com/problems/gas-station/
+
+  https://leetcode.com/problems/gas-station/discuss/191463/topic
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution
+      {
+      public:
+          int canCompleteCircuit(vector<int>& gas, vector<int>& cost)
+          {
+              if(gas.size() == 0) return -1;
+              int totalDiff = 0;
+              int currDiff = 0;
+              int start = 0;
+              for(int i = 0; i < gas.size(); ++i)
+              {
+                  totalDiff += gas[i] - cost[i];
+                  currDiff += gas[i] - cost[i];
+                  if(currDiff < 0)
+                  {
+                      start = i + 1; // 第 0 ~ i 加油站都不可能是可以完成回路的起始点
+                      currDiff = 0;
+                  }
+              }
+              return totalDiff >= 0 ? start: -1;
           }
       };
 

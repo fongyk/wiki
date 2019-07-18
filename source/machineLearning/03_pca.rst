@@ -3,12 +3,20 @@
 
 **PCA** : Principal Component Analysis.
 
-**最大可分性** ：样本点到超平面的投影能尽可能分开（投影后样本点方差最大化）。
+**最大可分性** ：所有样本点到超平面的投影能尽可能分开（投影后样本点方差最大化）。
 
 PCA 是一种正交线性变换，把数据变换到一个新的坐标系统中，把相关变量变换为不相关变量。
 
+
+.. image:: ./03_pca.png
+  :align: center
+  :width: 500 px
+
+
 优化目标
 --------------
+
+样本点到超平面的投影为 :math:`W^{\top}X` ，假设 :math:`X` 已经中心化。
 
 .. math::
 
@@ -18,14 +26,34 @@ PCA 是一种正交线性变换，把数据变换到一个新的坐标系统中�
   & &\ W \in \mathbb{R}^{d \times d^\prime}, \\
   & &\ d^\prime < d.
 
+推导
+---------
+
+利用拉格朗日乘子法，
+
+.. math::
+
+  L = - Tr(W^{\top}XX^{\top}W) + \lambda (W^{\top}W - I),\quad \lambda \neq 0.
+
+令 :math:`L` 对 :math:`W` 和 :math:`\lambda` 的偏导为 0 得：
+
+.. math::
+
+    XX^{\top}W &=&\ \lambda W, \\
+    W^{\top}W &=&\ I.
+
+对协方差矩阵 :math:`XX^{\top}` 进行特征值分解即可。
+
 求解
 ---------
 
-1. 计算样本的协方差矩阵 :math:`C = XX^{\top}` ；
+1. 样本中心化： :math:`X` 减均值。
 
-2. 对协方差矩阵做特征值分解（EVD）；
+2. 计算样本的协方差矩阵 :math:`C = XX^{\top}` ；
 
-3. 取最大的 :math:`d^\prime` 个特征值 :math:`(\lambda_1, \lambda_2,...,\lambda_{d^\prime})` 对应的特征向量：
+3. 对协方差矩阵做特征值分解（EVD）；
+
+4. 取最大的 :math:`d^\prime` 个特征值 :math:`(\lambda_1, \lambda_2,...,\lambda_{d^\prime})` 对应的特征向量：
 
     .. math::
 
@@ -67,7 +95,14 @@ SVD分解
 
 1. 周志华《机器学习》Page 229 -- 232。
 
-
 2. ufldl
 
   http://ufldl.stanford.edu/wiki/index.php/PCA
+
+3. 约束优化方法之拉格朗日乘子法与KKT条件
+
+  https://www.cnblogs.com/ooon/p/5721119.html
+
+4. 关于拉格朗日乘子法及KKT条件的探究
+
+  https://wenku.baidu.com/view/48af72d6fc4ffe473268ab8b.html

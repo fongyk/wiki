@@ -207,7 +207,13 @@
 <p><strong>等高线</strong></p>
 <a class="reference internal image-reference" href="../_images/08_contours_evaluation_optimizers.gif"><img alt="../_images/08_contours_evaluation_optimizers.gif" class="align-center" src="../_images/08_contours_evaluation_optimizers.gif" style="width: 500px;" /></a>
 <p><strong>鞍点</strong></p>
-<p>不是局部极值点的驻点（一阶梯度为零）。在鞍点处，Hessian 矩阵同时具有正、负特征值。</p>
+<p>不是局部极值点的驻点（一阶梯度为零）。在鞍点处，Hessian 是不定矩阵（indefinite）：既不是半正定，也不是半负定。判断鞍点的充分条件：Hessian 矩阵同时具有正、负特征值。</p>
+<blockquote>
+<div><ul class="simple">
+<li>双曲抛物线（马鞍面） <span class="math notranslate nohighlight">\(z = \frac{x^2}{a^2} - \frac{y^2}{b^2}\)</span> 的鞍点在 <span class="math notranslate nohighlight">\((0,0)\)</span> 。</li>
+<li><span class="math notranslate nohighlight">\(y = x^3\)</span> 的鞍点在 <span class="math notranslate nohighlight">\((0,0)\)</span> 。</li>
+</ul>
+</div></blockquote>
 <a class="reference internal image-reference" href="../_images/08_saddle_point_evaluation_optimizers.gif"><img alt="../_images/08_saddle_point_evaluation_optimizers.gif" class="align-center" src="../_images/08_saddle_point_evaluation_optimizers.gif" style="width: 600px;" /></a>
 </div>
 <div class="section" id="sgd">
@@ -342,6 +348,11 @@ n &amp; \leftarrow &amp;\ \beta_1 n + (1 - \beta_2) g \odot g &amp;\  [\text{有
 </ol>
 <blockquote>
 <div><a class="reference external" href="https://arxiv.org/pdf/1609.04747.pdf">https://arxiv.org/pdf/1609.04747.pdf</a></div></blockquote>
+<ol class="arabic simple" start="5">
+<li>Saddle point</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://en.wikipedia.org/wiki/Saddle_point">https://en.wikipedia.org/wiki/Saddle_point</a></div></blockquote>
 </div>
 </div>
 

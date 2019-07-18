@@ -14,7 +14,11 @@
 
 **鞍点**
 
-不是局部极值点的驻点（一阶梯度为零）。在鞍点处，Hessian 矩阵同时具有正、负特征值。
+不是局部极值点的驻点（一阶梯度为零）。在鞍点处，Hessian 是不定矩阵（indefinite）：既不是半正定，也不是半负定。判断鞍点的充分条件：Hessian 矩阵同时具有正、负特征值。
+
+  - 双曲抛物线（马鞍面） :math:`z = \frac{x^2}{a^2} - \frac{y^2}{b^2}` 的鞍点在 :math:`(0,0)` 。
+
+  - :math:`y = x^3` 的鞍点在 :math:`(0,0)` 。
 
 .. image:: ./08_saddle_point_evaluation_optimizers.gif
   :align: center
@@ -158,3 +162,7 @@ Adam
 4. An overview of gradient descent optimization algorithms
 
   https://arxiv.org/pdf/1609.04747.pdf
+
+5. Saddle point
+
+  https://en.wikipedia.org/wiki/Saddle_point

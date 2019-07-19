@@ -4584,6 +4584,46 @@ $$</div></li>
 </td></tr></table></div>
 </div>
 </div></blockquote>
+<p>43. <span class="math notranslate nohighlight">\(n\)</span> 个人过桥，每次最多通过两个人（过桥时间按较长者计算），只有一个手电筒，每次过桥之后需要一个人把手电筒送回来，求最短过桥时间。Hint：耗时第 <span class="math notranslate nohighlight">\(k\)</span> 小的人过桥有两种方案，第一，由耗时最短的人送回手电筒，并陪同过河；
+第二，耗时最短的人送回手电筒之后，耗时第 <span class="math notranslate nohighlight">\(k\)</span> 小的人与耗时第 <span class="math notranslate nohighlight">\(k-1\)</span> 小的人一起过桥，他们过桥之后，手电筒再由耗时第二短的人送回，最后耗时最短的人和耗时第二短的人一起过桥。</p>
+<blockquote>
+<div><p><a class="reference external" href="https://blog.csdn.net/u014113686/article/details/82464635">https://blog.csdn.net/u014113686/article/details/82464635</a></p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">minTimeCrossBridge</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">Time</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">assert</span><span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="n">sort</span><span class="p">(</span><span class="n">Time</span><span class="p">,</span> <span class="n">Time</span> <span class="o">+</span> <span class="n">n</span><span class="p">);</span>
+    <span class="kt">int</span><span class="o">*</span> <span class="n">dp</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+    <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Time</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="n">dp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Time</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">Time</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">Time</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">Time</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">Time</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Time</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+    <span class="k">delete</span><span class="p">[]</span> <span class="n">dp</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div></blockquote>
 </div>
 <div class="section" id="c">
 <h2>1.3. C++<a class="headerlink" href="#c" title="Permalink to this headline">¶</a></h2>

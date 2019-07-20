@@ -26,7 +26,7 @@
   - priority_queue
 
 
-一个容器适配器接受一种已有的容器类型，使其行为看起来像一种不同的类型。默认情况下，stack和queue基于deque实现，priority_queue基于vector实现。
+一个容器适配器接受一种已有的容器类型，使其行为看起来像一种不同的类型。默认情况下，stack 和 queue 基于 deque 实现，priority_queue 基于 vector 实现。
 
 
 .. highlight:: cpp
@@ -39,10 +39,10 @@ string
   #include<string>
 
 - 长度：length()，size()，empty()
-- 访问：[pos]，at(pos)。at()返回位置pos处元素的引用，越界则抛出 ``out_of_range`` 异常。
+- 访问：[pos]，at(pos)。at()返回位置 pos 处元素的引用，越界则抛出 ``out_of_range`` 异常。
 - 字典序比较：==，!=，<，<=，>，>=
 - 串接：+
-- c_str()：返回指向C类型字符串的指针。如果需要使用C的字符串函数如strcmp、strcpy等，需要使用c_str()。
+- c_str()：返回指向 C 类型字符串的指针。如果需要使用 C 的字符串函数如 strcmp、strcpy 等，需要使用 c_str()。
   ::
 
     const char* c_str() const noexcept;
@@ -52,7 +52,7 @@ string
 
     string substr(size_t pos = 0, size_t len = npos) const
 
-- 插入：支持下标索引插入，在位置pos **之前** 插入元素。插入元素之后，该元素的位置为 pos。（与python中list类的插入功能一致）
+- 插入：支持下标索引插入，在位置 pos **之前** 插入元素。插入元素之后，该元素的位置为 pos。（与 python 中 list 类的插入功能一致）
   ::
 
     // string (1)
@@ -102,7 +102,7 @@ vector
 - 尾部元素：back()，返回的是引用
 - 尾部插入：push_back(x)，emplace_back(x)
 - 尾部弹出：pop_back()
-- 迭代器插入：在position **之前** 插入元素。
+- 迭代器插入：在 position **之前** 插入元素。
 
   ::
 
@@ -113,13 +113,13 @@ vector
 
 
 - 尾部删除：pop_back()
-- 申请空间：至少能容纳n个元素（capcity()为n）。
+- 申请空间：至少能容纳 n 个元素（capcity() 为 n）。
 
   ::
 
     void reserve (size_type n)
 
-- 改变大小：将元素个数变为n。如果指定val且n大于原来的size，则使用val填充新元素，原来的元素不变；如果n小于原来的size，则丢弃尾部元素。
+- 改变大小：将元素个数变为 n。如果指定 val 且 n 大于原来的 size，则使用 val 填充新元素，原来的元素不变；如果 n 小于原来的 size，则丢弃尾部元素。
 
   ::
 
@@ -136,13 +136,24 @@ vector
       void assign (InputIterator first, InputIterator last)
 
 
-  - 赋予n个val元素给当前向量。
+  - 赋予 n 个 val 元素给当前向量。
 
     ::
 
       void assign (size_type n, const value_type& val)
 
-- 删除：删除一个元素之后，此位置之后所有元素往前移动。虽然当前迭代器没有+1，但是由于后续元素的前移，相当于迭代器自动指向了下一个元素。故删除了一个元素之后如果要访问下一个元素，不必执行it++。
+- 直接赋值（返回的是引用类型）
+
+  ::
+
+    // copy (1)
+    vector& operator= (const vector& x);
+    // move (2)
+    vector& operator= (vector&& x);
+    // initializer list (3)
+    vector& operator= (initializer_list<value_type> il);
+
+- 删除：删除一个元素之后，此位置之后所有元素往前移动。虽然当前迭代器没有 +1，但是由于后续元素的前移，相当于迭代器自动指向了下一个元素。故删除了一个元素之后如果要访问下一个元素，不必执行 it++。
 
   ::
 
@@ -152,7 +163,7 @@ vector
 - 清除：
 
   - ``vector< value_type >().swap(myVec)``
-  - ``myVec.clear()`` 让myVec.size()为0，但是myVec.capcity()不为0，调用 ``myVec.clear()`` 之后再调用 ``myVec.shrink_to_fit()`` 。 ``shrink_to_fit()`` 的作用是减小capcity()以匹配size()。
+  - ``myVec.clear()`` 让 myVec.size() 为0，但是 myVec.capcity() 不为0，调用 ``myVec.clear()`` 之后再调用 ``myVec.shrink_to_fit()`` 。 ``shrink_to_fit()`` 的作用是减小 capcity() 以匹配 size()。
 
 
 
@@ -169,7 +180,7 @@ list
 - 表尾元素：back()
 - 插入：push_front()，push_back()，emplace_front()，emplace_back()
 - 删除：pop_front()，pop_back()
-- 迭代器插入：在position **之前** 插入元素。
+- 迭代器插入：在 position **之前** 插入元素。
 
   ::
 
@@ -189,7 +200,7 @@ deque
 - 队尾元素：back()
 - 插入：push_front(x)，push_back(x)，emplace_front(x)，emplace_back(x)
 - 删除：pop_front()，pop_back()
-- 迭代器插入：在position **之前** 插入元素。
+- 迭代器插入：在 position **之前** 插入元素。
 
   ::
 
@@ -207,6 +218,69 @@ deque
     - ``C c1(c2);`` // 拷贝构造函数
     - ``C c(it_begin, it_end);`` // 迭代器指定的范围 [it_begin, it_end) 内的元素赋值给c（array不支持）
     - ``C c{a, b, c,...};`` // 列表初始化
+
+
+set
+-----------------
+
+::
+
+  #include<set>
+
+**底层实现：红黑树。**
+
+- 元素个数：size()，empty()
+
+- 查找：找不到 key 则返回 ``set::end`` 。
+
+  ::
+
+    const_iterator find (const value_type& val) const;
+    iterator       find (const value_type& val);
+
+
+- 插入：如果 key 已经存在，则插入无效；insert/emplace。
+
+  ::
+
+    // single element (1)
+    pair<iterator,bool> insert (const value_type& val);
+    pair<iterator,bool> insert (value_type&& val);
+    // with hint (2)
+    iterator insert (const_iterator position, const value_type& val);
+    iterator insert (const_iterator position, value_type&& val);
+    // range (3)
+    template <class InputIterator>
+    void insert (InputIterator first, InputIterator last);
+    // initializer list (4)
+    void insert (initializer_list<value_type> il);
+
+    // emplace
+    template <class... Args>
+    pair<iterator,bool> emplace (Args&&... args);
+
+
+- 删除：返回删除元素后的下一个元素的迭代器，当前迭代器失效。
+
+  ::
+
+    (1)
+    iterator  erase (const_iterator position);
+    (2)
+    size_type erase (const value_type& val); // 返回删除元素的个数：0 或 1
+    (3)
+    iterator  erase (const_iterator first, const_iterator last);
+
+- 直接赋值（返回的是引用类型）
+
+  ::
+
+    // copy (1)
+    set& operator= (const set& x);
+    // move (2)
+    set& operator= (set&& x);
+    // initializer list (3)
+    set& operator= (initializer_list<value_type> il);
 
 
 pair
@@ -255,22 +329,36 @@ map
 
 - 访问：[key]，at(key)
 
-  - [key]，key不存在，会创建新的键值对。
+  - [key]，key 不存在，会创建新的键值对。
 
-  - at(key)，key不存在，抛出out\_of\_range异常。
+  - at(key)，key 不存在，抛出out\_of\_range异常。
 
-- 查找：找不到key则返回 ``map::end`` 。
+- 直接赋值（返回的是引用类型）
+
+  ::
+
+    // copy (1)
+    map& operator= (const map& x);
+    // move (2)
+    map& operator= (map&& x);
+    // initializer list (3)
+    map& operator= (initializer_list<value_type> il);
+
+- 查找：找不到 key 则返回 ``map::end`` 。
 
   ::
 
     iterator find (const key_type& k);
     const_iterator find (const key_type& k) const;
 
-- 插入：如果key已经存在，则插入无效。map的元素自动按照key升序排序，不能人为对map进行排序。
+- 插入：如果 key 已经存在，则插入无效。map 的元素自动按照 key 升序排序，不能人为对 map 进行排序；insert/emplace。
 
   ::
 
     pair<iterator,bool> insert (const value_type& val);
+
+    template <class... Args>
+    pair<iterator,bool> emplace (Args&&... args);
 
 
 - 删除：返回删除元素后的下一个元素的迭代器，当前迭代器失效。
@@ -278,7 +366,7 @@ map
   ::
 
     iterator  erase (const_iterator position);
-    size_type erase (const key_type& k);
+    size_type erase (const key_type& k); // 返回删除元素的个数：0 或 1
     iterator  erase (const_iterator first, const_iterator last);
 
   ``it = myMap.erase(it)`` 等效为 ``myMap.erase(it++)`` 。
@@ -311,7 +399,13 @@ map
     return 0;
   }
 
+.. note::
 
+    无序容器
+      维护元素有序代价较高，map 和 set 都对应了无序版本：unordered_map 和 unordered_set。无序版本能使用有序版本的操作（find、insert 等）。
+      当使用 key 来访问元素时，无序版本的速度更快。
+
+      不能直接定义关键字类型为自定义类类型的无序容器。
 
 stack
 ---------
@@ -422,7 +516,7 @@ to\_string函数
 
   #include <string>
 
-把val转化为字符串。
+把 val 转化为字符串。
 
 ::
 
@@ -444,7 +538,7 @@ atoi，atof，atol
 
   #include <cstdlib>
 
-把C类型的字符串转换为数字（C++的string需要使用 ``c_str()`` 转换）。
+把C类型的字符串转换为数字（C++ 的 string 需要使用 ``c_str()`` 转换）。
 
 ::
 
@@ -460,7 +554,7 @@ size\_t
 ^^^^^^^^^
 
 size\_t 提供了一种可移植（不同平台下）的方法声明与系统可寻址的内存区域一致的长度。
-size\_t 是通过typedef定义的一些 **无符号整型** 的别名，通常是 unsigned int，unsigned long 甚至是unsigned long long。
+size\_t 是通过typedef定义的一些 **无符号整型** 的别名，通常是 unsigned int，unsigned long 甚至是 unsigned long long。
 
 常用于循环计数器、数组索引，或指针的算术运算。
 
@@ -523,6 +617,8 @@ VS 64位编译器
   http://www.cplusplus.com/reference/list/list
 
   http://www.cplusplus.com/reference/deque/deque
+
+  http://www.cplusplus.com/reference/set/set
 
   http://www.cplusplus.com/reference/utility/pair/operators
 

@@ -128,6 +128,9 @@
 <li class="toctree-l2"><a class="reference internal" href="10_topoSort.html">10. 拓扑排序</a></li>
 <li class="toctree-l2"><a class="reference internal" href="11_catalan.html">11. 卡特兰数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12_entropy.html">12. 信息熵</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_cltLLN.html">13. 大数定律和中心极限定理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_coinWeigh.html">14. 称重问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_probability.html">15. 概率基础</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
@@ -407,7 +410,20 @@ $$</div><div class="toggle docutils container">
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
+<p>相关题：最短编辑距离。</p>
+<div class="math notranslate nohighlight">
+$$
+d[0][j] = j,\ 0 \leqslant j \leqslant n \\
+d[i][0] = i,\ 0 \leqslant i \leqslant m
+$$
+
+$$
+d[i][j] =
+\begin{cases}
+   d[i-1][j-1] &amp; &amp; {i,j &gt; 0;\ X[i-1] = Y[j-1]} \\
+   min\{ d[i-1][j], d[i][j-1], d[i-1][j-1] \} + 1 &amp; &amp; {i,j &gt; 0;\ X[i-1] \ne Y[j-1]}
+\end{cases}
+$$</div></div>
 <div class="section" id="id4">
 <h2>8.3. 最长上升子序列<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <ul>

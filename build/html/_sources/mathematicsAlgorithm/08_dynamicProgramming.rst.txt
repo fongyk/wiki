@@ -152,6 +152,25 @@
 
 |
 
+相关题：最短编辑距离。
+
+.. math::
+  :nowrap:
+
+  $$
+  d[0][j] = j,\ 0 \leqslant j \leqslant n \\
+  d[i][0] = i,\ 0 \leqslant i \leqslant m
+  $$
+
+  $$
+  d[i][j] =
+  \begin{cases}
+     d[i-1][j-1] & & {i,j > 0;\ X[i-1] = Y[j-1]} \\
+     min\{ d[i-1][j], d[i][j-1], d[i-1][j-1] \} + 1 & & {i,j > 0;\ X[i-1] \ne Y[j-1]}
+  \end{cases}
+  $$
+
+
 最长上升子序列
 ------------------
 

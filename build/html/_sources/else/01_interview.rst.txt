@@ -2835,6 +2835,134 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       }
 
 
+44. [LeetCode] Minimum Window Substring 字符串 S 中包含字符串 T 中所有字符（可能会重复）的最短子串。Hint：用两个指针表示滑动窗口的起始和结尾；当窗口满足要求，则计算当前窗口的长度，然后两个指针都往后移动一步；终止条件是尾指针移动到了字符串 S 的结尾（'\\0'）。
+延伸：不考虑字符串 T 中重复的字符，求字符串 S 中包含字符串 T 中出现的字符的最短子串。
+
+  https://leetcode.com/problems/minimum-window-substring/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 考虑重复
+
+      typedef unsigned int uint;
+      class Solution
+      {
+      public:
+          string minWindow(string s, string t)
+          {
+              uint lenS = s.size();
+              uint lenT = t.size();
+              if(lenS < lenT || lenT == 0) return "";
+
+              uint hashT[256] = {0};
+              for(size_t k = 0; k < lenT; ++k)
+              {
+                  hashT[t[k]] += 1; // 统计 T 中的字符，考虑重复
+              }
+              uint hashWindow[256] = {0}; // 统计 S 的滑动窗口中出现在 T 中的字符
+
+              uint start = 0;
+              uint minLen = lenS + 1;
+              uint pBegin = 0;
+              uint pEnd = -1; // 双指针初始化
+              uint matchCnt = 0; // 统计当前滑动窗口中匹配的字符对
+              while(true)
+              {
+                  if(matchCnt == lenT) //  T 中所有字符都出现
+                  {
+                      while(hashT[s[pBegin]] == 0 || hashWindow[s[pBegin]] > hashT[s[pBegin]]) // 收紧窗口的左端，第二个条件表示窗口中包含了多余的重复字符
+                      {
+                          --hashWindow[s[pBegin]];
+                          ++pBegin;
+                      }
+                      if(pEnd - pBegin + 1 < minLen)
+                      {
+                          minLen = pEnd - pBegin + 1;
+                          start = pBegin;
+                      }
+                      --matchCnt;
+                      --hashWindow[s[pBegin]];
+                      ++pBegin; // 起始指针往后移动，相应统计量 -1
+                  }
+                  ++pEnd;
+                  if(pEnd == lenS) break;
+                  if(hashT[s[pEnd]] > 0)
+                  {
+                      if(hashWindow[s[pEnd]] < hashT[s[pEnd]]) ++matchCnt; // 判断，不能匹配多余的重复字符
+                      ++hashWindow[s[pEnd]];
+                  }
+              }
+              if(minLen == lenS + 1) return "";
+              else return s.substr(start, minLen);
+          }
+      };
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 不考虑重复
+
+      typedef unsigned int uint;
+      class Solution
+      {
+      public:
+          string minWindow(string s, string t)
+          {
+              uint lenS = s.size();
+              uint lenT = t.size();
+              if (lenS < lenT || lenT == 0) return "";
+
+              uint hashT[256] = { 0 };
+              uint uniqueChar = 0;
+              for (size_t k = 0; k < lenT; ++k)
+              {
+                  if (hashT[t[k]] == 0) uniqueChar += 1; // 统计 T 中的字符，不考虑重复
+                  hashT[t[k]] = 1; // 不管出现多少次，都是 1
+              }
+              uint hashWindow[256] = { 0 };
+
+              uint start = 0;
+              uint minLen = lenS + 1;
+              uint pBegin = 0;
+              uint pEnd = -1;
+              uint matchCnt = 0;
+              while (true)
+              {
+                  if (matchCnt == uniqueChar) // 匹配了 T 中所有字符
+                  {
+                      while (hashT[s[pBegin]] == 0 || hashWindow[s[pBegin]] > 1) // 收紧窗口的左端，第二个条件表示窗口中包含了多余的重复字符
+                      {
+                          --hashWindow[s[pBegin]];
+                          ++pBegin;
+                      }
+                      if (pEnd - pBegin + 1 < minLen)
+                      {
+                          minLen = pEnd - pBegin + 1;
+                          start = pBegin;
+                      }
+                      --matchCnt;
+                      --hashWindow[s[pBegin]];
+                      ++pBegin; // 起始指针往后移动，相应统计量 -1
+                  }
+                  ++pEnd;
+                  if (pEnd == lenS) break;
+                  if (hashT[s[pEnd]] > 0)
+                  {
+                      if (hashWindow[s[pEnd]] == 0) ++matchCnt; // 新增匹配
+                      ++hashWindow[s[pEnd]];
+                  }
+              }
+              if (minLen == lenS + 1) return "";
+              else return s.substr(start, minLen);
+          }
+      };
 
 
 C++

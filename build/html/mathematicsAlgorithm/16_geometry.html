@@ -1,0 +1,457 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>16. 几何 &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'alpha',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="计算机网络" href="../computerNetwork/index.html" />
+    <link rel="prev" title="15. 概率基础" href="15_probability.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">数理与算法</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_complexity.html">1. 算法复杂度与主定理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_redblackTree.html">2. 红黑树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_shortestPath.html">3. 最短路径</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_treeTraversal.html">4. 二叉树遍历</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_game.html">5. 游戏与必胜策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_randomSample.html">6. 蓄水池抽样</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_sort.html">7. 排序算法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_dynamicProgramming.html">8. 动态规划</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_backtrack.html">9. 回溯</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_topoSort.html">10. 拓扑排序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_catalan.html">11. 卡特兰数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_entropy.html">12. 信息熵</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_cltLLN.html">13. 大数定律和中心极限定理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_coinWeigh.html">14. 称重问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_probability.html">15. 概率基础</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">16. 几何</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">16.1. 线段相交</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">方法一：跨立实验</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">方法二：直线交点方程</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">16.2. 参考资料</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">数理与算法</a> &raquo;</li>
+        
+      <li>16. 几何</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/mathematicsAlgorithm/16_geometry.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>16. 几何<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>16.1. 线段相交<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../_images/16_lineSegment.jpg"><img alt="../_images/16_lineSegment.jpg" class="align-center" src="../_images/16_lineSegment.jpg" style="width: 600px;" /></a>
+<div class="section" id="id3">
+<h3>方法一：跨立实验<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p><strong>快速排斥</strong></p>
+<p>分别以两条线段为对角线作矩形，如果两个矩形没有重合部分（IoU = 0），则两条线段一定不相交。反之不然。</p>
+<a class="reference internal image-reference" href="../_images/16_iou.jpg"><img alt="../_images/16_iou.jpg" class="align-center" src="../_images/16_iou.jpg" style="width: 500px;" /></a>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 计算重合部分的顶点坐标，可用于计算 IoU</span>
+<span class="c1">// rec = {x1, y1, x2, y2} 分别表示矩形左下角和右上角的顶点坐标</span>
+<span class="kt">bool</span> <span class="nf">isRectangleOverlap</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">rec1</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">rec2</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">left_x</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">rec1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">rec2</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="kt">int</span> <span class="n">right_x</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">rec1</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">rec2</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+    <span class="kt">int</span> <span class="n">bottom_y</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">rec1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">rec2</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="kt">int</span> <span class="n">top_y</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">rec1</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">rec2</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">left_x</span> <span class="o">&lt;</span> <span class="n">right_x</span> <span class="o">&amp;&amp;</span> <span class="n">bottom_y</span> <span class="o">&lt;</span> <span class="n">top_y</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p><strong>跨立实验</strong></p>
+<p>如果两条线段相交，那么：以其中任意一条线段为标准，另一条线段的两个端点一定在这条线段（延长线）的两端，或者在这条线段上。</p>
+<p>如果在两端，利用向量叉乘（cross product）可表示为：</p>
+<div class="math notranslate nohighlight">
+\[(\overrightarrow{AB} \times \overrightarrow{AC}) \cdot (\overrightarrow{AB} \times \overrightarrow{AD}) &lt; 0,\quad (\overrightarrow{CD} \times \overrightarrow{CA}) \cdot (\overrightarrow{CD} \times \overrightarrow{CB}) &lt; 0.\]</div>
+<a class="reference internal image-reference" href="../_images/16_crossProduct.jpg"><img alt="../_images/16_crossProduct.jpg" class="align-center" src="../_images/16_crossProduct.jpg" style="width: 600px;" /></a>
+<dl class="docutils">
+<dt>向量叉乘/向量积</dt>
+<dd><p class="first">两个向量 <span class="math notranslate nohighlight">\(\overrightarrow{a},\overrightarrow{b}\)</span> 的向量积 <span class="math notranslate nohighlight">\(\overrightarrow{a} \times \overrightarrow{b}\)</span> 为一个向量，
+它的方向与 <span class="math notranslate nohighlight">\(\overrightarrow{a},\overrightarrow{b}\)</span> 都垂直，且使 <span class="math notranslate nohighlight">\(\overrightarrow{a},\overrightarrow{b}, \overrightarrow{a} \times \overrightarrow{b}\)</span> 构成右手系；
+它的模等于以 <span class="math notranslate nohighlight">\(\overrightarrow{a},\overrightarrow{b}\)</span> 为边的平行四边形的面积，即 <span class="math notranslate nohighlight">\(|\overrightarrow{a} \times \overrightarrow{b}| = |\overrightarrow{a}||\overrightarrow{b}|\sin \theta\)</span> ，
+其中 <span class="math notranslate nohighlight">\(\theta\)</span> 为 <span class="math notranslate nohighlight">\(\overrightarrow{a},\overrightarrow{b}\)</span> 的夹角。</p>
+<p>性质：</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}\overrightarrow{a} \times \overrightarrow{b} &amp;=&amp;\ - \overrightarrow{b} \times \overrightarrow{a} \\
+\overrightarrow{a} \times \lambda \overrightarrow{a} &amp;=&amp;\ 0\end{split}\]</div>
+<div class="math notranslate nohighlight">
+$$
+\overrightarrow{a} \times \overrightarrow{b}
+ =
+\begin{vmatrix}
+  \overrightarrow{i} &amp; \overrightarrow{j} &amp; \overrightarrow{k} \\
+  a_1 &amp; a_2 &amp; a_3 \\
+  b_1 &amp; b_2 &amp; b_3
+\end{vmatrix}
+ =
+\begin{vmatrix}
+  a_2 &amp; a_3\\
+  b_2 &amp; b_3
+\end{vmatrix}
+\overrightarrow{i}
+-
+\begin{vmatrix}
+  a_1 &amp; a_3\\
+  b_1 &amp; b_3
+\end{vmatrix}
+\overrightarrow{j}
++
+\begin{vmatrix}
+  a_1 &amp; a_2\\
+  b_1 &amp; b_2
+\end{vmatrix}
+\overrightarrow{k}
+$$
+
+$$
+\begin{vmatrix}
+  c_1 &amp; c_2 \\
+  c_3 &amp; c_4
+\end{vmatrix}
+=
+c_1 c_4 - c_2 c_3
+$$</div></div></blockquote>
+<p class="last">其中 <span class="math notranslate nohighlight">\([O; \overrightarrow{i}, \overrightarrow{j}, \overrightarrow{k}]\)</span> 是一个直角坐标系；二维向量的第三维可扩展为 0。</p>
+</dd>
+</dl>
+<p><strong>相交判断</strong></p>
+<ul class="simple">
+<li><span class="math notranslate nohighlight">\((\overrightarrow{AB} \times \overrightarrow{AC}) \cdot (\overrightarrow{AB} \times \overrightarrow{AD}) &gt; 0\)</span> ： <span class="math notranslate nohighlight">\(C\)</span> 和 <span class="math notranslate nohighlight">\(D\)</span> 在线段 <span class="math notranslate nohighlight">\(AB\)</span> 的同一侧<ul>
+<li>若 <span class="math notranslate nohighlight">\((\overrightarrow{CD} \times \overrightarrow{CA}) \cdot (\overrightarrow{CD} \times \overrightarrow{CB}) = 0\)</span> ， <span class="math notranslate nohighlight">\(A\)</span> 或 <span class="math notranslate nohighlight">\(B\)</span> 在线段 <span class="math notranslate nohighlight">\(CD\)</span> 的延长线上，不相交。</li>
+<li>若 <span class="math notranslate nohighlight">\((\overrightarrow{CD} \times \overrightarrow{CA}) \cdot (\overrightarrow{CD} \times \overrightarrow{CB}) \neq 0\)</span> ，不相交。</li>
+</ul>
+</li>
+<li><span class="math notranslate nohighlight">\((\overrightarrow{AB} \times \overrightarrow{AC}) \cdot (\overrightarrow{AB} \times \overrightarrow{AD}) &lt; 0\)</span> ： <span class="math notranslate nohighlight">\(C\)</span> 和 <span class="math notranslate nohighlight">\(D\)</span> 在线段 <span class="math notranslate nohighlight">\(AB\)</span> 的不同侧<ul>
+<li>若 <span class="math notranslate nohighlight">\((\overrightarrow{CD} \times \overrightarrow{CA}) \cdot (\overrightarrow{CD} \times \overrightarrow{CB}) \leqslant 0\)</span> ，相交；如果等于 0，交点为 <span class="math notranslate nohighlight">\(A\)</span> 或 <span class="math notranslate nohighlight">\(B\)</span> 。</li>
+<li>若 <span class="math notranslate nohighlight">\((\overrightarrow{CD} \times \overrightarrow{CA}) \cdot (\overrightarrow{CD} \times \overrightarrow{CB}) &gt; 0\)</span> ，不相交。</li>
+</ul>
+</li>
+<li><span class="math notranslate nohighlight">\((\overrightarrow{AB} \times \overrightarrow{AC}) \cdot (\overrightarrow{AB} \times \overrightarrow{AD}) = 0\)</span> 可能是三种情形：<ul>
+<li><span class="math notranslate nohighlight">\(C\)</span> 或 <span class="math notranslate nohighlight">\(D\)</span> 在线段 <span class="math notranslate nohighlight">\(AB\)</span> 上（交于 <span class="math notranslate nohighlight">\(C\)</span> 或 <span class="math notranslate nohighlight">\(D\)</span> ）。</li>
+<li><span class="math notranslate nohighlight">\(C\)</span> 或 <span class="math notranslate nohighlight">\(D\)</span> 在线段 <span class="math notranslate nohighlight">\(AB\)</span> 的延长线上（不相交），此时线段 <span class="math notranslate nohighlight">\(CD\)</span> 和线段 <span class="math notranslate nohighlight">\(AB\)</span> 可能是共线。</li>
+<li>线段 <span class="math notranslate nohighlight">\(CD\)</span> 和线段 <span class="math notranslate nohighlight">\(AB\)</span> 部分重合。</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h3>方法二：直线交点方程<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(AB\)</span> 的直线方程：<span class="math notranslate nohighlight">\(\overrightarrow{OA} + \lambda \overrightarrow{AB}\)</span> ，
+<span class="math notranslate nohighlight">\(CD\)</span> 的直线方程：<span class="math notranslate nohighlight">\(\overrightarrow{OC} + \mu \overrightarrow{CD}\)</span> ，</p>
+<p>即：</p>
+<div class="math notranslate nohighlight">
+$$
+\begin{cases}
+   x &amp;=&amp;\ x_a + \lambda (x_b - x_a) \\
+   y &amp;=&amp;\ y_a + \lambda (y_b - y_a)
+\end{cases}
+$$
+
+$$
+\begin{cases}
+   x &amp;=&amp;\ x_c + \mu (x_d - x_c) \\
+   y &amp;=&amp;\ y_c + \mu (y_d - y_c)
+\end{cases}
+$$</div><p>交点方程：</p>
+<div class="math notranslate nohighlight">
+$$
+\begin{cases}
+  x_a + \lambda (x_b - x_a) &amp;=&amp;\ x_c + \mu (x_d - x_c) \\
+  y_a + \lambda (y_b - y_a) &amp;=&amp;\ y_c + \mu (y_d - y_c)
+\end{cases}
+$$</div><p>即：</p>
+<div class="math notranslate nohighlight">
+$$
+\begin{cases}
+  \lambda (x_b - x_a) - \mu (x_d - x_c) &amp;=&amp;\ x_c - x_a \\
+  \lambda (y_b - y_a) - \mu (y_d - y_c) &amp;=&amp;\ y_c - y_a
+\end{cases}
+$$</div><p>若行列式</p>
+<div class="math notranslate nohighlight">
+$$
+\Delta
+=
+\begin{vmatrix}
+  x_b - x_a &amp; -(x_d - x_c) \\
+  y_b - y_a &amp; -(y_d - y_c)
+\end{vmatrix}
+ = 0
+$$</div><p>表示两线段重合或平行。</p>
+<p>若 <span class="math notranslate nohighlight">\(\Delta \neq 0\)</span> ，（利用 Gramer 法则）求出</p>
+<div class="math notranslate nohighlight">
+$$
+\lambda
+=
+\frac{1}{\Delta}
+\begin{vmatrix}
+  x_c - x_a &amp; -(x_d - x_c) \\
+  y_c - y_a &amp; -(y_d - y_c)
+\end{vmatrix}
+$$
+
+$$
+\mu
+=
+\frac{1}{\Delta}
+\begin{vmatrix}
+  x_b - x_a &amp; x_c - x_a \\
+  y_b - y_a &amp; y_c - y_a
+\end{vmatrix}
+$$</div><p>只有当 <span class="math notranslate nohighlight">\(0 \leqslant \lambda \leqslant 1,\ 0 \leqslant \mu \leqslant 1\)</span> 两条线段才相交。否则交点在线段的延长线上。</p>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>16.2. 参考资料<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>计算几何-判断线段是否相交</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/wuwangchuxin0924/p/6218494.html">https://www.cnblogs.com/wuwangchuxin0924/p/6218494.html</a></div></blockquote>
+<ol class="arabic simple" start="2">
+<li>线段的交点计算</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="http://dec3.jlu.edu.cn/webcourse/t000096/graphics/chapter5/01_1.html">http://dec3.jlu.edu.cn/webcourse/t000096/graphics/chapter5/01_1.html</a></div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../computerNetwork/index.html" class="btn btn-neutral float-right" title="计算机网络" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="15_probability.html" class="btn btn-neutral float-left" title="15. 概率基础" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

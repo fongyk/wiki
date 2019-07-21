@@ -20,3 +20,4 @@
     13_cltLLN.rst
     14_coinWeigh.rst
     15_probability.rst
+    16_geometry.rst

@@ -117,11 +117,22 @@
 <li class="toctree-l3"><a class="reference internal" href="#id4">4.3. 中序遍历</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id5">4.4. 后序遍历</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id6">4.5. 层次遍历</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id7">4.6. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">4.6. 实例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">4.7. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="05_game.html">5. 游戏与必胜策略</a></li>
 <li class="toctree-l2"><a class="reference internal" href="06_randomSample.html">6. 蓄水池抽样</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_sort.html">7. 排序算法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_dynamicProgramming.html">8. 动态规划</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_backtrack.html">9. 回溯</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_topoSort.html">10. 拓扑排序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_catalan.html">11. 卡特兰数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_entropy.html">12. 信息熵</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_cltLLN.html">13. 大数定律和中心极限定理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_coinWeigh.html">14. 称重问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_probability.html">15. 概率基础</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_geometry.html">16. 几何</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
@@ -529,7 +540,89 @@
 </td></tr></table></div>
 </div>
 <div class="section" id="id7">
-<h2>4.6. 参考资料<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<h2>4.6. 实例<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">[LeetCode] Binary Tree Maximum Path Sum 最大路径和，路径连续但可以不经过根节点。Hint：路径有三种形式：在左子树中，在右子树中，跨越根节点。</p>
+<p><a class="reference external" href="https://leetcode.com/problems/binary-tree-maximum-path-sum/">https://leetcode.com/problems/binary-tree-maximum-path-sum/</a></p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
+</div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">maxPathSum</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">INT_MIN</span><span class="p">;</span>
+        <span class="n">maxPathSumEndWithRoot</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">maxPathSumEndWithRoot</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">,</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">res</span><span class="p">)</span> <span class="c1">// 以 root 结尾的路径的最大和</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">sumEndWithLeft</span> <span class="o">=</span> <span class="n">maxPathSumEndWithRoot</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span> <span class="c1">// 以 root-&gt;left 结尾的路径的最大和</span>
+            <span class="kt">int</span> <span class="n">sumEndWithright</span> <span class="o">=</span> <span class="n">maxPathSumEndWithRoot</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span> <span class="c1">// 以 root-&gt;right 结尾的路径的最大和</span>
+            <span class="kt">int</span> <span class="n">sumEndWithRoot</span> <span class="o">=</span> <span class="n">root</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">+</span> <span class="n">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max</span><span class="p">(</span><span class="n">sumEndWithLeft</span><span class="p">,</span> <span class="n">sumEndWithright</span><span class="p">));</span> <span class="c1">// 以 root 结尾的路径的最大和，必须包含根节点本身，最多包含左右节点中的一个</span>
+
+            <span class="n">sumEndWithLeft</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">sumEndWithLeft</span><span class="p">);</span>
+            <span class="n">sumEndWithright</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">sumEndWithright</span><span class="p">);</span>
+            <span class="kt">int</span> <span class="n">sumCrossRoot</span> <span class="o">=</span> <span class="n">root</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">+</span> <span class="n">sumEndWithLeft</span> <span class="o">+</span> <span class="n">sumEndWithright</span><span class="p">;</span>
+            <span class="c1">// 以上三步等价于：int sumCrossRoot = root-&gt;val + max(0, max(sumEndWithLeft+sumEndWithright, max(sumEndWithLeft, sumEndWithright)));</span>
+            <span class="c1">// 通过根节点的路径有四种情况：只包含根节点、包含根节点+左节点、包含根节点+右节点、包含根节点+左节点+右节点</span>
+
+            <span class="n">res</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">sumCrossRoot</span><span class="p">);</span>
+            <span class="c1">// sumCrossRoot 表示通过节点 root 的路径的最大和</span>
+            <span class="c1">// 这里没有比较 res 与左子树路径最大和、右子树路径最大和，是因为在计算 sumEndWithLeft、sumEndWithright 的过程中（第15、16行），已经更新了 res</span>
+            <span class="c1">// 函数 maxPathSumEndWithRoot 会遍历树的每一个节点，因此 res 会和所有路径的路径和进行比较。</span>
+
+            <span class="k">return</span> <span class="n">sumEndWithRoot</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h2>4.7. 参考资料<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>二叉树后序遍历非递归的三种写法 (数据结构)</li>
 </ol>

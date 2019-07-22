@@ -212,6 +212,58 @@
   }
 
 
+实例
+------------
+
+- [LeetCode] Binary Tree Maximum Path Sum 最大路径和，路径连续但可以不经过根节点。Hint：路径有三种形式：在左子树中，在右子树中，跨越根节点。
+
+  https://leetcode.com/problems/binary-tree-maximum-path-sum/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution
+      {
+      public:
+          int maxPathSum(TreeNode* root)
+          {
+              int res = INT_MIN;
+              maxPathSumEndWithRoot(root, res);
+              return res;
+          }
+      private:
+          int maxPathSumEndWithRoot(TreeNode* root, int& res) // 以 root 结尾的路径的最大和
+          {
+              if(root)
+              {
+                  int sumEndWithLeft = maxPathSumEndWithRoot(root->left, res); // 以 root->left 结尾的路径的最大和
+                  int sumEndWithright = maxPathSumEndWithRoot(root->right, res); // 以 root->right 结尾的路径的最大和
+                  int sumEndWithRoot = root->val + max(0, max(sumEndWithLeft, sumEndWithright)); // 以 root 结尾的路径的最大和，必须包含根节点本身，最多包含左右节点中的一个
+
+                  sumEndWithLeft = max(0, sumEndWithLeft);
+                  sumEndWithright = max(0, sumEndWithright);
+                  int sumCrossRoot = root->val + sumEndWithLeft + sumEndWithright;
+                  // 以上三步等价于：int sumCrossRoot = root->val + max(0, max(sumEndWithLeft+sumEndWithright, max(sumEndWithLeft, sumEndWithright)));
+                  // 通过根节点的路径有四种情况：只包含根节点、包含根节点+左节点、包含根节点+右节点、包含根节点+左节点+右节点
+
+                  res = max(res, sumCrossRoot);
+                  // sumCrossRoot 表示通过节点 root 的路径的最大和
+                  // 这里没有比较 res 与左子树路径最大和、右子树路径最大和，是因为在计算 sumEndWithLeft、sumEndWithright 的过程中（第15、16行），已经更新了 res
+                  // 函数 maxPathSumEndWithRoot 会遍历树的每一个节点，因此 res 会和所有路径的路径和进行比较。
+
+                  return sumEndWithRoot;
+              }
+              else return 0;
+          }
+      };
+
+
 参考资料
 --------------
 

@@ -194,7 +194,7 @@
 
 表示两线段重合或平行。
 
-若 :math:`\Delta \neq 0` ，（利用 Gramer 法则）求出
+若 :math:`\Delta \neq 0` ，（利用 Cramer 法则）求出
 
 .. math::
   :nowrap:

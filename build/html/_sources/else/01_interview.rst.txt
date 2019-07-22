@@ -1920,7 +1920,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           }
       };
 
-32. 回文。
+32. 回文（palindrome）。
 
   - [LeetCode] Longest Palindromic Substring 最长回文子串（子串连续）。Hint：方法一，中心扩展法，回文中心的两侧互为镜像，将每一个位置作为中心进行扩展，回文分偶数和奇数；方法二，动态规划，类似于矩阵连乘问题，逐渐增大步长。
 
@@ -2007,7 +2007,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
                        int j = i + gap;
                        if(s[i] == s[j])
                        {
-                           if(j - i <= 1 || dp[i+1][j-1])
+                           if(gap <= 1 || dp[i+1][j-1])
                            {
                                dp[i][j] = true;
                                longest = j - i + 1; // 由于步长是逐渐增大的，因此最后得到的回文子串一定是最长的
@@ -2168,8 +2168,129 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           }
       };
 
+  - [LeetCode] Palindrome Partitioning 分割字符串使所有的子串都是回文子串。Hint：回溯，从字符串起始位置往后判断回文，如果满足回文，加入子串集合，并从回文结束位置往后遍历。
 
-33. 给定两个字符串 s1 和 s2，检查 s2 是否由 s1 旋转得到。Hint：对 s1 做循环移位，所得字符串都将是字符串 s1s1 的子字符串。
+      https://leetcode.com/problems/palindrome-partitioning/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution
+      {
+      public:
+          vector<vector<string>> partition(string s)
+          {
+              vector<vector<string>> res;
+              if(s.empty()) return res;
+
+              // isPalindrome[i][j] 表示 s 的区间 [i,j] 是否是回文
+              vector<vector<bool>> isPalindrome(s.size(), vector<bool>(s.size(), false));
+              for(int gap = 0; gap < s.size(); ++gap)
+              {
+                  for(int i = 0; i+gap < s.size(); ++i)
+                  {
+                      int j = i + gap;
+                      if(s[i] == s[j])
+                      {
+                          if(gap <= 1) isPalindrome[i][j] = true;
+                          else isPalindrome[i][j] = isPalindrome[i+1][j-1];
+                      }
+                      else isPalindrome[i][j] = false;
+                  }
+              }
+
+              vector<string> tmp;
+              dfs(s, 0, tmp, res, isPalindrome);
+
+              isPalindrome.clear();
+              isPalindrome.shrink_to_fit();
+
+              return res;
+          }
+      private:
+          void dfs(string& s, int t, vector<string>& tmp, vector<vector<string>>& res, vector<vector<bool>>& isPalindrome)
+          {
+              if(t == s.size())
+              {
+                  res.push_back(tmp);
+                  return;
+              }
+              for(int i = t; i < s.size(); ++i)
+              {
+                  if(isPalindrome[t][i])
+                  {
+                      tmp.push_back(s.substr(t, i-t+1)); // 如果满足回文，加入当前子串集合
+                      dfs(s, i+1, tmp, res, isPalindrome); // 回文结束位置为 i，因此下一个起始位置是 i+1
+                      tmp.pop_back();
+                  }
+              }
+          }
+      };
+
+  - [LeetCode] Palindrome Partitioning II 找出最短回文分割。Hint：如果采用上题方法，会超时；使用动态规划，类似于最长上升子序列的解法。
+
+      https://leetcode.com/problems/palindrome-partitioning-ii/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution {
+      public:
+          int minCut(string s) {
+              if(s.size() <= 1) return 0;
+
+              vector<vector<bool>> isPalindrome(s.size(), vector<bool>(s.size(), false));
+              for(int gap = 0; gap < s.size(); ++gap)
+              {
+                  for(int i = 0; i+gap < s.size(); ++i)
+                  {
+                      int j = i + gap;
+                      if(s[i] == s[j])
+                      {
+                          if(gap <= 1) isPalindrome[i][j] = true;
+                          else isPalindrome[i][j] = isPalindrome[i+1][j-1];
+                      }
+                      else isPalindrome[i][j] = false;
+                  }
+              }
+
+              vector<int> dp(s.size(), 0); // dp[i] 表示区间 [0, i] 的最短回文分割
+              for(int i = 1; i < s.size(); ++i)
+              {
+                  if(isPalindrome[0][i]) dp[i] = 0;
+                  else
+                  {
+                      dp[i] = dp[i-1] + 1; // 直接划分 s[i] 为一个子串
+                      for(int j = 1; j < i; ++j)
+                      {
+                          if(isPalindrome[j][i]) dp[i] = min(dp[i], dp[j-1] + 1); // [j, i] 为一个子串
+                      }
+                  }
+              }
+
+              int res = dp[s.size()-1];
+
+              isPalindrome.clear(); isPalindrome.shrink_to_fit();
+              dp.clear(); dp.shrink_to_fit();
+
+              return res;
+          }
+
+      };
+
+33. 给定两个字符串 s1 和 s2，检查 s2 是否由 s1 旋转得到。Hint：对 s1 做循环移位，所得字符串都将是字符串 s1s1 的子串。
 
   .. container:: toggle
 

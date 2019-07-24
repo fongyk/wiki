@@ -3209,6 +3209,10 @@ Python
 
       https://blog.csdn.net/u011587569/article/details/52151871
 
+  - 一文读懂Faster RCNN
+
+      https://zhuanlan.zhihu.com/p/31426458
+
   - 【RCNN系列】【超详细解析】
 
       https://blog.csdn.net/amor_tila/article/details/78809791
@@ -3295,6 +3299,19 @@ Python
 
   https://blog.csdn.net/u011974639/article/details/79199306
 
+10. 一文读懂卷积神经网络中的1x1卷积核。Hint：升维、降维、跨通道信息交互。
+
+  https://zhuanlan.zhihu.com/p/40050371
+
+11. Image Classification Architectures
+
+  - 模型，FLOP（浮点计算量），性能，参数量（表格中的参数量单位是字节，按 4 字节/浮点型数计算，需要除以 4 才得到参数个数）
+
+      https://github.com/albanie/convnet-burden#convnet-burden
+
+  - torchvision.models
+
+      https://pytorch.org/docs/stable/torchvision/models.html
 
 其他
 --------------

@@ -379,7 +379,7 @@
       const int Solution::mv[4][2] = {{-1,0},{0,-1},{0,1},{1,0}};
 
 
-- Knuth-Shuffle，公平的洗牌算法。
+- Knuth-Shuffle，公平的洗牌算法：生成每一种排列的概率都是 :math:`\frac{1}{n!}`。
 
   .. container:: toggle
 

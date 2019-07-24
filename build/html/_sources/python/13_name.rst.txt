@@ -75,7 +75,7 @@
 
   >>> print obj._a
   0
-  >>> print _foo()
+  >>> print obj._foo()
   _foo
 
   >>> print obj.__b

@@ -619,6 +619,79 @@
 </td></tr></table></div>
 </div>
 </li>
+<li><p class="first">[LeetCode] Populating Next Right Pointers in Each Node II 建立层次右向指针。Hint：层次遍历的下一个节点就是当前节点的 next 指针所指。</p>
+<p><a class="reference external" href="https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/">https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/</a></p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
+</div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">Node</span><span class="o">*</span> <span class="n">connect</span><span class="p">(</span><span class="n">Node</span><span class="o">*</span> <span class="n">root</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">queue</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">**&gt;</span> <span class="n">stk</span><span class="p">;</span> <span class="c1">// 队列保存的是指针的地址，如果直接保存指针的拷贝，后面的 next 指向会有问题</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="o">&amp;</span><span class="n">root</span><span class="p">);</span>
+            <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span> <span class="c1">// 插入空指针作为每一层的结尾标识</span>
+        <span class="p">}</span>
+        <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">stk</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">stk</span><span class="p">.</span><span class="n">front</span><span class="p">()</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">stk</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+                <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">stk</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
+                <span class="p">{</span>
+                    <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span> <span class="c1">// 插入下一层的结尾标识</span>
+                    <span class="k">continue</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">else</span> <span class="k">break</span><span class="p">;</span> <span class="c1">// 最后一层</span>
+            <span class="p">}</span>
+            <span class="n">Node</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="o">*</span><span class="n">stk</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
+            <span class="n">stk</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">stk</span><span class="p">.</span><span class="n">front</span><span class="p">())</span> <span class="n">p</span> <span class="o">-&gt;</span> <span class="n">next</span> <span class="o">=</span> <span class="o">*</span><span class="n">stk</span><span class="p">.</span><span class="n">front</span><span class="p">();</span> <span class="c1">// 这一步决定了队列必须保存是指针的地址，否则 p -&gt; next = stk.front() 只是指向了一个临时拷贝。</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">left</span><span class="p">)</span> <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="o">&amp;</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">right</span><span class="p">)</span> <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="o">&amp;</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">root</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</li>
 </ul>
 </div>
 <div class="section" id="id8">

@@ -785,7 +785,8 @@
 <p class="first admonition-title">Note</p>
 <p>C++11标准引入了 <strong>emplace_front</strong> ，<strong>emplace</strong> ，<strong>emplace_back</strong> 这些操作构造而不是拷贝元素，分别对应 <strong>push_front</strong> ，<strong>insert/push</strong> ，<strong>push_back</strong> 。</p>
 <p>调用 push 或 insert 时，先创建一个元素类型的 <strong>临时对象</strong> ，这个对象被 <strong>拷贝</strong> 到容器中。</p>
-<p class="last">调用 emplace 时，将 <strong>参数</strong> 传递给元素类型的 <strong>构造函数</strong> ，在容器管理的内存空间中使用这些参数直接构造元素。传递给 emplace 的参数必须与构造函数匹配。</p>
+<p>调用 emplace 时，将 <strong>参数</strong> 传递给元素类型的 <strong>构造函数</strong> ，在容器管理的内存空间中使用这些参数直接构造元素。传递给 emplace 的参数必须与构造函数匹配。</p>
+<p class="last">相应地，<strong>pop</strong> 操作会调用析构函数。</p>
 </div>
 </div>
 <div class="section" id="to-string">

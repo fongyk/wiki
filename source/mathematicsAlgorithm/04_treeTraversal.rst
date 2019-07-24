@@ -263,6 +263,51 @@
           }
       };
 
+- [LeetCode] Populating Next Right Pointers in Each Node II 建立层次右向指针。Hint：层次遍历的下一个节点就是当前节点的 next 指针所指。
+
+  https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution
+      {
+      public:
+          Node* connect(Node* root)
+          {
+              queue<Node**> stk; // 队列保存的是指针的地址，如果直接保存指针的拷贝，后面的 next 指向会有问题
+              if(root)
+              {
+                  stk.push(&root);
+                  stk.push(NULL); // 插入空指针作为每一层的结尾标识
+              }
+              while(!stk.empty())
+              {
+                  if(stk.front() == NULL)
+                  {
+                      stk.pop();
+                      if(!stk.empty())
+                      {
+                          stk.push(NULL); // 插入下一层的结尾标识
+                          continue;
+                      }
+                      else break; // 最后一层
+                  }
+                  Node* p = *stk.front();
+                  stk.pop();
+                  if(stk.front()) p -> next = *stk.front(); // 这一步决定了队列必须保存是指针的地址，否则 p -> next = stk.front() 只是指向了一个临时拷贝。
+                  if(p -> left) stk.push(&p->left);
+                  if(p -> right) stk.push(&p->right);
+              }
+              return root;
+          }
+      };
 
 参考资料
 --------------

@@ -61,12 +61,12 @@ A 先取，取走最后一枚硬币的一方获胜。当双方都采取最优策
     grundy[0] = 0;
 
     int max_x = *max_element(X, X+N);
-    for(int j = 0; j <= max_x; ++j)
+    for(int j = 1; j <= max_x; ++j)
     {
       set<int> s;
       for(int i = 0; i < K; ++i)
       {
-        if(A[i] < j) s.insert(grundy[j - A[i]]); // 一步可达状态的 grundy 值
+        if(A[i] <= j) s.insert(grundy[j - A[i]]); // 一步可达状态的 grundy 值
       }
       int g = 0; // 集合之外的最小非负整数
       while(s.count(g) != 0) g++;
@@ -105,7 +105,7 @@ A 先取，取走最后一枚硬币的一方获胜。当双方都采取最优策
     assert(n > 0);
 
     vector<vector<int>> dp(n, vector<int>(n, 0));
-    for (int i = 0; i < n; ++i) dp[i][i] = num[i];
+    for (int i = 0; i < n; ++i) dp[i][i] = num[i]; // 初始化
 
     vector<int> sum(n + 1, 0);
     partial_sum(num.begin(), num.end(), sum.begin()+1);

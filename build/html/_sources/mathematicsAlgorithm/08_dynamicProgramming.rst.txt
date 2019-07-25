@@ -4,7 +4,8 @@
 矩阵连乘
 -------------
 
-矩阵连乘，通过调整加括号的方式，使得乘法元素次数最少。设矩阵链 :math:`A[0:n-1]` ， :math:`A[i]` 的维度为 :math:`p_i \times p_{i+1}` 。 :math:`m[i][j]` 是计算 :math:`A[i:j],\ 1 \leqslant i \leqslant j \leqslant n` 所需的最少乘法次数。
+矩阵连乘，通过调整加括号的方式，使得乘法元素次数最少。设矩阵链 :math:`A[0:n-1]` ， :math:`A[i]` 的维度为 :math:`p_i \times p_{i+1}` 。
+:math:`m[i][j]` 是计算 :math:`A[i:j],\ 0 \leqslant i \leqslant j \leqslant n-1` 所需的最少乘法次数。
 
 递归关系：
 
@@ -97,7 +98,7 @@
       {
         for(int j = 1; j <=n; ++j)
         {
-          if(x[i-1] == y[j-1]) c[i][j] = c[i-1][j-1] + 1;
+          if(x[i-1] == y[j-1]) c[i][j] = c[i-1][j-1] + 1; // 注意：这里是比较 x[i-1] 和 y[j-1]，而不是 x[i] 和 y[j]
           else c[i][j] = max(c[i-1][j], c[i][j-1]);
         }
       }

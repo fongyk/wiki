@@ -407,6 +407,14 @@ map
 
       不能直接定义关键字类型为自定义类类型的无序容器。
 
+
+.. note::
+
+    迭代器
+      不能通过 ``const_iterator`` 修改容器元素，但是 ``const_iterator`` 本身可以进行自增（++）操作，类似于指向常量的指针；
+      如果 ``const_iterator`` 本身被设置为常量： ``const const_iterator`` ，则不能进行自增操作。 ``const_iterator`` 一般用于访问常量容器。
+
+
 stack
 ---------
 ::

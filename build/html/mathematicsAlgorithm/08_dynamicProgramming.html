@@ -131,6 +131,7 @@
 <li class="toctree-l2"><a class="reference internal" href="13_cltLLN.html">13. 大数定律和中心极限定理</a></li>
 <li class="toctree-l2"><a class="reference internal" href="14_coinWeigh.html">14. 称重问题</a></li>
 <li class="toctree-l2"><a class="reference internal" href="15_probability.html">15. 概率基础</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_geometry.html">16. 几何</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
@@ -208,7 +209,8 @@
 <h1>8. 动态规划<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id2">
 <h2>8.1. 矩阵连乘<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>矩阵连乘，通过调整加括号的方式，使得乘法元素次数最少。设矩阵链 <span class="math notranslate nohighlight">\(A[0:n-1]\)</span> ， <span class="math notranslate nohighlight">\(A[i]\)</span> 的维度为 <span class="math notranslate nohighlight">\(p_i \times p_{i+1}\)</span> 。 <span class="math notranslate nohighlight">\(m[i][j]\)</span> 是计算 <span class="math notranslate nohighlight">\(A[i:j],\ 1 \leqslant i \leqslant j \leqslant n\)</span> 所需的最少乘法次数。</p>
+<p>矩阵连乘，通过调整加括号的方式，使得乘法元素次数最少。设矩阵链 <span class="math notranslate nohighlight">\(A[0:n-1]\)</span> ， <span class="math notranslate nohighlight">\(A[i]\)</span> 的维度为 <span class="math notranslate nohighlight">\(p_i \times p_{i+1}\)</span> 。
+<span class="math notranslate nohighlight">\(m[i][j]\)</span> 是计算 <span class="math notranslate nohighlight">\(A[i:j],\ 0 \leqslant i \leqslant j \leqslant n-1\)</span> 所需的最少乘法次数。</p>
 <p>递归关系：</p>
 <div class="math notranslate nohighlight">
 $$
@@ -312,7 +314,7 @@ $$</div><div class="toggle docutils container">
   <span class="p">{</span>
     <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
     <span class="p">{</span>
-      <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 注意：这里是比较 x[i-1] 和 y[j-1]，而不是 x[i] 和 y[j]</span>
       <span class="k">else</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
     <span class="p">}</span>
   <span class="p">}</span>

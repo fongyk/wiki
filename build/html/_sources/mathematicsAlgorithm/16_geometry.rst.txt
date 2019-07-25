@@ -1,8 +1,113 @@
 几何
 ===========
 
+仿射变换
+-------------
+
+仿射变换（Affine Transformation）是一种二维坐标到二维坐标之间的线性变换，变换前后保持以下属性：
+
+- collinearity ：共线的点仍然共线。
+
+- parallelism ：平行的线仍然平行。
+
+- convexity ：凸集仍然是凸集。
+
+- ratios of lengths ：不同线段的长度比值保持不变。
+
+- barycenters ：点集的重心保持不变。
+
+.. math::
+    :nowrap:
+
+    $$
+    \begin{bmatrix}
+      x^{\prime} \\
+      y^{\prime} \\
+      1
+    \end{bmatrix}
+    =
+    T
+    \begin{bmatrix}
+      x \\
+      y \\
+      1
+    \end{bmatrix}
+    ,\quad
+    T =
+    \begin{bmatrix}
+      a_1 & a_2 & t_x \\
+      a_3 & a_4 & t_y \\
+      0 & 0 & 1
+    \end{bmatrix}
+    $$
+
+平移（translation）
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. math::
+    :nowrap:
+
+    $$
+    T =
+    \begin{bmatrix}
+      1 & 0 & d_x \\
+      0 & 1 & d_y \\
+      0 & 0 & 1
+    \end{bmatrix}
+    $$
+
+缩放（scaling）
+^^^^^^^^^^^^^^^^^^
+
+.. math::
+    :nowrap:
+
+    $$
+    T =
+    \begin{bmatrix}
+      s_x & 0 & 0 \\
+      0 & s_y & 0 \\
+      0 & 0 & 1
+    \end{bmatrix}
+    $$
+
+当 :math:`s_x=-1` 或 :math:`s_y=-1` 表示翻转（镜像）。
+
+逆时针旋转（rotation）
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. math::
+    :nowrap:
+
+    $$
+    T =
+    \begin{bmatrix}
+      \cos \theta & -\sin \theta & 0 \\
+      \sin \theta & \cos \theta  & 0 \\
+      0 & 0 & 1
+    \end{bmatrix}
+    $$
+
+错切（shear）
+^^^^^^^^^^^^^^^^^^
+
+.. math::
+    :nowrap:
+
+    $$
+    T =
+    \begin{bmatrix}
+      1 & sh_x & 0 \\
+      sh_y & 1 & 0 \\
+      0 & 0 & 1
+    \end{bmatrix}
+    $$
+
+
 线段相交
 -------------
+
+**问题** ：给定两条线段四个端点的坐标，判断两条线段是否相交。
 
 .. image:: ./16_lineSegment.jpg
   :align: center
@@ -222,6 +327,14 @@
 只有当 :math:`0 \leqslant \lambda \leqslant 1,\ 0 \leqslant \mu \leqslant 1` 两条线段才相交。否则交点在线段的延长线上。
 
 
+凸多边形
+--------------
+
+**问题** ：按逆时针顺序给定多边形 :math:`n` 个顶点的坐标，判断该多边形是否是凸多边形。
+
+**方案** ：凸多边形的特点是：对于任意一条边，其他的边都在它的同一侧；按逆时针顺序，下一条边 :math:`\overrightarrow{l}_{i+1}` 一定在当前边 :math:`\overrightarrow{l}_i` 的逆时针方向。
+判断方法：如果 :math:`\overrightarrow{l}_i \times \overrightarrow{l}_{i+1}` 符号为正，则在逆时针方向；符号为负，则在顺时针方向；大小为 0，表示平行/共线。
+
 
 参考资料
 -------------
@@ -233,3 +346,11 @@
 2. 线段的交点计算
 
   http://dec3.jlu.edu.cn/webcourse/t000096/graphics/chapter5/01_1.html
+
+3. 何为仿射变换(Affine Transformation)
+
+  https://www.cnblogs.com/bnuvincent/p/6691189.html
+
+4. Affine transformation
+
+  https://en.wikipedia.org/wiki/Affine_transformation#Properties

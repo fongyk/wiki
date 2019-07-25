@@ -124,12 +124,20 @@
 <li class="toctree-l2"><a class="reference internal" href="14_coinWeigh.html">14. 称重问题</a></li>
 <li class="toctree-l2"><a class="reference internal" href="15_probability.html">15. 概率基础</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">16. 几何</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">16.1. 线段相交</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id3">方法一：跨立实验</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id4">方法二：直线交点方程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">16.1. 仿射变换</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#translation">平移（translation）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#scaling">缩放（scaling）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rotation">逆时针旋转（rotation）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#shear">错切（shear）</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">16.2. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">16.2. 线段相交</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">方法一：跨立实验</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">方法二：直线交点方程</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">16.3. 凸多边形</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">16.4. 参考资料</a></li>
 </ul>
 </li>
 </ul>
@@ -208,10 +216,88 @@
   <div class="section" id="id1">
 <h1>16. 几何<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id2">
-<h2>16.1. 线段相交<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<a class="reference internal image-reference" href="../_images/16_lineSegment.jpg"><img alt="../_images/16_lineSegment.jpg" class="align-center" src="../_images/16_lineSegment.jpg" style="width: 600px;" /></a>
+<h2>16.1. 仿射变换<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>仿射变换（Affine Transformation）是一种二维坐标到二维坐标之间的线性变换，变换前后保持以下属性：</p>
+<ul class="simple">
+<li>collinearity ：共线的点仍然共线。</li>
+<li>parallelism ：平行的线仍然平行。</li>
+<li>convexity ：凸集仍然是凸集。</li>
+<li>ratios of lengths ：不同线段的长度比值保持不变。</li>
+<li>barycenters ：点集的重心保持不变。</li>
+</ul>
+<div class="math notranslate nohighlight">
+$$
+\begin{bmatrix}
+  x^{\prime} \\
+  y^{\prime} \\
+  1
+\end{bmatrix}
+=
+T
+\begin{bmatrix}
+  x \\
+  y \\
+  1
+\end{bmatrix}
+,\quad
+T =
+\begin{bmatrix}
+  a_1 &amp; a_2 &amp; t_x \\
+  a_3 &amp; a_4 &amp; t_y \\
+  0 &amp; 0 &amp; 1
+\end{bmatrix}
+$$</div><div class="section" id="translation">
+<h3>平移（translation）<a class="headerlink" href="#translation" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+$$
+T =
+\begin{bmatrix}
+  1 &amp; 0 &amp; d_x \\
+  0 &amp; 1 &amp; d_y \\
+  0 &amp; 0 &amp; 1
+\end{bmatrix}
+$$</div></div>
+<div class="section" id="scaling">
+<h3>缩放（scaling）<a class="headerlink" href="#scaling" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+$$
+T =
+\begin{bmatrix}
+  s_x &amp; 0 &amp; 0 \\
+  0 &amp; s_y &amp; 0 \\
+  0 &amp; 0 &amp; 1
+\end{bmatrix}
+$$</div><p>当 <span class="math notranslate nohighlight">\(s_x=-1\)</span> 或 <span class="math notranslate nohighlight">\(s_y=-1\)</span> 表示翻转（镜像）。</p>
+</div>
+<div class="section" id="rotation">
+<h3>逆时针旋转（rotation）<a class="headerlink" href="#rotation" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+$$
+T =
+\begin{bmatrix}
+  \cos \theta &amp; -\sin \theta &amp; 0 \\
+  \sin \theta &amp; \cos \theta  &amp; 0 \\
+  0 &amp; 0 &amp; 1
+\end{bmatrix}
+$$</div></div>
+<div class="section" id="shear">
+<h3>错切（shear）<a class="headerlink" href="#shear" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+$$
+T =
+\begin{bmatrix}
+  1 &amp; sh_x &amp; 0 \\
+  sh_y &amp; 1 &amp; 0 \\
+  0 &amp; 0 &amp; 1
+\end{bmatrix}
+$$</div></div>
+</div>
 <div class="section" id="id3">
-<h3>方法一：跨立实验<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h2>16.2. 线段相交<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p><strong>问题</strong> ：给定两条线段四个端点的坐标，判断两条线段是否相交。</p>
+<a class="reference internal image-reference" href="../_images/16_lineSegment.jpg"><img alt="../_images/16_lineSegment.jpg" class="align-center" src="../_images/16_lineSegment.jpg" style="width: 600px;" /></a>
+<div class="section" id="id4">
+<h3>方法一：跨立实验<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p><strong>快速排斥</strong></p>
 <p>分别以两条线段为对角线作矩形，如果两个矩形没有重合部分（IoU = 0），则两条线段一定不相交。反之不然。</p>
 <a class="reference internal image-reference" href="../_images/16_iou.jpg"><img alt="../_images/16_iou.jpg" class="align-center" src="../_images/16_iou.jpg" style="width: 500px;" /></a>
@@ -313,8 +399,8 @@ $$</div></div></blockquote>
 </li>
 </ul>
 </div>
-<div class="section" id="id4">
-<h3>方法二：直线交点方程<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id5">
+<h3>方法二：直线交点方程<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p><span class="math notranslate nohighlight">\(AB\)</span> 的直线方程：<span class="math notranslate nohighlight">\(\overrightarrow{OA} + \lambda \overrightarrow{AB}\)</span> ，
 <span class="math notranslate nohighlight">\(CD\)</span> 的直线方程：<span class="math notranslate nohighlight">\(\overrightarrow{OC} + \mu \overrightarrow{CD}\)</span> ，</p>
 <p>即：</p>
@@ -379,8 +465,14 @@ $$
 $$</div><p>只有当 <span class="math notranslate nohighlight">\(0 \leqslant \lambda \leqslant 1,\ 0 \leqslant \mu \leqslant 1\)</span> 两条线段才相交。否则交点在线段的延长线上。</p>
 </div>
 </div>
-<div class="section" id="id5">
-<h2>16.2. 参考资料<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h2>16.3. 凸多边形<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p><strong>问题</strong> ：按逆时针顺序给定多边形 <span class="math notranslate nohighlight">\(n\)</span> 个顶点的坐标，判断该多边形是否是凸多边形。</p>
+<p><strong>方案</strong> ：凸多边形的特点是：对于任意一条边，其他的边都在它的同一侧；按逆时针顺序，下一条边 <span class="math notranslate nohighlight">\(\overrightarrow{l}_{i+1}\)</span> 一定在当前边 <span class="math notranslate nohighlight">\(\overrightarrow{l}_i\)</span> 的逆时针方向。
+判断方法：如果 <span class="math notranslate nohighlight">\(\overrightarrow{l}_i \times \overrightarrow{l}_{i+1}\)</span> 符号为正，则在逆时针方向；符号为负，则在顺时针方向；大小为 0，表示平行/共线。</p>
+</div>
+<div class="section" id="id7">
+<h2>16.4. 参考资料<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>计算几何-判断线段是否相交</li>
 </ol>
@@ -391,6 +483,16 @@ $$</div><p>只有当 <span class="math notranslate nohighlight">\(0 \leqslant \l
 </ol>
 <blockquote>
 <div><a class="reference external" href="http://dec3.jlu.edu.cn/webcourse/t000096/graphics/chapter5/01_1.html">http://dec3.jlu.edu.cn/webcourse/t000096/graphics/chapter5/01_1.html</a></div></blockquote>
+<ol class="arabic simple" start="3">
+<li>何为仿射变换(Affine Transformation)</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/bnuvincent/p/6691189.html">https://www.cnblogs.com/bnuvincent/p/6691189.html</a></div></blockquote>
+<ol class="arabic simple" start="4">
+<li>Affine transformation</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://en.wikipedia.org/wiki/Affine_transformation#Properties">https://en.wikipedia.org/wiki/Affine_transformation#Properties</a></div></blockquote>
 </div>
 </div>
 

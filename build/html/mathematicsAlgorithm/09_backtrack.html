@@ -661,6 +661,211 @@
 </td></tr></table></div>
 </div>
 </li>
+<li><p class="first">[LeetCode] Distinct Subsequences II 子序列个数（含重复元素的组合数）。Hint：方法一，动态规划，设 <span class="math notranslate nohighlight">\(dp[k]\)</span> 是以 <span class="math notranslate nohighlight">\(S[k]\)</span> 结尾的子序列个数，
+如果不考虑重复，则 <span class="math notranslate nohighlight">\(dp[k] = dp[0] + dp[1] + \cdots + dp[k-1] + 1\)</span> ，即在前面的子序列末尾追加 <span class="math notranslate nohighlight">\(S[k]\)</span> ，或 <span class="math notranslate nohighlight">\(S[k]\)</span> 单独构成的子序列（ <span class="math notranslate nohighlight">\(+1\)</span> ）；
+然而要减掉以 <span class="math notranslate nohighlight">\(S[k]\)</span> 结尾的重复子序列： <span class="math notranslate nohighlight">\(dp[k]\ -= dp[r],\ 0 \leqslant r &lt; k \ \&amp;\&amp; \ S[k]=S[r]\)</span> ；
+方法二，回溯：设当前子序列集合最后一个元素的下标为 <span class="math notranslate nohighlight">\(i\)</span> ，在把当前字符（设下标为 <span class="math notranslate nohighlight">\(t\)</span> ）加入子序列集合时，
+需要考虑区间 <span class="math notranslate nohighlight">\((i, t)\)</span> （如果当前子序列集合为空，区间为 <span class="math notranslate nohighlight">\([0, t)\)</span> ）内是否有 <span class="math notranslate nohighlight">\(S[t]\)</span> 的重复元素，如果有，则不能把 <span class="math notranslate nohighlight">\(S[t]\)</span> 插入当前子序列中，否则就造成重复；回溯方法严重超时。</p>
+<blockquote>
+<div><p><a class="reference external" href="https://leetcode.com/problems/distinct-subsequences-ii/submissions/">https://leetcode.com/problems/distinct-subsequences-ii/submissions/</a></p>
+</div></blockquote>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
+</div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 方法一</span>
+
+<span class="k">class</span> <span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">distinctSubseqII</span><span class="p">(</span><span class="n">string</span> <span class="n">S</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">S</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">long</span> <span class="kt">long</span><span class="o">&gt;</span> <span class="n">dp</span><span class="p">(</span><span class="n">S</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">S</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">accumulate</span><span class="p">(</span><span class="n">dp</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">dp</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="n">i</span><span class="p">,</span> <span class="mi">1LL</span><span class="p">);</span> <span class="c1">// + 1，这里的 1LL 表示 long long int，默认的 int 型导致溢出，结果错误</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">==</span> <span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="c1">// 减去重复</span>
+                <span class="p">{</span>
+                    <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-=</span> <span class="n">dp</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+                    <span class="k">while</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1000000007</span><span class="p">;</span> <span class="c1">// 减法操作可能会使得 dp[i] &lt; 0</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">%</span> <span class="mi">1000000007</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">accumulate</span><span class="p">(</span><span class="n">dp</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">dp</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">0LL</span><span class="p">)</span> <span class="o">%</span> <span class="mi">1000000007</span><span class="p">;</span> <span class="c1">// 0LL</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 方法一改进型</span>
+
+<span class="c1">// 设 dp[k] 是以 S[k] 结尾的不重复子序列个数（定义与上面的方法一相同），</span>
+<span class="c1">// 设 end[i] 是以字符 &#39;a&#39; + i 结尾的子序列个数，0 &lt;= i &lt; 26，</span>
+<span class="c1">// 如果该字符出现在多个位置，如 {j，k，l}，则 end[i] = dp[j] + dp[k] + dp[l]，</span>
+<span class="c1">// 由方法一可知：dp[l] = dp[l-1] + 1 - dp[j] - dp[k]，</span>
+<span class="c1">// 因此 end[i] = dp[l-1] + 1</span>
+
+<span class="k">class</span> <span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">distinctSubseqII</span><span class="p">(</span><span class="n">string</span> <span class="n">S</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">S</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kt">long</span> <span class="kt">long</span> <span class="n">end</span><span class="p">[</span><span class="mi">26</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">S</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">end</span><span class="p">[</span><span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="sc">&#39;a&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">accumulate</span><span class="p">(</span><span class="n">end</span><span class="p">,</span> <span class="n">end</span> <span class="o">+</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">1LL</span><span class="p">)</span> <span class="o">%</span> <span class="mi">1000000007</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">accumulate</span><span class="p">(</span><span class="n">end</span><span class="p">,</span> <span class="n">end</span> <span class="o">+</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">0LL</span><span class="p">)</span> <span class="o">%</span> <span class="mi">1000000007</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 方法二</span>
+
+<span class="k">class</span> <span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">distinctSubseqII</span><span class="p">(</span><span class="n">string</span> <span class="n">S</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">S</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">subS</span><span class="p">;</span> <span class="c1">// 当前子序列集合</span>
+        <span class="n">DFS</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">subS</span><span class="p">,</span> <span class="n">ans</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="kt">bool</span> <span class="n">hasRepeat</span><span class="p">(</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">S</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">subS</span><span class="p">,</span> <span class="kt">int</span> <span class="n">t</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">bool</span> <span class="n">repeat</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="kt">size_t</span> <span class="n">i</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">subS</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">else</span> <span class="n">i</span> <span class="o">=</span> <span class="n">subS</span><span class="p">.</span><span class="n">back</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">t</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">S</span><span class="p">[</span><span class="n">t</span><span class="p">])</span>
+            <span class="p">{</span>
+                <span class="n">repeat</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">repeat</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">DFS</span><span class="p">(</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">S</span><span class="p">,</span> <span class="kt">int</span> <span class="n">t</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">subS</span><span class="p">,</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">ans</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">t</span> <span class="o">==</span> <span class="n">S</span><span class="p">.</span><span class="n">size</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">subS</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="n">ans</span> <span class="o">=</span> <span class="p">(</span><span class="n">ans</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">1000000007</span><span class="p">;</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">DFS</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">subS</span><span class="p">,</span> <span class="n">ans</span><span class="p">);</span> <span class="c1">// 当前子序列集合不包括 S[t]</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">hasRepeat</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">subS</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span> <span class="c1">// 区间 (i, t) （或 [0, t)）内不包括 S[t] 的重复字符，才可以把 S[t] 加入当前子序列集合</span>
+        <span class="p">{</span>
+            <span class="n">subS</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+            <span class="n">DFS</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">subS</span><span class="p">,</span> <span class="n">ans</span><span class="p">);</span>
+            <span class="n">subS</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</li>
 <li><p class="first">Word search 查找字符串路径。</p>
 <blockquote>
 <div><p><a class="reference external" href="https://leetcode.com/problems/word-search/">https://leetcode.com/problems/word-search/</a></p>

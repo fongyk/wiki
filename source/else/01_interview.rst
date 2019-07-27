@@ -3086,6 +3086,40 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
+45. [LeetCode] Nth Digit 第 :math:`N` 个数字。Hint：:math:`k` 位数的个数是 :math:`9 \times 10^{k-1}` ，例如，两位数有 :math:`90` 个；
+先确定第 :math:`N` 个数字是几位数，再定位到具体的数，取出相应数字。
+
+  https://leetcode.com/problems/nth-digit/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution
+      {
+      public:
+          int findNthDigit(int n)
+          {
+              int sum = 0;
+              int k = 1;
+              while(sum + k*9*pow(10, k-1) < n)
+              {
+                  sum += k*9*pow(10, k-1);
+                  k ++;
+              }
+              int a = (n - sum) / k;
+              int b = (n - sum) % k;
+              int num = pow(10, k-1) + a - 1; // 定位到具体的数
+              if(b == 0) return num % 10; // 当前数的最后一位数字（个位）
+              else return ((num + 1) / static_cast<int>(pow(10, k-b))) % 10; // 下一个数的第 b 位数字
+          }
+      };
+
 C++
 ------------
 

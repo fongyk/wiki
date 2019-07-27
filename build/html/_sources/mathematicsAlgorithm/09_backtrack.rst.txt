@@ -300,6 +300,128 @@
 
 
 
+- [LeetCode] Distinct Subsequences II 子序列个数（含重复元素的组合数）。Hint：方法一，动态规划，设 :math:`dp[k]` 是以 :math:`S[k]` 结尾的子序列个数，
+  如果不考虑重复，则 :math:`dp[k] = dp[0] + dp[1] + \cdots + dp[k-1] + 1` ，即在前面的子序列末尾追加 :math:`S[k]` ，或 :math:`S[k]` 单独构成的子序列（ :math:`+1` ）；
+  然而要减掉以 :math:`S[k]` 结尾的重复子序列： :math:`dp[k]\ -= dp[r],\ 0 \leqslant r < k \ \&\& \ S[k]=S[r]` ；
+  方法二，回溯：设当前子序列集合最后一个元素的下标为 :math:`i` ，在把当前字符（设下标为 :math:`t` ）加入子序列集合时，
+  需要考虑区间 :math:`(i, t)` （如果当前子序列集合为空，区间为 :math:`[0, t)` ）内是否有 :math:`S[t]` 的重复元素，如果有，则不能把 :math:`S[t]` 插入当前子序列中，否则就造成重复；回溯方法严重超时。
+
+    https://leetcode.com/problems/distinct-subsequences-ii/submissions/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 方法一
+
+      class Solution
+      {
+      public:
+          int distinctSubseqII(string S)
+          {
+              if(S.empty()) return 0;
+              vector<long long> dp(S.size(), 0);
+              dp[0] = 1;
+              for(size_t i = 1; i < S.size(); ++i)
+              {
+                  dp[i] = accumulate(dp.begin(), dp.begin() + i, 1LL); // + 1，这里的 1LL 表示 long long int，默认的 int 型导致溢出，结果错误
+                  for(size_t k = 0; k < i; ++k)
+                  {
+                      if(S[k] == S[i]) // 减去重复
+                      {
+                          dp[i] -= dp[k];
+                          while(dp[i] < 0) dp[i] += 1000000007; // 减法操作可能会使得 dp[i] < 0
+                      }
+                  }
+                  dp[i] = dp[i] % 1000000007;
+              }
+              return accumulate(dp.begin(), dp.end(), 0LL) % 1000000007; // 0LL
+          }
+      };
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 方法一改进型
+
+      // 设 dp[k] 是以 S[k] 结尾的不重复子序列个数（定义与上面的方法一相同），
+      // 设 end[i] 是以字符 'a' + i 结尾的子序列个数，0 <= i < 26，
+      // 如果该字符出现在多个位置，如 {j，k，l}，则 end[i] = dp[j] + dp[k] + dp[l]，
+      // 由方法一可知：dp[l] = dp[l-1] + 1 - dp[j] - dp[k]，
+      // 因此 end[i] = dp[l-1] + 1
+
+      class Solution
+      {
+      public:
+          int distinctSubseqII(string S)
+          {
+              if(S.empty()) return 0;
+              long long end[26] = {0};
+              for(size_t i = 0; i < S.size(); ++i)
+              {
+                  end[S[i] - 'a'] = accumulate(end, end + 26, 1LL) % 1000000007;
+              }
+              return accumulate(end, end + 26, 0LL) % 1000000007;
+          }
+      };
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 方法二
+
+      class Solution
+      {
+      public:
+          int distinctSubseqII(string S)
+          {
+              if(S.empty()) return 0;
+              int ans = 0;
+              vector<int> subS; // 当前子序列集合
+              DFS(S, 0, subS, ans);
+              return ans;
+          }
+      private:
+          bool hasRepeat(string& S, vector<int>& subS, int t)
+          {
+              bool repeat = false;
+              size_t i;
+              if(subS.empty()) i = 0;
+              else i = subS.back() + 1;
+              for(; i < t; ++i)
+              {
+                  if(S[i] == S[t])
+                  {
+                      repeat = true;
+                      break;
+                  }
+              }
+              return repeat;
+          }
+          void DFS(string& S, int t, vector<int>& subS, int &ans)
+          {
+              if(t == S.size())
+              {
+                  if(!subS.empty()) ans = (ans + 1) % 1000000007;
+                  return;
+              }
+              DFS(S, t+1, subS, ans); // 当前子序列集合不包括 S[t]
+              if(!hasRepeat(S, subS, t)) // 区间 (i, t) （或 [0, t)）内不包括 S[t] 的重复字符，才可以把 S[t] 加入当前子序列集合
+              {
+                  subS.push_back(t);
+                  DFS(S, t+1, subS, ans);
+                  subS.pop_back();
+              }
+          }
+      };
+
+
+
 - Word search 查找字符串路径。
 
     https://leetcode.com/problems/word-search/

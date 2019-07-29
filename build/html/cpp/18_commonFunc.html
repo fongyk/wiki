@@ -228,19 +228,19 @@
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
-<p><strong>lower_bound</strong> 从排好序的数组区间 <strong>[first,last)</strong> 中，采用二分查找，返回 <strong>大于或等于</strong> val的 <strong>第一个</strong> 元素位置。
-如果所有元素都小于val，则返回last。</p>
+<p><strong>lower_bound</strong> 从排好序的数组区间 <strong>[first,last)</strong> 中，采用二分查找，返回 <strong>大于或等于</strong> val 的 <strong>第一个</strong> 元素位置。
+如果所有元素都小于 val，则返回 last。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">ForwardIterator</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
 <span class="n">ForwardIterator</span> <span class="n">lower_bound</span> <span class="p">(</span><span class="n">ForwardIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">ForwardIterator</span> <span class="n">last</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">);</span>
 </pre></div>
 </div>
-<p><strong>upper_bound</strong> 从排好序的数组区间 <strong>[first,last)</strong> 中，采用二分查找，返回 <strong>大于</strong> val的 <strong>第一个</strong> 元素位置。
-如果所有元素都不大于val，则返回last。</p>
+<p><strong>upper_bound</strong> 从排好序的数组区间 <strong>[first,last)</strong> 中，采用二分查找，返回 <strong>大于</strong> val 的 <strong>第一个</strong> 元素位置。
+如果所有元素都不大于 val，则返回 last。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">ForwardIterator</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
 <span class="n">ForwardIterator</span> <span class="n">upper_bound</span> <span class="p">(</span><span class="n">ForwardIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">ForwardIterator</span> <span class="n">last</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>求有序数组中val的个数：</p>
+<p>求有序数组中 val 的个数：</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">upper_bound</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="o">-</span> <span class="n">lower_bound</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">,</span> <span class="n">val</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -306,20 +306,37 @@
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
-<p><strong>fill</strong> 函数将一个区间 <strong>[first,last)</strong> 的每个元素都赋予val值。</p>
+<p><strong>fill</strong> 函数将一个区间 <strong>[first,last)</strong> 的每个元素都赋予 val 值。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">ForwardIterator</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
 <span class="kt">void</span> <span class="n">fill</span> <span class="p">(</span><span class="n">ForwardIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">ForwardIterator</span> <span class="n">last</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">);</span>
 </pre></div>
 </div>
-<p><strong>fill_n</strong> 函数从 <strong>first</strong> 开始依次赋予n个元素val值。</p>
+<p><strong>fill_n</strong> 函数从 <strong>first</strong> 开始依次赋予 n 个元素 val 值。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">OutputIterator</span><span class="p">,</span> <span class="k">class</span> <span class="nc">Size</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
 <span class="kt">void</span> <span class="n">fill_n</span> <span class="p">(</span><span class="n">OutputIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">Size</span> <span class="n">n</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">);</span>
 </pre></div>
 </div>
-<p><strong>for_each</strong> 把函数fn应用于区间 <strong>[first,last)</strong> 的每个元素。</p>
+<p><strong>for_each</strong> 把函数 fn 应用于区间 <strong>[first,last)</strong> 的每个元素。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">InputIterator</span><span class="p">,</span> <span class="k">class</span> <span class="nc">Function</span><span class="o">&gt;</span>
-<span class="n">Function</span> <span class="n">for_each</span> <span class="p">(</span><span class="n">InputIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">InputIterator</span> <span class="n">last</span><span class="p">,</span> <span class="n">Function</span> <span class="n">fn</span><span class="p">);</span>
+<span class="n">Function</span> <span class="n">for_each</span> <span class="p">(</span><span class="n">InputIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">InputIterator</span> <span class="n">last</span><span class="p">,</span> <span class="n">Function</span> <span class="n">fn</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">first</span><span class="o">!=</span><span class="n">last</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">fn</span> <span class="p">(</span><span class="o">*</span><span class="n">first</span><span class="p">);</span>
+    <span class="o">++</span><span class="n">first</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">fn</span><span class="p">;</span>      <span class="c1">// or, since C++11: return move(fn);</span>
+<span class="p">}</span>
 </pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">fn</span></code> 是一个一元谓词（unary predicate），接受一个参数，其返回值被忽略。<code class="docutils literal notranslate"><span class="pre">fn</span></code> 可以是一个函数指针或函数对象。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<dl class="last docutils">
+<dt>函数对象</dt>
+<dd>如果一个类将 <code class="docutils literal notranslate"><span class="pre">()</span></code> 运算符重载为成员函数，这个类就称为函数对象类，这个类的对象就是函数对象。
+函数对象是一个对象，但是使用的形式看起来像函数调用，实际上也执行了函数调用。</dd>
+</dl>
 </div>
 <div class="toggle docutils container">
 <div class="header docutils container">
@@ -351,7 +368,15 @@
 25
 26
 27
-28</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+28
+29
+30
+31
+32
+33
+34
+35
+36</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
@@ -359,7 +384,13 @@
 <span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
 <span class="kt">void</span> <span class="n">print</span><span class="p">(</span><span class="n">T</span> <span class="n">elem</span><span class="p">){</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">elem</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span><span class="p">;</span> <span class="p">}</span>
 
-<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="k">struct</span> <span class="n">myclass</span>
+<span class="p">{</span>
+  <span class="kt">void</span> <span class="k">operator</span><span class="p">()</span> <span class="p">(</span><span class="kt">int</span> <span class="n">elem</span><span class="p">)</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">elem</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span><span class="n">myobject</span><span class="p">;</span>
+<span class="c1">// 注意：这里重载的是 () 运算符，接受一个参数；myobject 是一个结构体变量（类对象），调用 myobject(6) 会打印 6。</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
 <span class="p">{</span>
 
   <span class="kt">float</span> <span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mf">0.0</span> <span class="p">};</span> <span class="c1">// {0.0, 0.0, 0.0, 0.0}</span>
@@ -372,6 +403,8 @@
   <span class="n">for_each</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">4</span><span class="p">,</span> <span class="n">print</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">);</span> <span class="c1">//  6.6 6.6 3.3 3.3</span>
   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
   <span class="n">for_each</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">print</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">);</span> <span class="c1">//  9 9 9 9</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="n">for_each</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">myobject</span><span class="p">);</span> <span class="c1">//  9 9 9 9</span>
   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 
   <span class="kt">int</span> <span class="n">b</span><span class="p">[</span><span class="mi">10</span><span class="p">][</span><span class="mi">20</span><span class="p">];</span>
@@ -439,6 +472,8 @@
 <span class="kt">void</span> <span class="n">sort</span> <span class="p">(</span><span class="n">RandomAccessIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">RandomAccessIterator</span> <span class="n">last</span><span class="p">,</span> <span class="n">Compare</span> <span class="n">comp</span><span class="p">);</span>
 </pre></div>
 </div>
+<p><code class="docutils literal notranslate"><span class="pre">comp</span></code> 是一个二元谓词（binary predicate），接受两个参数，返回 bool 型或一个可以转换为 bool 型的类型。<code class="docutils literal notranslate"><span class="pre">comp</span></code> 可以是一个函数指针或函数对象。</p>
+<p>如果需要稳定排序，可以使用 <code class="docutils literal notranslate"><span class="pre">stable_sort</span></code> 直接代替 <code class="docutils literal notranslate"><span class="pre">sort</span></code> 。</p>
 <div class="toggle docutils container">
 <div class="header docutils container">
 <span class="math notranslate nohighlight">\(\color{darkgreen}{Example}\)</span></div>
@@ -490,7 +525,8 @@
 46
 47
 48
-49</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+49
+50</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;functional&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
@@ -508,6 +544,7 @@
     <span class="k">return</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span> <span class="n">myobject</span><span class="p">;</span>
+<span class="c1">// 注意：这里重载的是 () 运算符，接受两个参数；myobject 是一个结构体变量（类对象）</span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
 <span class="p">{</span>
@@ -518,16 +555,16 @@
   <span class="c1">// using default comparison (operator &lt;):</span>
   <span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="mi">4</span><span class="p">);</span>           <span class="c1">//(12 32 45 71)26 80 53 33</span>
 
-  <span class="c1">// using comparator as comp</span>
+  <span class="c1">// using comparator as comp，这里是相当于一个函数指针</span>
   <span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="mi">4</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">comparator</span><span class="p">);</span> <span class="c1">// 12 32 45 71(26 33 53 80)</span>
 
-  <span class="c1">// using object as comp</span>
+  <span class="c1">// using object as comp，这里是一个函数对象</span>
   <span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">myobject</span><span class="p">);</span>     <span class="c1">//(12 26 32 33 45 53 71 80)</span>
 
-  <span class="c1">// using build-in comp: greater</span>
+  <span class="c1">// using build-in comp: greater，类 greater 的成员函数 operator()</span>
   <span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">greater</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">());</span> <span class="c1">// (80 71 53 45 33 32 26 12)</span>
 
-  <span class="c1">// using build-in comp: less</span>
+  <span class="c1">// using build-in comp: less，类 less 的成员函数 operator()</span>
   <span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">less</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">());</span>  <span class="c1">//(12 26 32 33 45 53 71 80)</span>
 
   <span class="c1">// using reverse_iterator</span>
@@ -627,7 +664,7 @@
 <ul class="simple">
 <li><strong>min_element</strong> ：会返回指向输入序列的最小元素的迭代器；</li>
 <li><strong>max_element</strong> ：会返回指向最大元素的迭代器；</li>
-<li><strong>minmax_element</strong> ：会以 pair 对象的形式返回这两个迭代器。first 指向最小元素。second 指向最大元素。</li>
+<li><strong>minmax_element</strong> ：会以 pair 对象的形式返回这两个迭代器。first 指向最小元素；second 指向最大元素。</li>
 </ul>
 <p><strong>min_element</strong>:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// default</span>
@@ -882,7 +919,7 @@
 <span class="kt">void</span> <span class="n">iota</span> <span class="p">(</span><span class="n">ForwardIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">ForwardIterator</span> <span class="n">last</span><span class="p">,</span> <span class="n">T</span> <span class="n">val</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>采用递增的形式，将val开始的等差数列赋值给区间 [first,last) 的元素。</p>
+<p>采用递增的形式，将 val 开始的等差数列赋值给区间 [first,last) 的元素。</p>
 <div class="toggle docutils container">
 <div class="header docutils container">
 <span class="math notranslate nohighlight">\(\color{darkgreen}{Example}\)</span></div>
@@ -1022,7 +1059,7 @@
 </pre></div>
 </div>
 <p><strong>memset</strong> 按 <strong>字节</strong> 赋值， <strong>fill</strong> 按 <strong>元素</strong> 赋值。</p>
-<p>如果用memset给int型变量赋值，只能是0或-1。</p>
+<p>如果用 memset 给 int 型变量赋值，只能是 0 或 -1。</p>
 <div class="toggle docutils container">
 <div class="header docutils container">
 <span class="math notranslate nohighlight">\(\color{darkgreen}{Example}\)</span></div>

@@ -136,6 +136,8 @@
 <li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
 <li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const</a></li>
 <li class="toctree-l2"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -143,6 +145,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
@@ -226,10 +230,11 @@
 </div>
 <div class="section" id="dynamic-cast-type-expr">
 <h2>10.2. dynamic_cast&lt;type&gt; (expr)<a class="headerlink" href="#dynamic-cast-type-expr" title="Permalink to this headline">¶</a></h2>
-<p>有条件转换，动态类型转换，运行时类型安全检查（转换失败返回 <code class="docutils literal notranslate"><span class="pre">NULL</span></code> ）：</p>
+<p>type 可以是指针、引用、右值引用。</p>
+<p>有条件转换，动态类型转换，运行时类型安全检查（对于指针，转换失败返回 <code class="docutils literal notranslate"><span class="pre">NULL</span></code> ；对于引用，抛出 <code class="docutils literal notranslate"><span class="pre">std:bad_cast</span></code> 异常）。</p>
 <p><strong>1</strong>. 安全的基类和子类之间转换。</p>
-<p><strong>2</strong>. 必须要有虚函数。</p>
-<p><strong>3</strong>. 相同基类不同子类之间的交叉转换，结果是 <code class="docutils literal notranslate"><span class="pre">NULL</span></code> 。</p>
+<p><strong>2</strong>. 必须要有虚函数；必须是公有继承（public）。</p>
+<p><strong>3</strong>. 相同基类不同子类之间的交叉转换，结果是 <code class="docutils literal notranslate"><span class="pre">NULL</span></code> 或抛出 <code class="docutils literal notranslate"><span class="pre">std:bad_cast</span></code> 异常。</p>
 <div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3

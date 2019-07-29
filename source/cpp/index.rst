@@ -30,3 +30,4 @@ C/C++
     23_copyControl.rst
     24_exception.rst
     25_namespace.rst
+    26_lambda.rst

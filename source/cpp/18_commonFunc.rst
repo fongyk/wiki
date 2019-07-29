@@ -12,8 +12,8 @@ lower\_bound，upper\_bound
 
   #include <algorithm>
 
-**lower_bound** 从排好序的数组区间 **[first,last)** 中，采用二分查找，返回 **大于或等于** val的 **第一个** 元素位置。
-如果所有元素都小于val，则返回last。
+**lower_bound** 从排好序的数组区间 **[first,last)** 中，采用二分查找，返回 **大于或等于** val 的 **第一个** 元素位置。
+如果所有元素都小于 val，则返回 last。
 
 ::
 
@@ -21,8 +21,8 @@ lower\_bound，upper\_bound
   ForwardIterator lower_bound (ForwardIterator first, ForwardIterator last, const T& val);
 
 
-**upper_bound** 从排好序的数组区间 **[first,last)** 中，采用二分查找，返回 **大于** val的 **第一个** 元素位置。
-如果所有元素都不大于val，则返回last。
+**upper_bound** 从排好序的数组区间 **[first,last)** 中，采用二分查找，返回 **大于** val 的 **第一个** 元素位置。
+如果所有元素都不大于 val，则返回 last。
 
 ::
 
@@ -30,7 +30,7 @@ lower\_bound，upper\_bound
   ForwardIterator upper_bound (ForwardIterator first, ForwardIterator last, const T& val);
 
 
-求有序数组中val的个数： ::
+求有序数组中 val 的个数： ::
 
   upper_bound(first, last, val) - lower_bound(first, last, val);
 
@@ -78,21 +78,36 @@ fill，fill\_n，for\_each
 
   #include <algorithm>
 
-**fill** 函数将一个区间 **[first,last)** 的每个元素都赋予val值。 ::
+**fill** 函数将一个区间 **[first,last)** 的每个元素都赋予 val 值。 ::
 
   template <class ForwardIterator, class T>
   void fill (ForwardIterator first, ForwardIterator last, const T& val);
 
-**fill_n** 函数从 **first** 开始依次赋予n个元素val值。 ::
+**fill_n** 函数从 **first** 开始依次赋予 n 个元素 val 值。 ::
 
   template <class OutputIterator, class Size, class T>
   void fill_n (OutputIterator first, Size n, const T& val);
 
-**for_each** 把函数fn应用于区间 **[first,last)** 的每个元素。 ::
+**for_each** 把函数 fn 应用于区间 **[first,last)** 的每个元素。 ::
 
   template <class InputIterator, class Function>
-  Function for_each (InputIterator first, InputIterator last, Function fn);
+  Function for_each (InputIterator first, InputIterator last, Function fn)
+  {
+    while (first!=last)
+    {
+      fn (*first);
+      ++first;
+    }
+    return fn;      // or, since C++11: return move(fn);
+  }
 
+``fn`` 是一个一元谓词（unary predicate），接受一个参数，其返回值被忽略。``fn`` 可以是一个函数指针或函数对象。
+
+.. note::
+
+    函数对象
+      如果一个类将 ``()`` 运算符重载为成员函数，这个类就称为函数对象类，这个类的对象就是函数对象。
+      函数对象是一个对象，但是使用的形式看起来像函数调用，实际上也执行了函数调用。
 
 .. container:: toggle
 
@@ -111,6 +126,12 @@ fill，fill\_n，for\_each
     template<class T>
     void print(T elem){ cout << elem << " "; }
 
+    struct myclass
+    {
+      void operator() (int elem) { cout << elem << " "; }
+    }myobject;
+    // 注意：这里重载的是 () 运算符，接受一个参数；myobject 是一个结构体变量（类对象），调用 myobject(6) 会打印 6。
+
     int main(int argc, char ** argv)
     {
 
@@ -124,6 +145,8 @@ fill，fill\_n，for\_each
       for_each(a, a + 4, print<float>); //  6.6 6.6 3.3 3.3
       cout << endl;
       for_each(v.begin(), v.end(), print<int>); //  9 9 9 9
+      cout << endl;
+      for_each(v.begin(), v.end(), myobject); //  9 9 9 9
       cout << endl;
 
       int b[10][20];
@@ -175,6 +198,9 @@ sort
   template <class RandomAccessIterator, class Compare>
   void sort (RandomAccessIterator first, RandomAccessIterator last, Compare comp);
 
+``comp`` 是一个二元谓词（binary predicate），接受两个参数，返回 bool 型或一个可以转换为 bool 型的类型。``comp`` 可以是一个函数指针或函数对象。
+
+如果需要稳定排序，可以使用 ``stable_sort`` 直接代替 ``sort`` 。
 
 .. container:: toggle
 
@@ -203,6 +229,7 @@ sort
         return (i < j);
       }
     } myobject;
+    // 注意：这里重载的是 () 运算符，接受两个参数；myobject 是一个结构体变量（类对象）
 
     int main(int argc, char ** argv)
     {
@@ -213,16 +240,16 @@ sort
       // using default comparison (operator <):
       sort(v.begin(), v.begin() + 4);           //(12 32 45 71)26 80 53 33
 
-      // using comparator as comp
+      // using comparator as comp，这里是相当于一个函数指针
       sort(v.begin() + 4, v.end(), comparator); // 12 32 45 71(26 33 53 80)
 
-      // using object as comp
+      // using object as comp，这里是一个函数对象
       sort(v.begin(), v.end(), myobject);     //(12 26 32 33 45 53 71 80)
 
-      // using build-in comp: greater
+      // using build-in comp: greater，类 greater 的成员函数 operator()
       sort(v.begin(), v.end(), greater<int>()); // (80 71 53 45 33 32 26 12)
 
-      // using build-in comp: less
+      // using build-in comp: less，类 less 的成员函数 operator()
       sort(v.begin(), v.end(), less<int>());  //(12 26 32 33 45 53 71 80)
 
       // using reverse_iterator
@@ -304,7 +331,7 @@ min\_element，max\_element，minmax\_element
 
 - **min_element** ：会返回指向输入序列的最小元素的迭代器；
 - **max_element** ：会返回指向最大元素的迭代器；
-- **minmax_element** ：会以 pair 对象的形式返回这两个迭代器。first 指向最小元素。second 指向最大元素。
+- **minmax_element** ：会以 pair 对象的形式返回这两个迭代器。first 指向最小元素；second 指向最大元素。
 
 **min\_element**::
 
@@ -496,7 +523,7 @@ iota
   template <class ForwardIterator, class T>
   void iota (ForwardIterator first, ForwardIterator last, T val);
 
-采用递增的形式，将val开始的等差数列赋值给区间 [first,last) 的元素。
+采用递增的形式，将 val 开始的等差数列赋值给区间 [first,last) 的元素。
 
 .. container:: toggle
 
@@ -607,7 +634,7 @@ memset
 
 **memset** 按 **字节** 赋值， **fill** 按 **元素** 赋值。
 
-如果用memset给int型变量赋值，只能是0或-1。
+如果用 memset 给 int 型变量赋值，只能是 0 或 -1。
 
 .. container:: toggle
 

@@ -56,7 +56,6 @@
 
   - 反转链表。Hint：方法一，逐个反转；方法二，递归；方法三，使用栈保存节点的值，反向赋给所有节点。
 
-
   .. container:: toggle
 
     .. container:: header
@@ -139,6 +138,35 @@
   - 求有环单链表中的环长、环起点、链表长。Hint：快慢指针。
 
       https://www.cnblogs.com/xudong-bupt/p/3667729.html
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 判断链表是否有环
+
+      class Solution
+      {
+      public:
+          bool hasCycle(ListNode *head)
+          {
+              if(!head || !head->next) return false;
+              ListNode* slow = head;
+              ListNode* fast = head;
+              while(fast && fast -> next)
+              {
+                  slow = slow -> next;
+                  fast = fast -> next -> next;
+                  if(slow == fast) return true;
+              }
+              return false;
+          }
+      };
 
   - 判断两个链表是否相交并找出交点。Hint：方法一，先求两个链表的长度差，双指针法；方法二，分别用栈保存两个链表的节点的地址（指针），从后往前比较。如果只需要判断两个链表是否相交，只需判断两个链表最后一个节点是否相同。
 

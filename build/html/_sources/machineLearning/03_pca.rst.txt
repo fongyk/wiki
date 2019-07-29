@@ -44,6 +44,12 @@ PCA 是一种正交线性变换，把数据变换到一个新的坐标系统中�
 
 对协方差矩阵 :math:`XX^{\top}` 进行特征值分解即可。
 
+如何选择 :math:`d^\prime` 个特征向量？
+  :math:`X` 经过 :math:`w_j` 投影后的方差为 :math:`w_j^{\top} X X^{\top} w_j = \lambda_j w_j^{\top} w_j = \lambda_j` ，
+  即 :math:`XX^{\top}` 的第 :math:`j` 个特征值对应了样本投影后的第 :math:`j` 个属性的方差。本着方差最大化的原则，
+  选取最大的 :math:`d^\prime` 个特征值对应的特征向量。
+
+
 求解
 ---------
 

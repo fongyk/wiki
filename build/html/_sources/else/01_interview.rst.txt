@@ -457,7 +457,7 @@
     .. code-block:: cpp
       :linenos:
 
-      class Solution 
+      class Solution
       {
       public:
           ListNode* partition(ListNode* head, int x)
@@ -498,9 +498,46 @@
   https://blog.csdn.net/qwb492859377/article/details/50654627?tdsourcetag=s_pctim_aiomsg
 
 
-6. [LeetCode] Sort Colors（三颜色排序→K颜色排序）
+6. [LeetCode] Sort Colors（三颜色排序 → K 颜色排序）
 
   https://blog.csdn.net/princexiexiaofeng/article/details/79645511
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution
+      {
+      public:
+          void sortColors(vector<int>& nums)
+          {
+              if(nums.size() <= 1) return;
+              int left = 0;
+              int right = nums.size() - 1;
+              for(int mid = left; mid <= right; ++ mid)
+              {
+                  while(nums[mid]==2 && mid < right)
+                  {
+                      swap(nums[mid], nums[right]);
+                      right --;
+                  }
+                  while(nums[mid]==0 && mid > left)
+                  {
+                      swap(nums[mid], nums[left]);
+                      left ++;
+                  }
+              }
+          }
+      };
+
+      // 注：要先判断 nums[mid]==2，再判断 nums[mid]==0，否则会出错，如 [1,2,0]
+      // 因为 2 是往后交换，0 是往前交换；2 交换得到的可能是 0，但可以保证 0 交换得到的不会是 2，因为 2 在 0 之前被处理了
+      // 如果判断顺序反过来，2 交换得到的 0 不会被处理
 
 7. 找到数组第 :math:`k` 大的数
 
@@ -514,7 +551,7 @@
 
     .. code-block:: cpp
       :linenos:
-      :emphasize-lines: 7,8,14,15,24,25,28,29
+      :emphasize-lines: 7,8,15,16,24,25,26,29,30
 
       class Solution
       {

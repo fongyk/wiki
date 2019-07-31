@@ -974,10 +974,70 @@
 <blockquote>
 <div><a class="reference external" href="https://blog.csdn.net/qwb492859377/article/details/50654627?tdsourcetag=s_pctim_aiomsg">https://blog.csdn.net/qwb492859377/article/details/50654627?tdsourcetag=s_pctim_aiomsg</a></div></blockquote>
 <ol class="arabic simple" start="6">
-<li>[LeetCode] Sort Colors（三颜色排序→K颜色排序）</li>
+<li>[LeetCode] Sort Colors（三颜色排序 → K 颜色排序）</li>
 </ol>
 <blockquote>
-<div><a class="reference external" href="https://blog.csdn.net/princexiexiaofeng/article/details/79645511">https://blog.csdn.net/princexiexiaofeng/article/details/79645511</a></div></blockquote>
+<div><p><a class="reference external" href="https://blog.csdn.net/princexiexiaofeng/article/details/79645511">https://blog.csdn.net/princexiexiaofeng/article/details/79645511</a></p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">sortColors</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span> <span class="n">mid</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">;</span> <span class="o">++</span> <span class="n">mid</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">while</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span><span class="o">==</span><span class="mi">2</span> <span class="o">&amp;&amp;</span> <span class="n">mid</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">swap</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">],</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]);</span>
+                <span class="n">right</span> <span class="o">--</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">while</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">mid</span> <span class="o">&gt;</span> <span class="n">left</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">swap</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">],</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]);</span>
+                <span class="n">left</span> <span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// 注：要先判断 nums[mid]==2，再判断 nums[mid]==0，否则会出错，如 [1,2,0]</span>
+<span class="c1">// 因为 2 是往后交换，0 是往前交换；2 交换得到的可能是 0，但可以保证 0 交换得到的不会是 2，因为 2 在 0 之前被处理了</span>
+<span class="c1">// 如果判断顺序反过来，2 交换得到的 0 不会被处理</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div></blockquote>
 <ol class="arabic simple" start="7">
 <li>找到数组第 <span class="math notranslate nohighlight">\(k\)</span> 大的数</li>
 </ol>
@@ -1049,10 +1109,10 @@
             <span class="k">while</span><span class="p">(</span><span class="n">l</span><span class="o">&lt;=</span><span class="n">j</span> <span class="o">&amp;&amp;</span> <span class="n">nums</span><span class="p">[</span><span class="n">l</span><span class="p">]</span><span class="o">&lt;</span><span class="n">pivot</span><span class="p">)</span> <span class="n">l</span><span class="o">++</span><span class="p">;</span>
             <span class="k">while</span><span class="p">(</span><span class="n">r</span><span class="o">&gt;</span><span class="n">i</span> <span class="o">&amp;&amp;</span> <span class="n">nums</span><span class="p">[</span><span class="n">r</span><span class="p">]</span><span class="o">&gt;</span><span class="n">pivot</span><span class="p">)</span> <span class="n">r</span><span class="o">--</span><span class="p">;</span>
             <span class="k">if</span><span class="p">(</span><span class="n">l</span><span class="o">&gt;=</span><span class="n">r</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
-<span class="hll">            <span class="n">swap</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">l</span><span class="p">],</span> <span class="n">nums</span><span class="p">[</span><span class="n">r</span><span class="p">]);</span>
-</span><span class="hll">            <span class="n">l</span><span class="o">++</span><span class="p">;</span>
-</span>            <span class="n">r</span><span class="o">--</span><span class="p">;</span>
-        <span class="p">}</span>
+            <span class="n">swap</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">l</span><span class="p">],</span> <span class="n">nums</span><span class="p">[</span><span class="n">r</span><span class="p">]);</span>
+<span class="hll">            <span class="n">l</span><span class="o">++</span><span class="p">;</span>
+</span><span class="hll">            <span class="n">r</span><span class="o">--</span><span class="p">;</span>
+</span>        <span class="p">}</span>
         <span class="n">swap</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">nums</span><span class="p">[</span><span class="n">r</span><span class="p">]);</span>
         <span class="k">return</span> <span class="n">r</span><span class="p">;</span>
     <span class="p">}</span>
@@ -1061,12 +1121,12 @@
     <span class="p">{</span>
 <span class="hll">        <span class="kt">int</span> <span class="n">pivot</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 </span><span class="hll">        <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
-</span>        <span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
-        <span class="k">while</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
-<span class="hll">        <span class="p">{</span>
-</span><span class="hll">            <span class="k">while</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="o">++</span><span class="n">l</span><span class="p">]</span><span class="o">&lt;</span><span class="n">pivot</span> <span class="o">&amp;&amp;</span> <span class="n">l</span><span class="o">&lt;</span><span class="n">j</span><span class="p">);</span>
-</span>            <span class="k">while</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="o">--</span><span class="n">r</span><span class="p">]</span><span class="o">&gt;</span><span class="n">pivot</span><span class="p">);</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">l</span><span class="o">&gt;=</span><span class="n">r</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+</span><span class="hll">        <span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+</span>        <span class="k">while</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+        <span class="p">{</span>
+<span class="hll">            <span class="k">while</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="o">++</span><span class="n">l</span><span class="p">]</span><span class="o">&lt;</span><span class="n">pivot</span> <span class="o">&amp;&amp;</span> <span class="n">l</span><span class="o">&lt;</span><span class="n">j</span><span class="p">);</span>
+</span><span class="hll">            <span class="k">while</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="o">--</span><span class="n">r</span><span class="p">]</span><span class="o">&gt;</span><span class="n">pivot</span><span class="p">);</span>
+</span>            <span class="k">if</span><span class="p">(</span><span class="n">l</span><span class="o">&gt;=</span><span class="n">r</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
             <span class="n">swap</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">l</span><span class="p">],</span> <span class="n">nums</span><span class="p">[</span><span class="n">r</span><span class="p">]);</span>
         <span class="p">}</span>
         <span class="n">swap</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">nums</span><span class="p">[</span><span class="n">r</span><span class="p">]);</span>

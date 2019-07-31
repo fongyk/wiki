@@ -269,7 +269,7 @@
       {
         assert(n > 0);
         int num = pow(2, n);
-        vector<vector<int>> res(num, vector < int > {});
+        vector<vector<int>> res(num, vector<int>{});
         combinationRecursive(n, res);
         return res;
       }
@@ -283,14 +283,14 @@
       {
         assert(n > 0);
         int num = pow(2, n);
-        vector<vector<int>> res(num, vector < int > {});
-        int k = num;
-        while (k)
+        vector<vector<int>> res(num, vector<int>{});
+        int k = num - 1;
+        while (k >= 0)
         {
           int pos = n - 1;
           while (pos >= 0)
           {
-            if (k & (1 << pos)) res[k - 1].push_back(pos + 1);
+            if (k & (1 << pos)) res[k].push_back(pos + 1);
             --pos;
           }
           --k;

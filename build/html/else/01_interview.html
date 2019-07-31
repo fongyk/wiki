@@ -889,6 +889,84 @@
 </pre></div>
 </td></tr></table></div>
 </div>
+<ul class="simple">
+<li>[LeetCode] Partition List 分割链表，小于 <span class="math notranslate nohighlight">\(x\)</span> 的排前面，不小于 <span class="math notranslate nohighlight">\(x\)</span> 的排后面。Hint：先遍历链表，用一个数组保存小于 <span class="math notranslate nohighlight">\(x\)</span> 的值，另一个数组保存不小于 <span class="math notranslate nohighlight">\(x\)</span> 的值。</li>
+</ul>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">ListNode</span><span class="o">*</span> <span class="n">partition</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">head</span><span class="p">,</span> <span class="kt">int</span> <span class="n">x</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">head</span> <span class="o">||</span> <span class="o">!</span><span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span> <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">small</span><span class="p">;</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">big</span><span class="p">;</span>
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">val</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">)</span> <span class="n">small</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">val</span><span class="p">);</span>
+            <span class="k">else</span> <span class="n">big</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">val</span><span class="p">);</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">k</span> <span class="o">&lt;</span> <span class="n">small</span><span class="p">.</span><span class="n">size</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="n">p</span> <span class="o">-&gt;</span> <span class="n">val</span> <span class="o">=</span> <span class="n">small</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">;</span>
+            <span class="o">++</span><span class="n">k</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">k</span> <span class="o">&lt;</span> <span class="n">big</span><span class="p">.</span><span class="n">size</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="n">p</span> <span class="o">-&gt;</span> <span class="n">val</span> <span class="o">=</span> <span class="n">big</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">;</span>
+            <span class="o">++</span><span class="n">k</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">().</span><span class="n">swap</span><span class="p">(</span><span class="n">small</span><span class="p">);</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">().</span><span class="n">swap</span><span class="p">(</span><span class="n">big</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+</div>
 </div></blockquote>
 <ol class="arabic simple" start="5">
 <li>排列组合：<span class="math notranslate nohighlight">\(k\)</span> 个球放入 <span class="math notranslate nohighlight">\(m\)</span> 个盒子</li>

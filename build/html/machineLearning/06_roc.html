@@ -255,7 +255,8 @@
 </div>
 <div class="section" id="auc">
 <h2>6.2. AUC<a class="headerlink" href="#auc" title="Permalink to this headline">¶</a></h2>
-<p>ROC 空间里的单点，是给定分类模型且给定阈值后得出的。但同一个二元分类模型的阈值可能设定为高或低，每种阈值的设定会得出不同的 FPR 和 TPR。
+<p>ROC 空间里的单点，是给定分类模型且给定得分阈值后得出的。但同一个二元分类模型的阈值可能设定为高或低，每种阈值的设定会得出不同的 FPR 和 TPR。
+一般地，减小阈值，FPR 和 TPR 都会增大。
 将同一模型每个阈值的 (FPR, TPR) 坐标都画在 ROC 空间里，就成为特定模型的 ROC 曲线。</p>
 <a class="reference internal image-reference" href="../_images/06_rocCurve.png"><img alt="../_images/06_rocCurve.png" class="align-center" src="../_images/06_rocCurve.png" style="width: 600px;" /></a>
 <p>在比较不同的分类模型时，可以将每个模型的 ROC 曲线都画出来，比较曲线下面积作为模型优劣的指标。</p>
@@ -265,6 +266,78 @@
 <li>AUC 值 = 分类器把一个随机抽取的正例排在一个随机抽取的负例之前的概率（给予正例更高的得分）。</li>
 <li>AUC 值越大的分类器，accuracy 越高。</li>
 </ul>
+<dl class="docutils">
+<dt>计算方法</dt>
+<dd><ul class="first simple">
+<li>根据 FPR 和 TPR 计算，采用梯形积分法（Trapezoidal rule）。</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\int_a^b f(x) dx \approx \sum_{k=1}^N \frac{f(x_{k-1}) + f(x_k)}{2} \Delta x_k\]</div>
+<a class="reference internal image-reference" href="../_images/06_auc.png"><img alt="../_images/06_auc.png" class="align-center" src="../_images/06_auc.png" style="width: 500px;" /></a>
+<ul class="last">
+<li><p class="first">穷举所有的正负样本对，累加分值，除以样本对的数目。</p>
+<blockquote>
+<div><ul class="simple">
+<li>正样本的得分 &gt; 负样本的得分，+ 1</li>
+<li>正样本的得分 = 负样本的得分，+ 0.5</li>
+<li>正样本的得分 &lt; 负样本的得分，+ 0</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">## 方法一</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">auc</span>
+
+<span class="k">print</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">scores</span><span class="p">)</span>
+
+<span class="n">FPR</span><span class="p">,</span> <span class="n">TPR</span><span class="p">,</span> <span class="n">th</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">scores</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">auc</span><span class="p">(</span><span class="n">FPR</span><span class="p">,</span> <span class="n">TPR</span><span class="p">)</span>
+<span class="c1">## auc 与 roc_auc_score 计算结果相同</span>
+
+<span class="c1">## 方法二</span>
+
+<span class="k">def</span> <span class="nf">AUC</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+  <span class="n">pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">))</span> <span class="k">if</span> <span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+  <span class="n">neg</span> <span class="o">=</span> <span class="p">[</span><span class="n">j</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">))</span> <span class="k">if</span> <span class="n">labels</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+
+  <span class="n">area</span> <span class="o">=</span> <span class="mf">0.0</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pos</span><span class="p">:</span>
+      <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">neg</span><span class="p">:</span>
+          <span class="k">if</span> <span class="n">scores</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">scores</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1e-6</span><span class="p">:</span>
+              <span class="n">area</span> <span class="o">+=</span> <span class="mf">1.0</span>
+          <span class="k">elif</span> <span class="nb">abs</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">scores</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mf">1e-6</span><span class="p">:</span>
+              <span class="n">area</span> <span class="o">+=</span> <span class="mf">0.5</span>
+
+  <span class="k">return</span> <span class="n">area</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">neg</span><span class="p">))</span>
+</pre></div>
+</td></tr></table></div>
 </div>
 <div class="section" id="id2">
 <h2>6.3. 参考资料<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
@@ -283,6 +356,11 @@
 </ol>
 <blockquote>
 <div><a class="reference external" href="https://zh.wikipedia.org/wiki/ROC%E6%9B%B2%E7%BA%BF">https://zh.wikipedia.org/wiki/ROC%E6%9B%B2%E7%BA%BF</a></div></blockquote>
+<ol class="arabic simple" start="4">
+<li>Trapezoidal rule</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://en.wikipedia.org/wiki/Trapezoidal_rule">https://en.wikipedia.org/wiki/Trapezoidal_rule</a></div></blockquote>
 </div>
 </div>
 

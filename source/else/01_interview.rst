@@ -446,6 +446,52 @@
           }
       };
 
+  - [LeetCode] Partition List 分割链表，小于 :math:`x` 的排前面，不小于 :math:`x` 的排后面。Hint：先遍历链表，用一个数组保存小于 :math:`x` 的值，另一个数组保存不小于 :math:`x` 的值。
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution 
+      {
+      public:
+          ListNode* partition(ListNode* head, int x)
+          {
+              if(!head || !head->next) return head;
+              vector<int> small;
+              vector<int> big;
+              ListNode* p = head;
+              while(p)
+              {
+                  if(p -> val < x) small.push_back(p -> val);
+                  else big.push_back(p -> val);
+                  p = p -> next;
+              }
+              p = head;
+              int k = 0;
+              while(k < small.size())
+              {
+                  p -> val = small[k];
+                  p = p -> next;
+                  ++k;
+              }
+              k = 0;
+              while(k < big.size())
+              {
+                  p -> val = big[k];
+                  p = p -> next;
+                  ++k;
+              }
+              vector<int>().swap(small);
+              vector<int>().swap(big);
+              return head;
+          }
+      };
 
 5. 排列组合：:math:`k` 个球放入 :math:`m` 个盒子
 

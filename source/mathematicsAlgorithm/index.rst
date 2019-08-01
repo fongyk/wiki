@@ -21,3 +21,4 @@
     14_coinWeigh.rst
     15_probability.rst
     16_geometry.rst
+    17_graphCycle.rst

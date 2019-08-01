@@ -47,7 +47,7 @@
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="计算机网络" href="../computerNetwork/index.html" />
+    <link rel="next" title="11. 卡特兰数" href="11_catalan.html" />
     <link rel="prev" title="9. 回溯" href="09_backtrack.html" /> 
 </head>
 
@@ -123,6 +123,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#id3">10.3. 拓扑排序</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="11_catalan.html">11. 卡特兰数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_entropy.html">12. 信息熵</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_cltLLN.html">13. 大数定律和中心极限定理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_coinWeigh.html">14. 称重问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_probability.html">15. 概率基础</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_geometry.html">16. 几何</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
@@ -214,9 +220,9 @@
 <p>算法：</p>
 <blockquote>
 <div><ul class="simple">
-<li>Step 1：在 AOV 网中任选一个入度为0的顶点（没有直接前驱），输出该顶点；</li>
+<li>Step 1：在 AOV 网中任选一个入度为 0 的顶点（没有直接前驱），输出该顶点；</li>
 <li>Step 2：在 AOV 网中删除该顶点，并删除这个顶点的所有出边；</li>
-<li>Step 3：重复前两步，直到 AOV 网中不再有入度为0的顶点为止。</li>
+<li>Step 3：重复前两步，直到 AOV 网中不再有入度为 0 的顶点为止。</li>
 </ul>
 </div></blockquote>
 <p>这样的操作有两个结果：</p>
@@ -226,7 +232,7 @@
 <li>网中还有未能输出的顶点，说明网中存在回路，不存在拓扑序列。</li>
 </ul>
 </div></blockquote>
-<p>算法时间复杂度为 <span class="math notranslate nohighlight">\(\mathcal{O}(n + e)\)</span> 。</p>
+<p>图采用邻接表表示法，算法时间复杂度为 <span class="math notranslate nohighlight">\(\mathcal{O}(n + e)\)</span> ；采用邻接矩阵表示法，时间复杂度为 <span class="math notranslate nohighlight">\(\mathcal{O}(n^2)\)</span> 。</p>
 <div class="toggle docutils container">
 <div class="header docutils container">
 <span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></div>
@@ -364,7 +370,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../computerNetwork/index.html" class="btn btn-neutral float-right" title="计算机网络" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="11_catalan.html" class="btn btn-neutral float-right" title="11. 卡特兰数" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="09_backtrack.html" class="btn btn-neutral float-left" title="9. 回溯" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

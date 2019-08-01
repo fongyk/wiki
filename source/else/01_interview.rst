@@ -2415,6 +2415,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       bool checkReverseEqual(string s1, string s2)
       {
           if(s1.size()==0 || s2.size()==0) return false;
+          if(s1.size() < s2.size()) return false; // s1 = "abc", s2 = "abcabc"
           string s1s1 = s1 + s1;
           if(s1s1.find(s2) == string::npos) return false;
           return true;

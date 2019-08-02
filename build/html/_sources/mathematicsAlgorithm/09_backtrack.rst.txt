@@ -202,6 +202,79 @@
           }
       };
 
+- 按字典序输出序列 :math:`1,2,...,n` 的全排列。Hint：深度优先遍历。
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      void DFS(int* arr, bool* used, int n, int t)
+      {
+          if(t == n)
+          {
+              for(int i = 0; i < n; ++i) cout << arr[i] << ends;
+              cout << endl;
+              return;
+          }
+          for(int digit = 1; digit <= n; ++digit)
+          {
+              if(!used[digit - 1])
+              {
+                  used[digit - 1] = true;
+                  arr[t] = digit;
+                  DFS(arr, used, n, t+1);
+                  used[digit - 1] = false;
+              }
+          }
+      }
+
+- [LeetCode] Permutation Sequence 输出序列 :math:`1,2,...,n` 的第 :math:`k` 个排列（字典序）。Hint：方法一，按字典序深度优先遍历；方法二，逐步缩小搜索范围，如：
+  :math:`perm [ 1,2,3 ] = \{1 + perm [ 2,3 ] \} + \{2 + perm [ 1,3 ] \} + \{3 + perm [ 1,2 ] \}` 。
+
+    https://leetcode.com/problems/permutation-sequence/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // https://leetcode.com/problems/permutation-sequence/discuss/22507/%22Explain-like-I'm-five%22-Java-Solution-in-O(n)
+
+      class Solution
+      {
+      public:
+          string getPermutation(int n, int k)
+          {
+              string nums = "";
+              vector<int> factorial(n+1, 1);
+              for(int i = 1; i <= n; ++i)
+              {
+                  nums += to_string(i);
+                  factorial[i] = i;
+              }
+              partial_sum(factorial.begin(), factorial.end(), factorial.begin(), multiplies<int>()); // f(n) = n!, f(0) = 1
+
+              string res = "";
+              while(n)
+              {
+                  int id = (k - 1) / factorial[n-1]; // k - 1，下标从 0 开始
+                  res += nums[id];
+                  nums.erase(nums.begin() + id); // 得到 n - 1 个数的序列
+                  k -= id * factorial[n-1]; // 在 n - 1 个数的序列中继续查找第 k - id * factorial[n-1] 个排列
+                  --n;
+              }
+              return res;
+          }
+      };
 
 - 输出序列 :math:`1,2,...,n` 的所有子集（组合），共 :math:`2^n` 组。Hint：方法一，回溯，二叉子集树；方法二，递归，序列每增加一个数，组合数增加一倍，增加的这些组合是在之前的组合的基础上插入该数得到的；
   方法三，当 :math:`n < 32` ，可以使用一个 int 型的变量 :math:`k` （ :math:`1 \leqslant k \leqslant 2^n` ）来表示组合的状态，当该变量的二进制表示的第 :math:`i` 位为 1，则表示当前组合中包含数字 :math:`i` 。

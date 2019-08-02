@@ -131,6 +131,7 @@
 <li class="toctree-l2"><a class="reference internal" href="14_coinWeigh.html">14. 称重问题</a></li>
 <li class="toctree-l2"><a class="reference internal" href="15_probability.html">15. 概率基础</a></li>
 <li class="toctree-l2"><a class="reference internal" href="16_geometry.html">16. 几何</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_graphCycle.html">17. 图环</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
@@ -496,6 +497,120 @@
             <span class="p">}</span>
         <span class="p">}</span>
         <span class="n">reverse</span><span class="p">(</span><span class="n">num</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">num</span><span class="p">.</span><span class="n">end</span><span class="p">());</span> <span class="c1">// 当前排列是最大的排列，则翻转为最小的排列</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</li>
+<li><p class="first">按字典序输出序列 <span class="math notranslate nohighlight">\(1,2,...,n\)</span> 的全排列。Hint：深度优先遍历。</p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
+</div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">DFS</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">arr</span><span class="p">,</span> <span class="kt">bool</span><span class="o">*</span> <span class="n">used</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">t</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">t</span> <span class="o">==</span> <span class="n">n</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">ends</span><span class="p">;</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">digit</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">digit</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">digit</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">used</span><span class="p">[</span><span class="n">digit</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="p">{</span>
+            <span class="n">used</span><span class="p">[</span><span class="n">digit</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+            <span class="n">arr</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">digit</span><span class="p">;</span>
+            <span class="n">DFS</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">used</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+            <span class="n">used</span><span class="p">[</span><span class="n">digit</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</li>
+<li><p class="first">[LeetCode] Permutation Sequence 输出序列 <span class="math notranslate nohighlight">\(1,2,...,n\)</span> 的第 <span class="math notranslate nohighlight">\(k\)</span> 个排列（字典序）。Hint：方法一，按字典序深度优先遍历；方法二，逐步缩小搜索范围，如：
+<span class="math notranslate nohighlight">\(perm [ 1,2,3 ] = \{1 + perm [ 2,3 ] \} + \{2 + perm [ 1,3 ] \} + \{3 + perm [ 1,2 ] \}\)</span> 。</p>
+<blockquote>
+<div><p><a class="reference external" href="https://leetcode.com/problems/permutation-sequence/">https://leetcode.com/problems/permutation-sequence/</a></p>
+</div></blockquote>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
+</div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// https://leetcode.com/problems/permutation-sequence/discuss/22507/%22Explain-like-I&#39;m-five%22-Java-Solution-in-O(n)</span>
+
+<span class="k">class</span> <span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">string</span> <span class="n">getPermutation</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">string</span> <span class="n">nums</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">nums</span> <span class="o">+=</span> <span class="n">to_string</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+            <span class="n">factorial</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">partial_sum</span><span class="p">(</span><span class="n">factorial</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">factorial</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">factorial</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">multiplies</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">());</span> <span class="c1">// f(n) = n!, f(0) = 1</span>
+
+        <span class="n">string</span> <span class="n">res</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">factorial</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span> <span class="c1">// k - 1，下标从 0 开始</span>
+            <span class="n">res</span> <span class="o">+=</span> <span class="n">nums</span><span class="p">[</span><span class="n">id</span><span class="p">];</span>
+            <span class="n">nums</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">nums</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="n">id</span><span class="p">);</span> <span class="c1">// 得到 n - 1 个数的序列</span>
+            <span class="n">k</span> <span class="o">-=</span> <span class="n">id</span> <span class="o">*</span> <span class="n">factorial</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span> <span class="c1">// 在 n - 1 个数的序列中继续查找第 k - id * factorial[n-1] 个排列</span>
+            <span class="o">--</span><span class="n">n</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">};</span>
 </pre></div>

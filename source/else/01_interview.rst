@@ -3232,6 +3232,88 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           }
       };
 
+
+46. [LeetCode] Pow(x, n) 求幂。Hint：:math:`x^{2k} = x^k \times x^k,\ x^{2k+1} = x \times x^k \times x^k` 。
+
+  https://leetcode.com/problems/powx-n/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 递归
+
+      double myPow(double x, int n)
+      {
+          if(fabs(x) < 1e-7)
+          {
+              if(n < 0) throw logic_error("ZeroDivisionError"); // 底数为 0， 指数为负
+              return 1.0;
+          }
+          if(n == 0) return 1;
+          if(n == 1) return x;
+          if(n < 0)
+          {
+              if(n == INT_MIN) return 1/x * myPow(1/x, - n - 1); // - INT_MIN 溢出
+              else return myPow(1/x, - n);
+          }
+          double tmp = myPow(x, n/2);
+          if(n % 2) return x * tmp * tmp;
+          else return tmp * tmp;
+      }
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 迭代
+
+      double myPow(double x, int n)
+      {
+          if(fabs(x) < 1e-7)
+          {
+              if(n < 0) throw logic_error("ZeroDivisionError"); // 底数为 0， 指数为负
+              return 1.0;
+          }
+
+          if(n == 0) return 1.0;
+          if(n == 1) return x;
+
+          double ans = 1.0;
+
+          if(n < 0)
+          {
+              x = 1/x;
+              if(n == INT_MIN) // - INT_MIN 溢出
+              {
+                  ans *= x;
+                  n = INT_MAX;
+              }
+              else n = - n;
+          }
+
+          while(n > 0)
+          {
+              int k = 1;
+              double tmp = x;
+              while(k <= n/2)
+              {
+                  tmp *= tmp;
+                  k <<= 1;
+              }
+              n -= k;
+              ans *= tmp;
+          }
+
+          return ans;
+      }
+
+
+
 C++
 ------------
 

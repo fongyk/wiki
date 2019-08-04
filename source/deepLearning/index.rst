@@ -14,3 +14,4 @@
     07_backprop.rst
     08_optimizer.rst
     09_addModule.rst
+    10_receptivaField.rst

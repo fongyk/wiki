@@ -425,8 +425,8 @@
       // 设 dp[k] 是以 S[k] 结尾的不重复子序列个数（定义与上面的方法一相同），
       // 设 end[i] 是以字符 'a' + i 结尾的子序列个数，0 <= i < 26，
       // 如果该字符出现在多个位置，如 {j，k，l}，则 end[i] = dp[j] + dp[k] + dp[l]，
-      // 由方法一可知：dp[l] = dp[l-1] + 1 - dp[j] - dp[k]，
-      // 因此 end[i] = dp[l-1] + 1
+      // 由方法一可知：dp[l] = \sum_{m=0}^{l-1} dp[m] + 1 - dp[j] - dp[k]，
+      // 因此 end[i] = \sum_{m=0}^{l-1} dp[m] + 1 = \sum_{n=0}^25 end[n]
 
       class Solution
       {

@@ -438,6 +438,28 @@
       print(f(100, 2))	# 14
       print(f(200, 2))	# 20
 
+    .. code-block:: python
+      :linenos:
+
+      def solve(N, M):
+          if N < 1 or M < 1:
+              return 0
+
+          inf = float('inf')
+          f = [[inf for _m in range(M+1)] for _n in range(N+1)]
+          for m in range(M+1):
+              f[0][m] = 0
+              f[1][m] = 1
+          for n in range(2, N+1):
+              f[n][1] = n
+
+          for n in range(2, N+1):
+              for m in range(2, M+1):
+                  for k in range(1, n+1):
+                      f[n][m] = min(f[n][m], max(f[k-1][m-1], f[n-k][m]) + 1)
+
+          return f[N][M]
+
 - 机器人走方格。从 :math:`(0,0)` 走到 :math:`(x-1,y-1)` ，每一步只能往右或往下走。网格图 :math:`map` 定义了一些障碍点（ :math:`map[i][j] \ne 1` )，不能从障碍点通过。有多少种走法？
   延伸：如果没有障碍点，一共有 :math:`C_{(x-1)+(y-1)}^{(x-1)}` 种走法。
 

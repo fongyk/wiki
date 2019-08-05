@@ -132,6 +132,7 @@
 <li class="toctree-l2"><a class="reference internal" href="14_coinWeigh.html">14. 称重问题</a></li>
 <li class="toctree-l2"><a class="reference internal" href="15_probability.html">15. 概率基础</a></li>
 <li class="toctree-l2"><a class="reference internal" href="16_geometry.html">16. 几何</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_graphCycle.html">17. 图环</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
@@ -769,6 +770,43 @@ $$</div><div class="toggle docutils container">
 
 <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>  <span class="c1"># 14</span>
 <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>  <span class="c1"># 20</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">N</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">M</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+    <span class="n">inf</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="p">[[</span><span class="n">inf</span> <span class="k">for</span> <span class="n">_m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="k">for</span> <span class="n">_n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span>
+
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">f</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">m</span><span class="p">],</span> <span class="nb">max</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="p">][</span><span class="n">m</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">f</span><span class="p">[</span><span class="n">N</span><span class="p">][</span><span class="n">M</span><span class="p">]</span>
 </pre></div>
 </td></tr></table></div>
 </div>

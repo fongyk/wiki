@@ -868,7 +868,7 @@
 <span class="c1">// 设 end[i] 是以字符 &#39;a&#39; + i 结尾的子序列个数，0 &lt;= i &lt; 26，</span>
 <span class="c1">// 如果该字符出现在多个位置，如 {j，k，l}，则 end[i] = dp[j] + dp[k] + dp[l]，</span>
 <span class="c1">// 由方法一可知：dp[l] = \sum_{m=0}^{l-1} dp[m] + 1 - dp[j] - dp[k]，</span>
-<span class="c1">// 因此 end[i] = \sum_{m=0}^{l-1} dp[m] + 1 = \sum_{n=0}^25 end[n]</span>
+<span class="c1">// 因此 end[i] = \sum_{m=0}^{l-1} dp[m] + 1 = \sum_{n=0}^25 end[n] + 1</span>
 
 <span class="k">class</span> <span class="nc">Solution</span>
 <span class="p">{</span>

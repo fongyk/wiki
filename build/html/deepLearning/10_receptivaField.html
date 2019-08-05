@@ -209,8 +209,8 @@
 <ul>
 <li><p class="first"><strong>卷积</strong></p>
 <div class="math notranslate nohighlight">
-\[\begin{split}H_{out} = \lfloor \frac{H_{in} - k + 2 * p}{s} \rfloor + 1 \\
-W_{out} = \lfloor \frac{W_{in} - k + 2 * p}{s} \rfloor + 1\end{split}\]</div>
+\[\begin{split}H_{out} = \lfloor \frac{H_{in} - k + 2p}{s} \rfloor + 1 \\
+W_{out} = \lfloor \frac{W_{in} - k + 2p}{s} \rfloor + 1\end{split}\]</div>
 </li>
 <li><p class="first"><strong>反卷积</strong></p>
 <div class="math notranslate nohighlight">
@@ -225,13 +225,13 @@ W_{out} = (W_{in} - 1) \times s + k\end{split}\]</div>
 <a class="reference internal image-reference" href="../_images/10_receptiveField.png"><img alt="../_images/10_receptiveField.png" class="align-center" src="../_images/10_receptiveField.png" style="width: 600px;" /></a>
 <ul>
 <li><p class="first"><strong>从前往后推</strong></p>
-<p>设 <span class="math notranslate nohighlight">\(R_n\)</span> 表示第 <span class="math notranslate nohighlight">\(n\)</span> 层卷积层的感受野的大小，卷积核：<span class="math notranslate nohighlight">\(size = k_n \times k_n,\ stride = s_n\)</span> 。</p>
+<p>设 <span class="math notranslate nohighlight">\(R_n\)</span> 表示第 <span class="math notranslate nohighlight">\(n\)</span> 层卷积层的感受野（ <span class="math notranslate nohighlight">\(R_n \times R_n\)</span> ）的大小，卷积核：<span class="math notranslate nohighlight">\(size = k_n \times k_n,\ stride = s_n\)</span> 。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}R_n &amp;=&amp;\ R_{n-1} + (k_n - 1) \prod_{i=1}^{n-1} s_i \\
 R_1 &amp;=&amp;\ k_1\end{split}\]</div>
 </li>
 <li><p class="first"><strong>从后往前推</strong></p>
-<p>设 <span class="math notranslate nohighlight">\(r_n\)</span> 表示输出层（ <span class="math notranslate nohighlight">\(N\)</span> ）在第 <span class="math notranslate nohighlight">\(n\)</span> 层输入特征图的感知范围的大小，第 <span class="math notranslate nohighlight">\(n\)</span> 层卷积核：<span class="math notranslate nohighlight">\(size = k_n \times k_n,\ stride = s_n\)</span> 。</p>
+<p>设 <span class="math notranslate nohighlight">\(r_n\)</span> 表示输出层（ <span class="math notranslate nohighlight">\(N\)</span> ）在第 <span class="math notranslate nohighlight">\(n\)</span> 层输入特征图的感知范围（ <span class="math notranslate nohighlight">\(r_n \times r_n\)</span> ）的大小，第 <span class="math notranslate nohighlight">\(n\)</span> 层卷积核：<span class="math notranslate nohighlight">\(size = k_n \times k_n,\ stride = s_n\)</span> 。</p>
 <p>最后一层在原图的感受野为 <span class="math notranslate nohighlight">\(r_1\)</span> 。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}r_n &amp;=&amp;\ (r_{n+1} - 1) \times s_n + k_n \\

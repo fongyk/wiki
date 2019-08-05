@@ -21,8 +21,8 @@
 
   .. math::
 
-       H_{out} = \lfloor \frac{H_{in} - k + 2 * p}{s} \rfloor + 1 \\
-       W_{out} = \lfloor \frac{W_{in} - k + 2 * p}{s} \rfloor + 1
+       H_{out} = \lfloor \frac{H_{in} - k + 2p}{s} \rfloor + 1 \\
+       W_{out} = \lfloor \frac{W_{in} - k + 2p}{s} \rfloor + 1
 
 - **反卷积**
 
@@ -43,7 +43,7 @@
 
 - **从前往后推**
 
-  设 :math:`R_n` 表示第 :math:`n` 层卷积层的感受野的大小，卷积核：:math:`size = k_n \times k_n,\ stride = s_n` 。
+  设 :math:`R_n` 表示第 :math:`n` 层卷积层的感受野（ :math:`R_n \times R_n` ）的大小，卷积核：:math:`size = k_n \times k_n,\ stride = s_n` 。
 
   .. math::
 
@@ -52,7 +52,7 @@
 
 - **从后往前推**
 
-  设 :math:`r_n` 表示输出层（ :math:`N` ）在第 :math:`n` 层输入特征图的感知范围的大小，第 :math:`n` 层卷积核：:math:`size = k_n \times k_n,\ stride = s_n` 。
+  设 :math:`r_n` 表示输出层（ :math:`N` ）在第 :math:`n` 层输入特征图的感知范围（ :math:`r_n \times r_n` ）的大小，第 :math:`n` 层卷积核：:math:`size = k_n \times k_n,\ stride = s_n` 。
 
   最后一层在原图的感受野为 :math:`r_1` 。
 

@@ -260,8 +260,8 @@ y^{(k)} &amp;=&amp;\ \gamma^{(k)} \hat{x}^{(k)} + \beta^{(k)}.\end{split}\]</div
 Var[x] &amp; \leftarrow &amp;\ \frac{m}{m-1}E_B[\sigma_B^2].\end{split}\]</div>
 <p>而实际实现过程中，一般使用指数加权平均（Exponentially Weighted Averges，也称“移动平均”）来获得全局统计量，即在训练过程中使用下式更新全局统计量：</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}mean &amp;=&amp;\ (1 - momentum) \times mean + momentum \times E_B[\mu_B],\\
-std &amp;=&amp;\ (1 - momentum) \times std + momentum \times E_B[\sigma_B^2].\end{split}\]</div>
+\[\begin{split}mean &amp;=&amp;\ (1 - momentum) \times mean + momentum \times \mu_B,\\
+var &amp;=&amp;\ (1 - momentum) \times var + momentum \times \sigma_B^2.\end{split}\]</div>
 </div>
 </div>
 <div class="section" id="id5">

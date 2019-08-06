@@ -75,8 +75,8 @@ BN消除
 
 .. math::
 
-    mean &=&\ (1 - momentum) \times mean + momentum \times E_B[\mu_B],\\
-    std &=&\ (1 - momentum) \times std + momentum \times E_B[\sigma_B^2].
+    mean &=&\ (1 - momentum) \times mean + momentum \times \mu_B,\\
+    var &=&\ (1 - momentum) \times var + momentum \times \sigma_B^2.
 
 
 缺点

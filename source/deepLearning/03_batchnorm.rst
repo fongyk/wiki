@@ -98,8 +98,8 @@ BN 统计均值、方差与 batch size 有关，batch size 太小会导致性能
 
 .. math::
 
-    \mu_B &=&\ \frac{1}{m} \sum_{i=1}{m} x_i \\
-    \sigma_B^2 &=&\ \frac{1}{m} \sum_{i=1}{m} (x_i - \mu_B)^2 \\
+    \mu_B &=&\ \frac{1}{m} \sum_{i=1}^m x_i \\
+    \sigma_B^2 &=&\ \frac{1}{m} \sum_{i=1}^m (x_i - \mu_B)^2 \\
     \hat{x}_i &=&\ \frac{x_i - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}} \\
     y_i &=&\ \gamma \hat{x}_i + \beta
 

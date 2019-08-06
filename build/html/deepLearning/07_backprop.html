@@ -114,19 +114,23 @@
 <li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">5. pytorch：模型保存与读取</a></li>
 <li class="toctree-l2"><a class="reference internal" href="06_cuda.html">6. pytorch: cuda()</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">7. 反向传播</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">7.1. 前向传播</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">7.2. 误差反向传播</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">7.1. 链式法则</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">7.2. 前向传播</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">7.3. 误差反向传播</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#mse-mean-squared-error"><strong>MSE</strong> （Mean Squared Error）</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#cross-entropy"><strong>Cross Entropy</strong> （交叉熵）</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">7.3. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">7.4. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="08_optimizer.html">8. 优化算法</a></li>
 <li class="toctree-l2"><a class="reference internal" href="09_addModule.html">9. pytorch：add_module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_receptivaField.html">10. 特征图与感受野</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
@@ -200,8 +204,8 @@
   <div class="section" id="id1">
 <h1>7. 反向传播<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <a class="reference internal image-reference" href="../_images/07_backprop.jpg"><img alt="../_images/07_backprop.jpg" class="align-center" src="../_images/07_backprop.jpg" style="width: 700px;" /></a>
-<table border="1" class="docutils align-center" id="id5">
-<caption><span class="caption-text">符号说明</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<table border="1" class="docutils align-center" id="id6">
+<caption><span class="caption-text">符号说明</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="24%" />
 <col width="76%" />
@@ -251,7 +255,26 @@
 </tbody>
 </table>
 <div class="section" id="id2">
-<h2>7.1. 前向传播<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>7.1. 链式法则<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../_images/07_chainRule.jpg"><img alt="../_images/07_chainRule.jpg" class="align-center" src="../_images/07_chainRule.jpg" style="width: 300px;" /></a>
+<ul>
+<li><p class="first"><span class="math notranslate nohighlight">\(z = g \circ f(x_1, x_2)\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\frac{\partial{z}}{\partial{x_1}} &amp;=&amp;\ \frac{\partial{z}}{\partial{y_1}} \frac{\partial{y_1}}{\partial{x_1}} + \frac{\partial{z}}{\partial{y_2}} \frac{\partial{y_2}}{\partial{x_1}} \\
+\frac{\partial{z}}{\partial{x_2}} &amp;=&amp;\ \frac{\partial{z}}{\partial{y_1}} \frac{\partial{y_1}}{\partial{x_2}} + \frac{\partial{z}}{\partial{y_2}} \frac{\partial{y_2}}{\partial{x_2}}\end{split}\]</div>
+</li>
+<li><p class="first"><span class="math notranslate nohighlight">\(u = f(x, y(x), z(x))\)</span> 。 <span class="math notranslate nohighlight">\(\frac{du}{dx}\)</span> 表示全导数， <span class="math notranslate nohighlight">\(\frac{\partial{u}}{\partial{x}}\)</span> 表示偏导数。</p>
+<div class="math notranslate nohighlight">
+\[\frac{du}{dx} = \frac{\partial{u}}{\partial{x}} + \frac{\partial{u}}{\partial{y}} \frac{dy}{dx} + \frac{\partial{u}}{\partial{z}} \frac{dz}{dx}\]</div>
+</li>
+<li><p class="first"><span class="math notranslate nohighlight">\(u = f(x, y(x,t), z(x,t))\)</span></p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial{u}}{\partial{x}} = \frac{\partial{f}}{\partial{x}} + \frac{\partial{f}}{\partial{y}} \frac{\partial{y}}{\partial{x}} + \frac{\partial{f}}{\partial{z}} \frac{\partial{z}}{\partial{x}}\]</div>
+</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>7.2. 前向传播<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <div class="math notranslate nohighlight">
 \[\begin{split}z^{(l+1)}_i &amp; = &amp; \  b^{(l)}_i + \sum_{j=1}^{C_l}w^{(l)}_{ij}a^{(l)}_j, \\
 g(t) &amp; = &amp; \  \frac{1}{1 + e^{-t}}, \\
@@ -261,8 +284,8 @@ a^{(l)}_i &amp; = &amp; \  g(z^{(l)}_i).\end{split}\]</div>
 <div class="math notranslate nohighlight">
 \[\delta^{(l)}_i = \  \frac{\partial{\mathcal{L}}}{\partial{z^{(l)}_i}}\]</div>
 </div>
-<div class="section" id="id3">
-<h2>7.2. 误差反向传播<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h2>7.3. 误差反向传播<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="mse-mean-squared-error">
 <h3><strong>MSE</strong> （Mean Squared Error）<a class="headerlink" href="#mse-mean-squared-error" title="Permalink to this headline">¶</a></h3>
 <p>对每一个样本，损失为：</p>
@@ -338,8 +361,8 @@ $$</div><p>另外，由链式法则（chain rule）：</p>
                &amp; = &amp; \ (- y_i + \hat{y}_i) g^{\prime}(z^{(n)}_i)\end{split}\]</div>
 </div>
 </div>
-<div class="section" id="id4">
-<h2>7.3. 参考资料<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h2>7.4. 参考资料<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>反向传播公式推导</li>
 </ol>

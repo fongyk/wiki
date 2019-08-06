@@ -3312,6 +3312,53 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           return ans;
       }
 
+47. [LeetCode] Longest Valid Parentheses 最长有效匹配括号长度。
+
+  https://leetcode.com/problems/longest-valid-parentheses/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 设 dp[i] 表示以 s[i] 结尾的最长匹配长度
+      // 当 s[i] = '(' ，dp[i] = 0
+      // 当 s[i] = ')' 且 s[i-1] = '(' ，dp[i] = dp[i-2] + 2
+      // 当 s[i] = ')' 且 s[i-1] = ')' ，需要找到与 s[i] 匹配的左括号的位置，而以 s[i-1] 结尾的最长匹配组的长度为 dp[i-1]，
+      // 因此与 s[i] 匹配的位置为 i - 1 - dp[i-1]
+
+      class Solution
+      {
+      public:
+          int longestValidParentheses(string s)
+          {
+              if(s.size() <= 1) return 0;
+              vector<int> dp(s.size(), 0);
+              int res = 0;
+              for(int i = 1; i < s.size(); ++i)
+              {
+                  if(s[i] == ')' && s[i-1] == '(')
+                  {
+                      dp[i] = i-2 >= 0 ? dp[i-2] + 2 : 2;
+                  }
+                  else if(s[i] == ')' && s[i-1] == ')')
+                  {
+                      int left = i - 1 - dp[i-1];
+                      if(left >= 0 && s[left] == '(')
+                      {
+                          dp[i] = left > 0 ? dp[left-1] + dp[i-1] + 2 : dp[i-1] + 2;
+                      }
+                  }
+                  res = max(res, dp[i]);
+              }
+              vector<int>().swap(dp);
+              return res;
+          }
+      };
 
 
 C++

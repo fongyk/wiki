@@ -26,6 +26,32 @@
   ===============================   ===================================================================================================
 
 
+链式法则
+--------------
+
+.. image:: ./07_chainRule.jpg
+    :width: 300 px
+    :align: center
+
+- :math:`z = g \circ f(x_1, x_2)`
+
+  .. math::
+
+      \frac{\partial{z}}{\partial{x_1}} &=&\ \frac{\partial{z}}{\partial{y_1}} \frac{\partial{y_1}}{\partial{x_1}} + \frac{\partial{z}}{\partial{y_2}} \frac{\partial{y_2}}{\partial{x_1}} \\
+      \frac{\partial{z}}{\partial{x_2}} &=&\ \frac{\partial{z}}{\partial{y_1}} \frac{\partial{y_1}}{\partial{x_2}} + \frac{\partial{z}}{\partial{y_2}} \frac{\partial{y_2}}{\partial{x_2}}
+
+- :math:`u = f(x, y(x), z(x))` 。 :math:`\frac{du}{dx}` 表示全导数， :math:`\frac{\partial{u}}{\partial{x}}` 表示偏导数。
+
+  .. math::
+
+      \frac{du}{dx} = \frac{\partial{u}}{\partial{x}} + \frac{\partial{u}}{\partial{y}} \frac{dy}{dx} + \frac{\partial{u}}{\partial{z}} \frac{dz}{dx}
+
+- :math:`u = f(x, y(x,t), z(x,t))`
+
+  .. math::
+
+      \frac{\partial{u}}{\partial{x}} = \frac{\partial{f}}{\partial{x}} + \frac{\partial{f}}{\partial{y}} \frac{\partial{y}}{\partial{x}} + \frac{\partial{f}}{\partial{z}} \frac{\partial{z}}{\partial{x}}
+
 前向传播
 ---------------
 

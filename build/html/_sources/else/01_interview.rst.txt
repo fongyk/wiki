@@ -3259,7 +3259,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           if(n == 1) return x;
           if(n < 0)
           {
-              if(n == INT_MIN) return 1/x * myPow(1/x, - n - 1); // - INT_MIN 溢出
+              if(n == INT_MIN) return 1/x * myPow(1/x, - (n + 1)); // - INT_MIN 溢出
               else return myPow(1/x, - n);
           }
           double tmp = myPow(x, n/2);
@@ -3366,6 +3366,91 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
   - :math:`k=1` 。Hint：:math:`a = \sum_{i=1}^n i - \sum arr` 。
 
   - :math:`k=2` 。Hint：:math:`a + b = \sum_{i=1}^n i - \sum arr,\ a \times b = n! / \prod arr` ；考虑到连乘可能溢出，可以使用平方和 :math:`a^2 + b^2 = \sum_{i=1}^n i^2 - \sum arr^2` 。
+
+49. [LeetCode] Trapping Rain Water 接雨水。Hint：方法一，水从地面往上溢，统计每一层的积水，时间复杂度 :math:`\mathcal{O}(NH_{max})` ；方法二，双指针，当左高右低，推进右边的指针，当左低右高，推进左边的指针。
+
+  https://leetcode.com/problems/trapping-rain-water/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 方法一
+
+      class Solution
+      {
+      public:
+          int trap(vector<int>& height)
+          {
+              if(height.size() <= 1) return 0;
+
+              int maxh = *max_element(height.begin(), height.end());
+              int ans = 0;
+              for(int h = 1; h <= maxh; ++h)
+              {
+                  vector<int> idx;
+                  for(int i = 0; i < height.size(); ++i)
+                  {
+                      if(height[i] >= h) idx.push_back(i); // 找到所有会积水的区间
+                  }
+                  if(idx.size() < 2) break;
+                  for(int j = 0; j < idx.size() - 1; ++j)
+                  {
+                      ans += idx[j+1] - idx[j] - 1; // 第 h 层的积水量
+                  }
+              }
+              return ans;
+          }
+      };
+
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 方法二
+
+      class Solution
+      {
+      public:
+          int trap(vector<int>& height)
+          {
+              if(height.size() <= 1) return 0;
+
+              int ans = 0;
+
+              int left = 0;
+              int leftmax = height[0];
+              int right = height.size() - 1;
+              int rightmax = height[right];
+              while(left < right)
+              {
+                  if(height[left] < height[right]) // 左低右高
+                  {
+                      if(height[left] <= leftmax)
+                      {
+                          ans += leftmax - height[left];
+                          ++left;
+                      }
+                      else leftmax = height[left];
+                  }
+                  else // 左高右低
+                  {
+                      if(height[right] <= rightmax)
+                      {
+                          ans += rightmax - height[right];
+                          --right;
+                      }
+                      else rightmax = height[right];
+                  }
+              }
+              return ans;
+          }
+      };
 
 C++
 ------------

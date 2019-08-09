@@ -5513,6 +5513,15 @@ $$</div></li>
 </td></tr></table></div>
 </div>
 </div></blockquote>
+<ol class="arabic simple" start="48">
+<li>从 <span class="math notranslate nohighlight">\(1,2,...,n\)</span> 中取丢弃 <span class="math notranslate nohighlight">\(k\)</span> 个数，剩余的数形成一个数组 <span class="math notranslate nohighlight">\(arr\)</span> ，求出丢弃的数。</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><span class="math notranslate nohighlight">\(k=1\)</span> 。Hint：<span class="math notranslate nohighlight">\(a = \sum_{i=1}^n i - \sum arr\)</span> 。</li>
+<li><span class="math notranslate nohighlight">\(k=2\)</span> 。Hint：<span class="math notranslate nohighlight">\(a + b = \sum_{i=1}^n i - \sum arr,\ a \times b = n! / \prod arr\)</span> ；考虑到连乘可能溢出，可以使用平方和 <span class="math notranslate nohighlight">\(a^2 + b^2 = \sum_{i=1}^n i^2 - \sum arr^2\)</span> 。</li>
+</ul>
+</div></blockquote>
 </div>
 <div class="section" id="c">
 <h2>1.3. C++<a class="headerlink" href="#c" title="Permalink to this headline">¶</a></h2>

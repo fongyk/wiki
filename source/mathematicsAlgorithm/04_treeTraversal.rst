@@ -19,6 +19,8 @@
 先序遍历
 --------------
 
+先序遍历是深度优先遍历（DFS）。
+
 - 递归
 
 .. code-block:: cpp
@@ -194,6 +196,8 @@
 层次遍历
 ----------------
 
+层次遍历是广度优先遍历（BFS）。
+
 .. code-block:: cpp
   :linenos:
 
@@ -308,6 +312,93 @@
               return root;
           }
       };
+
+- [LeetCode] Invert Binary Tree 翻转二叉树。Hint：方法一，递归；方法二，深度优先遍历；方法三，广度优先遍历。
+
+  https://leetcode.com/problems/invert-binary-tree/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 方法一：递归
+
+      class Solution
+      {
+      public:
+          TreeNode* invertTree(TreeNode* root)
+          {
+              if(root)
+              {
+                  swap(root -> left, root -> right);
+                  invertTree(root -> left);
+                  invertTree(root -> right);
+              }
+              return root;
+          }
+      };
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 方法二：深度优先遍历
+
+      class Solution
+      {
+      public:
+          TreeNode* invertTree(TreeNode* root)
+          {
+              TreeNode* node = root;
+              stack<TreeNode*> stk;
+              while(node || !stk.empty())
+              {
+                  while(node)
+                  {
+                      stk.push(node);
+                      node = node -> left;
+                  }
+                  if(!stk.empty())
+                  {
+                      node = stk.top();
+                      stk.pop();
+                      swap(node -> left, node -> right);
+                      node = node -> left; // 翻转之后的左子树是原来的右子树
+                  }
+              }
+              return root;
+          }
+      };
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 方法三：广度优先遍历
+
+      class Solution
+      {
+      public:
+          TreeNode* invertTree(TreeNode* root)
+          {
+              queue<TreeNode*> qe;
+              if(root) qe.push(root);
+              while(!qe.empty())
+              {
+                  TreeNode* node = qe.front();
+                  qe.pop();
+                  swap(node -> left, node -> right);
+                  if(node -> left) qe.push(node -> left);
+                  if(node -> right) qe.push(node -> right);
+              }
+              return root;
+          }
+      };
+
+
 
 参考资料
 --------------

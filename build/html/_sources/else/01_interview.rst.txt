@@ -3452,6 +3452,90 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           }
       };
 
+50. [LeetCode] Sudoku Solver 数独。
+
+  https://leetcode.com/problems/sudoku-solver/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // code 用于编码数字出现的位置
+      struct code
+      {
+          int a;
+          int b;
+          char digit;
+          code(int _a, int _b, char _digit): a(_a), b(_b), digit(_digit){}
+          bool operator<(const code& rhs) const // 两个 const
+          {
+              if(digit < rhs.digit) return true;
+              if(digit > rhs.digit) return false;
+              if(a < rhs.a) return true;
+              if(a > rhs.a) return false;
+              if(b < rhs.b) return true;
+              return false;
+          }
+          /* 这里重载运算符 < 把 a，b，digit 都作为关键字，这对于后面 set 的 find 操作很关键。 */
+          /* 假如只使用 digit 作为关键字，set 将把 (1,2,'1') 和 (3,5,'1') 视为相同的元素。 */
+      };
+
+      class Solution
+      {
+      public:
+          void solveSudoku(vector<vector<char>>& board)
+          {
+              if(board.size() != 9 || board[0].size() != 9) return;
+              set<code> used;
+              for(int r = 0; r < 9; ++r)
+              {
+                  for(int c = 0; c < 9; ++c)
+                  {
+                      if(board[r][c] != '.')
+                      {
+                          used.emplace(code(r, -1, board[r][c])); // 第 r 行出现了 board[r][c]
+                          used.emplace(code(-1, c, board[r][c])); // 第 c 列出现了 board[r][c]
+                          used.emplace(code(r/3, c/3, board[r][c])); // 第 (r/3, c/3) 块出现了 board[r][c]
+                      }
+                  }
+              }
+              solveSudoku(board, used, 0);
+          }
+      private:
+          bool solveSudoku(vector<vector<char>>& board, set<code>& used, int t)
+          {
+              while(t < 81 && board[t/9][t%9] != '.') ++t;
+              if(t == 81) return true;
+              int r = t / 9;
+              int c = t % 9;
+              for(int k = 1; k <= 9; ++k)
+              {
+                  char digit = '0' + k;
+                  code rowcode(r, -1, digit);
+                  code colcode(-1, c, digit);
+                  code blockcode(r/3, c/3, digit);
+                  if(used.find(rowcode) == used.end() && used.find(colcode) == used.end() && used.find(blockcode) == used.end())
+                  {
+                      board[r][c] = digit;
+                      used.emplace(rowcode);
+                      used.emplace(colcode);
+                      used.emplace(blockcode);
+                      if(solveSudoku(board, used, t + 1)) return true;
+                      used.erase(rowcode);
+                      used.erase(colcode);
+                      used.erase(blockcode);
+                      board[r][c] = '.'; // 擦除
+                  }
+              }
+              return false;
+          }
+      };
+
 C++
 ------------
 

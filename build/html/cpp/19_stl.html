@@ -147,6 +147,7 @@
 <li class="toctree-l2"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a></li>
 <li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
 <li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_lambda.html">26. lambda 表达式</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -649,7 +650,8 @@
 <dt>无序容器</dt>
 <dd><p class="first">维护元素有序代价较高，map 和 set 都对应了无序版本：unordered_map 和 unordered_set。无序版本能使用有序版本的操作（find、insert 等）。
 当使用 key 来访问元素时，无序版本的速度更快。</p>
-<p class="last">不能直接定义关键字类型为自定义类类型的无序容器。</p>
+<p>不能直接定义关键字类型为自定义类类型的无序容器，因为自定义类类型无法使用内建哈希函数。</p>
+<p class="last">如果想定义关键字类型为自定义类类型的有序容器，也需要重载关系运算符（比较大小）；重载关系运算符的目的是为了表明该类型的关键字（key）。</p>
 </dd>
 </dl>
 </div>

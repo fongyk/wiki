@@ -22,3 +22,4 @@
     15_probability.rst
     16_geometry.rst
     17_graphCycle.rst
+    18_bTree.rst

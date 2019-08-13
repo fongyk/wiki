@@ -31,7 +31,7 @@
     if(!T) return;
     else
     {
-      visite(T -> val);
+      visit(T -> val);
       preOrder_Recur(T -> left);
       preOrder_Recur(T -> right);
     }
@@ -49,7 +49,7 @@
     {
       while(T)
       {
-        visite(T -> val);
+        visit(T -> val);
         stk.push(T);
         T = T -> left;
       }
@@ -76,7 +76,7 @@
       else
       {
         inOrder_Recur(T -> left);
-        visite(T -> val);
+        visit(T -> val);
         inOrder_Recur(T -> right);
       }
     }
@@ -100,7 +100,7 @@
       {
         T = stk.top();
         stk.pop();
-        visite(T -> val);
+        visit(T -> val);
         T = T -> right;
       }
     }
@@ -122,7 +122,7 @@
     {
       postOrder_Recur(T -> left);
       postOrder_Recur(T -> right);
-      visite(T -> val);
+      visit(T -> val);
     }
   }
 
@@ -209,7 +209,7 @@
     {
       T = Q.front();
       Q.pop();
-      visite(T -> val);
+      visit(T -> val);
       if(T -> left) Q.push(T -> left);
       if(T -> right) Q.push(T -> right);
     }
@@ -398,6 +398,90 @@
           }
       };
 
+- [LeetCode] Balanced Binary Tree 平衡二叉树。Hint：后序遍历，在判断子树是否平衡的同时，保存子树的高度，避免重复计算。
+
+  https://leetcode.com/problems/balanced-binary-tree/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution
+      {
+      public:
+          bool isBalanced(TreeNode* root)
+          {
+              int height = 0;
+              return isBalanced(root, height);
+          }
+      private:
+          bool isBalanced(TreeNode* root, int& height)
+          {
+              if(!root)
+              {
+                  height = 0;
+                  return true;
+              }
+              int leftHeight;
+              int rightHeight;
+              if(isBalanced(root->left, leftHeight) && isBalanced(root->right, rightHeight))
+              {
+                  if(abs(leftHeight - rightHeight) <= 1)
+                  {
+                      height = max(leftHeight, rightHeight) + 1;
+                      return true;
+                  }
+              }
+              return false;
+          }
+      };
+
+
+- [LeetCode] House Robber III 不包含相邻元素的最大路径和。Hint：后序遍历；包含或不包含头节点。
+
+  https://leetcode.com/problems/house-robber-iii/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution
+      {
+      public:
+          int rob(TreeNode* root)
+          {
+              int inclu_root = 0; // 包含头节点的最大和
+              int exclu_root = 0; // 不包含头节点的最大和
+              return rob(root, inclu_root, exclu_root);
+          }
+      private:
+          int rob(TreeNode* root, int& inclu_root, int& exclu_root)
+          {
+              if(!root) return 0;
+
+              int inclu_left = 0;
+              int exclu_left = 0;
+              rob(root -> left, inclu_left, exclu_left);
+              int inclu_right = 0;
+              int exclu_right = 0;
+              rob(root -> right, inclu_right, exclu_right);
+
+              inclu_root = root -> val + exclu_left + exclu_right;
+              exclu_root = max(inclu_left + inclu_right, max(inclu_left + exclu_right, max(exclu_left + inclu_right, exclu_left + exclu_right)));
+
+              return max(inclu_root, exclu_root);
+          }
+      };
 
 
 参考资料

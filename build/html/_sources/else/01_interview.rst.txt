@@ -1321,9 +1321,175 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
-21. [LeetCode] 4Sum II 4个数和为0的组合数。Hint：两两之和存入哈希表，时间复杂度和空间复杂度 :math:`\mathcal{O}(N^2)` 。
+21. 几个数的和。
 
-  https://leetcode.com/problems/4sum-ii/
+  - [LeetCode] Two Sum 两数之和为目标值。Hint：哈希，时间复杂度 :math:`\mathcal{O}(N)` 。
+
+      https://leetcode.com/problems/two-sum/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution
+      {
+      public:
+          vector<int> twoSum(vector<int>& nums, int target)
+          {
+              vector<int> res;
+              map<int, int> hash;
+              for(size_t k = 0; k < nums.size(); k++) hash[nums[k]] = k;
+              for(size_t k = 0; k < nums.size(); k++)
+              {
+                  if(hash.find(target - nums[k]) != hash.end())
+                  {
+                      if(hash[target - nums[k]] > k) // 避免重复统计同一对
+                      {
+                          res.push_back(k);
+                          res.push_back(hash[target - nums[k]]);
+                      }
+                  }
+              }
+              return res;
+          }
+      };
+
+  - [LeetCode] 3Sum 3 个数之和为 0。Hint：先排序；双指针；时间复杂度 :math:`\mathcal{O}(N^2)` 。
+
+      https://leetcode.com/problems/3sum/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution
+      {
+      public:
+          vector<vector<int>> threeSum(vector<int>& nums)
+          {
+              vector<vector<int>> result;
+              if(nums.size()<3) return result;
+              sort(nums.begin(), nums.end());
+              unsigned int n = nums.size();
+              int target = 0;
+              for(unsigned int i = 0; i + 2 < n; ++i)
+              {
+                  if(i > 0 && nums[i] == nums[i-1]) continue; // 忽略重复值
+                  if(nums[i] + nums[i+1] + nums[i+2] > target) break; // 下界
+                  if(nums[i] + nums[n-2] + nums[n-1] < target) continue; // 上界
+                  unsigned int left = i + 1;
+                  unsigned int right = n - 1;
+                  while(left < right)
+                  {
+                      if(nums[i]+nums[left]+nums[right] == target)
+                      {
+                          result.push_back(vector<int>{nums[i], nums[left], nums[right]});
+                          // 找到之后，两个指针都需要移动，并忽略重复值
+                          do{++left;}while(nums[left] == nums[left-1] && left < right);
+                          do{--right;}while(nums[right] == nums[right+1] && left < right);
+                      }
+                      else if(nums[i]+nums[left]+nums[right] < target)
+                      {
+                          do{++left;}while(nums[left] == nums[left-1] && left < right);
+                      }
+                      else
+                      {
+                          do{--right;}while(nums[right] == nums[right+1] && left < right);
+                      }
+                  }
+              }
+              return result;
+          }
+      };
+
+  - [LeetCode] 4Sum 4 个数之和为目标值。Hint：先排序；双指针；时间复杂度 :math:`\mathcal{O}(N^3)` 。
+
+      https://leetcode.com/problems/4sum/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution
+      {
+      public:
+          vector<vector<int>> fourSum(vector<int>& nums, int target)
+          {
+              vector<vector<int>> quad;
+              if(nums.size() < 4) return quad;
+              unsigned int n = nums.size();
+              sort(nums.begin(), nums.end());
+              for(unsigned int i = 0; i + 3 < n; ++i)
+              {
+                  if(i > 0 && nums[i] == nums[i-1]) continue; // 忽略重复值
+                  if(nums[i] + nums[i+1] + nums[i+2] + nums[i+3] > target) break; // 下界
+                  if(nums[i] + nums[n-3] + nums[n-2] + nums[n-1] < target) continue; // 上界
+                  for(unsigned int j = i + 1; j + 2 < n; ++j)
+                  {
+                      if(j > i + 1 && nums[j] == nums[j-1]) continue; // 忽略重复值
+                      if(nums[i] + nums[j] + nums[j+1] + nums[j+2] > target) break; // 下界
+                      if(nums[i] + nums[j] + nums[n-2] + nums[n-1] < target) continue; // 上界
+                      unsigned int left = j + 1;
+                      unsigned int right = n - 1;
+                      while(left < right)
+                      {
+                          int sum = nums[i] + nums[j] + nums[left] + nums[right];
+                          if(sum == target)
+                          {
+                              quad.push_back(vector<int>{nums[i], nums[j], nums[left], nums[right]});
+                              // 找到之后，两个指针都需要移动，并忽略重复值
+                              do
+                              {
+                                  ++left;
+                              }
+                              while(nums[left] == nums[left-1] && left < right);
+                              do
+                              {
+                                  --right;
+                              }
+                              while(nums[right] == nums[right+1] && left < right);
+                          }
+                          else if(sum < target)
+                          {
+                              do
+                              {
+                                  ++left;
+                              }
+                              while(nums[left] == nums[left-1] && left < right);
+                          }
+                          else
+                          {
+                              do
+                              {
+                                  --right;
+                              }
+                              while(nums[right] == nums[right+1] && left < right);
+                          }
+                      }
+                  }
+              }
+              return quad;
+          }
+      };
+
+  - [LeetCode] 4Sum II 4 个数和为 0 的组合数。Hint：两两之和存入哈希表，时间复杂度和空间复杂度 :math:`\mathcal{O}(N^2)` 。
+
+      https://leetcode.com/problems/4sum-ii/
 
   .. container:: toggle
 

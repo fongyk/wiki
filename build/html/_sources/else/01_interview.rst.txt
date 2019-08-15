@@ -3702,6 +3702,146 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           }
       };
 
+51. [LeetCode] Median of Two Sorted Arrays 两个排序数组的中位数。Hint：方法一，归并，时间复杂度 :math:`\mathcal{O}(m+n)` ；方法二，二分查找，时间复杂度 :math:`\mathcal{O}(\log (m+n))` 。
+
+  https://leetcode.com/problems/median-of-two-sorted-arrays/
+
+  https://windliang.cc/2018/07/18/leetCode-4-Median-of-Two-Sorted-Arrays/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 方法一
+
+      class Solution
+      {
+      public:
+          double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2)
+          {
+              if(nums1.empty() && nums2.empty()) return 0.0;
+              
+              int m = nums1.size();
+              int n = nums2.size();
+              int i = 0;
+              int j = 0;
+              int k = 0;
+
+              double median;
+              if(nums1.empty()) median = nums2[0];
+              else if(nums2.empty()) median = nums1[0];
+              else median = min(nums1[0], nums2[0]);
+              double premedian = median;
+
+              for(; i < m && j < n && k <= (m+n)/2; ++k)
+              {
+                  premedian = median;
+                  if(nums1[i] < nums2[j])
+                  {
+                      median = nums1[i];
+                      ++i;
+                  }
+                  else
+                  {
+                      median = nums2[j];
+                      ++j;
+                  }
+              }
+              while(i < m && k <= (m+n)/2)
+              {
+                  premedian = median;
+                  median = nums1[i];
+                  ++i;
+                  ++k;
+              }
+              while(j < n && k <= (m+n)/2)
+              {
+                  premedian = median;
+                  median = nums2[j];
+                  ++j;
+                  ++k;
+              }
+              if((m+n)%2) return median;
+              else return (premedian + median) / 2.0;
+          }
+      };
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 方法二
+
+      class Solution
+      {
+      public:
+          double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2)
+          {
+              if(nums1.empty() && nums2.empty()) return 0.0;
+              int m = nums1.size();
+              int n = nums2.size();
+              if((m+n)%2) return getKthSmall(nums1, 0, m, nums2, 0, n, (m+n)/2+1);
+              return (getKthSmall(nums1, 0, m, nums2, 0, n, (m+n)/2+1) + getKthSmall(nums1, 0, m, nums2, 0, n, (m+n)/2)) / 2.0;
+          }
+
+      private:
+          // 找到第 k 小的数
+          double getKthSmall(vector<int>& nums1, int i, int m, vector<int>nums2, int j, int n, int k)
+          {
+              while(true)
+              {
+                  if(i == m) return nums2[j+k-1]; // 区间为空
+                  if(j == n) return nums1[i+k-1]; // 区间为空
+                  if(k == 1) return min(nums1[i], nums2[j]);
+
+                  int mid = k / 2;
+                  if(mid >= m) // 区间 [i, m) 大小小于 mid，则比较最后一个数
+                  {
+                      if(nums1[m-1] <= nums2[j+mid-1])
+                      {
+                          k -= m - i;
+                          i = m;
+                      }
+                      else
+                      {
+                          k -= mid;
+                          j += mid;
+                      }
+                  }
+                  else if(mid >= n) // 区间 [j, n) 大小小于 mid，则比较最后一个数
+                  {
+                      if(nums2[n-1] <= nums1[i+mid-1])
+                      {
+                          k -= n - j;
+                          j = n;
+                      }
+                      else
+                      {
+                          k -= mid;
+                          i += mid;
+                      }
+                  }
+                  else
+                  {
+                      if(nums1[i+mid-1] <= nums2[j+mid-1])
+                      {
+                          k -= mid;
+                          i += mid;
+                      }
+                      else
+                      {
+                          k -= mid;
+                          j += mid;
+                      }
+                  }
+              }
+          }
+      };
+
 C++
 ------------
 

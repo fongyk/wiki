@@ -133,6 +133,7 @@
 <li class="toctree-l2"><a class="reference internal" href="15_probability.html">15. 概率基础</a></li>
 <li class="toctree-l2"><a class="reference internal" href="16_geometry.html">16. 几何</a></li>
 <li class="toctree-l2"><a class="reference internal" href="17_graphCycle.html">17. 图环</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_bTree.html">18. B 树</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
@@ -212,7 +213,7 @@
 <h2>8.1. 矩阵连乘<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>矩阵连乘，通过调整加括号的方式，使得乘法元素次数最少。设矩阵链 <span class="math notranslate nohighlight">\(A[0:n-1]\)</span> ， <span class="math notranslate nohighlight">\(A[i]\)</span> 的维度为 <span class="math notranslate nohighlight">\(p_i \times p_{i+1}\)</span> 。
 <span class="math notranslate nohighlight">\(m[i][j]\)</span> 是计算 <span class="math notranslate nohighlight">\(A[i:j],\ 0 \leqslant i \leqslant j \leqslant n-1\)</span> 所需的最少乘法次数。</p>
-<p>递归关系：</p>
+<p>递推关系：</p>
 <div class="math notranslate nohighlight">
 $$
 m[i][j] =
@@ -279,7 +280,7 @@ $$</div><div class="toggle docutils container">
 <div class="section" id="id3">
 <h2>8.2. 最长公共子序列<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>用 <span class="math notranslate nohighlight">\(c[i][j]\)</span> 记录序列 <span class="math notranslate nohighlight">\(X[0:i-1]\)</span> （前 <span class="math notranslate nohighlight">\(i\)</span> 个字符）和 <span class="math notranslate nohighlight">\(Y[0:j-1]\)</span> （前 <span class="math notranslate nohighlight">\(j\)</span> 个字符）的最长公共子序列的长度。</p>
-<p>递归关系：</p>
+<p>递推关系：</p>
 <div class="math notranslate nohighlight">
 $$
 c[0][j] = 0,\ 0 \leqslant j \leqslant n \\
@@ -432,7 +433,7 @@ $$</div></div>
 <ul>
 <li><p class="first">方法一</p>
 <p>设 <span class="math notranslate nohighlight">\(dp[i]\)</span> 是以 <span class="math notranslate nohighlight">\(a[i]\)</span> 结尾的最长上升子序列的长度。</p>
-<p>递归关系：</p>
+<p>递推关系：</p>
 <div class="math notranslate nohighlight">
 \[dp[i] = max\{ 1, dp[j]+1\ |\ j &lt; i\ \text{且}\ a[j] &lt; a[i]\}.\]</div>
 </li>
@@ -535,7 +536,7 @@ $$</div></div>
 <div class="section" id="id5">
 <h2>8.4. 最大子段和<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p>设 <span class="math notranslate nohighlight">\(dp[i]\)</span> 是以 <span class="math notranslate nohighlight">\(a[i]\)</span> 结尾的最大子段和。</p>
-<p>递归关系：</p>
+<p>递推关系：</p>
 <div class="math notranslate nohighlight">
 \[dp[i] = max\{ dp[i-1] + a[i], a[i] \},\ 1 \leqslant i &lt; n.\]</div>
 <div class="toggle docutils container">
@@ -572,7 +573,7 @@ $$</div></div>
 <div class="section" id="id6">
 <h2>8.5. 0-1背包问题<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <p>设 <span class="math notranslate nohighlight">\(dp[i][j]\)</span> 表示从 <span class="math notranslate nohighlight">\(0\)</span> 到 <span class="math notranslate nohighlight">\(i-1\)</span> 这前 <span class="math notranslate nohighlight">\(i\)</span> 个物品中选出总重量不超过 <span class="math notranslate nohighlight">\(j\)</span> 的物品时总价值的最大值。</p>
-<p>递归关系：</p>
+<p>递推关系：</p>
 <div class="math notranslate nohighlight">
 $$
 dp[0][j] = 0,\ 0 \leqslant j \leqslant W

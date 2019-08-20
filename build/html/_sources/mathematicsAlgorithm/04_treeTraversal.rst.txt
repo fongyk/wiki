@@ -484,6 +484,47 @@
       };
 
 
+- [LeetCode] Path Sum III 路径和为目标值。Hint：先序遍历，把每个节点当做起始节点。
+
+  https://leetcode.com/problems/path-sum-iii/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution
+      {
+      public:
+          int pathSum(TreeNode* root, int sum)
+          {
+              int cnt = 0;
+              traverse(root, sum, cnt);
+              return cnt;
+          }
+      private:
+          void traverse(TreeNode* root, int target, int& cnt)
+          {
+              if(root)
+              {
+                  getSumFromRoot(root, target - root->val, cnt); // 以 root 为起点的路径和
+                  traverse(root->left, target, cnt);
+                  traverse(root->right, target, cnt);
+              }
+          }
+          void getSumFromRoot(TreeNode* root, int target, int& cnt)
+          {
+              if(target == 0) cnt ++;
+              // 当后续路径和为 0，也是一条满足要求的路径，因此当 target 减到 0 之后不能立即返回，也需要继续遍历。
+              if(root->left) getSumFromRoot(root->left, target - root->left->val, cnt);
+              if(root->right) getSumFromRoot(root->right, target - root->right->val, cnt);
+          }
+      };
+
 参考资料
 --------------
 

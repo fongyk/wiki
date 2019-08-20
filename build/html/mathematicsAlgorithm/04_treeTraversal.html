@@ -963,6 +963,69 @@
 </td></tr></table></div>
 </div>
 </li>
+<li><p class="first">[LeetCode] Path Sum III 路径和为目标值。Hint：先序遍历，把每个节点当做起始节点。</p>
+<p><a class="reference external" href="https://leetcode.com/problems/path-sum-iii/">https://leetcode.com/problems/path-sum-iii/</a></p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
+</div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">pathSum</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sum</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">sum</span><span class="p">,</span> <span class="n">cnt</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">cnt</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">traverse</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">,</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">cnt</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">getSumFromRoot</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">target</span> <span class="o">-</span> <span class="n">root</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">,</span> <span class="n">cnt</span><span class="p">);</span> <span class="c1">// 以 root 为起点的路径和</span>
+            <span class="n">traverse</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">cnt</span><span class="p">);</span>
+            <span class="n">traverse</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">cnt</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">getSumFromRoot</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">,</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">cnt</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">target</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">cnt</span> <span class="o">++</span><span class="p">;</span>
+        <span class="c1">// 当后续路径和为 0，也是一条满足要求的路径，因此当 target 减到 0 之后不能立即返回，也需要继续遍历。</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">)</span> <span class="n">getSumFromRoot</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span> <span class="n">target</span> <span class="o">-</span> <span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">,</span> <span class="n">cnt</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">)</span> <span class="n">getSumFromRoot</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span> <span class="n">target</span> <span class="o">-</span> <span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">,</span> <span class="n">cnt</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</li>
 </ul>
 </div>
 <div class="section" id="id8">

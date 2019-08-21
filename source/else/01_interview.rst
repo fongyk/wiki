@@ -493,12 +493,8 @@
           }
       };
 
-5. 排列组合：:math:`k` 个球放入 :math:`m` 个盒子
 
-  https://blog.csdn.net/qwb492859377/article/details/50654627?tdsourcetag=s_pctim_aiomsg
-
-
-6. [LeetCode] Sort Colors（三颜色排序 → K 颜色排序）
+5. [LeetCode] Sort Colors（三颜色排序 → K 颜色排序）
 
   https://blog.csdn.net/princexiexiaofeng/article/details/79645511
 
@@ -539,7 +535,7 @@
       // 因为 2 是往后交换，0 是往前交换；2 交换得到的可能是 0，但可以保证 0 交换得到的不会是 2，因为 2 在 0 之前被处理了
       // 如果判断顺序反过来，2 交换得到的 0 不会被处理
 
-7. 找到数组第 :math:`k` 大的数
+6. 找到数组第 :math:`k` 大的数
 
   https://leetcode.com/problems/kth-largest-element-in-an-array/
 
@@ -607,7 +603,7 @@
 
 
 
-8. [LeetCode] Best Time to Buy and Sell Stock 买卖股票的最佳时间
+7. [LeetCode] Best Time to Buy and Sell Stock 买卖股票的最佳时间
 
   - 最多一次交易
 
@@ -712,7 +708,7 @@
           }
       };
 
-9. [LeetCode] Partition Equal Subset Sum 数组分成两个子集，和相等
+8. [LeetCode] Partition Equal Subset Sum 数组分成两个子集，和相等
 
   https://leetcode.com/problems/partition-equal-subset-sum/
 
@@ -751,7 +747,7 @@
               return self.backtrack(nums, sum_nums, 0, 0) ## self
 
 
-10. [LeetCode] Find All Anagrams in a String 统计变位词出现的位置。Hint：采用滑动窗口和 **计数器** 进行比较。
+9. [LeetCode] Find All Anagrams in a String 统计变位词出现的位置。Hint：采用滑动窗口和 **计数器** 进行比较。
 
   https://leetcode.com/problems/find-all-anagrams-in-a-string/
 
@@ -791,7 +787,7 @@
       };
 
 
-11. 寻找重复数。数值范围为 :math:`\{ 1,2,3,...,n \}` ，有的出现 2 次，有的出现 1 次。Hint：把数组元素的值当做下标，由于元素存在重复，因此必然会 **重复多次访问同一个位置** 。
+10. 寻找重复数。数值范围为 :math:`\{ 1,2,3,...,n \}` ，有的出现 2 次，有的出现 1 次。Hint：把数组元素的值当做下标，由于元素存在重复，因此必然会 **重复多次访问同一个位置** 。
 从另一个角度讲，访问序列中存在“环”。排序的时间复杂度高，哈希不满足空间复杂度为 :math:`\mathcal{O}(1)` 的要求。
 
   - [LeetCode] Find the Duplicate Number 找到一个重复数字（共有 :math:`n+1` 个数）。
@@ -917,7 +913,7 @@
       };
 
 
-12. [LeetCode] Spiral Matrix 环形打印矩阵
+11. [LeetCode] Spiral Matrix 环形打印矩阵
 
   https://leetcode.com/problems/spiral-matrix/
 
@@ -973,7 +969,7 @@
       };
 
 
-13. [LeetCode] Longest Consecutive Sequence 最长连续序列。Hint：方法一，排序；方法二，对于每个元素 :math:`n` ，搜索 :math:`n+1` 是否在数组中，使用 hash/set 可以获得 :math:`\mathcal{O}(1)` 的查找复杂度。
+12. [LeetCode] Longest Consecutive Sequence 最长连续序列。Hint：方法一，排序；方法二，对于每个元素 :math:`n` ，搜索 :math:`n+1` 是否在数组中，使用 hash/set 可以获得 :math:`\mathcal{O}(1)` 的查找复杂度。
 
   https://leetcode.com/problems/longest-consecutive-sequence/
 
@@ -1009,11 +1005,11 @@
               return longest
 
 
-14. 最大公约数与最小公倍数。Hint：辗转相除法；最小公倍数等于两数乘积除以最大公约数。
+13. 最大公约数与最小公倍数。Hint：辗转相除法；最小公倍数等于两数乘积除以最大公约数。
 
   https://www.cnblogs.com/Arvin-JIN/p/7247619.html
 
-15. 跳跃的蚂蚱：从 0 点出发，往正或负向跳跃，第一次跳跃一个单位，之后每次跳跃距离比上一次多一个单位，跳跃多少次可到到达坐标 :math:`x` 处？
+14. 跳跃的蚂蚱：从 0 点出发，往正或负向跳跃，第一次跳跃一个单位，之后每次跳跃距离比上一次多一个单位，跳跃多少次可到到达坐标 :math:`x` 处？
 Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数列（如 :math:`n=2` ，可到达 :math:`\{-3,-1,1,3\}` ）。
 只需找到最小的 :math:`n` 使得
 
@@ -1049,7 +1045,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       }
 
 
-16. 求 :math:`n` 的阶乘末尾有多少个 :math:`0` 。Hint：1个 :math:`5` 和1个 :math:`2` 搭配可以得到1个 :math:`0` ；:math:`2` 的个数比 :math:`5` 多，
+15. 求 :math:`n` 的阶乘末尾有多少个 :math:`0` 。Hint：1个 :math:`5` 和1个 :math:`2` 搭配可以得到1个 :math:`0` ；:math:`2` 的个数比 :math:`5` 多，
 因此只关心 :math:`5` 的个数；:math:`25` 包含2个 :math:`5` ，:math:`125` 包含3个 :math:`5` ...。
 
   .. container:: toggle
@@ -1078,7 +1074,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
-17. 求一个整数的二进制表示中 :math:`1` 的个数。Hint：移位操作；负数可能造成死循环。 **注：C++中，指定移位次数大于或等于对象类型的比特数（如int型的32位），或者对负数进行左移操作，结果都是未定义的** 。
+16. 求一个整数的二进制表示中 :math:`1` 的个数。Hint：移位操作；负数可能造成死循环。 **注：C++中，指定移位次数大于或等于对象类型的比特数（如int型的32位），或者对负数进行左移操作，结果都是未定义的** 。
 例如：``n >> 32`` 是未定义的，但是允许 ``n >>= 1`` 执行无限次，这是安全的。延伸：检查一个数是否是 2 的整次幂，Hint：二进制表示只有一个 1；检查一个数是否是 4 的整次幂，Hint：4 的整次幂的二进制表示中，
 1 都在奇数位；检查一个数是否是 3 的整次幂，Hint：质数的整次幂的质因子只有该质数本身。
 
@@ -1166,7 +1162,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
         return n > 0 && 1162261467 % n == 0; // 3^19 = 1162261467 是 int 型中最大的 3 的整次幂
       }
 
-18. [LeetCode] Subarray Sum Equals K 子数组和为 :math:`K` 。Hint：依次求数组的前 :math:`n` 项和 :math:`sum[n]` ，:math:`n \in [0, arr\_size]` （注意：0也在内），
+17. [LeetCode] Subarray Sum Equals K 子数组和为 :math:`K` 。Hint：依次求数组的前 :math:`n` 项和 :math:`sum[n]` ，:math:`n \in [0, arr\_size]` （注意：0也在内），
 将和作为哈希表的key，和的值出现次数作为value；如果存在 :math:`sum[i]−sum[j]=K \ (i \ge j)` ，则 :math:`sum[i]` 和 :math:`sum[j]` 都应该在哈希表中。
 
   https://leetcode.com/problems/subarray-sum-equals-k/
@@ -1210,7 +1206,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
               return cnt
 
 
-19. 使用位运算进行加法运算。Hint：原位加法运算等效为 ``^`` 运算，进位等效为 ``&`` 和 ``移位`` 的复合。 **注：C++不允许对负数进行左移运算。**
+18. 使用位运算进行加法运算。Hint：原位加法运算等效为 ``^`` 运算，进位等效为 ``&`` 和 ``移位`` 的复合。 **注：C++不允许对负数进行左移运算。**
 
   https://leetcode.com/problems/sum-of-two-integers/
 
@@ -1269,7 +1265,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       ## python 中，使用type()查看数据类型时发现，有时候系统会把 int32 转化为 int64，或者 int64 转为 int32，疑惑中。。。
 
 
-20. [LeetCode] Longest Substring with At Least K Repeating Characters 包含重复字符的最长子串。Hint：由于该字符串只包含小写字母，因此
+19. [LeetCode] Longest Substring with At Least K Repeating Characters 包含重复字符的最长子串。Hint：由于该字符串只包含小写字母，因此
 直接使用长度为26的静态数组来统计字符频率更为简洁高效，不需要使用map。
 
   https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/
@@ -1321,7 +1317,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
-21. 几个数的和。
+20. 几个数的和。
 
   - [LeetCode] Two Sum 两数之和为目标值。Hint：哈希，时间复杂度 :math:`\mathcal{O}(N)` 。
 
@@ -1506,14 +1502,43 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
 
 
-22. [LeetCode] Maximum Product Subarray 求连续子数组的最大乘积。Hint：数组中存在负数，负负得正，因此相比于连续子数组最大和问题，不仅需要记录以每个元素结尾的连续乘积的最大值，还需要记录最小值。
+21. [LeetCode] Maximum Product Subarray 求连续子数组的最大乘积。Hint：数组中存在负数，负负得正，因此相比于连续子数组最大和问题，不仅需要记录以每个元素结尾的连续乘积的最大值，还需要记录最小值。
 
-  https://blog.csdn.net/xblog\_/article/details/72872263
+  https://leetcode.com/problems/maximum-product-subarray/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution
+      {
+      public:
+          int maxProduct(vector<int>& nums)
+          {
+              int pre_min = nums[0];
+              int pre_max = nums[0];
+              int curr_min = nums[0];
+              int curr_max = nums[0];
+              int maxproduct = nums[0];
+              for(int k = 1; k < nums.size(); ++k)
+              {
+                  curr_min = min(nums[k], min(pre_min*nums[k], pre_max*nums[k]));
+                  curr_max = max(nums[k], max(pre_min*nums[k], pre_max*nums[k]));
+                  maxproduct = max(maxproduct, curr_max);
+                  pre_min = curr_min;
+                  pre_max = curr_max;
+              }
+              return maxproduct;
+          }
+      };
 
 
-
-
-23. 给定一个十进制整数 :math:`N` ，统计从 :math:`1` 到 :math:`N` 所有的整数各位出现的 :math:`1` 的数目。Hint： :math:`1` 的数目 = 个位出现 :math:`1` 的数目 + 十位出现 :math:`1` 的数目 + 百位出现 :math:`1` 的数目  + ......。以百位为例：如果百位数字为0，则百位出现1的次数只由更高位决定，如12013，次数为12 * 100；如果百位数字为1，则百位出现1的次数由更高位和更低位同时决定，如12113，次数为12 * 100 + (13 + 1)；如果百位数字大于1，则百位出现1的次数只由更高位决定，如12213，次数为(12 + 1) * 100。时间复杂度 :math:`\mathcal{O}(\log_{10}(N))` 。
+22. 给定一个十进制整数 :math:`N` ，统计从 :math:`1` 到 :math:`N` 所有的整数各位出现的 :math:`1` 的数目。Hint： :math:`1` 的数目 = 个位出现 :math:`1` 的数目 + 十位出现 :math:`1` 的数目 + 百位出现 :math:`1` 的数目  + ......。以百位为例：如果百位数字为0，则百位出现1的次数只由更高位决定，如12013，次数为12 * 100；如果百位数字为1，则百位出现1的次数由更高位和更低位同时决定，如12113，次数为12 * 100 + (13 + 1)；如果百位数字大于1，则百位出现1的次数只由更高位决定，如12213，次数为(12 + 1) * 100。时间复杂度 :math:`\mathcal{O}(\log_{10}(N))` 。
 
   http://www.cnblogs.com/jy02414216/archive/2011/03/09/1977724.html
 
@@ -1557,7 +1582,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       }
 
 
-24. 数组循环移位：循环右移 :math:`K` 位，时间复杂度 :math:`\mathcal{O}(N)` 。Hint：三次翻转。
+23. 数组循环移位：循环右移 :math:`K` 位，时间复杂度 :math:`\mathcal{O}(N)` 。Hint：三次翻转。
 
   .. container:: toggle
 
@@ -1585,7 +1610,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
 
 
-25. [LeetCode] Divide Two Integers 整数除法。Hint：先取绝对值，做正整数之间的除法；防止溢出。
+24. [LeetCode] Divide Two Integers 整数除法。Hint：先取绝对值，做正整数之间的除法；防止溢出。
 
   https://leetcode.com/problems/divide-two-integers/
 
@@ -1640,7 +1665,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
-26. [LeetCode] Fraction to Recurring Decimal 循环小数。Hint：小数除法：余数乘以10再求余；如果余数出现重复，则说明是循环小数。
+25. [LeetCode] Fraction to Recurring Decimal 循环小数。Hint：小数除法：余数乘以10再求余；如果余数出现重复，则说明是循环小数。
 
   https://leetcode.com/problems/fraction-to-recurring-decimal/
 
@@ -1696,7 +1721,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
-27. 正整数质因数分解。
+26. 正整数质因数分解。
 
   .. container:: toggle
 
@@ -1719,7 +1744,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
                   prime += 1
 
 
-28. 旋转数组查找。Hint：采用二分查找的思路。
+27. 旋转数组查找。Hint：采用二分查找的思路。
 
   - 二分查找
 
@@ -1946,7 +1971,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
-29. [LeetCode] Maximum Gap 最大间隔。Hint：方法一，普通排序，逐个比较；方法二，桶排序。将 :math:`n` 个数放到 :math:`n+1` 个桶中，最小值放第一个桶，
+28. [LeetCode] Maximum Gap 最大间隔。Hint：方法一，普通排序，逐个比较；方法二，桶排序。将 :math:`n` 个数放到 :math:`n+1` 个桶中，最小值放第一个桶，
 最大值放最后一个桶，每个桶的大小为 :math:`\frac{max-min}{n}` 。根据鸽巢原理，至少存在一个桶为空。最大间隔必然出现在空桶两侧，且只与左侧桶的最大值、
 右侧桶的最小值有关。（事实上，可以将 :math:`n` 个数放到 :math:`n` 个桶中，如果没有空桶，则刚好每个桶有且仅有一个数，最大间隔出现在相邻桶中；如果某个桶有2个数以上，
 说明存在有空桶，最大间隔出现在非空的相邻桶中。总之，最大间隔不会出现在一个桶中。）
@@ -2015,7 +2040,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
 
 
-30. 数组操作模拟大数乘法。Hint：从低位到高位，采用竖式计算，记录所有位的乘积，再将对应位的结果相加，最后进位。假设数组 :math:`a` 和 :math:`b` 从低位到高位存储了两个大数（可能存在小数点），则乘积为 :math:`ans[i+j] = ans[i+j] + a[i] + b[j]` 。
+29. 数组操作模拟大数乘法。Hint：从低位到高位，采用竖式计算，记录所有位的乘积，再将对应位的结果相加，最后进位。假设数组 :math:`a` 和 :math:`b` 从低位到高位存储了两个大数（可能存在小数点），则乘积为 :math:`ans[i+j] = ans[i+j] + a[i] + b[j]` 。
 
   .. container:: toggle
 
@@ -2069,7 +2094,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           return s
 
 
-31. [LeetCode] Number of Islands 孤岛个数。Hint：使用队列，广度优先遍历（BFS）。延伸：从坐标 :math:`(0, 0)` 到 :math:`(n-1, m-1)` 的最短时间，只能走四邻域，:math:`map[i][j] = 1` 表示有障碍。Hint：BFS，第一个到达的就是时间最短的。
+30. [LeetCode] Number of Islands 孤岛个数。Hint：使用队列，广度优先遍历（BFS）。延伸：从坐标 :math:`(0, 0)` 到 :math:`(n-1, m-1)` 的最短时间，只能走四邻域，:math:`map[i][j] = 1` 表示有障碍。Hint：BFS，第一个到达的就是时间最短的。
 
   https://leetcode.com/problems/number-of-islands/
 
@@ -2197,7 +2222,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           }
       };
 
-32. 回文（palindrome）。
+31. 回文（palindrome）。
 
   - [LeetCode] Longest Palindromic Substring 最长回文子串（子串连续）。Hint：方法一，中心扩展法，回文中心的两侧互为镜像，将每一个位置作为中心进行扩展，回文分偶数和奇数；方法二，动态规划，类似于矩阵连乘问题，逐渐增大步长。
 
@@ -2567,7 +2592,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
       };
 
-33. 给定两个字符串 s1 和 s2，检查 s2 是否由 s1 旋转得到。Hint：对 s1 做循环移位，所得字符串都将是字符串 s1s1 的子串。
+32. 给定两个字符串 s1 和 s2，检查 s2 是否由 s1 旋转得到。Hint：对 s1 做循环移位，所得字符串都将是字符串 s1s1 的子串。
 
   .. container:: toggle
 
@@ -2587,7 +2612,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           return true;
       }
 
-34. [LeetCode] Validate Binary Search Tree 检查一棵二叉树是否为二叉查找树。Hint：不仅要求左节点比当前节点小，右节点比当前节点大，而是要求左子树所有节点都小于当前节点，右子树所有节点都大于当前节点；利用二叉树的中序遍历，BST 得到的序列是升序排列的。
+33. [LeetCode] Validate Binary Search Tree 检查一棵二叉树是否为二叉查找树。Hint：不仅要求左节点比当前节点小，右节点比当前节点大，而是要求左子树所有节点都小于当前节点，右子树所有节点都大于当前节点；利用二叉树的中序遍历，BST 得到的序列是升序排列的。
 
   https://leetcode.com/problems/validate-binary-search-tree/
 
@@ -2621,7 +2646,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
         }
       };
 
-35. 判断一个数是否是奇数。Hint：考虑负数的情形；方法一，判断模 2 结果不为 0；方法二，位运算判断最低位为 1。延伸：判断两个数是否相等（或判断某个数是否为 0），
+34. 判断一个数是否是奇数。Hint：考虑负数的情形；方法一，判断模 2 结果不为 0；方法二，位运算判断最低位为 1。延伸：判断两个数是否相等（或判断某个数是否为 0），
 如果是浮点数，应该判断两者差的绝对值是否小于一个阈值，而不是直接使用 ==。
 
   .. container:: toggle
@@ -2649,7 +2674,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       }
 
 
-36. [LeetCode] Valid Number 验证一个字符串是否表示某个有效数字。Hint：完整的数字表达是“空格+正负号+整数+小数点+整数+e+正负号+整数+空格”；小数点的相邻两边至少要有一边是整数；如果出现 e，其两边都必须出现整数，但不要求相邻；如 05.e-3 是一个有效数字。
+35. [LeetCode] Valid Number 验证一个字符串是否表示某个有效数字。Hint：完整的数字表达是“空格+正负号+整数+小数点+整数+e+正负号+整数+空格”；小数点的相邻两边至少要有一边是整数；如果出现 e，其两边都必须出现整数，但不要求相邻；如 05.e-3 是一个有效数字。
     延伸：将字符串转换为整数，需要考虑：空串、正负号、无效字符、溢出。
 
   https://leetcode.com/problems/valid-number/
@@ -2776,7 +2801,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           }
       };
 
-37. 求 :math:`1+2+3+ \cdots +n` ，不使用：乘除法，判断，循环，库函数。
+36. 求 :math:`1+2+3+ \cdots +n` ，不使用：乘除法，判断，循环，库函数。
 
   .. container:: toggle
 
@@ -2858,7 +2883,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
         return arr[1] -> getSum(N);
       }
 
-38. [LeetCode] Lexicographical Numbers 按字典序排列 :math:`1 \sim n` 。Hint：方法一，定义排序规则，按字符串的字典序排序；方法二，回溯，递归深度只与 :math:`n` 的位数有关。延伸：找到字典序排列的第 :math:`k` 个数。
+37. [LeetCode] Lexicographical Numbers 按字典序排列 :math:`1 \sim n` 。Hint：方法一，定义排序规则，按字符串的字典序排序；方法二，回溯，递归深度只与 :math:`n` 的位数有关。延伸：找到字典序排列的第 :math:`k` 个数。
 
   https://leetcode.com/problems/lexicographical-numbers/
 
@@ -2941,7 +2966,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
                       return pos
                   pos *= 10  ## 进入子区间
 
-39. [LeetCode] Merge k Sorted Lists 合并 :math:`k` 条有序链表为一条有序链表（都是升序）。Hint：建立大小为 :math:`k` 的小顶堆，每次弹出一个节点，并把该节点的下一个节点插入小顶堆中。时间复杂度 :math:`\mathcal{O}(n \log k)` ，:math:`n` 是节点个数。
+38. [LeetCode] Merge k Sorted Lists 合并 :math:`k` 条有序链表为一条有序链表（都是升序）。Hint：建立大小为 :math:`k` 的小顶堆，每次弹出一个节点，并把该节点的下一个节点插入小顶堆中。时间复杂度 :math:`\mathcal{O}(n \log k)` ，:math:`n` 是节点个数。
 
   https://leetcode.com/problems/merge-k-sorted-lists/
 
@@ -3001,7 +3026,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
-40. [LeetCode] Max Points on a Line 统计共线的最多点数。Hint：直线需要考虑三种斜率：水平，垂直，斜线，还要考虑点重合的情形；由于浮点运算的精度问题，将斜率表示为两个整数的分数形式，保存到哈希表中。
+39. [LeetCode] Max Points on a Line 统计共线的最多点数。Hint：直线需要考虑三种斜率：水平，垂直，斜线，还要考虑点重合的情形；由于浮点运算的精度问题，将斜率表示为两个整数的分数形式，保存到哈希表中。
 
   https://leetcode.com/problems/max-points-on-a-line/
 
@@ -3076,7 +3101,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           }
       };
 
-41. [LeetCode] Word Break 字符串按字典切分。Hint：回溯；动态规划。
+40. [LeetCode] Word Break 字符串按字典切分。Hint：回溯；动态规划。
 
   https://leetcode.com/problems/word-break/
 
@@ -3189,7 +3214,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
-42. [LeetCode] Gas Station 加油站回路。Hint：只要 gas 总和不小于 cost 总和，一定存在可以完成回路的出发点。延伸：从起点到终点的最少加油次数。Hint：贪心算法，把路过的每个加油站的油量存入优先队列，当需要加油时，
+41. [LeetCode] Gas Station 加油站回路。Hint：只要 gas 总和不小于 cost 总和，一定存在可以完成回路的出发点。延伸：从起点到终点的最少加油次数。Hint：贪心算法，把路过的每个加油站的油量存入优先队列，当需要加油时，
 弹出队列中的最大油量。
 
   https://leetcode.com/problems/gas-station/
@@ -3228,7 +3253,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           }
       };
 
-43. :math:`n` 个人过桥，每次最多通过两个人（过桥时间按较长者计算），只有一个手电筒，每次过桥之后需要一个人把手电筒送回来，求最短过桥时间。Hint：耗时第 :math:`k` 小的人过桥有两种方案，第一，由耗时最短的人送回手电筒，并陪同过河；
+42. :math:`n` 个人过桥，每次最多通过两个人（过桥时间按较长者计算），只有一个手电筒，每次过桥之后需要一个人把手电筒送回来，求最短过桥时间。Hint：耗时第 :math:`k` 小的人过桥有两种方案，第一，由耗时最短的人送回手电筒，并陪同过河；
 第二，耗时最短的人送回手电筒之后，耗时第 :math:`k` 小的人与耗时第 :math:`k-1` 小的人一起过桥，他们过桥之后，手电筒再由耗时第二短的人送回，最后耗时最短的人和耗时第二短的人一起过桥。
 
   https://blog.csdn.net/u014113686/article/details/82464635
@@ -3259,7 +3284,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       }
 
 
-44. [LeetCode] Minimum Window Substring 字符串 S 中包含字符串 T 中所有字符（可能会重复）的最短子串。Hint：用两个指针表示滑动窗口的起始和结尾；当窗口满足要求，则计算当前窗口的长度，然后两个指针都往后移动一步；终止条件是尾指针移动到了字符串 S 的结尾（'\\0'）。
+43. [LeetCode] Minimum Window Substring 字符串 S 中包含字符串 T 中所有字符（可能会重复）的最短子串。Hint：用两个指针表示滑动窗口的起始和结尾；当窗口满足要求，则计算当前窗口的长度，然后两个指针都往后移动一步；终止条件是尾指针移动到了字符串 S 的结尾（'\\0'）。
 延伸：不考虑字符串 T 中重复的字符，求字符串 S 中包含字符串 T 中出现的字符的最短子串。
 
   https://leetcode.com/problems/minimum-window-substring/
@@ -3389,7 +3414,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
-45. [LeetCode] Nth Digit 第 :math:`N` 个数字。Hint：:math:`k` 位数的个数是 :math:`9 \times 10^{k-1}` ，例如，两位数有 :math:`90` 个；
+44. [LeetCode] Nth Digit 第 :math:`N` 个数字。Hint：:math:`k` 位数的个数是 :math:`9 \times 10^{k-1}` ，例如，两位数有 :math:`90` 个；
 先确定第 :math:`N` 个数字是几位数，再定位到具体的数，取出相应数字。
 
   https://leetcode.com/problems/nth-digit/
@@ -3424,7 +3449,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
-46. [LeetCode] Pow(x, n) 求幂。Hint：:math:`x^{2k} = x^k \times x^k,\ x^{2k+1} = x \times x^k \times x^k` 。
+45. [LeetCode] Pow(x, n) 求幂。Hint：:math:`x^{2k} = x^k \times x^k,\ x^{2k+1} = x \times x^k \times x^k` 。
 
   https://leetcode.com/problems/powx-n/
 
@@ -3503,7 +3528,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           return ans;
       }
 
-47. [LeetCode] Longest Valid Parentheses 最长有效匹配括号长度。
+46. [LeetCode] Longest Valid Parentheses 最长有效匹配括号长度。
 
   https://leetcode.com/problems/longest-valid-parentheses/
 
@@ -3552,13 +3577,13 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
-48. 从 :math:`1,2,...,n` 中取丢弃 :math:`k` 个数，剩余的数形成一个数组 :math:`arr` ，求出丢弃的数。
+47. 从 :math:`1,2,...,n` 中取丢弃 :math:`k` 个数，剩余的数形成一个数组 :math:`arr` ，求出丢弃的数。
 
   - :math:`k=1` 。Hint：:math:`a = \sum_{i=1}^n i - \sum arr` 。
 
   - :math:`k=2` 。Hint：:math:`a + b = \sum_{i=1}^n i - \sum arr,\ a \times b = n! / \prod arr` ；考虑到连乘可能溢出，可以使用平方和 :math:`a^2 + b^2 = \sum_{i=1}^n i^2 - \sum arr^2` 。
 
-49. [LeetCode] Trapping Rain Water 接雨水。Hint：方法一，水从地面往上溢，统计每一层的积水，时间复杂度 :math:`\mathcal{O}(NH_{max})` ；方法二，双指针，当左高右低，推进右边的指针，当左低右高，推进左边的指针。
+48. [LeetCode] Trapping Rain Water 接雨水。Hint：方法一，水从地面往上溢，统计每一层的积水，时间复杂度 :math:`\mathcal{O}(NH_{max})` ；方法二，双指针，当左高右低，推进右边的指针，当左低右高，推进左边的指针。
 
   https://leetcode.com/problems/trapping-rain-water/
 
@@ -3643,7 +3668,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           }
       };
 
-50. [LeetCode] Sudoku Solver 数独。
+49. [LeetCode] Sudoku Solver 数独。
 
   https://leetcode.com/problems/sudoku-solver/
 
@@ -3727,7 +3752,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           }
       };
 
-51. [LeetCode] Median of Two Sorted Arrays 两个排序数组的中位数。Hint：方法一，归并，时间复杂度 :math:`\mathcal{O}(m+n)` ；方法二，二分查找，时间复杂度 :math:`\mathcal{O}(\log (m+n))` 。
+50. [LeetCode] Median of Two Sorted Arrays 两个排序数组的中位数。Hint：方法一，归并，时间复杂度 :math:`\mathcal{O}(m+n)` ；方法二，二分查找，时间复杂度 :math:`\mathcal{O}(\log (m+n))` 。
 
   https://leetcode.com/problems/median-of-two-sorted-arrays/
 

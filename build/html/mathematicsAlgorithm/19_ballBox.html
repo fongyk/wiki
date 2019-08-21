@@ -1,0 +1,361 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>19. 球盒问题 &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'alpha',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="计算机网络" href="../computerNetwork/index.html" />
+    <link rel="prev" title="18. B 树" href="18_bTree.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">数理与算法</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_complexity.html">1. 算法复杂度与主定理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_redblackTree.html">2. 红黑树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_shortestPath.html">3. 最短路径</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_treeTraversal.html">4. 二叉树遍历</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_game.html">5. 游戏与必胜策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_randomSample.html">6. 蓄水池抽样</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_sort.html">7. 排序算法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_dynamicProgramming.html">8. 动态规划</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_backtrack.html">9. 回溯</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_topoSort.html">10. 拓扑排序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_catalan.html">11. 卡特兰数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_entropy.html">12. 信息熵</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_cltLLN.html">13. 大数定律和中心极限定理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_coinWeigh.html">14. 称重问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_probability.html">15. 概率基础</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_geometry.html">16. 几何</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_graphCycle.html">17. 图环</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_bTree.html">18. B 树</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">19. 球盒问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">19.1. 球同，盒不同，无空盒</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">19.2. 球同，盒不同，允许空盒</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">19.3. 球不同，盒同，无空盒</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">19.4. 球不同，盒同，允许空盒</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">19.5. 球不同，盒不同，无空盒</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">19.6. 球不同，盒不同，允许空盒</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">19.7. 球同，盒同，允许空盒</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">19.8. 球同，盒同，无空盒</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">19.9. 参考值资料</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">数理与算法</a> &raquo;</li>
+        
+      <li>19. 球盒问题</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/mathematicsAlgorithm/19_ballBox.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>19. 球盒问题<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>把 <span class="math notranslate nohighlight">\(n\)</span> 个球放到 <span class="math notranslate nohighlight">\(m\)</span> 个盒子中，总共有多少种放法？</p>
+<p>根据球是否相同、盒是否相同、是否允许空盒，分 8 种情形讨论。</p>
+<div class="section" id="id2">
+<h2>19.1. 球同，盒不同，无空盒<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>插空法：<span class="math notranslate nohighlight">\(n\)</span> 个球中间有 <span class="math notranslate nohighlight">\(n-1\)</span> 个间隙，不能有空盒，所以在 <span class="math notranslate nohighlight">\(n-1\)</span> 个间隙选出 <span class="math notranslate nohighlight">\(m-1\)</span> 个间隙。</p>
+<div class="math notranslate nohighlight">
+$$
+\begin{cases}
+   C_{n-1}^{m-1} &amp; &amp; n \geqslant m \\
+   0 &amp; &amp;  n &lt; m
+\end{cases}
+
+$$</div></div>
+<div class="section" id="id3">
+<h2>19.2. 球同，盒不同，允许空盒<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>本问题等价于“把 <span class="math notranslate nohighlight">\(n+m\)</span> 个相同的球放到 <span class="math notranslate nohighlight">\(m\)</span> 个不同盒子中，且无空盒”，即先在每个盒子中放 1 个球。</p>
+<p>因此，放法有：</p>
+<div class="math notranslate nohighlight">
+\[C_{n+m-1}^{m-1}.\]</div>
+</div>
+<div class="section" id="id4">
+<h2>19.3. 球不同，盒同，无空盒<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>设 <span class="math notranslate nohighlight">\(dp[n][m]\)</span> 表示 <span class="math notranslate nohighlight">\(n\)</span> 个球放到 <span class="math notranslate nohighlight">\(m\)</span> 个盒子中且无空盒的放法。
+如果前 <span class="math notranslate nohighlight">\(n-1\)</span> 个球已经使用了 <span class="math notranslate nohighlight">\(m\)</span> 个盒子中，则第 <span class="math notranslate nohighlight">\(n\)</span> 个球可以放到任意一个盒子中（与任意一组球结合）；
+如果前 <span class="math notranslate nohighlight">\(n-1\)</span> 个球只使用了 <span class="math notranslate nohighlight">\(m-1\)</span> 个盒子中，则第 <span class="math notranslate nohighlight">\(n\)</span> 个球只能放到剩下的空盒子中。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}dp[n][m] &amp;=&amp;\ m \times dp[n-1][m] + dp[n-1][m-1],\quad 1 \leqslant m \leqslant n. \\
+dp[k][k] &amp;=&amp;\ 1,\quad k \geqslant 0. \\
+dp[k][0] &amp;=&amp;\ 0,\quad k \geqslant 1. \\
+dp[0][k] &amp;=&amp;\ 1,\quad k \geqslant 0.\end{split}\]</div>
+</div>
+<div class="section" id="id5">
+<h2>19.4. 球不同，盒同，允许空盒<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>设 <span class="math notranslate nohighlight">\(dp[n][m]\)</span> 表示 <span class="math notranslate nohighlight">\(n\)</span> 个球放到 <span class="math notranslate nohighlight">\(m\)</span> 个盒子中且无空盒的放法，递推公式如上。</p>
+<p>可以枚举空盒的个数，则放法有：</p>
+<div class="math notranslate nohighlight">
+\[\sum_{k=1}^m dp[n][k].\]</div>
+</div>
+<div class="section" id="id6">
+<h2>19.5. 球不同，盒不同，无空盒<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>设 <span class="math notranslate nohighlight">\(dp[n][m]\)</span> 表示 <span class="math notranslate nohighlight">\(n\)</span> 个球放到 <span class="math notranslate nohighlight">\(m\)</span> 个盒子中且无空盒的放法，递推公式如上。</p>
+<p>需要考虑盒子的排列，则放法有：</p>
+<div class="math notranslate nohighlight">
+\[dp[n][m] \times m!.\]</div>
+</div>
+<div class="section" id="id7">
+<h2>19.6. 球不同，盒不同，允许空盒<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>每个球都有 <span class="math notranslate nohighlight">\(m\)</span> 种选择，放法有：</p>
+<div class="math notranslate nohighlight">
+\[m^n.\]</div>
+</div>
+<div class="section" id="id8">
+<h2>19.7. 球同，盒同，允许空盒<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p>设 <span class="math notranslate nohighlight">\(dp[n][m]\)</span> 表示 <span class="math notranslate nohighlight">\(n\)</span> 个球至多使用 <span class="math notranslate nohighlight">\(m\)</span> 个盒子（即允许空盒）的放法，可以分为两种情况：一，无空盒， <span class="math notranslate nohighlight">\(dp[n-m][m]\)</span> ，即每个盒子先放 1 个球；
+二，至多使用 <span class="math notranslate nohighlight">\(m-1\)</span> 个盒子， <span class="math notranslate nohighlight">\(dp[n][m-1]\)</span> 。递推公式如下：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}dp[n][m] &amp;=&amp;\ dp[n][m-1] + dp[n-m][m],\quad 1 \leqslant m \leqslant n. \\
+dp[n][m] &amp;=&amp;\ dp[n][n],\quad m \geqslant n. \\
+dp[k][0] &amp;=&amp;\ 0,\quad k \geqslant 1. \\
+dp[0][k] &amp;=&amp;\ 1,\quad k \geqslant 0. \\
+dp[1][k] &amp;=&amp;\ 1,\quad k \geqslant 1. \\
+dp[k][1] &amp;=&amp;\ 1,\quad k \geqslant 0.\end{split}\]</div>
+</div>
+<div class="section" id="id9">
+<h2>19.8. 球同，盒同，无空盒<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p>设 <span class="math notranslate nohighlight">\(dp[n][m]\)</span> 表示 <span class="math notranslate nohighlight">\(n\)</span> 个球至多使用 <span class="math notranslate nohighlight">\(m\)</span> 个盒子（即允许空盒）的放法，递推公式如上。</p>
+<p>先在每个盒子先放 1 个球，则无空盒的放法有：</p>
+<div class="math notranslate nohighlight">
+$$
+\begin{cases}
+   dp[n-m][m] &amp; &amp; n \geqslant m \\
+   0 &amp; &amp;  n &lt; m
+\end{cases}
+
+$$</div></div>
+<div class="section" id="id10">
+<h2>19.9. 参考值资料<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>排列组合 “n个球放入m个盒子m”问题 总结</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://blog.csdn.net/qwb492859377/article/details/50654627?tdsourcetag=s_pctim_aiomsg">https://blog.csdn.net/qwb492859377/article/details/50654627?tdsourcetag=s_pctim_aiomsg</a></div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../computerNetwork/index.html" class="btn btn-neutral float-right" title="计算机网络" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="18_bTree.html" class="btn btn-neutral float-left" title="18. B 树" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

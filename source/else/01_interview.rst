@@ -133,7 +133,65 @@
           return head;
       }
 
+  - [LeetCode] Reverse Nodes in k-Group 从头节点开始，每 :math:`k` 个节点为一组进行反转。Hint：对每一组节点调用反转函数。
+    延伸：从尾节点开始，每 :math:`k` 个节点为一组进行反转。Hint：先反转整个链表；按上述方法反转每一组；再反转整个链表。
 
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 从头节点开始分组
+
+      class Solution
+      {
+      public:
+          ListNode* reverseKGroup(ListNode* head, int k)
+          {
+              return reverseK(head, k);
+          }
+      private:
+          ListNode* reverseAll(ListNode* head)
+          {
+              if(!head || !head->next) return head;
+              ListNode* newHead = reverseAll(head->next);
+              head->next->next = head;
+              head->next = NULL;
+              return newHead;
+          }
+          ListNode* reverseK(ListNode* head, int k)
+          {
+              if(!head || !head->next) return head;
+              ListNode* p = head;
+              for(int i = 1; i < k; ++i)
+              {
+                  p = p->next;
+                  if(!p) return head;
+              }
+              ListNode* secondHead = reverseK(p->next, k);
+              p->next = NULL; // 第一组的尾节点置为 NULL，便于直接调用 reverseAll
+              ListNode* newHead = reverseAll(head);
+              head->next = secondHead; // 反转之后，head 成为第一组的尾节点
+              return newHead;
+          }
+      };
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 从尾节点开始分组
+
+      ListNode* reverseKGroup(ListNode* head, int k)
+      {
+          ListNode* newHead = reverseAll(head);
+          newHead = reverseK(newHead, k);
+          newHead = reverseAll(newHead);
+          return newHead;
+      }
 
   - 求有环单链表中的环长、环起点、链表长。Hint：快慢指针。
 

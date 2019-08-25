@@ -454,7 +454,7 @@
             <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">p</span><span class="p">)</span> <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
         <span class="p">}</span>
         <span class="n">ListNode</span><span class="o">*</span> <span class="n">secondHead</span> <span class="o">=</span> <span class="n">reverseK</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
-        <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span> <span class="c1">// 置为 NULL，便于直接调用 reverseAll</span>
+        <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span> <span class="c1">// 第一组的尾节点置为 NULL，便于直接调用 reverseAll</span>
         <span class="n">ListNode</span><span class="o">*</span> <span class="n">newHead</span> <span class="o">=</span> <span class="n">reverseAll</span><span class="p">(</span><span class="n">head</span><span class="p">);</span>
         <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">secondHead</span><span class="p">;</span> <span class="c1">// 反转之后，head 成为第一组的尾节点</span>
         <span class="k">return</span> <span class="n">newHead</span><span class="p">;</span>

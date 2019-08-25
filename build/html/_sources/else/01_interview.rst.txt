@@ -173,7 +173,7 @@
                   if(!p) return head;
               }
               ListNode* secondHead = reverseK(p->next, k);
-              p->next = NULL; // 置为 NULL，便于直接调用 reverseAll
+              p->next = NULL; // 第一组的尾节点置为 NULL，便于直接调用 reverseAll
               ListNode* newHead = reverseAll(head);
               head->next = secondHead; // 反转之后，head 成为第一组的尾节点
               return newHead;

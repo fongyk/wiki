@@ -128,12 +128,15 @@
 <li class="toctree-l2"><a class="reference internal" href="15_memManage.html">15. 内存管理</a></li>
 <li class="toctree-l2"><a class="reference internal" href="16_newInit.html">16. __new__ 和 __init__</a></li>
 <li class="toctree-l2"><a class="reference internal" href="17_pip.html">17. pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_exception.html">18. 异常</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
@@ -244,7 +247,7 @@
 </dl>
 <div class="section" id="iterable">
 <h3>5.1.1. 可迭代对象（iterable）<a class="headerlink" href="#iterable" title="Permalink to this headline">¶</a></h3>
-<p><strong>可以直接作用于for循环的对象统称为可迭代对象（Iterable）</strong> 。只要定义了可以返回一个迭代器的 <code class="docutils literal notranslate"><span class="pre">__iter__()</span></code> 方法，或者定义了可以支持下标索引的 <code class="docutils literal notranslate"><span class="pre">__getitem__()</span></code> 方法，那么它就是一个可迭代对象。</p>
+<p><strong>可以直接作用于 for 循环的对象统称为可迭代对象（Iterable）</strong> 。只要定义了可以返回一个迭代器的 <code class="docutils literal notranslate"><span class="pre">__iter__()</span></code> 方法，或者定义了可以支持下标索引的 <code class="docutils literal notranslate"><span class="pre">__getitem__()</span></code> 方法，那么它就是一个可迭代对象。</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -305,12 +308,12 @@
 <p>常见的可迭代对象：</p>
 <blockquote>
 <div><ul class="simple">
-<li>集合数据类型，如list、tuple、dict、set、str等。</li>
-<li>generator，包括生成器和带yield的generator function。</li>
+<li>集合数据类型，如 list、tuple、dict、set、str 等。</li>
+<li>generator，包括生成器和带 yield 的 generator function。</li>
 </ul>
 </div></blockquote>
-<p><strong>可以被next()函数调用并不断返回下一个值的对象称为迭代器（Iterator）</strong> 。生成器都是Iterator对象，但list、dict、str虽然是Iterable，却不是Iterator。</p>
-<p><strong>所有的Iterable均可以通过内置函数iter()来转变为Iterator</strong> 。</p>
+<p><strong>可以被 next() 函数调用并不断返回下一个值的对象称为迭代器（Iterator）</strong> 。生成器都是 Iterator 对象，但 list、dict、str 虽然是 Iterable，却不是 Iterator。</p>
+<p><strong>所有的 Iterable 均可以通过内置函数 iter() 来转变为 Iterator</strong> 。</p>
 <p>判断一个对象是否是可迭代对象：</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -338,7 +341,7 @@ for循环会不断调用迭代器对象的 <code class="docutils literal notrans
 </div>
 <div class="section" id="generator">
 <h2>5.2. 生成器（generator）<a class="headerlink" href="#generator" title="Permalink to this headline">¶</a></h2>
-<p>生成器其实是一种特殊的迭代器。它不需要再像上面的类一样写 <code class="docutils literal notranslate"><span class="pre">__iter__()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">__next__()</span></code> 方法了，只需要一个 <code class="docutils literal notranslate"><span class="pre">yiled</span></code> 关键字。 <code class="docutils literal notranslate"><span class="pre">yield</span></code> 就是return返回的一个值，并且记住这个返回的位置。下一次迭代就从这个位置开始。
+<p>生成器其实是一种特殊的迭代器。它不需要再像上面的类一样写 <code class="docutils literal notranslate"><span class="pre">__iter__()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">__next__()</span></code> 方法了，只需要一个 <code class="docutils literal notranslate"><span class="pre">yield</span></code> 关键字。 <code class="docutils literal notranslate"><span class="pre">yield</span></code> 就是 return 返回的一个值，并且记住这个返回的位置。下一次迭代就从这个位置开始。
 生成器一定是迭代器（反之不成立），因此任何生成器也是以一种懒加载的模式生成值。</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -363,7 +366,7 @@ for循环会不断调用迭代器对象的 <code class="docutils literal notrans
 <span class="k">print</span> <span class="n">generator_iter</span><span class="o">.</span><span class="n">next</span><span class="p">()</span> <span class="c1">## 抛出 StopIteration 异常</span>
 </pre></div>
 </td></tr></table></div>
-<p><strong>生成器表达式</strong> （类似于列表推导式，只是把[]换成()）。</p>
+<p><strong>生成器表达式</strong> （类似于列表推导式，只是把 [] 换成 ()）。</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3

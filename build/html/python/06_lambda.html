@@ -124,12 +124,15 @@
 <li class="toctree-l2"><a class="reference internal" href="15_memManage.html">15. 内存管理</a></li>
 <li class="toctree-l2"><a class="reference internal" href="16_newInit.html">16. __new__ 和 __init__</a></li>
 <li class="toctree-l2"><a class="reference internal" href="17_pip.html">17. pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_exception.html">18. 异常</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
@@ -210,7 +213,7 @@
 <dt>特性：</dt>
 <dd><ul class="first last simple">
 <li>匿名函数。函数没有名字。</li>
-<li>输入是arg list，输出是根据expression计算得到的值。</li>
+<li>输入是 arg list，输出是根据 expression 计算得到的值。</li>
 <li>功能简单。</li>
 </ul>
 </dd>
@@ -218,7 +221,7 @@
 <div class="section" id="id1">
 <h2>6.1. 使用场景<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>将lambda函数赋值给一个变量，通过这个变量间接调用该函数。</li>
+<li>将 lambda 函数赋值给一个变量，通过这个变量间接调用该函数。</li>
 </ol>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">plus</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span>
@@ -226,16 +229,16 @@
 </pre></div>
 </td></tr></table></div>
 <ol class="arabic simple" start="2">
-<li>将lambda函数赋值给其他函数，从而屏蔽其他函数本来的功能。</li>
-<li>将lambda函数作为其他函数的返回值（内部函数）。</li>
-<li>将lambda函数作为参数传递给其他函数。</li>
+<li>将 lambda 函数赋值给其他函数，从而屏蔽其他函数本来的功能。</li>
+<li>将 lambda 函数作为其他函数的返回值（内部函数）。</li>
+<li>将 lambda 函数作为参数传递给其他函数。</li>
 </ol>
 <blockquote>
 <div><ul class="simple">
 <li><strong>map</strong> ：将序列中的元素通过处理函数处理后返回一个新的列表。</li>
 <li><strong>filter</strong> ：将序列中的元素通过函数过滤后返回一个新的列表。</li>
 <li><strong>reduce</strong> ：将序列中的元素通过一个二元函数处理返回一个结果。</li>
-<li><strong>sorted</strong> ：结合lambda对列表进行排序。 <code class="docutils literal notranslate"><span class="pre">sorted(iterable,</span> <span class="pre">cmp=None,</span> <span class="pre">key=None,</span> <span class="pre">reverse=False)</span></code></li>
+<li><strong>sorted</strong> ：结合 lambda 对列表进行排序。 <code class="docutils literal notranslate"><span class="pre">sorted(iterable,</span> <span class="pre">cmp=None,</span> <span class="pre">key=None,</span> <span class="pre">reverse=False)</span></code></li>
 </ul>
 </div></blockquote>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1

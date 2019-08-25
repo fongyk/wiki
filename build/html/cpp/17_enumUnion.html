@@ -134,6 +134,9 @@
 <li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
 <li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const</a></li>
 <li class="toctree-l2"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_lambda.html">26. lambda 表达式</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -141,6 +144,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
@@ -340,7 +345,7 @@
 <ul>
 <li><p class="first">结构变量或数组可以为所有成员初始化。</p>
 </li>
-<li><p class="first">共用体变量或数组在初始化时，只能对初始化它的 <strong>第一个成员</strong> ，对多个成员初始化是不允许的。</p>
+<li><p class="first">共用体变量或数组在初始化时，只能初始化它的 <strong>第一个成员</strong> ，对多个成员初始化是不允许的。</p>
 <blockquote>
 <div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">union</span> <span class="n">ifcd</span> <span class="n">x3</span> <span class="o">=</span> <span class="p">{</span><span class="mi">256</span><span class="p">},</span> <span class="n">x4</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">};</span> <span class="c1">// 对成员 i 初始化</span>
 </pre></div>

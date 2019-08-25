@@ -40,7 +40,7 @@
 可迭代对象（iterable）
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-**可以直接作用于for循环的对象统称为可迭代对象（Iterable）** 。只要定义了可以返回一个迭代器的 ``__iter__()`` 方法，或者定义了可以支持下标索引的 ``__getitem__()`` 方法，那么它就是一个可迭代对象。
+**可以直接作用于 for 循环的对象统称为可迭代对象（Iterable）** 。只要定义了可以返回一个迭代器的 ``__iter__()`` 方法，或者定义了可以支持下标索引的 ``__getitem__()`` 方法，那么它就是一个可迭代对象。
 
 .. code-block:: python
   :linenos:
@@ -77,13 +77,13 @@
 
 常见的可迭代对象：
 
-  - 集合数据类型，如list、tuple、dict、set、str等。
+  - 集合数据类型，如 list、tuple、dict、set、str 等。
 
-  - generator，包括生成器和带yield的generator function。
+  - generator，包括生成器和带 yield 的 generator function。
 
-**可以被next()函数调用并不断返回下一个值的对象称为迭代器（Iterator）** 。生成器都是Iterator对象，但list、dict、str虽然是Iterable，却不是Iterator。
+**可以被 next() 函数调用并不断返回下一个值的对象称为迭代器（Iterator）** 。生成器都是 Iterator 对象，但 list、dict、str 虽然是 Iterable，却不是 Iterator。
 
-**所有的Iterable均可以通过内置函数iter()来转变为Iterator** 。
+**所有的 Iterable 均可以通过内置函数 iter() 来转变为 Iterator** 。
 
 判断一个对象是否是可迭代对象：
 
@@ -109,7 +109,7 @@ for循环会不断调用迭代器对象的 ``__next__()`` 方法（python3  ``__
 生成器（generator）
 -------------------------
 
-生成器其实是一种特殊的迭代器。它不需要再像上面的类一样写 ``__iter__()`` 和 ``__next__()`` 方法了，只需要一个 ``yiled`` 关键字。 ``yield`` 就是return返回的一个值，并且记住这个返回的位置。下一次迭代就从这个位置开始。
+生成器其实是一种特殊的迭代器。它不需要再像上面的类一样写 ``__iter__()`` 和 ``__next__()`` 方法了，只需要一个 ``yield`` 关键字。 ``yield`` 就是 return 返回的一个值，并且记住这个返回的位置。下一次迭代就从这个位置开始。
 生成器一定是迭代器（反之不成立），因此任何生成器也是以一种懒加载的模式生成值。
 
 .. code-block:: python
@@ -127,7 +127,7 @@ for循环会不断调用迭代器对象的 ``__next__()`` 方法（python3  ``__
   print generator_iter.next() ## 3
   print generator_iter.next() ## 抛出 StopIteration 异常
 
-**生成器表达式** （类似于列表推导式，只是把[]换成()）。
+**生成器表达式** （类似于列表推导式，只是把 [] 换成 ()）。
 
 .. code-block:: python
   :linenos:

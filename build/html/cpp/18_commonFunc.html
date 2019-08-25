@@ -141,6 +141,7 @@
 <li class="toctree-l2"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a></li>
 <li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
 <li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_lambda.html">26. lambda 表达式</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -228,13 +229,13 @@
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
-<p><strong>lower_bound</strong> 从排好序的数组区间 <strong>[first,last)</strong> 中，采用二分查找，返回 <strong>大于或等于</strong> val 的 <strong>第一个</strong> 元素位置。
+<p><strong>lower_bound</strong> 从排好序的数组区间 <strong>[first, last)</strong> 中，采用二分查找，返回 <strong>大于或等于</strong> val 的 <strong>第一个</strong> 元素位置。
 如果所有元素都小于 val，则返回 last。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">ForwardIterator</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
 <span class="n">ForwardIterator</span> <span class="n">lower_bound</span> <span class="p">(</span><span class="n">ForwardIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">ForwardIterator</span> <span class="n">last</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">);</span>
 </pre></div>
 </div>
-<p><strong>upper_bound</strong> 从排好序的数组区间 <strong>[first,last)</strong> 中，采用二分查找，返回 <strong>大于</strong> val 的 <strong>第一个</strong> 元素位置。
+<p><strong>upper_bound</strong> 从排好序的数组区间 <strong>[first, last)</strong> 中，采用二分查找，返回 <strong>大于</strong> val 的 <strong>第一个</strong> 元素位置。
 如果所有元素都不大于 val，则返回 last。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">ForwardIterator</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
 <span class="n">ForwardIterator</span> <span class="n">upper_bound</span> <span class="p">(</span><span class="n">ForwardIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">ForwardIterator</span> <span class="n">last</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">);</span>
@@ -306,7 +307,7 @@
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
-<p><strong>fill</strong> 函数将一个区间 <strong>[first,last)</strong> 的每个元素都赋予 val 值。</p>
+<p><strong>fill</strong> 函数将一个区间 <strong>[first, last)</strong> 的每个元素都赋予 val 值。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">ForwardIterator</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
 <span class="kt">void</span> <span class="n">fill</span> <span class="p">(</span><span class="n">ForwardIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">ForwardIterator</span> <span class="n">last</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">);</span>
 </pre></div>
@@ -316,7 +317,7 @@
 <span class="kt">void</span> <span class="n">fill_n</span> <span class="p">(</span><span class="n">OutputIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">Size</span> <span class="n">n</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">);</span>
 </pre></div>
 </div>
-<p><strong>for_each</strong> 把函数 fn 应用于区间 <strong>[first,last)</strong> 的每个元素。</p>
+<p><strong>for_each</strong> 把函数 fn 应用于区间 <strong>[first, last)</strong> 的每个元素。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">InputIterator</span><span class="p">,</span> <span class="k">class</span> <span class="nc">Function</span><span class="o">&gt;</span>
 <span class="n">Function</span> <span class="n">for_each</span> <span class="p">(</span><span class="n">InputIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">InputIterator</span> <span class="n">last</span><span class="p">,</span> <span class="n">Function</span> <span class="n">fn</span><span class="p">)</span>
 <span class="p">{</span>
@@ -600,7 +601,7 @@
 <span class="kt">void</span> <span class="n">reverse</span> <span class="p">(</span><span class="n">BidirectionalIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">BidirectionalIterator</span> <span class="n">last</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>翻转区间 [first,last) 内的元素。适用于 vector、string 以及 静态数组、动态数组等。</p>
+<p>翻转区间 [first, last) 内的元素。适用于 vector、string 以及 静态数组、动态数组等。</p>
 <div class="toggle docutils container">
 <div class="header docutils container">
 <span class="math notranslate nohighlight">\(\color{darkgreen}{Example}\)</span></div>
@@ -673,7 +674,7 @@
 
 <span class="c1">// custom</span>
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">ForwardIterator</span><span class="p">,</span> <span class="k">class</span> <span class="nc">Compare</span><span class="o">&gt;</span>
-<span class="n">ForwardIterator</span> <span class="n">min_element</span> <span class="p">(</span><span class="n">ForwardIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">ForwardIterator</span> <span class="n">last</span><span class="p">,</span> <span class="n">Compare</span> <span class="n">comp</span><span class="p">);</span> <span class="c1">// [first,last)</span>
+<span class="n">ForwardIterator</span> <span class="n">min_element</span> <span class="p">(</span><span class="n">ForwardIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">ForwardIterator</span> <span class="n">last</span><span class="p">,</span> <span class="n">Compare</span> <span class="n">comp</span><span class="p">);</span> <span class="c1">// [first, last)</span>
 </pre></div>
 </div>
 <div class="toggle docutils container">
@@ -738,7 +739,7 @@
 <span class="n">T</span> <span class="n">accumulate</span> <span class="p">(</span><span class="n">InputIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">InputIterator</span> <span class="n">last</span><span class="p">,</span> <span class="n">T</span> <span class="n">init</span><span class="p">,</span> <span class="n">BinaryOperation</span> <span class="n">binary_op</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>累加区间 <strong>[first,last)</strong> 的元素，并加上 <strong>init</strong> 。</p>
+<p>累加区间 <strong>[first, last)</strong> 的元素，并加上 <strong>init</strong> 。</p>
 <div class="toggle docutils container">
 <div class="header docutils container">
 <span class="math notranslate nohighlight">\(\color{darkgreen}{Example}\)</span></div>
@@ -919,7 +920,7 @@
 <span class="kt">void</span> <span class="n">iota</span> <span class="p">(</span><span class="n">ForwardIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">ForwardIterator</span> <span class="n">last</span><span class="p">,</span> <span class="n">T</span> <span class="n">val</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>采用递增的形式，将 val 开始的等差数列赋值给区间 [first,last) 的元素。</p>
+<p>采用递增的形式，将 val 开始的等差数列赋值给区间 [first, last) 的元素。</p>
 <div class="toggle docutils container">
 <div class="header docutils container">
 <span class="math notranslate nohighlight">\(\color{darkgreen}{Example}\)</span></div>
@@ -1055,7 +1056,7 @@
 <h2>18.10. memset<a class="headerlink" href="#memset" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp"></span>
 
-<span class="kt">void</span> <span class="o">*</span> <span class="nf">memset</span> <span class="p">(</span> <span class="kt">void</span> <span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">num</span> <span class="p">);</span>
+<span class="kt">void</span> <span class="o">*</span><span class="nf">memset</span> <span class="p">(</span> <span class="kt">void</span> <span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">num</span> <span class="p">);</span>
 </pre></div>
 </div>
 <p><strong>memset</strong> 按 <strong>字节</strong> 赋值， <strong>fill</strong> 按 <strong>元素</strong> 赋值。</p>

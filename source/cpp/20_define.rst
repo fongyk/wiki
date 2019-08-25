@@ -45,8 +45,8 @@ const
 enum
 ----------
 
-如果编译器不允许static成员在声明式上获得初始值，一方面，可以在头文件定义类，在源文件中初始化它；另一方面，如果该类在编译期间
-必须使用一个常量值，例如上例中数组 scores 的大小必须在编译期间知道，此时可以使用 enum。一个属于枚举类型的数值可以权当int被使用。
+如果编译器不允许 static 成员在声明式上获得初始值，一方面，可以在头文件定义类，在源文件中初始化它；另一方面，如果该类在编译期间
+必须使用一个常量值，例如上例中数组 scores 的大小必须在编译期间知道，此时可以使用 enum。一个属于枚举类型的数值可以权当 int 被使用。
 
 
 .. code-block:: cpp
@@ -61,7 +61,7 @@ enum
 
 .. note::
 
-  enum的行为类似于#define，取一个enum的地址或#define的地址通常不合法，而取一个const的地址是合法的。
+  enum 的行为类似于 #define，取一个 enum 的地址或 #define 的地址通常不合法，而取一个 const 的地址是合法的。
 
 
 inline
@@ -108,7 +108,7 @@ inline
     f(a > b ? a : b);
   }
 
-  int main(int argc, char ** argv)
+  int main(int argc, char** argv)
   {
     int a = 5, b = 0;
     CALL_WITH_MAX(++a, b); // a 自增2次，变为7（++a > b => ++a）

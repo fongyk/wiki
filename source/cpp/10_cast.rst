@@ -118,13 +118,13 @@ reinterpret_cast<type> (expr)
 
 **stringstream** 的一些操作：
 
-  - stringstream strm; // strm是一个未绑定的stringstream类型
+  - ``stringstream strm`` ; // strm是一个未绑定的stringstream类型
 
-  - stringstream strm(s); // strm是一个stringstream对象，保存 string s 的一个拷贝
+  - ``stringstream strm(s)`` ; // strm是一个stringstream对象，保存 string s 的一个拷贝
 
-  - strm.str(); // 返回strm保存的拷贝
+  - ``strm.str()`` ; // 返回strm保存的拷贝
 
-  - strm(s); // 将 string s 拷贝到 strm 中，返回void
+  - ``strm(s)`` ; // 将 string s 拷贝到 strm 中，返回void
 
 强制类型转换
 ^^^^^^^^^^^^^^^^^

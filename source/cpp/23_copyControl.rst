@@ -1,6 +1,8 @@
 拷贝控制
 ==============
 
+.. highlight:: cpp
+
 拷贝控制（copy control）
   - 拷贝构造函数（copy constructor）
   - 拷贝赋值运算符（copy-assignment operator）
@@ -191,7 +193,7 @@ push 和 emplace
       v.clear();
       {
         std::string temp = "test";
-        v.push_back(temp);// push_back(T &&), 参数是右值引用
+        v.push_back(temp);// 构造临时对象，push_back(T &&), 参数是右值引用
         // constructor
         // move constructor
       }

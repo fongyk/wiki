@@ -12,7 +12,7 @@ lower\_bound，upper\_bound
 
   #include <algorithm>
 
-**lower_bound** 从排好序的数组区间 **[first,last)** 中，采用二分查找，返回 **大于或等于** val 的 **第一个** 元素位置。
+**lower_bound** 从排好序的数组区间 **[first, last)** 中，采用二分查找，返回 **大于或等于** val 的 **第一个** 元素位置。
 如果所有元素都小于 val，则返回 last。
 
 ::
@@ -21,7 +21,7 @@ lower\_bound，upper\_bound
   ForwardIterator lower_bound (ForwardIterator first, ForwardIterator last, const T& val);
 
 
-**upper_bound** 从排好序的数组区间 **[first,last)** 中，采用二分查找，返回 **大于** val 的 **第一个** 元素位置。
+**upper_bound** 从排好序的数组区间 **[first, last)** 中，采用二分查找，返回 **大于** val 的 **第一个** 元素位置。
 如果所有元素都不大于 val，则返回 last。
 
 ::
@@ -78,7 +78,7 @@ fill，fill\_n，for\_each
 
   #include <algorithm>
 
-**fill** 函数将一个区间 **[first,last)** 的每个元素都赋予 val 值。 ::
+**fill** 函数将一个区间 **[first, last)** 的每个元素都赋予 val 值。 ::
 
   template <class ForwardIterator, class T>
   void fill (ForwardIterator first, ForwardIterator last, const T& val);
@@ -88,7 +88,7 @@ fill，fill\_n，for\_each
   template <class OutputIterator, class Size, class T>
   void fill_n (OutputIterator first, Size n, const T& val);
 
-**for_each** 把函数 fn 应用于区间 **[first,last)** 的每个元素。 ::
+**for_each** 把函数 fn 应用于区间 **[first, last)** 的每个元素。 ::
 
   template <class InputIterator, class Function>
   Function for_each (InputIterator first, InputIterator last, Function fn)
@@ -285,7 +285,7 @@ reverse
   template <class BidirectionalIterator>
   void reverse (BidirectionalIterator first, BidirectionalIterator last);
 
-翻转区间 [first,last) 内的元素。适用于 vector、string 以及 静态数组、动态数组等。
+翻转区间 [first, last) 内的元素。适用于 vector、string 以及 静态数组、动态数组等。
 
 .. container:: toggle
 
@@ -341,7 +341,7 @@ min\_element，max\_element，minmax\_element
 
   // custom
   template <class ForwardIterator, class Compare>
-  ForwardIterator min_element (ForwardIterator first, ForwardIterator last, Compare comp); // [first,last)
+  ForwardIterator min_element (ForwardIterator first, ForwardIterator last, Compare comp); // [first, last)
 
 
 
@@ -392,7 +392,7 @@ accumulate
   template <class InputIterator, class T, class BinaryOperation>
   T accumulate (InputIterator first, InputIterator last, T init, BinaryOperation binary_op);
 
-累加区间 **[first,last)** 的元素，并加上 **init** 。
+累加区间 **[first, last)** 的元素，并加上 **init** 。
 
 .. container:: toggle
 
@@ -523,7 +523,7 @@ iota
   template <class ForwardIterator, class T>
   void iota (ForwardIterator first, ForwardIterator last, T val);
 
-采用递增的形式，将 val 开始的等差数列赋值给区间 [first,last) 的元素。
+采用递增的形式，将 val 开始的等差数列赋值给区间 [first, last) 的元素。
 
 .. container:: toggle
 
@@ -630,7 +630,7 @@ memset
 
   #include <cstring>
 
-  void * memset ( void * ptr, int value, size_t num );
+  void *memset ( void * ptr, int value, size_t num );
 
 **memset** 按 **字节** 赋值， **fill** 按 **元素** 赋值。
 

@@ -74,7 +74,7 @@ string
     // initializer list (8)
     string& insert (const_iterator p, initializer_list<char> il);
 
-- 查找：可以指定查找的起始位置 pos （缺省为0）以及长度 n。没有找到则返回 ``string::npos`` 。
+- 查找：可以指定查找的起始位置 pos （缺省为 0）以及长度 n。没有找到则返回 ``string::npos`` 。
   ::
 
     // string (1)
@@ -128,7 +128,7 @@ vector
 
 - 赋值
 
-  - 数组或其他向量区间 [first,last) 内的值赋给当前向量。
+  - 数组或其他向量区间 [first, last) 内的值赋给当前向量。
 
     ::
 
@@ -153,12 +153,12 @@ vector
     // initializer list (3)
     vector& operator= (initializer_list<value_type> il);
 
-- 删除：删除一个元素之后，此位置之后所有元素往前移动。虽然当前迭代器没有 +1，但是由于后续元素的前移，相当于迭代器自动指向了下一个元素。故删除了一个元素之后如果要访问下一个元素，不必执行 it++。
+- 删除：删除一个元素之后，此位置之后所有元素往前移动。虽然当前迭代器没有 +1，但是由于后续元素的前移，相当于迭代器自动指向了下一个元素。故删除了一个元素之后如果要访问下一个元素，不必执行 ``it++``。
 
   ::
 
     iterator erase (const_iterator position);
-    iterator erase (const_iterator first, const_iterator last); // 区间 [first,last)
+    iterator erase (const_iterator first, const_iterator last); // 区间 [first, last)
 
 - 清除：
 
@@ -264,11 +264,11 @@ set
 
   ::
 
-    (1)
+    // (1)
     iterator  erase (const_iterator position);
-    (2)
+    // (2)
     size_type erase (const value_type& val); // 返回删除元素的个数：0 或 1
-    (3)
+    // (3)
     iterator  erase (const_iterator first, const_iterator last);
 
 - 直接赋值（返回的是引用类型）
@@ -331,7 +331,7 @@ map
 
   - [key]，key 不存在，会创建新的键值对。
 
-  - at(key)，key 不存在，抛出out\_of\_range异常。
+  - at(key)，key 不存在，抛出 ``out_of_range`` 异常。
 
 - 直接赋值（返回的是引用类型）
 
@@ -548,7 +548,7 @@ atoi，atof，atol
 
   #include <cstdlib>
 
-把C类型的字符串转换为数字（C++ 的 string 需要使用 ``c_str()`` 转换）。
+把 C 类型的字符串转换为数字（C++ 的 string 需要使用 ``c_str()`` 转换）。
 
 ::
 

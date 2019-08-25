@@ -124,12 +124,15 @@
 <li class="toctree-l2"><a class="reference internal" href="15_memManage.html">15. 内存管理</a></li>
 <li class="toctree-l2"><a class="reference internal" href="16_newInit.html">16. __new__ 和 __init__</a></li>
 <li class="toctree-l2"><a class="reference internal" href="17_pip.html">17. pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_exception.html">18. 异常</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
@@ -204,12 +207,25 @@
 <h1>2. __all__ 的使用<a class="headerlink" href="#all" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="init-py">
 <h2>2.1. 从__init__.py谈起<a class="headerlink" href="#init-py" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> 的 <strong>作用一</strong> ：package的标识</p>
+<p><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> 的 <strong>作用一</strong> ：package 的标识</p>
 <blockquote>
-<div>在每一个package文件夹中都会有一个__init__.py文件。</div></blockquote>
-<p><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> 的 <strong>作用二</strong> ：定义该package的 <code class="docutils literal notranslate"><span class="pre">__all__</span></code> ，用以模糊导入</p>
+<div><p>在每一个 package 文件夹中都会有一个 __init__.py 文件。我们倒入一个包时，实际上是导入了它的 __init__.py 文件。因此我们可以在 __init__.py 文件中批量导入所需的模块，
+而不需要再一个一个地倒入。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">### package</span>
+<span class="c1">## __init__.py</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="c1">## test.py</span>
+<span class="kn">import</span> <span class="nn">package</span>
+<span class="k">print</span> <span class="n">package</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> 的 <strong>作用二</strong> ：定义该 package 的 <code class="docutils literal notranslate"><span class="pre">__all__</span></code> ，用以模糊导入</p>
 <blockquote>
-<div><p>python中包(package)和模块(module)有两种导入形式：精确导入和模糊导入。</p>
+<div><p>python中包（package）和模块（module）有两种导入形式：精确导入和模糊导入。</p>
 <dl class="docutils">
 <dt>精确导入</dt>
 <dd><div class="first last highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PACK</span> <span class="kn">import</span> <span class="n">CLASS1</span><span class="p">,</span> <span class="n">CLASS2</span>
@@ -238,10 +254,18 @@
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">func</span> <span class="kn">import</span> <span class="n">x</span><span class="p">,</span> <span class="n">foo</span>
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="kn">from</span> <span class="nn">func</span> <span class="kn">import</span> <span class="n">x</span><span class="p">,</span> <span class="n">foo</span>
 <span class="c1"># 假设x是一个变量，foo是一个函数</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;math&#39;</span><span class="p">,</span> <span class="s1">&#39;os&#39;</span><span class="p">,</span> <span class="s1">&#39;sys&#39;</span><span class="p">]</span>
 </pre></div>
 </td></tr></table></div>
 <p><strong>test.py</strong> 中的内容如下：</p>
@@ -249,11 +273,15 @@
 2
 3
 4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">myPack</span> <span class="kn">import</span> <span class="o">*</span>
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">myPack</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="k">print</span> <span class="n">x</span>
 
 <span class="n">foo</span><span class="p">()</span>
+
+<span class="k">print</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div>
 </div>

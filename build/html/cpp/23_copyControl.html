@@ -134,6 +134,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
 <li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_lambda.html">26. lambda 表达式</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -257,12 +258,12 @@
 <div class="section" id="id3">
 <h2>23.3. 直接初始化和拷贝初始化<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>直接初始化直接调用与实参匹配的构造函数，拷贝初始化总是调用拷贝构造函数。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">string</span> <span class="n">dots</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">);</span>         <span class="o">//</span> <span class="n">直接初始化</span>
-<span class="n">string</span> <span class="n">s</span><span class="p">(</span><span class="n">dots</span><span class="p">);</span>               <span class="o">//</span> <span class="n">直接初始化</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">string</span> <span class="nf">dots</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="sc">&#39;.&#39;</span><span class="p">);</span>         <span class="c1">// 直接初始化</span>
+<span class="n">string</span> <span class="nf">s</span><span class="p">(</span><span class="n">dots</span><span class="p">);</span>               <span class="c1">// 直接初始化</span>
 
-<span class="n">string</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">dots</span><span class="p">;</span>             <span class="o">//</span> <span class="n">拷贝初始化</span>
-<span class="n">string</span> <span class="n">s3</span> <span class="o">=</span> <span class="s2">&quot;999-9999&quot;</span><span class="p">;</span>       <span class="o">//</span> <span class="n">拷贝初始化</span>
-<span class="n">string</span> <span class="n">s4</span> <span class="o">=</span> <span class="n">string</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;9&#39;</span><span class="p">);</span> <span class="o">//</span> <span class="n">拷贝初始化</span>
+<span class="n">string</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">dots</span><span class="p">;</span>             <span class="c1">// 拷贝初始化</span>
+<span class="n">string</span> <span class="n">s3</span> <span class="o">=</span> <span class="s">&quot;999-9999&quot;</span><span class="p">;</span>       <span class="c1">// 拷贝初始化</span>
+<span class="n">string</span> <span class="n">s4</span> <span class="o">=</span> <span class="n">string</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="sc">&#39;9&#39;</span><span class="p">);</span> <span class="c1">// 拷贝初始化</span>
 </pre></div>
 </div>
 <div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -329,28 +330,28 @@
 </pre></div>
 </td></tr></table></div>
 <p>调用:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ClassTest ct1(&quot;ab&quot;);          // 直接初始化
-// 输出： ClassTest (const char *pc)
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">ClassTest</span> <span class="nf">ct1</span><span class="p">(</span><span class="s">&quot;ab&quot;</span><span class="p">);</span>          <span class="c1">// 直接初始化</span>
+<span class="c1">// 输出： ClassTest (const char *pc)</span>
 
-ClassTest ct2 = &quot;ab&quot;;         // 拷贝初始化
-// 输出： ClassTest (const char *pc)
-// 首先调用构造函数 ClassTest(const char *pc) 函数创建一个临时对象；然后调用拷贝构造函数，把这个临时对象作为参数，构造对象ct2
-// 然而结果并没有输出 ClassTest(const ClassTest&amp; ct)。有说法是编译器优化之后，直接匹配了 ClassTest(const char *pc)，不再调用拷贝构造函数
+<span class="n">ClassTest</span> <span class="n">ct2</span> <span class="o">=</span> <span class="s">&quot;ab&quot;</span><span class="p">;</span>         <span class="c1">// 拷贝初始化</span>
+<span class="c1">// 输出： ClassTest (const char *pc)</span>
+<span class="c1">// 首先调用构造函数 ClassTest(const char *pc) 函数创建一个临时对象；然后调用拷贝构造函数，把这个临时对象作为参数，构造对象ct2</span>
+<span class="c1">// 然而结果并没有输出 ClassTest(const ClassTest&amp; ct)。有说法是编译器优化之后，直接匹配了 ClassTest(const char *pc)，不再调用拷贝构造函数</span>
 
-ClassTest ct3 = ct1;          // 拷贝初始化
-// 输出： ClassTest(const ClassTest&amp; ct)
-// ct1 已经存在，直接调用拷贝构造函数
+<span class="n">ClassTest</span> <span class="n">ct3</span> <span class="o">=</span> <span class="n">ct1</span><span class="p">;</span>          <span class="c1">// 拷贝初始化</span>
+<span class="c1">// 输出： ClassTest(const ClassTest&amp; ct)</span>
+<span class="c1">// ct1 已经存在，直接调用拷贝构造函数</span>
 
-ClassTest ct4(ct1);           // 直接初始化
-// 输出： ClassTest(const ClassTest&amp; ct)
-// ct1 已经存在，直接调用拷贝构造函数
+<span class="n">ClassTest</span> <span class="nf">ct4</span><span class="p">(</span><span class="n">ct1</span><span class="p">);</span>           <span class="c1">// 直接初始化</span>
+<span class="c1">// 输出： ClassTest(const ClassTest&amp; ct)</span>
+<span class="c1">// ct1 已经存在，直接调用拷贝构造函数</span>
 
-ClassTest ct5 = ClassTest();  // 拷贝初始化
-// 输出： ClassTest()
-// 首先调用默认构造函数产生一个临时对象；然后调用拷贝构造函数，把这个临时对象作为参数，构造对象ct5
+<span class="n">ClassTest</span> <span class="n">ct5</span> <span class="o">=</span> <span class="n">ClassTest</span><span class="p">();</span>  <span class="c1">// 拷贝初始化</span>
+<span class="c1">// 输出： ClassTest()</span>
+<span class="c1">// 首先调用默认构造函数产生一个临时对象；然后调用拷贝构造函数，把这个临时对象作为参数，构造对象ct5</span>
 
-ct3 = ct2;                    // 赋值
-// 输出： ClassTest&amp; operator=(const ClassTest &amp;ct)
+<span class="n">ct3</span> <span class="o">=</span> <span class="n">ct2</span><span class="p">;</span>                    <span class="c1">// 赋值</span>
+<span class="c1">// 输出： ClassTest&amp; operator=(const ClassTest &amp;ct)</span>
 </pre></div>
 </div>
 <p>当把拷贝构造函数设置为 <code class="docutils literal notranslate"><span class="pre">private</span></code> ，ct3、ct4、ct5的初始化都无法完成。</p>
@@ -486,7 +487,7 @@ ct3 = ct2;                    // 赋值
   <span class="n">v</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
   <span class="p">{</span>
     <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">temp</span> <span class="o">=</span> <span class="s">&quot;test&quot;</span><span class="p">;</span>
-    <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">temp</span><span class="p">);</span><span class="c1">// push_back(T &amp;&amp;), 参数是右值引用</span>
+    <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">temp</span><span class="p">);</span><span class="c1">// 构造临时对象，push_back(T &amp;&amp;), 参数是右值引用</span>
     <span class="c1">// constructor</span>
     <span class="c1">// move constructor</span>
   <span class="p">}</span>

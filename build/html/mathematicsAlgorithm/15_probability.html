@@ -135,6 +135,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="16_geometry.html">16. 几何</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_graphCycle.html">17. 图环</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_bTree.html">18. B 树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_ballBox.html">19. 球盒问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_poison.html">20. 喝水试毒</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
@@ -369,7 +373,7 @@ p_Z(z) = n (1-z)^{n-1},\ E[Z] = \frac{1}{n+1}.\end{split}\]</div>
 </dd>
 </dl>
 </li>
-<li><p class="first">设 <span class="math notranslate nohighlight">\(X, Y\)</span> 的联合概率密度函数为 <span class="math notranslate nohighlight">\(f_{XY}(x, y)\)</span> ，则 <span class="math notranslate nohighlight">\(X+Y\)</span> 的概率密度函数 <span class="math notranslate nohighlight">\(f_Z(z) = \int_x f(x, z-x) dx = \int_y f(z-y, y) dy\)</span> 。
+<li><p class="first">设 <span class="math notranslate nohighlight">\(X, Y\)</span> 的联合概率密度函数为 <span class="math notranslate nohighlight">\(f_{XY}(x, y)\)</span> ，则 <span class="math notranslate nohighlight">\(X+Y\)</span> 的概率密度函数 <span class="math notranslate nohighlight">\(f_Z(z) = \int_x f_{XY}(x, z-x) dx = \int_y f_{XY}(z-y, y) dy\)</span> 。
 若 <span class="math notranslate nohighlight">\(X, Y \sim U(0, 1)\)</span> 是相互独立的均匀分布，求 <span class="math notranslate nohighlight">\(U = X + Y\)</span> 和  <span class="math notranslate nohighlight">\(V = X - Y\)</span> 的概率密度函数。</p>
 <dl class="docutils">
 <dt>解：</dt>
@@ -377,7 +381,7 @@ p_Z(z) = n (1-z)^{n-1},\ E[Z] = \frac{1}{n+1}.\end{split}\]</div>
 <p>对于 <span class="math notranslate nohighlight">\(U\)</span> ，</p>
 <div class="math notranslate nohighlight">
 $$
-f_U(u) = \int_{x \in [0,1],\ u-x \in [0,1]} f(x, u-x) dx = \int_{max(0, u-1)}^{min(1, u)} f(x, u-x) dx \\
+f_U(u) = \int_{x \in [0,1],\ u-x \in [0,1]} f_{XY}(x, u-x) dx = \int_{max(0, u-1)}^{min(1, u)} f_{XY}(x, u-x) dx \\
 =
 \begin{cases}
   u &amp; , &amp; 0 \leqslant u \leqslant 1 \\
@@ -386,7 +390,7 @@ f_U(u) = \int_{x \in [0,1],\ u-x \in [0,1]} f(x, u-x) dx = \int_{max(0, u-1)}^{m
 $$</div><p>对于 <span class="math notranslate nohighlight">\(V\)</span> ，设 <span class="math notranslate nohighlight">\(Z = -Y \sim U(-1, 0)\)</span> ，则 <span class="math notranslate nohighlight">\(V = X + Z\)</span> ，</p>
 <div class="last math notranslate nohighlight">
 $$
-f_V(v) = \int_{x \in [0,1],\ v-x \in [-1,0]} f(x, v-x) dx = \int_{max(0, v)}^{min(1, v+1)} f(x, v-x) dx \\
+f_V(v) = \int_{x \in [0,1],\ v-x \in [-1,0]} f_{XY}(x, v-x) dx = \int_{max(0, v)}^{min(1, v+1)} f_{XY}(x, v-x) dx \\
 =
 \begin{cases}
   1 + v &amp; , &amp; -1 \leqslant v \leqslant 0 \\

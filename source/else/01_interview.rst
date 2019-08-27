@@ -3950,6 +3950,46 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           }
       };
 
+51. [LeetCode] Sliding Window Maximum 滑动窗口最大值。Hint：使用双端队列；新加入元素如果比队尾元素小，则直接入队，否则删除队尾元素直到队空或队尾元素比新加入元素大；
+如果队首元素在滑动窗口之外，则删除之；队首元素就是当前窗口的最大值。
+
+  https://leetcode.com/problems/sliding-window-maximum/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution
+      {
+      public:
+          vector<int> maxSlidingWindow(vector<int>& nums, int k)
+          {
+              vector<int> win_max;
+              if(nums.size()==0 || k <=0) return win_max;
+              deque<int> que; // 双端队列，存的是元素下标
+              for(int i = 0; i < k && i < nums.size(); ++i)
+              {
+                  while(!que.empty() && nums[que.back()] <= nums[i]) que.pop_back();
+                  que.push_back(i);
+              }
+              win_max.push_back(nums[que.front()]); // 队首的是滑动窗口最大值
+              for(int i = k; i < nums.size(); ++i)
+              {
+                  while(!que.empty() && nums[que.back()] <= nums[i]) que.pop_back();
+                  if(!que.empty() && que.front() <= i - k) que.pop_front(); // 不属于当前滑动窗口
+                  que.push_back(i);
+                  win_max.push_back(nums[que.front()]);
+              }
+              return win_max;
+          }
+      };
+
+
 C++
 ------------
 

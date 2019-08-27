@@ -132,6 +132,7 @@
 <li class="toctree-l2"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a></li>
 <li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
 <li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_lambda.html">26. lambda 表达式</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -215,16 +216,16 @@
 <h1>1. main函数<a class="headerlink" href="#main" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
 <h2>1.1. 返回值<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>C++ main函数的返回值必须是 <code class="docutils literal notranslate"><span class="pre">int</span></code> ，即整型类型。在大多数系统中，main 的返回值被用来指示状态，返回值 <code class="docutils literal notranslate"><span class="pre">0</span></code> 表示执行成功，非0的返回值含义由系统定义，通常用来指出错误类型。</p>
-<p>Windows系统下运行可执行文件(如launch.exe)可以直接忽略其扩展名 <code class="docutils literal notranslate"><span class="pre">.exe</span></code> ：</p>
+<p>C++ main函数的返回值必须是 <code class="docutils literal notranslate"><span class="pre">int</span></code> ，即整型类型。在大多数系统中，main 的返回值被用来指示状态，返回值 <code class="docutils literal notranslate"><span class="pre">0</span></code> 表示执行成功，非 0 的返回值含义由系统定义，通常用来指出错误类型。</p>
+<p>Windows 系统下运行可执行文件（如 launch.exe）可以直接忽略其扩展名 <code class="docutils literal notranslate"><span class="pre">.exe</span></code> ：</p>
 <div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">launch</span>
 </pre></div>
 </div>
-<p>Unix系统下需要使用全文件名，包括扩展名：</p>
+<p>Unix 系统下需要使用全文件名，包括扩展名：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./a.out
 </pre></div>
 </div>
-<p>访问main函数返回之后的方法依赖于系统。在Windows和Unix系统中，执行完一个程序之后，都可以通过 <code class="docutils literal notranslate"><span class="pre">echo</span></code> 命令来获取返回值。</p>
+<p>访问 main 函数返回之后的方法依赖于系统。在 Windows 和 Unix 系统中，执行完一个程序之后，都可以通过 <code class="docutils literal notranslate"><span class="pre">echo</span></code> 命令来获取返回值。</p>
 <p>Windows:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> %ERRORLEVEL%
 </pre></div>
@@ -236,21 +237,21 @@
 </div>
 <div class="section" id="id2">
 <h2>1.2. 处理命令行选项<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>main函数的形参列表有两种形式：</p>
+<p>main 函数的形参列表有两种形式：</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]){</span> <span class="p">...</span> <span class="p">}</span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">){</span> <span class="p">...</span> <span class="p">}</span>
 </pre></div>
 </div>
-<p>第一种形参 <code class="docutils literal notranslate"><span class="pre">*argv[]</span></code> 中，<code class="docutils literal notranslate"><span class="pre">argv</span></code> 是一个数组，它的元素是指向C风格的字符串的指针；
+<p>第一种形参 <code class="docutils literal notranslate"><span class="pre">*argv[]</span></code> 中，<code class="docutils literal notranslate"><span class="pre">argv</span></code> 是一个数组，它的元素是指向 C 风格的字符串的指针；
 第二种形参 <code class="docutils literal notranslate"><span class="pre">**argv</span></code> 中，<code class="docutils literal notranslate"><span class="pre">argv</span></code> 指向 <code class="docutils literal notranslate"><span class="pre">char*</span></code> 。
 参数 <code class="docutils literal notranslate"><span class="pre">argc</span></code> 表示数组中字符串的数量。</p>
-<p>当实参传给main函数之后，<code class="docutils literal notranslate"><span class="pre">argv</span></code> 的第一个元素指向程序的名字或者一个空字符串，接下来的元素依次传递命令行提供的实参。最后一个指针之后的元素值保证为0。
+<p>当实参传给 main 函数之后，<code class="docutils literal notranslate"><span class="pre">argv</span></code> 的第一个元素指向程序的名字或者一个空字符串，接下来的元素依次传递命令行提供的实参。最后一个指针之后的元素值保证为 0。
 例如，执行：</p>
 <div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">launch</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">o</span> <span class="n">ofile</span> <span class="n">data</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">launch</span></code> 是可执行文件。那么， <code class="docutils literal notranslate"><span class="pre">argc=5</span></code> ，<code class="docutils literal notranslate"><span class="pre">argv</span></code> 包含如下的C风格字符串：</p>
+<p><code class="docutils literal notranslate"><span class="pre">launch</span></code> 是可执行文件。那么， <code class="docutils literal notranslate"><span class="pre">argc=5</span></code> ，<code class="docutils literal notranslate"><span class="pre">argv</span></code> 包含如下的 C 风格字符串：</p>
 <div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3

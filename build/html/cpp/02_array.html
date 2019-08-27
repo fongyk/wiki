@@ -141,6 +141,7 @@
 <li class="toctree-l2"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a></li>
 <li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
 <li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_lambda.html">26. lambda 表达式</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -402,30 +403,30 @@ pa = a; // 使用：*(*(pa + i) + j)
 </span></pre></div>
 </td></tr></table></div>
 <p>内存组织形式:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>动态数组在堆(heap)区分配内存，静态数组在栈(stack)区分配內存。
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>动态数组在堆（heap）区分配内存，静态数组在栈（stack）区分配內存。
 </pre></div>
 </div>
-<p>假如我们已经得到一个3x4的动态数组da，其指针关系如下：</p>
+<p>假如我们已经得到一个 3x4 的动态数组 da，其指针关系如下：</p>
 <a class="reference internal image-reference" href="../_images/02_dynamicArray.png"><img alt="../_images/02_dynamicArray.png" class="align-center" src="../_images/02_dynamicArray.png" style="width: 500px;" /></a>
-<p>其中，da[0]、da[1]、da[2]的 <strong>地址</strong> 是连续的，依次相差 <code class="docutils literal notranslate"><span class="pre">sizeof(da[0])</span></code> (一个指针的大小，32位编译器下为4，64位编译器下为8)，比如:</p>
+<p>其中，da[0]、da[1]、da[2]的 <strong>地址</strong> 是连续的，依次相差 <code class="docutils literal notranslate"><span class="pre">sizeof(da[0])</span></code> （一个指针的大小，32 位编译器下为 4，64 位编译器下为 8），比如:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">da</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">da</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">da</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>如果把da看作3行4列的二维数组，那么da的每一行元素的地址是连续的，依次相差 <code class="docutils literal notranslate"><span class="pre">sizeof(da[0][0])</span></code> ；但是行与行之间的地址是不连续的，比如:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>da[0][0], da[0][1], da[0][2], da[0][3]地址连续；
-da[1][0], da[1][1], da[1][2], da[1][3]地址连续；
-da[0][3]与da[1][0]地址不连续；
+<p>如果把 da 看作 3 行 4 列的二维数组，那么 da 的每一行元素的地址是连续的，依次相差 <code class="docutils literal notranslate"><span class="pre">sizeof(da[0][0])</span></code> ；但是行与行之间的地址是不连续的，比如:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>da[0][0], da[0][1], da[0][2], da[0][3] 地址连续；
+da[1][0], da[1][1], da[1][2], da[1][3] 地址连续；
+da[0][3] 与 da[1][0] 地址不连续；
 </pre></div>
 </div>
 <p>另外:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&amp;da, &amp;da[0], &amp;da[0][0]三者的数值是不相等的。
-如果数组是静态数组，则&amp;da, &amp;da[0], &amp;da[0][0]三者的数值是相等的；
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&amp;da, &amp;da[0], &amp;da[0][0] 三者的数值是不相等的。
+如果数组是静态数组，则 &amp;da, &amp;da[0], &amp;da[0][0] 三者的数值是相等的；
 且静态数组的行与行之间的地址连续。
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">对于动态数组，指针的地址和指针的值不能混淆，我们讲da[0]、da[1]、da[2]的地址是连续的，但是他们本身的值没有关系，即 <code class="docutils literal notranslate"><span class="pre">da[0]</span> <span class="pre">+</span> <span class="pre">sizeof(da[0])</span> <span class="pre">!=</span> <span class="pre">da[1]</span></code> 。
+<p class="last">对于动态数组，指针的地址和指针的值不能混淆，我们讲 da[0]、da[1]、da[2] 的地址是连续的，但是他们本身的值没有关系，即 <code class="docutils literal notranslate"><span class="pre">da[0]</span> <span class="pre">+</span> <span class="pre">sizeof(da[0])</span> <span class="pre">!=</span> <span class="pre">da[1]</span></code> 。
 注意有没有 <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> 的区别。</p>
 </div>
 <p>如果想要定义连续内存空间的动态数组，可以按如下方式进行：</p>
@@ -482,7 +483,7 @@ da[0][3]与da[1][0]地址不连续；
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
-<p>上面的 <code class="docutils literal notranslate"><span class="pre">Init2DArray</span></code> 在申请内存的时候，建立了row x col的二维动态数组。实际上，二维动态数组不强求列对齐，即各行的长度可以不一样，
+<p>上面的 <code class="docutils literal notranslate"><span class="pre">Init2DArray</span></code> 在申请内存的时候，建立了 row x col 的二维动态数组。实际上，二维动态数组不强求列对齐，即各行的长度可以不一样，
 因此可以下面像这样定义:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">offset_i</span><span class="p">;</span> <span class="o">//</span> <span class="n">offset_i是第i行首地址相对于第0行首地址的偏移量</span>
 </pre></div>
@@ -508,8 +509,8 @@ da[0][3]与da[1][0]地址不连续；
 <span class="mi">0</span><span class="p">[</span><span class="n">b</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
 </pre></div>
 </td></tr></table></div>
-<p>这些表达式能够正常编译和执行，是因为对于C/C++而言:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="n">等价于</span><span class="o">*</span><span class="n">a等价于</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="mi">0</span><span class="p">)</span><span class="n">等价于</span><span class="o">*</span><span class="p">(</span><span class="mi">0</span><span class="o">+</span><span class="n">a</span><span class="p">)</span> <span class="o">==&gt;</span> <span class="n">等价于0</span><span class="p">[</span><span class="n">a</span><span class="p">];</span>
+<p>这些表达式能够正常编译和执行，是因为对于 C/C++ 而言:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="n">等价于</span> <span class="o">*</span><span class="n">a</span> <span class="n">等价于</span> <span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="mi">0</span><span class="p">)</span> <span class="n">等价于</span> <span class="o">*</span><span class="p">(</span><span class="mi">0</span><span class="o">+</span><span class="n">a</span><span class="p">)</span> <span class="o">==&gt;</span> <span class="n">等价于</span> <span class="mi">0</span><span class="p">[</span><span class="n">a</span><span class="p">];</span>
 </pre></div>
 </div>
 <p>所以可以推出二维表达式:</p>
@@ -520,14 +521,14 @@ da[0][3]与da[1][0]地址不连续；
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>b: 相当于 &amp;b[0]，第0行的首地址。</p>
-<p>*b: 相当于 b[0]，&amp;b[0][0]，第0行第0列的首地址。</p>
-<p class="last">b[0][1]等价于*(b[0] + 1)，*(*(b+0)+1)，(*(b+0))[1]（ [] 优先级高于 * ）。</p>
+<p>b: 相当于 &amp;b[0]，第 0 行的首地址。</p>
+<p>*b: 相当于 b[0]，&amp;b[0][0]，第 0 行第 0 列的首地址。</p>
+<p class="last">b[0][1] 等价于 *(b[0] + 1)，*(*(b+0)+1)，(*(b+0))[1]（ [] 优先级高于 * ）。</p>
 </div>
 </div>
 <div class="section" id="id6">
 <h2>2.5. 数组实参<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
-<p>以 <strong>非引用</strong> 类型传递数组实参时，数组会退化为指针，形参复制的是这个指针的值(指向数组的第一个元素)。通过指针形参做的任何改变，都是在修改数组元素本身。</p>
+<p>以 <strong>非引用</strong> 类型传递数组实参时，数组会退化为指针，形参复制的是这个指针的值（ 指向数组的第一个元素）。通过指针形参做的任何改变，都是在修改数组元素本身。</p>
 <p>如果以 <strong>引用</strong> 形式传递数组实参，那么编译器不会将数组实参转化为指针，而是传递数组的引用本身。</p>
 <p>编译器会检查数组实参的大小与形参大小是否匹配。</p>
 <p>非引用形式：</p>
@@ -539,12 +540,12 @@ da[0][3]与da[1][0]地址不连续；
 6
 7
 8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">func1</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">arr</span><span class="p">);</span><span class="c1">// 函数可能会改变数组</span>
-<span class="kt">void</span> <span class="nf">func2</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="o">*</span><span class="n">arr</span><span class="p">);</span><span class="c1">// 不能改变数组</span>
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">func1</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">arr</span><span class="p">);</span> <span class="c1">// 函数可能会改变数组</span>
+<span class="kt">void</span> <span class="nf">func2</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="o">*</span><span class="n">arr</span><span class="p">);</span> <span class="c1">// 不能改变数组</span>
 
 <span class="kt">void</span> <span class="nf">func3</span><span class="p">(</span><span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="mi">100</span><span class="p">])</span>
 <span class="p">{</span>
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span><span class="c1">// 4</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 4</span>
 <span class="p">}</span>
 <span class="c1">// int arr[100];</span>
 <span class="c1">// func3(arr); // 调用func3</span>
@@ -558,7 +559,7 @@ da[0][3]与da[1][0]地址不连续；
 5
 6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">func4</span><span class="p">(</span><span class="kt">int</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">arr</span><span class="p">)[</span><span class="mi">100</span><span class="p">])</span>
 <span class="p">{</span>
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span><span class="c1">// 100</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 100</span>
 <span class="p">}</span>
 <span class="c1">// int arr[100];</span>
 <span class="c1">// func4(arr); // 调用func4</span>
@@ -572,14 +573,14 @@ da[0][3]与da[1][0]地址不连续；
 </pre></div>
 </div>
 <p><strong>1</strong>. <code class="docutils literal notranslate"><span class="pre">a</span></code> , <code class="docutils literal notranslate"><span class="pre">a[0]</span></code> , <code class="docutils literal notranslate"><span class="pre">a[0][0]</span></code> , <code class="docutils literal notranslate"><span class="pre">&amp;a</span></code> , <code class="docutils literal notranslate"><span class="pre">&amp;a[0]</span></code> , <code class="docutils literal notranslate"><span class="pre">&amp;a[0][0]</span></code> , <code class="docutils literal notranslate"><span class="pre">&amp;a[0][0][0]</span></code> 的数值都是一样的。</p>
-<p><strong>2</strong>. <code class="docutils literal notranslate"><span class="pre">&amp;a</span></code> 是4级指针, 类型是 <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">(*)[L][M][N]</span></code> ，指向a这个数组。</p>
-<p><strong>3</strong>. <code class="docutils literal notranslate"><span class="pre">a</span></code> 是3级指针，类型是 <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">(*)[M][N]</span></code> ，三维数组的数组名，是数组a的首地址。</p>
+<p><strong>2</strong>. <code class="docutils literal notranslate"><span class="pre">&amp;a</span></code> 是 4 级指针, 类型是 <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">(*)[L][M][N]</span></code> ，指向 a 这个数组。</p>
+<p><strong>3</strong>. <code class="docutils literal notranslate"><span class="pre">a</span></code> 是 3 级指针，类型是 <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">(*)[M][N]</span></code> ，三维数组的数组名，是数组 a 的首地址。</p>
 <p><strong>4</strong>. 大小计算如下:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sizeof(&amp;a) = 4;// 指针的大小，32位编译器
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sizeof(&amp;a) = 4; // 指针的大小，32 位编译器
 sizeof(a[0][0][0]) = sizeof(int);
 sizeof(a[0][0]) = N * sizeof(int);
 sizeof(a[0]) = M * N * sizeof(int);
-sizeof(a) = L * M * N * sizeof(int);// 整个数组的大小
+sizeof(a) = L * M * N * sizeof(int); // 整个数组的大小
 </pre></div>
 </div>
 <p><strong>5</strong>. 加法运算:</p>
@@ -601,42 +602,42 @@ sizeof(a) = L * M * N * sizeof(int);// 整个数组的大小
 <ol class="arabic">
 <li><p class="first">属性</p>
 <blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">malloc/free</span></code> 是C/C++的 <strong>库函数</strong> ，在头文件 <code class="docutils literal notranslate"><span class="pre">stdlib.h</span></code> 中声明。</p>
+<div><p><code class="docutils literal notranslate"><span class="pre">malloc/free</span></code> 是 C/C++ 的 <strong>库函数</strong> ，在头文件 <code class="docutils literal notranslate"><span class="pre">stdlib.h</span></code> 中声明。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="o">*</span><span class="nf">malloc</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">size</span><span class="p">);</span>
 <span class="kt">void</span> <span class="nf">free</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">pointer</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>因为malloc()函数的返回值类型为 <code class="docutils literal notranslate"><span class="pre">void*</span></code> ，所以需要在函数前面进行相应的强制类型转换。</p>
-<p><code class="docutils literal notranslate"><span class="pre">new/delete</span></code> 是C++的 <strong>运算符</strong> 。</p>
+<p>因为 malloc 函数的返回值类型为 <code class="docutils literal notranslate"><span class="pre">void*</span></code> ，所以需要在函数前面进行相应的强制类型转换。</p>
+<p><code class="docutils literal notranslate"><span class="pre">new/delete</span></code> 是 C++ 的 <strong>运算符</strong> 。</p>
 </div></blockquote>
 </li>
 <li><p class="first">参数</p>
 <blockquote>
-<div><p>使用new操作符申请内存分配时无须指定内存块的大小，编译器会根据类型信息自行计算；</p>
-<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>int *pi=new int[n]; //指针pi指向长度为n的数组，未初始化
+<div><p>使用 new 操作符申请内存分配时无须指定内存块的大小，编译器会根据类型信息自行计算；</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>int *pi = new int[n]; // 指针 pi 指向长度为 n 的数组，未初始化
 </pre></div>
 </div>
-<p>而malloc则需要显式地指出所需内存的尺寸。</p>
-<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="o">*</span><span class="n">p</span><span class="o">=</span><span class="p">(</span><span class="nb">int</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="mi">25</span><span class="o">*</span><span class="n">sizeof</span><span class="p">(</span><span class="nb">int</span><span class="p">));</span> <span class="o">//</span><span class="n">指向整型的指针p指向一个25个int整型空间的地址</span>
-<span class="nb">int</span> <span class="o">*</span><span class="n">p</span><span class="o">=</span><span class="p">(</span><span class="nb">int</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="mi">99</span><span class="p">);</span> <span class="o">//</span><span class="n">指向整型的指针p指向一个大小为99字节的内存的地址</span>
+<p>而 malloc 则需要显式地指出所需内存的尺寸。</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="mi">25</span><span class="o">*</span><span class="n">sizeof</span><span class="p">(</span><span class="nb">int</span><span class="p">));</span> <span class="o">//</span> <span class="n">指向整型的指针</span> <span class="n">p</span> <span class="n">指向一个</span> <span class="mi">25</span> <span class="n">个</span> <span class="nb">int</span> <span class="n">整型空间的地址</span>
+<span class="nb">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="mi">99</span><span class="p">);</span> <span class="o">//</span> <span class="n">指向整型的指针</span> <span class="n">p</span> <span class="n">指向一个大小为</span> <span class="mi">99</span> <span class="n">字节的内存的地址</span>
 </pre></div>
 </div>
-<p>malloc可以分配任意字节，new 只能分配实例所占内存的整数倍数大小。</p>
+<p>malloc 可以分配任意字节，new 只能分配实例所占内存的整数倍数大小。</p>
 </div></blockquote>
 </li>
 <li><p class="first">分配失败</p>
 <blockquote>
-<div><p>new内存分配失败时，会抛出 <code class="docutils literal notranslate"><span class="pre">bad_alloc</span></code> 异常；malloc分配内存失败时返回 <code class="docutils literal notranslate"><span class="pre">NULL</span></code> 。</p>
+<div><p>new内存分配失败时，会抛出 <code class="docutils literal notranslate"><span class="pre">bad_alloc</span></code> 异常；malloc 分配内存失败时返回 <code class="docutils literal notranslate"><span class="pre">NULL</span></code> 。</p>
 </div></blockquote>
 </li>
 <li><p class="first">功能</p>
 <blockquote>
-<div><p>new做两件事，先分配内存，再调用类的构造函数；同样，delete会调用类的析构函数和释放内存。而malloc和free只是分配和释放内存。</p>
-<p>对于内部数据类型(如 <code class="docutils literal notranslate"><span class="pre">int</span></code> , <code class="docutils literal notranslate"><span class="pre">char</span></code> 等)的对象，没有构造和析构的过程，对它们而言， <code class="docutils literal notranslate"><span class="pre">malloc/free</span></code> 和 <code class="docutils literal notranslate"><span class="pre">new/delete</span></code> 等价。</p>
+<div><p>new 做两件事，先分配内存，再调用类的构造函数；同样，delete 会调用类的析构函数和释放内存。而 malloc 和 free 只是分配和释放内存。</p>
+<p>对于内部数据类型（如 <code class="docutils literal notranslate"><span class="pre">int</span></code> , <code class="docutils literal notranslate"><span class="pre">char</span></code> 等）的对象，没有构造和析构的过程，对它们而言， <code class="docutils literal notranslate"><span class="pre">malloc/free</span></code> 和 <code class="docutils literal notranslate"><span class="pre">new/delete</span></code> 等价。</p>
 <p>对于非内部数据类型的对象而言， <code class="docutils literal notranslate"><span class="pre">malloc/free</span></code> 无法满足动态对象的要求。</p>
 </div></blockquote>
 </li>
-<li><p class="first">重载(overload)</p>
+<li><p class="first">重载（overload）</p>
 <blockquote>
 <div><p><code class="docutils literal notranslate"><span class="pre">new/delete</span></code> 可以重载成为函数，可以自定义申请过程，比如记录申请内存的长度以及跟踪每个对象的指针。</p>
 <p><code class="docutils literal notranslate"><span class="pre">malloc/free</span></code> 不能重载。</p>

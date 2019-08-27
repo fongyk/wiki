@@ -224,31 +224,31 @@
 <h1>14. static和extern<a class="headerlink" href="#staticextern" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="static">
 <h2>14.1. static: 静态全局变量<a class="headerlink" href="#static" title="Permalink to this headline">¶</a></h2>
-<p>在全局变量前，加上关键字static，该变量就被定义成为一个静态全局变量。
+<p>在全局变量前，加上关键字 static，该变量就被定义成为一个静态全局变量。
 特点：</p>
 <blockquote>
 <div><ul class="simple">
 <li>该变量在 <strong>全局数据区</strong> 分配内存；</li>
-<li>未经初始化的静态全局变量会被程序自动初始化为0；（自动变量的值是随机的，除非它被显式初始化）</li>
+<li>未经初始化的静态全局变量会被程序自动初始化为 0；（自动变量的值是随机的，除非它被显式初始化）</li>
 <li>静态全局变量在声明它的整个文件都是可见的，而在 <strong>文件之外是不可见的</strong> ，其它文件中可以定义相同名字的变量，不会发生冲突。</li>
 </ul>
 </div></blockquote>
 </div>
 <div class="section" id="id1">
 <h2>14.2. static: 静态函数<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>在函数的返回类型前加上static关键字，函数即被定义为静态函数。
+<p>在函数的返回类型前加上 static 关键字，函数即被定义为静态函数。
 静态函数与普通函数不同，它 <strong>只能在声明它的文件当中可见</strong> ，不能被其它文件使用。
 其它文件中可以定义相同名字的函数，不会发生冲突，这点与静态全局变量相似。</p>
 </div>
 <div class="section" id="id2">
 <h2>14.3. static: 静态局部变量<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>在局部变量前，加上关键字static，该变量就被定义成为一个静态局部变量。
+<p>在局部变量前，加上关键字 static，该变量就被定义成为一个静态局部变量。
 特点：</p>
 <blockquote>
 <div><ul class="simple">
 <li>该变量在全局数据区分配内存；</li>
 <li>静态局部变量在程序执行到该对象的声明处时被首次初始化，即 <strong>以后的函数调用不再进行初始化</strong> ；</li>
-<li>静态局部变量一般在声明处初始化，如果没有显式初始化，会被程序自动初始化为0；</li>
+<li>静态局部变量一般在声明处初始化，如果没有显式初始化，会被程序自动初始化为 0；</li>
 <li>它始终驻留在全局数据区，其生命周期一直持续到整个程序执行结束。但其作用域仍为局部作用域，当定义它的函数或语句块结束时，其作用域随之结束。一般情况下，对于局部变量是存放在栈区的，并且局部变量的生命周期在该语句块执行结束时便结束了。</li>
 </ul>
 </div></blockquote>
@@ -282,13 +282,13 @@
 </div>
 <div class="section" id="id3">
 <h2>14.4. static: 静态成员变量<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>在类内数据成员的声明前加上关键字static，该数据成员就是类内的静态数据成员。
+<p>在类内数据成员的声明前加上关键字 static，该数据成员就是类内的静态数据成员。
 特点：</p>
 <blockquote>
 <div><ul class="simple">
 <li>对于非静态数据成员，每个类对象都有自己的拷贝。而静态数据成员被当作是类的成员。无论这个类的对象被定义了多少个，静态数据成员在程序中也只有一份拷贝，由该类型的所有对象共享访问。在没有产生类的实例时，我们就可以操作它；</li>
 <li>静态数据成员存储在全局数据区。静态数据成员定义时要分配空间，所以不能在类声明中定义；</li>
-<li>静态数据成员和普通数据成员一样遵从public，protected，private访问规则；</li>
+<li>静态数据成员和普通数据成员一样遵从 public，protected，private 访问规则；</li>
 <li>（类定义体外部）静态数据成员初始化与一般数据成员初始化不同。静态数据成员初始化的格式为：
 <code class="docutils literal notranslate"><span class="pre">＜数据类型＞</span> <span class="pre">＜类名＞::＜静态数据成员名＞</span> <span class="pre">=</span> <span class="pre">＜值＞</span></code></li>
 <li>类的静态数据成员有两种访问形式：
@@ -354,13 +354,13 @@
 <div class="section" id="extern">
 <h2>14.6. extern: 修饰函数、变量<a class="headerlink" href="#extern" title="Permalink to this headline">¶</a></h2>
 <p>修饰符 <code class="docutils literal notranslate"><span class="pre">extern</span></code> 用在变量或者函数的声明前，用来说明 <strong>“此变量/函数是在别处定义的，要在此处引用”</strong> 。
-在别的文件中如果想调用 <code class="docutils literal notranslate"><span class="pre">file1.c</span></code> 中的变量a，只须用 <code class="docutils literal notranslate"><span class="pre">extern</span></code> 进行声明即可调用a:</p>
+在别的文件中如果想调用 <code class="docutils literal notranslate"><span class="pre">file1.c</span></code> 中的变量 <code class="docutils literal notranslate"><span class="pre">a</span></code> ，只须用 <code class="docutils literal notranslate"><span class="pre">extern</span></code> 进行声明即可调用 <code class="docutils literal notranslate"><span class="pre">a</span></code></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">int</span> <span class="n">a</span><span class="p">;</span> <span class="c1">// file2.c</span>
 <span class="k">extern</span> <span class="s">&quot;C&quot;</span> <span class="kt">int</span> <span class="n">a</span><span class="p">;</span> <span class="c1">// file3.cpp</span>
 </pre></div>
 </div>
-<p>在这里要注意 <code class="docutils literal notranslate"><span class="pre">extern</span></code> 声明的位置对其作用域也有关系，如果是在main函数中进行声明的，则只能在main函数中调用，在其它函数中不能调用。
-其实要调用其它文件中的函数和变量，只需把该文件用#include包含进来即可，但是用 <code class="docutils literal notranslate"><span class="pre">extern</span></code> 会加速程序的编译过程，这样能节省时间。</p>
+<p>在这里要注意 <code class="docutils literal notranslate"><span class="pre">extern</span></code> 声明的位置对其作用域也有关系，如果是在 main 函数中进行声明的，则只能在 main 函数中调用，在其它函数中不能调用。
+其实要调用其它文件中的函数和变量，只需把该文件用 <code class="docutils literal notranslate"><span class="pre">#include</span></code> 包含进来即可，但是用 <code class="docutils literal notranslate"><span class="pre">extern</span></code> 会加速程序的编译过程，这样能节省时间。</p>
 </div>
 <div class="section" id="extern-c">
 <h2>14.7. extern “C” {}<a class="headerlink" href="#extern-c" title="Permalink to this headline">¶</a></h2>
@@ -389,7 +389,7 @@
 21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#ifndef HEADER_INCLUDED </span><span class="c1">// 条件编译，避免重复包含头文件</span>
 <span class="cp">#define HEADER_INCLUDED</span>
 
-<span class="cp">#ifdef __cplusplus </span><span class="c1">// extern &quot;C&quot; 只用在c++文件中</span>
+<span class="cp">#ifdef __cplusplus </span><span class="c1">// extern &quot;C&quot; 只用在 c++ 文件中</span>
 <span class="k">extern</span> <span class="s">&quot;C&quot;</span> <span class="p">{</span>
 <span class="cp">#endif </span><span class="cm">/* __cplusplus */</span><span class="cp"></span>
 
@@ -409,9 +409,9 @@
 <span class="cp">#endif </span><span class="cm">/* HEADER_INCLUDED */</span><span class="cp"></span>
 </pre></div>
 </td></tr></table></div>
-<p><code class="docutils literal notranslate"><span class="pre">extern</span> <span class="pre">&quot;C&quot;</span></code> 中的 <code class="docutils literal notranslate"><span class="pre">C</span></code> ，表示的一种编译和连接规约，表明它按照类C的编译和连接规约来编译和连接，而不是一种语言。
-<code class="docutils literal notranslate"><span class="pre">C</span></code> 表示 <strong>符合C语言的编译和连接规约的任何语言</strong> ，如Fortran、assembler等。
-<code class="docutils literal notranslate"><span class="pre">extern</span> <span class="pre">&quot;C&quot;</span></code> 的真实目的是实现 <strong>类C</strong> 和C++的混合编程。</p>
+<p><code class="docutils literal notranslate"><span class="pre">extern</span> <span class="pre">&quot;C&quot;</span></code> 中的 <code class="docutils literal notranslate"><span class="pre">C</span></code> ，表示的一种编译和连接规约，表明它按照类 C 的编译和连接规约来编译和连接，而不是一种语言。
+<code class="docutils literal notranslate"><span class="pre">C</span></code> 表示 <strong>符合C语言的编译和连接规约的任何语言</strong> ，如 Fortran、assembler 等。
+<code class="docutils literal notranslate"><span class="pre">extern</span> <span class="pre">&quot;C&quot;</span></code> 的真实目的是实现 <strong>类C</strong> 和 C++ 的混合编程。</p>
 </div>
 </div>
 <div class="section" id="id6">

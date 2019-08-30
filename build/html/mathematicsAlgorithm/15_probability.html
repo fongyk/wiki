@@ -399,6 +399,28 @@ f_V(v) = \int_{x \in [0,1],\ v-x \in [-1,0]} f_{XY}(x, v-x) dx = \int_{max(0, v)
 $$</div></dd>
 </dl>
 </li>
+<li><p class="first">投掷一个均匀的硬币，求以下几种情况的期望投掷次数。</p>
+<ul>
+<li><p class="first">直到出现一次正面为止。</p>
+<p>设投掷次数的期望为 <span class="math notranslate nohighlight">\(e\)</span> ，如果第一次投掷为正面，则投掷次数为 <span class="math notranslate nohighlight">\(1\)</span> ；否则平均投掷次数为 <span class="math notranslate nohighlight">\(1 + e\)</span> 。</p>
+<div class="math notranslate nohighlight">
+\[e = \frac{1}{2} \times 1 + \frac{1}{2} \times (1 + e)\]</div>
+<p>解得 <span class="math notranslate nohighlight">\(e = 2\)</span> 。</p>
+</li>
+<li><p class="first">直到出现两次正面为止（可以不连续）。</p>
+<p>设投掷次数的期望为 <span class="math notranslate nohighlight">\(E\)</span> ，如果第一次投掷为正面，则平均投掷次数为 <span class="math notranslate nohighlight">\(1 + e\)</span> （ <span class="math notranslate nohighlight">\(e = 2\)</span> 为投出一次正面的期望次数）；否则平均投掷次数为 <span class="math notranslate nohighlight">\(1 + E\)</span> 。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}E = \frac{1}{2} \times (1 + e) + \frac{1}{2} \times (1 + E) \\\end{split}\]</div>
+<p>解得 <span class="math notranslate nohighlight">\(E = 4\)</span> 。</p>
+</li>
+<li><p class="first">直到连续两次出现正面为止。</p>
+<p>设投掷次数的期望为 <span class="math notranslate nohighlight">\(E\)</span> ，如果第一次投掷为反面，则平均投掷次数为 <span class="math notranslate nohighlight">\(1 + E\)</span> ；如果第一次投掷为正面，第二次投掷为反面，则平均投掷次数为 <span class="math notranslate nohighlight">\(2 + E\)</span> ；如果第一次和第二次投掷都为正面，则投掷次数为 <span class="math notranslate nohighlight">\(2\)</span> 。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}E = \frac{1}{2} \times (1 + E) + \frac{1}{2} \times \frac{1}{2} \times (2 + E) + \frac{1}{2} \times \frac{1}{2} \times 2 \\\end{split}\]</div>
+<p>解得 <span class="math notranslate nohighlight">\(E = 6\)</span> 。</p>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="id10">

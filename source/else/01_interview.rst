@@ -597,6 +597,14 @@
 
   https://leetcode.com/problems/kth-largest-element-in-an-array/
 
+  - 排序。时间复杂度 :math:`\mathcal{O}(N \log N)` 。
+
+  - 伪排序：:math:`k` 次遍历数组，每次从剩余数字中找一个最大值。时间复杂度 :math:`\mathcal{O}(kN)` 。
+
+  - 借助大小为 :math:`k` 的最小堆。时间复杂度 :math:`\mathcal{O}(N \log k)` 。
+
+  - 快排思想。时间复杂度 :math:`\mathcal{O}(N)` 。
+
   .. container:: toggle
 
     .. container:: header
@@ -3988,7 +3996,6 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
               return win_max;
           }
       };
-
 
 C++
 ------------

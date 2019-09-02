@@ -4,7 +4,7 @@
 栈
 -----
 
-**list** 的 ``append()`` 和 ``pop()`` 方法使得list类型可以作为简单的栈使用。
+**list** 的 ``append()`` 和 ``pop()`` 方法使得 list 类型可以作为简单的栈使用。
 
 
 队列
@@ -23,9 +23,9 @@ Queue
 
     Queue.Queue(maxsize=0)
     先进先出。
-    maxsize指明了队列中能存放的数据个数的上限。
+    maxsize 指明了队列中能存放的数据个数的上限。
     一旦达到上限，插入会导致阻塞，直到队列中的数据被消费掉。
-    如果maxsize小于或者等于0，队列大小没有限制。
+    如果 maxsize 小于或者等于 0，队列大小没有限制。
 
 - LIFO
 
@@ -40,8 +40,8 @@ Queue
 
     Queue.PriorityQueue(maxsize=0)
     优先队列。
-    一般使用tuple（优先级+数据）作为队列元素，优先级为tuple的第一项。
-    默认sorted(list(entries))[0])，即tuple第一项越小，优先级越高，越先出队列。
+    一般使用 tuple（优先级 + 数据）作为队列元素，优先级为 tuple 的第一项。
+    默认 tuple 第一项越小，优先级越高，越先出队列。
 
 插入元素 ::
 
@@ -126,14 +126,14 @@ double-ended queue，双端队列。
 
   import heapq
 
-heapq创建的是 **小顶堆** ，堆顶元素是堆的最小元素。
+heapq 创建的是 **小顶堆** ，堆顶元素是堆的最小元素。
 
 创建堆
 ^^^^^^^^^
 
 - **heappush()**
 
-  基于空列表[]，使用 ``heappush()`` 把元素逐个插入堆中。 ``heappop(h)`` 弹出并返回堆顶元素。h[0]是最小值。
+  基于空列表[]，使用 ``heappush()`` 把元素逐个插入堆中。 ``heappop(h)`` 弹出并返回堆顶元素。h[0] 是最小值。
 
   如果插入元素是元组（tuple），则元组的第一项自动成为优先级，值越小，优先级越高。堆顶元素优先级最高，值最小。
 
@@ -199,7 +199,7 @@ heapq创建的是 **小顶堆** ，堆顶元素是堆的最小元素。
   heapq.nlargest(n, iterable[, key])
   heapq.nsmallest(n, iterable[, key])
 
-返回一个长度为n的列表，包含数据中的前n个最大/最小的元素。使用key定义排序关键字。
+返回一个长度为 :math:`n` 的列表，包含数据中的前 :math:`n` 个最大/最小的元素。使用 key 定义排序关键字。
 
 .. code-block:: python
   :linenos:
@@ -229,16 +229,16 @@ heapq创建的是 **小顶堆** ，堆顶元素是堆的最小元素。
 大顶堆
 ^^^^^^^^^^
 
-heapq默认创建小顶堆，为了创建大顶堆，有以下trick::
+heapq 默认创建小顶堆，为了创建大顶堆，有以下 trick::
 
   heapq.heappush(-x) ## 插入 x
   x = - heapq.heappop(h) ## 弹出堆顶元素
 
 
-数列前K大的数
+数列前 K 大的数
 ^^^^^^^^^^^^^^^^^^^^^
 
-Hint：建立大小为K的小顶堆，对后续所有数进行遍历：如果大于堆顶元素，则有可能是前K大的数，堆顶元素弹出，插入该数。
+Hint：建立大小为 :math:`K` 的小顶堆，对后续所有数进行遍历：如果大于堆顶元素，则有可能是前 :math:`K` 大的数，堆顶元素弹出，插入该数。
 时间复杂度 :math:`\mathcal{O}(NlogK)`。
 
 .. code-block:: python
@@ -280,11 +280,11 @@ Hint：建立大小为K的小顶堆，对后续所有数进行遍历：如果大
 
   from collections import Counter
 
-Counter用于统计频率。属性与字典类似，有keys()，values()，items()等。
+Counter 用于统计频率。属性与字典类似，有 ``keys()`` ，``values()`` ，``items()`` 等。
 
 .. note::
 
-  Counter统计之后并不一定是按照频率从高到低排列的。
+  Counter 统计之后并不一定是按照频率从高到低排列的。
 
 .. code-block:: python
   :linenos:
@@ -318,6 +318,8 @@ Counter用于统计频率。属性与字典类似，有keys()，values()，items
 1. python中的Queue(队列)详解
 
   https://www.cnblogs.com/wdliu/p/6905396.html
+
+  https://docs.python.org/2/library/queue.html?highlight=priority%20queue#Queue.PriorityQueue
 
 2. Python collections使用
 

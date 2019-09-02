@@ -124,7 +124,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#id5">11.3.1. 创建堆</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id6">11.3.2. 获取最值</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id7">11.3.3. 大顶堆</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#k">11.3.4. 数列前K大的数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#k">11.3.4. 数列前 K 大的数</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#id8">11.4. 计数器</a></li>
@@ -137,6 +137,7 @@
 <li class="toctree-l2"><a class="reference internal" href="15_memManage.html">15. 内存管理</a></li>
 <li class="toctree-l2"><a class="reference internal" href="16_newInit.html">16. __new__ 和 __init__</a></li>
 <li class="toctree-l2"><a class="reference internal" href="17_pip.html">17. pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_exception.html">18. 异常</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
@@ -219,7 +220,7 @@
 <h1>11. 常用数据结构<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id2">
 <h2>11.1. 栈<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p><strong>list</strong> 的 <code class="docutils literal notranslate"><span class="pre">append()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">pop()</span></code> 方法使得list类型可以作为简单的栈使用。</p>
+<p><strong>list</strong> 的 <code class="docutils literal notranslate"><span class="pre">append()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">pop()</span></code> 方法使得 list 类型可以作为简单的栈使用。</p>
 </div>
 <div class="section" id="id3">
 <h2>11.2. 队列<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
@@ -232,9 +233,9 @@
 <li><p class="first">FIFO</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Queue.Queue(maxsize=0)
 先进先出。
-maxsize指明了队列中能存放的数据个数的上限。
+maxsize 指明了队列中能存放的数据个数的上限。
 一旦达到上限，插入会导致阻塞，直到队列中的数据被消费掉。
-如果maxsize小于或者等于0，队列大小没有限制。
+如果 maxsize 小于或者等于 0，队列大小没有限制。
 </pre></div>
 </div>
 </li>
@@ -247,8 +248,8 @@ maxsize指明了队列中能存放的数据个数的上限。
 <li><p class="first">Priority</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Queue.PriorityQueue(maxsize=0)
 优先队列。
-一般使用tuple（优先级+数据）作为队列元素，优先级为tuple的第一项。
-默认sorted(list(entries))[0])，即tuple第一项越小，优先级越高，越先出队列。
+一般使用 tuple（优先级 + 数据）作为队列元素，优先级为 tuple 的第一项。
+默认 tuple 第一项越小，优先级越高，越先出队列。
 </pre></div>
 </div>
 </li>
@@ -355,12 +356,12 @@ maxsize指明了队列中能存放的数据个数的上限。
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">heapq</span>
 </pre></div>
 </div>
-<p>heapq创建的是 <strong>小顶堆</strong> ，堆顶元素是堆的最小元素。</p>
+<p>heapq 创建的是 <strong>小顶堆</strong> ，堆顶元素是堆的最小元素。</p>
 <div class="section" id="id5">
 <h3>11.3.1. 创建堆<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <ul>
 <li><p class="first"><strong>heappush()</strong></p>
-<p>基于空列表[]，使用 <code class="docutils literal notranslate"><span class="pre">heappush()</span></code> 把元素逐个插入堆中。 <code class="docutils literal notranslate"><span class="pre">heappop(h)</span></code> 弹出并返回堆顶元素。h[0]是最小值。</p>
+<p>基于空列表[]，使用 <code class="docutils literal notranslate"><span class="pre">heappush()</span></code> 把元素逐个插入堆中。 <code class="docutils literal notranslate"><span class="pre">heappop(h)</span></code> 弹出并返回堆顶元素。h[0] 是最小值。</p>
 <p>如果插入元素是元组（tuple），则元组的第一项自动成为优先级，值越小，优先级越高。堆顶元素优先级最高，值最小。</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -436,7 +437,7 @@ maxsize指明了队列中能存放的数据个数的上限。
 <span class="n">heapq</span><span class="o">.</span><span class="n">nsmallest</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">iterable</span><span class="p">[,</span> <span class="n">key</span><span class="p">])</span>
 </pre></div>
 </div>
-<p>返回一个长度为n的列表，包含数据中的前n个最大/最小的元素。使用key定义排序关键字。</p>
+<p>返回一个长度为 <span class="math notranslate nohighlight">\(n\)</span> 的列表，包含数据中的前 <span class="math notranslate nohighlight">\(n\)</span> 个最大/最小的元素。使用 key 定义排序关键字。</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -481,15 +482,15 @@ maxsize指明了队列中能存放的数据个数的上限。
 </div>
 <div class="section" id="id7">
 <h3>11.3.3. 大顶堆<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
-<p>heapq默认创建小顶堆，为了创建大顶堆，有以下trick:</p>
+<p>heapq 默认创建小顶堆，为了创建大顶堆，有以下 trick:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span> <span class="c1">## 插入 x</span>
 <span class="n">x</span> <span class="o">=</span> <span class="o">-</span> <span class="n">heapq</span><span class="o">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="c1">## 弹出堆顶元素</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="k">
-<h3>11.3.4. 数列前K大的数<a class="headerlink" href="#k" title="Permalink to this headline">¶</a></h3>
-<p>Hint：建立大小为K的小顶堆，对后续所有数进行遍历：如果大于堆顶元素，则有可能是前K大的数，堆顶元素弹出，插入该数。
+<h3>11.3.4. 数列前 K 大的数<a class="headerlink" href="#k" title="Permalink to this headline">¶</a></h3>
+<p>Hint：建立大小为 <span class="math notranslate nohighlight">\(K\)</span> 的小顶堆，对后续所有数进行遍历：如果大于堆顶元素，则有可能是前 <span class="math notranslate nohighlight">\(K\)</span> 大的数，堆顶元素弹出，插入该数。
 时间复杂度 <span class="math notranslate nohighlight">\(\mathcal{O}(NlogK)\)</span>。</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -553,10 +554,10 @@ maxsize指明了队列中能存放的数据个数的上限。
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">Counter</span>
 </pre></div>
 </div>
-<p>Counter用于统计频率。属性与字典类似，有keys()，values()，items()等。</p>
+<p>Counter 用于统计频率。属性与字典类似，有 <code class="docutils literal notranslate"><span class="pre">keys()</span></code> ，<code class="docutils literal notranslate"><span class="pre">values()</span></code> ，<code class="docutils literal notranslate"><span class="pre">items()</span></code> 等。</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Counter统计之后并不一定是按照频率从高到低排列的。</p>
+<p class="last">Counter 统计之后并不一定是按照频率从高到低排列的。</p>
 </div>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -608,7 +609,9 @@ maxsize指明了队列中能存放的数据个数的上限。
 <li>python中的Queue(队列)详解</li>
 </ol>
 <blockquote>
-<div><a class="reference external" href="https://www.cnblogs.com/wdliu/p/6905396.html">https://www.cnblogs.com/wdliu/p/6905396.html</a></div></blockquote>
+<div><p><a class="reference external" href="https://www.cnblogs.com/wdliu/p/6905396.html">https://www.cnblogs.com/wdliu/p/6905396.html</a></p>
+<p><a class="reference external" href="https://docs.python.org/2/library/queue.html?highlight=priority%20queue#Queue.PriorityQueue">https://docs.python.org/2/library/queue.html?highlight=priority%20queue#Queue.PriorityQueue</a></p>
+</div></blockquote>
 <ol class="arabic simple" start="2">
 <li>Python collections使用</li>
 </ol>

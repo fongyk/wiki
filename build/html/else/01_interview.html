@@ -1134,6 +1134,12 @@
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://leetcode.com/problems/kth-largest-element-in-an-array/">https://leetcode.com/problems/kth-largest-element-in-an-array/</a></p>
+<ul class="simple">
+<li>排序。时间复杂度 <span class="math notranslate nohighlight">\(\mathcal{O}(N \log N)\)</span> 。</li>
+<li>伪排序：<span class="math notranslate nohighlight">\(k\)</span> 次遍历数组，每次从剩余数字中找一个最大值。时间复杂度 <span class="math notranslate nohighlight">\(\mathcal{O}(kN)\)</span> 。</li>
+<li>借助大小为 <span class="math notranslate nohighlight">\(k\)</span> 的最小堆。时间复杂度 <span class="math notranslate nohighlight">\(\mathcal{O}(N \log k)\)</span> 。</li>
+<li>快排思想。时间复杂度 <span class="math notranslate nohighlight">\(\mathcal{O}(N)\)</span> 。</li>
+</ul>
 <div class="toggle docutils container">
 <div class="header docutils container">
 <span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></div>

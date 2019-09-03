@@ -3958,10 +3958,12 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           }
       };
 
-51. [LeetCode] Sliding Window Maximum 滑动窗口最大值。Hint：使用双端队列；新加入元素如果比队尾元素小，则直接入队，否则删除队尾元素直到队空或队尾元素比新加入元素大；
-如果队首元素在滑动窗口之外，则删除之；队首元素就是当前窗口的最大值。
+51. 滑动窗口。
 
-  https://leetcode.com/problems/sliding-window-maximum/
+  - [LeetCode] Sliding Window Maximum 滑动窗口最大值。Hint：使用双端队列；新加入元素如果比队尾元素小，则直接入队，否则删除队尾元素直到队空或队尾元素比新加入元素大；
+    如果队首元素在滑动窗口之外，则删除之；队首元素就是当前窗口的最大值。
+
+      https://leetcode.com/problems/sliding-window-maximum/
 
   .. container:: toggle
 
@@ -3996,6 +3998,48 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
               return win_max;
           }
       };
+
+  - [LeetCode] Sliding Window Median 滑动窗口中位数。Hint：使用 multiset（包含重复元素、默认排序），加入/删除元素时调整 mid 的位置。
+
+      https://leetcode.com/problems/sliding-window-median/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // https://leetcode.com/problems/sliding-window-median/discuss/96340/O(n-log-k)-C%2B%2B-using-multiset-and-updating-middle-iterator
+
+      class Solution
+      {
+      public:
+          vector<double> medianSlidingWindow(vector<int>& nums, int k)
+          {
+              multiset<int> window(nums.begin(), nums.begin()+k);
+              auto mid = next(window.begin(), k/2); // #include<iterator>，next 返回一个迭代器，指向 window.begin() + k/2
+              vector<double> medians;
+              for(int i = k; i < nums.size(); ++i)
+              {
+                  medians.push_back((double(*mid) + *prev(mid, 1 - k%2)) / 2.0); // #include<iterator>，prev 返回一个迭代器，指向 mid - (1 - k%2)
+
+                  // 比较插入/删除值与 *mid 的大小关系，共 4 种情况，相应调整 mid
+
+                  window.insert(nums[i]);
+                  if(nums[i] < *mid) --mid;
+
+                  if(nums[i-k] <= *mid) ++mid;
+                  window.erase(window.lower_bound(nums[i-k])); // 不能直接 erase(nums[i-k])，会删除所有重复元素
+              }
+              medians.push_back((double(*mid) + *prev(mid, 1 - k%2)) / 2.0); // 最后一个窗口的中位数
+
+              return medians;
+          }
+      };
+
 
 C++
 ------------

@@ -409,6 +409,14 @@ map
 
       如果想定义关键字类型为自定义类类型的有序容器，也需要重载关系运算符（比较大小）；重载关系运算符的目的是为了表明该类型的关键字（key）。
 
+.. note::
+
+  重复关键字
+    map 和 set 都对应了可以包含重复关键字的版本：multimap 和 multiset。元素是有序的。
+
+    相应地，insert 插入相同的关键字时，按插入时间顺序排序。也就是说，越晚插入的排在越后。``erase(val)`` 会删除所有重复的 val。
+
+    另外，也有无序版本：unordered_multimap 和 unordered_multiset。
 
 .. note::
 
@@ -511,7 +519,7 @@ priority\_queue
 
 .. note::
 
-  C++11标准引入了 **emplace_front** ，**emplace** ，**emplace_back** 这些操作构造而不是拷贝元素，分别对应 **push_front** ，**insert/push** ，**push_back** 。
+  C++11 标准引入了 **emplace_front** ，**emplace** ，**emplace_back** 这些操作构造而不是拷贝元素，分别对应 **push_front** ，**insert/push** ，**push_back** 。
 
   调用 push 或 insert 时，先创建一个元素类型的 **临时对象** ，这个对象被 **拷贝** 到容器中。
 
@@ -564,7 +572,7 @@ size\_t
 ^^^^^^^^^
 
 size\_t 提供了一种可移植（不同平台下）的方法声明与系统可寻址的内存区域一致的长度。
-size\_t 是通过typedef定义的一些 **无符号整型** 的别名，通常是 unsigned int，unsigned long 甚至是 unsigned long long。
+size\_t 是通过 typedef 定义的一些 **无符号整型** 的别名，通常是 unsigned int，unsigned long 甚至是 unsigned long long。
 
 常用于循环计数器、数组索引，或指针的算术运算。
 
@@ -581,9 +589,9 @@ VS 32位编译器：sizeof(size_t) = 32；VS 64位编译器：sizeof(size_t) = 6
 size\_type
 ^^^^^^^^^^^^^^^
 
-size\_type 是STL定义的类型属性，足够保持对应容器最大可能的容器大小。也是 **无符号整型** 。
+size\_type 是 STL 定义的类型属性，足够保持对应容器最大可能的容器大小。也是 **无符号整型** 。
 
-size() 的返回类型就是size\_type。把 size() 赋值给一个 int 变量，会有 warning。
+size() 的返回类型就是 size\_type。把 size() 赋值给一个 int 变量，会有 warning。
 
 VS 32位编译器
   - sizeof(string::size\_type) = 32
@@ -630,9 +638,21 @@ VS 64位编译器
 
   http://www.cplusplus.com/reference/set/set
 
+  http://www.cplusplus.com/reference/set/multiset
+
+  http://www.cplusplus.com/reference/unordered_set/unordered_set
+
+  http://www.cplusplus.com/reference/unordered_set/unordered_multiset
+
   http://www.cplusplus.com/reference/utility/pair/operators
 
   http://www.cplusplus.com/reference/map/map
+
+  http://www.cplusplus.com/reference/map/multimap
+
+  http://www.cplusplus.com/reference/unordered_map/unordered_map
+
+  http://www.cplusplus.com/reference/unordered_map/unordered_multimap
 
   http://www.cplusplus.com/reference/stack/stack
 

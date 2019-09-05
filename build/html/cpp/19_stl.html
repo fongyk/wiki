@@ -658,6 +658,16 @@
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <dl class="last docutils">
+<dt>重复关键字</dt>
+<dd><p class="first">map 和 set 都对应了可以包含重复关键字的版本：multimap 和 multiset。元素是有序的。</p>
+<p>相应地，insert 插入相同的关键字时，按插入时间顺序排序。也就是说，越晚插入的排在越后。<code class="docutils literal notranslate"><span class="pre">erase(val)</span></code> 会删除所有重复的 val。</p>
+<p class="last">另外，也有无序版本：unordered_multimap 和 unordered_multiset。</p>
+</dd>
+</dl>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<dl class="last docutils">
 <dt>迭代器</dt>
 <dd>不能通过 <code class="docutils literal notranslate"><span class="pre">const_iterator</span></code> 修改容器元素，但是 <code class="docutils literal notranslate"><span class="pre">const_iterator</span></code> 本身可以进行自增（++）操作，类似于指向常量的指针；
 如果 <code class="docutils literal notranslate"><span class="pre">const_iterator</span></code> 本身被设置为常量： <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">const_iterator</span></code> ，则不能进行自增操作。 <code class="docutils literal notranslate"><span class="pre">const_iterator</span></code> 一般用于访问常量容器。</dd>
@@ -793,7 +803,7 @@
 </td></tr></table></div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>C++11标准引入了 <strong>emplace_front</strong> ，<strong>emplace</strong> ，<strong>emplace_back</strong> 这些操作构造而不是拷贝元素，分别对应 <strong>push_front</strong> ，<strong>insert/push</strong> ，<strong>push_back</strong> 。</p>
+<p>C++11 标准引入了 <strong>emplace_front</strong> ，<strong>emplace</strong> ，<strong>emplace_back</strong> 这些操作构造而不是拷贝元素，分别对应 <strong>push_front</strong> ，<strong>insert/push</strong> ，<strong>push_back</strong> 。</p>
 <p>调用 push 或 insert 时，先创建一个元素类型的 <strong>临时对象</strong> ，这个对象被 <strong>拷贝</strong> 到容器中。</p>
 <p>调用 emplace 时，将 <strong>参数</strong> 传递给元素类型的 <strong>构造函数</strong> ，在容器管理的内存空间中使用这些参数直接构造元素。传递给 emplace 的参数必须与构造函数匹配。</p>
 <p class="last">相应地，<strong>pop</strong> 操作会调用析构函数。</p>
@@ -834,7 +844,7 @@
 <div class="section" id="size-t">
 <h3>size_t<a class="headerlink" href="#size-t" title="Permalink to this headline">¶</a></h3>
 <p>size_t 提供了一种可移植（不同平台下）的方法声明与系统可寻址的内存区域一致的长度。
-size_t 是通过typedef定义的一些 <strong>无符号整型</strong> 的别名，通常是 unsigned int，unsigned long 甚至是 unsigned long long。</p>
+size_t 是通过 typedef 定义的一些 <strong>无符号整型</strong> 的别名，通常是 unsigned int，unsigned long 甚至是 unsigned long long。</p>
 <p>常用于循环计数器、数组索引，或指针的算术运算。</p>
 <p>VS 32位编译器：sizeof(size_t) = 32；VS 64位编译器：sizeof(size_t) = 64。</p>
 <dl class="docutils">
@@ -852,8 +862,8 @@ size_t 是通过typedef定义的一些 <strong>无符号整型</strong> 的别�
 </div>
 <div class="section" id="size-type">
 <h3>size_type<a class="headerlink" href="#size-type" title="Permalink to this headline">¶</a></h3>
-<p>size_type 是STL定义的类型属性，足够保持对应容器最大可能的容器大小。也是 <strong>无符号整型</strong> 。</p>
-<p>size() 的返回类型就是size_type。把 size() 赋值给一个 int 变量，会有 warning。</p>
+<p>size_type 是 STL 定义的类型属性，足够保持对应容器最大可能的容器大小。也是 <strong>无符号整型</strong> 。</p>
+<p>size() 的返回类型就是 size_type。把 size() 赋值给一个 int 变量，会有 warning。</p>
 <dl class="docutils">
 <dt>VS 32位编译器</dt>
 <dd><ul class="first last simple">
@@ -903,8 +913,14 @@ size_t 是通过typedef定义的一些 <strong>无符号整型</strong> 的别�
 <p><a class="reference external" href="http://www.cplusplus.com/reference/list/list">http://www.cplusplus.com/reference/list/list</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/deque/deque">http://www.cplusplus.com/reference/deque/deque</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/set/set">http://www.cplusplus.com/reference/set/set</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/set/multiset">http://www.cplusplus.com/reference/set/multiset</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/unordered_set/unordered_set">http://www.cplusplus.com/reference/unordered_set/unordered_set</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/unordered_set/unordered_multiset">http://www.cplusplus.com/reference/unordered_set/unordered_multiset</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/utility/pair/operators">http://www.cplusplus.com/reference/utility/pair/operators</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/map/map">http://www.cplusplus.com/reference/map/map</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/map/multimap">http://www.cplusplus.com/reference/map/multimap</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/unordered_map/unordered_map">http://www.cplusplus.com/reference/unordered_map/unordered_map</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/unordered_map/unordered_multimap">http://www.cplusplus.com/reference/unordered_map/unordered_multimap</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/stack/stack">http://www.cplusplus.com/reference/stack/stack</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/queue/queue">http://www.cplusplus.com/reference/queue/queue</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/queue/priority_queue">http://www.cplusplus.com/reference/queue/priority_queue</a></p>

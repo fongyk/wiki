@@ -25,3 +25,4 @@
     18_bTree.rst
     19_ballBox.rst
     20_poison.rst
+    21_rand.rst

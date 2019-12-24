@@ -41,6 +41,18 @@ Tech
 
     https://www.runoob.com/w3cnote/all-vim-cheatsheat.html
 
+- Goole Charts
+
+    https://developers.google.com/chart/interactive/docs
+
+- Embedding Projector: 高维数据可视化
+
+    https://projector.tensorflow.org/
+
+    https://stackoverflow.com/questions/40849116/how-to-use-tensorboard-embedding-projector/41177133
+
+    https://www.cnblogs.com/cloud-ken/p/9329703.html
+
 
 问题
 -----------

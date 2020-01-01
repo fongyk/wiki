@@ -13,7 +13,7 @@
 
   dev分支的仓库已经包含了master分支的内容，但是在master分支下，无法看到dev分支新增或修改的内容。
 
-- ``git branch`` 查看当前分支。
+- ``git branch`` -r：查看远程分支，-a：查看所有分支（包括本地分支）。
 
 - ``git merge dev`` 把dev分支的内容合并到当前分支（如，master分支）。
 

@@ -20,7 +20,7 @@
 远程仓库
 -------------
 
-- ``git clone <版本库的网址>`` 从远程主机克隆一个版本库。
+- ``git clone <版本库的地址>`` 从远程主机克隆一个版本库。
 
 - ``git remote`` 管理主机名，使用参数 -v，可以参看远程主机的网址。
 
@@ -42,6 +42,24 @@
 
 - ``git pull <远程主机名> <远程分支名>:<本地分支名>`` 取回远程主机某个分支的更新，再与本地的指定分支合并。比如，取回origin主机的next分支，与本地的master分支合并，需要写成 ``git pull origin next:master`` 。如果远程分支是与当前分支合并，可直接写为 ``git pull origin next`` 。等效于fetch+merge： ``git fetch origin`` ， ``git merge origin/next`` 。
 
+- ``git push <远程主机名> <本地分支名>:<远程分支名>`` 将本地分支的更新，推送到远程主机。
+
+.. note::
+
+  git clone只能clone远程仓库的master分支，无法clone所有分支。
+
+  - 如果只要clone某个远程分支，使用命令 ::
+
+      git clone -b <分支名> <仓库地址>
+
+  - 如果想clone所有分支
+
+    - 先clone远程仓库的master分支
+
+    - git branch -a 查看所有分支（包括远程分支）
+
+    - git checkout -b local_dev origin/dev 拉取远程仓库的dev分支并在本地命名为local_dev
+
 .. note::
 
   Git Pull Failed: Your local changes would be overwritten by merge. Commit, stash or revert them.
@@ -57,9 +75,6 @@
 
     - git reset \- \-hard
     - git pull origin master
-
-
-- ``git push <远程主机名> <本地分支名>:<远程分支名>`` 将本地分支的更新，推送到远程主机。
 
 
 参考资料

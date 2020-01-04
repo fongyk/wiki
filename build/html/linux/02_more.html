@@ -115,7 +115,8 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#tee">2.2. tee</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">2.3. 查找</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">2.4. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#alias">2.4. alias</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.5. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="03_authority.html">3. 权限管理</a></li>
@@ -124,6 +125,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
@@ -395,8 +398,25 @@ $ find /var/log -name <span class="s2">&quot;*.tmp&quot;</span> -ok rm <span cla
 <div class="line"><br /></div>
 </div>
 </div>
+<div class="section" id="alias">
+<h2>2.4. alias<a class="headerlink" href="#alias" title="Permalink to this headline">¶</a></h2>
+<p>alias 命令用来设置指令的别名；我们可以使用该命令可以将一些较长的命令进行简化。
+使用 alias 时，用户必须使用引号将原来的命令引起来，防止特殊字符导致错误。</p>
+<p>alias 命令的作用只局限于该次登入的操作，可以写入 <cite>~/.bashrc</cite> 中。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">alias</span> 新的命令<span class="o">=</span><span class="s1">&#39;原命令 -选项/参数&#39;</span>
+</pre></div>
+</div>
+<p>如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">alias</span> <span class="nv">ll</span><span class="o">=</span><span class="s1">&#39;ls -lsh&#39;</span>
+</pre></div>
+</div>
+<p>删除：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">unalias</span> ll
+</pre></div>
+</div>
+</div>
 <div class="section" id="id3">
-<h2>2.4. 参考资料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>2.5. 参考资料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>runoob.com</li>
 </ol>

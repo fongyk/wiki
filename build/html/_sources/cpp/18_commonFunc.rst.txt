@@ -161,7 +161,7 @@ fill，fill\_n，for\_each
 
 .. code-block:: cpp
   :linenos:
-  :emphasize-lines: 11-13
+  :emphasize-lines: 13-15
 
   /* https://leetcode.com/problems/longest-increasing-subsequence/ */
   /* O(nlogn) in time.*/
@@ -246,10 +246,10 @@ sort
       // using object as comp，这里是一个函数对象
       sort(v.begin(), v.end(), myobject);     //(12 26 32 33 45 53 71 80)
 
-      // using build-in comp: greater，类 greater 的成员函数 operator()
+      // using build-in comp: 类模板 greater 的类对象
       sort(v.begin(), v.end(), greater<int>()); // (80 71 53 45 33 32 26 12)
 
-      // using build-in comp: less，类 less 的成员函数 operator()
+      // using build-in comp: 类模板 less 的类对象
       sort(v.begin(), v.end(), less<int>());  //(12 26 32 33 45 53 71 80)
 
       // using reverse_iterator

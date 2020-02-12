@@ -64,7 +64,7 @@ string
     // buffer (4)
     string& insert (size_t pos, const char* s, size_t n);
     // fill (5)
-    string& insert (size_t pos,   size_t n, char c);
+    string& insert (size_t pos, size_t n, char c);
     iterator insert (const_iterator p, size_t n, char c);
     // single character (6)
     iterator insert (const_iterator p, char c);
@@ -111,8 +111,6 @@ vector
     template <class... Args>
     iterator emplace (const_iterator position, Args&&... args);
 
-
-- 尾部删除：pop_back()
 - 申请空间：至少能容纳 n 个元素（capcity() 为 n）。
 
   ::

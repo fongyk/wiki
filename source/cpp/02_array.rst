@@ -15,7 +15,7 @@
     int val;
     TreeNode* left;
     TreeNode* right;
-    TreeNode(int x) :val(x), left(nullptr), right(nullptr){} /* 唯一的构造函数，必须给的参数x */
+    TreeNode(int x) :val(x), left(nullptr), right(nullptr){} /* 唯一的构造函数，必须给定参数x */
   };
 
   int main(int argc, char ** argv)

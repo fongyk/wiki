@@ -139,6 +139,7 @@
 <li class="toctree-l2"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a></li>
 <li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
 <li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_lambda.html">26. lambda 表达式</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -439,7 +440,7 @@ vptr不存在，不可能完成动态绑定。</p>
 6
 7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">*</span><span class="n">pa</span> <span class="o">=</span> <span class="k">new</span> <span class="n">B</span><span class="p">();</span>
 <span class="k">delete</span> <span class="n">pa</span><span class="p">;</span>
-<span class="c1">// 输出： delete B</span>
+<span class="c1">// 输出： delete A</span>
 
 <span class="n">B</span> <span class="o">*</span><span class="n">pb</span> <span class="o">=</span> <span class="k">new</span> <span class="n">B</span><span class="p">();</span>
 <span class="k">delete</span> <span class="n">pb</span><span class="p">;</span>

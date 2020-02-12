@@ -19,7 +19,7 @@ Tech
 
     https://codingstandards.iteye.com/blog/810900
 
-- 加速git clone
+- 加速git clone。首先使用 ``nslookup`` 指令查询域名对用的公网ip。
 
     https://blog.51cto.com/11887934/2051323
 

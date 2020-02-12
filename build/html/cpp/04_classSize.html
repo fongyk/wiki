@@ -317,14 +317,14 @@
 <span class="p">{</span>
     <span class="kt">char</span> <span class="n">ch</span><span class="p">;</span>
     <span class="kt">double</span> <span class="n">b</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="p">};</span>
 <span class="c1">// sizeof(B) = 8 + 8 = 16 (对齐： 4+1 -&gt; 8)</span>
 
 <span class="k">class</span> <span class="nc">C</span><span class="o">:</span> <span class="k">public</span> <span class="n">A</span>
 <span class="p">{</span>
     <span class="kt">double</span> <span class="n">c</span><span class="p">;</span>
     <span class="kt">char</span> <span class="n">ch</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="p">};</span>
 <span class="c1">// sizeof(C) = 8 + 8 + 8 = 24 (对齐： 4 -&gt; 8, 1 -&gt; 8)</span>
 </pre></div>
 </td></tr></table></div>
@@ -346,7 +346,7 @@
 <span class="k">class</span> <span class="nc">A</span><span class="o">:</span> <span class="k">public</span> <span class="n">Empty</span>
 <span class="p">{</span>
     <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="p">};</span>
 <span class="c1">// sizeof(A) = 4</span>
 </pre></div>
 </td></tr></table></div>
@@ -371,7 +371,7 @@
 <span class="p">{</span>
     <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
     <span class="n">Empty</span> <span class="n">e</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="p">};</span>
 <span class="c1">// sizeof(A) = 4 + 4 = 8</span>
 </pre></div>
 </td></tr></table></div>

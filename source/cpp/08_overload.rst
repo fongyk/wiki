@@ -170,7 +170,7 @@
 
   A *pa = new B();
   delete pa;
-  // 输出： delete B
+  // 输出： delete A
 
   B *pb = new B();
   delete pb;

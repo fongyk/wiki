@@ -55,7 +55,7 @@
     :linenos:
 
     string s1("nancy");
-    string s2("candy");k
+    string s2("candy");
     string& rs = s1;
     string* ps = &s2;
     rs = s2; // rs仍指向s1，但是s1值变为"candy"。

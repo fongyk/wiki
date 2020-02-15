@@ -86,8 +86,7 @@ pip
   如果不能直接使用 pip 命令，可能是因为安装目录不在系统的 PATH 中，此时可以执行::
 
     python -m pip <pip arguments>
-    py -m pip <pip arguments> ## Windows
-
+    
   使用清华源加速安装::
 
     pip install <包名> -i https://pypi.tuna.tsinghua.edu.cn/simple

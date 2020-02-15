@@ -9,6 +9,10 @@ Tech
 
     https://www.zhihu.com/question/19867618?sort=created
 
+- Ubuntu配置apt-get清华源
+
+    https://blog.csdn.net/dearsq/article/details/51492847
+
 - Windows10终端优化方案：Ubuntu子系统+cmder+oh-my-zsh
 
     https://zhuanlan.zhihu.com/p/34152045
@@ -18,6 +22,14 @@ Tech
 - 将DOS格式文本文件转换成UNIX格式
 
     https://codingstandards.iteye.com/blog/810900
+
+- Linux配置shadowsocks及使用proxychains
+
+    https://portal.shadowsocks.nl/knowledgebase/40/Shadowsocks-%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B---Linux.html
+
+    https://blog.huihut.com/2017/08/25/LinuxInstallConfigShadowsocksClient/
+
+    https://mritd.me/2016/07/22/Linux-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8B%E4%BD%BF%E7%94%A8-Shadowsocks-%E4%BB%A3%E7%90%86/
 
 - 加速git clone。首先使用 ``nslookup`` 指令查询域名对用的公网ip。
 

@@ -3408,11 +3408,8 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
                   }
                   ++pEnd;
                   if(pEnd == lenS) break;
-                  if(hashT[s[pEnd]] > 0)
-                  {
-                      if(hashWindow[s[pEnd]] < hashT[s[pEnd]]) ++matchCnt; // 判断，不能匹配多余的重复字符
-                      ++hashWindow[s[pEnd]];
-                  }
+                  ++hashWindow[s[pEnd]];
+                  if(hashT[s[pEnd]] > 0 && hashWindow[s[pEnd]] <= hashT[s[pEnd]]) ++matchCnt; // 新增匹配
               }
               if(minLen == lenS + 1) return "";
               else return s.substr(start, minLen);
@@ -3468,11 +3465,8 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
                   }
                   ++pEnd;
                   if (pEnd == lenS) break;
-                  if (hashT[s[pEnd]] > 0)
-                  {
-                      if (hashWindow[s[pEnd]] == 0) ++matchCnt; // 新增匹配
-                      ++hashWindow[s[pEnd]];
-                  }
+                  ++hashWindow[s[pEnd]];
+                  if(hashT[s[pEnd]] > 0 && hashWindow[s[pEnd]] == 1) ++matchCnt; // 新增匹配
               }
               if (minLen == lenS + 1) return "";
               else return s.substr(start, minLen);
@@ -3623,16 +3617,16 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
               int res = 0;
               for(int i = 1; i < s.size(); ++i)
               {
-                  if(s[i] == ')' && s[i-1] == '(')
+                  if(s[i] == ')')
                   {
-                      dp[i] = i-2 >= 0 ? dp[i-2] + 2 : 2;
-                  }
-                  else if(s[i] == ')' && s[i-1] == ')')
-                  {
-                      int left = i - 1 - dp[i-1];
-                      if(left >= 0 && s[left] == '(')
+                      if(s[i-1] == '(') dp[i] = i-2 >= 0 ? dp[i-2] + 2 : 2;
+                      else
                       {
-                          dp[i] = left > 0 ? dp[left-1] + dp[i-1] + 2 : dp[i-1] + 2;
+                          int left = i - 1 - dp[i-1];
+                          if(left >= 0 && s[left] == '(')
+                          {
+                              dp[i] = left > 0 ? dp[left-1] + dp[i-1] + 2 : dp[i-1] + 2;
+                          }
                       }
                   }
                   res = max(res, dp[i]);

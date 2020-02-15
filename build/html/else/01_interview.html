@@ -5554,10 +5554,7 @@ $$</div></li>
 48
 49
 50
-51
-52
-53
-54</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 考虑重复</span>
+51</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 考虑重复</span>
 
 <span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">uint</span><span class="p">;</span>
 <span class="k">class</span> <span class="nc">Solution</span>
@@ -5601,11 +5598,8 @@ $$</div></li>
             <span class="p">}</span>
             <span class="o">++</span><span class="n">pEnd</span><span class="p">;</span>
             <span class="k">if</span><span class="p">(</span><span class="n">pEnd</span> <span class="o">==</span> <span class="n">lenS</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">hashT</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">pEnd</span><span class="p">]]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="k">if</span><span class="p">(</span><span class="n">hashWindow</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">pEnd</span><span class="p">]]</span> <span class="o">&lt;</span> <span class="n">hashT</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">pEnd</span><span class="p">]])</span> <span class="o">++</span><span class="n">matchCnt</span><span class="p">;</span> <span class="c1">// 判断，不能匹配多余的重复字符</span>
-                <span class="o">++</span><span class="n">hashWindow</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">pEnd</span><span class="p">]];</span>
-            <span class="p">}</span>
+            <span class="o">++</span><span class="n">hashWindow</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">pEnd</span><span class="p">]];</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">hashT</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">pEnd</span><span class="p">]]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">hashWindow</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">pEnd</span><span class="p">]]</span> <span class="o">&lt;=</span> <span class="n">hashT</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">pEnd</span><span class="p">]])</span> <span class="o">++</span><span class="n">matchCnt</span><span class="p">;</span> <span class="c1">// 新增匹配</span>
         <span class="p">}</span>
         <span class="k">if</span><span class="p">(</span><span class="n">minLen</span> <span class="o">==</span> <span class="n">lenS</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
         <span class="k">else</span> <span class="k">return</span> <span class="n">s</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">minLen</span><span class="p">);</span>
@@ -5665,10 +5659,7 @@ $$</div></li>
 50
 51
 52
-53
-54
-55
-56</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 不考虑重复</span>
+53</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 不考虑重复</span>
 
 <span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">uint</span><span class="p">;</span>
 <span class="k">class</span> <span class="nc">Solution</span>
@@ -5714,11 +5705,8 @@ $$</div></li>
             <span class="p">}</span>
             <span class="o">++</span><span class="n">pEnd</span><span class="p">;</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">pEnd</span> <span class="o">==</span> <span class="n">lenS</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">hashT</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">pEnd</span><span class="p">]]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">hashWindow</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">pEnd</span><span class="p">]]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">++</span><span class="n">matchCnt</span><span class="p">;</span> <span class="c1">// 新增匹配</span>
-                <span class="o">++</span><span class="n">hashWindow</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">pEnd</span><span class="p">]];</span>
-            <span class="p">}</span>
+            <span class="o">++</span><span class="n">hashWindow</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">pEnd</span><span class="p">]];</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">hashT</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">pEnd</span><span class="p">]]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">hashWindow</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">pEnd</span><span class="p">]]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">++</span><span class="n">matchCnt</span><span class="p">;</span> <span class="c1">// 新增匹配</span>
         <span class="p">}</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">minLen</span> <span class="o">==</span> <span class="n">lenS</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
         <span class="k">else</span> <span class="k">return</span> <span class="n">s</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">minLen</span><span class="p">);</span>
@@ -5967,16 +5955,16 @@ $$</div></li>
         <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
         <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
         <span class="p">{</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;)&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;(&#39;</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;)&#39;</span><span class="p">)</span>
             <span class="p">{</span>
-                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">-</span><span class="mi">2</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">?</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">:</span> <span class="mi">2</span><span class="p">;</span>
-            <span class="p">}</span>
-            <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;)&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;)&#39;</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
-                <span class="k">if</span><span class="p">(</span><span class="n">left</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;(&#39;</span><span class="p">)</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;(&#39;</span><span class="p">)</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">-</span><span class="mi">2</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">?</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">:</span> <span class="mi">2</span><span class="p">;</span>
+                <span class="k">else</span>
                 <span class="p">{</span>
-                    <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">left</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="n">dp</span><span class="p">[</span><span class="n">left</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">:</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+                    <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+                    <span class="k">if</span><span class="p">(</span><span class="n">left</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;(&#39;</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">left</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="n">dp</span><span class="p">[</span><span class="n">left</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">:</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+                    <span class="p">}</span>
                 <span class="p">}</span>
             <span class="p">}</span>
             <span class="n">res</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>

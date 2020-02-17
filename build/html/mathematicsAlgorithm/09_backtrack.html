@@ -132,6 +132,10 @@
 <li class="toctree-l2"><a class="reference internal" href="15_probability.html">15. 概率基础</a></li>
 <li class="toctree-l2"><a class="reference internal" href="16_geometry.html">16. 几何</a></li>
 <li class="toctree-l2"><a class="reference internal" href="17_graphCycle.html">17. 图环</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_bTree.html">18. B 树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_ballBox.html">19. 球盒问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_poison.html">20. 喝水试毒</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_rand.html">21. 随机数</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
@@ -772,6 +776,53 @@
   <span class="p">}</span>
   <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
 <span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</li>
+<li><p class="first">输出整数集合的所有组合（包含重复元素）。Hint：统计每个元素的频率 <span class="math notranslate nohighlight">\(f\)</span> ，在组合过程中，该元素可取的个数最少为零个，最多为 <span class="math notranslate nohighlight">\(f\)</span> 个；回溯。</p>
+<blockquote>
+<div><p><a class="reference external" href="https://leetcode.com/problems/subsets-ii/">https://leetcode.com/problems/subsets-ii/</a></p>
+</div></blockquote>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
+</div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">backtrack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ints</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">freqs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">tmp</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">res</span><span class="p">:</span><span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span> <span class="n">t</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">ints</span><span class="p">):</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">[:])</span> <span class="c1">## 注意：这里必须是添加tmp的副本到res中，否则随着tmp改变，res中的元素也会改变</span>
+            <span class="k">return</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">freqs</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">tmp</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">ints</span><span class="p">[</span><span class="n">t</span><span class="p">]]</span> <span class="o">*</span> <span class="n">k</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">backtrack</span><span class="p">(</span><span class="n">ints</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">tmp</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">tmp</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="n">tmp</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">subsetsWithDup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+        <span class="n">cnt</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+        <span class="n">ints</span><span class="p">,</span> <span class="n">freqs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">cnt</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="nb">list</span><span class="p">(</span><span class="n">cnt</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="c1">## python3 中需要把 dict_keys、dict_values 类型转换为 list</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">backtrack</span><span class="p">(</span><span class="n">ints</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">tmp</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span>
 </pre></div>
 </td></tr></table></div>
 </div>

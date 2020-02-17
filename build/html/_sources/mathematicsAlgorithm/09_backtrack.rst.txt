@@ -371,6 +371,37 @@
         return res;
       }
 
+- 输出整数集合的所有组合（包含重复元素）。Hint：统计每个元素的频率 :math:`f` ，在组合过程中，该元素可取的个数最少为零个，最多为 :math:`f` 个；回溯。
+
+    https://leetcode.com/problems/subsets-ii/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: python
+      :linenos:
+
+      from collections import Counter
+      class Solution:
+          def backtrack(self, ints: List[int], freqs: List[int], tmp: List[int], res:List[List[int]], t:int):
+              if t == len(ints):
+                  res.append(tmp[:]) ## 注意：这里必须是添加tmp的副本到res中，否则随着tmp改变，res中的元素也会改变
+                  return
+              for k in range(freqs[t] + 1):
+                  tmp.extend([ints[t]] * k)
+                  self.backtrack(ints, freqs, tmp, res, t+1)
+                  if tmp:
+                      for _ in range(k): tmp.pop()
+          def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+              cnt = Counter(nums)
+              ints, freqs = list(cnt.keys()), list(cnt.values()) ## python3 中需要把 dict_keys、dict_values 类型转换为 list
+              res = []
+              tmp = []
+              self.backtrack(ints, freqs, tmp, res, 0)
+              return res
 
 
 - [LeetCode] Distinct Subsequences II 子序列个数（含重复元素的组合数）。Hint：方法一，动态规划，设 :math:`dp[k]` 是以 :math:`S[k]` 结尾的子序列个数，

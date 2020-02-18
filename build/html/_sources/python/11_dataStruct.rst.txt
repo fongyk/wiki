@@ -10,6 +10,10 @@
 队列
 --------
 
+.. note::
+    
+    python2的队列模块为 ``Queue`` ，python3的队列模块为 ``queue`` 。
+
 Queue
 ^^^^^^^
 

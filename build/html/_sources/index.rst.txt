@@ -9,9 +9,7 @@
 
     **文中可能存在错误，欢迎 PR。**
 
-    https://github.com/fongyk
-
-    https://github.com/fongyq
+    https://github.com/fongyk/wiki
 
 .. toctree::
    :maxdepth: 1

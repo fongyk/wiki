@@ -1,0 +1,678 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>19. multiprocessing &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'alpha',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Linux/Shell" href="../linux/index.html" />
+    <link rel="prev" title="18. 异常" href="18_exception.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_inplace.html">1. in-place 运算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_all.html">2. __all__ 的使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_is.html">3. is和==</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_decorator.html">4. 装饰器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_iterator.html">5. 迭代器和生成器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_lambda.html">6. lambda用法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_arg.html">7. *args和**kwargs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_basicType.html">8. 基本数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_random.html">9. random</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_normalize.html">10. 归一化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_dataStruct.html">11. 常用数据结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_bool.html">12. 逻辑运算与布尔测试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_name.html">13. 命名规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_classFunc.html">14. 类变量与类方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_memManage.html">15. 内存管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_newInit.html">16. __new__ 和 __init__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_pip.html">17. pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_exception.html">18. 异常</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">19. multiprocessing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#process">19.1. Process 类</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">19.2. 进程池</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">19.3. 进程通信</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#manager">19.3.1. 数据共享：Manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#queue">19.3.2. 数据传递：Queue</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pipe">19.3.3. 数据传递：Pipe</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">19.4. 示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">19.4.1. 创建进程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">19.4.2. 锁</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pool">19.4.3. Pool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">19.4.4. Manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">19.4.5. Pipe</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">19.5. 参考资料</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Python</a> &raquo;</li>
+        
+      <li>19. multiprocessing</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/python/19_multiprocessing.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="multiprocessing">
+<h1>19. multiprocessing<a class="headerlink" href="#multiprocessing" title="Permalink to this headline">¶</a></h1>
+<p>multiprocessing，基于进程的并行。</p>
+<div class="section" id="process">
+<h2>19.1. Process 类<a class="headerlink" href="#process" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">multiprocessing</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{},</span> <span class="o">*</span><span class="p">,</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>进程对象表示在单独进程中运行的活动。</p>
+<p>参数说明：</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">group</span></code> 应该始终是 <code class="docutils literal notranslate"><span class="pre">None</span></code> ，它仅用于兼容 <code class="docutils literal notranslate"><span class="pre">threading.Thread</span></code> 。 <code class="docutils literal notranslate"><span class="pre">target</span></code> 是由 <code class="docutils literal notranslate"><span class="pre">run()</span></code> 方法调用的可调用对象；默认为 <code class="docutils literal notranslate"><span class="pre">None</span></code> ，意味着什么都没有被调用。</li>
+<li><code class="docutils literal notranslate"><span class="pre">name</span></code> 是进程名称。</li>
+<li><code class="docutils literal notranslate"><span class="pre">args</span></code> 是目标调用的参数元组；<code class="docutils literal notranslate"><span class="pre">kwargs</span></code> 是目标调用的关键字参数字典。</li>
+<li><code class="docutils literal notranslate"><span class="pre">daemon</span></code> 是进程的守护标志，一个布尔值，必须在 <code class="docutils literal notranslate"><span class="pre">start()</span></code> 被调用之前设置；初始值继承自创建进程。</li>
+</ul>
+<p>常用方法、属性：</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">run()</span></code> ：表示进程活动的方法，可以在子类中重载此方法。标准 <code class="docutils literal notranslate"><span class="pre">run()</span></code> 方法调用传递给对象构造函数的可调用对象（ <code class="docutils literal notranslate"><span class="pre">target</span></code> ）。</li>
+<li><code class="docutils literal notranslate"><span class="pre">start()</span></code> ：启动进程活动，每个进程对象最多只能调用一次；它会将对象的 <code class="docutils literal notranslate"><span class="pre">run()</span></code> 方法安排在一个单独的进程中调用。</li>
+<li><code class="docutils literal notranslate"><span class="pre">join([timeout])</span></code> ：使主调进程（包含 <code class="docutils literal notranslate"><span class="pre">p.join()</span></code> 语句的进程）阻塞，直至被调用进程 <code class="docutils literal notranslate"><span class="pre">p</span></code> 运行结束或超时（指定 <code class="docutils literal notranslate"><span class="pre">timeout</span></code> ）。</li>
+<li><code class="docutils literal notranslate"><span class="pre">is_alive()</span></code> ：返回进程是否处于活动状态。粗略地说，从 <code class="docutils literal notranslate"><span class="pre">start()</span></code> 方法返回到子进程终止之前，进程对象仍处于活动状态。</li>
+<li><code class="docutils literal notranslate"><span class="pre">name</span></code> ：进程的名称，是一个字符串，仅用于识别目的；可以为多个进程指定相同的名称。</li>
+<li><code class="docutils literal notranslate"><span class="pre">pid</span></code> ：进程ID，在生成该进程之前为 <code class="docutils literal notranslate"><span class="pre">None</span></code> 。</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>19.2. 进程池<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Pool</span></code> 类表示一个工作进程池，它具有允许以几种不同方式将任务分配到工作进程的方法。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">multiprocessing</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">Pool</span><span class="p">([</span><span class="n">processes</span><span class="p">[,</span> <span class="n">initializer</span><span class="p">[,</span> <span class="n">initargs</span><span class="p">[,</span> <span class="n">maxtasksperchild</span><span class="p">[,</span> <span class="n">context</span><span class="p">]]]]])</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">processes</span></code> 是要使用的工作进程数目。如果 <code class="docutils literal notranslate"><span class="pre">processes</span></code> 为 <code class="docutils literal notranslate"><span class="pre">None</span></code> ，则使用 <code class="docutils literal notranslate"><span class="pre">os.cpu_count()</span></code> 返回的值。</li>
+<li><code class="docutils literal notranslate"><span class="pre">context</span></code> 是用于指定启动工作进程的上下文。通常一个进程池是使用函数 <code class="docutils literal notranslate"><span class="pre">multiprocessing.Pool()</span></code> 或者一个上下文对象的 <code class="docutils literal notranslate"><span class="pre">Pool()</span></code> 方法创建的。</li>
+</ul>
+<p>方法：</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">apply(func[,</span> <span class="pre">args[,</span> <span class="pre">kwds]])</span></code> ：对应的子进程是排队执行的，实际非并行（阻塞的，即上一个子进程完成了才能进行下一个子进程；注意是单个子进程执行的，而不是按批执行的）。</li>
+<li><code class="docutils literal notranslate"><span class="pre">apply_async(func[,</span> <span class="pre">args[,</span> <span class="pre">kwds[,</span> <span class="pre">callback[,</span> <span class="pre">error_callback]]]])</span></code> ：对应的每个子进程是异步执行的；异步执行指的是一批子进程并行执行，且子进程完成一个，就新开始一个，而不必等待同一批其他进程完成。如果指定了 <code class="docutils literal notranslate"><span class="pre">callback</span></code> , 它必须是一个接受单个参数的可调用对象。当执行成功时， <code class="docutils literal notranslate"><span class="pre">callback</span></code> 会被用于处理执行后的返回结果，否则，调用 <code class="docutils literal notranslate"><span class="pre">error_callback</span></code> 。如果指定了 <code class="docutils literal notranslate"><span class="pre">error_callback</span></code> , 它必须是一个接受单个参数的可调用对象。当目标函数执行失败时，会将抛出的异常对象作为参数传递给 <code class="docutils literal notranslate"><span class="pre">error_callback</span></code> 执行。</li>
+<li><code class="docutils literal notranslate"><span class="pre">map(func,</span> <span class="pre">iterable[,</span> <span class="pre">chunksize])</span></code> ：内置 <code class="docutils literal notranslate"><span class="pre">map()</span></code> 函数的并行版本（但它只支持一个 <code class="docutils literal notranslate"><span class="pre">iterable</span></code> 参数，对于多个可迭代对象请参阅 <code class="docutils literal notranslate"><span class="pre">starmap()</span></code> ）。 它会保持阻塞直到获得结果。这个方法会将可迭代对象分割为许多块，然后提交给进程池。可以将 <code class="docutils literal notranslate"><span class="pre">chunksize</span></code> 设置为一个正整数从而（近似）指定每个块的大小。注意对于很长的迭代对象，可能消耗很多内存。可以考虑使用 <code class="docutils literal notranslate"><span class="pre">imap()</span></code> 或 <code class="docutils literal notranslate"><span class="pre">imap_unordered()</span></code> 并且显示指定 <code class="docutils literal notranslate"><span class="pre">chunksize</span></code> 以提升效率。</li>
+<li><code class="docutils literal notranslate"><span class="pre">map_async(func,</span> <span class="pre">iterable[,</span> <span class="pre">chunksize[,</span> <span class="pre">callback[,</span> <span class="pre">error_callback]]])</span></code> ：<code class="docutils literal notranslate"><span class="pre">map()</span></code> 的异步（并行）版本，返回 MapResult 实例（其具有 <code class="docutils literal notranslate"><span class="pre">get()</span></code> 方法，获取结果组成的 list）。</li>
+<li><code class="docutils literal notranslate"><span class="pre">imap(func,</span> <span class="pre">iterable[,</span> <span class="pre">chunksize])</span></code> ：<code class="docutils literal notranslate"><span class="pre">map()</span></code> 的迭代器版本，返回迭代器实例。 <code class="docutils literal notranslate"><span class="pre">imap()</span></code> 速度远慢于 <code class="docutils literal notranslate"><span class="pre">map()</span></code> ，但是对内存需求非常小。</li>
+<li><code class="docutils literal notranslate"><span class="pre">starmap(func,</span> <span class="pre">iterable[,</span> <span class="pre">chunksize])</span></code> ：子进程活动 <code class="docutils literal notranslate"><span class="pre">func</span></code> 允许包含多个参数，也即 <code class="docutils literal notranslate"><span class="pre">iterable</span></code> 的每个元素也是 <code class="docutils literal notranslate"><span class="pre">iterable</span></code> （其每个元素作为 <code class="docutils literal notranslate"><span class="pre">func</span></code> 的参数），返回结果组成 list。</li>
+<li><code class="docutils literal notranslate"><span class="pre">starmap_async(func,</span> <span class="pre">iterable[,</span> <span class="pre">chunksize[,</span> <span class="pre">callback[,</span> <span class="pre">error_callback]]])</span></code> ：<code class="docutils literal notranslate"><span class="pre">starmap()</span></code> 的异步（并行）版本，返回 MapResult 实例（其具有 <code class="docutils literal notranslate"><span class="pre">get()</span></code> 方法，获取结果组成的 list）。</li>
+<li><code class="docutils literal notranslate"><span class="pre">close()</span></code> ：关闭进程池，关闭后不能往池中增加新的子进程，然后可以调用 <code class="docutils literal notranslate"><span class="pre">join()</span></code> 函数等待已有子进程执行完毕。</li>
+<li><code class="docutils literal notranslate"><span class="pre">terminate()</span></code> ：不必等待未完成的任务，立即停止工作进程。当进程池对象被垃圾回收时，会立即调用 <code class="docutils literal notranslate"><span class="pre">terminate()</span></code> 。</li>
+<li><code class="docutils literal notranslate"><span class="pre">join()</span></code> ：等待进程池中的子进程执行完毕，需在 <code class="docutils literal notranslate"><span class="pre">close()</span></code> 函数后调用。</li>
+<li><code class="docutils literal notranslate"><span class="pre">get([timeout])</span></code> ：用于获取执行结果。</li>
+<li><code class="docutils literal notranslate"><span class="pre">wait([timeout])</span></code> ：阻塞，直到返回结果或超时。</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>19.3. 进程通信<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="manager">
+<h3>19.3.1. 数据共享：Manager<a class="headerlink" href="#manager" title="Permalink to this headline">¶</a></h3>
+<p>由 <code class="docutils literal notranslate"><span class="pre">Manager()</span></code> 返回的管理器对象控制一个服务进程，该进程保存 Python 对象并允许其他进程使用代理操作它们。支持类型： list 、 dict 、 Namespace 、 Lock 、 RLock 、 Semaphore 、 BoundedSemaphore 、 Condition 、 Event 、 Barrier 、 Queue 、 Value 和 Array 。</p>
+<p>注意：在操作共享对象的元素（子对象）时，除了赋值操作，其他的方法都作用在共享对象的拷贝上，并不会对共享对象生效。</p>
+</div>
+<div class="section" id="queue">
+<h3>19.3.2. 数据传递：Queue<a class="headerlink" href="#queue" title="Permalink to this headline">¶</a></h3>
+<p>共享队列:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">multiprocessing</span><span class="o">.</span><span class="n">Queue</span><span class="p">([</span><span class="n">maxsize</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>允许多个进程放入、多个进程从队列取出对象。</p>
+<p>方法：</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">qsize()</span></code> ：返回队列的大致长度。由于多线程或者多进程的上下文，这个数字是不可靠的。</li>
+<li><code class="docutils literal notranslate"><span class="pre">empty()</span></code> ：如果队列是空的，返回 True。 由于多线程或多进程的环境，该状态是不可靠的。</li>
+<li><code class="docutils literal notranslate"><span class="pre">full()</span></code> ：如果队列是满的，返回 True ，反之返回 False 。 由于多线程或多进程的环境，该状态是不可靠的。</li>
+<li><code class="docutils literal notranslate"><span class="pre">put(obj[,</span> <span class="pre">block[,</span> <span class="pre">timeout]])</span></code> ：将 <code class="docutils literal notranslate"><span class="pre">obj</span></code> 放入队列。如果可选参数 <code class="docutils literal notranslate"><span class="pre">block</span></code> 是 True（默认值）而且 <code class="docutils literal notranslate"><span class="pre">timeout</span></code> 是 None（默认值）, 将会阻塞当前进程，直到有空的缓冲槽。如果 <code class="docutils literal notranslate"><span class="pre">timeout</span></code> 是正数，将会在阻塞了最多 <code class="docutils literal notranslate"><span class="pre">timeout</span></code> 秒之后还是没有可用的缓冲槽时抛出 <code class="docutils literal notranslate"><span class="pre">queue.Full</span></code>  异常。反之（ <code class="docutils literal notranslate"><span class="pre">block</span></code> 是 False 时），仅当有可用缓冲槽时才放入对象，否则抛出 <code class="docutils literal notranslate"><span class="pre">queue.Full</span></code> 异常（在这种情形下 <code class="docutils literal notranslate"><span class="pre">timeout</span></code> 参数会被忽略）。</li>
+<li><code class="docutils literal notranslate"><span class="pre">get([block[,</span> <span class="pre">timeout]])</span></code> ：从队列中取出并返回对象。</li>
+</ul>
+</div>
+<div class="section" id="pipe">
+<h3>19.3.3. 数据传递：Pipe<a class="headerlink" href="#pipe" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pipe</span><span class="p">([</span><span class="n">duplex</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>返回一对 Connection 对象  <code class="docutils literal notranslate"><span class="pre">(conn1,</span> <span class="pre">conn2)</span></code> ， 分别表示管道的两端。</p>
+<p>如果 <code class="docutils literal notranslate"><span class="pre">duplex</span></code> 被置为 True（默认值），那么该管道是双向的。如果 <code class="docutils literal notranslate"><span class="pre">duplex</span></code> 被置为 False ，那么该管道是单向的，即 <code class="docutils literal notranslate"><span class="pre">conn1</span></code> 只能用于接收消息，而 <code class="docutils literal notranslate"><span class="pre">conn2</span></code> 仅能用于发送消息。</p>
+<p>Connection 对象的方法：</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">send(obj)</span></code> ：发送数据。只能发送可 pickle 的数据</li>
+<li><code class="docutils literal notranslate"><span class="pre">recv()</span></code> ：读取管道中接收到的数据。</li>
+<li><code class="docutils literal notranslate"><span class="pre">close()</span></code> ：关闭连接对象。当连接对象被垃圾回收时会自动调用。</li>
+<li><code class="docutils literal notranslate"><span class="pre">poll([timeout])</span></code> ：判断管道对象是否有收到数据待读取。</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>19.4. 示例<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h3>19.4.1. 创建进程<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;module name:&#39;</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;parent process:&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">getppid</span><span class="p">())</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;process id:&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">())</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="n">info</span><span class="p">(</span><span class="s1">&#39;function f&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">info</span><span class="p">(</span><span class="s1">&#39;main line&#39;</span><span class="p">)</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;bob&#39;</span><span class="p">,))</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+<span class="c1">## if __name__ == &#39;__main__&#39; 是必需的</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id5">
+<h3>19.4.2. 锁<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>使用 Lock 同步，在一个任务输出完成之后，再允许另一个任务输出，可以避免多个任务同时向终端输出。</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">Lock</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+    <span class="n">l</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">l</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">lock</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">lock</span><span class="p">,</span> <span class="n">num</span><span class="p">))</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="pool">
+<h3>19.4.3. Pool<a class="headerlink" href="#pool" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">a</span><span class="p">):</span> <span class="c1">## map方法只允许1个参数</span>
+    <span class="k">return</span> <span class="n">a</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">pool</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">()</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">pool</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">a</span><span class="p">,))</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">]]</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">a</span><span class="p">):</span> <span class="c1">## map方法只允许1个参数</span>
+    <span class="k">return</span> <span class="n">a</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">pool</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">()</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map_async</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">a0</span><span class="p">,</span> <span class="n">a1</span><span class="p">,))</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span> <span class="c1">## starmap方法允许多个参数</span>
+    <span class="k">return</span> <span class="n">a</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">pool</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">()</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">starmap_async</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">((</span><span class="n">a0</span><span class="p">,</span> <span class="n">b0</span><span class="p">),</span> <span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">b1</span><span class="p">),</span> <span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id6">
+<h3>19.4.4. Manager<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">Manager</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">l</span><span class="p">):</span>
+    <span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Python&#39;</span>
+    <span class="n">d</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Java&quot;</span>
+    <span class="n">d</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">())</span>
+    <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">())</span> <span class="c1"># 获得当前的进程号</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">Manager</span><span class="p">()</span> <span class="k">as</span> <span class="n">manager</span><span class="p">:</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">manager</span><span class="o">.</span><span class="n">dict</span><span class="p">()</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="n">manager</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+        <span class="n">p_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">l</span><span class="p">))</span>
+            <span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+            <span class="n">p_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">p_list</span><span class="p">:</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>输出:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">14168</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">14168</span><span class="p">,</span> <span class="mi">14108</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">14168</span><span class="p">,</span> <span class="mi">14108</span><span class="p">,</span> <span class="mi">5412</span><span class="p">]</span>
+<span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Python&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Java&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;5412&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>19.4.5. Pipe<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">Pipe</span><span class="p">,</span> <span class="n">current_process</span>
+<span class="kn">from</span> <span class="nn">multiprocessing.connection</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">wait(object_list) ：</span>
+<span class="sd">可以一次轮询多个连接对象，一直等待直到 object_list 中某个对象处于就绪状态。</span>
+<span class="sd">返回 object_list 中处于就绪状态的对象。</span>
+<span class="sd">当一个连接或者套接字对象拥有有效的数据可被读取的时候，或者另一端关闭后，这个对象就处于就绪状态。</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">w</span><span class="o">.</span><span class="n">send</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">current_process</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+    <span class="n">w</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">readers</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">r</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">Pipe</span><span class="p">(</span><span class="n">duplex</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">readers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">foo</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">w</span><span class="p">,))</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="n">w</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">while</span> <span class="n">readers</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">wait</span><span class="p">(</span><span class="n">readers</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">EOFError</span><span class="p">:</span>
+                <span class="n">readers</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>输出:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Process-1&#39;</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Process-1&#39;</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;Process-1&#39;</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;Process-1&#39;</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;Process-1&#39;</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Process-2&#39;</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Process-2&#39;</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;Process-2&#39;</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;Process-2&#39;</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;Process-2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>19.5. 参考资料<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>multiprocessing — Process-based parallelism</li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html">https://docs.python.org/3/library/multiprocessing.html</a></p>
+<p><a class="reference external" href="https://docs.python.org/zh-cn/3/library/multiprocessing.html">https://docs.python.org/zh-cn/3/library/multiprocessing.html</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>python并行计算（上）：multiprocessing、multiprocess模块</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://zhuanlan.zhihu.com/p/46798399">https://zhuanlan.zhihu.com/p/46798399</a></div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../linux/index.html" class="btn btn-neutral float-right" title="Linux/Shell" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="18_exception.html" class="btn btn-neutral float-left" title="18. 异常" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,349 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>11. 堆、栈 &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'alpha',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12. 参数传递" href="12_argPass.html" />
+    <link rel="prev" title="10. 强制类型转换" href="10_cast.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C/C++</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_main.html">1. main函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_array.html">2. 数组</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_typeSize.html">3. 数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_classSize.html">4. 类的大小</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_swap.html">5. 交换函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_arrayArg.html">6. 数组形参</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_pointerReference.html">7. 指针与引用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_overload.html">8. 重载、覆盖、隐藏</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_strcpy.html">9. strcpy函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_cast.html">10. 强制类型转换</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">11. 堆、栈</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">11.1. 管理方式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">11.2. 空间大小</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">11.3. 分配方式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">11.4. 生长方式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">11.5. 分配效率</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">11.6. 存放内容</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">11.7. 附：内存分区</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">11.8. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="12_argPass.html">12. 参数传递</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_nullClassPtr.html">13. 空类指针</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html">14. static和extern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_classAccess.html">15. public、protected、private</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_staticconst.html">16. 类的static const成员</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_enumUnion.html">17. 枚举类型与共用体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html">18. 常用函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用STL类及容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_lambda.html">26. lambda 表达式</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">C/C++</a> &raquo;</li>
+        
+      <li>11. 堆、栈</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/cpp/11_heapStack.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>11. 堆、栈<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>堆（Heap）与栈（Stack）有两层含义：</p>
+<ul class="simple">
+<li>程序内存布局场景下，堆与栈表示两种内存管理方式</li>
+<li>数据结构场景下，堆与栈表示两种常用的数据结构</li>
+</ul>
+<p>栈由操作系统自动分配释放 ，用于存放函数的参数值、局部变量等，其操作方式类似于数据结构中的栈。</p>
+<p>堆由程序员分配释放，若程序员不释放，程序结束时由系统回收。</p>
+<div class="section" id="id2">
+<h2>11.1. 管理方式<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>栈由操作系统自动分配释放，无需我们手动控制；</p>
+<p>堆的申请和释放工作由程序员控制，容易产生内存泄漏。</p>
+</div>
+<div class="section" id="id3">
+<h2>11.2. 空间大小<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>每个进程拥有的栈的大小要远远小于堆的大小。
+理论上，程序员可申请的堆大小为虚拟内存的大小，进程栈的大小 64-bit 的 Windows 默认 1MB，64-bit 的 Linux 默认 10MB。</p>
+</div>
+<div class="section" id="id4">
+<h2>11.3. 分配方式<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>堆都是动态分配的，没有静态分配的堆。栈有 2 种分配方式：静态分配和动态分配。静态分配是由操作系统完成的，比如局部变量的分配。</p>
+<p>动态分配由 <code class="docutils literal notranslate"><span class="pre">alloca</span></code> 函数进行分配，但是栈的动态分配和堆是不同的，其动态分配是由操作系统进行释放，无需我们手工实现。</p>
+</div>
+<div class="section" id="id5">
+<h2>11.4. 生长方式<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>堆的生长方向向上，内存地址由低到高。</p>
+<p>栈的生长方向向下，内存地址由高到低。</p>
+</div>
+<div class="section" id="id6">
+<h2>11.5. 分配效率<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>栈由操作系统自动分配，会在硬件层级对栈提供支持：分配专门的寄存器存放栈的地址，压栈出栈都有专门的指令执行，这就决定了栈的效率比较高。</p>
+<p>堆则是由 C/C++ 提供的库函数或运算符来完成申请与管理，实现机制较为复杂，频繁的内存申请容易产生内存碎片。显然，<strong>堆的效率比栈要低得多</strong> 。</p>
+</div>
+<div class="section" id="id7">
+<h2>11.6. 存放内容<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>栈存放函数返回地址、相关参数、局部变量和寄存器内容等。</p>
+<p>堆：一般是在堆的头部用一个字节存放堆的大小；堆中的具体内容由程序员安排。</p>
+</div>
+<div class="section" id="id8">
+<h2>11.7. 附：内存分区<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p>在 C++ 中，内存主要分为堆、栈、全局/静态存储区和常量存储区。</p>
+<ul class="simple">
+<li><strong>栈</strong> ：就是那些由编译器在需要的时候分配，在不需要的时候自动清除的变量的存储区。里面的变量通常是局部变量、函数参数等。</li>
+<li><strong>堆</strong> ：就是那些由 new 分配的内存块，他们的释放编译器不去管，由我们的应用程序去控制，一般一个 new 就要对应一个 delete。如果程序员没有释放掉，那么在程序结束后，操作系统会自动回收。</li>
+<li><strong>全局/静态存储区</strong> ：全局变量和静态变量被分配到同一块内存中，在以前的 C 语言中，全局变量又分为初始化的和未初始化的，在 C++ 里面没有这个区分了，他们共同占用同一块内存区。</li>
+<li><strong>常量存储区</strong> ：这是一块比较特殊的存储区，他们里面存放的是常量，不允许修改。</li>
+</ul>
+</div>
+<div class="section" id="id9">
+<h2>11.8. 参考资料<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>堆与栈的区别</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://blog.csdn.net/K346K346/article/details/80849966">https://blog.csdn.net/K346K346/article/details/80849966</a></div></blockquote>
+<ol class="arabic simple" start="2">
+<li>C/C++——堆栈的讲解</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://blog.csdn.net/lovejay7/article/details/80662390">https://blog.csdn.net/lovejay7/article/details/80662390</a></div></blockquote>
+<ol class="arabic simple" start="3">
+<li>C++ 自由存储区是否等价于堆？</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/QG-whz/p/5060894.html">https://www.cnblogs.com/QG-whz/p/5060894.html</a></div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="12_argPass.html" class="btn btn-neutral float-right" title="12. 参数传递" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="10_cast.html" class="btn btn-neutral float-left" title="10. 强制类型转换" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

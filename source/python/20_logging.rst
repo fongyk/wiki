@@ -103,7 +103,7 @@ Formatter
 - ``%(created)f`` 当前时间，用 UNIX 标准的表示时间的浮点数表示
 - ``%(relativeCreated)d`` 输出日志信息时的，自 logger 创建以来的毫秒数
 - ``%(asctime)s`` 字符串形式的当前时间（默认格式是 "2003-07-08 16:49:45,896"，逗号后面的是毫秒）
-- ``%(thread)d`` 线程 ID。
+- ``%(thread)d`` 线程 ID
 - ``%(threadName)s`` 线程名
 - ``%(process)d`` 进程 ID
 - ``%(message)s`` 用户输出的消息

@@ -1,0 +1,676 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>20. logging &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'alpha',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Linux/Shell" href="../linux/index.html" />
+    <link rel="prev" title="19. multiprocessing" href="19_multiprocessing.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_inplace.html">1. in-place 运算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_all.html">2. __all__ 的使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_is.html">3. is和==</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_decorator.html">4. 装饰器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_iterator.html">5. 迭代器和生成器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_lambda.html">6. lambda用法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_arg.html">7. *args和**kwargs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_basicType.html">8. 基本数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_random.html">9. random</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_normalize.html">10. 归一化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_dataStruct.html">11. 常用数据结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_bool.html">12. 逻辑运算与布尔测试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_name.html">13. 命名规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_classFunc.html">14. 类变量与类方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_memManage.html">15. 内存管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_newInit.html">16. __new__ 和 __init__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_pip.html">17. pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_exception.html">18. 异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_multiprocessing.html">19. multiprocessing</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">20. logging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#logger">20.1. Logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#handler">20.2. Handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#formatter">20.3. Formatter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">20.4. 示例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">20.5. 配置文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#print">20.6. 附录：print 函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">20.7. 参考资料</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Python</a> &raquo;</li>
+        
+      <li>20. logging</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/python/20_logging.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="logging">
+<h1>20. logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h1>
+<p>logging 模块是 Python 内置的标准模块，主要用于输出运行日志。</p>
+<p>日志等级（从高到低）：</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">CRITICAL</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">ERROR</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">WARNING</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">INFO</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">DEBUG</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">NOTSET</span></code></li>
+</ul>
+<p>默认情况下只显示大于等于 <code class="docutils literal notranslate"><span class="pre">WARNING</span></code> 级别的日志。</p>
+<p>若要对 logging 进行更多灵活的控制，必须了解 <code class="docutils literal notranslate"><span class="pre">Logger</span></code> ，<code class="docutils literal notranslate"><span class="pre">Handler</span></code> ，<code class="docutils literal notranslate"><span class="pre">Formatter</span></code> ，<code class="docutils literal notranslate"><span class="pre">Filter</span></code> 等概念：</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">Logger</span></code> 提供了应用程序可以直接使用的接口；</li>
+<li><code class="docutils literal notranslate"><span class="pre">Handler</span></code> 将 <code class="docutils literal notranslate"><span class="pre">Logger</span></code> 创建的日志记录发送到合适的目的输出（控制台、文件、网络等）；</li>
+<li><code class="docutils literal notranslate"><span class="pre">Filter</span></code> 提供了细度设置来决定输出哪条日志记录；</li>
+<li><code class="docutils literal notranslate"><span class="pre">Formatter</span></code> 决定日志记录的最终输出格式。</li>
+</ul>
+<div class="section" id="logger">
+<h2>20.1. Logger<a class="headerlink" href="#logger" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">logging</span><span class="o">.</span><span class="n">Logger</span>
+</pre></div>
+</div>
+<p>不要直接实例化 <code class="docutils literal notranslate"><span class="pre">Logger</span></code> ，应当通过模块级别的函数 <code class="docutils literal notranslate"><span class="pre">logging.getLogger(name)</span></code> 来得到对象。多次使用相同的 <code class="docutils literal notranslate"><span class="pre">name</span></code> 调用会一直返回相同的 <code class="docutils literal notranslate"><span class="pre">Logger</span></code> 对象的引用。
+如果 <code class="docutils literal notranslate"><span class="pre">name</span></code> 不给定默认为 <code class="docutils literal notranslate"><span class="pre">root</span></code> 。</p>
+<p><code class="docutils literal notranslate"><span class="pre">name</span></code> 是以点号分割的命名方式命名的（a.b.c）。这种命名方式里面，后面的 loggers 是前面 logger 的子 logger，自动继承父 logger 的 logging 设置。正因为此，没有必要把一个应用的所有 logger 都配置一遍，只要把顶层的 logger 配置好了，然后子 logger 根据需要继承就行了。</p>
+<p>方法：</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">setLevel(level)</span></code> ：等级低于 <code class="docutils literal notranslate"><span class="pre">level</span></code> 的日志将不会输出。</li>
+<li><code class="docutils literal notranslate"><span class="pre">addHandler(hdlr)</span></code> ，<code class="docutils literal notranslate"><span class="pre">removeHandler(hdlr)</span></code> ：添加、删除 handler。</li>
+<li><code class="docutils literal notranslate"><span class="pre">addFilter(filter)</span></code> ，<code class="docutils literal notranslate"><span class="pre">removeFilter(filter)</span></code> ：添加、删除 filter。</li>
+<li><code class="docutils literal notranslate"><span class="pre">debug/info/warning/exception/error/critial(msg,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code> ：输出相应等级的信息。其中 <code class="docutils literal notranslate"><span class="pre">exception</span></code> 和 <code class="docutils literal notranslate"><span class="pre">error</span></code> 同级。</li>
+</ul>
+</div>
+<div class="section" id="handler">
+<h2>20.2. Handler<a class="headerlink" href="#handler" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Handler</span></code> 通常也不直接实例化。以下是几个常用的 handler ：</p>
+<ul>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">logging.StreamHandler(stream=None)</span></code></p>
+<blockquote>
+<div><p>可以像类似于 <code class="docutils literal notranslate"><span class="pre">sys.stdout</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">sys.stderr</span></code> 的任何文件对象（file object）输出信息。<code class="docutils literal notranslate"><span class="pre">stream</span></code> 默认是 <code class="docutils literal notranslate"><span class="pre">sys.stderr</span></code> ，输出到控制台。</p>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">logging.FileHandler(filename,</span> <span class="pre">mode='a',</span> <span class="pre">encoding=None,</span> <span class="pre">delay=False)</span></code></p>
+<blockquote>
+<div><p>向一个文件输出日志信息。<code class="docutils literal notranslate"><span class="pre">mode='a'</span></code> 表示追加到文件末尾，<code class="docutils literal notranslate"><span class="pre">'w'</span></code> 表示写入。</p>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">logging.handlers.RotatingFileHandler(filename,</span> <span class="pre">mode='a',</span> <span class="pre">maxBytes=0,</span> <span class="pre">backupCount=0,</span> <span class="pre">encoding=None,</span> <span class="pre">delay=False)</span></code></p>
+<blockquote>
+<div><p>类似于上面的 <code class="docutils literal notranslate"><span class="pre">FileHandler</span></code> ，但是它可以管理文件大小。当文件达到一定大小之后，它会自动将当前日志文件改名，然后创建一个新的同名日志文件继续输出。</p>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">logging.handlers.TimedRotatingFileHandler(filename,</span> <span class="pre">when='h',</span> <span class="pre">interval=1,</span> <span class="pre">backupCount=0,</span> <span class="pre">encoding=None,</span> <span class="pre">delay=False,</span> <span class="pre">utc=False,</span> <span class="pre">atTime=None)</span></code></p>
+<blockquote>
+<div><p>间隔一定时间就自动创建新的日志文件。</p>
+</div></blockquote>
+</li>
+</ul>
+<p>Handler 方法：</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">setLevel(level)</span></code> ：该 handler 对等级低于 <code class="docutils literal notranslate"><span class="pre">level</span></code> 的日志无效。</li>
+<li><code class="docutils literal notranslate"><span class="pre">setFormatter(fmt)</span></code> ：设置输出格式。</li>
+</ul>
+</div>
+<div class="section" id="formatter">
+<h2>20.3. Formatter<a class="headerlink" href="#formatter" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">fmt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">datefmt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;%&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Formatter</span></code> 定义了最终 log 信息的内容格式，可以直接实例化 <code class="docutils literal notranslate"><span class="pre">Foamatter</span></code> 类。信息格式字符串用 <code class="docutils literal notranslate"><span class="pre">%(&lt;dictionary</span> <span class="pre">key&gt;)s</span></code> 风格的字符串做替换。</p>
+<p>可能用到的格式化串：</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">%(name)s</span></code> logger 的名字</li>
+<li><code class="docutils literal notranslate"><span class="pre">%(levelno)s</span></code> 数字形式的日志级别</li>
+<li><code class="docutils literal notranslate"><span class="pre">%(levelname)s</span></code> 文本形式的日志级别</li>
+<li><code class="docutils literal notranslate"><span class="pre">%(pathname)s</span></code> 调用日志输出函数的模块的完整路径名</li>
+<li><code class="docutils literal notranslate"><span class="pre">%(filename)s</span></code> 调用日志输出函数的模块的文件名</li>
+<li><code class="docutils literal notranslate"><span class="pre">%(module)s</span></code> 调用日志输出函数的模块名</li>
+<li><code class="docutils literal notranslate"><span class="pre">%(funcName)s</span></code> 调用日志输出函数的函数名</li>
+<li><code class="docutils literal notranslate"><span class="pre">%(lineno)d</span></code> 调用日志输出函数的语句所在的代码行</li>
+<li><code class="docutils literal notranslate"><span class="pre">%(created)f</span></code> 当前时间，用 UNIX 标准的表示时间的浮点数表示</li>
+<li><code class="docutils literal notranslate"><span class="pre">%(relativeCreated)d</span></code> 输出日志信息时的，自 logger 创建以来的毫秒数</li>
+<li><code class="docutils literal notranslate"><span class="pre">%(asctime)s</span></code> 字符串形式的当前时间（默认格式是 “2003-07-08 16:49:45,896”，逗号后面的是毫秒）</li>
+<li><code class="docutils literal notranslate"><span class="pre">%(thread)d</span></code> 线程 ID。</li>
+<li><code class="docutils literal notranslate"><span class="pre">%(threadName)s</span></code> 线程名</li>
+<li><code class="docutils literal notranslate"><span class="pre">%(process)d</span></code> 进程 ID</li>
+<li><code class="docutils literal notranslate"><span class="pre">%(message)s</span></code> 用户输出的消息</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>20.4. 示例<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>logging 基本设置</li>
+</ul>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(name)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Start print log&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Do something&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Something maybe fail.&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Finish&quot;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>控制台输出:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">01</span> <span class="mi">14</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">57</span><span class="p">,</span><span class="mi">550</span> <span class="o">-</span> <span class="n">__main__</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">Start</span> <span class="nb">print</span> <span class="n">log</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">01</span> <span class="mi">14</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">57</span><span class="p">,</span><span class="mi">551</span> <span class="o">-</span> <span class="n">__main__</span> <span class="o">-</span> <span class="n">WARNING</span> <span class="o">-</span> <span class="n">Something</span> <span class="n">maybe</span> <span class="n">fail</span><span class="o">.</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">01</span> <span class="mi">14</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">57</span><span class="p">,</span><span class="mi">551</span> <span class="o">-</span> <span class="n">__main__</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">Finish</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>同时输出到控制台和文件</li>
+</ul>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">level</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
+<span class="n">handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="s2">&quot;log.txt&quot;</span><span class="p">)</span> <span class="c1">## file</span>
+<span class="n">handler</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(name)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+
+<span class="n">console</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span> <span class="c1">## concole</span>
+<span class="n">console</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
+<span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">console</span><span class="p">)</span>
+
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Start print log&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Do something&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Something maybe fail.&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Finish&quot;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>控制台输出:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Start</span> <span class="nb">print</span> <span class="n">log</span>
+<span class="n">Something</span> <span class="n">maybe</span> <span class="n">fail</span><span class="o">.</span>
+<span class="n">Finish</span>
+</pre></div>
+</div>
+<p>文件输出:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">01</span> <span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">49</span><span class="p">,</span><span class="mi">162</span> <span class="o">-</span> <span class="n">__main__</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">Start</span> <span class="nb">print</span> <span class="n">log</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">01</span> <span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">49</span><span class="p">,</span><span class="mi">163</span> <span class="o">-</span> <span class="n">__main__</span> <span class="o">-</span> <span class="n">WARNING</span> <span class="o">-</span> <span class="n">Something</span> <span class="n">maybe</span> <span class="n">fail</span><span class="o">.</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">01</span> <span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">49</span><span class="p">,</span><span class="mi">163</span> <span class="o">-</span> <span class="n">__main__</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">Finish</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>20.5. 配置文件<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>可以从字典中加载 logging 配置，这也就意味着可以通过 JSON 或者 YAML 文件加载日志的配置。</p>
+<p>以 YAML 为例，新建 log.yaml：</p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Show/Hide\ Code}\)</span></div>
+<div class="highlight-yaml notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="l l-Scalar l-Scalar-Plain">disable_existing_loggers</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="l l-Scalar l-Scalar-Plain">formatters</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">simple</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">format</span><span class="p p-Indicator">:</span> <span class="s">&quot;%(asctime)s</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">%(name)s</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">%(levelname)s</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">%(message)s&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">handlers</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">console</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">class</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">logging.StreamHandler</span>
+            <span class="l l-Scalar l-Scalar-Plain">level</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">DEBUG</span>
+            <span class="l l-Scalar l-Scalar-Plain">formatter</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">simple</span>
+            <span class="l l-Scalar l-Scalar-Plain">stream</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ext://sys.stdout</span>
+    <span class="l l-Scalar l-Scalar-Plain">info_file_handler</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">class</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">logging.handlers.RotatingFileHandler</span>
+            <span class="l l-Scalar l-Scalar-Plain">level</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">INFO</span>
+            <span class="l l-Scalar l-Scalar-Plain">formatter</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">simple</span>
+            <span class="l l-Scalar l-Scalar-Plain">filename</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">info.log</span>
+            <span class="l l-Scalar l-Scalar-Plain">maxBytes</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">10485760</span>
+            <span class="l l-Scalar l-Scalar-Plain">backupCount</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">20</span>
+            <span class="l l-Scalar l-Scalar-Plain">encoding</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">utf8</span>
+    <span class="l l-Scalar l-Scalar-Plain">error_file_handler</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">class</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">logging.handlers.RotatingFileHandler</span>
+            <span class="l l-Scalar l-Scalar-Plain">level</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ERROR</span>
+            <span class="l l-Scalar l-Scalar-Plain">formatter</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">simple</span>
+            <span class="l l-Scalar l-Scalar-Plain">filename</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">errors.log</span>
+            <span class="l l-Scalar l-Scalar-Plain">maxBytes</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">10485760</span>
+            <span class="l l-Scalar l-Scalar-Plain">backupCount</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">20</span>
+            <span class="l l-Scalar l-Scalar-Plain">encoding</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">utf8</span>
+<span class="l l-Scalar l-Scalar-Plain">loggers</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">my_module</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">level</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ERROR</span>
+            <span class="l l-Scalar l-Scalar-Plain">handlers</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">info_file_handler</span><span class="p p-Indicator">]</span>
+            <span class="l l-Scalar l-Scalar-Plain">propagate</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">no</span>
+<span class="l l-Scalar l-Scalar-Plain">root</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">level</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">DEBUG</span>
+    <span class="l l-Scalar l-Scalar-Plain">handlers</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">console</span><span class="p p-Indicator">,</span> <span class="nv">info_file_handler</span><span class="p p-Indicator">,</span> <span class="nv">error_file_handler</span><span class="p p-Indicator">]</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>导入：</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">yaml</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="c1">## logging 的 __init__ 文件里面没有 config</span>
+<span class="kn">import</span> <span class="nn">logging.config</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">def</span> <span class="nf">setup_logging</span><span class="p">(</span><span class="n">default_path</span><span class="o">=</span><span class="s2">&quot;log.yaml&quot;</span><span class="p">,</span> <span class="n">default_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="n">env_key</span><span class="o">=</span><span class="s2">&quot;LOG_CFG&quot;</span><span class="p">):</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">default_path</span>
+    <span class="c1">## getenv 获取全局变量</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="n">env_key</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">cfg</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">Loader</span><span class="o">=</span><span class="n">yaml</span><span class="o">.</span><span class="n">FullLoader</span><span class="p">)</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">dictConfig</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">default_level</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;start func&quot;</span><span class="p">)</span>
+
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;exec func&quot;</span><span class="p">)</span>
+
+    <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;error end&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">setup_logging</span><span class="p">()</span>
+    <span class="n">func</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+<p>控制台输出:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">01</span> <span class="mi">14</span><span class="p">:</span><span class="mi">54</span><span class="p">:</span><span class="mi">21</span><span class="p">,</span><span class="mi">566</span> <span class="o">-</span> <span class="n">root</span> <span class="o">-</span> <span class="n">DEBUG</span> <span class="o">-</span> <span class="n">start</span> <span class="n">func</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">01</span> <span class="mi">14</span><span class="p">:</span><span class="mi">54</span><span class="p">:</span><span class="mi">21</span><span class="p">,</span><span class="mi">566</span> <span class="o">-</span> <span class="n">root</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">exec</span> <span class="n">func</span>
+<span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">01</span> <span class="mi">14</span><span class="p">:</span><span class="mi">54</span><span class="p">:</span><span class="mi">21</span><span class="p">,</span><span class="mi">566</span> <span class="o">-</span> <span class="n">root</span> <span class="o">-</span> <span class="n">ERROR</span> <span class="o">-</span> <span class="n">error</span> <span class="n">end</span>
+</pre></div>
+</div>
+<p>文件输出:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2020</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">01</span> <span class="mi">14</span><span class="p">:</span><span class="mi">54</span><span class="p">:</span><span class="mi">21</span><span class="p">,</span><span class="mi">566</span> <span class="o">-</span> <span class="n">root</span> <span class="o">-</span> <span class="n">ERROR</span> <span class="o">-</span> <span class="n">error</span> <span class="n">end</span>
+</pre></div>
+</div>
+<p>从名字可以看出，程序中的 <code class="docutils literal notranslate"><span class="pre">logging</span></code> 默认使用的是  <code class="docutils literal notranslate"><span class="pre">root</span></code> 对应的设置，这和使用</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>是等效的。如果想采用 <code class="docutils literal notranslate"><span class="pre">my_module</span></code> 对应的设置，则使用</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;loggers.my_module&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="print">
+<h2>20.6. 附录：print 函数<a class="headerlink" href="#print" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">objects</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">objects</span></code> ：复数，表示可以一次输出多个对象。输出多个对象时，需要用 <code class="docutils literal notranslate"><span class="pre">,</span></code> 分隔。</li>
+<li><code class="docutils literal notranslate"><span class="pre">sep</span></code> ：用来间隔多个对象，默认值是一个空格。</li>
+<li><code class="docutils literal notranslate"><span class="pre">end</span></code> ：用来设定以什么结尾，默认值是换行符 <code class="docutils literal notranslate"><span class="pre">\n</span></code> 。</li>
+<li><code class="docutils literal notranslate"><span class="pre">file</span></code> ：要写入的文件对象，默认为 <code class="docutils literal notranslate"><span class="pre">sys.stdout</span></code> 。 <code class="docutils literal notranslate"><span class="pre">input()</span></code> 对应 <code class="docutils literal notranslate"><span class="pre">sys.stdin</span></code> ， <code class="docutils literal notranslate"><span class="pre">exception</span></code> 写入 <code class="docutils literal notranslate"><span class="pre">sys.stderr</span></code> 。</li>
+<li><code class="docutils literal notranslate"><span class="pre">flush</span></code> ：输出是否被缓存通常决定于 <code class="docutils literal notranslate"><span class="pre">file</span></code> ，但如果 <code class="docutils literal notranslate"><span class="pre">flush</span></code> 关键字参数为 True，流会被强制刷新，立即输出。</li>
+</ul>
+<p>例子：</p>
+<ul>
+<li><p class="first">控制台 loading 效果</p>
+<blockquote>
+<div><p>设置 <code class="docutils literal notranslate"><span class="pre">flush=True</span></code> ，每隔0.5秒屏幕会打印一个点号。否则会在5秒之后输出10个点号。</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Loading&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div></blockquote>
+</li>
+<li><p class="first">输出到文件</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fw</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;a.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="nb">file</span><span class="o">=</span><span class="n">fw</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="go">## 在关闭文件之前，此时打开文件已经可以看到输出了</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fw</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>20.7. 参考资料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Python logger模块</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/qianyuliang/p/7234217.html">https://www.cnblogs.com/qianyuliang/p/7234217.html</a></div></blockquote>
+<ol class="arabic simple" start="2">
+<li>python3 logging模块</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/wenwei-blog/p/7196658.html">https://www.cnblogs.com/wenwei-blog/p/7196658.html</a></div></blockquote>
+<ol class="arabic simple" start="3">
+<li>logging — Logging facility for Python</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://docs.python.org/3/library/logging.html#handler-objects">https://docs.python.org/3/library/logging.html#handler-objects</a></div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../linux/index.html" class="btn btn-neutral float-right" title="Linux/Shell" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="19_multiprocessing.html" class="btn btn-neutral float-left" title="19. multiprocessing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

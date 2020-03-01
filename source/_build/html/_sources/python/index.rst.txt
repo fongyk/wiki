@@ -24,3 +24,4 @@ Python
     17_pip.rst
     18_exception.rst
     19_multiprocessing.rst
+    20_logging.rst

@@ -17,7 +17,7 @@ logging 模块是 Python 内置的标准模块，主要用于输出运行日志�
 
 - ``NOTSET``
 
-默认情况下只显示大于等于 ``WARNING`` 级别的日志。
+默认情况下只输出大于等于 ``WARNING`` 级别的日志。
 
 若要对 logging 进行更多灵活的控制，必须了解 ``Logger`` ，``Handler`` ，``Formatter`` ，``Filter`` 等概念：
 
@@ -274,7 +274,7 @@ Formatter
 
 是等效的。如果想采用 ``my_module`` 对应的设置，则使用 ::
 
-    logger = logging.getLogger("loggers.my_module")
+    logger = logging.getLogger("my_module")
 
 
 附录：print 函数
@@ -329,4 +329,4 @@ Formatter
 
 3. logging — Logging facility for Python
 
-  https://docs.python.org/3/library/logging.html#handler-objects
+  https://docs.python.org/3/library/logging.html

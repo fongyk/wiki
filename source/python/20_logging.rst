@@ -145,7 +145,7 @@ Formatter
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     handler.setFormatter(formatter)
     
-    console = logging.StreamHandler() ## concole
+    console = logging.StreamHandler() ## console
     console.setLevel(logging.INFO)
     
     logger.addHandler(handler)
@@ -268,7 +268,7 @@ Formatter
 
     2020-03-01 14:54:21,566 - root - ERROR - error end
 
-从名字可以看出，程序中的 ``logging`` 默认使用的是  ``root`` 对应的设置，这和使用 ::
+从名字可以看出，程序中的 ``logging`` 默认使用的是 ``root`` 对应的设置，且 ``root`` 下设置的 ``level`` 会覆盖 ``handlers`` 下的 ``level`` 。这和使用对象 ::
 
     logger = logging.getLogger()
 

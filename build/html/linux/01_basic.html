@@ -105,10 +105,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Linux/Shell</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">1. 基本命令</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">1.1. 文件和目录</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">1.2. 磁盘空间</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">1.3. 处理数据文件</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">1.4. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">1.1. 系统目录</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">1.2. 文件和目录</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">1.3. 磁盘空间</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">1.4. 处理数据文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">1.5. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="02_more.html">2. 更多指令</a></li>
@@ -193,7 +194,29 @@
   <div class="section" id="id1">
 <h1>1. 基本命令<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id2">
-<h2>1.1. 文件和目录<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>1.1. 系统目录<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls /
+</pre></div>
+</div>
+<p>该指令可以查看系统根目录。注意， <code class="docutils literal notranslate"><span class="pre">/</span></code> 是指根目录，而不是当前目录。</p>
+<ul class="simple">
+<li><strong>/bin</strong> ：binary 的缩写, 这个目录存放着最经常使用的命令。</li>
+<li><strong>/boot</strong> ：存放的是启动 Linux 时使用的一些核心文件，包括一些连接文件以及镜像文件。</li>
+<li><strong>/dev</strong> ：device 的缩写, 该目录下存放的是 Linux 的外部设备，访问方式和访问文件是相同的。</li>
+<li><strong>/etc</strong> ：存放系统管理所需要的配置文件和子目录。</li>
+<li><strong>/home</strong> ：用户的主目录。</li>
+<li><strong>/lib</strong> ：存放着系统最基本的动态连接共享库，其作用类似于 Windows 里的 DLL 文件。</li>
+<li><strong>/lost+found</strong> ：当系统非法关机后，这里就存放了一些文件。</li>
+<li><strong>/media</strong> ：系统会自动识别一些设备，例如U盘、光驱等等，当识别后，会把识别的设备挂载到这个目录下。</li>
+<li><strong>/mnt</strong> ：临时挂载别的文件系统。</li>
+<li><strong>/root</strong> ：超级权限者的用户主目录。</li>
+<li><strong>/usr</strong> ：用户的很多应用程序和文件都放在这个目录下，类似于 Windows 下的 program files 目录。</li>
+<li><strong>/usr/bin</strong> ：使用的应用程序与指令。</li>
+<li><strong>/var</strong> ：将经常被修改的目录放在这个目录下，包括各种日志文件。</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>1.2. 文件和目录<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ..
 <span class="nb">pwd</span>
 ls -a -F -R -l
@@ -224,15 +247,15 @@ ls -l <span class="p">|</span> grep <span class="s2">&quot;^d&quot;</span> <span
 </pre></div>
 </div>
 </div>
-<div class="section" id="id3">
-<h2>1.2. 磁盘空间<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h2>1.3. 磁盘空间<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>df -h
 du <span class="o">[</span>-s<span class="o">]</span> -h
 </pre></div>
 </div>
 </div>
-<div class="section" id="id4">
-<h2>1.3. 处理数据文件<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h2>1.4. 处理数据文件<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sort <span class="o">[</span>-n<span class="o">]</span> log.txt <span class="c1">## -n : 行号</span>
 
 grep <span class="o">[</span>-n<span class="o">]</span> <span class="o">[</span>-c<span class="o">]</span> t file <span class="c1">## find *t* in file</span>
@@ -246,8 +269,8 @@ tar -xzvf test.tgz
 </pre></div>
 </div>
 </div>
-<div class="section" id="id5">
-<h2>1.4. 参考资料<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h2>1.5. 参考资料<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>《Linux命令行与shell脚本编程大全》</li>
 <li>每天一个linux命令目录</li>

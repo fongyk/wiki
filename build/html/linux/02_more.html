@@ -116,7 +116,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#tee">2.2. tee</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">2.3. 查找</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#alias">2.4. alias</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">2.5. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ln">2.5. ln</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.6. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="03_authority.html">3. 权限管理</a></li>
@@ -415,8 +416,47 @@ $ find /var/log -name <span class="s2">&quot;*.tmp&quot;</span> -ok rm <span cla
 </pre></div>
 </div>
 </div>
+<div class="section" id="ln">
+<h2>2.5. ln<a class="headerlink" href="#ln" title="Permalink to this headline">¶</a></h2>
+<p>ln 命令的功能是为某一个文件/目录在另外一个位置建立一个同步的链接，不重复占用磁盘空间。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ln <span class="o">[</span>参数<span class="o">][</span>源文件或目录<span class="o">][</span>目标文件或目录<span class="o">]</span>
+</pre></div>
+</div>
+<p>目标文件或目录就是新建立的链接。使用 <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-F</span></code> 指令查看后缀为 <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> 的文件就是 ln 建立的文件， <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code> 指令可以查看具体的链接路径。</p>
+<p>参数：</p>
+<ul class="simple">
+<li>-b：删除，覆盖以前建立的链接。</li>
+<li>-d：允许超级用户制作目录的硬链接。</li>
+<li>-f：强制执行。</li>
+<li>-i：交互模式，文件存在则提示用户是否覆盖。</li>
+<li>-n：把符号链接视为一般目录。</li>
+<li>-s：软链接（符号链接 symbolic）。</li>
+<li>-v：显示详细的处理过程。</li>
+</ul>
+<p><strong>软链接</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>软链接以路径的形式存在，类似于 Windows 操作系统中的快捷方式。</li>
+<li>软链接可以跨文件系统。</li>
+<li>软链接可以对一个不存在的文件名进行链接。</li>
+<li>软链接可以对目录进行链接。</li>
+</ul>
+</div></blockquote>
+<p><strong>硬链接</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>硬链接以文件副本的形式存在，但不占用实际空间。</li>
+<li>不允许给目录创建硬链接。</li>
+<li>硬链接只有在同一个文件系统中才能创建。</li>
+</ul>
+</div></blockquote>
+<p>例：将 python 软链接到 python3.5，则执行 python 指令使用的是 python3.5 版本。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo ln -s /usr/bin/python3.5 /usr/bin/python
+</pre></div>
+</div>
+</div>
 <div class="section" id="id3">
-<h2>2.5. 参考资料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>2.6. 参考资料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>runoob.com</li>
 </ol>

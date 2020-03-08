@@ -106,7 +106,9 @@
 <li class="toctree-l2"><a class="reference internal" href="01_inplace.html">1. in-place 运算</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">2. __all__ 的使用</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#init-py">2.1. 从__init__.py谈起</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id1">2.2. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">2.2. 路径</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2.3. 命名空间包</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.4. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="03_is.html">3. is和==</a></li>
@@ -125,6 +127,9 @@
 <li class="toctree-l2"><a class="reference internal" href="16_newInit.html">16. __new__ 和 __init__</a></li>
 <li class="toctree-l2"><a class="reference internal" href="17_pip.html">17. pip</a></li>
 <li class="toctree-l2"><a class="reference internal" href="18_exception.html">18. 异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_multiprocessing.html">19. multiprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_logging.html">20. logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_pyM.html">21. python -m</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
@@ -209,7 +214,7 @@
 <h2>2.1. 从__init__.py谈起<a class="headerlink" href="#init-py" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> 的 <strong>作用一</strong> ：package 的标识</p>
 <blockquote>
-<div><p>在每一个 package 文件夹中都会有一个 __init__.py 文件。我们导入一个包时，实际上是导入了它的 __init__.py 文件。因此我们可以在 __init__.py 文件中批量导入所需的模块，
+<div><p>在每一个 package 文件夹中都会有一个 <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> 文件。我们导入一个包时，实际上是导入了它的 <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> 文件。因此我们可以在 <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> 文件中批量导入所需的模块，
 而不需要再一个一个地倒入。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">### package</span>
 <span class="c1">## __init__.py</span>
@@ -242,11 +247,11 @@
 </div></blockquote>
 <p><code class="docutils literal notranslate"><span class="pre">__all__</span></code> 是一个字符串列表，用于定义模糊导入中的 <code class="docutils literal notranslate"><span class="pre">*</span></code> 中的模块，即暴露接口，也是对于模块公开接口的一种约定。</p>
 <p>举个例子，建立如下目录结构的文件夹及文件:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span>
-<span class="o">|</span><span class="n">__</span> <span class="n">test</span><span class="o">.</span><span class="n">py</span>
-<span class="o">|</span><span class="n">__</span> <span class="n">myPack</span>
-    <span class="o">|</span><span class="n">__</span> <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
-    <span class="o">|</span><span class="n">__</span> <span class="n">func</span><span class="o">.</span><span class="n">py</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.
+├── myPack
+│   ├── func.py
+│   └── __init__.py
+└── test.py
 </pre></div>
 </div>
 <p>创建了包 <strong>myPack</strong> ，其中 <strong>func.py</strong> 中定义了该包的功能，包括变量、类、函数的定义。使用 <strong>test.py</strong> 来测试这个包的调用。
@@ -286,7 +291,116 @@
 </td></tr></table></div>
 </div>
 <div class="section" id="id1">
-<h2>2.2. 参考资料<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>2.2. 路径<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">import</span></code> 在导入模块时，会根据 <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> 中的路径来搜索对应的模块。 <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> 是一个列表，<code class="docutils literal notranslate"><span class="pre">import</span></code> 时会从 <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> 的第一个路径开始搜索。
+<code class="docutils literal notranslate"><span class="pre">sys.path</span></code> 默认的路径为：</p>
+<blockquote>
+<div><ul class="simple">
+<li>当前目录的路径，即 <code class="docutils literal notranslate"><span class="pre">sys.path[0]</span></code> 。</li>
+<li>环境变量 <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code> 中指定的路径列表。</li>
+<li>Python 安装路径的 <code class="docutils literal notranslate"><span class="pre">lib</span></code> 目录所在路径。</li>
+</ul>
+</div></blockquote>
+<p>我们可以将需要的路径添加到 <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> ，有如下几种方式:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">动态修改 <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> 。这种方式只会对当前项目临时生效。</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="c1">## parenddir 是当前代码文件所在目录的父目录</span>
+<span class="n">parenddir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">pardir</span><span class="p">))</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parenddir</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</li>
+<li><p class="first">修改 <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code> 环境变量，所有的 Python 项目都会受到影响。</p>
+</li>
+<li><p class="first">在 <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> 已有的某一个目录下添加 .pth 后缀的配置文件，该文件的内容是要添加的搜索路径。Python 在遍历已有目录的过程中，如果遇到 .pth 文件，就会将其中的路径添加到 <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> 中。</p>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id2">
+<h2>2.3. 命名空间包<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>Python3.3 之后引入了命名空间包（namespace packages）的概念，目录下不再需要 <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> 。
+命名空间包可以避免名字空间的污染，且具有不连续性（类似于C++），即同一个包内的模块可以不在同一个文件系统。</p>
+<p>相比之下，有 <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> 的包叫做常规包（regular packages），同一个包内的模块在同一个文件目录下。</p>
+<p>新建如下目录（命名空间库）:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>datetime/
+└── datetime.py
+</pre></div>
+</div>
+<p><strong>datetime.py</strong> 内容如下：</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">now</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">then</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;good bye&quot;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>注意到，这里的 <strong>datetime</strong> 与 python 自带的库重名了。</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">datetime</span>
+<span class="go">&lt;class &#39;datetime.datetime&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="c1">## 调用了系统的库而不是新建的库</span>
+<span class="go">datetime.datetime(2020, 3, 8, 11, 42, 53, 472470)</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;/data6/fong/a/datetime&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">datetime</span>
+<span class="go">&lt;module &#39;datetime&#39; from &#39;/data6/fong/a/datetime/datetime.py&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<span class="go">hello world</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">datetime</span><span class="o">.</span><span class="n">then</span><span class="p">()</span>
+<span class="go">good bye</span>
+</pre></div>
+</td></tr></table></div>
+<p>新建如下目录（常规库）:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>datetime/
+├── datetime.py
+└── __init__.py
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">datetime</span>
+<span class="go">&lt;module &#39;datetime.datetime&#39; from &#39;/data6/fong/a/datetime/datetime.py&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">AttributeError</span>: <span class="n">module &#39;datetime.datetime&#39; has no attribute &#39;now&#39;</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id3">
+<h2>2.4. 参考资料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Python中的 __all__</li>
 </ol>
@@ -307,6 +421,21 @@
 </ol>
 <blockquote>
 <div><a class="reference external" href="https://www.codetd.com/article/2136881">https://www.codetd.com/article/2136881</a></div></blockquote>
+<ol class="arabic simple" start="5">
+<li>What is __init__.py for?</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://stackoverflow.com/questions/448271/what-is-init-py-for">https://stackoverflow.com/questions/448271/what-is-init-py-for</a></div></blockquote>
+<ol class="arabic simple" start="6">
+<li>Regular packages</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://docs.python.org/3/reference/import.html#regular-packages">https://docs.python.org/3/reference/import.html#regular-packages</a></div></blockquote>
+<ol class="arabic simple" start="7">
+<li>详解 Python import 机制 (一):import 中的基本概念</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://zhuanlan.zhihu.com/p/87238735">https://zhuanlan.zhihu.com/p/87238735</a></div></blockquote>
 </div>
 </div>
 

@@ -16,11 +16,9 @@ model.eval() 和 with torch.no_grad()
 
     - autograd 机制不工作，无法进行梯度计算。
 
-    - 可以加速前向推理，节约内存，适合用来提特征。
+    - 可以加速前向推理，节约内存。
 
-    - Dropout 与 BatchNorm 的行为与 **model.eval()** 相同。
-
-
+提特征时两者配合使用。
 
 参考资料
 ------------

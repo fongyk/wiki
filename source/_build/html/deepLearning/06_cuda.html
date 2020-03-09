@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>6. pytorch: cuda() &mdash; fong alpha documentation</title>
+  <title>6. pytorch: cuda &mdash; fong alpha documentation</title>
   
 
   
@@ -112,9 +112,9 @@
 <li class="toctree-l2"><a class="reference internal" href="03_batchnorm.html">3. Batch Normalization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_overfit.html">4. 过拟合</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">5. pytorch：模型保存与读取</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">6. pytorch: cuda()</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6. pytorch: cuda</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#gpu">6.1. 使用指定GPU</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cuda">6.2. cuda()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#device">6.2. device切换</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id1">6.3. 参考资料</a></li>
 </ul>
 </li>
@@ -122,6 +122,7 @@
 <li class="toctree-l2"><a class="reference internal" href="08_optimizer.html">8. 优化算法</a></li>
 <li class="toctree-l2"><a class="reference internal" href="09_addModule.html">9. pytorch：add_module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="10_receptivaField.html">10. 特征图与感受野</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_nograd.html">11. pytorch：no_grad()</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
@@ -177,7 +178,7 @@
         
           <li><a href="index.html">深度学习</a> &raquo;</li>
         
-      <li>6. pytorch: cuda()</li>
+      <li>6. pytorch: cuda</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -197,11 +198,11 @@
            <div itemprop="articleBody">
             
   <div class="section" id="pytorch-cuda">
-<h1>6. pytorch: cuda()<a class="headerlink" href="#pytorch-cuda" title="Permalink to this headline">¶</a></h1>
+<h1>6. pytorch: cuda<a class="headerlink" href="#pytorch-cuda" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="gpu">
 <h2>6.1. 使用指定GPU<a class="headerlink" href="#gpu" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p class="first"><strong>直接终端中设定</strong></p>
+<li><p class="first"><strong>直接终端中设定（推荐）</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="mi">1</span> <span class="n">python</span> <span class="n">my_script</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
@@ -220,16 +221,48 @@
 </li>
 </ul>
 </div>
-<div class="section" id="cuda">
-<h2>6.2. cuda()<a class="headerlink" href="#cuda" title="Permalink to this headline">¶</a></h2>
-<p>对于一个 <code class="docutils literal notranslate"><span class="pre">tensor</span></code> 对象，cuda()返回该对象在CUDA内存中的拷贝</p>
+<div class="section" id="device">
+<h2>6.2. device切换<a class="headerlink" href="#device" title="Permalink to this headline">¶</a></h2>
+<p>对于一个 <code class="docutils literal notranslate"><span class="pre">tensor</span></code> 对象， <code class="docutils literal notranslate"><span class="pre">cuda()</span></code> 返回该对象在CUDA内存中的拷贝:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>对于一个 <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> 实例，cuda()直接将该模型的参数和buffers转移到GPU。</p>
+<p>对于一个 <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> 实例， <code class="docutils literal notranslate"><span class="pre">cuda()</span></code> 直接将该模型的参数和buffers转移到GPU:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
 </pre></div>
 </div>
+<p>另外，使用 <code class="docutils literal notranslate"><span class="pre">to(*args,</span> <span class="pre">**kwargs)</span></code> 可以更方便地管理设备。</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda:0&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">device</span>
+<span class="go">device(type=&#39;cuda&#39;, index=0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">device</span>
+<span class="go">device(type=&#39;cuda&#39;, index=0)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">net</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">bias</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">net</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">net</span>
+<span class="go">Linear(in_features=10, out_features=5, bias=True)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">net</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">device</span>
+<span class="go">device(type=&#39;cuda&#39;, index=0)</span>
+</pre></div>
+</td></tr></table></div>
 </div>
 <div class="section" id="id1">
 <h2>6.3. 参考资料<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
@@ -244,6 +277,8 @@
 <blockquote>
 <div><p><a class="reference external" href="https://pytorch.org/docs/0.3.1/tensors.html?highlight=cuda#torch.Tensor.cuda">https://pytorch.org/docs/0.3.1/tensors.html?highlight=cuda#torch.Tensor.cuda</a></p>
 <p><a class="reference external" href="https://pytorch.org/docs/0.3.1/nn.html?highlight=cuda#torch.nn.Module.cuda">https://pytorch.org/docs/0.3.1/nn.html?highlight=cuda#torch.nn.Module.cuda</a></p>
+<p><a class="reference external" href="https://pytorch.org/docs/1.2.0/tensors.html?highlight=#torch.Tensor.to">https://pytorch.org/docs/1.2.0/tensors.html?highlight=#torch.Tensor.to</a></p>
+<p><a class="reference external" href="https://pytorch.org/docs/1.2.0/cuda.html?highlight=device#torch.cuda.device">https://pytorch.org/docs/1.2.0/cuda.html?highlight=device#torch.cuda.device</a></p>
 </div></blockquote>
 </div>
 </div>

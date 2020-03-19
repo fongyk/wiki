@@ -54,6 +54,12 @@
 
     **str** 是不可变对象，其所有方法都 **不改变对象本身** ，而是返回所创建的新对象。
 
+- **tuple**
+
+  - 索引、切片：[ind]，[first:last]获取区间 [first, last) 内的元素。
+  
+  - 元组是不可变对象，类似于常量类型。
+
 - **list**
 
   - 索引、切片：[ind]，[first:last]获取区间 [first, last) 内的元素。
@@ -141,6 +147,8 @@
     >>> info.clear()
     >>> info
     {}
+
+  - **collections.OrderedDict** ：按关键字排序的字典。
 
   - **collections.defaultdict** ：defaultdict类使用一种给定数据类型来初始化。当所访问的key不存在的时候，会实例化一个value作为默认值。因此，判断某个key是否存在，可使用get(key)。
 

@@ -127,6 +127,9 @@
 <li class="toctree-l2"><a class="reference internal" href="16_newInit.html">16. __new__ 和 __init__</a></li>
 <li class="toctree-l2"><a class="reference internal" href="17_pip.html">17. pip</a></li>
 <li class="toctree-l2"><a class="reference internal" href="18_exception.html">18. 异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_multiprocessing.html">19. multiprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_logging.html">20. logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_pyM.html">21. python -m</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
@@ -263,6 +266,12 @@
 <p class="last"><strong>str</strong> 是不可变对象，其所有方法都 <strong>不改变对象本身</strong> ，而是返回所创建的新对象。</p>
 </div>
 </li>
+<li><p class="first"><strong>tuple</strong></p>
+<ul class="simple">
+<li>索引、切片：[ind]，[first:last]获取区间 [first, last) 内的元素。</li>
+<li>元组是不可变对象，类似于常量类型。</li>
+</ul>
+</li>
 <li><p class="first"><strong>list</strong></p>
 <ul class="simple">
 <li>索引、切片：[ind]，[first:last]获取区间 [first, last) 内的元素。</li>
@@ -384,6 +393,7 @@
 </pre></div>
 </td></tr></table></div>
 <ul class="simple">
+<li><strong>collections.OrderedDict</strong> ：按关键字排序的字典。</li>
 <li><strong>collections.defaultdict</strong> ：defaultdict类使用一种给定数据类型来初始化。当所访问的key不存在的时候，会实例化一个value作为默认值。因此，判断某个key是否存在，可使用get(key)。</li>
 </ul>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1

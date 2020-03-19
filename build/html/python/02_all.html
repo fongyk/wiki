@@ -108,7 +108,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#init-py">2.1. 从__init__.py谈起</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id1">2.2. 路径</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">2.3. 命名空间包</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">2.4. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.4. 相对路径导入</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getattr">2.5. getattr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">2.6. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="03_is.html">3. is和==</a></li>
@@ -400,7 +402,86 @@
 </td></tr></table></div>
 </div>
 <div class="section" id="id3">
-<h2>2.4. 参考资料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>2.4. 相对路径导入<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">.Module</span> <span class="pre">import</span> <span class="pre">func</span></code> 表示从当前目录的模块中导入。</p>
+<p><code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">..PKG.Module</span> <span class="pre">import</span> <span class="pre">func</span></code> 表示从上一级目录的包中导入。</p>
+<p>错误:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">ImportError</span><span class="p">:</span> <span class="n">attempted</span> <span class="n">relative</span> <span class="kn">import</span> <span class="nn">with</span> <span class="n">no</span> <span class="n">known</span> <span class="n">parent</span> <span class="n">package</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>这是因为相对导入发生在包的内部，此时在包的内部运行该模块会报错，应该在项目的顶层目录运行主程序，通过主程序调用该模块。</p>
+</div>
+<div class="section" id="getattr">
+<h2>2.5. getattr<a class="headerlink" href="#getattr" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">getattr()</span></code> 函数用于返回一个对象属性值:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">getattr</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">name</span><span class="p">[,</span> <span class="n">default</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>参数：</p>
+<blockquote>
+<div><ul class="simple">
+<li>object： 对象。</li>
+<li>name：字符串，对象属性。</li>
+<li>default：默认返回值，如果不提供该参数，在没有对应属性时，将触发 <code class="docutils literal notranslate"><span class="pre">AttributeError</span></code> 。</li>
+</ul>
+</div></blockquote>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;class A(object):</span>
+<span class="gp">... </span>    <span class="n">bar</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">A</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">getattr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">getattr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s1">&#39;bar2&#39;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">AttributeError</span>: <span class="n">&#39;A&#39; object has no attribute &#39;bar2&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">getattr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s1">&#39;bar2&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">3</span>
+</pre></div>
+</td></tr></table></div>
+<p>在 <code class="docutils literal notranslate"><span class="pre">__all__</span></code> 中添加包名之后，可以通过 <code class="docutils literal notranslate"><span class="pre">getattr()</span></code> 直接调用相应的模块。</p>
+<p>建立新的包如下:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pkg/
+├── func.py
+└── __init__.py
+</pre></div>
+</div>
+<p><strong>func.py</strong> 内容为:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">say</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>__init__.py</strong> 内容为:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.func</span> <span class="k">import</span> <span class="o">*</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;say&quot;</span><span class="p">,]</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pkg</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">getattr</span><span class="p">(</span><span class="n">pkg</span><span class="p">,</span> <span class="s2">&quot;say&quot;</span><span class="p">)</span>
+<span class="go">&lt;function say at 0x7f6134fdf560&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">getattr</span><span class="p">(</span><span class="n">pkg</span><span class="p">,</span> <span class="s2">&quot;say&quot;</span><span class="p">)()</span>
+<span class="go">hello</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id4">
+<h2>2.6. 参考资料<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Python中的 __all__</li>
 </ol>
@@ -436,6 +517,11 @@
 </ol>
 <blockquote>
 <div><a class="reference external" href="https://zhuanlan.zhihu.com/p/87238735">https://zhuanlan.zhihu.com/p/87238735</a></div></blockquote>
+<ol class="arabic simple" start="8">
+<li>Python getattr() 函数</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.runoob.com/python/python-func-getattr.html">https://www.runoob.com/python/python-func-getattr.html</a></div></blockquote>
 </div>
 </div>
 

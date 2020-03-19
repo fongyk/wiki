@@ -140,6 +140,56 @@
 
 只定义 ``getter`` 方法，不定义 ``setter`` 方法就是一个只读属性。
 
+
+@register
+----------------
+
+装饰器不是必须要修饰被装饰的函数，它还可以简单地注册一个函数，并将其解包返回。例如，可以使用它来创建一个轻量级插件体系结构:
+
+.. code-block:: python
+    :linenos:
+
+    PLUGINS = dict()
+
+    def register(func):
+        """Register a function as a plug-in"""
+        PLUGINS[func.__name__] = func
+        return func
+    
+    @register
+    def say_hello():
+        print("hello")
+
+    @register
+    def say_goodbye():
+        print("good bye")
+
+
+    if __name__ == "__main__":
+        import random
+        say = random.choice(["say_hello", "say_goodbye"])
+        PLUGINS[say]() ## 调用函数
+
+缓存装饰器
+-------------
+
+LRU，即 Least Recently Used，最近最少使用，是一种常用的页面置换算法，选择最近最久未使用的页面予以淘汰。
+
+``lru_cache`` 根据参数缓存每次函数调用结果，对于相同参数的，无需重新函数计算，直接返回之前缓存的返回值。 ``maxsize`` 指定了缓存的长度， ``typed=True`` 则不同类型的函数参数将单独缓存，例如，f(3)和f(3.0)将视为不同的调用。
+
+.. code-block:: python
+    :linenos:
+
+    import functools
+
+    @functools.lru_cache(maxsize=128, typed=False)
+    def fibonacci(n:int) -> int:
+        if n == 0: return 0
+        elif n == 1: return 1
+        elif n > 1: 
+            return fibonacci(n-2) + fibonacci(n-1)
+
+
 参考资料
 ---------------
 
@@ -150,3 +200,7 @@
 2. 使用@property
 
   https://www.liaoxuefeng.com/wiki/897692888725344/923030547069856
+
+3. Python 装饰器入门(上)
+
+  https://www.cnblogs.com/flashBoxer/p/9847521.html

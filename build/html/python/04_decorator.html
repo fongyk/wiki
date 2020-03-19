@@ -115,7 +115,9 @@
 <li class="toctree-l4"><a class="reference internal" href="#id6">4.3.3. &#64;property</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id7">4.4. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#register">4.4. &#64;register</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">4.5. 缓存装饰器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">4.6. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="05_iterator.html">5. 迭代器和生成器</a></li>
@@ -132,6 +134,9 @@
 <li class="toctree-l2"><a class="reference internal" href="16_newInit.html">16. __new__ 和 __init__</a></li>
 <li class="toctree-l2"><a class="reference internal" href="17_pip.html">17. pip</a></li>
 <li class="toctree-l2"><a class="reference internal" href="18_exception.html">18. 异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_multiprocessing.html">19. multiprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_logging.html">20. logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_pyM.html">21. python -m</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
@@ -395,8 +400,75 @@
 <p>只定义 <code class="docutils literal notranslate"><span class="pre">getter</span></code> 方法，不定义 <code class="docutils literal notranslate"><span class="pre">setter</span></code> 方法就是一个只读属性。</p>
 </div>
 </div>
+<div class="section" id="register">
+<h2>4.4. &#64;register<a class="headerlink" href="#register" title="Permalink to this headline">¶</a></h2>
+<p>装饰器不是必须要修饰被装饰的函数，它还可以简单地注册一个函数，并将其解包返回。例如，可以使用它来创建一个轻量级插件体系结构:</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">PLUGINS</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Register a function as a plug-in&quot;&quot;&quot;</span>
+    <span class="n">PLUGINS</span><span class="p">[</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span>
+    <span class="k">return</span> <span class="n">func</span>
+
+<span class="nd">@register</span>
+<span class="k">def</span> <span class="nf">say_hello</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
+
+<span class="nd">@register</span>
+<span class="k">def</span> <span class="nf">say_goodbye</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;good bye&quot;</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">random</span>
+    <span class="n">say</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">&quot;say_hello&quot;</span><span class="p">,</span> <span class="s2">&quot;say_goodbye&quot;</span><span class="p">])</span>
+    <span class="n">PLUGINS</span><span class="p">[</span><span class="n">say</span><span class="p">]()</span> <span class="c1">## 调用函数</span>
+</pre></div>
+</td></tr></table></div>
+</div>
 <div class="section" id="id7">
-<h2>4.4. 参考资料<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<h2>4.5. 缓存装饰器<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>LRU，即 Least Recently Used，最近最少使用，是一种常用的页面置换算法，选择最近最久未使用的页面予以淘汰。</p>
+<p><code class="docutils literal notranslate"><span class="pre">lru_cache</span></code> 根据参数缓存每次函数调用结果，对于相同参数的，无需重新函数计算，直接返回之前缓存的返回值。 <code class="docutils literal notranslate"><span class="pre">maxsize</span></code> 指定了缓存的长度， <code class="docutils literal notranslate"><span class="pre">typed=True</span></code> 则不同类型的函数参数将单独缓存，例如，f(3)和f(3.0)将视为不同的调用。</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">functools</span>
+
+<span class="nd">@functools.lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">typed</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id8">
+<h2>4.6. 参考资料<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>详解Python的装饰器</li>
 </ol>
@@ -407,6 +479,11 @@
 </ol>
 <blockquote>
 <div><a class="reference external" href="https://www.liaoxuefeng.com/wiki/897692888725344/923030547069856">https://www.liaoxuefeng.com/wiki/897692888725344/923030547069856</a></div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Python 装饰器入门(上)</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/flashBoxer/p/9847521.html">https://www.cnblogs.com/flashBoxer/p/9847521.html</a></div></blockquote>
 </div>
 </div>
 

@@ -172,6 +172,79 @@ Python3.3 之后引入了命名空间包（namespace packages）的概念，目�
       File "<stdin>", line 1, in <module>
     AttributeError: module 'datetime.datetime' has no attribute 'now'
 
+相对路径导入
+-------------
+
+``from .Module import func`` 表示从当前目录的模块中导入。
+
+``from ..PKG.Module import func`` 表示从上一级目录的包中导入。
+
+错误::
+
+    ImportError: attempted relative import with no known parent package.
+
+这是因为相对导入发生在包的内部，此时在包的内部运行该模块会报错，应该在项目的顶层目录运行主程序，通过主程序调用该模块。
+
+getattr
+-------------
+
+``getattr()`` 函数用于返回一个对象属性值::
+
+  getattr(object, name[, default])
+
+参数：
+
+  - object： 对象。
+
+  - name：字符串，对象属性。
+
+  - default：默认返回值，如果不提供该参数，在没有对应属性时，将触发 ``AttributeError`` 。
+
+.. code-block:: python
+    :linenos:
+
+    >>>class A(object):
+    ...     bar = 1
+    ... 
+    >>> a = A()
+    >>> getattr(a, 'bar')
+    1
+    >>> getattr(a, 'bar2')
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    AttributeError: 'A' object has no attribute 'bar2'
+    >>> getattr(a, 'bar2', 3)
+    3
+
+在 ``__all__`` 中添加包名之后，可以通过 ``getattr()`` 直接调用相应的模块。
+
+建立新的包如下::
+
+    pkg/
+    ├── func.py
+    └── __init__.py
+
+**func.py** 内容为::
+
+    def say():
+        print("hello")
+
+**__init__.py** 内容为::
+
+    from .func import *
+
+    __all__ = ["say",]
+
+
+.. code-block:: python
+    :linenos:
+
+    >>> import pkg
+    >>> getattr(pkg, "say")
+    <function say at 0x7f6134fdf560>
+    >>> getattr(pkg, "say")()
+    hello
+
 
 参考资料
 ------------
@@ -204,3 +277,7 @@ Python3.3 之后引入了命名空间包（namespace packages）的概念，目�
 7. 详解 Python import 机制 (一):import 中的基本概念
 
   https://zhuanlan.zhihu.com/p/87238735
+
+8. Python getattr() 函数
+
+  https://www.runoob.com/python/python-func-getattr.html

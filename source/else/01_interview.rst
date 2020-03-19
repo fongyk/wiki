@@ -4174,6 +4174,10 @@ Python
 
       https://blog.csdn.net/wangdongwei0/article/details/83110305
 
+  - 实例分割--Mask RCNN详解（ROI Align / Loss Fun）
+
+      https://blog.csdn.net/qinghuaci666/article/details/80900882
+
   - ROI-Align 原理理解
 
       https://blog.csdn.net/gusui7202/article/details/84799535

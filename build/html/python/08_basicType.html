@@ -130,6 +130,7 @@
 <li class="toctree-l2"><a class="reference internal" href="19_multiprocessing.html">19. multiprocessing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20_logging.html">20. logging</a></li>
 <li class="toctree-l2"><a class="reference internal" href="21_pyM.html">21. python -m</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_buildIn.html">22. 内建属性</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
@@ -267,10 +268,66 @@
 </div>
 </li>
 <li><p class="first"><strong>tuple</strong></p>
-<ul class="simple">
-<li>索引、切片：[ind]，[first:last]获取区间 [first, last) 内的元素。</li>
-<li>元组是不可变对象，类似于常量类型。</li>
+<ul>
+<li><p class="first">索引、切片：[ind]，[first:last]获取区间 [first, last) 内的元素。</p>
+</li>
+<li><p class="first">元组的元素不可改变，类似于常量类型。</p>
+</li>
+<li><p class="first"><strong>collections.namedtuple</strong> ：构造一个带字段名的元组，可以通过索引、切片或属性名称进行访问。:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="n">typename</span><span class="p">,</span> <span class="n">field_names</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rename</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
 </ul>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">User</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">])</span> <span class="c1">## 或 User = namedtuple(&#39;User&#39;, &#39;name age id&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;tester&#39;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="s1">&#39;22&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;464643123&#39;</span><span class="p">)</span> <span class="c1">## 或 user = User(&#39;tester&#39;, &#39;22&#39;, &#39;464643123&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">user</span>
+<span class="go">User(name=&#39;tester&#39;, age=&#39;22&#39;, id=&#39;464643123&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">_fields</span>
+<span class="go">(&#39;name&#39;, &#39;age&#39;, &#39;id&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">name</span>
+<span class="go">&#39;tester&#39;</span>
+
+<span class="go">## 使用 _replace 修改属性，返回新的对象</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">_replace</span><span class="p">(</span><span class="n">age</span><span class="o">=</span><span class="s1">&#39;12&#39;</span><span class="p">)</span>
+<span class="go">User(name=&#39;tester&#39;, age=&#39;12&#39;, id=&#39;464643123&#39;)</span>
+
+<span class="go">## 使用 _asdict 将元组转换为有序字典</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">_asdict</span><span class="p">()</span>
+<span class="go">OrderedDict([(&#39;name&#39;, &#39;tester&#39;), (&#39;age&#39;, &#39;22&#39;), (&#39;id&#39;, &#39;464643123&#39;)])</span>
+
+<span class="go">## 使用 _make 用列表构造元组</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">_make</span><span class="p">([</span><span class="s1">&#39;fong&#39;</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="s1">&#39;000000000&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">user</span>
+<span class="go">User(name=&#39;fong&#39;, age=25, id=&#39;000000000&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">user</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">(&#39;fong&#39;, 25)</span>
+</pre></div>
+</td></tr></table></div>
 </li>
 <li><p class="first"><strong>list</strong></p>
 <ul class="simple">
@@ -343,10 +400,11 @@
 </li>
 <li><p class="first"><strong>dict</strong></p>
 <ul class="simple">
-<li>获取：keys()，values()，items()。</li>
+<li>获取：keys()，values()，items()。在 Python3 中返回的不再是列表，而是 dict_keys、dict_values、dict_items，需要手动转换为列表。</li>
 <li>清除：clear()</li>
-<li>访问：get(key)，不存在时返回None。</li>
-<li>更新：update(d)，把另一个字典d中的项添加到当前字典。</li>
+<li>删除：pop(key)，返回健对应的值，并删除键所对应的键值对。</li>
+<li>访问：get(key)，不存在时返回 None。</li>
+<li>更新：update(d)，把另一个字典 d 中的项添加到当前字典。</li>
 <li>浅复制：copy()</li>
 </ul>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -394,7 +452,7 @@
 </td></tr></table></div>
 <ul class="simple">
 <li><strong>collections.OrderedDict</strong> ：按关键字排序的字典。</li>
-<li><strong>collections.defaultdict</strong> ：defaultdict类使用一种给定数据类型来初始化。当所访问的key不存在的时候，会实例化一个value作为默认值。因此，判断某个key是否存在，可使用get(key)。</li>
+<li><strong>collections.defaultdict</strong> ：defaultdict 类使用一种给定数据类型来初始化。当所访问的 key 不存在的时候，会实例化一个 value 作为默认值。因此，判断某个 key 是否存在，可使用 get(key)。</li>
 </ul>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -413,7 +471,7 @@
 </td></tr></table></div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">如果一个defaultdict必须包含给定的key，则首先要 <strong>显式</strong> 地对所有的key进行访问和初始化。毕竟defaultdict只会为访问过的key关联一个默认值。</p>
+<p class="last">如果一个 defaultdict 必须包含给定的 key，则首先要 <strong>显式</strong> 地对所有的 key 进行访问和初始化。毕竟 defaultdict 只会为访问过的 key 关联一个默认值。</p>
 </div>
 </li>
 <li><p class="first"><strong>set</strong></p>
@@ -663,6 +721,11 @@
 </ol>
 <blockquote>
 <div><a class="reference external" href="https://www.cnblogs.com/mokero/p/6662202.html">https://www.cnblogs.com/mokero/p/6662202.html</a></div></blockquote>
+<ol class="arabic simple" start="6">
+<li>Python namedtuple</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.runoob.com/note/25726">https://www.runoob.com/note/25726</a></div></blockquote>
 </div>
 </div>
 

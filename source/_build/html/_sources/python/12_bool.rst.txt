@@ -159,6 +159,31 @@
   零的布尔值是False，同时也等于False。
 
 
+any 和 all
+---------------
+
+当 ``x`` 的任一元素的布尔测试为 ``True`` ， ``any(x)`` 返回 ``True`` ，否则返回 ``False`` 。
+
+当 ``x`` 的所有元素的布尔测试为 ``True`` ， ``all(x)`` 返回 ``True`` ，否则返回 ``False`` 。
+
+.. code-block:: python
+  :linenos:
+
+  >>> x = [1, 2, '', 3]
+  >>> all(x)
+  False
+  >>> any(x)
+  True
+  >>> x = [0, 0, 0, 0]
+  >>> any(x)
+  False
+  >>> all([])
+  True
+  >>> all([[]])
+  False
+
+
+
 参考资料
 -----------
 

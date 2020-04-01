@@ -58,7 +58,41 @@
 
   - 索引、切片：[ind]，[first:last]获取区间 [first, last) 内的元素。
   
-  - 元组是不可变对象，类似于常量类型。
+  - 元组的元素不可改变，类似于常量类型。
+
+  - **collections.namedtuple** ：构造一个带字段名的元组，可以通过索引、切片或属性名称进行访问。::
+
+      collections.namedtuple(typename, field_names, verbose=False, rename=False) 
+
+  .. code-block:: python
+    :linenos:
+
+    >>> from collections import namedtuple
+    >>> User = namedtuple('User', ['name', 'age', 'id']) ## 或 User = namedtuple('User', 'name age id')
+    >>> user = User(name='tester', age='22', id='464643123') ## 或 user = User('tester', '22', '464643123')
+    >>> user
+    User(name='tester', age='22', id='464643123')
+    >>> user._fields
+    ('name', 'age', 'id')
+    >>> user.name
+    'tester'
+
+    ## 使用 _replace 修改属性，返回新的对象
+    >>> user._replace(age='12')
+    User(name='tester', age='12', id='464643123')
+
+    ## 使用 _asdict 将元组转换为有序字典
+    >>> user._asdict()
+    OrderedDict([('name', 'tester'), ('age', '22'), ('id', '464643123')])
+
+    ## 使用 _make 用列表构造元组
+    >>> user = User._make(['fong', 25, '000000000'])
+    >>> user
+    User(name='fong', age=25, id='000000000')
+    >>> user[:2]
+    ('fong', 25)
+
+
 
 - **list**
 
@@ -113,13 +147,15 @@
 
 - **dict**
 
-  - 获取：keys()，values()，items()。
+  - 获取：keys()，values()，items()。在 Python3 中返回的不再是列表，而是 dict_keys、dict_values、dict_items，需要手动转换为列表。
 
   - 清除：clear()
 
-  - 访问：get(key)，不存在时返回None。
+  - 删除：pop(key)，返回健对应的值，并删除键所对应的键值对。
 
-  - 更新：update(d)，把另一个字典d中的项添加到当前字典。
+  - 访问：get(key)，不存在时返回 None。
+
+  - 更新：update(d)，把另一个字典 d 中的项添加到当前字典。
 
   - 浅复制：copy()
 
@@ -150,7 +186,7 @@
 
   - **collections.OrderedDict** ：按关键字排序的字典。
 
-  - **collections.defaultdict** ：defaultdict类使用一种给定数据类型来初始化。当所访问的key不存在的时候，会实例化一个value作为默认值。因此，判断某个key是否存在，可使用get(key)。
+  - **collections.defaultdict** ：defaultdict 类使用一种给定数据类型来初始化。当所访问的 key 不存在的时候，会实例化一个 value 作为默认值。因此，判断某个 key 是否存在，可使用 get(key)。
 
   .. code-block:: python
     :linenos:
@@ -165,7 +201,7 @@
 
   .. warning::
 
-    如果一个defaultdict必须包含给定的key，则首先要 **显式** 地对所有的key进行访问和初始化。毕竟defaultdict只会为访问过的key关联一个默认值。
+    如果一个 defaultdict 必须包含给定的 key，则首先要 **显式** 地对所有的 key 进行访问和初始化。毕竟 defaultdict 只会为访问过的 key 关联一个默认值。
 
 - **set**
 
@@ -345,3 +381,7 @@
 5. Python学习日记之字典深复制与浅复制
 
   https://www.cnblogs.com/mokero/p/6662202.html
+
+6. Python namedtuple
+
+  https://www.runoob.com/note/25726

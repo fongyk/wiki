@@ -118,7 +118,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#id2">12.1. 逻辑运算</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">12.2. 成员运算</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id4">12.3. 布尔测试</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">12.4. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#any-all">12.4. any 和 all</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">12.5. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="13_name.html">13. 命名规范</a></li>
@@ -128,6 +129,9 @@
 <li class="toctree-l2"><a class="reference internal" href="17_pip.html">17. pip</a></li>
 <li class="toctree-l2"><a class="reference internal" href="18_exception.html">18. 异常</a></li>
 <li class="toctree-l2"><a class="reference internal" href="19_multiprocessing.html">19. multiprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_logging.html">20. logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_pyM.html">21. python -m</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_buildIn.html">22. 内建属性</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
@@ -425,8 +429,38 @@
 <p class="last">零的布尔值是False，同时也等于False。</p>
 </div>
 </div>
+<div class="section" id="any-all">
+<h2>12.4. any 和 all<a class="headerlink" href="#any-all" title="Permalink to this headline">¶</a></h2>
+<p>当 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的任一元素的布尔测试为 <code class="docutils literal notranslate"><span class="pre">True</span></code> ， <code class="docutils literal notranslate"><span class="pre">any(x)</span></code> 返回 <code class="docutils literal notranslate"><span class="pre">True</span></code> ，否则返回 <code class="docutils literal notranslate"><span class="pre">False</span></code> 。</p>
+<p>当 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的所有元素的布尔测试为 <code class="docutils literal notranslate"><span class="pre">True</span></code> ， <code class="docutils literal notranslate"><span class="pre">all(x)</span></code> 返回 <code class="docutils literal notranslate"><span class="pre">True</span></code> ，否则返回 <code class="docutils literal notranslate"><span class="pre">False</span></code> 。</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">all</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">any</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">any</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">all</span><span class="p">([])</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">all</span><span class="p">([[]])</span>
+<span class="go">False</span>
+</pre></div>
+</td></tr></table></div>
+</div>
 <div class="section" id="id5">
-<h2>12.4. 参考资料<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<h2>12.5. 参考资料<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Python基本数据类型</li>
 </ol>

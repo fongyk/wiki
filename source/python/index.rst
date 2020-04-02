@@ -27,3 +27,5 @@ Python
     20_logging.rst
     21_pyM.rst
     22_buildIn.rst
+    23_glob.rst
+    24_pyLinux.rst

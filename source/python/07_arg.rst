@@ -158,6 +158,29 @@ arg，\*args，\*\*kwargs
   y: 1
   kwargs: {'var1': 1, 'var2': 'b'}
 
+命名关键字参数
+---------------
+
+Python3 的命名关键字参数（keyword-only argument），以独立的 ``*`` 为标记，强制用户在调用函数的时候必须写出 ``*`` 之后的参数名。
+
+.. code-block:: python
+  :linenos:
+
+  >>> def foo(a, *, b=0, c):
+  ...     print(a, b, c)
+  ...
+  >>> foo(1,2,3)
+  Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+  TypeError: foo() takes 1 positional argument but 3 were given
+  >>> foo(1,c=2,b=3)
+  1 3 2
+  >>> foo(1, c=2)
+  1 0 2
+  >>> foo(1, b=2)
+  Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+  TypeError: foo() missing 1 required keyword-only argument: 'c'
 
 参考资料
 ---------------
@@ -169,3 +192,7 @@ arg，\*args，\*\*kwargs
 2. python函数——形参中的：\*args和\*\*kwargs
 
   https://www.cnblogs.com/xuyuanyuan123/p/6674645.html
+
+3. 函数的参数
+
+  https://www.liaoxuefeng.com/wiki/1016959663602400/1017261630425888

@@ -1,6 +1,10 @@
 Python
 ==========
 
+.. note::
+
+    由于历史遗留问题，文档中很多内容和程序是基于 Python 2.7，部分内容注明了 Python 2 和 Python 3 的区别。
+
 .. toctree::
     :maxdepth: 2
     :numbered: 3

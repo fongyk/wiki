@@ -65,6 +65,14 @@ Tech
 
     https://www.cnblogs.com/cloud-ken/p/9329703.html
 
+- Pytorch 使用 apex 混合精度（FP16 + FP32）加速训练
+
+    https://blog.csdn.net/mrjkzhangma/article/details/100704397
+
+    https://blog.csdn.net/ccbrid/article/details/103207676/
+
+    https://nvidia.github.io/apex/amp.html
+
 
 问题
 -----------

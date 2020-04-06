@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>9. pytorch：add_module &mdash; fong alpha documentation</title>
+  <title>9. pytorch：Module &mdash; fong alpha documentation</title>
   
 
   
@@ -112,16 +112,24 @@
 <li class="toctree-l2"><a class="reference internal" href="03_batchnorm.html">3. Batch Normalization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_overfit.html">4. 过拟合</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">5. pytorch：模型保存与读取</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">6. pytorch: cuda()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">6. pytorch: cuda</a></li>
 <li class="toctree-l2"><a class="reference internal" href="07_backprop.html">7. 反向传播</a></li>
 <li class="toctree-l2"><a class="reference internal" href="08_optimizer.html">8. 优化算法</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">9. pytorch：add_module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#add-module">9.1. add_module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#attribute">9.2. attribute 索引</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id1">9.3. 参考资料</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">9. pytorch：Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#container">9.1. container</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sequential">Sequential</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modulelist">ModuleList</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#moduledict">ModuleDict</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#add-module">9.2. add_module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#attribute">9.3. attribute 索引</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module">9.4. 附：Module 部分实例方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">9.5. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="10_receptivaField.html">10. 特征图与感受野</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_nograd.html">11. pytorch：no_grad()</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
@@ -177,7 +185,7 @@
         
           <li><a href="index.html">深度学习</a> &raquo;</li>
         
-      <li>9. pytorch：add_module</li>
+      <li>9. pytorch：Module</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -196,11 +204,193 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="pytorch-add-module">
-<h1>9. pytorch：add_module<a class="headerlink" href="#pytorch-add-module" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="pytorch-module">
+<h1>9. pytorch：Module<a class="headerlink" href="#pytorch-module" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="container">
+<h2>9.1. container<a class="headerlink" href="#container" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> 是 Pytorch 中提供的一个类，是所有神经网络模块的基类。自定义的模块要继承这个基类。</p>
+<p>下面介绍三个容器，它们都继承自 <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> ：</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>Sequential</strong></li>
+<li><strong>ModuleList</strong></li>
+<li><strong>ModuleDict</strong></li>
+</ul>
+</div></blockquote>
+<div class="section" id="sequential">
+<h3>Sequential<a class="headerlink" href="#sequential" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>当模型的前向计算为简单 <strong>串联</strong> 各个层的计算时，<code class="docutils literal notranslate"><span class="pre">Sequential</span></code> 类可以通过更加简单的方式定义模型。这正是 <code class="docutils literal notranslate"><span class="pre">Sequential</span></code> 类的目的：它可以接收一个子模块的有序字典（OrderedDict）或者一系列子模块作为参数来逐一添加 <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> 的实例，而模型的前向计算就是将这些实例 <strong>按添加的顺序</strong> 逐一计算。</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># Example of using Sequential</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+          <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span>
+          <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+          <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span>
+          <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+        <span class="p">)</span>
+
+<span class="c1"># Example of using Sequential with OrderedDict</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">OrderedDict</span><span class="p">([</span>
+          <span class="p">(</span><span class="s1">&#39;conv1&#39;</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">)),</span>
+          <span class="p">(</span><span class="s1">&#39;relu1&#39;</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()),</span>
+          <span class="p">(</span><span class="s1">&#39;conv2&#39;</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="mi">5</span><span class="p">)),</span>
+          <span class="p">(</span><span class="s1">&#39;relu2&#39;</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">())</span>
+        <span class="p">]))</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="modulelist">
+<h3>ModuleList<a class="headerlink" href="#modulelist" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">(</span><span class="n">modules</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ModuleList</span></code> 接收一个子模块的列表作为输入，但 <code class="docutils literal notranslate"><span class="pre">ModuleList</span></code> 仅仅是一个储存各种模块的列表，这些模块之间没有联系也没有顺序（所以不用保证相邻层的输入输出维度匹配），需要在 <code class="docutils literal notranslate"><span class="pre">forward</span></code> 中定义前向计算的顺序。</p>
+<p><code class="docutils literal notranslate"><span class="pre">ModuleList</span></code> 不同于一般的 Python list，加入到 <code class="docutils literal notranslate"><span class="pre">ModuleList</span></code> 里面的所有模块的参数会被自动添加（注册）到整个网络中。</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyModule</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MyModule</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linears</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">([</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)])</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="c1"># ModuleList can act as an iterable, or be indexed using ints</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">linears</span><span class="p">):</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linears</span><span class="p">[</span><span class="n">i</span> <span class="o">//</span> <span class="mi">2</span><span class="p">](</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">l</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</td></tr></table></div>
+<p>方法：</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">append(module)</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">extend(modules)</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">insert(index,</span> <span class="pre">module)</span></code></li>
+</ul>
+<p>参数中的 <code class="docutils literal notranslate"><span class="pre">module</span></code> 可以使 Pytorch 内建模块，也可以是自定义的继承自 <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> 的模块。</p>
+</div>
+<div class="section" id="moduledict">
+<h3>ModuleDict<a class="headerlink" href="#moduledict" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ModuleDict</span><span class="p">(</span><span class="n">modules</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ModuleDict</span></code> 接收一个子模块的字典作为输入。和 <code class="docutils literal notranslate"><span class="pre">ModuleList</span></code> 一样，<code class="docutils literal notranslate"><span class="pre">ModuleDict</span></code> 实例仅仅是存放了一些模块的字典，并没有定义 <code class="docutils literal notranslate"><span class="pre">forward</span></code> 函数需要自己定义。同样，<code class="docutils literal notranslate"><span class="pre">ModuleDict</span></code> 也与 Python dict 有所不同， <code class="docutils literal notranslate"><span class="pre">ModuleDict</span></code> 里的所有模块的参数会被自动添加到整个网络中。</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyModule</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MyModule</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">choices</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleDict</span><span class="p">({</span>
+                <span class="s1">&#39;conv&#39;</span><span class="p">:</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+                <span class="s1">&#39;pool&#39;</span><span class="p">:</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">activations</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleDict</span><span class="p">([</span>
+                <span class="p">[</span><span class="s1">&#39;lrelu&#39;</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">LeakyReLU</span><span class="p">()],</span>
+                <span class="p">[</span><span class="s1">&#39;prelu&#39;</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">PReLU</span><span class="p">()]</span>
+        <span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">choice</span><span class="p">,</span> <span class="n">act</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="n">choice</span><span class="p">](</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">activations</span><span class="p">[</span><span class="n">act</span><span class="p">](</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CombinedROIHeads</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">ModuleDict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Combines a set of individual heads (for box prediction or masks) into a single head.</span>
+<span class="sd">    -- from maskrcnn_benchmark</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">heads</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CombinedROIHeads</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">heads</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">heads</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">heads</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s2">&quot;box&quot;</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">)))</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">heads</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s2">&quot;mask&quot;</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">)))</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">heads</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s2">&quot;keypoint&quot;</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">True</span><span class="p">)))</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">roi_heads</span> <span class="o">=</span> <span class="n">CombinedROIHeads</span><span class="p">(</span><span class="n">heads</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">roi_heads</span>
+<span class="n">CombinedROIHeads</span><span class="p">(</span>
+  <span class="p">(</span><span class="n">box</span><span class="p">):</span> <span class="n">Conv2d</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+  <span class="p">(</span><span class="n">mask</span><span class="p">):</span> <span class="n">Conv2d</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+  <span class="p">(</span><span class="n">keypoint</span><span class="p">):</span> <span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>方法：</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">clear()</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">items()</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">keys()</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">values()</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">pop(key)</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">update(modules)</span></code> <code class="docutils literal notranslate"><span class="pre">modules</span> <span class="pre">(iterable)</span></code> 是值为 <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> 的字典类型或包含 <code class="docutils literal notranslate"><span class="pre">(string,</span> <span class="pre">nn.Module)</span></code> 对的可迭代类型。</li>
+</ul>
+</div>
+</div>
 <div class="section" id="add-module">
-<h2>9.1. add_module<a class="headerlink" href="#add-module" title="Permalink to this headline">¶</a></h2>
-<p>如果有一个元素是 <code class="docutils literal notranslate"><span class="pre">Module</span></code> 的列表，直接赋值给一个模型的属性（attribute），并不会让给列表内的 Modules 立即成为模型的模块。</p>
+<h2>9.2. add_module<a class="headerlink" href="#add-module" title="Permalink to this headline">¶</a></h2>
+<p>如果有一个元素是 <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> 的列表，直接赋值给一个模型的属性（attribute），并不会让列表内的 Modules 立即注册（register）为模型的模块。</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -227,10 +417,8 @@
 <span class="go">)</span>
 </pre></div>
 </td></tr></table></div>
-<p>简单地，可以使用 <code class="docutils literal notranslate"><span class="pre">nn.Sequential(*module_list)</span></code> 将列表转换成 <strong>串联</strong> 的模块。一方面，这样会使得模块的名字被默认地用数字命名；
-另一方面，如果需要的不是串联结构，这样的做法行不通。</p>
-<p>使用 <code class="docutils literal notranslate"><span class="pre">add_module</span></code> 可以自由地将列表的元素变成模型的模块。 <code class="docutils literal notranslate"><span class="pre">add_module</span></code> 建立了对 <code class="docutils literal notranslate"><span class="pre">Module</span></code> 的引用，并不是添加了新的对象。
-因此，对引用的修改会直接修改列表内的 <code class="docutils literal notranslate"><span class="pre">Module</span></code> 。</p>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">add_module</span></code> 可以自由地将列表的元素变成模型的模块。 <code class="docutils literal notranslate"><span class="pre">add_module</span></code> 建立了对 <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> 的引用，并不是添加了新的对象。
+因此，对引用的修改会直接修改列表内的 <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> 。</p>
 <p>加入之后，可以通过模型的名字来进行访问：<code class="docutils literal notranslate"><span class="pre">_modules[name]</span></code> 。<code class="docutils literal notranslate"><span class="pre">_modules</span></code> 是一个顺序字典（OrderedDict）。</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -318,7 +506,7 @@
 </td></tr></table></div>
 </div>
 <div class="section" id="attribute">
-<h2>9.2. attribute 索引<a class="headerlink" href="#attribute" title="Permalink to this headline">¶</a></h2>
+<h2>9.3. attribute 索引<a class="headerlink" href="#attribute" title="Permalink to this headline">¶</a></h2>
 <p>除了使用 <code class="docutils literal notranslate"><span class="pre">_modules[name]</span></code> 访问模块，还可以将 name 转换成属性（attribute）的索引，通过下标的形式访问。</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -421,8 +609,37 @@
 </pre></div>
 </td></tr></table></div>
 </div>
+<div class="section" id="module">
+<h2>9.4. 附：Module 部分实例方法<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">add_module(name,</span> <span class="pre">module)</span></code> 向当前模块中加入新的子模块。</li>
+<li><code class="docutils literal notranslate"><span class="pre">apply(fn)</span></code> 循环地向每个子模块（ <code class="docutils literal notranslate"><span class="pre">.children()</span></code> ）及其自身施加 <code class="docutils literal notranslate"><span class="pre">fn</span></code> 函数，典型的用法包括初始化模型参数。</li>
+<li><code class="docutils literal notranslate"><span class="pre">buffers(recurse=True)</span></code> 返回模块缓存的迭代器，如 BatchNorm 需要缓存 running_mean 和 running_var。</li>
+<li><code class="docutils literal notranslate"><span class="pre">named_buffers(prefix='',</span> <span class="pre">recurse=True)</span></code> 返回模块缓存的迭代器，迭代器会同时产生缓存的名字和缓存的数据。</li>
+<li><code class="docutils literal notranslate"><span class="pre">children()</span></code> 返回直接子模块的迭代器。</li>
+<li><code class="docutils literal notranslate"><span class="pre">named_children()</span></code> 返回直接子模块的迭代器，迭代器会同时产生模块的名字和模块自身。</li>
+<li><code class="docutils literal notranslate"><span class="pre">modules()</span></code> 返回所有子模块的迭代器。</li>
+<li><code class="docutils literal notranslate"><span class="pre">named_modules(memo=None,</span> <span class="pre">prefix='')</span></code> 返回所有子模块的迭代器，迭代器会同时产生模块的名字和模块自身。</li>
+<li><code class="docutils literal notranslate"><span class="pre">cpu()</span></code> 将所有的模型参数和缓冲移到 CPU。</li>
+<li><code class="docutils literal notranslate"><span class="pre">cuda(device=None)</span></code> 将所有的模型参数和缓冲移到 GPU，必须在构造优化器之前调用。</li>
+<li><code class="docutils literal notranslate"><span class="pre">double()</span></code> 将所有的浮点型参数和缓存强制转换为 double 类型。</li>
+<li><code class="docutils literal notranslate"><span class="pre">float()</span></code> 将所有的参数和缓存强制转换为浮点类型。</li>
+<li><code class="docutils literal notranslate"><span class="pre">half()</span></code> 将所有的参数和缓存强制转换为半浮点类型。</li>
+<li><code class="docutils literal notranslate"><span class="pre">train(mode=True)</span></code> 将模块设置为训练模式。</li>
+<li><code class="docutils literal notranslate"><span class="pre">eval()</span></code> 与 <code class="docutils literal notranslate"><span class="pre">train(False)</span></code> 等效。</li>
+<li><code class="docutils literal notranslate"><span class="pre">forward(*input)</span></code> 定义前向传播的计算过程。</li>
+<li><code class="docutils literal notranslate"><span class="pre">state_dict(destination=None,</span> <span class="pre">prefix='',</span> <span class="pre">keep_vars=False)</span></code> 返回包含模块完整状态的字典，字典中同时包含参数和持续性缓存。</li>
+<li><code class="docutils literal notranslate"><span class="pre">load_state_dict(state_dict,</span> <span class="pre">strict=True)</span></code> 从状态字典中将参数和缓存复制到该模块及其子模块中；如果 <code class="docutils literal notranslate"><span class="pre">strict=True</span></code> , 那么 <code class="docutils literal notranslate"><span class="pre">state_dict</span></code> 的键必须和该模块的 <code class="docutils literal notranslate"><span class="pre">state_dict()</span></code> 函数返回的键一致。</li>
+<li><code class="docutils literal notranslate"><span class="pre">parameters(recurse=True)</span></code> 返回模块参数的迭代器，通常传递给优化器。</li>
+<li><code class="docutils literal notranslate"><span class="pre">named_parameters(prefix='',</span> <span class="pre">recurse=True)</span></code> 返回模块参数的迭代器，迭代器将同时产生参数的名称和参数自身。</li>
+<li><code class="docutils literal notranslate"><span class="pre">register_parameter(name,</span> <span class="pre">param)</span></code> 向模块中加入参数。</li>
+<li><code class="docutils literal notranslate"><span class="pre">to(*args,</span> <span class="pre">**kwargs)</span></code> 移动或强制转换参数和缓存。</li>
+<li><code class="docutils literal notranslate"><span class="pre">type(dst_type)</span></code> 将所有的参数和缓存强制转换为 <code class="docutils literal notranslate"><span class="pre">dst_type</span></code> （python:type or string） 类型。</li>
+<li><code class="docutils literal notranslate"><span class="pre">zero_grad()</span></code> 将所有模型参数的梯度设置为0。</li>
+</ul>
+</div>
 <div class="section" id="id1">
-<h2>9.3. 参考资料<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>9.5. 参考资料<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>pytorch documentation</li>
 </ol>
@@ -433,6 +650,21 @@
 </ol>
 <blockquote>
 <div><a class="reference external" href="https://discuss.pytorch.org/t/list-of-nn-module-in-a-nn-module/219">https://discuss.pytorch.org/t/list-of-nn-module-in-a-nn-module/219</a></div></blockquote>
+<ol class="arabic simple" start="3">
+<li>模型构造</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/sdu20112013/p/12132786.html">https://www.cnblogs.com/sdu20112013/p/12132786.html</a></div></blockquote>
+<ol class="arabic simple" start="4">
+<li>TORCH.NN</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://pytorch.org/docs/stable/nn.html">https://pytorch.org/docs/stable/nn.html</a></div></blockquote>
+<ol class="arabic simple" start="5">
+<li>看pytorch文档学深度学习——Containers</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://zhuanlan.zhihu.com/p/98760838">https://zhuanlan.zhihu.com/p/98760838</a></div></blockquote>
 </div>
 </div>
 

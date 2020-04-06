@@ -47,7 +47,7 @@
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="6. pytorch: cuda()" href="06_cuda.html" />
+    <link rel="next" title="6. pytorch: cuda" href="06_cuda.html" />
     <link rel="prev" title="4. 过拟合" href="04_overfit.html" /> 
 </head>
 
@@ -114,15 +114,16 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">5. pytorch：模型保存与读取</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">5.1. 简单</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">5.2. 详细</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#load">5.3. load部分参数</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">5.4. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">5.3. 导入部分参数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">5.4. 参考资料</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">6. pytorch: cuda()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">6. pytorch: cuda</a></li>
 <li class="toctree-l2"><a class="reference internal" href="07_backprop.html">7. 反向传播</a></li>
 <li class="toctree-l2"><a class="reference internal" href="08_optimizer.html">8. 优化算法</a></li>
-<li class="toctree-l2"><a class="reference internal" href="09_addModule.html">9. pytorch：add_module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_addModule.html">9. pytorch：Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="10_receptivaField.html">10. 特征图与感受野</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_nograd.html">11. pytorch：no_grad()</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
@@ -208,7 +209,7 @@
 <span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;model.pkl&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>这种方法存储的模型包括了模型框架及模型参数，一般存取的pkl文件较大。</p>
+<p>这种方法存储的模型包括了模型框架及模型参数等，存取的 pkl 文件较大。</p>
 </div>
 <div class="section" id="id2">
 <h2>5.2. 详细<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
@@ -295,25 +296,29 @@
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="section" id="load">
-<h2>5.3. load部分参数<a class="headerlink" href="#load" title="Permalink to this headline">¶</a></h2>
-<p>当我们只需要从 <code class="docutils literal notranslate"><span class="pre">state_dict()</span></code> load部分模型参数是，可以采用如下方法：</p>
+<div class="section" id="id3">
+<h2>5.3. 导入部分参数<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>当我们只需要从 <code class="docutils literal notranslate"><span class="pre">state_dict()</span></code> 导入部分模型参数时，可以采用如下方法：</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
 5
 6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># args has the model name, num classes and other irrelevant stuff</span>
-<span class="n">pretrained_state</span> <span class="o">=</span> <span class="n">model_zoo</span><span class="o">.</span><span class="n">load_url</span><span class="p">(</span><span class="n">model_names</span><span class="p">[</span><span class="n">args</span><span class="o">.</span><span class="n">arch</span><span class="p">])</span>
-<span class="n">model_state</span> <span class="o">=</span> <span class="n">my_model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()</span>
-<span class="n">pretrained_state</span> <span class="o">=</span> <span class="p">{</span> <span class="n">k</span><span class="p">:</span><span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">pretrained_state</span><span class="o">.</span><span class="n">iteritems</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">model_state</span> <span class="ow">and</span> <span class="n">v</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="n">model_state</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="p">}</span>
-<span class="n">model_state</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">pretrained_state</span><span class="p">)</span>
-<span class="n">my_model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">model_state</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">pretrained_state</span> <span class="o">=</span> <span class="n">model_zoo</span><span class="o">.</span><span class="n">load_url</span><span class="p">(</span><span class="n">model_names</span><span class="p">[</span><span class="n">args</span><span class="o">.</span><span class="n">arch</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">model_state</span> <span class="o">=</span> <span class="n">my_model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">pretrained_state</span> <span class="o">=</span> <span class="p">{</span> <span class="n">k</span><span class="p">:</span><span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">pretrained_state</span><span class="o">.</span><span class="n">iteritems</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">model_state</span> <span class="ow">and</span> <span class="n">v</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="n">model_state</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">model_state</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">pretrained_state</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">my_model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">model_state</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><code class="docutils literal notranslate"><span class="pre">state_dict()</span></code> 的参数是包含设备信息的，如果 <code class="docutils literal notranslate"><span class="pre">torch.save</span></code> 保存的是 GPU 上的模型的状态，则其参数是在 GPU 上的；相应地， <code class="docutils literal notranslate"><span class="pre">torch.load</span></code> 会默认地将这些参数加载到 GPU 上。为了避免 GPU 显存耗尽，可以使用 <code class="docutils literal notranslate"><span class="pre">torch.load(checkpoint,</span> <span class="pre">map_location='cpu')</span></code> 先将这些参数加载到 CPU 上，然后再进行 <code class="docutils literal notranslate"><span class="pre">load_state_dict</span></code> 。</p>
 </div>
-<div class="section" id="id3">
-<h2>5.4. 参考资料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id4">
+<h2>5.4. 参考资料<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Saving and loading a model in Pytorch?</li>
 </ol>
@@ -324,6 +329,11 @@
 </ol>
 <blockquote>
 <div><a class="reference external" href="https://discuss.pytorch.org/t/how-to-load-part-of-pre-trained-model/1113/8">https://discuss.pytorch.org/t/how-to-load-part-of-pre-trained-model/1113/8</a></div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Serialization</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://pytorch.org/docs/stable/torch.html#serialization">https://pytorch.org/docs/stable/torch.html#serialization</a></div></blockquote>
 </div>
 </div>
 
@@ -335,7 +345,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="06_cuda.html" class="btn btn-neutral float-right" title="6. pytorch: cuda()" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="06_cuda.html" class="btn btn-neutral float-right" title="6. pytorch: cuda" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="04_overfit.html" class="btn btn-neutral float-left" title="4. 过拟合" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

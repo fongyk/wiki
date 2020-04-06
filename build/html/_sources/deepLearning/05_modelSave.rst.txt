@@ -12,7 +12,8 @@ pytorch：模型保存与读取
   ## load
   model = torch.load('model.pkl')
 
-这种方法存储的模型包括了模型框架及模型参数，一般存取的pkl文件较大。
+这种方法存储的模型包括了模型框架及模型参数等，存取的 pkl 文件较大。
+
 
 详细
 ------------
@@ -63,20 +64,25 @@ pytorch：模型保存与读取
         # epoch, best_precision, loss_train
         return 1, 0, []
 
-load部分参数
+导入部分参数
 ---------------
 
-当我们只需要从 ``state_dict()`` load部分模型参数是，可以采用如下方法：
+当我们只需要从 ``state_dict()`` 导入部分模型参数时，可以采用如下方法：
 
 .. code-block:: python
   :linenos:
 
   # args has the model name, num classes and other irrelevant stuff
-  pretrained_state = model_zoo.load_url(model_names[args.arch])
-  model_state = my_model.state_dict()
-  pretrained_state = { k:v for k,v in pretrained_state.iteritems() if k in model_state and v.size() == model_state[k].size() }
-  model_state.update(pretrained_state)
-  my_model.load_state_dict(model_state)
+  >>> pretrained_state = model_zoo.load_url(model_names[args.arch])
+  >>> model_state = my_model.state_dict()
+  >>> pretrained_state = { k:v for k,v in pretrained_state.iteritems() if k in model_state and v.size() == model_state[k].size() }
+  >>> model_state.update(pretrained_state)
+  >>> my_model.load_state_dict(model_state)
+
+
+.. note::
+
+    ``state_dict()`` 的参数是包含设备信息的，如果 ``torch.save`` 保存的是 GPU 上的模型的状态，则其参数是在 GPU 上的；相应地， ``torch.load`` 会默认地将这些参数加载到 GPU 上。为了避免 GPU 显存耗尽，可以使用 ``torch.load(checkpoint, map_location='cpu')`` 先将这些参数加载到 CPU 上，然后再进行 ``load_state_dict`` 。 
 
 
 参考资料
@@ -89,3 +95,7 @@ load部分参数
 2. How to load part of pre trained model?
 
   https://discuss.pytorch.org/t/how-to-load-part-of-pre-trained-model/1113/8
+
+3. Serialization
+
+  https://pytorch.org/docs/stable/torch.html#serialization

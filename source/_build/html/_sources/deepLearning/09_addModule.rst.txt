@@ -297,7 +297,7 @@ attribute 索引
   [torch.FloatTensor of size 1x2]
 
 附：Module 部分实例方法
-----------------------
+---------------------------------
 
 - ``add_module(name, module)`` 向当前模块中加入新的子模块。
 

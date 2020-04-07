@@ -3,7 +3,7 @@ Python
 
 .. note::
 
-    由于历史遗留问题，文档中很多内容和程序是基于 Python 2.7，部分内容注明了 Python 2 和 Python 3 的区别。
+    由于历史遗留问题，文档的前 19 节中很多内容和程序是基于 Python 2.7，少处注明了 Python 2 和 Python 3 的区别。
 
 .. toctree::
     :maxdepth: 2
@@ -33,3 +33,4 @@ Python
     22_buildIn.rst
     23_glob.rst
     24_pyLinux.rst
+    25_bisect.rst

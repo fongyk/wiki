@@ -132,6 +132,10 @@
 <li class="toctree-l2"><a class="reference internal" href="19_multiprocessing.html">19. multiprocessing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20_logging.html">20. logging</a></li>
 <li class="toctree-l2"><a class="reference internal" href="21_pyM.html">21. python -m</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_buildIn.html">22. 内建属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_glob.html">23. glob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_pyLinux.html">24. Python 执行 linux 命令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_bisect.html">25. bisect</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
@@ -405,11 +409,20 @@
 <h2>2.4. 相对路径导入<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">.Module</span> <span class="pre">import</span> <span class="pre">func</span></code> 表示从当前目录的模块中导入。</p>
 <p><code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">..PKG.Module</span> <span class="pre">import</span> <span class="pre">func</span></code> 表示从上一级目录的包中导入。</p>
-<p>错误:</p>
+<ul>
+<li><p class="first">错误一:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">ImportError</span><span class="p">:</span> <span class="n">attempted</span> <span class="n">relative</span> <span class="kn">import</span> <span class="nn">with</span> <span class="n">no</span> <span class="n">known</span> <span class="n">parent</span> <span class="n">package</span><span class="o">.</span>
 </pre></div>
 </div>
-<p>这是因为相对导入发生在包的内部，此时在包的内部运行该模块会报错，应该在项目的顶层目录运行主程序，通过主程序调用该模块。</p>
+<p>这是因为相对导入发生在包的内部，此时在包的内部直接运行该模块会报错，应该在项目的顶层目录运行主程序，通过主程序（直接/间接）调用该模块。</p>
+</li>
+<li><p class="first">错误二:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">ValueError</span><span class="p">:</span> <span class="n">attempted</span> <span class="n">relative</span> <span class="kn">import</span> <span class="nn">beyond</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">package</span>
+</pre></div>
+</div>
+<p>与主程序同一目录下的包称为顶层包（top-level package），各个顶层包之间不能进行相对调用。</p>
+</li>
+</ul>
 </div>
 <div class="section" id="getattr">
 <h2>2.5. getattr<a class="headerlink" href="#getattr" title="Permalink to this headline">¶</a></h2>
@@ -522,6 +535,11 @@
 </ol>
 <blockquote>
 <div><a class="reference external" href="https://www.runoob.com/python/python-func-getattr.html">https://www.runoob.com/python/python-func-getattr.html</a></div></blockquote>
+<ol class="arabic simple" start="9">
+<li>Python 相对导入attempted relative import beyond top-level package</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/linkenpark/p/10909523.html">https://www.cnblogs.com/linkenpark/p/10909523.html</a></div></blockquote>
 </div>
 </div>
 

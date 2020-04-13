@@ -179,11 +179,17 @@ Python3.3 之后引入了命名空间包（namespace packages）的概念，目�
 
 ``from ..PKG.Module import func`` 表示从上一级目录的包中导入。
 
-错误::
+- 错误一::
 
-    ImportError: attempted relative import with no known parent package.
+      ImportError: attempted relative import with no known parent package.
 
-这是因为相对导入发生在包的内部，此时在包的内部运行该模块会报错，应该在项目的顶层目录运行主程序，通过主程序调用该模块。
+  这是因为相对导入发生在包的内部，此时在包的内部直接运行该模块会报错，应该在项目的顶层目录运行主程序，通过主程序（直接/间接）调用该模块。
+
+- 错误二::
+
+      ValueError: attempted relative import beyond top-level package
+
+  与主程序同一目录下的包称为顶层包（top-level package），各个顶层包之间不能进行相对调用。
 
 getattr
 -------------
@@ -281,3 +287,7 @@ getattr
 8. Python getattr() 函数
 
   https://www.runoob.com/python/python-func-getattr.html
+
+9. Python 相对导入attempted relative import beyond top-level package
+
+  https://www.cnblogs.com/linkenpark/p/10909523.html

@@ -1,0 +1,438 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>17. 枚举类型与共用体 &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'alpha',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="18. 常用函数" href="18_commonFunc.html" />
+    <link rel="prev" title="16. 类的static const成员" href="16_staticconst.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C/C++</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_main.html">1. main函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_array.html">2. 数组</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_typeSize.html">3. 数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_classSize.html">4. 类的大小</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_swap.html">5. 交换函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_arrayArg.html">6. 数组形参</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_pointerReference.html">7. 指针与引用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_overload.html">8. 重载、覆盖、隐藏</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_strcpy.html">9. strcpy函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_cast.html">10. 强制类型转换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html">11. 堆、栈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_argPass.html">12. 参数传递</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_nullClassPtr.html">13. 空类指针</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html">14. static和extern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_classAccess.html">15. public、protected、private</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_staticconst.html">16. 类的static const成员</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">17. 枚举类型与共用体</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">17.1. 枚举类型</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">初始化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">枚举变量</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">17.2. 共用体</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">17.3. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html">18. 常用函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用STL类及容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_lambda.html">26. lambda 表达式</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">C/C++</a> &raquo;</li>
+        
+      <li>17. 枚举类型与共用体</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/cpp/17_enumUnion.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>17. 枚举类型与共用体<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>17.1. 枚举类型<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>枚举类型（enumeration）使我们可以将一组 <strong>整型常量</strong> 组织在一起。格式</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">enum</span> <span class="o">&lt;</span><span class="n">类型名</span><span class="o">&gt;</span> <span class="p">{</span><span class="o">&lt;</span><span class="n">枚举成员</span><span class="o">&gt;</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>枚举成员不能是数值，即不能是类似于{1,2,3}。可以定义 <strong>无类型名</strong> 的枚举类型。</p>
+<div class="section" id="id3">
+<h3>初始化<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>默认情况下，每个枚举变量的值就是其序号，从0开始，依次加1。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">enum</span> <span class="n">Week</span> <span class="p">{</span><span class="n">Sun</span><span class="p">,</span> <span class="n">Mon</span><span class="p">,</span> <span class="n">Tue</span><span class="p">,</span> <span class="n">Wed</span><span class="p">,</span> <span class="n">Thu</span><span class="p">,</span> <span class="n">Fri</span><span class="p">,</span> <span class="n">Sat</span><span class="p">};</span>
+<span class="c1">//Sun=0, Mon=1, Tue=2, Wed=3, Thu=4, Fri=5, Sat=6</span>
+</pre></div>
+</div>
+<p>显式提供初始值。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">enum</span> <span class="n">Week</span> <span class="p">{</span><span class="n">Sun</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">Mon</span><span class="p">,</span> <span class="n">Tue</span><span class="p">,</span> <span class="n">Wed</span><span class="p">,</span> <span class="n">Thu</span><span class="p">,</span> <span class="n">Fri</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">Sat</span><span class="p">};</span>
+<span class="c1">//Sun=1, Mon=2, Tue=3, Wed=4, Thu=5, Fri=100, Sat=101</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>枚举变量<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>定义枚举类型之后，就可以定义该枚举类型的变量，或者与枚举类型同时定义。枚举变量的值只能取枚举常量表中所列的值。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">enum</span> <span class="n">Week</span> <span class="p">{</span><span class="n">Sun</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">Mon</span><span class="p">,</span> <span class="n">Tue</span><span class="p">,</span> <span class="n">Wed</span><span class="p">,</span> <span class="n">Thu</span><span class="p">,</span> <span class="n">Fri</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">Sat</span><span class="p">}</span> <span class="n">day_1</span><span class="p">;</span>
+<span class="c1">// 全局变量 day_1 默认初始化为 0。</span>
+
+<span class="kt">void</span> <span class="nf">ff</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">-</span><span class="mi">10</span> <span class="o">*</span> <span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">ff</span><span class="p">(</span><span class="n">Week</span> <span class="n">day</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">day</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">Week</span> <span class="n">day_2</span><span class="p">,</span> <span class="n">day_3</span><span class="p">;</span>
+
+  <span class="n">day_1</span> <span class="o">=</span> <span class="n">Sun</span><span class="p">;</span> <span class="c1">// 或者 day_1 = Week::Sun （不限定作用域的枚举类型）</span>
+  <span class="n">day_2</span> <span class="o">=</span> <span class="n">day_1</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">day_1</span><span class="p">;</span> <span class="c1">// i = 1</span>
+  <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">Mon</span><span class="p">;</span> <span class="c1">// j = 2</span>
+
+  <span class="n">Week</span> <span class="n">day_4</span><span class="p">(</span><span class="n">Week</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span> <span class="c1">// day_4 = Fri</span>
+  <span class="kt">bool</span> <span class="n">equal</span> <span class="o">=</span> <span class="p">(</span><span class="n">day_4</span> <span class="o">==</span> <span class="n">Fri</span><span class="p">);</span> <span class="c1">// true</span>
+
+  <span class="n">Week</span> <span class="n">day_5</span><span class="p">(</span><span class="n">Week</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span> <span class="c1">// 越界，但是不报错，day_5 = -1 （VS 2013）</span>
+
+  <span class="n">ff</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// 匹配 ff(int)，输出 -10</span>
+  <span class="n">ff</span><span class="p">(</span><span class="n">day_1</span><span class="p">);</span> <span class="c1">// 匹配 ff(Week)，输出 10</span>
+  <span class="n">ff</span><span class="p">(</span><span class="n">Fri</span><span class="p">);</span> <span class="c1">// 匹配 ff(Week)，输出 1000</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>17.2. 共用体<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>共用体（union）及其变量的定义形式与结构体类似。共用体成员访问方式也是使用运算符 <code class="docutils literal notranslate"><span class="pre">.</span></code> 或 <code class="docutils literal notranslate"><span class="pre">-&gt;</span></code>。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">union</span> <span class="n">ifcd</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+  <span class="kt">float</span> <span class="n">f</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">d</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="o">*</span><span class="n">pu</span><span class="p">;</span>
+<span class="c1">// 同结构体一样，分号不能丢</span>
+</pre></div>
+</div>
+<p>与结构体的异同：</p>
+<blockquote>
+<div><ul>
+<li><p class="first">存储分配方式</p>
+<ul>
+<li><p class="first">结构体每个成员各自占有自己的存储单元、各自的地址，结构体占有的内存空间大小是所有成员所占存储单元的总和。</p>
+</li>
+<li><p class="first">共用体各个成员占用共同的存储单元，具有 <strong>相同的首地址</strong> ，占用存储单元最多的成员的长度就是共用体的长度。一个共用体
+可以包含多个不同类型的成员，但是每一时刻只有 <strong>一个成员有效</strong> ，即最后一次存放的数据成员起作用。虽然仍然可以访问无效的成员，但是结果是未知的。</p>
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span><span class="p">.</span><span class="n">i</span> <span class="o">=</span> <span class="mi">256</span><span class="p">;</span>
+<span class="n">x1</span><span class="p">.</span><span class="n">c</span> <span class="o">=</span> <span class="sc">&#39;A&#39;</span><span class="p">;</span>
+<span class="n">x1</span><span class="p">.</span><span class="n">f</span> <span class="o">=</span> <span class="mf">1.23</span><span class="p">;</span>
+<span class="c1">// 三步操作之后，只有 x1.f 有效。</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</li>
+<li><p class="first">初始化</p>
+<ul>
+<li><p class="first">结构变量或数组可以为所有成员初始化。</p>
+</li>
+<li><p class="first">共用体变量或数组在初始化时，只能初始化它的 <strong>第一个成员</strong> ，对多个成员初始化是不允许的。</p>
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">union</span> <span class="n">ifcd</span> <span class="n">x3</span> <span class="o">=</span> <span class="p">{</span><span class="mi">256</span><span class="p">},</span> <span class="n">x4</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">};</span> <span class="c1">// 对成员 i 初始化</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</li>
+<li><p class="first">结构体和共用体可以相互出现在对方的类型定义中。</p>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id6">
+<h2>17.3. 参考资料<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>1.《C++ Primer 第5版 中文版》 Page 736 – 739。</p>
+<ol class="arabic simple" start="2">
+<li>C++ 枚举类型详解</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="http://www.runoob.com/w3cnote/cpp-enum-intro.html">http://www.runoob.com/w3cnote/cpp-enum-intro.html</a></div></blockquote>
+<ol class="arabic simple" start="3">
+<li>C++枚举（enum）的优雅用法</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://blog.csdn.net/daizhiyan1/article/details/82428023">https://blog.csdn.net/daizhiyan1/article/details/82428023</a></div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="18_commonFunc.html" class="btn btn-neutral float-right" title="18. 常用函数" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="16_staticconst.html" class="btn btn-neutral float-left" title="16. 类的static const成员" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

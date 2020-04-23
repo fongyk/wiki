@@ -108,20 +108,31 @@
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">深度学习</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">1. pytorch：多GPU模式</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">1.1. 网络外指定</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">1.2. 网络内指定</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">1.3. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dataparallel">1.1. DataParallel</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">网络外指定</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">网络内指定</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#distributed">1.2. distributed</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">初始化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">模型并行</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sampler">sampler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">启动进程</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">1.3. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="02_activationFunction.html">2. 激活函数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_batchnorm.html">3. Batch Normalization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_overfit.html">4. 过拟合</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">5. pytorch：模型保存与读取</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">6. pytorch: cuda()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">6. pytorch: cuda</a></li>
 <li class="toctree-l2"><a class="reference internal" href="07_backprop.html">7. 反向传播</a></li>
 <li class="toctree-l2"><a class="reference internal" href="08_optimizer.html">8. 优化算法</a></li>
-<li class="toctree-l2"><a class="reference internal" href="09_addModule.html">9. pytorch：add_module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_addModule.html">9. pytorch：Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="10_receptivaField.html">10. 特征图与感受野</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_nograd.html">11. pytorch：no_grad()</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
@@ -198,26 +209,24 @@
             
   <div class="section" id="pytorch-gpu">
 <h1>1. pytorch：多GPU模式<a class="headerlink" href="#pytorch-gpu" title="Permalink to this headline">¶</a></h1>
-<p><strong>pytorch</strong> 中可以通过 <code class="docutils literal notranslate"><span class="pre">torch.nn.DataParallel</span></code> 切换到多GPU（multi-GPU）模式，在 module 级别上实现数据并行。
+<div class="section" id="dataparallel">
+<h2>1.1. DataParallel<a class="headerlink" href="#dataparallel" title="Permalink to this headline">¶</a></h2>
+<p>Pytorch 中可以通过 <code class="docutils literal notranslate"><span class="pre">torch.nn.DataParallel</span></code> 切换到多GPU（multi-GPU）模式，在 module 级别上实现数据并行。
 此容器通过将 mini-batch 划分到不同的设备上来实现给定 module 的并行。
 在 forward 过程中，module 会在每个设备上都复制一遍，每个副本都会处理部分输入。
 在 backward 过程中，副本上的梯度会累加到原始module上。</p>
 <p>batch 的大小应该大于所使用的 GPU 的数量，还应当是 GPU 个数的整数倍，这样划分出来的每一块 GPU 上都会有相同的样本数量。</p>
 <p>有两种使用方式：网络外指定、网络内指定。</p>
 <div class="section" id="id1">
-<h2>1.1. 网络外指定<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h3>网络外指定<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>使用方法：</p>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># 在GPU上运行</span>
-<span class="n">model</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
-<span class="c1"># 使用第0、1、2个GPU，注意设定batch_size大一些，否则数据不足以跑多GPU</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">parallel</span><span class="o">.</span><span class="n">DataParallel</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">device_ids</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 在GPU上运行</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">model</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+<span class="c1"># 使用第0、1、2个GPU，注意设定 batch_size 大一些，否则数据不足以跑多GPU</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">parallel</span><span class="o">.</span><span class="n">DataParallel</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">device_ids</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 </pre></div>
-</td></tr></table></div>
-<p><strong>DataParallel</strong> 只对  <code class="docutils literal notranslate"><span class="pre">forward()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">backward()</span></code> 有效，直接调用model中自定义的  <code class="docutils literal notranslate"><span class="pre">attribute</span></code> 如 <code class="docutils literal notranslate"><span class="pre">forward_1()</span></code> 无效。</p>
-<p>另外，在 <strong>DataParallel</strong> 模式下，引用model的  <code class="docutils literal notranslate"><span class="pre">attribute</span></code> 必须采用如下格式:</p>
+</div>
+<p>在 <strong>DataParallel</strong> 模式下，引用 model 的属性必须采用如下格式:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 相比于&#39;model.attribute&#39;多了&#39;module&#39;。</span>
 <span class="n">model</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">attribute</span>
 </pre></div>
@@ -225,19 +234,113 @@
 <p>比如，<code class="docutils literal notranslate"><span class="pre">model.module.classifier.parameters()</span></code> 。</p>
 </div>
 <div class="section" id="id2">
-<h2>1.2. 网络内指定<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h3>网络内指定<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>使用方法：</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># 定义网络结构</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">layer1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">227</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">layer1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">DataParallel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer1</span><span class="p">,</span> <span class="n">device_ids</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">227</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">DataParallel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer1</span><span class="p">,</span> <span class="n">device_ids</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 </pre></div>
 </td></tr></table></div>
-<p>在CPU模式下不需要更改代码。</p>
+<p>在 CPU 模式下不需要更改代码。</p>
 </div>
+</div>
+<div class="section" id="distributed">
+<h2>1.2. distributed<a class="headerlink" href="#distributed" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">torch.distributed</span></code> + <code class="docutils literal notranslate"><span class="pre">torch.nn.parallel.DistributedDataParallel</span></code> 比 <code class="docutils literal notranslate"><span class="pre">torch.nn.DataParallel</span></code> 更加有效，</p>
+<blockquote>
+<div><ul class="simple">
+<li>每个进程维护自己的优化器，并在每次迭代中执行完整的优化步骤。虽然这可能看起来是多余的，因为梯度已经收集在一起并跨进程平均，因此每个进程的梯度都是相同的，然而，这意味着不需要参数广播步骤（broadcast），从而减少节点之间传输张量的时间。</li>
+<li>每个进程都包含一个独立的 Python 解释器，消除了额外的解释器开销。</li>
+</ul>
+</div></blockquote>
 <div class="section" id="id3">
-<h2>1.3. 参考资料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h3>初始化<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">distributed</span><span class="o">.</span><span class="n">init_process_group</span><span class="p">(</span><span class="n">backend</span><span class="p">,</span> <span class="n">init_method</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1800</span><span class="p">),</span> <span class="n">world_size</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">rank</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">store</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group_name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">backend</span></code> 包括 <code class="docutils literal notranslate"><span class="pre">mpi</span></code> ，<code class="docutils literal notranslate"><span class="pre">gloo</span></code> ，<code class="docutils literal notranslate"><span class="pre">nccl</span></code> 。其中 <code class="docutils literal notranslate"><span class="pre">nccl</span></code> 比较适用于多 GPU 并行。</li>
+<li><code class="docutils literal notranslate"><span class="pre">init_method</span></code> 指定了如何初始化互相通信的进程，默认为 <code class="docutils literal notranslate"><span class="pre">env://</span></code> ，进程会自动从本机的环境变量中读取如下数据：<ul>
+<li>MASTER_PORT: rank-0 机器的一个空闲端口</li>
+<li>MASTER_ADDR: rank-0 机器的地址</li>
+<li>WORLD_SIZE: 进程数，在 <code class="docutils literal notranslate"><span class="pre">init_process_group</span></code> 函数中可以指定</li>
+<li>RANK: 本机的 rank，在 <code class="docutils literal notranslate"><span class="pre">init_process_group</span></code> 函数中可以指定</li>
+</ul>
+</li>
+<li><code class="docutils literal notranslate"><span class="pre">torch.distributed.get_world_size()</span></code> 获取进程数</li>
+<li><code class="docutils literal notranslate"><span class="pre">torch.distributed.get_rank()</span></code> 获取进程编号</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h3>模型并行<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">parallel</span><span class="o">.</span><span class="n">DistributedDataParallel</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">device_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_device</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">broadcast_buffers</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">process_group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bucket_cap_mb</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">find_unused_parameters</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">check_reduction</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">torch</span><span class="o">.</span><span class="n">distributed</span><span class="o">.</span><span class="n">init_process_group</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="s1">&#39;nccl&#39;</span><span class="p">,</span> <span class="n">world_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">init_method</span><span class="o">=</span><span class="s1">&#39;...&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">set_device</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">DistributedDataParallel</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">device_ids</span><span class="o">=</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">output_device</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="sampler">
+<h3>sampler<a class="headerlink" href="#sampler" title="Permalink to this headline">¶</a></h3>
+<p>如果不进行其他处理，模型并行的时候是将一个 batch 的图像均分到各个进程:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size_per_proc</span> <span class="o">*</span> <span class="n">num_proc</span>
+</pre></div>
+</div>
+<p>这种方法对于多机并行来说不可取，因为多机之间直接进行数据传输会严重影响效率。可以利用 sampler 确保 dataloader 只会 load 到整个数据集的一个特定子集。 <code class="docutils literal notranslate"><span class="pre">torch.utils.data.distributed.DistributedSampler</span></code> 为每一个进程划分出一部分数据集，以避免不同进程之间数据重复。</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size_per_proc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sampler</span> <span class="o">=</span> <span class="n">DistributedSampler</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span>
+<span class="go">                      dataset=dataset,</span>
+<span class="go">                      batch_size=batch_size,</span>
+<span class="go">                      sampler=sampler</span>
+<span class="go">                      )</span>
+</pre></div>
+</td></tr></table></div>
+<p>为了让每个进程有机会获取其他的训练数据，需要在每个 epoch 都调用 <code class="docutils literal notranslate"><span class="pre">sampler</span></code> 的 <code class="docutils literal notranslate"><span class="pre">set_epoch</span></code> 方法。</p>
+</div>
+<div class="section" id="id5">
+<h3>启动进程<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">torch.distributed</span></code> 提供了一个辅助启动工具 <code class="docutils literal notranslate"><span class="pre">torch.distributed.launch</span></code> ，这个工具可以辅助在每个节点上启动多个进程，</p>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">NGPUS</span><span class="o">=</span><span class="m">2</span>
+python -m torch.distributed.launch --nproc_per_node<span class="o">=</span><span class="nv">$NGPUS</span> train.py <span class="o">[</span>--arg1 --arg2 ...<span class="o">]</span>
+<span class="nb">unset</span> NGPUS
+</pre></div>
+</td></tr></table></div>
+<p>在训练的 train.py 中必须要解析 <code class="docutils literal notranslate"><span class="pre">--local_rank=LOCAL_PROCESS_RANK</span></code> 这个命令行参数，</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--local_rank&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">parallel</span><span class="o">.</span><span class="n">DistributedDataParallel</span><span class="p">(</span>
+<span class="go">                                            model,</span>
+<span class="go">                                            device_ids=[args.local_rank],</span>
+<span class="go">                                            output_device=args.local_rank</span>
+<span class="go">                                            )</span>
+</pre></div>
+</td></tr></table></div>
+</div></blockquote>
+<p>这个命令行参数是由 <code class="docutils literal notranslate"><span class="pre">torch.distributed.launch</span></code> 提供的，指定了每个 GPU 在本地的 rank。</p>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>1.3. 参考资料<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>pytorch documentation</li>
 </ol>
@@ -259,6 +362,9 @@
 <blockquote>
 <div><p><a class="reference external" href="https://pytorch.org/docs/stable/nn.html#dataparallel-layers-multi-gpu-distributed">https://pytorch.org/docs/stable/nn.html#dataparallel-layers-multi-gpu-distributed</a></p>
 <p><a class="reference external" href="https://pytorch.org/docs/stable/distributed.html">https://pytorch.org/docs/stable/distributed.html</a></p>
+<p><a class="reference external" href="https://pytorch.org/tutorials/intermediate/dist_tuto.html">https://pytorch.org/tutorials/intermediate/dist_tuto.html</a></p>
+<p><a class="reference external" href="https://pytorch.org/docs/stable/nn.html#distributeddataparallel">https://pytorch.org/docs/stable/nn.html#distributeddataparallel</a></p>
+<p><a class="reference external" href="https://pytorch.org/docs/stable/data.html#torch.utils.data.distributed.DistributedSampler">https://pytorch.org/docs/stable/data.html#torch.utils.data.distributed.DistributedSampler</a></p>
 </div></blockquote>
 <ol class="arabic simple" start="5">
 <li>中文文档</li>
@@ -268,6 +374,26 @@
 <p><a class="reference external" href="https://www.pytorchtutorial.com/docs/">https://www.pytorchtutorial.com/docs/</a></p>
 <p><a class="reference external" href="https://pytorch-cn.readthedocs.io/zh/latest/">https://pytorch-cn.readthedocs.io/zh/latest/</a></p>
 </div></blockquote>
+<ol class="arabic simple" start="6">
+<li>pytorch 分布式训练 distributed parallel 笔记</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://blog.csdn.net/m0_38008956/article/details/86559432">https://blog.csdn.net/m0_38008956/article/details/86559432</a></div></blockquote>
+<ol class="arabic simple" start="7">
+<li>Pytorch多机多卡分布式训练</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://zhuanlan.zhihu.com/p/68717029">https://zhuanlan.zhihu.com/p/68717029</a></div></blockquote>
+<ol class="arabic simple" start="8">
+<li>pytorch 1.0 分布式</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://zhuanlan.zhihu.com/p/52110617">https://zhuanlan.zhihu.com/p/52110617</a></div></blockquote>
+<ol class="arabic simple" start="9">
+<li>torch.utils.data.distributed.DistributedSampler</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://discuss.pytorch.org/t/question-about-the-behavior-of-torch-utils-data-distributed-distributedsampler/35942">https://discuss.pytorch.org/t/question-about-the-behavior-of-torch-utils-data-distributed-distributedsampler/35942</a></div></blockquote>
 </div>
 </div>
 

@@ -292,7 +292,7 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size_per_proc</span> <span class="o">*</span> <span class="n">num_proc</span>
 </pre></div>
 </div>
-<p>这种方法对于多机并行来说不可取，因为多机之间直接进行数据传输会严重影响效率。可以利用 sampler 确保 dataloader 只会 load 到整个数据集的一个特定子集。 <code class="docutils literal notranslate"><span class="pre">torch.utils.data.distributed.DistributedSampler</span></code> 为每一个进程划分出一部分数据集，以避免不同进程之间数据重复。</p>
+<p>这种方法对于多机并行来说不可取，因为多机之间直接进行数据传输会严重影响效率。可以利用 <code class="docutils literal notranslate"><span class="pre">sampler</span></code> 确保 dataloader 只会 load 到整个数据集的一个特定子集。 <code class="docutils literal notranslate"><span class="pre">torch.utils.data.distributed.DistributedSampler</span></code> 为每一个进程划分出一部分数据集，以避免不同进程之间数据重复。</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -308,7 +308,7 @@
 <span class="go">                      )</span>
 </pre></div>
 </td></tr></table></div>
-<p>为了让每个进程有机会获取其他的训练数据，需要在每个 epoch 都调用 <code class="docutils literal notranslate"><span class="pre">sampler</span></code> 的 <code class="docutils literal notranslate"><span class="pre">set_epoch</span></code> 方法。</p>
+<p>为了让每个进程有机会获取其他的训练数据，需要在每个 epoch 都调用 <code class="docutils literal notranslate"><span class="pre">sampler</span></code> 的 <code class="docutils literal notranslate"><span class="pre">set_epoch</span></code> 方法，<code class="docutils literal notranslate"><span class="pre">DistributedSampler</span></code> 是将 epoch 作为 <code class="docutils literal notranslate"><span class="pre">seed</span></code> 来随机打乱数据集的。</p>
 </div>
 <div class="section" id="id5">
 <h3>启动进程<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>

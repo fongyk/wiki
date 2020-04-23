@@ -100,7 +100,7 @@ sampler
 
   batch_size = batch_size_per_proc * num_proc
 
-这种方法对于多机并行来说不可取，因为多机之间直接进行数据传输会严重影响效率。可以利用 sampler 确保 dataloader 只会 load 到整个数据集的一个特定子集。 ``torch.utils.data.distributed.DistributedSampler`` 为每一个进程划分出一部分数据集，以避免不同进程之间数据重复。
+这种方法对于多机并行来说不可取，因为多机之间直接进行数据传输会严重影响效率。可以利用 ``sampler`` 确保 dataloader 只会 load 到整个数据集的一个特定子集。 ``torch.utils.data.distributed.DistributedSampler`` 为每一个进程划分出一部分数据集，以避免不同进程之间数据重复。
 
 .. code-block:: python
     :linenos:
@@ -113,7 +113,7 @@ sampler
                           sampler=sampler
                           )
 
-为了让每个进程有机会获取其他的训练数据，需要在每个 epoch 都调用 ``sampler`` 的 ``set_epoch`` 方法。
+为了让每个进程有机会获取其他的训练数据，需要在每个 epoch 都调用 ``sampler`` 的 ``set_epoch`` 方法，``DistributedSampler`` 是将 epoch 作为 ``seed`` 来随机打乱数据集的。
 
 
 启动进程

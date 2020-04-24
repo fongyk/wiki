@@ -4142,7 +4142,21 @@ Python
 
   https://blog.csdn.net/diamonjoy_zone/article/details/70576775
 
-3. ResNeXt
+3. ResNet
+
+  - Deep Residual Learning for Image Recognition
+
+      https://arxiv.org/pdf/1512.03385.pdf
+
+  - torchvision.models.resnet
+  
+      https://pytorch.org/docs/stable/_modules/torchvision/models/resnet.html#resnet101
+
+  - ResNet-50 结构
+
+      https://www.jianshu.com/p/993c03c22d52
+
+4. ResNeXt
 
   - ResNeXt
 
@@ -4152,7 +4166,7 @@ Python
 
       https://blog.csdn.net/u014380165/article/details/71667916
 
-4. R-CNN系列
+5. R-CNN系列
 
   - RCNN（三）：Fast R-CNN
 
@@ -4187,7 +4201,7 @@ Python
       https://www.zhihu.com/question/54117650
 
 
-5. Focal Loss（样本不均衡：正/负样本数量不均衡（ :math:`\alpha` ），简单/困难样本数量不均衡（ :math:`\gamma` ））
+6. Focal Loss（样本不均衡：正/负样本数量不均衡（ :math:`\alpha` ），简单/困难样本数量不均衡（ :math:`\gamma` ））
 
   .. math::
 
@@ -4229,7 +4243,7 @@ Python
       https://www.cnblogs.com/king-lps/p/9497836.html
 
 
-6. FCN（Fully Convolutional Networks）
+7. FCN（Fully Convolutional Networks）
 
   - FCN学习:Semantic Segmentation
 
@@ -4239,24 +4253,24 @@ Python
 
       https://blog.csdn.net/nijiayan123/article/details/79416764
 
-7. FPN（Feature Pyramid Networks for Object Detection）
+8. FPN（Feature Pyramid Networks for Object Detection）
 
   https://www.cnblogs.com/fangpengchengbupter/p/7681683.html
 
-8. CapsuleNet解读
+9. CapsuleNet解读
 
   https://blog.csdn.net/u013010889/article/details/78722140/
 
 
-9. 轻量级网络--MobileNet论文解读
+10. 轻量级网络--MobileNet论文解读
 
   https://blog.csdn.net/u011974639/article/details/79199306
 
-10. 一文读懂卷积神经网络中的1x1卷积核。Hint：升维、降维、跨通道信息交互。
+11. 一文读懂卷积神经网络中的1x1卷积核。Hint：升维、降维、跨通道信息交互。
 
   https://zhuanlan.zhihu.com/p/40050371
 
-11. Image Classification Architectures
+12. Image Classification Architectures
 
   - 模型，FLOP（浮点计算量），性能，参数量（表格中的参数量单位是字节，按 4 字节/浮点型数计算，需要除以 4 才得到参数个数）
 

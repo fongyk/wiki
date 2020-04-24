@@ -248,7 +248,7 @@
 </div>
 <div class="section" id="distributed">
 <h2>1.2. distributed<a class="headerlink" href="#distributed" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">torch.distributed</span></code> + <code class="docutils literal notranslate"><span class="pre">torch.nn.parallel.DistributedDataParallel</span></code> 比 <code class="docutils literal notranslate"><span class="pre">torch.nn.DataParallel</span></code> 更加有效，</p>
+<p><code class="docutils literal notranslate"><span class="pre">torch.distributed</span></code> + <code class="docutils literal notranslate"><span class="pre">torch.nn.parallel.DistributedDataParallel</span></code> 比 <code class="docutils literal notranslate"><span class="pre">torch.nn.DataParallel</span></code> 更加高效，</p>
 <blockquote>
 <div><ul class="simple">
 <li>每个进程维护自己的优化器，并在每次迭代中执行完整的优化步骤。虽然这可能看起来是多余的，因为梯度已经收集在一起并跨进程平均，因此每个进程的梯度都是相同的，然而，这意味着不需要参数广播步骤，从而减少节点之间传输张量的时间。</li>
@@ -288,11 +288,7 @@
 </div>
 <div class="section" id="sampler">
 <h3>sampler<a class="headerlink" href="#sampler" title="Permalink to this headline">¶</a></h3>
-<p>如果不进行其他处理，模型并行的时候是将一个 batch 的图像均分到各个进程:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size_per_proc</span> <span class="o">*</span> <span class="n">num_proc</span>
-</pre></div>
-</div>
-<p>这种方法对于多机并行来说不可取，因为多机之间直接进行数据传输会严重影响效率。可以利用 <code class="docutils literal notranslate"><span class="pre">sampler</span></code> 确保 dataloader 只会 load 到整个数据集的一个特定子集。 <code class="docutils literal notranslate"><span class="pre">torch.utils.data.distributed.DistributedSampler</span></code> 为每一个进程划分出一部分数据集，以避免不同进程之间数据重复。</p>
+<p>可以利用 <code class="docutils literal notranslate"><span class="pre">sampler</span></code> 确保 dataloader 只会 load 到整个数据集的一个特定子集。 <code class="docutils literal notranslate"><span class="pre">torch.utils.data.distributed.DistributedSampler</span></code> 为每一个进程划分出一部分数据集，以避免不同进程之间数据重复。</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -309,6 +305,10 @@
 </pre></div>
 </td></tr></table></div>
 <p>为了让每个进程有机会获取其他的训练数据，需要在每个 epoch 都调用 <code class="docutils literal notranslate"><span class="pre">sampler</span></code> 的 <code class="docutils literal notranslate"><span class="pre">set_epoch</span></code> 方法，<code class="docutils literal notranslate"><span class="pre">DistributedSampler</span></code> 是将 epoch 作为 <code class="docutils literal notranslate"><span class="pre">seed</span></code> 来随机打乱数据集的。</p>
+<p>如果不使用 <code class="docutils literal notranslate"><span class="pre">DistributedSampler</span></code> ，每个进程都会 load 同一个数据集，这就导致：训练一个 epoch，实际使用的训练数据是:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span> <span class="o">*</span> <span class="n">num_proc</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="id5">
 <h3>启动进程<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
@@ -365,6 +365,7 @@ python -m torch.distributed.launch --nproc_per_node<span class="o">=</span><span
 <p><a class="reference external" href="https://pytorch.org/tutorials/intermediate/dist_tuto.html">https://pytorch.org/tutorials/intermediate/dist_tuto.html</a></p>
 <p><a class="reference external" href="https://pytorch.org/docs/stable/nn.html#distributeddataparallel">https://pytorch.org/docs/stable/nn.html#distributeddataparallel</a></p>
 <p><a class="reference external" href="https://pytorch.org/docs/stable/data.html#torch.utils.data.distributed.DistributedSampler">https://pytorch.org/docs/stable/data.html#torch.utils.data.distributed.DistributedSampler</a></p>
+<p><a class="reference external" href="https://github.com/pytorch/examples/blob/5df464c46cf321ed1cc3df1e670358d7f5ae1887/imagenet/main.py#L42">https://github.com/pytorch/examples/blob/5df464c46cf321ed1cc3df1e670358d7f5ae1887/imagenet/main.py#L42</a></p>
 </div></blockquote>
 <ol class="arabic simple" start="5">
 <li>中文文档</li>
@@ -393,7 +394,9 @@ python -m torch.distributed.launch --nproc_per_node<span class="o">=</span><span
 <li>torch.utils.data.distributed.DistributedSampler</li>
 </ol>
 <blockquote>
-<div><a class="reference external" href="https://discuss.pytorch.org/t/question-about-the-behavior-of-torch-utils-data-distributed-distributedsampler/35942">https://discuss.pytorch.org/t/question-about-the-behavior-of-torch-utils-data-distributed-distributedsampler/35942</a></div></blockquote>
+<div><p><a class="reference external" href="https://discuss.pytorch.org/t/question-about-the-behavior-of-torch-utils-data-distributed-distributedsampler/35942">https://discuss.pytorch.org/t/question-about-the-behavior-of-torch-utils-data-distributed-distributedsampler/35942</a></p>
+<p><a class="reference external" href="https://discuss.pytorch.org/t/distributeddataparallel-with-1-gpu-per-process/44628">https://discuss.pytorch.org/t/distributeddataparallel-with-1-gpu-per-process/44628</a></p>
+</div></blockquote>
 </div>
 </div>
 

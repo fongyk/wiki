@@ -50,7 +50,7 @@ batch 的大小应该大于所使用的 GPU 的数量，还应当是 GPU 个数�
 distributed
 ---------------
 
-``torch.distributed`` + ``torch.nn.parallel.DistributedDataParallel`` 比 ``torch.nn.DataParallel`` 更加有效，
+``torch.distributed`` + ``torch.nn.parallel.DistributedDataParallel`` 比 ``torch.nn.DataParallel`` 更加高效，
 
   - 每个进程维护自己的优化器，并在每次迭代中执行完整的优化步骤。虽然这可能看起来是多余的，因为梯度已经收集在一起并跨进程平均，因此每个进程的梯度都是相同的，然而，这意味着不需要参数广播步骤，从而减少节点之间传输张量的时间。
 
@@ -96,11 +96,7 @@ distributed
 sampler
 ^^^^^^^^^^^^^
 
-如果不进行其他处理，模型并行的时候是将一个 batch 的图像均分到各个进程::
-
-  batch_size = batch_size_per_proc * num_proc
-
-这种方法对于多机并行来说不可取，因为多机之间直接进行数据传输会严重影响效率。可以利用 ``sampler`` 确保 dataloader 只会 load 到整个数据集的一个特定子集。 ``torch.utils.data.distributed.DistributedSampler`` 为每一个进程划分出一部分数据集，以避免不同进程之间数据重复。
+可以利用 ``sampler`` 确保 dataloader 只会 load 到整个数据集的一个特定子集。 ``torch.utils.data.distributed.DistributedSampler`` 为每一个进程划分出一部分数据集，以避免不同进程之间数据重复。
 
 .. code-block:: python
     :linenos:
@@ -114,6 +110,10 @@ sampler
                           )
 
 为了让每个进程有机会获取其他的训练数据，需要在每个 epoch 都调用 ``sampler`` 的 ``set_epoch`` 方法，``DistributedSampler`` 是将 epoch 作为 ``seed`` 来随机打乱数据集的。
+
+如果不使用 ``DistributedSampler`` ，每个进程都会 load 同一个数据集，这就导致：训练一个 epoch，实际使用的训练数据是::
+
+  len(dataset) * num_proc
 
 
 启动进程
@@ -169,6 +169,8 @@ sampler
 
   https://pytorch.org/docs/stable/data.html#torch.utils.data.distributed.DistributedSampler
 
+  https://github.com/pytorch/examples/blob/5df464c46cf321ed1cc3df1e670358d7f5ae1887/imagenet/main.py#L42
+
 5. 中文文档
 
   https://pytorch.apachecn.org/
@@ -192,3 +194,5 @@ sampler
 9. torch.utils.data.distributed.DistributedSampler
 
   https://discuss.pytorch.org/t/question-about-the-behavior-of-torch-utils-data-distributed-distributedsampler/35942
+
+  https://discuss.pytorch.org/t/distributeddataparallel-with-1-gpu-per-process/44628

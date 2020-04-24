@@ -88,8 +88,8 @@ distributed
 .. code-block:: python
     :linenos:
 
-    >>> torch.distributed.init_process_group(backend='nccl', world_size=4, init_method='...')
     >>> torch.cuda.set_device(i)
+    >>> torch.distributed.init_process_group(backend='nccl', world_size=4, init_method='...')
     >>> model = DistributedDataParallel(model, device_ids=[i], output_device=i)
 
 

@@ -83,7 +83,9 @@ distributed
 
 ::
 
-  >>> class torch.nn.parallel.DistributedDataParallel(module, device_ids=None, output_device=None, dim=0, broadcast_buffers=True, process_group=None, bucket_cap_mb=25, find_unused_parameters=False, check_reduction=False)
+  class torch.nn.parallel.DistributedDataParallel(module, device_ids=None, output_device=None, dim=0, broadcast_buffers=True, process_group=None, bucket_cap_mb=25, find_unused_parameters=False, check_reduction=False)
+
+``broadcast_buffers`` 允许各 GPU 在 forward 开始前对 buffers 进行同步，这对 BN 层有影响。另外，``DistributedDataParallel`` 还支持 ``SyncBatchNorm`` 。如果未同步，尽管每个 GPU 上的模型参数和梯度是一致的，但是 BN 层的均值和方差是不同的。
 
 .. code-block:: python
     :linenos:
@@ -171,6 +173,8 @@ sampler
 
   https://github.com/pytorch/examples/blob/5df464c46cf321ed1cc3df1e670358d7f5ae1887/imagenet/main.py#L42
 
+  https://pytorch.org/docs/master/nn.html#torch.nn.SyncBatchNorm
+
 5. 中文文档
 
   https://pytorch.apachecn.org/
@@ -196,3 +200,9 @@ sampler
   https://discuss.pytorch.org/t/question-about-the-behavior-of-torch-utils-data-distributed-distributedsampler/35942
 
   https://discuss.pytorch.org/t/distributeddataparallel-with-1-gpu-per-process/44628
+
+10. nn.BatchNorm in distributed training
+
+  https://discuss.pytorch.org/t/do-nn-batchnorm-in-distributed-training-default-to-be-synchronized/42140
+
+  https://discuss.pytorch.org/t/save-model-for-distributeddataparallel/47129

@@ -16,3 +16,4 @@
     09_addModule.rst
     10_receptivaField.rst
     11_nograd.rst
+    12_dml.rst

@@ -145,9 +145,11 @@ Tuplet Margin Loss
 
 `Deep Metric Learning with Tuplet Margin Loss <http://openaccess.thecvf.com/content_ICCV_2019/papers/Yu_Deep_Metric_Learning_With_Tuplet_Margin_Loss_ICCV_2019_paper.pdf>`_
 
+每个 batch 包含 :math:`k` 个类别，每个类别 :math:`n` 个样本，从其他的 :math:`k-1` 个类别中随机选取一个样本作为负例，可以组成 :math:`kn(n-1)` 个三元组。
+
 .. math::
 
-    \mathcal{L} = \log \left( 1 + \sum_{i=1}^{k-1} e^{s \left( \cos(\theta_{an_i}) - \cos(\theta_{ap} - \beta) \right)} \right)
+    \mathcal{L}(x_a, x_p) = \log \left( 1 + \sum_{i=1}^{k-1} e^{s \left( \cos(\theta_{an_i}) - \cos(\theta_{ap} - \beta) \right)} \right)
 
 :math:`s` 是一个缩放因子。 
 
@@ -208,13 +210,13 @@ Proxy Anchor Loss
 
 `Proxy Anchor Loss for Deep Metric Learning <https://arxiv.org/pdf/2003.13911.pdf>`_
 
-为每一个类别赋予了一个 proxy，将一个 batch 的数据和所有的 proxy 之间求距离，拉近每个类别的数据点和该类别对应的 proxy 之间的距离，拉远与其他类别的 proxy 之间的距离。相比于 Proxy NCA Loss，更加充分地利用了 batch 的数据。
+为每一个类别赋予了一个 proxy，将一个 batch 的样本和所有的 proxy 之间求距离，拉近每个类别的样本和该类别对应的 proxy 之间的距离，拉远与其他类别的 proxy 之间的距离。相比于 Proxy NCA Loss，更加充分地利用了 batch 的数据。
 
 .. math::
 
     \mathcal{L}(\mathcal{X}) = \frac{1}{| \mathcal{P}^+ |} \sum_{p \in \mathcal{P}^+} \log \left( 1 + \sum_{x \in \mathcal{X}_p^+} e^{-\alpha (s(x,p) - \delta)} \right) + \frac{1}{| \mathcal{P} |} \sum_{p \in \mathcal{P}} \log \left( 1 + \sum_{x \in \mathcal{X}_p^-} e^{\alpha (s(x,p) + \delta)} \right)
 
-:math:`\mathcal{X}` 表示一个 batch 内所有数据的 embedding 集合；:math:`\mathcal{P}^+` 表示正例 proxy 的集合，也就是 batch 内的数据对应的 proxy 的集合；:math:`\mathcal{P}` 表示所有 proxy 的集合，也就是所有类别对应的 proxy 的集合；:math:`\mathcal{X}_p^+` 表示与 :math:`p` 同一类别的 embedding 集合，:math:`\mathcal{X}_p^- = \mathcal{X} - \mathcal{X}_p^+` ；:math:`s` 表示余弦相似度。
+:math:`\mathcal{X}` 表示一个 batch 内所有样本的 embedding 集合；:math:`\mathcal{P}^+` 表示正例 proxy 的集合，也就是 batch 内的样本对应的 proxy 的集合；:math:`\mathcal{P}` 表示所有 proxy 的集合，也就是所有类别对应的 proxy 的集合；:math:`\mathcal{X}_p^+` 表示与 :math:`p` 同一类别的 embedding 集合，:math:`\mathcal{X}_p^- = \mathcal{X} - \mathcal{X}_p^+` ；:math:`s` 表示余弦相似度。
 
 
 SoftTriple Loss

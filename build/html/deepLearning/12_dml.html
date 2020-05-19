@@ -299,8 +299,9 @@ $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin
 <div class="section" id="tuplet-margin-loss">
 <h2>12.10. Tuplet Margin Loss<a class="headerlink" href="#tuplet-margin-loss" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="http://openaccess.thecvf.com/content_ICCV_2019/papers/Yu_Deep_Metric_Learning_With_Tuplet_Margin_Loss_ICCV_2019_paper.pdf">Deep Metric Learning with Tuplet Margin Loss</a></p>
+<p>每个 batch 包含 <span class="math notranslate nohighlight">\(k\)</span> 个类别，每个类别 <span class="math notranslate nohighlight">\(n\)</span> 个样本，从其他的 <span class="math notranslate nohighlight">\(k-1\)</span> 个类别中随机选取一个样本作为负例，可以组成 <span class="math notranslate nohighlight">\(kn(n-1)\)</span> 个三元组。</p>
 <div class="math notranslate nohighlight">
-\[\mathcal{L} = \log \left( 1 + \sum_{i=1}^{k-1} e^{s \left( \cos(\theta_{an_i}) - \cos(\theta_{ap} - \beta) \right)} \right)\]</div>
+\[\mathcal{L}(x_a, x_p) = \log \left( 1 + \sum_{i=1}^{k-1} e^{s \left( \cos(\theta_{an_i}) - \cos(\theta_{ap} - \beta) \right)} \right)\]</div>
 <p><span class="math notranslate nohighlight">\(s\)</span> 是一个缩放因子。</p>
 </div>
 <div class="section" id="n-pair-loss">
@@ -337,10 +338,10 @@ $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin
 <div class="section" id="proxy-anchor-loss">
 <h2>12.15. Proxy Anchor Loss<a class="headerlink" href="#proxy-anchor-loss" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://arxiv.org/pdf/2003.13911.pdf">Proxy Anchor Loss for Deep Metric Learning</a></p>
-<p>为每一个类别赋予了一个 proxy，将一个 batch 的数据和所有的 proxy 之间求距离，拉近每个类别的数据点和该类别对应的 proxy 之间的距离，拉远与其他类别的 proxy 之间的距离。相比于 Proxy NCA Loss，更加充分地利用了 batch 的数据。</p>
+<p>为每一个类别赋予了一个 proxy，将一个 batch 的样本和所有的 proxy 之间求距离，拉近每个类别的样本和该类别对应的 proxy 之间的距离，拉远与其他类别的 proxy 之间的距离。相比于 Proxy NCA Loss，更加充分地利用了 batch 的数据。</p>
 <div class="math notranslate nohighlight">
 \[\mathcal{L}(\mathcal{X}) = \frac{1}{| \mathcal{P}^+ |} \sum_{p \in \mathcal{P}^+} \log \left( 1 + \sum_{x \in \mathcal{X}_p^+} e^{-\alpha (s(x,p) - \delta)} \right) + \frac{1}{| \mathcal{P} |} \sum_{p \in \mathcal{P}} \log \left( 1 + \sum_{x \in \mathcal{X}_p^-} e^{\alpha (s(x,p) + \delta)} \right)\]</div>
-<p><span class="math notranslate nohighlight">\(\mathcal{X}\)</span> 表示一个 batch 内所有数据的 embedding 集合；<span class="math notranslate nohighlight">\(\mathcal{P}^+\)</span> 表示正例 proxy 的集合，也就是 batch 内的数据对应的 proxy 的集合；<span class="math notranslate nohighlight">\(\mathcal{P}\)</span> 表示所有 proxy 的集合，也就是所有类别对应的 proxy 的集合；<span class="math notranslate nohighlight">\(\mathcal{X}_p^+\)</span> 表示与 <span class="math notranslate nohighlight">\(p\)</span> 同一类别的 embedding 集合，<span class="math notranslate nohighlight">\(\mathcal{X}_p^- = \mathcal{X} - \mathcal{X}_p^+\)</span> ；<span class="math notranslate nohighlight">\(s\)</span> 表示余弦相似度。</p>
+<p><span class="math notranslate nohighlight">\(\mathcal{X}\)</span> 表示一个 batch 内所有样本的 embedding 集合；<span class="math notranslate nohighlight">\(\mathcal{P}^+\)</span> 表示正例 proxy 的集合，也就是 batch 内的样本对应的 proxy 的集合；<span class="math notranslate nohighlight">\(\mathcal{P}\)</span> 表示所有 proxy 的集合，也就是所有类别对应的 proxy 的集合；<span class="math notranslate nohighlight">\(\mathcal{X}_p^+\)</span> 表示与 <span class="math notranslate nohighlight">\(p\)</span> 同一类别的 embedding 集合，<span class="math notranslate nohighlight">\(\mathcal{X}_p^- = \mathcal{X} - \mathcal{X}_p^+\)</span> ；<span class="math notranslate nohighlight">\(s\)</span> 表示余弦相似度。</p>
 </div>
 <div class="section" id="softtriple-loss">
 <h2>12.16. SoftTriple Loss<a class="headerlink" href="#softtriple-loss" title="Permalink to this headline">¶</a></h2>

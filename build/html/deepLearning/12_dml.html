@@ -119,24 +119,28 @@
 <li class="toctree-l2"><a class="reference internal" href="10_receptivaField.html">10. 特征图与感受野</a></li>
 <li class="toctree-l2"><a class="reference internal" href="11_nograd.html">11. pytorch：no_grad()</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">12. Deep Metric Learning</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#softmax-loss">12.1. Softmax Loss</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#center-loss">12.2. Center Loss</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#large-margin-softmax-loss">12.3. Large Margin Softmax Loss</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sphereface-loss">12.4. SphereFace Loss</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cosface-loss">12.5. CosFace Loss</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#arcface-loss">12.6. ArcFace Loss</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#contrastive-loss">12.7. Contrastive Loss</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#triplet-loss">12.8. Triplet Loss</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#margin-loss">12.9. Margin Loss</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#tuplet-margin-loss">12.10. Tuplet Margin Loss</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#n-pair-loss">12.11. N-pair Loss</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#lifted-structure-loss">12.12. Lifted Structure Loss</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nca-loss">12.13. NCA Loss</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#proxy-nca-loss">12.14. Proxy NCA Loss</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#proxy-anchor-loss">12.15. Proxy Anchor Loss</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#softtriple-loss">12.16. SoftTriple Loss</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#multi-similarity-loss">12.17. Multi-Similarity loss</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id1">12.18. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">12.1. 损失函数</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#softmax-loss">Softmax Loss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#center-loss">Center Loss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#large-margin-softmax-loss">Large Margin Softmax Loss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sphereface-loss">SphereFace Loss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cosface-loss">CosFace Loss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arcface-loss">ArcFace Loss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contrastive-loss">Contrastive Loss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#triplet-loss">Triplet Loss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#margin-loss">Margin Loss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tuplet-margin-loss">Tuplet Margin Loss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n-pair-loss">N-pair Loss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lifted-structure-loss">Lifted Structure Loss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nca-loss">NCA Loss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#proxy-nca-loss">Proxy NCA Loss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#proxy-anchor-loss">Proxy Anchor Loss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#softtriple-loss">SoftTriple Loss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multi-similarity-loss">Multi-Similarity loss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#normalized-temperature-scaled-cross-entropy-loss">Normalized Temperature-scaled Cross Entropy Loss</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">12.2. 参考资料</a></li>
 </ul>
 </li>
 </ul>
@@ -217,13 +221,15 @@
 <h1>12. Deep Metric Learning<a class="headerlink" href="#deep-metric-learning" title="Permalink to this headline">¶</a></h1>
 <p>介绍一些 Deep Metric Learning （深度度量学习）的损失函数。</p>
 <p>以下损失函数中的 <span class="math notranslate nohighlight">\(x\)</span> 表示 embedding。</p>
+<div class="section" id="id1">
+<h2>12.1. 损失函数<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="softmax-loss">
-<h2>12.1. Softmax Loss<a class="headerlink" href="#softmax-loss" title="Permalink to this headline">¶</a></h2>
+<h3>Softmax Loss<a class="headerlink" href="#softmax-loss" title="Permalink to this headline">¶</a></h3>
 <div class="math notranslate nohighlight">
-\[\mathcal{L}(x_i) = - \log \frac{e^{w^{\top}_{y_i} x_i + b_{y_i}}}{\sum_j e^{w^{\top}_j x_i + b_j}}\]</div>
+\[\mathcal{L}(x_i) = - \log \left( \frac{e^{w^{\top}_{y_i} x_i + b_{y_i}}}{\sum_j e^{w^{\top}_j x_i + b_j}} \right)\]</div>
 </div>
 <div class="section" id="center-loss">
-<h2>12.2. Center Loss<a class="headerlink" href="#center-loss" title="Permalink to this headline">¶</a></h2>
+<h3>Center Loss<a class="headerlink" href="#center-loss" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://kpzhang93.github.io/papers/eccv2016.pdf">A Discriminative Feature Learning Approach for Deep Face Recognition</a></p>
 <p>减小类内差异，每个类别在特征空间分别维护一个类中心。</p>
 <div class="math notranslate nohighlight">
@@ -232,7 +238,7 @@
 <p><span class="math notranslate nohighlight">\(m\)</span> 是一个 batch 的大小。</p>
 </div>
 <div class="section" id="large-margin-softmax-loss">
-<h2>12.3. Large Margin Softmax Loss<a class="headerlink" href="#large-margin-softmax-loss" title="Permalink to this headline">¶</a></h2>
+<h3>Large Margin Softmax Loss<a class="headerlink" href="#large-margin-softmax-loss" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://arxiv.org/pdf/1612.02295.pdf">Large-Margin Softmax Loss for Convolutional Neural Networks</a></p>
 <p>减小类内差异，增大类间差异。</p>
 <div class="math notranslate nohighlight">
@@ -249,7 +255,7 @@ $$
 $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin，<span class="math notranslate nohighlight">\(D(\theta)\)</span> 是一个单调减函数，且 <span class="math notranslate nohighlight">\(D(\frac{\pi}{m})=\cos(\frac{\pi}{m})\)</span> 。</p>
 </div>
 <div class="section" id="sphereface-loss">
-<h2>12.4. SphereFace Loss<a class="headerlink" href="#sphereface-loss" title="Permalink to this headline">¶</a></h2>
+<h3>SphereFace Loss<a class="headerlink" href="#sphereface-loss" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://arxiv.org/pdf/1704.08063.pdf">SphereFace: Deep Hypersphere Embedding for Face Recognition</a></p>
 <p>在 Large Margin Softmax Loss 的基础上，令 <span class="math notranslate nohighlight">\(\| w \| = 1\)</span> 。</p>
 <div class="math notranslate nohighlight">
@@ -258,7 +264,7 @@ $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin
 \[\mathcal{L}(x_i) = - \log \left( \frac{e^{\| x_i \| \cos(m \theta_{y_i}) }}{e^{\| x_i \| \cos(m \theta_{y_i}) } + \sum_{j \neq y_i} e^{\| x_i \| \cos(\theta_j) }} \right)\]</div>
 </div>
 <div class="section" id="cosface-loss">
-<h2>12.5. CosFace Loss<a class="headerlink" href="#cosface-loss" title="Permalink to this headline">¶</a></h2>
+<h3>CosFace Loss<a class="headerlink" href="#cosface-loss" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://arxiv.org/pdf/1801.09414.pdf">CosFace: Large Margin Cosine Loss for Deep Face Recognition</a></p>
 <p>在余弦空间中最大化分类界限。</p>
 <div class="math notranslate nohighlight">
@@ -268,7 +274,7 @@ $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin
 <p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin，<span class="math notranslate nohighlight">\(s\)</span> 表示超球面的半径。</p>
 </div>
 <div class="section" id="arcface-loss">
-<h2>12.6. ArcFace Loss<a class="headerlink" href="#arcface-loss" title="Permalink to this headline">¶</a></h2>
+<h3>ArcFace Loss<a class="headerlink" href="#arcface-loss" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://arxiv.org/pdf/1801.07698.pdf">ArcFace: Additive Angular Margin Loss for Deep Face Recognition</a></p>
 <p>在角度空间中最大化分类界限。</p>
 <div class="math notranslate nohighlight">
@@ -278,26 +284,26 @@ $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin
 <p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin，<span class="math notranslate nohighlight">\(s\)</span> 表示超球面的半径。</p>
 </div>
 <div class="section" id="contrastive-loss">
-<h2>12.7. Contrastive Loss<a class="headerlink" href="#contrastive-loss" title="Permalink to this headline">¶</a></h2>
+<h3>Contrastive Loss<a class="headerlink" href="#contrastive-loss" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://yann.lecun.com/exdb/publis/pdf/hadsell-chopra-lecun-06.pdf">Dimensionality Reduction by Learning an Invariant Mapping</a></p>
 <div class="math notranslate nohighlight">
 \[\mathcal{L}(x_i, x_j) = \mathbf{1} (y_i = y_j) \| x_i - x_j \|_2^2 + \mathbf{1} (y_i \neq y_j) max(0, m - \| x_i - x_j \|_2)^2\]</div>
 </div>
 <div class="section" id="triplet-loss">
-<h2>12.8. Triplet Loss<a class="headerlink" href="#triplet-loss" title="Permalink to this headline">¶</a></h2>
+<h3>Triplet Loss<a class="headerlink" href="#triplet-loss" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://papers.nips.cc/paper/2795-distance-metric-learning-for-large-margin-nearest-neighbor-classification.pdf">Distance Metric Learning for Large Margin Nearest Neighbor Classification</a></p>
 <div class="math notranslate nohighlight">
 \[\mathcal{L}(x_a, x_p, x_n) = max(0, m + \| x_a - x_p \|_2^2 - \| x_a - x_n \|_2^2)\]</div>
 </div>
 <div class="section" id="margin-loss">
-<h2>12.9. Margin Loss<a class="headerlink" href="#margin-loss" title="Permalink to this headline">¶</a></h2>
+<h3>Margin Loss<a class="headerlink" href="#margin-loss" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://arxiv.org/pdf/1706.07567.pdf">Sampling Matters in Deep Embedding Learning</a></p>
 <div class="math notranslate nohighlight">
 \[\mathcal{L}(x_i, x_j) = max(0, \alpha + y_{ij} (D_{i,j} - \beta))\]</div>
 <p><span class="math notranslate nohighlight">\(y_{ij} \in \{ -1, 1 \}\)</span>，<span class="math notranslate nohighlight">\(D_{ij}\)</span> 表示距离，<span class="math notranslate nohighlight">\(\beta\)</span> 是可学习的参数。</p>
 </div>
 <div class="section" id="tuplet-margin-loss">
-<h2>12.10. Tuplet Margin Loss<a class="headerlink" href="#tuplet-margin-loss" title="Permalink to this headline">¶</a></h2>
+<h3>Tuplet Margin Loss<a class="headerlink" href="#tuplet-margin-loss" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://openaccess.thecvf.com/content_ICCV_2019/papers/Yu_Deep_Metric_Learning_With_Tuplet_Margin_Loss_ICCV_2019_paper.pdf">Deep Metric Learning with Tuplet Margin Loss</a></p>
 <p>每个 batch 包含 <span class="math notranslate nohighlight">\(k\)</span> 个类别，每个类别 <span class="math notranslate nohighlight">\(n\)</span> 个样本，从其他的 <span class="math notranslate nohighlight">\(k-1\)</span> 个类别中随机选取一个样本作为负例，可以组成 <span class="math notranslate nohighlight">\(kn(n-1)\)</span> 个三元组。</p>
 <div class="math notranslate nohighlight">
@@ -305,14 +311,14 @@ $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin
 <p><span class="math notranslate nohighlight">\(s\)</span> 是一个缩放因子。</p>
 </div>
 <div class="section" id="n-pair-loss">
-<h2>12.11. N-pair Loss<a class="headerlink" href="#n-pair-loss" title="Permalink to this headline">¶</a></h2>
+<h3>N-pair Loss<a class="headerlink" href="#n-pair-loss" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://www.nec-labs.com/uploads/images/Department-Images/MediaAnalytics/papers/nips16_npairmetriclearning.pdf">Improved Deep Metric Learning with Multi-class N-pair Loss Objective</a></p>
 <p>利用一个 batch 内的所有负例。</p>
 <div class="math notranslate nohighlight">
-\[\mathcal{L}(x_i, x_i^+) = \log(1 + \sum_{j \neq i} e^{x_i^{\top} x_j^+ - x_i^{\top} x_i^+})\]</div>
+\[\mathcal{L}(x_i, x_i^+) = \log \left( 1 + \sum_{j \neq i} e^{x_i^{\top} x_j^+ - x_i^{\top} x_i^+} \right)\]</div>
 </div>
 <div class="section" id="lifted-structure-loss">
-<h2>12.12. Lifted Structure Loss<a class="headerlink" href="#lifted-structure-loss" title="Permalink to this headline">¶</a></h2>
+<h3>Lifted Structure Loss<a class="headerlink" href="#lifted-structure-loss" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://arxiv.org/pdf/1511.06452.pdf">Deep Metric Learning via Lifted Structured Feature Embedding</a></p>
 <p>利用一个 batch 内的所有正负样本对。</p>
 <div class="math notranslate nohighlight">
@@ -322,21 +328,21 @@ $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin
 <p><span class="math notranslate nohighlight">\(\mathcal{P}\)</span> 表示正样本对，<span class="math notranslate nohighlight">\(\mathcal{N}\)</span> 表示负样本对，<span class="math notranslate nohighlight">\(D_{i,j}\)</span> 表示样本对的距离，<span class="math notranslate nohighlight">\(\alpha\)</span> 表示 margin。</p>
 </div>
 <div class="section" id="nca-loss">
-<h2>12.13. NCA Loss<a class="headerlink" href="#nca-loss" title="Permalink to this headline">¶</a></h2>
+<h3>NCA Loss<a class="headerlink" href="#nca-loss" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://www.cs.toronto.edu/~hinton/absps/nca.pdf">Neighbourhood Components Analysis</a></p>
 <div class="math notranslate nohighlight">
 \[\mathcal{L}(x, y, \mathcal{Z}) = - \log \left( \frac{e^{-d(x, y)}}{\sum_{z \in \mathcal{Z}} e^{-d(x,z)}} \right)\]</div>
 <p><span class="math notranslate nohighlight">\(d\)</span> 是距离函数，<span class="math notranslate nohighlight">\(y\)</span> 是正例，<span class="math notranslate nohighlight">\(\mathcal{Z}\)</span> 是负例集合。</p>
 </div>
 <div class="section" id="proxy-nca-loss">
-<h2>12.14. Proxy NCA Loss<a class="headerlink" href="#proxy-nca-loss" title="Permalink to this headline">¶</a></h2>
+<h3>Proxy NCA Loss<a class="headerlink" href="#proxy-nca-loss" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://arxiv.org/pdf/1703.07464.pdf">No Fuss Distance Metric Learning using Proxies</a></p>
 <p>每一个类别都有一个可学习的 proxy，用来近似真实的数据点。<span class="math notranslate nohighlight">\(x\)</span> 对应的正例为本类别的 proxy <span class="math notranslate nohighlight">\(p(y)\)</span>，负例为所有其他类别的 proxy <span class="math notranslate nohighlight">\(p(\mathcal{Z})\)</span> 。</p>
 <div class="math notranslate nohighlight">
 \[\mathcal{L}(x) = - \log \left( \frac{e^{-d(x, p(y))}}{\sum_{p(z) \in p(\mathcal{Z})} e^{-d(x,p(z))}} \right)\]</div>
 </div>
 <div class="section" id="proxy-anchor-loss">
-<h2>12.15. Proxy Anchor Loss<a class="headerlink" href="#proxy-anchor-loss" title="Permalink to this headline">¶</a></h2>
+<h3>Proxy Anchor Loss<a class="headerlink" href="#proxy-anchor-loss" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://arxiv.org/pdf/2003.13911.pdf">Proxy Anchor Loss for Deep Metric Learning</a></p>
 <p>为每一个类别赋予了一个 proxy，将一个 batch 的样本和所有的 proxy 之间求距离，拉近每个类别的样本和该类别对应的 proxy 之间的距离，拉远与其他类别的 proxy 之间的距离。相比于 Proxy NCA Loss，更加充分地利用了 batch 的数据。</p>
 <div class="math notranslate nohighlight">
@@ -344,7 +350,7 @@ $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin
 <p><span class="math notranslate nohighlight">\(\mathcal{X}\)</span> 表示一个 batch 内所有样本的 embedding 集合；<span class="math notranslate nohighlight">\(\mathcal{P}^+\)</span> 表示正例 proxy 的集合，也就是 batch 内的样本对应的 proxy 的集合；<span class="math notranslate nohighlight">\(\mathcal{P}\)</span> 表示所有 proxy 的集合，也就是所有类别对应的 proxy 的集合；<span class="math notranslate nohighlight">\(\mathcal{X}_p^+\)</span> 表示与 <span class="math notranslate nohighlight">\(p\)</span> 同一类别的 embedding 集合，<span class="math notranslate nohighlight">\(\mathcal{X}_p^- = \mathcal{X} - \mathcal{X}_p^+\)</span> ；<span class="math notranslate nohighlight">\(s\)</span> 表示余弦相似度。</p>
 </div>
 <div class="section" id="softtriple-loss">
-<h2>12.16. SoftTriple Loss<a class="headerlink" href="#softtriple-loss" title="Permalink to this headline">¶</a></h2>
+<h3>SoftTriple Loss<a class="headerlink" href="#softtriple-loss" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://openaccess.thecvf.com/content_ICCV_2019/papers/Qian_SoftTriple_Loss_Deep_Metric_Learning_Without_Triplet_Sampling_ICCV_2019_paper.pdf">SoftTriple Loss: Deep Metric Learning Without Triplet Sampling</a></p>
 <p>考虑到同类数据的多样性，为每类数据学习 <span class="math notranslate nohighlight">\(K\)</span> 个类中心；通过正则项自适应地合并相似的类中心。</p>
 <div class="math notranslate nohighlight">
@@ -353,7 +359,7 @@ $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin
 \[\mathcal{L}(x_i) = - \log \frac{e^{\lambda (S_{i, y_i} - \delta )}}{e^{\lambda (S_{i, y_i} - \delta )} + \sum_{j \neq y_i} e^{\lambda S_{i, j}}}\]</div>
 </div>
 <div class="section" id="multi-similarity-loss">
-<h2>12.17. Multi-Similarity loss<a class="headerlink" href="#multi-similarity-loss" title="Permalink to this headline">¶</a></h2>
+<h3>Multi-Similarity loss<a class="headerlink" href="#multi-similarity-loss" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://openaccess.thecvf.com/content_CVPR_2019/papers/Wang_Multi-Similarity_Loss_With_General_Pair_Weighting_for_Deep_Metric_Learning_CVPR_2019_paper.pdf">Multi-Similarity Loss with General Pair Weighting for Deep Metric Learning</a></p>
 <p>为给每一个样本对动态赋予一个权重，这个权重是体现在梯度上的。给样本赋权的核心在于判断样本的局部分布，即它们之间的相似性。局部样本之间的分布和相互关系并不仅仅取决于当前两个样本之间的距离或相似性，还取决于当前样本对与其周围样本对之间的关系。</p>
 <div class="math notranslate nohighlight">
@@ -364,8 +370,21 @@ $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin
 \[\mathcal{L}(x_i) = \frac{1}{\alpha} \log \left( 1 + \sum_{k \in \mathcal{P}_i} e^{-\alpha (S_{ik} - \lambda)} \right) + \frac{1}{\beta} \log \left( 1 + \sum_{k \in \mathcal{N}_i} e^{\beta (S_{ik} - \lambda)} \right)\]</div>
 <p><span class="math notranslate nohighlight">\(\mathcal{P}_i\)</span> 表示正样本集合，<span class="math notranslate nohighlight">\(\mathcal{N}_i\)</span> 表示负样本集合，<span class="math notranslate nohighlight">\(S_{ij}\)</span> 表示样本对的相似度。</p>
 </div>
-<div class="section" id="id1">
-<h2>12.18. 参考资料<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="normalized-temperature-scaled-cross-entropy-loss">
+<h3>Normalized Temperature-scaled Cross Entropy Loss<a class="headerlink" href="#normalized-temperature-scaled-cross-entropy-loss" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://arxiv.org/pdf/2002.05709.pdf">A Simple Framework for Contrastive Learning of Visual Representations</a></p>
+<p>自监督学习方法，采用数据增强的方法生成正样本对。</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L} = \frac{1}{2N} \sum_{k=1}^N \left( \mathcal{L}(2k-1, 2k) + \mathcal{L}(2k, 2k-1) \right)\]</div>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}(i,j) = - \log \left( \frac{e^{s_{i,j}/\tau}}{\sum_{k=1}^{2N} \mathbf{1}(k \neq i) e^{s_{i,k}/\tau} } \right)\]</div>
+<div class="math notranslate nohighlight">
+\[s_{i,j} = \frac{z_i^{\top}z_j}{\| z_i \| \| z_j \|}\]</div>
+<p><span class="math notranslate nohighlight">\(\tau\)</span> 是温度缩放因子。</p>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>12.2. 参考资料<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>A Metric Learning Reality Check</li>
 </ol>
@@ -384,6 +403,11 @@ $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin
 </ol>
 <blockquote>
 <div><a class="reference external" href="https://www.cnblogs.com/xiaosongshine/p/11059762.html">https://www.cnblogs.com/xiaosongshine/p/11059762.html</a></div></blockquote>
+<ol class="arabic simple" start="4">
+<li>图解SimCLR框架，用对比学习得到一个好的视觉预训练模型</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://blog.csdn.net/u011984148/article/details/106233313/">https://blog.csdn.net/u011984148/article/details/106233313/</a></div></blockquote>
 </div>
 </div>
 

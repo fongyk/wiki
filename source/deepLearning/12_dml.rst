@@ -5,16 +5,19 @@ Deep Metric Learning
 
 以下损失函数中的 :math:`x` 表示 embedding。
 
+损失函数
+-----------------------
+
 Softmax Loss
---------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. math::
 
-    \mathcal{L}(x_i) = - \log \frac{e^{w^{\top}_{y_i} x_i + b_{y_i}}}{\sum_j e^{w^{\top}_j x_i + b_j}}
+    \mathcal{L}(x_i) = - \log \left( \frac{e^{w^{\top}_{y_i} x_i + b_{y_i}}}{\sum_j e^{w^{\top}_j x_i + b_j}} \right)
 
 
 Center Loss
---------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `A Discriminative Feature Learning Approach for Deep Face Recognition <https://kpzhang93.github.io/papers/eccv2016.pdf>`_
 
@@ -30,7 +33,7 @@ Center Loss
 
 
 Large Margin Softmax Loss
------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `Large-Margin Softmax Loss for Convolutional Neural Networks <https://arxiv.org/pdf/1612.02295.pdf>`_
 
@@ -58,7 +61,7 @@ Large Margin Softmax Loss
 :math:`m` 表示 margin，:math:`D(\theta)` 是一个单调减函数，且 :math:`D(\frac{\pi}{m})=\cos(\frac{\pi}{m})` 。
 
 SphereFace Loss
----------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `SphereFace: Deep Hypersphere Embedding for Face Recognition <https://arxiv.org/pdf/1704.08063.pdf>`_
 
@@ -74,7 +77,7 @@ SphereFace Loss
 
 
 CosFace Loss
-------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `CosFace: Large Margin Cosine Loss for Deep Face Recognition <https://arxiv.org/pdf/1801.09414.pdf>`_
 
@@ -92,7 +95,7 @@ CosFace Loss
 
 
 ArcFace Loss
-------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `ArcFace: Additive Angular Margin Loss for Deep Face Recognition <https://arxiv.org/pdf/1801.07698.pdf>`_
 
@@ -110,7 +113,7 @@ ArcFace Loss
 
 
 Contrastive Loss
---------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `Dimensionality Reduction by Learning an Invariant Mapping <http://yann.lecun.com/exdb/publis/pdf/hadsell-chopra-lecun-06.pdf>`_
 
@@ -120,7 +123,7 @@ Contrastive Loss
 
 
 Triplet Loss
---------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `Distance Metric Learning for Large Margin Nearest Neighbor Classification <https://papers.nips.cc/paper/2795-distance-metric-learning-for-large-margin-nearest-neighbor-classification.pdf>`_
 
@@ -129,7 +132,7 @@ Triplet Loss
     \mathcal{L}(x_a, x_p, x_n) = max(0, m + \| x_a - x_p \|_2^2 - \| x_a - x_n \|_2^2)
 
 Margin Loss
---------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `Sampling Matters in Deep Embedding Learning <https://arxiv.org/pdf/1706.07567.pdf>`_
 
@@ -141,7 +144,7 @@ Margin Loss
 
 
 Tuplet Margin Loss
---------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `Deep Metric Learning with Tuplet Margin Loss <http://openaccess.thecvf.com/content_ICCV_2019/papers/Yu_Deep_Metric_Learning_With_Tuplet_Margin_Loss_ICCV_2019_paper.pdf>`_
 
@@ -154,7 +157,7 @@ Tuplet Margin Loss
 :math:`s` 是一个缩放因子。 
 
 N-pair Loss
---------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `Improved Deep Metric Learning with Multi-class N-pair Loss Objective <http://www.nec-labs.com/uploads/images/Department-Images/MediaAnalytics/papers/nips16_npairmetriclearning.pdf>`_
 
@@ -162,11 +165,11 @@ N-pair Loss
 
 .. math::
 
-    \mathcal{L}(x_i, x_i^+) = \log(1 + \sum_{j \neq i} e^{x_i^{\top} x_j^+ - x_i^{\top} x_i^+})
+    \mathcal{L}(x_i, x_i^+) = \log \left( 1 + \sum_{j \neq i} e^{x_i^{\top} x_j^+ - x_i^{\top} x_i^+} \right)
 
 
 Lifted Structure Loss
------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `Deep Metric Learning via Lifted Structured Feature Embedding <https://arxiv.org/pdf/1511.06452.pdf>`_
 
@@ -183,7 +186,7 @@ Lifted Structure Loss
 :math:`\mathcal{P}` 表示正样本对，:math:`\mathcal{N}` 表示负样本对，:math:`D_{i,j}` 表示样本对的距离，:math:`\alpha` 表示 margin。
 
 NCA Loss
---------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `Neighbourhood Components Analysis <https://www.cs.toronto.edu/~hinton/absps/nca.pdf>`_
 
@@ -194,7 +197,7 @@ NCA Loss
 :math:`d` 是距离函数，:math:`y` 是正例，:math:`\mathcal{Z}` 是负例集合。
 
 Proxy NCA Loss
---------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `No Fuss Distance Metric Learning using Proxies <https://arxiv.org/pdf/1703.07464.pdf>`_
 
@@ -206,7 +209,7 @@ Proxy NCA Loss
 
 
 Proxy Anchor Loss
---------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `Proxy Anchor Loss for Deep Metric Learning <https://arxiv.org/pdf/2003.13911.pdf>`_
 
@@ -220,7 +223,7 @@ Proxy Anchor Loss
 
 
 SoftTriple Loss
-----------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `SoftTriple Loss: Deep Metric Learning Without Triplet Sampling <http://openaccess.thecvf.com/content_ICCV_2019/papers/Qian_SoftTriple_Loss_Deep_Metric_Learning_Without_Triplet_Sampling_ICCV_2019_paper.pdf>`_
 
@@ -235,7 +238,7 @@ SoftTriple Loss
     \mathcal{L}(x_i) = - \log \frac{e^{\lambda (S_{i, y_i} - \delta )}}{e^{\lambda (S_{i, y_i} - \delta )} + \sum_{j \neq y_i} e^{\lambda S_{i, j}}}
 
 Multi-Similarity loss
----------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `Multi-Similarity Loss with General Pair Weighting for Deep Metric Learning <http://openaccess.thecvf.com/content_CVPR_2019/papers/Wang_Multi-Similarity_Loss_With_General_Pair_Weighting_for_Deep_Metric_Learning_CVPR_2019_paper.pdf>`_
 
@@ -256,6 +259,28 @@ Multi-Similarity loss
 :math:`\mathcal{P}_i` 表示正样本集合，:math:`\mathcal{N}_i` 表示负样本集合，:math:`S_{ij}` 表示样本对的相似度。
 
 
+Normalized Temperature-scaled Cross Entropy Loss
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+`A Simple Framework for Contrastive Learning of Visual Representations <https://arxiv.org/pdf/2002.05709.pdf>`_
+
+自监督学习方法，采用数据增强的方法生成正样本对。
+
+.. math::
+
+    \mathcal{L} = \frac{1}{2N} \sum_{k=1}^N \left( \mathcal{L}(2k-1, 2k) + \mathcal{L}(2k, 2k-1) \right)
+
+.. math::
+
+    \mathcal{L}(i,j) = - \log \left( \frac{e^{s_{i,j}/\tau}}{\sum_{k=1}^{2N} \mathbf{1}(k \neq i) e^{s_{i,k}/\tau} } \right)
+
+.. math::
+
+    s_{i,j} = \frac{z_i^{\top}z_j}{\| z_i \| \| z_j \|}
+
+:math:`\tau` 是温度缩放因子。
+
+
 参考资料
 -------------
 
@@ -274,3 +299,7 @@ Multi-Similarity loss
 3. 『深度概念』度量学习中损失函数的学习与深入理解
 
   https://www.cnblogs.com/xiaosongshine/p/11059762.html
+
+4. 图解SimCLR框架，用对比学习得到一个好的视觉预训练模型
+  
+  https://blog.csdn.net/u011984148/article/details/106233313/

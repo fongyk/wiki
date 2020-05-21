@@ -278,7 +278,7 @@ Normalized Temperature-scaled Cross Entropy Loss
 
     s_{i,j} = \frac{z_i^{\top}z_j}{\| z_i \| \| z_j \|}
 
-:math:`\tau` 是温度缩放因子。
+:math:`N` 是 batch 的大小，:math:`\tau` 是温度缩放因子。
 
 
 参考资料

@@ -130,6 +130,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#triplet-loss">Triplet Loss</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#margin-loss">Margin Loss</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#tuplet-margin-loss">Tuplet Margin Loss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#angular-loss">Angular Loss</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#n-pair-loss">N-pair Loss</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#lifted-structure-loss">Lifted Structure Loss</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#nca-loss">NCA Loss</a></li>
@@ -140,7 +141,19 @@
 <li class="toctree-l4"><a class="reference internal" href="#normalized-temperature-scaled-cross-entropy-loss">Normalized Temperature-scaled Cross Entropy Loss</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">12.2. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">12.2. 样本对挖掘</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#packaged-triplets">Packaged Triplets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#triplet-margin-miner">Triplet-Margin Miner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#angular-miner">Angular Miner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#batch-hard-miner">Batch-Hard Miner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#distance-weighted-miner">Distance-Weighted Miner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hdc-miner">HDC Miner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#maximum-loss-miner">Maximum-Loss Miner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multi-similarity-miner">Multi-Similarity Miner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pair-margin-miner">Pair-Margin Miner</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">12.3. 参考资料</a></li>
 </ul>
 </li>
 </ul>
@@ -219,10 +232,10 @@
             
   <div class="section" id="deep-metric-learning">
 <h1>12. Deep Metric Learning<a class="headerlink" href="#deep-metric-learning" title="Permalink to this headline">¶</a></h1>
-<p>介绍一些 Deep Metric Learning （深度度量学习）的损失函数。</p>
-<p>以下损失函数中的 <span class="math notranslate nohighlight">\(x\)</span> 表示 embedding。</p>
+<p>介绍一些 Deep Metric Learning （深度度量学习）的损失函数和训练样本对挖掘方法。</p>
 <div class="section" id="id1">
 <h2>12.1. 损失函数<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>以下损失函数中的 <span class="math notranslate nohighlight">\(x\)</span> 表示 embedding。</p>
 <div class="section" id="softmax-loss">
 <h3>Softmax Loss<a class="headerlink" href="#softmax-loss" title="Permalink to this headline">¶</a></h3>
 <div class="math notranslate nohighlight">
@@ -310,6 +323,16 @@ $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin
 \[\mathcal{L}(x_a, x_p) = \log \left( 1 + \sum_{i=1}^{k-1} e^{s \left( \cos(\theta_{an_i}) - \cos(\theta_{ap} - \beta) \right)} \right)\]</div>
 <p><span class="math notranslate nohighlight">\(s\)</span> 是一个缩放因子。</p>
 </div>
+<div class="section" id="angular-loss">
+<h3>Angular Loss<a class="headerlink" href="#angular-loss" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://arxiv.org/pdf/1708.01682.pdf">Deep Metric Learning with Angular Loss</a></p>
+<p>以三元组的角度为优化目标，最小化负样本对应的 <span class="math notranslate nohighlight">\(\angle n\)</span> 。相比于 Triplet Loss 的优势：角度具有缩放不变性；角度的计算过程可以利用到三条边；角度的阈值比 Triplet Loss 的 margin 具有更明确的物理意义。</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}(\mathcal{B}) = \frac{1}{N} \sum_{x_a \in \mathcal{B}} \log \left( 1 + \sum_{x_n \in \mathcal{B}} e^{f_{a,p,n}} \right)\]</div>
+<div class="math notranslate nohighlight">
+\[f_{a,p,n} = 4 \tan^2 \alpha (x_a + x_p)^{\top} x_n - 2 (1 + \tan^2 \alpha) x_a^{\top} x_p\]</div>
+<p><span class="math notranslate nohighlight">\(\mathcal{B}\)</span> 表示一个 batch 的样本集合，<span class="math notranslate nohighlight">\(N\)</span> 是 batch 的大小，<span class="math notranslate nohighlight">\(\alpha\)</span> 是角度阈值。</p>
+</div>
 <div class="section" id="n-pair-loss">
 <h3>N-pair Loss<a class="headerlink" href="#n-pair-loss" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://www.nec-labs.com/uploads/images/Department-Images/MediaAnalytics/papers/nips16_npairmetriclearning.pdf">Improved Deep Metric Learning with Multi-class N-pair Loss Objective</a></p>
@@ -384,7 +407,65 @@ $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin
 </div>
 </div>
 <div class="section" id="id2">
-<h2>12.2. 参考资料<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>12.2. 样本对挖掘<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="packaged-triplets">
+<h3>Packaged Triplets<a class="headerlink" href="#packaged-triplets" title="Permalink to this headline">¶</a></h3>
+<p>已经预先采样好的三元组。</p>
+</div>
+<div class="section" id="triplet-margin-miner">
+<h3>Triplet-Margin Miner<a class="headerlink" href="#triplet-margin-miner" title="Permalink to this headline">¶</a></h3>
+<p>根据 anchor-positive 与 anchor-negative 距离差来挖掘样本。只选择最困难的样本对是不利于训练的。</p>
+<ul class="simple">
+<li>Hard：<span class="math notranslate nohighlight">\(d_{an} &lt; d_{ap}\)</span></li>
+<li>Semi-Hard：<span class="math notranslate nohighlight">\(d_{an} &gt; d_{ap}\)</span></li>
+</ul>
+</div>
+<div class="section" id="angular-miner">
+<h3>Angular Miner<a class="headerlink" href="#angular-miner" title="Permalink to this headline">¶</a></h3>
+<p>对应 Angular Loss，根据角度阈值构建三元组。</p>
+</div>
+<div class="section" id="batch-hard-miner">
+<h3>Batch-Hard Miner<a class="headerlink" href="#batch-hard-miner" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://arxiv.org/pdf/1703.07737.pdf">In Defense of the Triplet Loss for Person Re-Identification</a></p>
+<p>在 batch 内选择最困难的正样本对和负样本对。</p>
+</div>
+<div class="section" id="distance-weighted-miner">
+<h3>Distance-Weighted Miner<a class="headerlink" href="#distance-weighted-miner" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://arxiv.org/pdf/1706.07567.pdf">Sampling Matters in Deep Embedding Learning</a></p>
+<p>根据距离分布均匀采样负样本，可以保证得到的样本分布在一个较大的距离范围，保证样本多样性。</p>
+<div class="math notranslate nohighlight">
+\[p(d) \propto d^{n-2} \left( 1- \frac{1}{4} d^2 \right) ^{\frac{n-3}{2}}\]</div>
+<p><span class="math notranslate nohighlight">\(d\)</span> 表示 anchor 与 negative 的距离，<span class="math notranslate nohighlight">\(n\)</span> 表示 embedding 的维度。</p>
+</div>
+<div class="section" id="hdc-miner">
+<h3>HDC Miner<a class="headerlink" href="#hdc-miner" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://openaccess.thecvf.com/content_ICCV_2017/papers/Yuan_Hard-Aware_Deeply_Cascaded_ICCV_2017_paper.pdf">Hard-Aware Deeply Cascaded Embedding</a></p>
+<p>让更复杂的模型处理更困难的样本。</p>
+<p>在 batch 内，对正负样本对都按距离排序，将固定比例的困难样本输入更深层的网络进行提特征、计算损失。</p>
+<p>推理阶段，将不同层级的网络输出进行级联。</p>
+</div>
+<div class="section" id="maximum-loss-miner">
+<h3>Maximum-Loss Miner<a class="headerlink" href="#maximum-loss-miner" title="Permalink to this headline">¶</a></h3>
+<p>重复多次采样 batch 的子集，提取出损失最大的样本对。</p>
+</div>
+<div class="section" id="multi-similarity-miner">
+<h3>Multi-Similarity Miner<a class="headerlink" href="#multi-similarity-miner" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>选择负样本，满足 <span class="math notranslate nohighlight">\(d_{an} &gt; d_{ap}^{max} - \epsilon\)</span></li>
+<li>选择正样本，满足 <span class="math notranslate nohighlight">\(d_{ap} &lt; d_{an}^{min} + \epsilon\)</span></li>
+</ul>
+</div>
+<div class="section" id="pair-margin-miner">
+<h3>Pair-Margin Miner<a class="headerlink" href="#pair-margin-miner" title="Permalink to this headline">¶</a></h3>
+<p>根据距离阈值挑选样本对。</p>
+<ul class="simple">
+<li>选择负样本，满足 <span class="math notranslate nohighlight">\(d_{an} &lt; m_n\)</span></li>
+<li>选择正样本，满足 <span class="math notranslate nohighlight">\(d_{ap} &gt; m_p\)</span></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>12.3. 参考资料<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>A Metric Learning Reality Check</li>
 </ol>

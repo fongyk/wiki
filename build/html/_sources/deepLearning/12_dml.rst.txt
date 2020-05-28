@@ -1,12 +1,12 @@
 Deep Metric Learning
 =========================
 
-介绍一些 Deep Metric Learning （深度度量学习）的损失函数。
-
-以下损失函数中的 :math:`x` 表示 embedding。
+介绍一些 Deep Metric Learning （深度度量学习）的损失函数和训练样本对挖掘方法。
 
 损失函数
 -----------------------
+
+以下损失函数中的 :math:`x` 表示 embedding。
 
 Softmax Loss
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -156,6 +156,24 @@ Tuplet Margin Loss
 
 :math:`s` 是一个缩放因子。 
 
+
+Angular Loss
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+`Deep Metric Learning with Angular Loss <https://arxiv.org/pdf/1708.01682.pdf>`_
+
+以三元组的角度为优化目标，最小化负样本对应的 :math:`\angle n` 。相比于 Triplet Loss 的优势：角度具有缩放不变性；角度的计算过程可以利用到三条边；角度的阈值比 Triplet Loss 的 margin 具有更明确的物理意义。
+
+.. math::
+
+    \mathcal{L}(\mathcal{B}) = \frac{1}{N} \sum_{x_a \in \mathcal{B}} \log \left( 1 + \sum_{x_n \in \mathcal{B}} e^{f_{a,p,n}} \right)
+
+.. math::
+
+    f_{a,p,n} = 4 \tan^2 \alpha (x_a + x_p)^{\top} x_n - 2 (1 + \tan^2 \alpha) x_a^{\top} x_p
+
+:math:`\mathcal{B}` 表示一个 batch 的样本集合，:math:`N` 是 batch 的大小，:math:`\alpha` 是角度阈值。
+
 N-pair Loss
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -279,6 +297,86 @@ Normalized Temperature-scaled Cross Entropy Loss
     s_{i,j} = \frac{z_i^{\top}z_j}{\| z_i \| \| z_j \|}
 
 :math:`N` 是 batch 的大小，:math:`\tau` 是温度缩放因子。
+
+
+样本对挖掘
+-------------------
+
+Packaged Triplets
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+已经预先采样好的三元组。
+
+
+Triplet-Margin Miner
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+根据 anchor-positive 与 anchor-negative 距离差来挖掘样本。只选择最困难的样本对是不利于训练的。
+
+- Hard：:math:`d_{an} < d_{ap}`
+
+- Semi-Hard：:math:`d_{an} > d_{ap}`
+
+Angular Miner
+^^^^^^^^^^^^^^^^^
+
+对应 Angular Loss，根据角度阈值构建三元组。
+
+
+Batch-Hard Miner
+^^^^^^^^^^^^^^^^^^^^^^^
+
+`In Defense of the Triplet Loss for Person Re-Identification <https://arxiv.org/pdf/1703.07737.pdf>`_
+
+在 batch 内选择最困难的正样本对和负样本对。
+
+Distance-Weighted Miner
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+`Sampling Matters in Deep Embedding Learning <https://arxiv.org/pdf/1706.07567.pdf>`_
+
+根据距离分布均匀采样负样本，可以保证得到的样本分布在一个较大的距离范围，保证样本多样性。
+
+.. math::
+
+    p(d) \propto d^{n-2} \left( 1- \frac{1}{4} d^2 \right) ^{\frac{n-3}{2}}
+
+:math:`d` 表示 anchor 与 negative 的距离，:math:`n` 表示 embedding 的维度。
+
+
+HDC Miner
+^^^^^^^^^^^^^^^^^^^
+
+`Hard-Aware Deeply Cascaded Embedding <http://openaccess.thecvf.com/content_ICCV_2017/papers/Yuan_Hard-Aware_Deeply_Cascaded_ICCV_2017_paper.pdf>`_
+
+让更复杂的模型处理更困难的样本。
+
+在 batch 内，对正负样本对都按距离排序，将固定比例的困难样本输入更深层的网络进行提特征、计算损失。
+
+推理阶段，将不同层级的网络输出进行级联。
+
+
+Maximum-Loss Miner
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+重复多次采样 batch 的子集，提取出损失最大的样本对。
+
+
+Multi-Similarity Miner
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- 选择负样本，满足 :math:`d_{an} > d_{ap}^{max} - \epsilon`
+
+- 选择正样本，满足 :math:`d_{ap} < d_{an}^{min} + \epsilon`
+
+Pair-Margin Miner
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+根据距离阈值挑选样本对。
+
+- 选择负样本，满足 :math:`d_{an} < m_n`
+
+- 选择正样本，满足 :math:`d_{ap} > m_p`
 
 
 参考资料

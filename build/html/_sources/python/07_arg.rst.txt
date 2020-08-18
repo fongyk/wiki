@@ -158,6 +158,38 @@ arg，\*args，\*\*kwargs
   y: 1
   kwargs: {'var1': 1, 'var2': 'b'}
 
+
+标记 ``/``
+-------------
+
+在函数定义中， ``/`` 表示在它之前的形参是仅限位置形参（ positional-only arguments），仅限位置形参没有外部可用的名称。
+在调用接受仅限位置形参的函数时，参数只会基于它们的位置被映射到形参。
+在 ``/`` 之后的参数可以是位置参数，也可以是键值对参数。
+
+.. code-block:: python
+  :linenos:
+
+  >>> def foo(a, /, b):
+  ...     print(a, b)
+  ...
+  >>> foo(1, 3)
+  1 3
+  >>> foo(1, b=3)
+  1 3
+  >>> foo(a=1, b=3)
+  Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+  TypeError: foo() got some positional-only arguments passed as keyword arguments: 'a'
+  
+  >>> def foo(a, b):
+  ...     print(a, b)
+  ...
+  >>> foo(1, 2)
+  1 2
+  >>> foo(a=1, b=2)
+  1 2
+
+
 命名关键字参数
 ---------------
 

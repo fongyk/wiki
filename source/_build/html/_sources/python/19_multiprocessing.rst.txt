@@ -295,6 +295,33 @@ Pipe
     (3, 'Process-2')
     (4, 'Process-2')
 
+.. note::
+
+    在多进程任务中，如果每个进程都要从一个共享队列中读数据，而这个队列需要存储的列表很长，
+    把数据完整地填充（put）到队列中需要花费很长时间，在这种情况下，不要等到队列中填充完了所有的数据才启动进程，
+    而是先启动（start）进程任务，再填充队列，直到进程结束（join）::
+
+        ...
+        p.start()
+        fill_queue()
+        p.join()
+        ...
+
+    这样一来，总体上看，一边填充队列，任务一边执行，效率大大提高。但是，进程读队列的时候队列可能为空，
+    这时候需要处理异常，读到空的次数达到一定阈值的时候任务结束::
+
+        ## python3
+        import queue
+
+        ## process task
+        while True:
+            empty_cnt = 0
+            try:
+            ...
+            except queue.Empty as e:
+                empty_cnt += 1
+                if empty_cnt > th_cnt:
+                    break
 
 参考资料
 ----------

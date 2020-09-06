@@ -47,7 +47,7 @@
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Linux/Shell" href="../linux/index.html" />
+    <link rel="next" title="20. logging" href="20_logging.html" />
     <link rel="prev" title="18. 异常" href="18_exception.html" /> 
 </head>
 
@@ -141,6 +141,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#id8">19.5. 参考资料</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="20_logging.html">20. logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_pyM.html">21. python -m</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_buildIn.html">22. 内建属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_glob.html">23. glob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_pyLinux.html">24. Python 执行 linux 命令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_bisect.html">25. bisect</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
@@ -596,6 +602,35 @@
 <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;Process-2&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>在多进程任务中，如果每个进程都要从一个共享队列中读数据，而这个队列需要存储的列表很长，
+把数据完整地填充（put）到队列中需要花费很长时间，在这种情况下，不要等到队列中填充完了所有的数据才启动进程，
+而是先启动（start）进程任务，再填充队列，直到进程结束（join）:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">fill_queue</span><span class="p">()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>这样一来，总体上看，一边填充队列，任务一边执行，效率大大提高。但是，进程读队列的时候队列可能为空，
+这时候需要处理异常，读到空的次数达到一定阈值的时候任务结束:</p>
+<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## python3</span>
+<span class="kn">import</span> <span class="nn">queue</span>
+
+<span class="c1">## process task</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">empty_cnt</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">try</span><span class="p">:</span>
+    <span class="o">...</span>
+    <span class="k">except</span> <span class="n">queue</span><span class="o">.</span><span class="n">Empty</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">empty_cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">empty_cnt</span> <span class="o">&gt;</span> <span class="n">th_cnt</span><span class="p">:</span>
+            <span class="k">break</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="id8">
@@ -623,7 +658,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../linux/index.html" class="btn btn-neutral float-right" title="Linux/Shell" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="20_logging.html" class="btn btn-neutral float-right" title="20. logging" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="18_exception.html" class="btn btn-neutral float-left" title="18. 异常" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

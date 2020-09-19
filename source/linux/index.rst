@@ -10,3 +10,4 @@ Linux/Shell
     03_authority.rst
     04_rename.rst
     05_sed.rst
+    06_shellBasis.rst

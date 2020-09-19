@@ -324,7 +324,7 @@ while
         command
     done
 
-util
+until
 ^^^^^^^^^^^^
 
 ::

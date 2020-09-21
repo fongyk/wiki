@@ -142,6 +142,13 @@ try 语句块
     # 处理异常
     print e
 
+.. note::
+
+	如果 ``e`` 和 ``str(e)`` 打印出来都是空白，可以尝试打印 ``repr(e)`` ，或者::
+		
+		import traceback
+		traceback.print_exc() ## 在需要打印异常的地方
+
 参考资料
 ----------
 

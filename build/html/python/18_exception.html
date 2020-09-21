@@ -47,7 +47,7 @@
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Linux/Shell" href="../linux/index.html" />
+    <link rel="next" title="19. multiprocessing" href="19_multiprocessing.html" />
     <link rel="prev" title="17. pip" href="17_pip.html" /> 
 </head>
 
@@ -129,6 +129,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#id6">18.6. 参考资料</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="19_multiprocessing.html">19. multiprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_logging.html">20. logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_pyM.html">21. python -m</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_buildIn.html">22. 内建属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_glob.html">23. glob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_pyLinux.html">24. Python 执行 linux 命令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_bisect.html">25. bisect</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
@@ -394,6 +401,14 @@
   <span class="k">print</span> <span class="n">e</span>
 </pre></div>
 </td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>如果 <code class="docutils literal notranslate"><span class="pre">e</span></code> 和 <code class="docutils literal notranslate"><span class="pre">str(e)</span></code> 打印出来都是空白，可以尝试打印 <code class="docutils literal notranslate"><span class="pre">repr(e)</span></code> ，或者:</p>
+<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">traceback</span>
+<span class="n">traceback</span><span class="o">.</span><span class="n">print_exc</span><span class="p">()</span> <span class="c1">## 在需要打印异常的地方</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="id6">
 <h2>18.6. 参考资料<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
@@ -413,7 +428,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../linux/index.html" class="btn btn-neutral float-right" title="Linux/Shell" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="19_multiprocessing.html" class="btn btn-neutral float-right" title="19. multiprocessing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="17_pip.html" class="btn btn-neutral float-left" title="17. pip" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

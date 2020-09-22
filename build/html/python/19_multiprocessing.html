@@ -299,6 +299,10 @@
 <li><code class="docutils literal notranslate"><span class="pre">put(obj[,</span> <span class="pre">block[,</span> <span class="pre">timeout]])</span></code> ：将 <code class="docutils literal notranslate"><span class="pre">obj</span></code> 放入队列。如果可选参数 <code class="docutils literal notranslate"><span class="pre">block</span></code> 是 True（默认值）而且 <code class="docutils literal notranslate"><span class="pre">timeout</span></code> 是 None（默认值）, 将会阻塞当前进程，直到有空的缓冲槽。如果 <code class="docutils literal notranslate"><span class="pre">timeout</span></code> 是正数，将会在阻塞了最多 <code class="docutils literal notranslate"><span class="pre">timeout</span></code> 秒之后还是没有可用的缓冲槽时抛出 <code class="docutils literal notranslate"><span class="pre">queue.Full</span></code>  异常。反之（ <code class="docutils literal notranslate"><span class="pre">block</span></code> 是 False 时），仅当有可用缓冲槽时才放入对象，否则抛出 <code class="docutils literal notranslate"><span class="pre">queue.Full</span></code> 异常（在这种情形下 <code class="docutils literal notranslate"><span class="pre">timeout</span></code> 参数会被忽略）。</li>
 <li><code class="docutils literal notranslate"><span class="pre">get([block[,</span> <span class="pre">timeout]])</span></code> ：从队列中取出并返回对象。</li>
 </ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">使用 <code class="docutils literal notranslate"><span class="pre">multiprocessing.Queue</span></code> 可能会因为队列中的数据未flush而造成死锁、进程无法退出，建议使用 <code class="docutils literal notranslate"><span class="pre">multiprocessing.Manager().Queue</span></code> 。</p>
+</div>
 </div>
 <div class="section" id="pipe">
 <h3>19.3.3. 数据传递：Pipe<a class="headerlink" href="#pipe" title="Permalink to this headline">¶</a></h3>

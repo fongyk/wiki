@@ -83,6 +83,12 @@ Process 类
 - ``put(obj[, block[, timeout]])`` ：将 ``obj`` 放入队列。如果可选参数 ``block`` 是 True（默认值）而且 ``timeout`` 是 None（默认值）, 将会阻塞当前进程，直到有空的缓冲槽。如果 ``timeout`` 是正数，将会在阻塞了最多 ``timeout`` 秒之后还是没有可用的缓冲槽时抛出 ``queue.Full``  异常。反之（ ``block`` 是 False 时），仅当有可用缓冲槽时才放入对象，否则抛出 ``queue.Full`` 异常（在这种情形下 ``timeout`` 参数会被忽略）。
 - ``get([block[, timeout]])`` ：从队列中取出并返回对象。
 
+
+.. note::
+
+	使用 ``multiprocessing.Queue`` 可能会因为队列中的数据未flush而造成死锁、进程无法退出，建议使用 ``multiprocessing.Manager().Queue`` 。
+
+
 数据传递：Pipe
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

@@ -47,7 +47,7 @@
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Linux/Shell" href="../linux/index.html" />
+    <link rel="next" title="23. glob" href="23_glob.html" />
     <link rel="prev" title="21. python -m" href="21_pyM.html" /> 
 </head>
 
@@ -135,6 +135,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#id2">22.8. 参考资料</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="23_glob.html">23. glob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_pyLinux.html">24. Python 执行 linux 命令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_bisect.html">25. bisect</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
@@ -453,10 +456,23 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">_a</span>
 <span class="go">0</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">_b</span>
-<span class="go">get attr. _b</span>
+<span class="go">get attr._b</span>
 <span class="go">1</span>
 </pre></div>
 </td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>多进程 multiprocessing 为了实现数据共享，会对数据进行序列化（pickling），其他进程读的时候再反序列化（unpickling）。反序列化时，数据所对应的类的 <code class="docutils literal notranslate"><span class="pre">__init__</span></code> 方法不会被调用，因而上例中 <code class="docutils literal notranslate"><span class="pre">self.dic</span></code> 对执行反序列化的进程是不可见的，会造成 <code class="docutils literal notranslate"><span class="pre">__getattr__</span></code> 无限循环调用:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pickle</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_obj</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+<span class="gp">...</span>
+<span class="go">RecursionError: maximum recursion depth exceeded while calling a Python object.</span>
+</pre></div>
+</div>
+<p class="last">解决方法：直接用 <code class="docutils literal notranslate"><span class="pre">self.__dict__</span></code> 来存放原本 <code class="docutils literal notranslate"><span class="pre">self.dic</span></code> 的数据。
+参考：<a class="reference external" href="https://stackoverflow.com/questions/62331047/why-am-i-receiving-a-recursion-error-with-multiprocessing">https://stackoverflow.com/questions/62331047/why-am-i-receiving-a-recursion-error-with-multiprocessing</a></p>
+</div>
 </div>
 <div class="section" id="getattribute">
 <h2>22.7. __getattribute__<a class="headerlink" href="#getattribute" title="Permalink to this headline">¶</a></h2>
@@ -536,7 +552,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../linux/index.html" class="btn btn-neutral float-right" title="Linux/Shell" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="23_glob.html" class="btn btn-neutral float-right" title="23. glob" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="21_pyM.html" class="btn btn-neutral float-left" title="21. python -m" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

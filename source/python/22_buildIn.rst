@@ -202,9 +202,21 @@ __getattr__
     >>> obj._a
     0
     >>> obj._b
-    get attr. _b
+    get attr._b
     1
 
+.. note::
+
+    多进程 multiprocessing 为了实现数据共享，会对数据进行序列化（pickling），其他进程读的时候再反序列化（unpickling）。反序列化时，数据所对应的类的 ``__init__`` 方法不会被调用，因而上例中 ``self.dic`` 对执行反序列化的进程是不可见的，会造成 ``__getattr__`` 无限循环调用::
+
+        >>> import pickle
+        >>> obj = A(0)
+        >>> new_obj = pickle.loads(pickle.dumps(obj))
+        ...
+        RecursionError: maximum recursion depth exceeded while calling a Python object.
+
+    解决方法：直接用 ``self.__dict__`` 来存放原本 ``self.dic`` 的数据。
+    参考：https://stackoverflow.com/questions/62331047/why-am-i-receiving-a-recursion-error-with-multiprocessing
 
 __getattribute__
 -------------------------

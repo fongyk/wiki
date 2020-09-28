@@ -399,8 +399,8 @@ value3
 <h3>布尔运算<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>非：<code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">!</span> <span class="pre">false</span> <span class="pre">]</span></code> 返回 true。</li>
-<li>与：<code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">$a</span> <span class="pre">-lt</span> <span class="pre">20</span> <span class="pre">-o</span> <span class="pre">$b</span> <span class="pre">-gt</span> <span class="pre">100</span> <span class="pre">]</span></code></li>
-<li>或：<code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">$a</span> <span class="pre">-lt</span> <span class="pre">20</span> <span class="pre">-a</span> <span class="pre">$b</span> <span class="pre">-gt</span> <span class="pre">100</span> <span class="pre">]</span></code></li>
+<li>与：<code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">$a</span> <span class="pre">-lt</span> <span class="pre">20</span> <span class="pre">-a</span> <span class="pre">$b</span> <span class="pre">-gt</span> <span class="pre">100</span> <span class="pre">]</span></code></li>
+<li>或：<code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">$a</span> <span class="pre">-lt</span> <span class="pre">20</span> <span class="pre">-o</span> <span class="pre">$b</span> <span class="pre">-gt</span> <span class="pre">100</span> <span class="pre">]</span></code></li>
 </ul>
 </div>
 <div class="section" id="id11">
@@ -559,7 +559,7 @@ value2<span class="o">)</span>
 <li>以单一字符串形式获取全部参数：<code class="docutils literal notranslate"><span class="pre">$*</span></code></li>
 <li>以列表形式获取全部参数：<code class="docutils literal notranslate"><span class="pre">$&#64;</span></code></li>
 <li>脚本运行的当前进程ID：<code class="docutils literal notranslate"><span class="pre">$$</span></code></li>
-<li>返回值：<code class="docutils literal notranslate"><span class="pre">$？</span></code> 表示返回值或显示最后命令的退出状态：0 表示没有错误，其他值表明有错误。</li>
+<li>返回值：<code class="docutils literal notranslate"><span class="pre">$?</span></code> 表示返回值或显示最后命令的退出状态：0 表示没有错误，其他值表明有错误。</li>
 </ul>
 <p>示例：</p>
 <div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1

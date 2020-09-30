@@ -375,6 +375,10 @@ value3
 </ul>
 </div></blockquote>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><code class="docutils literal notranslate"><span class="pre">`command`</span></code> 等效于 <code class="docutils literal notranslate"><span class="pre">$(command)</span></code> ，都是获取 shell 指令执行的结果，例如 <code class="docutils literal notranslate"><span class="pre">`ls</span> <span class="pre">.`</span></code> 等效于 <code class="docutils literal notranslate"><span class="pre">$(ls</span> <span class="pre">.)</span></code> 。</p>
+</div>
 </div>
 <div class="section" id="id8">
 <h3>关系运算<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
@@ -490,6 +494,30 @@ value3
 <p>写成单行:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> var in item1 item2 ... itemN<span class="p">;</span> <span class="k">do</span> command1<span class="p">;</span> command2<span class="p">;</span> ...<span class="p">;</span> <span class="k">done</span>
 </pre></div>
+</div>
+<p>for 循环的几种形式：</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">{1..10}</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">$(seq</span> <span class="pre">1</span> <span class="pre">10)</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">((i=1;</span> <span class="pre">i&lt;=10;</span> <span class="pre">++i))</span></code></li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">seq</span></code> 的使用方法（ <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">seq</span></code> ）:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>seq <span class="o">[</span>option<span class="o">]</span> <span class="o">[</span>first <span class="o">[</span>increment<span class="o">]]</span> last
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">first</span></code> <code class="docutils literal notranslate"><span class="pre">increment</span></code> 缺省则默认为 1。</p>
+<p>参数：</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">-f</span></code> 输出格式。需要符合 <code class="docutils literal notranslate"><span class="pre">printf</span></code> 的浮点型格式，即 <code class="docutils literal notranslate"><span class="pre">%f</span></code> 。如果 <code class="docutils literal notranslate"><span class="pre">first</span></code> <code class="docutils literal notranslate"><span class="pre">increment</span></code> <code class="docutils literal notranslate"><span class="pre">last</span></code> 中有浮点数，则默认按照三者中的最高精度输出；如果都是整型，则默认为 <code class="docutils literal notranslate"><span class="pre">%g</span></code> 格式；指定 <code class="docutils literal notranslate"><span class="pre">%g</span></code> 会强制把浮点型转换成整型；<code class="docutils literal notranslate"><span class="pre">%03g</span></code> 指定宽度为 3，用 0 补足；<code class="docutils literal notranslate"><span class="pre">prefix_%g_suffix</span></code> 添加了前后缀。</li>
+<li><code class="docutils literal notranslate"><span class="pre">-s</span></code> 分隔符，默认为 <code class="docutils literal notranslate"><span class="pre">\n</span></code> 。</li>
+<li><code class="docutils literal notranslate"><span class="pre">-w</span></code> 等宽序列，将序列中最大值的宽度作为序列的宽度。</li>
+</ul>
+</div></blockquote>
 </div>
 </div>
 <div class="section" id="while">

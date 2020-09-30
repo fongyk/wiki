@@ -170,6 +170,10 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。
             
             - ``let a=b*100``
 
+.. note::
+
+    ```command``` 等效于 ``$(command)`` ，都是获取 shell 指令执行的结果，例如 ```ls .``` 等效于 ``$(ls .)`` 。
+
 关系运算
 ^^^^^^^^^^^^
 
@@ -313,6 +317,31 @@ for
 写成单行::
 
     for var in item1 item2 ... itemN; do command1; command2; ...; done
+
+for 循环的几种形式：
+
+    - ``for i in {1..10}``
+
+    - ``for i in $(seq 1 10)``
+
+    - ``for ((i=1; i<=10; ++i))``
+
+.. note::
+
+    ``seq`` 的使用方法（ ``man seq`` ）::
+
+        seq [option] [first [increment]] last
+
+    ``first`` ``increment`` 缺省则默认为 1。
+
+    参数：
+
+        - ``-f`` 输出格式。需要符合 ``printf`` 的浮点型格式，即 ``%f`` 。如果 ``first`` ``increment`` ``last`` 中有浮点数，则默认按照三者中的最高精度输出；如果都是整型，则默认为 ``%g`` 格式；指定 ``%g`` 会强制把浮点型转换成整型；``%03g`` 指定宽度为 3，用 0 补足；``prefix_%g_suffix`` 添加了前后缀。
+
+        - ``-s`` 分隔符，默认为 ``\n`` 。
+
+        - ``-w`` 等宽序列，将序列中最大值的宽度作为序列的宽度。
+
 
 while
 ^^^^^^^^^^^^

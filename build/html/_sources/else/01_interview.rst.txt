@@ -3601,6 +3601,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
     .. code-block:: cpp
       :linenos:
 
+      // 方法一：动态规划
       // 设 dp[i] 表示以 s[i] 结尾的最长匹配长度
       // 当 s[i] = '(' ，dp[i] = 0
       // 当 s[i] = ')' 且 s[i-1] = '(' ，dp[i] = dp[i-2] + 2
@@ -3632,6 +3633,47 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
                   res = max(res, dp[i]);
               }
               vector<int>().swap(dp);
+              return res;
+          }
+      };
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 方法二：栈
+      // 将达成匹配的括号的flag置为true
+      // 求flag为true的最长连续子数组
+      class Solution 
+      {
+      public:
+          int longestValidParentheses(string s) 
+          {
+              const int LEN = s.size();
+              if(LEN <= 1) return 0;
+              stack<int> id_stk;
+              vector<bool> match_flag(LEN, false);
+              for(int k = 0; k < LEN; ++k)
+              {
+                  if(s.at(k) == '(') id_stk.push(k);
+                  else if(!id_stk.empty())
+                  {
+                      match_flag[id_stk.top()] = true; // left parentheses
+                      match_flag[k] = true; // right parentheses
+                      id_stk.pop();
+                  }
+              }
+              int res = 0;
+              int begin = -1;
+              // longest continuous 'true'
+              for(int end = 0; end < LEN; ++end)
+              {
+                  if(match_flag[end] && begin == -1) begin = end;
+                  else if(begin > -1 && (end+1 == LEN or !match_flag[end+1]))
+                  {
+                      res = max(res, end - begin + 1);
+                      begin = -1;
+                  }
+              }
               return res;
           }
       };

@@ -127,9 +127,12 @@ __new__ 实现单例
     _instance = None
     def __new__(cls, *args, **kwargs):
         if cls._instance is None:
-            cls._instance = super(Singleton, cls).__new__(cls, *args, **kwargs)
+            cls._instance = super(Singleton, cls).__new__(cls)
 
         return cls._instance
+
+    def __init__(self, *args, **kwargs):
+		pass
 
 
 .. code-block:: python
@@ -141,6 +144,31 @@ __new__ 实现单例
   >>> s2 = Singleton()
   >>> print id(s2)
   317973448
+
+.. code-block:: python
+  :linenos:
+  
+  import threading
+ 
+  class Singleton(object):
+      _instance_lock = threading.Lock()
+ 
+      def __new__(cls, *args, **kwargs):
+          if not hasattr(cls, '_instance'):
+              with cls._instance_lock:  # 加锁，线程安全
+                  cls._instance = super(Singleton, cls).__new__(cls)
+          return cls._instance
+
+      def __init__(self, x):
+          self.x = x
+
+  def task(arg):
+      obj = Singleton(arg)
+      print(obj)
+ 
+  for _x in range(10):
+      t = threading.Thread(target=task, args=(_x,))
+      t.start()
 
 
 附：__repr__ 和 __str__
@@ -196,3 +224,7 @@ __new__ 实现单例
 4. Python中__repr__和__str__区别
 
   https://blog.csdn.net/luckytanggu/article/details/53649156
+
+5. python 单例模式
+
+  https://www.cnblogs.com/xiao-apple36/p/9398760.html

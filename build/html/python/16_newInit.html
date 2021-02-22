@@ -132,12 +132,22 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="17_pip.html">17. pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_exception.html">18. 异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_multiprocessing.html">19. multiprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_logging.html">20. logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_pyM.html">21. python -m</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_buildIn.html">22. 内建属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_glob.html">23. glob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_pyLinux.html">24. Python 执行 linux 命令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_bisect.html">25. bisect</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
@@ -342,19 +352,25 @@
 <div class="section" id="new">
 <h3>16.3.3. __new__ 实现单例<a class="headerlink" href="#new" title="Permalink to this headline">¶</a></h3>
 <p>单例（singleton）：类只有一个对象。<code class="docutils literal notranslate"><span class="pre">None</span></code> 就是一个单例，所有的变量只要是 <code class="docutils literal notranslate"><span class="pre">None</span></code> ，它一定和 <code class="docutils literal notranslate"><span class="pre">None</span></code> 指向同一个内存地址。</p>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Singleton</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Singleton</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
   <span class="n">_instance</span> <span class="o">=</span> <span class="bp">None</span>
   <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
       <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_instance</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-          <span class="bp">cls</span><span class="o">.</span><span class="n">_instance</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">Singleton</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+          <span class="bp">cls</span><span class="o">.</span><span class="n">_instance</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">Singleton</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
 
       <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_instance</span>
+
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+              <span class="k">pass</span>
 </pre></div>
 </td></tr></table></div>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -368,6 +384,49 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s2</span> <span class="o">=</span> <span class="n">Singleton</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="nb">id</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
 <span class="go">317973448</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">threading</span>
+
+<span class="k">class</span> <span class="nc">Singleton</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">_instance_lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s1">&#39;_instance&#39;</span><span class="p">):</span>
+            <span class="k">with</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_instance_lock</span><span class="p">:</span>  <span class="c1"># 加锁，线程安全</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">_instance</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">Singleton</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_instance</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+
+<span class="k">def</span> <span class="nf">task</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">Singleton</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">_x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">task</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">_x</span><span class="p">,))</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div>
 </div>
@@ -443,6 +502,11 @@
 </ol>
 <blockquote>
 <div><a class="reference external" href="https://blog.csdn.net/luckytanggu/article/details/53649156">https://blog.csdn.net/luckytanggu/article/details/53649156</a></div></blockquote>
+<ol class="arabic simple" start="5">
+<li>python 单例模式</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/xiao-apple36/p/9398760.html">https://www.cnblogs.com/xiao-apple36/p/9398760.html</a></div></blockquote>
 </div>
 </div>
 

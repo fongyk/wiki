@@ -280,6 +280,8 @@
     .. code-block:: cpp
       :linenos:
 
+      // 方法一：栈
+
       class Solution
       {
       public:
@@ -308,6 +310,45 @@
                   if(stk.front()) p -> next = *stk.front(); // 这一步决定了队列必须保存是指针的地址，否则 p -> next = stk.front() 只是指向了一个临时拷贝。
                   if(p -> left) stk.push(&p->left);
                   if(p -> right) stk.push(&p->right);
+              }
+              return root;
+          }
+      };
+
+    .. code-block:: cpp
+      :linenos:
+      
+      // 方法二
+
+      class Solution
+      {
+      public:
+          Node* connect(Node* root)
+          {
+              if(!root) return root;
+              queue<Node*> que;
+              que.push(root);
+              que.push(nullptr);
+              Node* head = nullptr;
+              while(!que.empty())
+              {
+                  Node* p = que.front();
+                  que.pop();
+                  if(!head)
+                  {
+                      head = p;
+                      if(!que.empty()) que.push(nullptr);
+                  }
+                  else
+                  {
+                      head -> next = p;
+                      head = p;
+                  }
+                  if(p)
+                  {
+                      if(p->left) que.push(p->left);
+                      if(p->right) que.push(p->right);
+                  }
               }
               return root;
           }

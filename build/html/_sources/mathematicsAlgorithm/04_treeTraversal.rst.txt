@@ -280,46 +280,6 @@
     .. code-block:: cpp
       :linenos:
 
-      // 方法一：栈
-
-      class Solution
-      {
-      public:
-          Node* connect(Node* root)
-          {
-              queue<Node**> stk; // 队列保存的是指针的地址，如果直接保存指针的拷贝，后面的 next 指向会有问题
-              if(root)
-              {
-                  stk.push(&root);
-                  stk.push(NULL); // 插入空指针作为每一层的结尾标识
-              }
-              while(!stk.empty())
-              {
-                  if(stk.front() == NULL)
-                  {
-                      stk.pop();
-                      if(!stk.empty())
-                      {
-                          stk.push(NULL); // 插入下一层的结尾标识
-                          continue;
-                      }
-                      else break; // 最后一层
-                  }
-                  Node* p = *stk.front();
-                  stk.pop();
-                  if(stk.front()) p -> next = *stk.front(); // 这一步决定了队列必须保存是指针的地址，否则 p -> next = stk.front() 只是指向了一个临时拷贝。
-                  if(p -> left) stk.push(&p->left);
-                  if(p -> right) stk.push(&p->right);
-              }
-              return root;
-          }
-      };
-
-    .. code-block:: cpp
-      :linenos:
-      
-      // 方法二
-
       class Solution
       {
       public:

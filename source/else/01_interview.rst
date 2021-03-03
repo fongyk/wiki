@@ -402,48 +402,31 @@
       class Solution
       {
       public:
-          ListNode* deleteDuplication(ListNode* pHead)
+          ListNode* deleteDuplicates(ListNode* head)
           {
-              if(!pHead || !(pHead -> next)) return pHead;
-
-              ListNode* newHead = new ListNode(0); // 临时申请一个新的节点，以处理头节点被删除的情形
-              newHead -> next = pHead;
-              ListNode* th = newHead;
-
-              ListNode* curr = pHead;
-              ListNode* post = curr -> next;
-              while(true)
+              if(!head || !head->next) return head;
+              ListNode* tmp_head = new ListNode(-1);
+              tmp_head->next = head;
+              ListNode* pre = tmp_head;
+              ListNode* curr = head;
+              while(curr && curr->next)
               {
-                  if(post && curr -> val != post -> val)
+                  if(curr->val == curr->next->val)
                   {
-                      th -> next = curr;
-                      th = curr; // curr是不重复的节点
-                      curr = post;
-                      post = post -> next;
-                      if(!post) break; // 尾节点处不是重复元素
+                      while(curr->next && curr->val == curr->next->val) curr = curr->next;
+                      curr = curr->next;
+                      if(!curr || !curr->next) pre->next = curr;
                   }
                   else
                   {
-                      while(post && curr -> val == post -> val) post = post -> next;
-                      curr = post;
-
-                      if(!post) // 尾节点处是重复元素
-                      {
-                          th -> next = NULL;
-                          break;
-                      }
-                      else post = post -> next;
-
-                      if(!post) // 尾节点处不是重复元素
-                      {
-                          th -> next = curr;
-                          break;
-                      }
+                      pre->next = curr;
+                      pre = curr;
+                      curr = curr->next;
                   }
               }
-              th = newHead -> next;
-              delete newHead; // 删除临时节点
-              return th; // 返回的是临时节点指向的下一个节点
+              head = tmp_head->next;
+              delete(tmp_head); tmp_head = nullptr;
+              return head;
           }
       };
 

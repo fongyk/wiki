@@ -43,9 +43,9 @@ Process 类
 方法：
 
 - ``apply(func[, args[, kwds]])`` ：对应的子进程是排队执行的，实际非并行（阻塞的，即上一个子进程完成了才能进行下一个子进程；注意是单个子进程执行的，而不是按批执行的）。
-- ``apply_async(func[, args[, kwds[, callback[, error_callback]]]])`` ：对应的每个子进程是异步执行的；异步执行指的是一批子进程并行执行，且子进程完成一个，就新开始一个，而不必等待同一批其他进程完成。如果指定了 ``callback`` , 它必须是一个接受单个参数的可调用对象。当执行成功时， ``callback`` 会被用于处理执行后的返回结果，否则，调用 ``error_callback`` 。如果指定了 ``error_callback`` , 它必须是一个接受单个参数的可调用对象。当目标函数执行失败时，会将抛出的异常对象作为参数传递给 ``error_callback`` 执行。
-- ``map(func, iterable[, chunksize])`` ：内置 ``map()`` 函数的并行版本（但它只支持一个 ``iterable`` 参数，对于多个可迭代对象请参阅 ``starmap()`` ）。 它会保持阻塞直到获得结果。这个方法会将可迭代对象分割为许多块，然后提交给进程池。可以将 ``chunksize`` 设置为一个正整数从而（近似）指定每个块的大小。注意对于很长的迭代对象，可能消耗很多内存。可以考虑使用 ``imap()`` 或 ``imap_unordered()`` 并且显示指定 ``chunksize`` 以提升效率。
-- ``map_async(func, iterable[, chunksize[, callback[, error_callback]]])`` ：``map()`` 的异步（并行）版本，返回 MapResult 实例（其具有 ``get()`` 方法，获取结果组成的 list）。
+- ``apply_async(func[, args[, kwds[, callback[, error_callback]]]])`` ：对应的每个子进程是异步执行的；异步执行指的是一批子进程并行执行，且子进程完成一个，就新开始一个，而不必等待同一批其他进程完成（进程数 < 任务数，后面的任务只能等前面的进程结束才能开始执行）。如果指定了 ``callback`` , 它必须是一个接受单个参数的可调用对象。当执行成功时， ``callback`` 会被用于处理执行后的返回结果，否则，调用 ``error_callback`` 。如果指定了 ``error_callback`` , 它必须是一个接受单个参数的可调用对象。当目标函数执行失败时，会将抛出的异常对象作为参数传递给 ``error_callback`` 执行。
+- ``map(func, iterable[, chunksize])`` ：内置 ``map()`` 函数的并行版本（但它只支持一个 ``iterable`` 参数，对于多个可迭代对象请参阅 ``starmap()`` ）。 它会保持阻塞直到所有进程都获得结果。这个方法会将可迭代对象分割为许多块，然后提交给进程池。可以将 ``chunksize`` 设置为一个正整数从而（近似）指定每个块的大小。注意对于很长的迭代对象，可能消耗很多内存。可以考虑使用 ``imap()`` 或 ``imap_unordered()`` 并且显示指定 ``chunksize`` 以提升效率。
+- ``map_async(func, iterable[, chunksize[, callback[, error_callback]]])`` ：``map()`` 的异步（非阻塞）版本，返回 MapResult 实例（其具有 ``get()`` 方法，获取结果组成的 list）。
 - ``imap(func, iterable[, chunksize])`` ：``map()`` 的迭代器版本，返回迭代器实例。 ``imap()`` 速度远慢于 ``map()`` ，但是对内存需求非常小。
 - ``starmap(func, iterable[, chunksize])`` ：子进程活动 ``func`` 允许包含多个参数，也即 ``iterable`` 的每个元素也是 ``iterable`` （其每个元素作为 ``func`` 的参数），返回结果组成 list。
 - ``starmap_async(func, iterable[, chunksize[, callback[, error_callback]]])`` ：``starmap()`` 的异步（并行）版本，返回 MapResult 实例（其具有 ``get()`` 方法，获取结果组成的 list）。
@@ -55,6 +55,9 @@ Process 类
 - ``get([timeout])`` ：用于获取执行结果。
 - ``wait([timeout])`` ：阻塞，直到返回结果或超时。
 
+.. note::
+
+	多进程并行执行，它们结束的顺序是不定的，但是最终返回的结果列表顺序是与参数args的顺序一一对应的。
 
 进程通信
 -----------
@@ -180,21 +183,6 @@ Pool
         for item in result:
             print(item.get())
 
-.. code-block:: python
-    :linenos:
-
-    def f(a): ## map方法只允许1个参数
-        return a
-
-    if __name__ == "__main__":
-        pool = multiprocessing.Pool() 
-        result = pool.map_async(f, (a0, a1,)).get()
-        pool.close()
-        pool.join()
-
-        for item in result:
-            print(item)
-
 
 .. code-block:: python
     :linenos:
@@ -207,6 +195,53 @@ Pool
         result = pool.starmap_async(f, ((a0, b0), (a1, b1), )).get()
         pool.close()
         pool.join()
+
+.. code-block:: python
+    :linenos:
+
+    import multiprocessing
+    import time
+
+    def f(t):
+        time.sleep(t)
+        print(t)
+        return t
+
+    if __name__ == "__main__":
+        pool = multiprocessing.Pool(3) 
+        ## 阻塞
+        pool.map(f, [0.1, 5, 0.1, 2, 1])
+        print("===")
+        ## 非阻塞
+        result = pool.map_async(f, [0.1, 5, 0.1, 2, 1])
+        print("here")
+        print("more")
+        ## 人为阻塞，直到获得所有的结果
+        result.wait()
+        print("end")
+        pool.close()
+        pool.join()
+        print(result.get())
+
+结果是::
+
+    0.1
+    0.1
+    1
+    2
+    5
+    0.1
+    0.1
+    ===
+    here
+    more
+    1
+    2
+    5
+    end
+    [0.1, 5, 0.1, 2, 1]
+
+可以看出： ``map`` 是阻塞的，直到所有任务都结束； ``map_async`` 是非阻塞的，中间可以插入其他结果。
 
 
 Manager

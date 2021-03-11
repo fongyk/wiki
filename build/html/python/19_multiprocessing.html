@@ -147,6 +147,7 @@
 <li class="toctree-l2"><a class="reference internal" href="23_glob.html">23. glob</a></li>
 <li class="toctree-l2"><a class="reference internal" href="24_pyLinux.html">24. Python 执行 linux 命令</a></li>
 <li class="toctree-l2"><a class="reference internal" href="25_bisect.html">25. bisect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_abc.html">26. abc</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
@@ -264,9 +265,9 @@
 <p>方法：</p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">apply(func[,</span> <span class="pre">args[,</span> <span class="pre">kwds]])</span></code> ：对应的子进程是排队执行的，实际非并行（阻塞的，即上一个子进程完成了才能进行下一个子进程；注意是单个子进程执行的，而不是按批执行的）。</li>
-<li><code class="docutils literal notranslate"><span class="pre">apply_async(func[,</span> <span class="pre">args[,</span> <span class="pre">kwds[,</span> <span class="pre">callback[,</span> <span class="pre">error_callback]]]])</span></code> ：对应的每个子进程是异步执行的；异步执行指的是一批子进程并行执行，且子进程完成一个，就新开始一个，而不必等待同一批其他进程完成。如果指定了 <code class="docutils literal notranslate"><span class="pre">callback</span></code> , 它必须是一个接受单个参数的可调用对象。当执行成功时， <code class="docutils literal notranslate"><span class="pre">callback</span></code> 会被用于处理执行后的返回结果，否则，调用 <code class="docutils literal notranslate"><span class="pre">error_callback</span></code> 。如果指定了 <code class="docutils literal notranslate"><span class="pre">error_callback</span></code> , 它必须是一个接受单个参数的可调用对象。当目标函数执行失败时，会将抛出的异常对象作为参数传递给 <code class="docutils literal notranslate"><span class="pre">error_callback</span></code> 执行。</li>
-<li><code class="docutils literal notranslate"><span class="pre">map(func,</span> <span class="pre">iterable[,</span> <span class="pre">chunksize])</span></code> ：内置 <code class="docutils literal notranslate"><span class="pre">map()</span></code> 函数的并行版本（但它只支持一个 <code class="docutils literal notranslate"><span class="pre">iterable</span></code> 参数，对于多个可迭代对象请参阅 <code class="docutils literal notranslate"><span class="pre">starmap()</span></code> ）。 它会保持阻塞直到获得结果。这个方法会将可迭代对象分割为许多块，然后提交给进程池。可以将 <code class="docutils literal notranslate"><span class="pre">chunksize</span></code> 设置为一个正整数从而（近似）指定每个块的大小。注意对于很长的迭代对象，可能消耗很多内存。可以考虑使用 <code class="docutils literal notranslate"><span class="pre">imap()</span></code> 或 <code class="docutils literal notranslate"><span class="pre">imap_unordered()</span></code> 并且显示指定 <code class="docutils literal notranslate"><span class="pre">chunksize</span></code> 以提升效率。</li>
-<li><code class="docutils literal notranslate"><span class="pre">map_async(func,</span> <span class="pre">iterable[,</span> <span class="pre">chunksize[,</span> <span class="pre">callback[,</span> <span class="pre">error_callback]]])</span></code> ：<code class="docutils literal notranslate"><span class="pre">map()</span></code> 的异步（并行）版本，返回 MapResult 实例（其具有 <code class="docutils literal notranslate"><span class="pre">get()</span></code> 方法，获取结果组成的 list）。</li>
+<li><code class="docutils literal notranslate"><span class="pre">apply_async(func[,</span> <span class="pre">args[,</span> <span class="pre">kwds[,</span> <span class="pre">callback[,</span> <span class="pre">error_callback]]]])</span></code> ：对应的每个子进程是异步执行的；异步执行指的是一批子进程并行执行，且子进程完成一个，就新开始一个，而不必等待同一批其他进程完成（进程数 &lt; 任务数，后面的任务只能等前面的进程结束才能开始执行）。如果指定了 <code class="docutils literal notranslate"><span class="pre">callback</span></code> , 它必须是一个接受单个参数的可调用对象。当执行成功时， <code class="docutils literal notranslate"><span class="pre">callback</span></code> 会被用于处理执行后的返回结果，否则，调用 <code class="docutils literal notranslate"><span class="pre">error_callback</span></code> 。如果指定了 <code class="docutils literal notranslate"><span class="pre">error_callback</span></code> , 它必须是一个接受单个参数的可调用对象。当目标函数执行失败时，会将抛出的异常对象作为参数传递给 <code class="docutils literal notranslate"><span class="pre">error_callback</span></code> 执行。</li>
+<li><code class="docutils literal notranslate"><span class="pre">map(func,</span> <span class="pre">iterable[,</span> <span class="pre">chunksize])</span></code> ：内置 <code class="docutils literal notranslate"><span class="pre">map()</span></code> 函数的并行版本（但它只支持一个 <code class="docutils literal notranslate"><span class="pre">iterable</span></code> 参数，对于多个可迭代对象请参阅 <code class="docutils literal notranslate"><span class="pre">starmap()</span></code> ）。 它会保持阻塞直到所有进程都获得结果。这个方法会将可迭代对象分割为许多块，然后提交给进程池。可以将 <code class="docutils literal notranslate"><span class="pre">chunksize</span></code> 设置为一个正整数从而（近似）指定每个块的大小。注意对于很长的迭代对象，可能消耗很多内存。可以考虑使用 <code class="docutils literal notranslate"><span class="pre">imap()</span></code> 或 <code class="docutils literal notranslate"><span class="pre">imap_unordered()</span></code> 并且显示指定 <code class="docutils literal notranslate"><span class="pre">chunksize</span></code> 以提升效率。</li>
+<li><code class="docutils literal notranslate"><span class="pre">map_async(func,</span> <span class="pre">iterable[,</span> <span class="pre">chunksize[,</span> <span class="pre">callback[,</span> <span class="pre">error_callback]]])</span></code> ：<code class="docutils literal notranslate"><span class="pre">map()</span></code> 的异步（非阻塞）版本，返回 MapResult 实例（其具有 <code class="docutils literal notranslate"><span class="pre">get()</span></code> 方法，获取结果组成的 list）。</li>
 <li><code class="docutils literal notranslate"><span class="pre">imap(func,</span> <span class="pre">iterable[,</span> <span class="pre">chunksize])</span></code> ：<code class="docutils literal notranslate"><span class="pre">map()</span></code> 的迭代器版本，返回迭代器实例。 <code class="docutils literal notranslate"><span class="pre">imap()</span></code> 速度远慢于 <code class="docutils literal notranslate"><span class="pre">map()</span></code> ，但是对内存需求非常小。</li>
 <li><code class="docutils literal notranslate"><span class="pre">starmap(func,</span> <span class="pre">iterable[,</span> <span class="pre">chunksize])</span></code> ：子进程活动 <code class="docutils literal notranslate"><span class="pre">func</span></code> 允许包含多个参数，也即 <code class="docutils literal notranslate"><span class="pre">iterable</span></code> 的每个元素也是 <code class="docutils literal notranslate"><span class="pre">iterable</span></code> （其每个元素作为 <code class="docutils literal notranslate"><span class="pre">func</span></code> 的参数），返回结果组成 list。</li>
 <li><code class="docutils literal notranslate"><span class="pre">starmap_async(func,</span> <span class="pre">iterable[,</span> <span class="pre">chunksize[,</span> <span class="pre">callback[,</span> <span class="pre">error_callback]]])</span></code> ：<code class="docutils literal notranslate"><span class="pre">starmap()</span></code> 的异步（并行）版本，返回 MapResult 实例（其具有 <code class="docutils literal notranslate"><span class="pre">get()</span></code> 方法，获取结果组成的 list）。</li>
@@ -276,6 +277,10 @@
 <li><code class="docutils literal notranslate"><span class="pre">get([timeout])</span></code> ：用于获取执行结果。</li>
 <li><code class="docutils literal notranslate"><span class="pre">wait([timeout])</span></code> ：阻塞，直到返回结果或超时。</li>
 </ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">多进程并行执行，它们结束的顺序是不定的，但是最终返回的结果列表顺序是与参数args的顺序一一对应的。</p>
+</div>
 </div>
 <div class="section" id="id2">
 <h2>19.3. 进程通信<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
@@ -424,29 +429,6 @@
         <span class="k">print</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
 </pre></div>
 </td></tr></table></div>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">a</span><span class="p">):</span> <span class="c1">## map方法只允许1个参数</span>
-    <span class="k">return</span> <span class="n">a</span>
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">pool</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">()</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map_async</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">a0</span><span class="p">,</span> <span class="n">a1</span><span class="p">,))</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-    <span class="n">pool</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-    <span class="n">pool</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-
-    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
-</pre></div>
-</td></tr></table></div>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -464,6 +446,72 @@
     <span class="n">pool</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">multiprocessing</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">t</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">pool</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="c1">## 阻塞</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;===&quot;</span><span class="p">)</span>
+    <span class="c1">## 非阻塞</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map_async</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;here&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;more&quot;</span><span class="p">)</span>
+    <span class="c1">## 人为阻塞，直到获得所有的结果</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;end&quot;</span><span class="p">)</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+</pre></div>
+</td></tr></table></div>
+<p>结果是:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.1</span>
+<span class="mf">0.1</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">5</span>
+<span class="mf">0.1</span>
+<span class="mf">0.1</span>
+<span class="o">===</span>
+<span class="n">here</span>
+<span class="n">more</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">5</span>
+<span class="n">end</span>
+<span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>可以看出： <code class="docutils literal notranslate"><span class="pre">map</span></code> 是阻塞的，直到所有任务都结束； <code class="docutils literal notranslate"><span class="pre">map_async</span></code> 是非阻塞的，中间可以插入其他结果。</p>
 </div>
 <div class="section" id="id6">
 <h3>19.4.4. Manager<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>

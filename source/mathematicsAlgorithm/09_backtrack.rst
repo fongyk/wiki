@@ -13,15 +13,15 @@
 .. code-block:: cpp
     :linenos:
 
-    void Backtrack(int t)
+    void backtrack(int t)
     {
-      if(t >= n) Output(x);
+      if(t >= n) output(x);
       else
       {
         for(int i = 0; i < m; ++i)
         {
           x[t] = i;
-          if(Constrain(t) and Bound(t)) Backtrack(t+1);
+          if(constrain(t) and bound(t)) backtrack(t+1);
         }
       }
     }
@@ -37,16 +37,16 @@
 .. code-block:: cpp
     :linenos:
 
-    void Backtrack(int t)
+    void backtrack(int t)
     {
-      if(t >= n) Output(x);
+      if(t >= n) output(x);
       else
       {
         for(int k = t; k < n; ++k)
         {
-          Swap(x[t], x[k]);
-          if(Constrain(t) and Bound(t)) Backtrack(t+1);
-          Swap(x[t], x[k]);
+          swap(x[t], x[k]);
+          if(constrain(t) and bound(t)) backtrack(t+1);
+          swap(x[t], x[k]);
         }
       }
     }
@@ -60,7 +60,7 @@
 .. code-block:: cpp
     :linenos:
 
-    void Backtrack(int t)
+    void backtrack(int t)
     {
       if(t >= n)
       {
@@ -75,13 +75,13 @@
           x[t] = 1;
           curr_weight += w[t]; // 进入左子树
           curr_value += v[t];
-          Backtrack(t+1);
+          backtrack(t+1);
 
           curr_weight -= w[t]; // 状态恢复
           curr_value -= v[t];
         }
         x[t] = 0;
-        Backtrack(t+1); // 进入右子树
+        backtrack(t+1); // 进入右子树
       }
     }
 
@@ -102,7 +102,7 @@
       return true;
     }
 
-    void Backtrack(int t, int n, int* x, int& sum)
+    void backtrack(int t, int n, int* x, int& sum)
     {
       if(t == n) ++sum;
       else
@@ -110,7 +110,7 @@
         for(int i = 0; i < n; ++i)
         {
           x[t] = i;
-          if(place(t, x)) Backtrack(t+1, n, x, sum);
+          if(place(t, x)) backtrack(t+1, n, x, sum);
         }
       }
     }
@@ -541,7 +541,7 @@
 
       class Solution {
       public:
-          bool find_path(vector<vector<char>>& board, string word, bool** flag, int x, int y, int k)
+          bool findPath(vector<vector<char>>& board, string word, bool** flag, int x, int y, int k)
           {
               if(k == word.size()) return true;
               for(int t = 0; t < 4; ++t)
@@ -552,7 +552,7 @@
                   if(flag[tx+1][ty+1] && board[tx][ty] == word[k])
                   {
                       flag[tx+1][ty+1] = false; // 设置 flag
-                      if(find_path(board, word, flag, tx, ty, k+1)) return true;
+                      if(findPath(board, word, flag, tx, ty, k+1)) return true;
                       flag[tx+1][ty+1] = true; // flag 还原
                   }
 
@@ -582,7 +582,7 @@
                       if(board[i][j] == word[0])
                       {
                           flag[i+1][j+1] = false; // 注意： flag 的下标与 board 相差 1
-                          if(find_path(board, word, flag, i, j, 1))
+                          if(findPath(board, word, flag, i, j, 1))
                           {
                               EXIST = true;
                               break; // 跳出第二重循环

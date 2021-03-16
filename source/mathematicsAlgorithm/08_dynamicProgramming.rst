@@ -352,6 +352,182 @@
 
 |
 
+状态压缩动态规划
+------------------------
+
+动态规划的状态有时候容易表示出来，需要用一些编码技术，把状态用简单的方式表示出来（压缩）。
+典型方式：当需要表示一个集合有哪些元素时，往往用一个整数表示，整数的二进制表示中的1表示对应位置的元素存在于集合中，0表示不存在。
+
+[Poj 3254] Corn Fields
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+问题描述：一个 :math:`N \times N` 的矩阵牧场，每个方格单元有两种状态：可放牧（1）和不可放牧（0）；在这块牧场放牛，要求两个相邻的方格不能同时放牛（不包括斜着的），即牛与牛不能挨着；问有多少种放牛方案（一头牛都不放也是一种方案）。
+
+策略：用一个集合（状态压缩）维护所有不相邻的情况，在此基础上再去考虑哪些方格可放牧。
+设 :math:`dp[i][j]` 表示：在第 :math:`i` 行状态为 :math:`j\ (0 \leq j \leq 2^m-1)` 时，
+前 :math:`i+1` 行牧场方格总共的放牛方案数量。
+
+递推关系：
+
+.. math::
+  :nowrap:
+
+  $$
+  dp[i][j] = 
+  \begin{cases}
+  1 & & {i=0;\ \text{状态 j 可以放牧且牛不相邻}} \\
+  dp[i][j] + dp[i-1][j] & & {i>0;\ \text{状态 j 可以放牧且牛不相邻}} \\
+  0 & & {\text{状态 j 不可以放牧或牛相邻}}
+  \end{cases}
+  $$
+
+.. container:: toggle
+
+  .. container:: header
+
+    :math:`\color{darkgreen}{Code}`
+
+  .. code-block:: cpp
+    :linenos:
+
+    const int N = 13;
+    const int M = 1 << N;
+    const int mod = 10000007;
+    int field[N][N]; // 方格能否放牧的标志
+    int row_nadj_state[M]; // 不相邻的行状态编码
+    int row_forbid_state[M]; // 不可放牧的位置编码
+    int dp[N][M];
+
+    bool hasAdj(int s)
+    {
+      return (s & (s<<1));
+    }
+    bool locForbid(int i, int j)
+    {
+      return (row_forbid_state[i] & row_nadj_state[j]);
+    }
+    int solve()
+    {
+      for(int i = 0; i < N; ++i)
+      {
+        for(int c = 0; c < N; ++c)
+        {
+          if(field[i][c] == 0) row_forbid_state[i] += 1 << c;
+        }
+      }
+      int k = 0; // 不相邻行状态的数量
+      for(int s = 0; s < M; ++s)
+      {
+        if(!hasAdj(s)) row_nadj_state[k++] = s;
+      }
+      for(int j = 0; j < k; ++j)
+      {
+        if(!locForbid(0, j)) dp[0][j] = 1; // 第1行初始化
+      }
+      for(int i = 1; i < N; ++i)
+      {
+        for(int j = 0; j < k; ++j)
+        {
+          if(locForbid(i, j)) continue;
+          for(int pre_j = 0; pre_j < k; ++pre_j)
+          {
+            if(locForbid(i-1, pre_j)) continue;
+            if(!(row_nadj_state[pre_j] & row_nadj_state[j]))
+            {
+              dp[i][j] += dp[i-1][pre_j]; // 上下两行牛不相邻
+              dp[i][j] = dp[i][j] % mod;
+            }
+          }
+        }
+      }
+      int res = 0;
+      for(int j = 0; j < k; ++j)
+      {
+        res += dp[N-1][j];
+        res = res % mod;
+      }
+      return res;
+    }
+
+|
+
+[Poj 3311] Hie With The Pie
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+问题描述：一个送外卖的人，从起点0出发，要经过所有地点一次，然后再回到起点，求最少花费的代价（旅行商问题）。
+
+策略：假设当前已经访问过的顶点集合为 :math:`S` （起点0当做未访问过），当前所在顶点为 :math:`v` ，  :math:`dp[S][v]` 表示：从 :math:`v` 出发访问剩余所有顶点，最终回到起点0的路径的权重总和的最小值。设 :math:`V` 表示所有顶点的集合。
+
+递推关系：
+
+.. math::
+  :nowrap:
+
+  $$
+  dp[V][0] &=& \  0 \\
+  dp[S][v] &=& \  min\{ dp[S \cup u][u] + d[v][u] \},\ u \notin S
+  $$
+
+.. container:: toggle
+
+  .. container:: header
+
+    :math:`\color{darkgreen}{Code}`
+
+  .. code-block:: cpp
+    :linenos:
+
+    // 递归：时间复杂度 O(n^2 \times 2^n)
+    int d[N][N]; // 邻接矩阵
+    int dp[1 << N][N]; 
+
+    int minCost(int S, int v)
+    {
+      if(dp[S][v] >= 0) return dp[S][v]; // 记忆化搜索已经有的结果
+      if(S == (1<<N)-1 && v==0) return dp[S][v] = 0; // 递归终止条件：已访问过所有顶点并返回起点0
+      int res = INF;
+      for(int u = 0; u < N; ++u)
+      {
+        if(!(S >> u & 1)) // 顶点 u 未访问过，下一步移动到顶点 u 
+        {
+          res = min(res, minCost(S | 1 << u, u) + d[v][u]);
+        }
+      }
+      return dp[S][v] = res;
+    }
+    int solve()
+    {
+      memset(dp, -1, sizeof(dp));
+      return minCost(0, 0);
+    }
+
+  .. code-block:: cpp
+    :linenos:
+
+    // 循环
+    int d[N][N]; // 邻接矩阵
+    int dp[1 << N][N]; 
+    int solve()
+    {
+      for(int S = 0; S < 1<<N; ++S) fill(dp[S], dp[S] + N, INF); // 用足够大的值初始化
+      dp[(1<<N)-1][0] = 0; // 初始化
+      for(int S = (1<<N)-2; S >= 0; --S)
+      {
+        for(int v = 0; v < N; ++v)
+        {
+          for(int u = 0; u < N; ++u)
+          {
+            if(!(S >> u & 1)) dp[S][v] = min(dp[S][v], dp[S | 1<<u][u] + d[v][u]);
+          }
+        }
+      }
+      return dp[0][0];
+    }
+
+|
+
+相反地，参考资料1将 :math:`dp[S][v]` 定义为：走完集合 :math:`S` 后最后停留在顶点 :math:`v` 的最小代价。
+
 实例
 -----------------
 
@@ -655,3 +831,11 @@
               return res;
           }
       };
+
+
+参考资料
+-------------
+
+1. 状态压缩DP入门
+
+  https://cnblogs.com/ibilllee/p/7651971.html

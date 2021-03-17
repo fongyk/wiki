@@ -3854,55 +3854,36 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
       // 方法一
 
-      class Solution
+      class Solution 
       {
       public:
-          double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2)
+          double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) 
           {
               if(nums1.empty() && nums2.empty()) return 0.0;
-
               int m = nums1.size();
               int n = nums2.size();
               int i = 0;
               int j = 0;
               int k = 0;
-
               double median;
-              if(nums1.empty()) median = nums2[0];
-              else if(nums2.empty()) median = nums1[0];
-              else median = min(nums1[0], nums2[0]);
-              double premedian = median;
-
-              for(; i < m && j < n && k <= (m+n)/2; ++k)
+              double premedian;
+              while(true)
               {
-                  premedian = median;
-                  if(nums1[i] < nums2[j])
+                  if(j == n || (i < m && nums1[i] <= nums2[j]))
                   {
                       median = nums1[i];
                       ++i;
                   }
-                  else
+                  else if(i == m || (j < n && nums1[i] > nums2[j]))
                   {
                       median = nums2[j];
                       ++j;
                   }
-              }
-              while(i < m && k <= (m+n)/2)
-              {
-                  premedian = median;
-                  median = nums1[i];
-                  ++i;
+                  if((m+n)%2 == 1 && k == (m+n)/2) return median;
+                  if((m+n)%2 == 0 && k == (m+n)/2-1) premedian = median;
+                  if((m+n)%2 == 0 && k == (m+n)/2) return (premedian + median)/2.0;
                   ++k;
               }
-              while(j < n && k <= (m+n)/2)
-              {
-                  premedian = median;
-                  median = nums2[j];
-                  ++j;
-                  ++k;
-              }
-              if((m+n)%2) return median;
-              else return (premedian + median) / 2.0;
           }
       };
 

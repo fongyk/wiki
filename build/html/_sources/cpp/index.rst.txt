@@ -31,3 +31,4 @@ C/C++
     24_exception.rst
     25_namespace.rst
     26_lambda.rst
+    27_singleton.rst

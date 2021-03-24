@@ -482,7 +482,7 @@
         pre->mNext = newNode;
         return dummyNode.mNext;
     }
-    ListNode* Merge(ListNode *head1,ListNode *head2)
+    ListNode* merge(ListNode *head1,ListNode *head2)
     {
         ListNode dummyNode;
         ListNode *dummy = &dummyNode;
@@ -505,7 +505,7 @@
 
         return dummyNode.mNext;
     }
-    void BucketSort(int n,int arr[])
+    void bucketSort(int n,int arr[])
     {
         vector<ListNode*> buckets(BUCKET_NUM,(ListNode*)(0));
 
@@ -521,7 +521,7 @@
         ListNode *head = buckets.at(0);
         for(int i=1;i<BUCKET_NUM;++i)
         {
-            head = Merge(head,buckets.at(i));
+            head = merge(head,buckets.at(i));
         }
 
         // 结果输出到 arr

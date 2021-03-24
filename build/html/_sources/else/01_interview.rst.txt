@@ -303,6 +303,8 @@
 
       // https://leetcode.com/problems/sort-list/
 
+      // 快速排序
+
       class Solution
       {
       public:
@@ -338,6 +340,78 @@
               ListNode* mid = partion(head, tail);
               quickSort(head, mid);
               quickSort(mid->next, tail);
+          }
+      };
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 归并排序
+
+      class Solution
+      {
+      private:
+          ListNode* getMid(ListNode* head)
+          {
+              if(!head || !head->next) return head;
+              ListNode* slow = head;
+              ListNode* fast = head->next;
+              while(fast && fast->next)
+              {
+                  slow = slow->next;
+                  fast = fast->next->next;
+              }
+              return slow;
+          }
+          ListNode* merge(ListNode* head1, ListNode* head2)
+          {
+              // 可以 new 一个节点作为临时头节点，代码会更简洁，但是会增加空间开销、降低时间效率
+              if(!head1) return head2;
+              if(!head2) return head1;
+              ListNode* tmp_head;
+              if(head1->val <= head2->val)
+              {
+                  tmp_head = head1;
+                  head1 = head1->next;
+              }
+              else
+              {
+                  tmp_head = head2;
+                  head2 = head2->next;
+              }
+              ListNode* p = tmp_head;
+              while(head1 && head2)
+              {
+                  if(head1->val <= head2->val)
+                  {
+                      p->next = head1;
+                      head1 = head1->next;
+                  }
+                  else
+                  {
+                      p->next = head2;
+                      head2 = head2->next;
+                  }
+                  p = p->next;
+              }
+              if(head1) p->next = head1;
+              if(head2) p->next = head2;
+              return tmp_head;
+          }
+          ListNode* mergeSort(ListNode* head)
+          {
+              if(!head || !head->next) return head;
+              ListNode* mid = getMid(head);
+              ListNode* head_post = mid->next;
+              mid->next = nullptr;
+              head = mergeSort(head);
+              head_post = mergeSort(head_post);
+              return merge(head, head_post);
+          }
+      public:
+          ListNode* sortList(ListNode* head)
+          {
+              return mergeSort(head);
           }
       };
 

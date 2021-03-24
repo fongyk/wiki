@@ -667,7 +667,11 @@
 36
 37
 38
-39</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// https://leetcode.com/problems/sort-list/</span>
+39
+40
+41</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// https://leetcode.com/problems/sort-list/</span>
+
+<span class="c1">// 快速排序</span>
 
 <span class="k">class</span> <span class="nc">Solution</span>
 <span class="p">{</span>
@@ -704,6 +708,143 @@
         <span class="n">ListNode</span><span class="o">*</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">partion</span><span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="n">tail</span><span class="p">);</span>
         <span class="n">quickSort</span><span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="n">mid</span><span class="p">);</span>
         <span class="n">quickSort</span><span class="p">(</span><span class="n">mid</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">,</span> <span class="n">tail</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 归并排序</span>
+
+<span class="k">class</span> <span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">ListNode</span><span class="o">*</span> <span class="n">getMid</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">head</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">head</span> <span class="o">||</span> <span class="o">!</span><span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span> <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">slow</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">fast</span> <span class="o">=</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">fast</span> <span class="o">&amp;&amp;</span> <span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">slow</span> <span class="o">=</span> <span class="n">slow</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+            <span class="n">fast</span> <span class="o">=</span> <span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">slow</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">ListNode</span><span class="o">*</span> <span class="n">merge</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">head1</span><span class="p">,</span> <span class="n">ListNode</span><span class="o">*</span> <span class="n">head2</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// 可以 new 一个节点作为临时头节点，代码会更简洁，但是会增加空间开销、降低时间效率</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">head1</span><span class="p">)</span> <span class="k">return</span> <span class="n">head2</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">head2</span><span class="p">)</span> <span class="k">return</span> <span class="n">head1</span><span class="p">;</span>
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">tmp_head</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">head1</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">&lt;=</span> <span class="n">head2</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">tmp_head</span> <span class="o">=</span> <span class="n">head1</span><span class="p">;</span>
+            <span class="n">head1</span> <span class="o">=</span> <span class="n">head1</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="n">tmp_head</span> <span class="o">=</span> <span class="n">head2</span><span class="p">;</span>
+            <span class="n">head2</span> <span class="o">=</span> <span class="n">head2</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="n">tmp_head</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">head1</span> <span class="o">&amp;&amp;</span> <span class="n">head2</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">head1</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">&lt;=</span> <span class="n">head2</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">head1</span><span class="p">;</span>
+                <span class="n">head1</span> <span class="o">=</span> <span class="n">head1</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">head2</span><span class="p">;</span>
+                <span class="n">head2</span> <span class="o">=</span> <span class="n">head2</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">head1</span><span class="p">)</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">head1</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">head2</span><span class="p">)</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">head2</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">tmp_head</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">ListNode</span><span class="o">*</span> <span class="n">mergeSort</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">head</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">head</span> <span class="o">||</span> <span class="o">!</span><span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span> <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">getMid</span><span class="p">(</span><span class="n">head</span><span class="p">);</span>
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">head_post</span> <span class="o">=</span> <span class="n">mid</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+        <span class="n">mid</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+        <span class="n">head</span> <span class="o">=</span> <span class="n">mergeSort</span><span class="p">(</span><span class="n">head</span><span class="p">);</span>
+        <span class="n">head_post</span> <span class="o">=</span> <span class="n">mergeSort</span><span class="p">(</span><span class="n">head_post</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nf">merge</span><span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="n">head_post</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">ListNode</span><span class="o">*</span> <span class="n">sortList</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">head</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">mergeSort</span><span class="p">(</span><span class="n">head</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">};</span>
 </pre></div>

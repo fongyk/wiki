@@ -148,6 +148,7 @@
 <li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
 <li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
 <li class="toctree-l2"><a class="reference internal" href="26_lambda.html">26. lambda 表达式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="27_singleton.html">27. 单例模式</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -325,7 +326,7 @@
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
-<p><strong>底层实现：顺序表（数组）。</strong></p>
+<p><strong>底层实现：顺序表（数组，连续的内存空间）。</strong></p>
 <ul>
 <li><p class="first">元素个数：size()，empty()</p>
 </li>
@@ -430,9 +431,11 @@
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;deque&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
-<p><strong>底层实现：循环队列。</strong></p>
+<p><strong>底层实现：指针数组 + 多个连续内存空间。</strong></p>
 <ul>
 <li><p class="first">元素个数：size()，empty()</p>
+</li>
+<li><p class="first">访问：[pos]，at(pos)</p>
 </li>
 <li><p class="first">队首元素：front()</p>
 </li>

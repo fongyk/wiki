@@ -92,7 +92,7 @@ vector
 
   #include<vector>
 
-**底层实现：顺序表（数组）。**
+**底层实现：顺序表（数组，连续的内存空间）。**
 
 - 元素个数：size()，empty()
 - 逐元素比较：==，!=，<，<=，>，>=
@@ -191,9 +191,10 @@ deque
 
   #include<deque>
 
-**底层实现：循环队列。**
+**底层实现：指针数组 + 多个连续内存空间。**
 
 - 元素个数：size()，empty()
+- 访问：[pos]，at(pos)
 - 队首元素：front()
 - 队尾元素：back()
 - 插入：push_front(x)，push_back(x)，emplace_front(x)，emplace_back(x)

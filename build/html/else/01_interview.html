@@ -3831,8 +3831,13 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 48
 49
 50
-51</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 最短时间</span>
+51
+52
+53
+54
+55</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 最短时间</span>
 <span class="c1">// https://www.nowcoder.com/practice/365493766c514d0da0cd774d3d40fd49?tpId=8&amp;tqId=11040&amp;tPage=1&amp;rp=1&amp;ru=/ta/cracking-the-coding-interview&amp;qru=/ta/cracking-the-coding-interview/question-ranking</span>
+<span class="c1">// https://leetcode.com/problems/shortest-path-in-binary-matrix/</span>
 
 <span class="k">struct</span> <span class="n">point</span>
 <span class="p">{</span>
@@ -3882,6 +3887,9 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
         <span class="k">return</span> <span class="n">INT_MAX</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">};</span>
+
+<span class="c1">// 注意：当点 p 的近邻都满足条件入队之后，它们的标志位全部同时改变</span>
+<span class="c1">// 因为当最短路径包含点 p 时，只会再包含点 p 的一个近邻，最短路径不可能多次经过点 p 的不同近邻</span>
 </pre></div>
 </td></tr></table></div>
 </div>

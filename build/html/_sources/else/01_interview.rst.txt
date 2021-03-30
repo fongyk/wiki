@@ -2295,6 +2295,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
       // 最短时间
       // https://www.nowcoder.com/practice/365493766c514d0da0cd774d3d40fd49?tpId=8&tqId=11040&tPage=1&rp=1&ru=/ta/cracking-the-coding-interview&qru=/ta/cracking-the-coding-interview/question-ranking
+      // https://leetcode.com/problems/shortest-path-in-binary-matrix/
 
       struct point
       {
@@ -2344,6 +2345,9 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
               return INT_MAX;
           }
       };
+
+      // 注意：当点 p 的近邻都满足条件入队之后，它们的标志位全部同时改变
+      // 因为当最短路径包含点 p 时，只会再包含点 p 的一个近邻，最短路径不可能多次经过点 p 的不同近邻
 
 31. 回文（palindrome）。
 

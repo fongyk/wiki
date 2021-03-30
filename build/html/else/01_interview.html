@@ -566,10 +566,10 @@
     <span class="n">pNode</span> <span class="o">-&gt;</span> <span class="n">next</span> <span class="o">=</span> <span class="n">pNode</span> <span class="o">-&gt;</span> <span class="n">next</span> <span class="o">-&gt;</span> <span class="n">next</span><span class="p">;</span>
     <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="c1">// 注：如果需要删除最后一个节点，直接令 pNode -&gt; next = NULL 是无法改变实参的（传值调用）</span>
+<span class="c1">// 注：如果需要删除最后一个节点，直接令 pNode -&gt; next = NULL 是无法改变实参的（传值调用），可以将形参定义成指向指针的指针</span>
 <span class="c1">// 必须从链表头节点开始遍历，找到该节点的前驱节点</span>
 <span class="c1">// 还要考虑该链表只有一个节点的情形</span>
-<span class="c1">// 另外，该函数内不要 delete 该指针，同样是因为 pNode 不是引用形参</span>
+<span class="c1">// 另外，可以在该函数内 delete 该指针，但是需要确保在其他地方不再需要访问 pNode 指向的内容</span>
 </pre></div>
 </td></tr></table></div>
 </div>

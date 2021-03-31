@@ -90,7 +90,7 @@
   .. code-block:: cpp
     :linenos:
 
-    void lcsLength(char* x, int m, char* y, int n, int** c) // c 对应的实参为 int *c[]
+    void lcsLength(char* x, int m, char* y, int n, int** c)
     {
       for(int i = 0; i <= m; ++i) c[i][0] = 0;
       for(int j = 0; j <= n; ++j) c[0][j] = 0;
@@ -108,6 +108,8 @@
     :linenos:
 
     /* 记录并构造公共子序列 */
+
+    // 方法一
 
     void lcsLength(char* x, int m, char* y, int n, int** c, int** b)
     {
@@ -150,6 +152,29 @@
       else if(b[m][n] == 1) lcs(x, m-1, n, b);
       else lcs(x, m, n-1, b);
     }
+
+  .. code-block:: cpp
+    :linenos:
+    
+    // 方法二
+    string lcs(const string a, const string b)
+    {
+      const int m = a.size();
+      const int n = b.size();
+      vector<vector<string>> dp(2, vector<string>(n+1, ""));
+      for(int i=1; i<=m; ++i)
+      {
+        for(int j=1; j<=n; ++j)
+        {
+          if(a[i-1]==b[j-1]) dp[i&1][j] = dp[(i-1)&1][j-1] + a[i-1];
+          else dp[i&1][j] = dp[(i-1)&1][j].size() > dp[i&1][j-1].size()? dp[(i-1)&1][j]: dp[i&1][j-1];
+        }
+      }
+      string res = dp[m&1][n];
+      dp.clear();
+      dp.shrink_to_fit();
+      return res;
+    } 
 
 |
 

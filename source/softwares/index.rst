@@ -41,14 +41,14 @@ TeamViewer
     https://www.teamviewer.com/zhCN/
 
 
-Notepad++
-----------
+EmEditor
+------------
 
 .. note::
 
     强大的文本阅读/编辑器
 
-    https://notepad-plus-plus.org/
+    https://zh-cn.emeditor.com/text-editor-features/history/emeditor-free/
 
 
 cmder

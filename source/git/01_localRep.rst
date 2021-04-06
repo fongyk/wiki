@@ -33,7 +33,7 @@
 
   git add . ：把工作时的 **所有变化** 提交到暂存区，包括文件内容 **修改（modified）** 以及 **新文件（new）** ，但不包括被删除的文件。
 
-  git add -u ：git add \- \-update，仅监控已经被add的文件（即 **tracked file** ），他会将被修改的文件提交到暂存区。不会提交新文件（untracked file）。
+  git add -u ：git add \- \-update，仅监控已经被 add 的文件（即 **tracked file** ），会将文件的修改和删除提交到暂存区，不会提交新文件（untracked file）。
 
   git add -A ：git add \- \-all，是上面两个功能的合集。
 
@@ -60,6 +60,24 @@
     7ed6b16 HEAD@{4}: commit: add a
     8337301 HEAD@{5}: commit (initial): add readme
 
+- ``git mv file_from file_to`` 重命名文件，相当于 ``mv file_from file_to; git rm file_from; git add file_to`` 。要从 Git 中移除某个文件，就必须要从已跟踪文件清单中移除（确切地说，是从暂存区域移除），然后再提交。 ``git rm`` 就是用于完成此项工作，并连带从工作目录中删除指定的文件，这样以后就不会出现在未跟踪文件清单中了。
+
+忽略文件
+^^^^^^^^^^^^^^^
+
+一般我们总会有些文件无需纳入 Git 的管理，也不希望它们总出现在未跟踪文件列表。通常都是些自动生成的文件，比如日志文件，或者编译过程中创建的临时文件等。在这种情况下，我们可以创建一个名为 .gitignore 的文件，列出要忽略的文件模式。
+
+文件 .gitignore 的格式规范如下：
+
+- 所有空行或者以 ``＃`` 开头的行都会被 Git 忽略。
+
+- 可以使用标准的 glob 模式匹配。
+
+- 匹配模式可以以 ``/`` 开头防止递归（只在当前目录下匹配，不进入子目录）。
+
+- 匹配模式可以以 ``/`` 结尾指定目录。
+
+- 要忽略指定模式以外的文件或目录，可以在模式前加上惊叹号 ``!`` 表示取反。
 
 版本管理
 ^^^^^^^^^^^
@@ -103,3 +121,11 @@
 5. git add -A 和 git add . 的区别
 
   https://www.cnblogs.com/skura23/p/5859243.html
+
+6. ProGit
+
+  https://www.progit.cn/
+
+7. gitignore
+
+  https://github.com/github/gitignore

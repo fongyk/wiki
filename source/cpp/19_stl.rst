@@ -1,7 +1,11 @@
-常用STL类及容器
+常用 STL 容器
 ==================
 
 **STL: Standard Template Library** ，标准模板库。
+
+容器
+  A container is a holder object that stores a collection of other objects (its elements). 
+  They are implemented as class templates, which allows a great flexibility in the types supported as elements.
 
 以下基于 C++11 标准。
 
@@ -9,22 +13,23 @@
   - array
   - vector
   - list
+  - forward_list
   - deque
-  - string
-  - ...
 
 关联容器
   - set
   - map
   - multiset
   - multimap
-  - ...
+  - unordered_set
+  - unordered_map
+  - unordered_multiset
+  - unordered_multimap
 
 容器适配器
   - stack
   - queue
   - priority_queue
-
 
 一个容器适配器接受一种已有的容器类型，使其行为看起来像一种不同的类型。默认情况下，stack 和 queue 基于 deque 实现，priority_queue 基于 vector 实现。
 
@@ -32,59 +37,90 @@
 .. highlight:: cpp
 
 
-string
------------
+迭代器
+-------------
+
+迭代器和 C++ 的指针非常类似，它可以是需要的任意类型，通过迭代器可以指向容器中的某个元素，还可以对该元素进行读/写操作。
+
+功能分类
+^^^^^^^^^^^^^
+
+常用的迭代器按功能强弱分为五种：输入迭代器（input iterator）、输出迭代器（output iterator）、前向迭代器（forward iterator）、双向迭代器（bidirectional iterator）、随机访问迭代器（random access iterator）。
+
+随机访问迭代器支持的运算符（a、b表示迭代器）：
+
+- 双向迭代器支持的运算符
+
+  - 前向迭代器支持的运算符
+
+    - 输入迭代器支持的运算符
+
+      - 自增 ``++a`` ``a++``
+
+      - 比较 ``a == b`` ``a != b``
+
+      - 右值解引用 ``*a`` ``*a->m``
+
+    - 输出迭代器支持的运算符
+
+      - 自增 ``++a`` ``a++``
+
+      - 左值解引用 ``*a = t`` ``*a++ = t``
+  
+  - 自减 ``--a`` ``a--`` ``*a--``
+
+- 算术运算 ``a + n`` ``n + a`` ``a - n`` ``n - a``
+
+- 比较 ``a > b`` ``a < b`` ``a >= b`` ``a <= b``
+
+- 复合赋值 ``a += n`` ``a -= n``
+
+- 下标解引用 ``a[n]``
+
+不同容器能够使用的容器类型不同：
+
+- 随机访问迭代器：array、vector、deque。
+
+- 双向迭代器：list、set/multiset、map/multimap。
+
+- 前向迭代器：forward_list、unordered_set/unordered_multiset、unordered_map/unordered_multimap。
+
+
+定义方式
+^^^^^^^^^^^^^
+
+迭代器按照定义方式分成以下四种：
+
+- 正向迭代器 ``容器类名::iterator  迭代器名;``
+
+- 常量正向迭代器 ``容器类名::const_iterator  迭代器名;``
+
+- 反向迭代器 ``容器类名::reverse_iterator  迭代器名;``
+
+- 常量反向迭代器 ``容器类名::const_reverse_iterator  迭代器名;``
+
+
+辅助函数
+^^^^^^^^^^^^^
+
 ::
 
-  #include<string>
+  #include <algorithm>
 
-- 长度：length()，size()，empty()
-- 访问：[pos]，at(pos)。at()返回位置 pos 处元素的引用，越界则抛出 ``out_of_range`` 异常。
-- 字典序比较：==，!=，<，<=，>，>=
-- 串接：+
-- c_str()：返回指向 C 类型字符串的指针。如果需要使用 C 的字符串函数如 strcmp、strcpy 等，需要使用 c_str()。
-  ::
+STL 中有用于操作迭代器的三个函数模板:
 
-    const char* c_str() const noexcept;
+- advance(p, n)：使迭代器 p 向前或向后（n 为负数）移动 n 个元素。
 
-- 子串
-  ::
+- distance(p, q)：计算两个迭代器之间的距离，对于随机访问迭代器，直接使用 ``p - q`` ，结果可能是负数；对于其他迭代器，循环调用 ``++`` 自增，如果调用时 p 已经指向 q 的后面，则陷入死循环。
 
-    string substr(size_t pos = 0, size_t len = npos) const
+- iter_swap(p, q)：用于交换两个迭代器指向的值，两个迭代器必须是非常量迭代器。
 
-- 插入：支持下标索引插入，在位置 pos **之前** 插入元素。插入元素之后，该元素的位置为 pos。（与 python 中 list 类的插入功能一致）
-  ::
 
-    // string (1)
-    string& insert (size_t pos, const string& str);
-    // substring (2)
-    string& insert (size_t pos, const string& str, size_t subpos, size_t sublen);
-    // c-string (3)
-    string& insert (size_t pos, const char* s);
-    // buffer (4)
-    string& insert (size_t pos, const char* s, size_t n);
-    // fill (5)
-    string& insert (size_t pos, size_t n, char c);
-    iterator insert (const_iterator p, size_t n, char c);
-    // single character (6)
-    iterator insert (const_iterator p, char c);
-    // range (7)
-    template <class InputIterator>
-    iterator insert (iterator p, InputIterator first, InputIterator last);
-    // initializer list (8)
-    string& insert (const_iterator p, initializer_list<char> il);
+.. note::
 
-- 查找：可以指定查找的起始位置 pos （缺省为 0）以及长度 n。没有找到则返回 ``string::npos`` 。
-  ::
-
-    // string (1)
-    size_t find (const string& str, size_t pos = 0) const noexcept;
-    // c-string (2)
-    size_t find (const char* s, size_t pos = 0) const;
-    // buffer (3)
-    size_t find (const char* s, size_t pos, size_type n) const;
-    // character (4)
-    size_t find (char c, size_t pos = 0) const noexcept;
+    迭代器
+      不能通过 ``const_iterator`` 修改容器元素，但是 ``const_iterator`` 本身可以进行自增（++）操作，类似于指向常量的指针；
+      如果 ``const_iterator`` 本身被设置为常量： ``const const_iterator`` ，则不能进行自增操作。 ``const_iterator`` 一般用于访问常量容器。
 
 vector
 ------------
@@ -97,7 +133,7 @@ vector
 - 元素个数：size()，empty()
 - 逐元素比较：==，!=，<，<=，>，>=
 - 内存空间：capcity()
-- 访问：[pos]，at(pos)
+- 随机访问：[pos]，at(pos)
 - 头部元素：front()，返回的是引用
 - 尾部元素：back()，返回的是引用
 - 尾部插入：push_back(x)，emplace_back(x)
@@ -164,6 +200,18 @@ vector
   - ``myVec.clear()`` 让 myVec.size() 为0，但是 myVec.capcity() 不为0，调用 ``myVec.clear()`` 之后再调用 ``myVec.shrink_to_fit()`` 。 ``shrink_to_fit()`` 的作用是减小 capcity() 以匹配 size()。
 
 
+.. note::
+
+  类模板用于产生类，比如 ::
+
+    template <typename T>
+    class Vector
+    {
+      // ...
+    };
+
+  Vector 是 **类模板** ，Vector<int>、Vector<char> 是生成的 **模板类** 。
+
 
 list
 ---------
@@ -194,7 +242,7 @@ deque
 **底层实现：指针数组 + 多个连续内存空间。**
 
 - 元素个数：size()，empty()
-- 访问：[pos]，at(pos)
+- 随机访问：[pos]，at(pos)
 - 队首元素：front()
 - 队尾元素：back()
 - 插入：push_front(x)，push_back(x)，emplace_front(x)，emplace_back(x)
@@ -411,18 +459,11 @@ map
 .. note::
 
   重复关键字
-    map 和 set 都对应了可以包含重复关键字的版本：multimap 和 multiset。元素是有序的。
+    map 和 set 都对应了可以包含重复关键字的版本：multimap 和 multiset。元素是有序的，定义时可以指定二元谓词 ``Compare`` ，默认是 ``less<T>`` ，即元素从小到大排序， ``multiset<T, greater<T>>`` 可以当做大顶堆使用。
 
     相应地，insert 插入相同的关键字时，按插入时间顺序排序。也就是说，越晚插入的排在越后。``erase(val)`` 会删除所有重复的 val。
 
     另外，也有无序版本：unordered_multimap 和 unordered_multiset。
-
-.. note::
-
-    迭代器
-      不能通过 ``const_iterator`` 修改容器元素，但是 ``const_iterator`` 本身可以进行自增（++）操作，类似于指向常量的指针；
-      如果 ``const_iterator`` 本身被设置为常量： ``const const_iterator`` ，则不能进行自增操作。 ``const_iterator`` 一般用于访问常量容器。
-
 
 stack
 ---------
@@ -526,6 +567,68 @@ priority\_queue
 
   相应地，**pop** 操作会调用析构函数。
 
+
+附录：string
+-------------------
+::
+
+  #include<string>
+
+string 是 ``basic_string<char, std::char_traits<char>, std::allocator<char>>`` 这种类型的别名，不是 stl 的标准容器，但是其与 stl 容器有一些相似的行为，因此这里也作简单介绍。
+
+::
+
+  typedef basic_string<char> string;
+
+- 长度：length()，size()，empty()
+- 随机访问：[pos]，at(pos)。at()返回位置 pos 处元素的引用，越界则抛出 ``out_of_range`` 异常。
+- 字典序比较：==，!=，<，<=，>，>=
+- 串接：+
+- c_str()：返回指向 C 类型字符串的指针。如果需要使用 C 的字符串函数如 strcmp、strcpy 等，需要使用 c_str()。
+  ::
+
+    const char* c_str() const noexcept;
+
+- 子串
+  ::
+
+    string substr(size_t pos = 0, size_t len = npos) const
+
+- 插入：支持下标索引插入，在位置 pos **之前** 插入元素。插入元素之后，该元素的位置为 pos。（与 python 中 list 类的插入功能一致）
+  ::
+
+    // string (1)
+    string& insert (size_t pos, const string& str);
+    // substring (2)
+    string& insert (size_t pos, const string& str, size_t subpos, size_t sublen);
+    // c-string (3)
+    string& insert (size_t pos, const char* s);
+    // buffer (4)
+    string& insert (size_t pos, const char* s, size_t n);
+    // fill (5)
+    string& insert (size_t pos, size_t n, char c);
+    iterator insert (const_iterator p, size_t n, char c);
+    // single character (6)
+    iterator insert (const_iterator p, char c);
+    // range (7)
+    template <class InputIterator>
+    iterator insert (iterator p, InputIterator first, InputIterator last);
+    // initializer list (8)
+    string& insert (const_iterator p, initializer_list<char> il);
+
+- 查找：可以指定查找的起始位置 pos （缺省为 0）以及长度 n。没有找到则返回 ``string::npos`` 。
+  ::
+
+    // string (1)
+    size_t find (const string& str, size_t pos = 0) const noexcept;
+    // c-string (2)
+    size_t find (const char* s, size_t pos = 0) const;
+    // buffer (3)
+    size_t find (const char* s, size_t pos, size_type n) const;
+    // character (4)
+    size_t find (char c, size_t pos = 0) const noexcept;
+
+
 to\_string函数
 --------------------
 
@@ -625,6 +728,10 @@ VS 64位编译器
 
 1. C++ reference
 
+  https://www.cplusplus.com/reference/stl/
+
+  http://www.cplusplus.com/reference/iterator/
+
   http://www.cplusplus.com/reference/string/string
 
   http://www.cplusplus.com/reference/string/to_string
@@ -676,3 +783,9 @@ VS 64位编译器
 5. std::size\_t
 
   https://zh.cppreference.com/w/cpp/types/size_t
+
+6. C++迭代器
+
+  http://c.biancheng.net/view/338.html
+
+  http://c.biancheng.net/view/6675.html

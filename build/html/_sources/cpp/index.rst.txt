@@ -32,3 +32,4 @@ C/C++
     25_namespace.rst
     26_lambda.rst
     27_singleton.rst
+    28_vaFunc.rst

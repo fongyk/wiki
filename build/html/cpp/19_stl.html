@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>19. 常用STL类及容器 &mdash; fong alpha documentation</title>
+  <title>19. 常用 STL 容器 &mdash; fong alpha documentation</title>
   
 
   
@@ -120,8 +120,13 @@
 <li class="toctree-l2"><a class="reference internal" href="16_staticconst.html">16. 类的static const成员</a></li>
 <li class="toctree-l2"><a class="reference internal" href="17_enumUnion.html">17. 枚举类型与共用体</a></li>
 <li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html">18. 常用函数</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">19. 常用STL类及容器</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#string">19.1. string</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">19. 常用 STL 容器</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">19.1. 迭代器</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">功能分类</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">定义方式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">辅助函数</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#vector">19.2. vector</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#list">19.3. list</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#deque">19.4. deque</a></li>
@@ -131,14 +136,15 @@
 <li class="toctree-l3"><a class="reference internal" href="#stack">19.8. stack</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#queue">19.9. queue</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#priority-queue">19.10. priority_queue</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#to-string">19.11. to_string函数</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#atoi-atof-atol">19.12. atoi，atof，atol</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#size-tsize-type">19.13. size_t和size_type</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#string">19.11. 附录：string</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#to-string">19.12. to_string函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#atoi-atof-atol">19.13. atoi，atof，atol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#size-tsize-type">19.14. size_t和size_type</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#size-t">size_t</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#size-type">size_type</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id1">19.14. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">19.15. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
@@ -209,7 +215,7 @@
         
           <li><a href="index.html">C/C++</a> &raquo;</li>
         
-      <li>19. 常用STL类及容器</li>
+      <li>19. 常用 STL 容器</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -229,8 +235,13 @@
            <div itemprop="articleBody">
             
   <div class="section" id="stl">
-<h1>19. 常用STL类及容器<a class="headerlink" href="#stl" title="Permalink to this headline">¶</a></h1>
+<h1>19. 常用 STL 容器<a class="headerlink" href="#stl" title="Permalink to this headline">¶</a></h1>
 <p><strong>STL: Standard Template Library</strong> ，标准模板库。</p>
+<dl class="docutils">
+<dt>容器</dt>
+<dd>A container is a holder object that stores a collection of other objects (its elements).
+They are implemented as class templates, which allows a great flexibility in the types supported as elements.</dd>
+</dl>
 <p>以下基于 C++11 标准。</p>
 <dl class="docutils">
 <dt>顺序容器</dt>
@@ -238,9 +249,8 @@
 <li>array</li>
 <li>vector</li>
 <li>list</li>
+<li>forward_list</li>
 <li>deque</li>
-<li>string</li>
-<li>…</li>
 </ul>
 </dd>
 <dt>关联容器</dt>
@@ -249,7 +259,10 @@
 <li>map</li>
 <li>multiset</li>
 <li>multimap</li>
-<li>…</li>
+<li>unordered_set</li>
+<li>unordered_map</li>
+<li>unordered_multiset</li>
+<li>unordered_multimap</li>
 </ul>
 </dd>
 <dt>容器适配器</dt>
@@ -261,65 +274,74 @@
 </dd>
 </dl>
 <p>一个容器适配器接受一种已有的容器类型，使其行为看起来像一种不同的类型。默认情况下，stack 和 queue 基于 deque 实现，priority_queue 基于 vector 实现。</p>
-<div class="section" id="string">
-<h2>19.1. string<a class="headerlink" href="#string" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
-</pre></div>
-</div>
-<ul>
-<li><p class="first">长度：length()，size()，empty()</p>
+<div class="section" id="id1">
+<h2>19.1. 迭代器<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>迭代器和 C++ 的指针非常类似，它可以是需要的任意类型，通过迭代器可以指向容器中的某个元素，还可以对该元素进行读/写操作。</p>
+<div class="section" id="id2">
+<h3>功能分类<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>常用的迭代器按功能强弱分为五种：输入迭代器（input iterator）、输出迭代器（output iterator）、前向迭代器（forward iterator）、双向迭代器（bidirectional iterator）、随机访问迭代器（random access iterator）。</p>
+<p>随机访问迭代器支持的运算符（a、b表示迭代器）：</p>
+<ul class="simple">
+<li>双向迭代器支持的运算符<ul>
+<li>前向迭代器支持的运算符<ul>
+<li>输入迭代器支持的运算符<ul>
+<li>自增 <code class="docutils literal notranslate"><span class="pre">++a</span></code> <code class="docutils literal notranslate"><span class="pre">a++</span></code></li>
+<li>比较 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">b</span></code> <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">!=</span> <span class="pre">b</span></code></li>
+<li>右值解引用 <code class="docutils literal notranslate"><span class="pre">*a</span></code> <code class="docutils literal notranslate"><span class="pre">*a-&gt;m</span></code></li>
+</ul>
 </li>
-<li><p class="first">访问：[pos]，at(pos)。at()返回位置 pos 处元素的引用，越界则抛出 <code class="docutils literal notranslate"><span class="pre">out_of_range</span></code> 异常。</p>
-</li>
-<li><p class="first">字典序比较：==，!=，&lt;，&lt;=，&gt;，&gt;=</p>
-</li>
-<li><p class="first">串接：+</p>
-</li>
-<li><p class="first">c_str()：返回指向 C 类型字符串的指针。如果需要使用 C 的字符串函数如 strcmp、strcpy 等，需要使用 c_str()。</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="nf">c_str</span><span class="p">()</span> <span class="k">const</span> <span class="k">noexcept</span><span class="p">;</span>
-</pre></div>
-</div>
-</li>
-<li><p class="first">子串</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">string</span> <span class="n">substr</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">len</span> <span class="o">=</span> <span class="n">npos</span><span class="p">)</span> <span class="k">const</span>
-</pre></div>
-</div>
-</li>
-<li><p class="first">插入：支持下标索引插入，在位置 pos <strong>之前</strong> 插入元素。插入元素之后，该元素的位置为 pos。（与 python 中 list 类的插入功能一致）</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// string (1)</span>
-<span class="n">string</span><span class="o">&amp;</span> <span class="n">insert</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">pos</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">);</span>
-<span class="c1">// substring (2)</span>
-<span class="n">string</span><span class="o">&amp;</span> <span class="n">insert</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">pos</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">subpos</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">sublen</span><span class="p">);</span>
-<span class="c1">// c-string (3)</span>
-<span class="n">string</span><span class="o">&amp;</span> <span class="n">insert</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">pos</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">s</span><span class="p">);</span>
-<span class="c1">// buffer (4)</span>
-<span class="n">string</span><span class="o">&amp;</span> <span class="n">insert</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">pos</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">s</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">n</span><span class="p">);</span>
-<span class="c1">// fill (5)</span>
-<span class="n">string</span><span class="o">&amp;</span> <span class="n">insert</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">pos</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">n</span><span class="p">,</span> <span class="kt">char</span> <span class="n">c</span><span class="p">);</span>
-<span class="n">iterator</span> <span class="nf">insert</span> <span class="p">(</span><span class="n">const_iterator</span> <span class="n">p</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">n</span><span class="p">,</span> <span class="kt">char</span> <span class="n">c</span><span class="p">);</span>
-<span class="c1">// single character (6)</span>
-<span class="n">iterator</span> <span class="nf">insert</span> <span class="p">(</span><span class="n">const_iterator</span> <span class="n">p</span><span class="p">,</span> <span class="kt">char</span> <span class="n">c</span><span class="p">);</span>
-<span class="c1">// range (7)</span>
-<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">InputIterator</span><span class="o">&gt;</span>
-<span class="n">iterator</span> <span class="n">insert</span> <span class="p">(</span><span class="n">iterator</span> <span class="n">p</span><span class="p">,</span> <span class="n">InputIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">InputIterator</span> <span class="n">last</span><span class="p">);</span>
-<span class="c1">// initializer list (8)</span>
-<span class="n">string</span><span class="o">&amp;</span> <span class="n">insert</span> <span class="p">(</span><span class="n">const_iterator</span> <span class="n">p</span><span class="p">,</span> <span class="n">initializer_list</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">il</span><span class="p">);</span>
-</pre></div>
-</div>
-</li>
-<li><p class="first">查找：可以指定查找的起始位置 pos （缺省为 0）以及长度 n。没有找到则返回 <code class="docutils literal notranslate"><span class="pre">string::npos</span></code> 。</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// string (1)</span>
-<span class="kt">size_t</span> <span class="nf">find</span> <span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">const</span> <span class="k">noexcept</span><span class="p">;</span>
-<span class="c1">// c-string (2)</span>
-<span class="kt">size_t</span> <span class="nf">find</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">s</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
-<span class="c1">// buffer (3)</span>
-<span class="kt">size_t</span> <span class="nf">find</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">s</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">pos</span><span class="p">,</span> <span class="n">size_type</span> <span class="n">n</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
-<span class="c1">// character (4)</span>
-<span class="kt">size_t</span> <span class="nf">find</span> <span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">const</span> <span class="k">noexcept</span><span class="p">;</span>
-</pre></div>
-</div>
+<li>输出迭代器支持的运算符<ul>
+<li>自增 <code class="docutils literal notranslate"><span class="pre">++a</span></code> <code class="docutils literal notranslate"><span class="pre">a++</span></code></li>
+<li>左值解引用 <code class="docutils literal notranslate"><span class="pre">*a</span> <span class="pre">=</span> <span class="pre">t</span></code> <code class="docutils literal notranslate"><span class="pre">*a++</span> <span class="pre">=</span> <span class="pre">t</span></code></li>
+</ul>
 </li>
 </ul>
+</li>
+<li>自减 <code class="docutils literal notranslate"><span class="pre">--a</span></code> <code class="docutils literal notranslate"><span class="pre">a--</span></code> <code class="docutils literal notranslate"><span class="pre">*a--</span></code></li>
+</ul>
+</li>
+<li>算术运算 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+</span> <span class="pre">n</span></code> <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">+</span> <span class="pre">a</span></code> <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">-</span> <span class="pre">n</span></code> <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">-</span> <span class="pre">a</span></code></li>
+<li>比较 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&gt;</span> <span class="pre">b</span></code> <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&lt;</span> <span class="pre">b</span></code> <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&gt;=</span> <span class="pre">b</span></code> <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&lt;=</span> <span class="pre">b</span></code></li>
+<li>复合赋值 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+=</span> <span class="pre">n</span></code> <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">-=</span> <span class="pre">n</span></code></li>
+<li>下标解引用 <code class="docutils literal notranslate"><span class="pre">a[n]</span></code></li>
+</ul>
+<p>不同容器能够使用的容器类型不同：</p>
+<ul class="simple">
+<li>随机访问迭代器：array、vector、deque。</li>
+<li>双向迭代器：list、set/multiset、map/multimap。</li>
+<li>前向迭代器：forward_list、unordered_set/unordered_multiset、unordered_map/unordered_multimap。</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h3>定义方式<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>迭代器按照定义方式分成以下四种：</p>
+<ul class="simple">
+<li>正向迭代器 <code class="docutils literal notranslate"><span class="pre">容器类名::iterator</span>&#160; <span class="pre">迭代器名;</span></code></li>
+<li>常量正向迭代器 <code class="docutils literal notranslate"><span class="pre">容器类名::const_iterator</span>&#160; <span class="pre">迭代器名;</span></code></li>
+<li>反向迭代器 <code class="docutils literal notranslate"><span class="pre">容器类名::reverse_iterator</span>&#160; <span class="pre">迭代器名;</span></code></li>
+<li>常量反向迭代器 <code class="docutils literal notranslate"><span class="pre">容器类名::const_reverse_iterator</span>&#160; <span class="pre">迭代器名;</span></code></li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h3>辅助函数<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p>STL 中有用于操作迭代器的三个函数模板:</p>
+<ul class="simple">
+<li>advance(p, n)：使迭代器 p 向前或向后（n 为负数）移动 n 个元素。</li>
+<li>distance(p, q)：计算两个迭代器之间的距离，对于随机访问迭代器，直接使用 <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">-</span> <span class="pre">q</span></code> ，结果可能是负数；对于其他迭代器，循环调用 <code class="docutils literal notranslate"><span class="pre">++</span></code> 自增，如果调用时 p 已经指向 q 的后面，则陷入死循环。</li>
+<li>iter_swap(p, q)：用于交换两个迭代器指向的值，两个迭代器必须是非常量迭代器。</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<dl class="last docutils">
+<dt>迭代器</dt>
+<dd>不能通过 <code class="docutils literal notranslate"><span class="pre">const_iterator</span></code> 修改容器元素，但是 <code class="docutils literal notranslate"><span class="pre">const_iterator</span></code> 本身可以进行自增（++）操作，类似于指向常量的指针；
+如果 <code class="docutils literal notranslate"><span class="pre">const_iterator</span></code> 本身被设置为常量： <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">const_iterator</span></code> ，则不能进行自增操作。 <code class="docutils literal notranslate"><span class="pre">const_iterator</span></code> 一般用于访问常量容器。</dd>
+</dl>
+</div>
+</div>
 </div>
 <div class="section" id="vector">
 <h2>19.2. vector<a class="headerlink" href="#vector" title="Permalink to this headline">¶</a></h2>
@@ -334,7 +356,7 @@
 </li>
 <li><p class="first">内存空间：capcity()</p>
 </li>
-<li><p class="first">访问：[pos]，at(pos)</p>
+<li><p class="first">随机访问：[pos]，at(pos)</p>
 </li>
 <li><p class="first">头部元素：front()，返回的是引用</p>
 </li>
@@ -401,6 +423,18 @@
 </ul>
 </li>
 </ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>类模板用于产生类，比如</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Vector</span>
+<span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p class="last">Vector 是 <strong>类模板</strong> ，Vector&lt;int&gt;、Vector&lt;char&gt; 是生成的 <strong>模板类</strong> 。</p>
+</div>
 </div>
 <div class="section" id="list">
 <h2>19.3. list<a class="headerlink" href="#list" title="Permalink to this headline">¶</a></h2>
@@ -435,7 +469,7 @@
 <ul>
 <li><p class="first">元素个数：size()，empty()</p>
 </li>
-<li><p class="first">访问：[pos]，at(pos)</p>
+<li><p class="first">随机访问：[pos]，at(pos)</p>
 </li>
 <li><p class="first">队首元素：front()</p>
 </li>
@@ -660,18 +694,10 @@
 <p class="first admonition-title">Note</p>
 <dl class="last docutils">
 <dt>重复关键字</dt>
-<dd><p class="first">map 和 set 都对应了可以包含重复关键字的版本：multimap 和 multiset。元素是有序的。</p>
+<dd><p class="first">map 和 set 都对应了可以包含重复关键字的版本：multimap 和 multiset。元素是有序的，定义时可以指定二元谓词 <code class="docutils literal notranslate"><span class="pre">Compare</span></code> ，默认是 <code class="docutils literal notranslate"><span class="pre">less&lt;T&gt;</span></code> ，即元素从小到大排序， <code class="docutils literal notranslate"><span class="pre">multiset&lt;T,</span> <span class="pre">greater&lt;T&gt;&gt;</span></code> 可以当做大顶堆使用。</p>
 <p>相应地，insert 插入相同的关键字时，按插入时间顺序排序。也就是说，越晚插入的排在越后。<code class="docutils literal notranslate"><span class="pre">erase(val)</span></code> 会删除所有重复的 val。</p>
 <p class="last">另外，也有无序版本：unordered_multimap 和 unordered_multiset。</p>
 </dd>
-</dl>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<dl class="last docutils">
-<dt>迭代器</dt>
-<dd>不能通过 <code class="docutils literal notranslate"><span class="pre">const_iterator</span></code> 修改容器元素，但是 <code class="docutils literal notranslate"><span class="pre">const_iterator</span></code> 本身可以进行自增（++）操作，类似于指向常量的指针；
-如果 <code class="docutils literal notranslate"><span class="pre">const_iterator</span></code> 本身被设置为常量： <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">const_iterator</span></code> ，则不能进行自增操作。 <code class="docutils literal notranslate"><span class="pre">const_iterator</span></code> 一般用于访问常量容器。</dd>
 </dl>
 </div>
 </div>
@@ -810,8 +836,72 @@
 <p class="last">相应地，<strong>pop</strong> 操作会调用析构函数。</p>
 </div>
 </div>
+<div class="section" id="string">
+<h2>19.11. 附录：string<a class="headerlink" href="#string" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p>string 是 <code class="docutils literal notranslate"><span class="pre">basic_string&lt;char,</span> <span class="pre">std::char_traits&lt;char&gt;,</span> <span class="pre">std::allocator&lt;char&gt;&gt;</span></code> 这种类型的别名，不是 stl 的标准容器，但是其与 stl 容器有一些相似的行为，因此这里也作简单介绍。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="n">basic_string</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">string</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul>
+<li><p class="first">长度：length()，size()，empty()</p>
+</li>
+<li><p class="first">随机访问：[pos]，at(pos)。at()返回位置 pos 处元素的引用，越界则抛出 <code class="docutils literal notranslate"><span class="pre">out_of_range</span></code> 异常。</p>
+</li>
+<li><p class="first">字典序比较：==，!=，&lt;，&lt;=，&gt;，&gt;=</p>
+</li>
+<li><p class="first">串接：+</p>
+</li>
+<li><p class="first">c_str()：返回指向 C 类型字符串的指针。如果需要使用 C 的字符串函数如 strcmp、strcpy 等，需要使用 c_str()。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="nf">c_str</span><span class="p">()</span> <span class="k">const</span> <span class="k">noexcept</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">子串</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">string</span> <span class="n">substr</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">len</span> <span class="o">=</span> <span class="n">npos</span><span class="p">)</span> <span class="k">const</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">插入：支持下标索引插入，在位置 pos <strong>之前</strong> 插入元素。插入元素之后，该元素的位置为 pos。（与 python 中 list 类的插入功能一致）</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// string (1)</span>
+<span class="n">string</span><span class="o">&amp;</span> <span class="n">insert</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">pos</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">);</span>
+<span class="c1">// substring (2)</span>
+<span class="n">string</span><span class="o">&amp;</span> <span class="n">insert</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">pos</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">subpos</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">sublen</span><span class="p">);</span>
+<span class="c1">// c-string (3)</span>
+<span class="n">string</span><span class="o">&amp;</span> <span class="n">insert</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">pos</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">s</span><span class="p">);</span>
+<span class="c1">// buffer (4)</span>
+<span class="n">string</span><span class="o">&amp;</span> <span class="n">insert</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">pos</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">s</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">n</span><span class="p">);</span>
+<span class="c1">// fill (5)</span>
+<span class="n">string</span><span class="o">&amp;</span> <span class="n">insert</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">pos</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">n</span><span class="p">,</span> <span class="kt">char</span> <span class="n">c</span><span class="p">);</span>
+<span class="n">iterator</span> <span class="nf">insert</span> <span class="p">(</span><span class="n">const_iterator</span> <span class="n">p</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">n</span><span class="p">,</span> <span class="kt">char</span> <span class="n">c</span><span class="p">);</span>
+<span class="c1">// single character (6)</span>
+<span class="n">iterator</span> <span class="nf">insert</span> <span class="p">(</span><span class="n">const_iterator</span> <span class="n">p</span><span class="p">,</span> <span class="kt">char</span> <span class="n">c</span><span class="p">);</span>
+<span class="c1">// range (7)</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">InputIterator</span><span class="o">&gt;</span>
+<span class="n">iterator</span> <span class="n">insert</span> <span class="p">(</span><span class="n">iterator</span> <span class="n">p</span><span class="p">,</span> <span class="n">InputIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">InputIterator</span> <span class="n">last</span><span class="p">);</span>
+<span class="c1">// initializer list (8)</span>
+<span class="n">string</span><span class="o">&amp;</span> <span class="n">insert</span> <span class="p">(</span><span class="n">const_iterator</span> <span class="n">p</span><span class="p">,</span> <span class="n">initializer_list</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">il</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">查找：可以指定查找的起始位置 pos （缺省为 0）以及长度 n。没有找到则返回 <code class="docutils literal notranslate"><span class="pre">string::npos</span></code> 。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// string (1)</span>
+<span class="kt">size_t</span> <span class="nf">find</span> <span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">const</span> <span class="k">noexcept</span><span class="p">;</span>
+<span class="c1">// c-string (2)</span>
+<span class="kt">size_t</span> <span class="nf">find</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">s</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+<span class="c1">// buffer (3)</span>
+<span class="kt">size_t</span> <span class="nf">find</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">s</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">pos</span><span class="p">,</span> <span class="n">size_type</span> <span class="n">n</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+<span class="c1">// character (4)</span>
+<span class="kt">size_t</span> <span class="nf">find</span> <span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">const</span> <span class="k">noexcept</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
 <div class="section" id="to-string">
-<h2>19.11. to_string函数<a class="headerlink" href="#to-string" title="Permalink to this headline">¶</a></h2>
+<h2>19.12. to_string函数<a class="headerlink" href="#to-string" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
@@ -829,7 +919,7 @@
 </div>
 </div>
 <div class="section" id="atoi-atof-atol">
-<h2>19.12. atoi，atof，atol<a class="headerlink" href="#atoi-atof-atol" title="Permalink to this headline">¶</a></h2>
+<h2>19.13. atoi，atof，atol<a class="headerlink" href="#atoi-atof-atol" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdlib&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
@@ -841,7 +931,7 @@
 </div>
 </div>
 <div class="section" id="size-tsize-type">
-<h2>19.13. size_t和size_type<a class="headerlink" href="#size-tsize-type" title="Permalink to this headline">¶</a></h2>
+<h2>19.14. size_t和size_type<a class="headerlink" href="#size-tsize-type" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="size-t">
 <h3>size_t<a class="headerlink" href="#size-t" title="Permalink to this headline">¶</a></h3>
 <p>size_t 提供了一种可移植（不同平台下）的方法声明与系统可寻址的内存区域一致的长度。
@@ -902,13 +992,15 @@ size_t 是通过 typedef 定义的一些 <strong>无符号整型</strong> 的别
 </div>
 </div>
 </div>
-<div class="section" id="id1">
-<h2>19.14. 参考资料<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h2>19.15. 参考资料<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>C++ reference</li>
 </ol>
 <blockquote>
-<div><p><a class="reference external" href="http://www.cplusplus.com/reference/string/string">http://www.cplusplus.com/reference/string/string</a></p>
+<div><p><a class="reference external" href="https://www.cplusplus.com/reference/stl/">https://www.cplusplus.com/reference/stl/</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/iterator/">http://www.cplusplus.com/reference/iterator/</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/string/string">http://www.cplusplus.com/reference/string/string</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/string/to_string">http://www.cplusplus.com/reference/string/to_string</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/vector/vector">http://www.cplusplus.com/reference/vector/vector</a></p>
 <p><a class="reference external" href="http://www.cplusplus.com/reference/list/list">http://www.cplusplus.com/reference/list/list</a></p>
@@ -946,6 +1038,13 @@ size_t 是通过 typedef 定义的一些 <strong>无符号整型</strong> 的别
 </ol>
 <blockquote>
 <div><a class="reference external" href="https://zh.cppreference.com/w/cpp/types/size_t">https://zh.cppreference.com/w/cpp/types/size_t</a></div></blockquote>
+<ol class="arabic simple" start="6">
+<li>C++迭代器</li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="http://c.biancheng.net/view/338.html">http://c.biancheng.net/view/338.html</a></p>
+<p><a class="reference external" href="http://c.biancheng.net/view/6675.html">http://c.biancheng.net/view/6675.html</a></p>
+</div></blockquote>
 </div>
 </div>
 

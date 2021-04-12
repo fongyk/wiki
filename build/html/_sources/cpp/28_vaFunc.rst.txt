@@ -6,7 +6,7 @@
 C 语言的方式
 ------------------
 
-是通过一个类型（va_list）和三个宏（va_start、va_arg、va_end）来实现可变参数的。
+C 语言是通过一个类型（va_list）和三个宏（va_start、va_arg、va_end）来实现可变参数的。
 
 .. code-block:: cpp
   :linenos:
@@ -30,6 +30,7 @@ C 语言的方式
   // 调用：cPrint(3, 5, 6, 23);
 
 上例中 ``va_arg(args, int)`` 限定了解析的参数类型必须是整型，因而没有实现参数类型可变。
+ ``printf`` 是通过 ``%`` 来确定参数个数和类型的。
 
 
 C++ 的方式
@@ -52,6 +53,7 @@ C++ 的可变参数模板得益于：
   using namespace std;
 
   // 递归出口
+  // 当两个参数模板都适用某种情况时，优先使用没有 template parameter pack 的版本
   template<typename T>
   void cppPrint(T arg)
   {
@@ -62,11 +64,13 @@ C++ 的可变参数模板得益于：
   void cppPrint(T arg1, Ts... args_left) // function parameter pack，表明这里有多个参数
   {
       cout << arg1 << " ";
+      // 递归
       cppPrint(args_left...); // pack expansion，将参数名字展开为逗号分割的参数列表
   }
 
   // 调用：cppPrint(5, 6.6, "foo");
 
+C++ 通过重载 ``operator<<`` 来定制不同类型的输出。
 
 .. note::
 

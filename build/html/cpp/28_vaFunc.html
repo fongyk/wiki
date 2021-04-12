@@ -219,7 +219,7 @@
 <p>可变参数函数：参数数量可变，参数类型可变。比如 C 语言中的 <code class="docutils literal notranslate"><span class="pre">printf</span></code> ，参数数量是可变的，类型也是可变的。</p>
 <div class="section" id="c">
 <h2>28.1. C 语言的方式<a class="headerlink" href="#c" title="Permalink to this headline">¶</a></h2>
-<p>是通过一个类型（va_list）和三个宏（va_start、va_arg、va_end）来实现可变参数的。</p>
+<p>C 语言是通过一个类型（va_list）和三个宏（va_start、va_arg、va_end）来实现可变参数的。</p>
 <div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -255,7 +255,10 @@
 <span class="c1">// 调用：cPrint(3, 5, 6, 23);</span>
 </pre></div>
 </td></tr></table></div>
-<p>上例中 <code class="docutils literal notranslate"><span class="pre">va_arg(args,</span> <span class="pre">int)</span></code> 限定了解析的参数类型必须是整型，因而没有实现参数类型可变。</p>
+<dl class="docutils">
+<dt>上例中 <code class="docutils literal notranslate"><span class="pre">va_arg(args,</span> <span class="pre">int)</span></code> 限定了解析的参数类型必须是整型，因而没有实现参数类型可变。</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">printf</span></code> 是通过 <code class="docutils literal notranslate"><span class="pre">%</span></code> 来确定参数个数和类型的。</dd>
+</dl>
 </div>
 <div class="section" id="id2">
 <h2>28.2. C++ 的方式<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
@@ -283,11 +286,14 @@
 16
 17
 18
-19</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;cstdarg&gt;</span><span class="cp"></span>
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
 <span class="c1">// 递归出口</span>
+<span class="c1">// 当两个参数模板都适用某种情况时，优先使用没有 template parameter pack 的版本</span>
 <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
 <span class="kt">void</span> <span class="n">cppPrint</span><span class="p">(</span><span class="n">T</span> <span class="n">arg</span><span class="p">)</span>
 <span class="p">{</span>
@@ -298,12 +304,14 @@
 <span class="kt">void</span> <span class="n">cppPrint</span><span class="p">(</span><span class="n">T</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">Ts</span><span class="p">...</span> <span class="n">args_left</span><span class="p">)</span> <span class="c1">// function parameter pack，表明这里有多个参数</span>
 <span class="p">{</span>
     <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">arg1</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span><span class="p">;</span>
+    <span class="c1">// 递归</span>
     <span class="n">cppPrint</span><span class="p">(</span><span class="n">args_left</span><span class="p">...);</span> <span class="c1">// pack expansion，将参数名字展开为逗号分割的参数列表</span>
 <span class="p">}</span>
 
 <span class="c1">// 调用：cppPrint(5, 6.6, &quot;foo&quot;);</span>
 </pre></div>
 </td></tr></table></div>
+<p>C++ 通过重载 <code class="docutils literal notranslate"><span class="pre">operator&lt;&lt;</span></code> 来定制不同类型的输出。</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">模板特化（template specialization）与偏特化（partial template specialization）：

@@ -691,7 +691,7 @@ VS 32位编译器：sizeof(size_t) = 32；VS 64位编译器：sizeof(size_t) = 6
 size\_type
 ^^^^^^^^^^^^^^^
 
-size\_type 是 STL 定义的类型属性，足够保持对应容器最大可能的容器大小。也是 **无符号整型** 。
+size\_type 是 STL 定义的类型属性，足够保持对应容器最大可能的容器大小，也是 **无符号整型** 。
 
 size() 的返回类型就是 size\_type。把 size() 赋值给一个 int 变量，会有 warning。
 
@@ -718,9 +718,43 @@ VS 64位编译器
       cout << vec[k+1] - vec[k] << endl;
     }
 
-  上例中，本意是只有当 vec 至少包含2个元素时，才输出。但是，当 vec.size() = 0，vec.size() - 1 = 2^32 - 1 或2^64 - 1，
+  上例中，本意是只有当 vec 至少包含2个元素时，才输出。但是，当 vec.size() = 0，vec.size() - 1 = 2^32 - 1 或 2^64 - 1，
   而不是预想的 -1，陷入死循环。
 
+  同样地，如果是反向遍历（下标自减），也需要注意循环终止条件。
+
+  .. code-block:: cpp
+    :linenos:
+
+    // 正确
+    for(size_t k = s.size(); k >= 1; --k)
+    {
+      cout << vec[k-1] << endl;
+    }
+
+    // 正确
+    for(size_t k = s.size() - 1; k != -1; --k)
+    {
+      cout << vec[k] << endl;
+    }
+
+    // 死循环
+    for(size_t k = s.size() - 1; k >= 0; --k)
+    {
+      cout << vec[k] << endl;
+    }
+
+    // 不进入循环
+    for(size_t k = s.size() - 1; k > -1; --k)
+    {
+      cout << vec[k] << endl;
+    }
+
+  由于 size\_t 是无符号整型， ``size\_t k = -1`` 其实是定义成了能够表示的最大整数，比如 ``string::npos`` 的定义是 ::
+
+    static const size_t npos = -1;
+
+  因此， ``k > -1`` 永远为 false，需要用 ``k != -1`` 作为循环终止条件。
 
 
 参考资料

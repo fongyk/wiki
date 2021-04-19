@@ -155,6 +155,7 @@
 <li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
 <li class="toctree-l2"><a class="reference internal" href="26_lambda.html">26. lambda 表达式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="27_singleton.html">27. 单例模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28_vaFunc.html">28. 可变参数函数</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -953,7 +954,7 @@ size_t 是通过 typedef 定义的一些 <strong>无符号整型</strong> 的别
 </div>
 <div class="section" id="size-type">
 <h3>size_type<a class="headerlink" href="#size-type" title="Permalink to this headline">¶</a></h3>
-<p>size_type 是 STL 定义的类型属性，足够保持对应容器最大可能的容器大小。也是 <strong>无符号整型</strong> 。</p>
+<p>size_type 是 STL 定义的类型属性，足够保持对应容器最大可能的容器大小，也是 <strong>无符号整型</strong> 。</p>
 <p>size() 的返回类型就是 size_type。把 size() 赋值给一个 int 变量，会有 warning。</p>
 <dl class="docutils">
 <dt>VS 32位编译器</dt>
@@ -987,8 +988,61 @@ size_t 是通过 typedef 定义的一些 <strong>无符号整型</strong> 的别
 </pre></div>
 </td></tr></table></div>
 </div></blockquote>
-<p class="last">上例中，本意是只有当 vec 至少包含2个元素时，才输出。但是，当 vec.size() = 0，vec.size() - 1 = 2^32 - 1 或2^64 - 1，
+<p>上例中，本意是只有当 vec 至少包含2个元素时，才输出。但是，当 vec.size() = 0，vec.size() - 1 = 2^32 - 1 或 2^64 - 1，
 而不是预想的 -1，陷入死循环。</p>
+<p>同样地，如果是反向遍历（下标自减），也需要注意循环终止条件。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 正确</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">k</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">k</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">;</span> <span class="o">--</span><span class="n">k</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">vec</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 正确</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">k</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">k</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="o">--</span><span class="n">k</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">vec</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 死循环</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">k</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">k</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">k</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">vec</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 不进入循环</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">k</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="o">--</span><span class="n">k</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">vec</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>由于 size_t 是无符号整型， <code class="docutils literal notranslate"><span class="pre">size\_t</span> <span class="pre">k</span> <span class="pre">=</span> <span class="pre">-1</span></code> 其实是定义成了能够表示的最大整数，比如 <code class="docutils literal notranslate"><span class="pre">string::npos</span></code> 的定义是</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">static</span> <span class="k">const</span> <span class="kt">size_t</span> <span class="n">npos</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p class="last">因此， <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">&gt;</span> <span class="pre">-1</span></code> 永远为 false，需要用 <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">!=</span> <span class="pre">-1</span></code> 作为循环终止条件。</p>
 </div>
 </div>
 </div>

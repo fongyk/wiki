@@ -4166,11 +4166,6 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
                           rpn.push_back(op.top());
                           op.pop();
                       }
-                      while(!op.empty() && op.top()!='(')
-                      {
-                          rpn.push_back(op.top());
-                          op.pop();
-                      }
                       op.pop(); // pop '('
                   }
                   // + - * /

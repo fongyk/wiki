@@ -6885,12 +6885,7 @@ $$</div></li>
 55
 56
 57
-58
-59
-60
-61
-62
-63</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+58</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm">中缀表达式转后缀表达式（逆波兰式）</span>
 <span class="cm">遍历中缀表达式：</span>
 <span class="cm">1）如果遇到操作数，则直接输出。</span>
@@ -6918,11 +6913,6 @@ $$</div></li>
             <span class="k">else</span> <span class="nf">if</span><span class="p">(</span><span class="n">e</span> <span class="o">==</span> <span class="sc">&#39;(&#39;</span><span class="p">)</span> <span class="n">op</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
             <span class="k">else</span> <span class="nf">if</span><span class="p">(</span><span class="n">e</span> <span class="o">==</span> <span class="sc">&#39;&gt;&#39;</span><span class="p">)</span> <span class="c1">// 这里用 &gt; 代替 )，否则 rst 一直编译报错</span>
             <span class="p">{</span>
-                <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">op</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">op</span><span class="p">.</span><span class="n">top</span><span class="p">()</span><span class="o">!=</span><span class="sc">&#39;(&#39;</span><span class="p">)</span>
-                <span class="p">{</span>
-                    <span class="n">rpn</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">op</span><span class="p">.</span><span class="n">top</span><span class="p">());</span>
-                    <span class="n">op</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
-                <span class="p">}</span>
                 <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">op</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">op</span><span class="p">.</span><span class="n">top</span><span class="p">()</span><span class="o">!=</span><span class="sc">&#39;(&#39;</span><span class="p">)</span>
                 <span class="p">{</span>
                     <span class="n">rpn</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">op</span><span class="p">.</span><span class="n">top</span><span class="p">());</span>

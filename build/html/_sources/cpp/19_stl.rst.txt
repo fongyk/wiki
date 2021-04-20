@@ -446,6 +446,11 @@ map
     return 0;
   }
 
+
+.. note::
+
+  ``std::map::opeartor[]`` 不是 const 成员函数（操作符），对于不在 map 中的关键字，使用下标操作符会创建新的条目从而改变了 map，因此 const map 不能使用 ``[]`` ，可以使用 ``at()`` 。
+
 .. note::
 
     无序容器

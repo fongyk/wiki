@@ -4119,6 +4119,140 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
+52. 逆波兰式：转换与求值。
+
+  https://leetcode.com/problems/evaluate-reverse-polish-notation/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+
+    .. code-block:: cpp
+      :linenos:
+
+      /* 
+      中缀表达式转后缀表达式（逆波兰式）
+      遍历中缀表达式：
+      1）如果遇到操作数，则直接输出。
+      2）如果遇到左括号，则直接压入栈中。
+      3）如果遇到右括号，则将栈中元素弹出，直到遇到左括号为止；左括号只弹出栈而不输出。
+      4）如果遇到操作符，则检查栈顶元素优先级，如果其优先级**不低于**当前操作符（左括号除外），则弹出栈顶元素并输出；
+      重复此过程直到：栈顶元素优先级小于当前操作符或者栈顶元素为左括号或者栈为空，然后将当前操作符压入栈中。
+      5）表达式处理完毕，将栈中元素依次弹出。
+      注意：只有遇到右括号的情况下才会弹出左括号，其他情况都不会弹出。
+      */
+
+
+      class ReversePolishNotation
+      {
+      public:
+          // 假设输入表达式一定是正确的，且只包含个位整数、+-*/、括号
+          vector<char> convertRPN(const string& expr)
+          {
+              vector<char> rpn;
+              if(expr.size() < 1) return rpn;
+              stack<char> op;
+              for(auto& e: expr)
+              {
+                  if('0' <= e && e <= '9') rpn.push_back(e);
+                  else if(e == '(') op.push(e);
+                  else if(e == '>') // 这里用 > 代替 )，否则 rst 一直编译报错
+                  {
+                      while(!op.empty() && op.top()!='(')
+                      {
+                          rpn.push_back(op.top());
+                          op.pop();
+                      }
+                      while(!op.empty() && op.top()!='(')
+                      {
+                          rpn.push_back(op.top());
+                          op.pop();
+                      }
+                      op.pop(); // pop '('
+                  }
+                  // + - * /
+                  else
+                  {
+                      while(!op.empty() && op.top()!='(' && prior.at(op.top())>=prior.at(e))
+                      {
+                          rpn.push_back(op.top());
+                          op.pop();
+                      }
+                      op.push(e);
+                  }
+              }
+              while(!op.empty())
+              {
+                  rpn.push_back(op.top());
+                  op.pop();
+              }
+              return rpn;
+          }
+      private:
+          static const unordered_map<char, int> prior;
+      };
+
+      const unordered_map<char, int> ReversePolishNotation::prior = {{'+', 1}, {'-', 1}, {'*', 2}, {'/', 2}};
+
+    .. code-block:: cpp
+      :linenos:
+
+      /*
+      逆波兰式求值
+      遍历逆波兰式，遇到操作数就入栈；遇到操作符则出栈两个操作数执行运算，运算结果重新入栈；
+      遍历结束时，栈内存放的是最终运算结果。
+      */
+
+      class Solution 
+      {
+      public:
+          int evalRPN(vector<string>& tokens)
+          {
+              int N = tokens.size();
+              if(N == 0) return 0;
+              stack<int> stk;
+              int k = 0;
+              int res = 0;
+              while(k < N)
+              {
+                  if(tokens[k] != "*" && tokens[k] != "-" && tokens[k] != "+" && tokens[k] != "/")
+                  {
+                      stk.push(atoi(tokens[k].c_str()));
+                  }
+                  else
+                  {
+                      int right_operand = stk.top();
+                      stk.pop();
+                      int left_operand = 0;
+                      if(!stk.empty())
+                      {
+                          left_operand = stk.top();
+                          stk.pop();
+                      }
+                      switch(tokens[k][0])
+                      {
+                          case '+': res = left_operand + right_operand; break;
+                          case '-': res = left_operand - right_operand; break;
+                          case '*': res = left_operand * right_operand; break;
+                          case '/': res = left_operand / right_operand; break; 
+                      }
+                      stk.push(res);
+                  }
+                  k++;
+              }
+              if(!stk.empty())
+              {
+                  res = stk.top();
+                  stk.pop();
+              }
+              return res;
+          }
+      };
+
+
 C++
 ------------
 

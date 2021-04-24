@@ -11,3 +11,4 @@
     04_derivative.rst
     05_newton.rst
     06_roc.rst
+    07_dbscan.rst

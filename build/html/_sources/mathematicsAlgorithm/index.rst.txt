@@ -27,3 +27,4 @@
     20_poison.rst
     21_rand.rst
     22_unionFind.rst
+    23_kmp.rst

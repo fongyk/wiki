@@ -1,0 +1,303 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. 常用矩阵求导公式 &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'alpha',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. 牛顿方法" href="05_newton.html" />
+    <link rel="prev" title="3. 主成分分析" href="03_pca.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">机器学习</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_lr.html">1. Logistic Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_svm.html">2. 支持向量机</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_pca.html">3. 主成分分析</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4. 常用矩阵求导公式</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">4.1. 一阶</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">4.2. 二阶</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">4.3. 迹</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">4.4. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="05_newton.html">5. 牛顿方法</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">机器学习</a> &raquo;</li>
+        
+      <li>4. 常用矩阵求导公式</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/machineLearning/04_derivative.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>4. 常用矩阵求导公式<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>导数有两种不同的表示形式：</p>
+<a class="reference internal image-reference" href="../_images/04_matrix.jpg"><img alt="../_images/04_matrix.jpg" class="align-center" src="../_images/04_matrix.jpg" style="width: 500px;" /></a>
+<p>这里使用 <strong>denominator layout</strong> 。</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{x},\mathbf{a},\mathbf{b}\)</span> 均为 <strong>列向量</strong> 。</p>
+<div class="section" id="id2">
+<h2>4.1. 一阶<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}\frac{\partial{(\mathbf{x}^{\top} \mathbf{a})}}{\partial{\mathbf{x}}} &amp; = &amp; \  \frac{\partial{(\mathbf{a}^{\top} \mathbf{x})}}{\partial{\mathbf{x}}} = \ \mathbf{a} \\
+\frac{\partial{(\mathbf{a}^{\top} \mathbf{X} \mathbf{b})}}{\partial{\mathbf{X}}} &amp; = &amp; \  \mathbf{a} \mathbf{b}^{\top} \\
+\frac{\partial{(\mathbf{a}^{\top} \mathbf{X}^{\top} \mathbf{b})}}{\partial{\mathbf{X}}} &amp; = &amp; \  \mathbf{b} \mathbf{a}^{\top} \\
+\frac{\partial{(\mathbf{a}^{\top} \mathbf{X} \mathbf{a})}}{\partial{\mathbf{X}}} &amp; = &amp; \  \mathbf{a} \mathbf{a}^{\top} \\\end{split}\]</div>
+</div>
+<div class="section" id="id3">
+<h2>4.2. 二阶<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}\frac{\partial{(\mathbf{x}^{\top} \mathbf{x})}}{\partial{\mathbf{x}}} &amp; = &amp; \ 2 \mathbf{x} \\
+\frac{\partial{(\mathbf{x}^{\top} \mathbf{B} \mathbf{x})}}{\partial{\mathbf{x}}} &amp; = &amp; \ (\mathbf{B} + \mathbf{B}^{\top}) \mathbf{x} \\
+\frac{\partial{(\mathbf{a}^{\top} \mathbf{X}^{\top} \mathbf{X} \mathbf{b})}}{\partial{\mathbf{X}}} &amp; = &amp; \  \mathbf{X} (\mathbf{a}\mathbf{b}^{\top} + \mathbf{b}\mathbf{a}^{\top}) \\\end{split}\]</div>
+</div>
+<div class="section" id="id4">
+<h2>4.3. 迹<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(Tr(\mathbf{A}^{\top}\mathbf{B}) = Tr(\mathbf{B}^{\top}\mathbf{A})\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\frac{\partial{(Tr(\mathbf{X}))}}{\partial{\mathbf{X}}} &amp; = &amp; \ \mathbf{I} \\
+\frac{\partial{(Tr(\mathbf{X} \mathbf{A}))}}{\partial{\mathbf{X}}} &amp; = &amp; \ \mathbf{A}^{\top} \\
+\frac{\partial{(Tr(\mathbf{X}^{\top} \mathbf{A}))}}{\partial{\mathbf{X}}} &amp; = &amp; \ \frac{\partial{(Tr(\mathbf{A} \mathbf{X}^{\top}))}}{\partial{\mathbf{X}}} = \  \mathbf{A} \\
+\frac{\partial{(Tr(\mathbf{A} \mathbf{X} \mathbf{B}))}}{\partial{\mathbf{X}}} &amp; = &amp; \ \mathbf{A}^{\top}\mathbf{B}^{\top} \\
+\frac{\partial{(Tr(\mathbf{A} \mathbf{X}^{\top} \mathbf{B}))}}{\partial{\mathbf{X}}} &amp; = &amp; \ \mathbf{B}\mathbf{A} \\
+\frac{\partial{(Tr(\mathbf{X} \mathbf{X}^{\top}))}}{\partial{\mathbf{X}}} &amp; = &amp; \ 2 \mathbf{X} \\
+\frac{\partial{(Tr(\mathbf{X}^{2}))}}{\partial{\mathbf{X}}} &amp; = &amp; \ 2 \mathbf{X}^{\top} \\
+\frac{\partial{(Tr(\mathbf{X} \mathbf{B} \mathbf{X}^{\top}))}}{\partial{\mathbf{X}}} &amp; = &amp; \ \mathbf{X}\mathbf{B}^{\top} + \mathbf{X}\mathbf{B} \\
+\frac{\partial{(Tr(\mathbf{X}^{\top} \mathbf{B} \mathbf{X}))}}{\partial{\mathbf{X}}} &amp; = &amp; \ \mathbf{B}\mathbf{X} + \mathbf{B}^{\top}\mathbf{X} \\\end{split}\]</div>
+</div>
+<div class="section" id="id5">
+<h2>4.4. 参考资料<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>The Matrix Cookbook</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf">https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf</a></div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Matrix Derivatives</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.comp.nus.edu.sg/~cs5240/lecture/matrix-differentiation.pdf">https://www.comp.nus.edu.sg/~cs5240/lecture/matrix-differentiation.pdf</a></div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="05_newton.html" class="btn btn-neutral float-right" title="5. 牛顿方法" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="03_pca.html" class="btn btn-neutral float-left" title="3. 主成分分析" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

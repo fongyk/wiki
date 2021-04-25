@@ -1,0 +1,1254 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>18. 常用函数 &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'alpha',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="19. 常用STL类及容器" href="19_stl.html" />
+    <link rel="prev" title="17. 枚举类型与共用体" href="17_enumUnion.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C/C++</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_main.html">1. main函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_array.html">2. 数组</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_typeSize.html">3. 数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_classSize.html">4. 类的大小</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_swap.html">5. 交换函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_arrayArg.html">6. 数组形参</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_pointerReference.html">7. 指针与引用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_overload.html">8. 重载、覆盖、隐藏</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_strcpy.html">9. strcpy函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_cast.html">10. 强制类型转换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html">11. 堆、栈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_argPass.html">12. 参数传递</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_nullClassPtr.html">13. 空类指针</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html">14. static和extern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_classAccess.html">15. public、protected、private</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_staticconst.html">16. 类的static const成员</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_enumUnion.html">17. 枚举类型与共用体</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">18. 常用函数</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lower-bound-upper-bound">18.1. lower_bound，upper_bound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fill-fill-n-for-each">18.2. fill，fill_n，for_each</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sort">18.3. sort</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reverse">18.4. reverse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#min-element-max-element-minmax-element">18.5. min_element，max_element，minmax_element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#accumulate">18.6. accumulate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#partial-sum">18.7. partial_sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#iota">18.8. iota</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#inner-product">18.9. inner_product</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#memset">18.10. memset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">18.11. 附：头文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">18.12. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用STL类及容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_lambda.html">26. lambda 表达式</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">C/C++</a> &raquo;</li>
+        
+      <li>18. 常用函数</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/cpp/18_commonFunc.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>18. 常用函数<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>以下函数基于 C++11 标准。</p>
+<div class="section" id="lower-bound-upper-bound">
+<h2>18.1. lower_bound，upper_bound<a class="headerlink" href="#lower-bound-upper-bound" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p><strong>lower_bound</strong> 从排好序的数组区间 <strong>[first, last)</strong> 中，采用二分查找，返回 <strong>大于或等于</strong> val 的 <strong>第一个</strong> 元素位置。
+如果所有元素都小于 val，则返回 last。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">ForwardIterator</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="n">ForwardIterator</span> <span class="n">lower_bound</span> <span class="p">(</span><span class="n">ForwardIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">ForwardIterator</span> <span class="n">last</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>upper_bound</strong> 从排好序的数组区间 <strong>[first, last)</strong> 中，采用二分查找，返回 <strong>大于</strong> val 的 <strong>第一个</strong> 元素位置。
+如果所有元素都不大于 val，则返回 last。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">ForwardIterator</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="n">ForwardIterator</span> <span class="n">upper_bound</span> <span class="p">(</span><span class="n">ForwardIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">ForwardIterator</span> <span class="n">last</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>求有序数组中 val 的个数：</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">upper_bound</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="o">-</span> <span class="n">lower_bound</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">,</span> <span class="n">val</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Example}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">};</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">lower_bound</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">-</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 4</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">upper_bound</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">-</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 8</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">11</span><span class="p">);</span> <span class="c1">// 用 a 对 v 初始化</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">lower_bound</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">5</span><span class="p">)</span> <span class="o">-</span> <span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 4</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">upper_bound</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">5</span><span class="p">)</span> <span class="o">-</span> <span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 8</span>
+
+  <span class="o">*</span><span class="n">lower_bound</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">ai</span> <span class="p">:</span> <span class="n">a</span><span class="p">)</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ai</span> <span class="o">&lt;&lt;</span> <span class="n">ends</span><span class="p">;</span> <span class="c1">// 1 2 3 4 500 5 5 5 6 7 8</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+  <span class="o">*</span><span class="n">lower_bound</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">5</span><span class="p">)</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">vi</span> <span class="p">:</span> <span class="n">v</span><span class="p">)</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">vi</span> <span class="o">&lt;&lt;</span> <span class="n">ends</span><span class="p">;</span> <span class="c1">// 1 2 3 4 500 5 5 5 6 7 8</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="fill-fill-n-for-each">
+<h2>18.2. fill，fill_n，for_each<a class="headerlink" href="#fill-fill-n-for-each" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p><strong>fill</strong> 函数将一个区间 <strong>[first, last)</strong> 的每个元素都赋予 val 值。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">ForwardIterator</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">fill</span> <span class="p">(</span><span class="n">ForwardIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">ForwardIterator</span> <span class="n">last</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>fill_n</strong> 函数从 <strong>first</strong> 开始依次赋予 n 个元素 val 值。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">OutputIterator</span><span class="p">,</span> <span class="k">class</span> <span class="nc">Size</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">fill_n</span> <span class="p">(</span><span class="n">OutputIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">Size</span> <span class="n">n</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">val</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>for_each</strong> 把函数 fn 应用于区间 <strong>[first, last)</strong> 的每个元素。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">InputIterator</span><span class="p">,</span> <span class="k">class</span> <span class="nc">Function</span><span class="o">&gt;</span>
+<span class="n">Function</span> <span class="n">for_each</span> <span class="p">(</span><span class="n">InputIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">InputIterator</span> <span class="n">last</span><span class="p">,</span> <span class="n">Function</span> <span class="n">fn</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">first</span><span class="o">!=</span><span class="n">last</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">fn</span> <span class="p">(</span><span class="o">*</span><span class="n">first</span><span class="p">);</span>
+    <span class="o">++</span><span class="n">first</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">fn</span><span class="p">;</span>      <span class="c1">// or, since C++11: return move(fn);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">fn</span></code> 是一个一元谓词（unary predicate），接受一个参数，其返回值被忽略。<code class="docutils literal notranslate"><span class="pre">fn</span></code> 可以是一个函数指针或函数对象。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<dl class="last docutils">
+<dt>函数对象</dt>
+<dd>如果一个类将 <code class="docutils literal notranslate"><span class="pre">()</span></code> 运算符重载为成员函数，这个类就称为函数对象类，这个类的对象就是函数对象。
+函数对象是一个对象，但是使用的形式看起来像函数调用，实际上也执行了函数调用。</dd>
+</dl>
+</div>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Example}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">print</span><span class="p">(</span><span class="n">T</span> <span class="n">elem</span><span class="p">){</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">elem</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="k">struct</span> <span class="n">myclass</span>
+<span class="p">{</span>
+  <span class="kt">void</span> <span class="k">operator</span><span class="p">()</span> <span class="p">(</span><span class="kt">int</span> <span class="n">elem</span><span class="p">)</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">elem</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span><span class="n">myobject</span><span class="p">;</span>
+<span class="c1">// 注意：这里重载的是 () 运算符，接受一个参数；myobject 是一个结构体变量（类对象），调用 myobject(6) 会打印 6。</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+
+  <span class="kt">float</span> <span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mf">0.0</span> <span class="p">};</span> <span class="c1">// {0.0, 0.0, 0.0, 0.0}</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">// {0, 0, 0, 0}</span>
+
+  <span class="n">fill</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="mi">4</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">);</span> <span class="c1">// {3.3, 3.3, 3.3, 3.3}</span>
+  <span class="n">fill_n</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">6.6</span><span class="p">);</span> <span class="c1">// {6.6, 6.6, 3.3, 3.3}</span>
+  <span class="n">fill_n</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">);</span> <span class="c1">// {9, 9, 9, 9}</span>
+
+  <span class="n">for_each</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">4</span><span class="p">,</span> <span class="n">print</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">);</span> <span class="c1">//  6.6 6.6 3.3 3.3</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="n">for_each</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">print</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">);</span> <span class="c1">//  9 9 9 9</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="n">for_each</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">myobject</span><span class="p">);</span> <span class="c1">//  9 9 9 9</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+  <span class="kt">int</span> <span class="n">b</span><span class="p">[</span><span class="mi">10</span><span class="p">][</span><span class="mi">20</span><span class="p">];</span>
+  <span class="n">fill</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// b 所有元素为 2</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>最长上升子序列：</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/* https://leetcode.com/problems/longest-increasing-subsequence/ */</span>
+<span class="cm">/* O(nlogn) in time.*/</span>
+
+<span class="k">class</span> <span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="kt">int</span> <span class="n">lengthOfLIS</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">&lt;=</span><span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="n">inf</span> <span class="o">=</span> <span class="n">INT_MAX</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+    <span class="kt">int</span><span class="o">*</span> <span class="n">dp</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">len</span><span class="p">];</span>
+<span class="hll">    <span class="n">fill</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span> <span class="n">dp</span><span class="o">+</span><span class="n">len</span><span class="p">,</span> <span class="n">inf</span><span class="p">);</span>
+</span><span class="hll">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span> <span class="o">*</span><span class="n">lower_bound</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span> <span class="n">dp</span><span class="o">+</span><span class="n">len</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+</span><span class="hll">    <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">lower_bound</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span> <span class="n">dp</span><span class="o">+</span><span class="n">len</span><span class="p">,</span> <span class="n">inf</span><span class="p">)</span> <span class="o">-</span> <span class="n">dp</span><span class="p">;</span>
+</span>    <span class="k">delete</span><span class="p">[]</span> <span class="n">dp</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">length</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="sort">
+<h2>18.3. sort<a class="headerlink" href="#sort" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
+
+<span class="c1">// default</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">RandomAccessIterator</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">sort</span> <span class="p">(</span><span class="n">RandomAccessIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">RandomAccessIterator</span> <span class="n">last</span><span class="p">);</span>
+
+<span class="c1">// custom</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">RandomAccessIterator</span><span class="p">,</span> <span class="k">class</span> <span class="nc">Compare</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">sort</span> <span class="p">(</span><span class="n">RandomAccessIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">RandomAccessIterator</span> <span class="n">last</span><span class="p">,</span> <span class="n">Compare</span> <span class="n">comp</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">comp</span></code> 是一个二元谓词（binary predicate），接受两个参数，返回 bool 型或一个可以转换为 bool 型的类型。<code class="docutils literal notranslate"><span class="pre">comp</span></code> 可以是一个函数指针或函数对象。</p>
+<p>如果需要稳定排序，可以使用 <code class="docutils literal notranslate"><span class="pre">stable_sort</span></code> 直接代替 <code class="docutils literal notranslate"><span class="pre">sort</span></code> 。</p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Example}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;functional&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">bool</span> <span class="nf">comparator</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">struct</span> <span class="n">myclass</span>
+<span class="p">{</span>
+  <span class="kt">bool</span> <span class="k">operator</span><span class="p">()</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span> <span class="n">myobject</span><span class="p">;</span>
+<span class="c1">// 注意：这里重载的是 () 运算符，接受两个参数；myobject 是一个结构体变量（类对象）</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+
+  <span class="kt">int</span> <span class="n">a</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">53</span><span class="p">,</span> <span class="mi">33</span> <span class="p">};</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">8</span><span class="p">);</span>               <span class="c1">// 32 71 12 45 26 80 53 33</span>
+
+  <span class="c1">// using default comparison (operator &lt;):</span>
+  <span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="mi">4</span><span class="p">);</span>           <span class="c1">//(12 32 45 71)26 80 53 33</span>
+
+  <span class="c1">// using comparator as comp，这里是相当于一个函数指针</span>
+  <span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="mi">4</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">comparator</span><span class="p">);</span> <span class="c1">// 12 32 45 71(26 33 53 80)</span>
+
+  <span class="c1">// using object as comp，这里是一个函数对象</span>
+  <span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">myobject</span><span class="p">);</span>     <span class="c1">//(12 26 32 33 45 53 71 80)</span>
+
+  <span class="c1">// using build-in comp: 类模板 greater 的类对象</span>
+  <span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">greater</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">());</span> <span class="c1">// (80 71 53 45 33 32 26 12)</span>
+
+  <span class="c1">// using build-in comp: 类模板 less 的类对象</span>
+  <span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">less</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">());</span>  <span class="c1">//(12 26 32 33 45 53 71 80)</span>
+
+  <span class="c1">// using reverse_iterator</span>
+  <span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">rbegin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">rend</span><span class="p">());</span>  <span class="c1">// (80 71 53 45 33 32 26 12)</span>
+
+  <span class="c1">// sort array</span>
+  <span class="n">sort</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">8</span><span class="p">,</span> <span class="n">greater</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">());</span>  <span class="c1">// (80 71 53 45 33 32 26 12)</span>
+  <span class="n">sort</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">8</span><span class="p">);</span>                 <span class="c1">// (12 26 32 33 45 53 71 80)，可使用 comparator、myobject、less&lt;int&gt;()</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>string</strong> 类也是可以排序的，如</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">string</span> <span class="n">str</span><span class="p">;</span>
+<span class="n">sort</span><span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">str</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">如果把自定义的 <code class="docutils literal notranslate"><span class="pre">comparator</span></code> 函数封装为类的成员函数，应该定义为 <strong>静态成员函数（static）</strong> 。</p>
+</div>
+</div>
+<div class="section" id="reverse">
+<h2>18.4. reverse<a class="headerlink" href="#reverse" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">BidirectionalIterator</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">reverse</span> <span class="p">(</span><span class="n">BidirectionalIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">BidirectionalIterator</span> <span class="n">last</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>翻转区间 [first, last) 内的元素。适用于 vector、string 以及 静态数组、动态数组等。</p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Example}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;     // std::cout</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;    // std::reverse</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;numeric&gt;      // std::iota</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;       // std::vector</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">myvector</span><span class="p">;</span>
+
+  <span class="c1">// set some values:</span>
+  <span class="n">myvector</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">iota</span><span class="p">(</span><span class="n">myvector</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">myvector</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">1</span><span class="p">);</span>   <span class="c1">// 1 2 3 4 5 6 7 8 9</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">reverse</span><span class="p">(</span><span class="n">myvector</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">myvector</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>    <span class="c1">// 9 8 7 6 5 4 3 2 1</span>
+
+  <span class="c1">// print out content:</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;myvector contains:&quot;</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">it</span><span class="o">=</span><span class="n">myvector</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">it</span><span class="o">!=</span><span class="n">myvector</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="o">++</span><span class="n">it</span><span class="p">)</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">it</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="min-element-max-element-minmax-element">
+<h2>18.5. min_element，max_element，minmax_element<a class="headerlink" href="#min-element-max-element-minmax-element" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>min_element</strong> ：会返回指向输入序列的最小元素的迭代器；</li>
+<li><strong>max_element</strong> ：会返回指向最大元素的迭代器；</li>
+<li><strong>minmax_element</strong> ：会以 pair 对象的形式返回这两个迭代器。first 指向最小元素；second 指向最大元素。</li>
+</ul>
+<p><strong>min_element</strong>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// default</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">ForwardIterator</span><span class="o">&gt;</span>
+<span class="n">ForwardIterator</span> <span class="n">min_element</span> <span class="p">(</span><span class="n">ForwardIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">ForwardIterator</span> <span class="n">last</span><span class="p">);</span>
+
+<span class="c1">// custom</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">ForwardIterator</span><span class="p">,</span> <span class="k">class</span> <span class="nc">Compare</span><span class="o">&gt;</span>
+<span class="n">ForwardIterator</span> <span class="n">min_element</span> <span class="p">(</span><span class="n">ForwardIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">ForwardIterator</span> <span class="n">last</span><span class="p">,</span> <span class="n">Compare</span> <span class="n">comp</span><span class="p">);</span> <span class="c1">// [first, last)</span>
+</pre></div>
+</div>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Example}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+
+  <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span> <span class="p">};</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 0</span>
+
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">min_element</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 0</span>
+
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">max_element</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 6</span>
+
+  <span class="k">auto</span> <span class="n">p</span> <span class="o">=</span> <span class="n">minmax_element</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">10</span><span class="p">);</span>
+
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p</span><span class="p">.</span><span class="n">first</span> <span class="o">&lt;&lt;</span> <span class="n">ends</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p</span><span class="p">.</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 0 6</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="accumulate">
+<h2>18.6. accumulate<a class="headerlink" href="#accumulate" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;numeric&gt;</span><span class="cp"></span>
+
+<span class="c1">// sum</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">InputIterator</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="n">T</span> <span class="n">accumulate</span> <span class="p">(</span><span class="n">InputIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">InputIterator</span> <span class="n">last</span><span class="p">,</span> <span class="n">T</span> <span class="n">init</span><span class="p">);</span>
+
+<span class="c1">// custom</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">InputIterator</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="k">class</span> <span class="nc">BinaryOperation</span><span class="o">&gt;</span>
+<span class="n">T</span> <span class="n">accumulate</span> <span class="p">(</span><span class="n">InputIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">InputIterator</span> <span class="n">last</span><span class="p">,</span> <span class="n">T</span> <span class="n">init</span><span class="p">,</span> <span class="n">BinaryOperation</span> <span class="n">binary_op</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>累加区间 <strong>[first, last)</strong> 的元素，并加上 <strong>init</strong> 。</p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Example}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;     // std::cout</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;functional&gt;   // std::minus</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;numeric&gt;      // std::accumulate</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">myfunction</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="p">;}</span>
+
+<span class="k">struct</span> <span class="n">myclass</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="k">operator</span><span class="p">()(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="n">y</span><span class="p">;}</span>
+<span class="p">}</span> <span class="n">myobject</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">init</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">numbers</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">};</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;using default accumulate: &quot;</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">accumulate</span><span class="p">(</span><span class="n">numbers</span><span class="p">,</span><span class="n">numbers</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span><span class="n">init</span><span class="p">);</span> <span class="c1">// 100 + (10 + 20 + 30)</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;using functional&#39;s minus: &quot;</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">accumulate</span> <span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="n">numbers</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> <span class="n">init</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">minus</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">());</span> <span class="c1">// 100 - (10 + 20 + 30)</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;using custom function: &quot;</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">accumulate</span> <span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="n">numbers</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> <span class="n">init</span><span class="p">,</span> <span class="n">myfunction</span><span class="p">);</span> <span class="c1">// 100 + 2 * (10 + 20 + 30)</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;using custom object: &quot;</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">accumulate</span> <span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="n">numbers</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> <span class="n">init</span><span class="p">,</span> <span class="n">myobject</span><span class="p">);</span> <span class="c1">// 100 + 3 * (10 + 20 + 30)</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="partial-sum">
+<h2>18.7. partial_sum<a class="headerlink" href="#partial-sum" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;numeric&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p>累加，并把结果存到序列（数组、向量） <strong>result</strong> 中。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// sum</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">InputIterator</span><span class="p">,</span> <span class="k">class</span> <span class="nc">OutputIterator</span><span class="o">&gt;</span>
+<span class="n">OutputIterator</span> <span class="n">partial_sum</span> <span class="p">(</span><span class="n">InputIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">InputIterator</span> <span class="n">last</span><span class="p">,</span> <span class="n">OutputIterator</span> <span class="n">result</span><span class="p">);</span>
+
+<span class="c1">// custom</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">InputIterator</span><span class="p">,</span> <span class="k">class</span> <span class="nc">OutputIterator</span><span class="p">,</span> <span class="k">class</span> <span class="nc">BinaryOperation</span><span class="o">&gt;</span>
+<span class="n">OutputIterator</span> <span class="n">partial_sum</span> <span class="p">(</span><span class="n">InputIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">InputIterator</span> <span class="n">last</span><span class="p">,</span>
+                            <span class="n">OutputIterator</span> <span class="n">result</span><span class="p">,</span>
+                            <span class="n">BinaryOperation</span> <span class="n">binary_op</span><span class="p">);</span>
+
+<span class="c1">// y0 = x0</span>
+<span class="c1">// y1 = x0 + x1</span>
+<span class="c1">// y2 = x0 + x1 + x2</span>
+<span class="c1">// y3 = x0 + x1 + x2 + x3</span>
+<span class="c1">// y4 = x0 + x1 + x2 + x3 + x4</span>
+<span class="c1">// ... ... ...</span>
+</pre></div>
+</div>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Example}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;     // std::cout</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;functional&gt;   // std::multiplies</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;numeric&gt;      // std::partial_sum</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">myop</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">;}</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">val</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">};</span>
+  <span class="kt">int</span> <span class="n">result</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">partial_sum</span> <span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">val</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;using default partial_sum: &quot;</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span><span class="p">;</span> <span class="c1">// 1 3 6 10 15</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">result_vec</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">// 0 0 0 0 0 0</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">partial_sum</span> <span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">val</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span> <span class="n">result_vec</span><span class="p">.</span><span class="n">begin</span><span class="p">());</span> <span class="c1">// 1 3 6 10 15 0</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">partial_sum</span> <span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">val</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">multiplies</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">());</span> <span class="c1">// 1 2 6 24 120</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;using functional operation multiplies: &quot;</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">partial_sum</span> <span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">val</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">myop</span><span class="p">);</span> <span class="c1">// 1 4 8 13 19</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;using custom function: &quot;</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="iota">
+<h2>18.8. iota<a class="headerlink" href="#iota" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;numeric&gt;</span><span class="cp"></span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">ForwardIterator</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">iota</span> <span class="p">(</span><span class="n">ForwardIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">ForwardIterator</span> <span class="n">last</span><span class="p">,</span> <span class="n">T</span> <span class="n">val</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>采用递增的形式，将 val 开始的等差数列赋值给区间 [first, last) 的元素。</p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Example}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;     // std::cout</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;numeric&gt;      // std::iota</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="kt">float</span> <span class="n">numbers</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">iota</span> <span class="p">(</span><span class="n">numbers</span><span class="p">,</span><span class="n">numbers</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span><span class="mf">3.5</span><span class="p">);</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;numbers:&quot;</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">float</span><span class="o">&amp;</span> <span class="nl">i</span><span class="p">:</span><span class="n">numbers</span><span class="p">)</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">;</span> <span class="c1">// 3.5 4.5 5.5 6.5 7.5 8.5 9.5 10.5 11.5 12.5</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="inner-product">
+<h2>18.9. inner_product<a class="headerlink" href="#inner-product" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;numeric&gt;</span><span class="cp"></span>
+
+<span class="c1">// sum/multiply</span>
+<span class="n">emplate</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">InputIterator1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">InputIterator2</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="n">T</span> <span class="n">inner_product</span> <span class="p">(</span><span class="n">InputIterator1</span> <span class="n">first1</span><span class="p">,</span> <span class="n">InputIterator1</span> <span class="n">last1</span><span class="p">,</span> <span class="n">InputIterator2</span> <span class="n">first2</span><span class="p">,</span> <span class="n">T</span> <span class="n">init</span><span class="p">);</span>
+
+<span class="c1">// custom</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">InputIterator1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">InputIterator2</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="k">class</span> <span class="nc">BinaryOperation1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">BinaryOperation2</span><span class="o">&gt;</span>
+<span class="n">T</span> <span class="n">inner_product</span> <span class="p">(</span><span class="n">InputIterator1</span> <span class="n">first1</span><span class="p">,</span> <span class="n">InputIterator1</span> <span class="n">last1</span><span class="p">,</span>
+                 <span class="n">InputIterator2</span> <span class="n">first2</span><span class="p">,</span>
+                 <span class="n">T</span> <span class="n">init</span><span class="p">,</span>
+                 <span class="n">BinaryOperation1</span> <span class="n">binary_op1</span><span class="p">,</span>
+                 <span class="n">BinaryOperation2</span> <span class="n">binary_op2</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>内积运算，再与 <strong>init</strong> 做运算:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="p">(</span><span class="n">first1</span><span class="o">!=</span><span class="n">last1</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">init</span> <span class="o">=</span> <span class="n">init</span> <span class="o">+</span> <span class="p">(</span><span class="o">*</span><span class="n">first1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="n">first2</span><span class="p">);</span>
+  <span class="c1">// or: init = binary_op1 (init, binary_op2(*first1,*first2));</span>
+  <span class="o">++</span><span class="n">first1</span><span class="p">;</span> <span class="o">++</span><span class="n">first2</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">return</span> <span class="n">init</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Example}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;     // std::cout</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;functional&gt;   // std::minus, std::divides</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;numeric&gt;      // std::inner_product</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">myaccumulator</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">;}</span>
+<span class="kt">int</span> <span class="nf">myproduct</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">;}</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">init</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">series1</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">};</span>
+  <span class="kt">int</span> <span class="n">series2</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">};</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;using default inner_product: &quot;</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">inner_product</span><span class="p">(</span><span class="n">series1</span><span class="p">,</span><span class="n">series1</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span><span class="n">series2</span><span class="p">,</span><span class="n">init</span><span class="p">);</span> <span class="c1">// 100 + (10*1 + 20*2 + 30*3)</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;using functional operations: &quot;</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">inner_product</span><span class="p">(</span><span class="n">series1</span><span class="p">,</span><span class="n">series1</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span><span class="n">series2</span><span class="p">,</span><span class="n">init</span><span class="p">,</span>
+                                  <span class="n">std</span><span class="o">::</span><span class="n">minus</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(),</span><span class="n">std</span><span class="o">::</span><span class="n">divides</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">());</span> <span class="c1">// 100 - (10/1 + 20/2 + 30/3)</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;using custom functions: &quot;</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">inner_product</span><span class="p">(</span><span class="n">series1</span><span class="p">,</span><span class="n">series1</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span><span class="n">series2</span><span class="p">,</span><span class="n">init</span><span class="p">,</span>
+                                  <span class="n">myaccumulator</span><span class="p">,</span><span class="n">myproduct</span><span class="p">);</span> <span class="c1">// 100 - (10+1 + 20+2 + 30+3)</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="memset">
+<h2>18.10. memset<a class="headerlink" href="#memset" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp"></span>
+
+<span class="kt">void</span> <span class="o">*</span><span class="nf">memset</span> <span class="p">(</span> <span class="kt">void</span> <span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">num</span> <span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>memset</strong> 按 <strong>字节</strong> 赋值， <strong>fill</strong> 按 <strong>元素</strong> 赋值。</p>
+<p>如果用 memset 给 int 型变量赋值，只能是 0 或 -1。</p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Example}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="n">str</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;almost every programmer should know memset!&quot;</span><span class="p">;</span>
+  <span class="n">memset</span> <span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="sc">&#39;-&#39;</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">str</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// ------ every programmer should know memset!</span>
+
+  <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">10</span><span class="p">][</span><span class="mi">10</span><span class="p">];</span>
+  <span class="n">memset</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">a</span><span class="p">));</span> <span class="c1">// 或者 10*10*sizeof(int)，全部赋值为-1</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="nl">e</span><span class="p">:</span><span class="n">a</span><span class="p">)</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">bitset</span><span class="o">&lt;</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">*</span><span class="mi">8</span><span class="o">&gt;</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 11111111  11111111  11111111  11111111 （补码）</span>
+
+  <span class="kt">int</span> <span class="n">b</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+  <span class="n">memset</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">b</span><span class="p">));</span><span class="c1">// 或者 5*sizeof(int)，全部赋值为 16843009</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="nl">e</span><span class="p">:</span><span class="n">b</span><span class="p">)</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">bitset</span><span class="o">&lt;</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">*</span><span class="mi">8</span><span class="o">&gt;</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 00000001 00000001 00000001 00000001 （int型占4字节，每个字节都赋值为1）</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>18.11. 附：头文件<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">cmath</span></code><ul>
+<li>pow()</li>
+<li>sqrt()</li>
+<li>floor()</li>
+<li>ceil()</li>
+<li>round()</li>
+<li>log()</li>
+<li>log10()</li>
+<li>exp()</li>
+</ul>
+</li>
+<li><code class="docutils literal notranslate"><span class="pre">cstdlib</span></code><ul>
+<li>abs()</li>
+<li>fabs()</li>
+<li>rand()</li>
+</ul>
+</li>
+<li><code class="docutils literal notranslate"><span class="pre">limits</span></code><ul>
+<li>INT_MIN: <code class="docutils literal notranslate"><span class="pre">(signed</span> <span class="pre">int)0x80000000</span></code></li>
+<li>INT_MAX: <code class="docutils literal notranslate"><span class="pre">0x7fffffff</span></code></li>
+</ul>
+</li>
+<li><code class="docutils literal notranslate"><span class="pre">algorithm</span></code><ul>
+<li>min()</li>
+<li>max()</li>
+</ul>
+</li>
+<li><code class="docutils literal notranslate"><span class="pre">utility</span></code><ul>
+<li>pair</li>
+<li>move</li>
+</ul>
+</li>
+<li><code class="docutils literal notranslate"><span class="pre">functional</span></code><ul>
+<li>less&lt; <em>TYPE</em> &gt;()</li>
+<li>greater&lt; <em>TYPE</em> &gt;()</li>
+</ul>
+</li>
+<li><code class="docutils literal notranslate"><span class="pre">cassert</span></code><ul>
+<li>assert()</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>18.12. 参考资料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>C++ reference</li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="http://www.cplusplus.com/reference/algorithm/lower_bound">http://www.cplusplus.com/reference/algorithm/lower_bound</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/algorithm/upper_bound">http://www.cplusplus.com/reference/algorithm/upper_bound</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/algorithm/fill">http://www.cplusplus.com/reference/algorithm/fill</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/algorithm/for_each">http://www.cplusplus.com/reference/algorithm/for_each</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/algorithm/sort">http://www.cplusplus.com/reference/algorithm/sort</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/algorithm/reverse">http://www.cplusplus.com/reference/algorithm/reverse</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/algorithm/min_element">http://www.cplusplus.com/reference/algorithm/min_element</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/numeric/accumulate">http://www.cplusplus.com/reference/numeric/accumulate</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/numeric/partial_sum">http://www.cplusplus.com/reference/numeric/partial_sum</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/numeric/iota">http://www.cplusplus.com/reference/numeric/iota</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/numeric/inner_product">http://www.cplusplus.com/reference/numeric/inner_product</a></p>
+<p><a class="reference external" href="http://www.cplusplus.com/reference/cstring/memset">http://www.cplusplus.com/reference/cstring/memset</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>C/C++-STL中lower_bound与upper_bound的用法</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://blog.csdn.net/jadeyansir/article/details/77015626">https://blog.csdn.net/jadeyansir/article/details/77015626</a></div></blockquote>
+<ol class="arabic simple" start="3">
+<li>c++sort函数的使用总结</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/TX980502/p/8528840.html">https://www.cnblogs.com/TX980502/p/8528840.html</a></div></blockquote>
+<ol class="arabic simple" start="4">
+<li>C++ sort排序函数用法</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://blog.csdn.net/w_linux/article/details/76222112">https://blog.csdn.net/w_linux/article/details/76222112</a></div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="19_stl.html" class="btn btn-neutral float-right" title="19. 常用STL类及容器" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="17_enumUnion.html" class="btn btn-neutral float-left" title="17. 枚举类型与共用体" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

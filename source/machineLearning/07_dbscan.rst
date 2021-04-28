@@ -106,3 +106,7 @@ DBSCAN 的缺点：
 3. A Density-Based Algorithm for Discovering Clusters in Large Spatial Databases with Noise
 
   https://www.aaai.org/Papers/KDD/1996/KDD96-037.pdf
+
+4. Visualizing DBSCAN Clustering
+
+  https://www.naftaliharris.com/blog/visualizing-dbscan-clustering/

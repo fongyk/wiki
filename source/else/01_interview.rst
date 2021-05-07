@@ -4247,6 +4247,137 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           }
       };
 
+53. 字典树/前缀树（ `Trie <https://oi-wiki.org/string/trie/>`_ ）。
+
+  https://leetcode.com/problems/implement-trie-prefix-tree
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class TrieNode
+      {
+      public:
+          TrieNode* child[26];
+          bool has_word;
+          TrieNode()
+          {
+              fill(child, child+26, nullptr);
+              has_word = false;
+          }
+      };
+
+      class Trie 
+      {
+      public:
+          /** Initialize your data structure here. */
+          Trie() 
+          {
+              root = new TrieNode();
+          }
+          
+          /** Inserts a word into the trie. */
+          void insert(string word) 
+          {
+              TrieNode* p = root;
+              for(auto& c: word)
+              {
+                  int branch = c - 'a';
+                  if(p->child[branch] == nullptr) p->child[branch] = new TrieNode();
+                  p = p->child[branch];
+              }
+              p->has_word = true;
+          }
+          
+          /** Returns if the word is in the trie. */
+          bool search(string word) 
+          {
+              TrieNode* p = root;
+              for(auto& c: word)
+              {
+                  int branch = c - 'a';
+                  if(p->child[branch] == nullptr) return false;
+                  p = p->child[branch];
+              }
+              return p->has_word;
+          }
+          
+          /** Returns if there is any word in the trie that starts with the given prefix. */
+          bool startsWith(string prefix) 
+          {
+              TrieNode* p = root;
+              for(auto& c: prefix)
+              {
+                  int branch = c - 'a';
+                  if(p->child[branch] == nullptr) return false;
+                  p = p->child[branch];
+              }
+              return true;
+          }
+      private:
+          TrieNode* root;
+      };
+
+    .. code-block:: python
+      :linenos:
+
+      from collections import defaultdict
+
+      class TrieNode(object):
+          def __init__(self):
+              self.dict = defaultdict(TrieNode)
+              self.word = False
+              
+      class Trie(object):
+
+          def __init__(self):
+              """
+              Initialize your data structure here.
+              """
+              self.root = TrieNode()
+
+          def insert(self, word):
+              """
+              Inserts a word into the trie.
+              :type word: str
+              :rtype: None
+              """
+              child = self.root
+              for letter in word:
+                  child = child.dict[letter]
+              child.word = True
+
+          def search(self, word):
+              """
+              Returns if the word is in the trie.
+              :type word: str
+              :rtype: bool
+              """
+              child = self.root
+              for letter in word:
+                  child = child.dict.get(letter)
+                  if child is None:
+                      return False
+              return child.word
+
+          def startsWith(self, prefix):
+              """
+              Returns if there is any word in the trie that starts with the given prefix.
+              :type prefix: str
+              :rtype: bool
+              """
+              child = self.root
+              for letter in prefix:
+                  child = child.dict.get(letter)
+                  if child is None:
+                      return False
+              return True
+
 
 C++
 ------------

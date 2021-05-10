@@ -83,9 +83,8 @@ Process 类
 - ``qsize()`` ：返回队列的大致长度。由于多线程或者多进程的上下文，这个数字是不可靠的。
 - ``empty()`` ：如果队列是空的，返回 True。 由于多线程或多进程的环境，该状态是不可靠的。
 - ``full()`` ：如果队列是满的，返回 True ，反之返回 False 。 由于多线程或多进程的环境，该状态是不可靠的。
-- ``put(obj[, block[, timeout]])`` ：将 ``obj`` 放入队列。如果可选参数 ``block`` 是 True（默认值）而且 ``timeout`` 是 None（默认值）, 将会阻塞当前进程，直到有空的缓冲槽。如果 ``timeout`` 是正数，将会在阻塞了最多 ``timeout`` 秒之后还是没有可用的缓冲槽时抛出 ``queue.Full``  异常。反之（ ``block`` 是 False 时），仅当有可用缓冲槽时才放入对象，否则抛出 ``queue.Full`` 异常（在这种情形下 ``timeout`` 参数会被忽略）。
-- ``get([block[, timeout]])`` ：从队列中取出并返回对象。
-
+- ``put(obj[, block[, timeout]])`` ：将 ``obj`` 放入队列。如果可选参数 ``block`` 是 True（默认值）且 ``timeout`` 是 None（默认值）, 将会阻塞当前进程，直到有空的缓冲槽。如果 ``timeout`` 是正数，将会在阻塞了最多 ``timeout`` 秒之后还是没有可用的缓冲槽时抛出 ``queue.Full``  异常。反之（ ``block`` 是 False 时），仅当有可用缓冲槽时才放入对象，否则抛出 ``queue.Full`` 异常（在这种情形下 ``timeout`` 参数会被忽略）。
+- ``get([block[, timeout]])`` ：从队列中取出并返回对象。如果可选参数 ``block`` 是 True（默认值）且 ``timeout`` 是 None（默认值）， 将会阻塞当前进程，直到队列中出现可用的对象。如果 ``timeout`` 是正数，将会在阻塞了最多 ``timeout`` 秒之后还是没有可用的对象时抛出 ``queue.Empty`` 异常。反之（ ``block`` 是 False 时），仅当有可用对象能够取出时返回，否则抛出 ``queue.Empty`` 异常（在这种情形下 ``timeout`` 参数会被忽略）。总而言之，在默认参数下，即使队列已经为空也不会抛出异常，会一直阻塞。
 
 .. note::
 

@@ -3348,6 +3348,8 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
   https://leetcode.com/problems/gas-station/discuss/191463/topic
 
+  https://leetcode.com/problems/minimum-number-of-refueling-stops/
+
   .. container:: toggle
 
     .. container:: header
@@ -3377,6 +3379,32 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
                   }
               }
               return totalDiff >= 0 ? start: -1;
+          }
+      };
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution {
+      public:
+          int minRefuelStops(int target, int startFuel, vector<vector<int>>& stations) {
+              priority_queue<int, vector<int>, less<int>> que;
+              int cnt = 0;
+              int maxDist = startFuel;
+              int i = 0;
+              while(maxDist < target)
+              {
+                  while(i < stations.size() && maxDist >= stations[i][0])
+                  {
+                      que.push(stations[i][1]);
+                      ++i;
+                  }
+                  if(que.empty()) return -1;
+                  maxDist += que.top();
+                  que.pop();
+                  cnt += 1;
+              }
+              return cnt;
           }
       };
 

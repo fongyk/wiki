@@ -47,7 +47,7 @@
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Python" href="../python/index.html" />
+    <link rel="next" title="28. 可变参数函数" href="28_vaFunc.html" />
     <link rel="prev" title="26. lambda 表达式" href="26_lambda.html" /> 
 </head>
 
@@ -120,7 +120,7 @@
 <li class="toctree-l2"><a class="reference internal" href="16_staticconst.html">16. 类的static const成员</a></li>
 <li class="toctree-l2"><a class="reference internal" href="17_enumUnion.html">17. 枚举类型与共用体</a></li>
 <li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html">18. 常用函数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用STL类及容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用 STL 容器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
 <li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
 <li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const</a></li>
@@ -142,6 +142,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#id8">27.5. 参考资料</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="28_vaFunc.html">28. 可变参数函数</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -411,38 +412,81 @@
 33
 34</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">S</span>
 <span class="p">{</span>
-  <span class="k">public</span><span class="o">:</span>
-      <span class="k">static</span> <span class="n">S</span><span class="o">&amp;</span> <span class="n">getInstance</span><span class="p">()</span>
-      <span class="p">{</span>
-          <span class="k">static</span> <span class="n">S</span>    <span class="n">instance</span><span class="p">;</span> <span class="c1">// Guaranteed to be destroyed.</span>
-                                <span class="c1">// Instantiated on first use.</span>
-          <span class="k">return</span> <span class="n">instance</span><span class="p">;</span>
-      <span class="p">}</span>
-  <span class="k">private</span><span class="o">:</span>
-      <span class="n">S</span><span class="p">()</span> <span class="p">{}</span>                    <span class="c1">// Constructor? (the {} brackets) are needed here.</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">static</span> <span class="n">S</span><span class="o">&amp;</span> <span class="n">getInstance</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="n">S</span>    <span class="n">instance</span><span class="p">;</span> <span class="c1">// Guaranteed to be destroyed.</span>
+                              <span class="c1">// Instantiated on first use.</span>
+        <span class="k">return</span> <span class="n">instance</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">S</span><span class="p">()</span> <span class="p">{}</span>                    <span class="c1">// Constructor? (the {} brackets) are needed here.</span>
 
-      <span class="c1">// C++ 03</span>
-      <span class="c1">// ========</span>
-      <span class="c1">// Don&#39;t forget to declare these two. You want to make sure they</span>
-      <span class="c1">// are inaccessible(especially from outside), otherwise, you may accidentally get copies of</span>
-      <span class="c1">// your singleton appearing.</span>
-      <span class="n">S</span><span class="p">(</span><span class="n">S</span> <span class="k">const</span><span class="o">&amp;</span><span class="p">);</span>              <span class="c1">// Don&#39;t Implement</span>
-      <span class="kt">void</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">S</span> <span class="k">const</span><span class="o">&amp;</span><span class="p">);</span> <span class="c1">// Don&#39;t implement</span>
+    <span class="c1">// C++ 03</span>
+    <span class="c1">// ========</span>
+    <span class="c1">// Don&#39;t forget to declare these two. You want to make sure they</span>
+    <span class="c1">// are inaccessible(especially from outside), otherwise, you may accidentally get copies of</span>
+    <span class="c1">// your singleton appearing.</span>
+    <span class="n">S</span><span class="p">(</span><span class="n">S</span> <span class="k">const</span><span class="o">&amp;</span><span class="p">);</span>              <span class="c1">// Don&#39;t Implement</span>
+    <span class="kt">void</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">S</span> <span class="k">const</span><span class="o">&amp;</span><span class="p">);</span> <span class="c1">// Don&#39;t implement</span>
 
-      <span class="c1">// C++ 11</span>
-      <span class="c1">// =======</span>
-      <span class="c1">// We can use the better technique of deleting the methods</span>
-      <span class="c1">// we don&#39;t want.</span>
-  <span class="k">public</span><span class="o">:</span>
-      <span class="n">S</span><span class="p">(</span><span class="n">S</span> <span class="k">const</span><span class="o">&amp;</span><span class="p">)</span>               <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
-      <span class="kt">void</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">S</span> <span class="k">const</span><span class="o">&amp;</span><span class="p">)</span>  <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
+    <span class="c1">// C++ 11</span>
+    <span class="c1">// =======</span>
+    <span class="c1">// We can use the better technique of deleting the methods</span>
+    <span class="c1">// we don&#39;t want.</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">S</span><span class="p">(</span><span class="n">S</span> <span class="k">const</span><span class="o">&amp;</span><span class="p">)</span>               <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">S</span> <span class="k">const</span><span class="o">&amp;</span><span class="p">)</span>  <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
 
-      <span class="c1">// Note: Scott Meyers mentions in his Effective Modern</span>
-      <span class="c1">//       C++ book, that deleted functions should generally</span>
-      <span class="c1">//       be public as it results in better error messages</span>
-      <span class="c1">//       due to the compilers behavior to check accessibility</span>
-      <span class="c1">//       before deleted status</span>
+    <span class="c1">// Note: Scott Meyers mentions in his Effective Modern</span>
+    <span class="c1">//       C++ book, that deleted functions should generally</span>
+    <span class="c1">//       be public as it results in better error messages</span>
+    <span class="c1">//       due to the compilers behavior to check accessibility</span>
+    <span class="c1">//       before deleted status</span>
 <span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">S</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">static</span> <span class="n">S</span><span class="o">&amp;</span> <span class="n">getInstance</span><span class="p">(</span><span class="kt">int</span> <span class="n">_x</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="n">S</span> <span class="n">instance</span><span class="p">(</span><span class="n">_x</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">instance</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">S</span><span class="p">(</span><span class="kt">int</span> <span class="n">_x</span><span class="p">)</span><span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="n">_x</span><span class="p">){}</span>
+    <span class="n">S</span><span class="p">(</span><span class="k">const</span> <span class="n">S</span><span class="o">&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">S</span><span class="o">&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="n">S</span><span class="o">*</span> <span class="n">ps</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">S</span><span class="o">::</span><span class="n">getInstance</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ps</span><span class="o">-&gt;</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>  <span class="c1">// 5</span>
+    <span class="k">const</span> <span class="n">S</span><span class="o">*</span> <span class="n">pss</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">S</span><span class="o">::</span><span class="n">getInstance</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">pss</span><span class="o">-&gt;</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 5</span>
+<span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
 <div class="admonition note">
@@ -478,7 +522,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../python/index.html" class="btn btn-neutral float-right" title="Python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="28_vaFunc.html" class="btn btn-neutral float-right" title="28. 可变参数函数" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="26_lambda.html" class="btn btn-neutral float-left" title="26. lambda 表达式" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

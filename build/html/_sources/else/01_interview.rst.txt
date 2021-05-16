@@ -3385,9 +3385,11 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
     .. code-block:: cpp
       :linenos:
 
-      class Solution {
+      class Solution 
+      {
       public:
-          int minRefuelStops(int target, int startFuel, vector<vector<int>>& stations) {
+          int minRefuelStops(int target, int startFuel, vector<vector<int>>& stations) 
+          {
               priority_queue<int, vector<int>, less<int>> que;
               int cnt = 0;
               int maxDist = startFuel;

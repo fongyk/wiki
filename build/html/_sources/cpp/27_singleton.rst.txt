@@ -143,38 +143,64 @@ C/C++中的 volatile 和 const 对应，用来修饰变量，通常用于建立�
 
   class S
   {
-    public:
-        static S& getInstance()
-        {
-            static S    instance; // Guaranteed to be destroyed.
-                                  // Instantiated on first use.
-            return instance;
-        }
-    private:
-        S() {}                    // Constructor? (the {} brackets) are needed here.
+  public:
+      static S& getInstance()
+      {
+          static S    instance; // Guaranteed to be destroyed.
+                                // Instantiated on first use.
+          return instance;
+      }
+  private:
+      S() {}                    // Constructor? (the {} brackets) are needed here.
 
-        // C++ 03
-        // ========
-        // Don't forget to declare these two. You want to make sure they
-        // are inaccessible(especially from outside), otherwise, you may accidentally get copies of
-        // your singleton appearing.
-        S(S const&);              // Don't Implement
-        void operator=(S const&); // Don't implement
+      // C++ 03
+      // ========
+      // Don't forget to declare these two. You want to make sure they
+      // are inaccessible(especially from outside), otherwise, you may accidentally get copies of
+      // your singleton appearing.
+      S(S const&);              // Don't Implement
+      void operator=(S const&); // Don't implement
 
-        // C++ 11
-        // =======
-        // We can use the better technique of deleting the methods
-        // we don't want.
-    public:
-        S(S const&)               = delete;
-        void operator=(S const&)  = delete;
+      // C++ 11
+      // =======
+      // We can use the better technique of deleting the methods
+      // we don't want.
+  public:
+      S(S const&)               = delete;
+      void operator=(S const&)  = delete;
 
-        // Note: Scott Meyers mentions in his Effective Modern
-        //       C++ book, that deleted functions should generally
-        //       be public as it results in better error messages
-        //       due to the compilers behavior to check accessibility
-        //       before deleted status
+      // Note: Scott Meyers mentions in his Effective Modern
+      //       C++ book, that deleted functions should generally
+      //       be public as it results in better error messages
+      //       due to the compilers behavior to check accessibility
+      //       before deleted status
   };
+
+
+.. code-block:: cpp
+  :linenos:
+
+  class S
+  {
+  public:
+      static S& getInstance(int _x)
+      {
+          static S instance(_x);
+          return instance;
+      }
+      S(int _x): x(_x){}
+      S(const S&) = delete;
+      void operator=(const S&) = delete;
+      int x;
+  };
+
+  int main()
+  {
+      const S* ps = &S::getInstance(5);
+      cout << ps->x << endl;  // 5
+      const S* pss = &S::getInstance(6);
+      cout << pss->x << endl; // 5
+  }
 
 .. note::
 

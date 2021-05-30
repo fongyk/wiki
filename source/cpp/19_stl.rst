@@ -755,7 +755,7 @@ VS 64位编译器
       cout << vec[k] << endl;
     }
 
-  由于 size\_t 是无符号整型， ``size\_t k = -1`` 其实是定义成了能够表示的最大整数，比如 ``string::npos`` 的定义是 ::
+  由于 size\_t 是无符号整型， ``size_t k = -1`` 其实是定义成了能够表示的最大整数，比如 ``string::npos`` 的定义是 ::
 
     static const size_t npos = -1;
 

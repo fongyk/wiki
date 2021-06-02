@@ -4409,6 +4409,62 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
               return True
 
 
+54. LRU（Least Recently Used） 缓存机制。Hint：通过双向链表辅以哈希表实现；双向链表按照被使用的顺序存储了这些键值对，靠近头部的键值对是最近使用的，而靠近尾部的键值对是最久未使用的；哈希表将缓存数据的 key 映射到其在双向链表中的位置；访问和插入数据的时间复杂度都是 :math:`\mathcal{O}(1)` 。
+
+  https://leetcode.com/problems/lru-cache/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class LRUCache 
+      {
+      public:
+          LRUCache(int capacity): cache_capacity(capacity){}
+              
+          int get(int key) 
+          {
+              if(cache_loc.find(key) == cache_loc.end()) return -1;
+              auto p = cache_loc[key];
+              int value = p -> second;
+              cache.erase(p);
+              cache.emplace_front(pair(key, value)); // 最新访问的数据需要移到链表头部
+              cache_loc[key] = cache.begin();
+              return value;
+          }
+          
+          void put(int key, int value) 
+          {
+              if(cache_loc.find(key) != cache_loc.end())
+              {
+                  auto p = cache_loc[key];
+                  cache.erase(p);
+                  cache.emplace_front(pair(key, value));
+                  cache_loc[key] = cache.begin();
+                  return;
+                  
+              }
+              if(cache.size() == cache_capacity)
+              {
+                  auto tail = cache.back();
+                  cache.pop_back();
+                  cache_loc.erase(tail.first);
+              }
+              cache.emplace_front(pair(key, value));
+              cache_loc[key] = cache.begin();
+          }
+      private:
+          int cache_capacity;
+          list<pair<int,int>> cache;
+          unordered_map<int, list<pair<int,int>>::iterator> cache_loc;
+      };
+
+
 C++
 ------------
 

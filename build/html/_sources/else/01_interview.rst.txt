@@ -1071,6 +1071,62 @@
       };
 
 
+  - [LeetCode] First Missing Positive 找到第一个消失的正整数。Hint：假设数组长度为 :math:`n` ，则第一个消失的正整数所在区间是 :math:`[1, n+1]` ，注意：输入数组中可能存在负数和0。延伸：找到第一个大于 :math:`K` 的正整数。Hint：可知目标数所在区间是 :math:`[K+1, K+n+1]` ；先删除数组中不在该区间的整数；其余数都减 :math:`K` ，范围变成 :math:`[1, n+1]` ，后续解法同上。
+
+      https://leetcode.com/problems/first-missing-positive/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 解法一：将访问过的元素置为相反数（负数）
+      class Solution 
+      {
+      public:
+          int firstMissingPositive(vector<int>& nums) 
+          {
+              int n = nums.size();
+              for(auto& m: nums) if(m <= 0) m = n + 1; // 先处理非正整数，全部置为 n+1
+              for(auto& m: nums)
+              {
+                  int i = abs(m) - 1;
+                  if(i < n && nums[i] > 0) nums[i] = -nums[i];
+              }
+              for(int i = 0; i < n; ++i)
+              {
+                  if(nums[i] > 0) return i+1;
+              }
+              return n+1;
+          }
+      };
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 解法二：不断交换位置使得 i == nums[i]-1
+      class Solution 
+      {
+      public:
+          int firstMissingPositive(vector<int>& nums) 
+          {
+              int n = nums.size();
+              for(auto& m: nums)
+              {
+                  while(m > 0 && m <= n && m != nums[m-1]) swap(m, nums[m-1]);
+              }
+              for(int i = 0; i < n; ++i)
+              {
+                  if(nums[i] != i + 1) return i+1;
+              }
+              return n+1;
+          }
+      };
+
 11. [LeetCode] Spiral Matrix 环形打印矩阵
 
   https://leetcode.com/problems/spiral-matrix/

@@ -256,7 +256,7 @@
       // 还要考虑该链表只有一个节点的情形
       // 另外，可以在该函数内 delete 该指针，但是需要确保在其他地方不再需要访问 pNode 指向的内容
 
-  - 输出该链表中倒数第 :math:`k` 个结点。Hint：双指针法，第一个指针先走 :math:`k-1` 步，然后第二个指针从头节点开始，与第一个指针同步往后移；当第一个指针移到最后一个节点，第二个指针即指向倒数第 :math:`k` 个结点。
+  - 输出该链表中倒数第 :math:`k` 个节点。Hint：双指针法，第一个指针先走 :math:`k-1` 步，然后第二个指针从头节点开始，与第一个指针同步往后移；当第一个指针移到最后一个节点，第二个指针即指向倒数第 :math:`k` 个节点。延伸：删除倒数第 :math:`k` 个节点，需要注意删除头节点的情况。
 
   .. container:: toggle
 
@@ -287,6 +287,41 @@
               pk = pk -> next;
           }
           return pk;
+      }
+
+    .. code-block:: cpp
+      :linenos:
+
+      // 删除倒数第 k 个节点
+      ListNode* removeNthFromEnd(ListNode* head, int n) 
+      {
+          if(!head || n <= 0) return head;
+          ListNode* pre = head;
+          ListNode* post = head;
+          for(int i = 0; i < n; ++i)
+          {
+              post = post->next;
+              if(!post)
+              {
+                  if(i < n-1) return head;
+                  else
+                  // 删除头节点
+                  {
+                      pre = head->next;
+                      delete(head);
+                      return pre;
+                  }
+              }
+          }
+          while(post->next)
+          {
+              pre = pre->next;
+              post = post->next;
+          }
+          post = pre->next->next;
+          delete(pre->next);
+          pre->next = post;
+          return head;
       }
 
 

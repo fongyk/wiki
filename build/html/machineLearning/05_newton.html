@@ -47,7 +47,7 @@
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="深度学习" href="../deepLearning/index.html" />
+    <link rel="next" title="6. ROC 曲线" href="06_roc.html" />
     <link rel="prev" title="4. 常用矩阵求导公式" href="04_derivative.html" /> 
 </head>
 
@@ -118,6 +118,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#id6">5.5. 参考资料</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="06_roc.html">6. ROC 曲线</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_dbscan.html">7. DBSCAN</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
@@ -277,6 +279,39 @@ x_{n+1} &amp; = &amp;\ x_n - \frac{f(x_n)}{f^{\prime}(x_n)} \\
   <span class="k">return</span> <span class="n">x</span>
 </pre></div>
 </td></tr></table></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 向下取整，求整数根：二分法</span>
+<span class="kt">int</span> <span class="nf">sqrt</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">assert</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="p">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">mid</span> <span class="o">==</span> <span class="n">x</span><span class="o">/</span><span class="n">mid</span><span class="p">)</span> <span class="k">return</span> <span class="n">mid</span><span class="p">;</span> <span class="c1">// 注意：直接算 mid * mid 会溢出</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">mid</span> <span class="o">&lt;</span> <span class="n">x</span><span class="o">/</span><span class="n">mid</span><span class="p">)</span> <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span><span class="p">;</span>
+        <span class="k">else</span> <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">left</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
 </li>
 </ul>
 </div>
@@ -298,7 +333,7 @@ x_{n+1} &amp; = &amp;\ x_n - \frac{f(x_n)}{f^{\prime}(x_n)} \\
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../deepLearning/index.html" class="btn btn-neutral float-right" title="深度学习" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="06_roc.html" class="btn btn-neutral float-right" title="6. ROC 曲线" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="04_derivative.html" class="btn btn-neutral float-left" title="4. 常用矩阵求导公式" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

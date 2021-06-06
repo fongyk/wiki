@@ -104,6 +104,27 @@
       return x
 
 
+  .. code-block:: cpp
+    :linenos:
+
+    // 向下取整，求整数根：二分法
+    int sqrt(int x) 
+    {
+        assert(x >= 0);
+        if(x < 2) return x;
+        int left = 0;
+        int right = x;
+        while(left < right-1)
+        {
+            int mid = left + (right - left) / 2;
+            if(mid == x/mid) return mid; // 注意：直接算 mid * mid 会溢出
+            if(mid < x/mid) left = mid;
+            else right = mid;
+        }
+        return left;
+    }
+
+
 参考资料
 ---------------
 

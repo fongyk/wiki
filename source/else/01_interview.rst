@@ -4240,6 +4240,61 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
+  - [LeetCode] Find Median from Data Stream 数据流中的中位数。Hint：使用一个最大堆和一个最小堆；保证数据平均分配到两个堆中，两个堆的数据个数之差不超过1；当两个堆的数据个数是偶数（各占一半），新数据插入最小堆，否则插入最大堆（这样最小堆的数据个数总是比最大堆多1或相等）；保证最大堆中的数都不大于最小堆中的数。
+
+      https://leetcode.com/problems/find-median-from-data-stream/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class MedianFinder 
+      {
+      public:
+          MedianFinder() {}
+          
+          void addNum(int num) 
+          {
+              if((max_heap.size() + min_heap.size()) & 1)
+              {
+                  if(!min_heap.empty() && num > min_heap.top())
+                  {
+                  // 新数插入最小堆，最小堆中最小的数（堆顶）插入最大堆
+                      min_heap.push(num);
+                      num = min_heap.top();
+                      min_heap.pop();
+                  }
+                  max_heap.push(num);
+              }
+              else
+              {
+                  if(!max_heap.empty() && num < max_heap.top())
+                  {
+                  // 新数插入最大堆，最大堆中最大的数（堆顶）插入最小堆
+                      max_heap.push(num);
+                      num = max_heap.top();
+                      max_heap.pop();
+                  }
+                  min_heap.push(num);
+              }
+          }
+          
+          double findMedian() 
+          {
+              if((max_heap.size() + min_heap.size()) & 1) return min_heap.top();
+              else return (max_heap.top() + min_heap.top()) / 2.0;
+          }
+      private:
+          priority_queue<int, vector<int>, less<int>> max_heap;
+          priority_queue<int, vector<int>, greater<int>> min_heap;
+      };
+
+
 52. 逆波兰式：转换与求值。
 
   https://leetcode.com/problems/evaluate-reverse-polish-notation/

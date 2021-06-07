@@ -7021,6 +7021,98 @@ $$</div></li>
 </pre></div>
 </td></tr></table></div>
 </div>
+<ul>
+<li><p class="first">[LeetCode] Find Median from Data Stream 数据流中的中位数。Hint：使用一个最大堆和一个最小堆；保证数据平均分配到两个堆中，两个堆的数据个数之差不超过1；当两个堆的数据个数是偶数（各占一半），新数据插入最小堆，否则插入最大堆（这样最小堆的数据个数总是比最大堆多1或相等）；保证最大堆中的数都不大于最小堆中的数。</p>
+<blockquote>
+<div><p><a class="reference external" href="https://leetcode.com/problems/find-median-from-data-stream/">https://leetcode.com/problems/find-median-from-data-stream/</a></p>
+</div></blockquote>
+</li>
+</ul>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MedianFinder</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">MedianFinder</span><span class="p">()</span> <span class="p">{}</span>
+
+    <span class="kt">void</span> <span class="n">addNum</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">((</span><span class="n">max_heap</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">+</span> <span class="n">min_heap</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">min_heap</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="n">min_heap</span><span class="p">.</span><span class="n">top</span><span class="p">())</span>
+            <span class="p">{</span>
+            <span class="c1">// 新数插入最小堆，最小堆中最小的数（堆顶）插入最大堆</span>
+                <span class="n">min_heap</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">num</span><span class="p">);</span>
+                <span class="n">num</span> <span class="o">=</span> <span class="n">min_heap</span><span class="p">.</span><span class="n">top</span><span class="p">();</span>
+                <span class="n">min_heap</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+            <span class="p">}</span>
+            <span class="n">max_heap</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">num</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">max_heap</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="n">max_heap</span><span class="p">.</span><span class="n">top</span><span class="p">())</span>
+            <span class="p">{</span>
+            <span class="c1">// 新数插入最大堆，最大堆中最大的数（堆顶）插入最小堆</span>
+                <span class="n">max_heap</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">num</span><span class="p">);</span>
+                <span class="n">num</span> <span class="o">=</span> <span class="n">max_heap</span><span class="p">.</span><span class="n">top</span><span class="p">();</span>
+                <span class="n">max_heap</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+            <span class="p">}</span>
+            <span class="n">min_heap</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">num</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kt">double</span> <span class="n">findMedian</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">((</span><span class="n">max_heap</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">+</span> <span class="n">min_heap</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">min_heap</span><span class="p">.</span><span class="n">top</span><span class="p">();</span>
+        <span class="k">else</span> <span class="nf">return</span> <span class="p">(</span><span class="n">max_heap</span><span class="p">.</span><span class="n">top</span><span class="p">()</span> <span class="o">+</span> <span class="n">min_heap</span><span class="p">.</span><span class="n">top</span><span class="p">())</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">priority_queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">less</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">max_heap</span><span class="p">;</span>
+    <span class="n">priority_queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">greater</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">min_heap</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+</div>
 </div></blockquote>
 <ol class="arabic simple" start="52">
 <li>逆波兰式：转换与求值。</li>

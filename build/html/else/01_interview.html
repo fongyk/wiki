@@ -7641,7 +7641,7 @@ $$</div></li>
         <span class="k">auto</span> <span class="n">p</span> <span class="o">=</span> <span class="n">cache_loc</span><span class="p">[</span><span class="n">key</span><span class="p">];</span>
         <span class="kt">int</span> <span class="n">value</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-&gt;</span> <span class="n">second</span><span class="p">;</span>
         <span class="n">cache</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
-        <span class="n">cache</span><span class="p">.</span><span class="n">emplace_front</span><span class="p">(</span><span class="n">pair</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">));</span> <span class="c1">// 最新访问的数据需要移到链表头部</span>
+        <span class="n">cache</span><span class="p">.</span><span class="n">emplace_front</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span> <span class="c1">// 最新访问的数据需要移到链表头部</span>
         <span class="n">cache_loc</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">cache</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
         <span class="k">return</span> <span class="n">value</span><span class="p">;</span>
     <span class="p">}</span>
@@ -7652,7 +7652,7 @@ $$</div></li>
         <span class="p">{</span>
             <span class="k">auto</span> <span class="n">p</span> <span class="o">=</span> <span class="n">cache_loc</span><span class="p">[</span><span class="n">key</span><span class="p">];</span>
             <span class="n">cache</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
-            <span class="n">cache</span><span class="p">.</span><span class="n">emplace_front</span><span class="p">(</span><span class="n">pair</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">));</span>
+            <span class="n">cache</span><span class="p">.</span><span class="n">emplace_front</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
             <span class="n">cache_loc</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">cache</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
             <span class="k">return</span><span class="p">;</span>
 
@@ -7663,7 +7663,7 @@ $$</div></li>
             <span class="n">cache</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
             <span class="n">cache_loc</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">tail</span><span class="p">.</span><span class="n">first</span><span class="p">);</span>
         <span class="p">}</span>
-        <span class="n">cache</span><span class="p">.</span><span class="n">emplace_front</span><span class="p">(</span><span class="n">pair</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">));</span>
+        <span class="n">cache</span><span class="p">.</span><span class="n">emplace_front</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
         <span class="n">cache_loc</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">cache</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
     <span class="p">}</span>
 <span class="k">private</span><span class="o">:</span>

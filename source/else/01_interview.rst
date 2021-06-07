@@ -4579,7 +4579,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
               auto p = cache_loc[key];
               int value = p -> second;
               cache.erase(p);
-              cache.emplace_front(pair(key, value)); // 最新访问的数据需要移到链表头部
+              cache.emplace_front(key, value); // 最新访问的数据需要移到链表头部
               cache_loc[key] = cache.begin();
               return value;
           }
@@ -4590,7 +4590,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
               {
                   auto p = cache_loc[key];
                   cache.erase(p);
-                  cache.emplace_front(pair(key, value));
+                  cache.emplace_front(key, value);
                   cache_loc[key] = cache.begin();
                   return;
                   
@@ -4601,7 +4601,7 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
                   cache.pop_back();
                   cache_loc.erase(tail.first);
               }
-              cache.emplace_front(pair(key, value));
+              cache.emplace_front(key, value);
               cache_loc[key] = cache.begin();
           }
       private:

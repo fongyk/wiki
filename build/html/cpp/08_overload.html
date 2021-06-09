@@ -132,7 +132,7 @@
 <li class="toctree-l2"><a class="reference internal" href="16_staticconst.html">16. 类的static const成员</a></li>
 <li class="toctree-l2"><a class="reference internal" href="17_enumUnion.html">17. 枚举类型与共用体</a></li>
 <li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html">18. 常用函数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用STL类及容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用 STL 容器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
 <li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
 <li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const</a></li>
@@ -140,6 +140,8 @@
 <li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
 <li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
 <li class="toctree-l2"><a class="reference internal" href="26_lambda.html">26. lambda 表达式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="27_singleton.html">27. 单例模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28_vaFunc.html">28. 可变参数函数</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -365,7 +367,13 @@ vptr不存在，不可能完成动态绑定。</p>
 </div>
 <div class="section" id="hiding">
 <h2>8.3. 隐藏（Hiding）<a class="headerlink" href="#hiding" title="Permalink to this headline">¶</a></h2>
-<p>派生类中的函数屏蔽了基类中的同名函数，不管参数列表是否相同。当参数不同时，无论基类中的函数是否被 <code class="docutils literal notranslate"><span class="pre">virtual</span></code> 修饰，基类函数都是被隐藏，而不是被覆盖。</p>
+<p>派生类中的函数屏蔽了基类中的同名函数。
+当参数列表不同时，无论基类中的函数是否被 <code class="docutils literal notranslate"><span class="pre">virtual</span></code> 修饰，基类函数都是被隐藏，而不是被覆盖；
+当参数列表相同，而基类中的函数没有被 <code class="docutils literal notranslate"><span class="pre">virtual</span></code> 修饰，则基类函数也被隐藏。</p>
+<p>通过基类指针调用非虚函数，调用的是基类版本（若基类中没有定义该函数则编译报错）；
+通过派生类指针调用非虚函数，调用的是派生类版本（若派生类中没有定义该函数，则调用的是基类版本）。
+因此，调用非虚函数只与指针类型有关。
+如果基类/派生类调用的非虚函数内部又调用了虚函数，则该虚函数的调用会发生动态绑定。</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <dl class="last docutils">

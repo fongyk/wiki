@@ -26,6 +26,8 @@ C++ Reference
 
 http://www.cplusplus.com/reference/
 
+https://en.cppreference.com/w/
+
 Numpy
 -----------
 
@@ -82,6 +84,8 @@ C++ shell
 
 http://cpp.sh/
 
+http://coliru.stacked-crooked.com/
+
 
 Json工具
 ------------
@@ -95,3 +99,9 @@ Diagram
 https://app.diagrams.net/
 
 https://github.com/jgraph/drawio-desktop
+
+
+重构与设计模式
+------------------------
+
+https://refactoringguru.cn/

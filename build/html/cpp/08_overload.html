@@ -557,8 +557,8 @@ vptr不存在，不可能完成动态绑定。</p>
 <blockquote>
 <div><ul class="simple">
 <li>先是父类的构造函数；（create A）</li>
-<li>然后如果类成员变量中有某类（可能是父类，也可能不是）的对象，调用其相应的构造函数；（copy-construct A）</li>
-<li>最后调用派生类自身的构造函数。（create B）</li>
+<li>然后如果类成员变量中有某类（可能是父类，也可能不是）的对象，调用其相应的构造函数；（create A）</li>
+<li>最后调用派生类自身的构造函数。（copy-construct A, create B）</li>
 </ul>
 </div></blockquote>
 <p>析构函数的调用顺序正好相反。</p>

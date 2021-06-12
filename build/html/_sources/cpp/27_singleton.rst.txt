@@ -159,7 +159,7 @@ C/C++中的 volatile 和 const 对应，用来修饰变量，通常用于建立�
       // are inaccessible(especially from outside), otherwise, you may accidentally get copies of
       // your singleton appearing.
       S(S const&);              // Don't Implement
-      void operator=(S const&); // Don't implement
+      S& operator=(S const&); // Don't implement
 
       // C++ 11
       // =======
@@ -167,7 +167,7 @@ C/C++中的 volatile 和 const 对应，用来修饰变量，通常用于建立�
       // we don't want.
   public:
       S(S const&)               = delete;
-      void operator=(S const&)  = delete;
+      S& operator=(S const&)  = delete;
 
       // Note: Scott Meyers mentions in his Effective Modern
       //       C++ book, that deleted functions should generally
@@ -190,7 +190,7 @@ C/C++中的 volatile 和 const 对应，用来修饰变量，通常用于建立�
       }
       S(int _x): x(_x){}
       S(const S&) = delete;
-      void operator=(const S&) = delete;
+      S& operator=(const S&) = delete;
       int x;
   };
 

@@ -428,7 +428,7 @@
     <span class="c1">// are inaccessible(especially from outside), otherwise, you may accidentally get copies of</span>
     <span class="c1">// your singleton appearing.</span>
     <span class="n">S</span><span class="p">(</span><span class="n">S</span> <span class="k">const</span><span class="o">&amp;</span><span class="p">);</span>              <span class="c1">// Don&#39;t Implement</span>
-    <span class="kt">void</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">S</span> <span class="k">const</span><span class="o">&amp;</span><span class="p">);</span> <span class="c1">// Don&#39;t implement</span>
+    <span class="n">S</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">S</span> <span class="k">const</span><span class="o">&amp;</span><span class="p">);</span> <span class="c1">// Don&#39;t implement</span>
 
     <span class="c1">// C++ 11</span>
     <span class="c1">// =======</span>
@@ -436,7 +436,7 @@
     <span class="c1">// we don&#39;t want.</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="n">S</span><span class="p">(</span><span class="n">S</span> <span class="k">const</span><span class="o">&amp;</span><span class="p">)</span>               <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
-    <span class="kt">void</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">S</span> <span class="k">const</span><span class="o">&amp;</span><span class="p">)</span>  <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
+    <span class="n">S</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">S</span> <span class="k">const</span><span class="o">&amp;</span><span class="p">)</span>  <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
 
     <span class="c1">// Note: Scott Meyers mentions in his Effective Modern</span>
     <span class="c1">//       C++ book, that deleted functions should generally</span>
@@ -476,7 +476,7 @@
     <span class="p">}</span>
     <span class="n">S</span><span class="p">(</span><span class="kt">int</span> <span class="n">_x</span><span class="p">)</span><span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="n">_x</span><span class="p">){}</span>
     <span class="n">S</span><span class="p">(</span><span class="k">const</span> <span class="n">S</span><span class="o">&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
-    <span class="kt">void</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">S</span><span class="o">&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
+    <span class="n">S</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">S</span><span class="o">&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
     <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
 <span class="p">};</span>
 

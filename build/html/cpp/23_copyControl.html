@@ -120,7 +120,7 @@
 <li class="toctree-l2"><a class="reference internal" href="16_staticconst.html">16. 类的static const成员</a></li>
 <li class="toctree-l2"><a class="reference internal" href="17_enumUnion.html">17. 枚举类型与共用体</a></li>
 <li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html">18. 常用函数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用STL类及容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用 STL 容器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
 <li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
 <li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const</a></li>
@@ -135,6 +135,8 @@
 <li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
 <li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
 <li class="toctree-l2"><a class="reference internal" href="26_lambda.html">26. lambda 表达式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="27_singleton.html">27. 单例模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28_vaFunc.html">28. 可变参数函数</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -509,6 +511,7 @@
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">std::move</span></code> 并不会真正地移动对象（真正的移动操作是移动构造函数、移动赋值运算符等完成的）， <code class="docutils literal notranslate"><span class="pre">std::move</span></code> 只是将参数转换为右值引用。</p>
 <p>我们可以销毁一个移动之后的源对象（moved-from），也可以赋予它新值，但是不能使用一个移后源对象的值。</p>
 <p class="last">如：上例中的 temp 被移动后，就不能再取它的值来使用。</p>
 </div>

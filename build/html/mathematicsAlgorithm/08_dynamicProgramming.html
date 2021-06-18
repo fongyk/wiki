@@ -143,6 +143,8 @@
 <li class="toctree-l2"><a class="reference internal" href="19_ballBox.html">19. 球盒问题</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20_poison.html">20. 喝水试毒</a></li>
 <li class="toctree-l2"><a class="reference internal" href="21_rand.html">21. 随机数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_unionFind.html">22. 并查集</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_kmp.html">23. 前缀函数与 KMP 算法</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
@@ -721,7 +723,7 @@ $$
 dp[i][j] =
 \begin{cases}
 1 &amp; &amp; {i=0;\ \text{状态 j 可以放牧且牛不相邻}} \\
-dp[i][j] + dp[i-1][j] &amp; &amp; {i&gt;0;\ \text{状态 j 可以放牧且牛不相邻}} \\
+\sum_{j^{\prime}} dp[i-1][j^{\prime}] &amp; &amp; {i&gt;0;\ \text{状态 j 可以放牧且牛不相邻}} \\
 0 &amp; &amp; {\text{状态 j 不可以放牧或牛相邻}}
 \end{cases}
 $$</div><div class="toggle docutils container">
@@ -935,7 +937,7 @@ $$</div><div class="toggle docutils container">
   <span class="n">dp</span><span class="p">[(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">N</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 初始化</span>
   <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">S</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">N</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">;</span> <span class="n">S</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">S</span><span class="p">)</span>
   <span class="p">{</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">v</span><span class="p">)</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">v</span><span class="p">)</span> <span class="c1">// 当 v 不属于集合 S，dp[S][v]是无效的、从 0 出发不可达的状态</span>
     <span class="p">{</span>
       <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">u</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">u</span><span class="p">)</span>
       <span class="p">{</span>

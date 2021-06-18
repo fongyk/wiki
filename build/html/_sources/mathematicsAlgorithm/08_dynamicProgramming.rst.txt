@@ -401,7 +401,7 @@
   dp[i][j] = 
   \begin{cases}
   1 & & {i=0;\ \text{状态 j 可以放牧且牛不相邻}} \\
-  dp[i][j] + dp[i-1][j] & & {i>0;\ \text{状态 j 可以放牧且牛不相邻}} \\
+  \sum_{j^{\prime}} dp[i-1][j^{\prime}] & & {i>0;\ \text{状态 j 可以放牧且牛不相邻}} \\
   0 & & {\text{状态 j 不可以放牧或牛相邻}}
   \end{cases}
   $$
@@ -538,7 +538,7 @@
       dp[(1<<N)-1][0] = 0; // 初始化
       for(int S = (1<<N)-2; S >= 0; --S)
       {
-        for(int v = 0; v < N; ++v)
+        for(int v = 0; v < N; ++v) // 当 v 不属于集合 S，dp[S][v]是无效的、从 0 出发不可达的状态
         {
           for(int u = 0; u < N; ++u)
           {

@@ -226,6 +226,15 @@
 <div class="section" id="overloading">
 <h2>8.1. 重载（Overloading）<a class="headerlink" href="#overloading" title="Permalink to this headline">¶</a></h2>
 <p>同一可访问区内被声明的几个具有不同参数列表（参数个数，参数类型，参数顺序）的同名函数。不关心函数返回类型。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>函数参数可以有默认值。有默认值的参数必须放在形参表列中的最右端（类似于 python 的键值对参数）。默认值可以是全局变量、全局常量，甚至是函数调用。</p>
+<p>在使用带有默认参数的函数时有两点要注意：</p>
+<ul class="last simple">
+<li>如果函数的定义在函数调用之前，则应在函数定义中给出默认值；如果函数的定义在函数调用之后，则在函数调用之前需要有函数声明，此时必须在函数声明中给出默认值，在函数定义中不给出默认值。</li>
+<li>一个函数不能既作为重载函数，又作为有默认参数的函数。因为当调用函数时如果少写一个参数，系统无法判定是调用重载函数还是调用有默认参数的函数，出现二义性。</li>
+</ul>
+</div>
 </div>
 <div class="section" id="overriding">
 <h2>8.2. 覆盖（Overriding）<a class="headerlink" href="#overriding" title="Permalink to this headline">¶</a></h2>

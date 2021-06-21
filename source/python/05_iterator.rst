@@ -127,7 +127,7 @@ for循环会不断调用迭代器对象的 ``__next__()`` 方法（python3  ``__
   print generator_iter.next() ## 3
   print generator_iter.next() ## 抛出 StopIteration 异常
 
-**生成器表达式** （类似于列表推导式，只是把 [] 换成 ()）。
+**生成器表达式** 类似于列表推导式，只是把 [] 换成 ()。
 
 .. code-block:: python
   :linenos:
@@ -146,6 +146,75 @@ for循环会不断调用迭代器对象的 ``__next__()`` 方法（python3  ``__
   for item in f:
       print item
 
+send
+^^^^^^^
+
+send 方法可带一个参数，参数可以是 None。None参数的 send 方法和 next/__next__ 的功能完全相同：将暂停在 ``yield`` 语句出的程序继续执行；非 None 参数的 send 方法会将参数值作为 ``yield`` 语句返回值赋值给接收者。
+
+注意：非 None 参数的 send 方法无法启动执行生成器函数。也就是说，程序中第一次使用生成器调用 send 方法时，参数只能是 None（推荐直接使用 next/__next__）。
+
+close
+^^^^^^^^
+
+当程序在生成器函数中遇到 ``yield`` 语句暂停运行时，调用 close 方法会阻止生成器函数继续执行，该函数会在程序停止运行的位置抛出 ``GeneratorExit`` 异常。
+虽然通过捕获 ``GeneratorExit`` 异常，可以继续执行生成器函数中剩余的代码，但这部分代码中不能再包含 ``yield`` 语句，否则程序会抛出 ``RuntimeError`` 异常。
+
+生成器函数一旦调用 close，后续将无法再通过 next/__next__ 启动生成器，否则会抛出 ``StopIteration`` 异常。
+
+throw
+^^^^^^^^^
+
+在生成器函数执行暂停处，throw 方法抛出一个指定的异常，之后程序会继续执行生成器函数中后续的代码，直到遇到下一个 ``yield`` 语句。需要注意的是，如果到剩余代码执行完毕没有遇到下一个 ``yield`` 语句，则程序会抛出 ``StopIteration`` 异常。
+
+生产者-消费者模型
+^^^^^^^^^^^^^^^^^^^^^^^
+
+生成器中的 ``yield`` 可以一定程度上实现协程。
+
+生产者生产消息后，直接通过 ``yield`` 跳转到消费者开始执行；待消费者执行完毕后，切换回生产者继续生产，效率极高。
+
+.. code-block:: python
+  :linenos:
+
+  import time
+
+  def consumer():
+      r = ''
+      while True:
+          n = yield r
+          if not n:
+              return
+          print('[CONSUMER] Consuming %s...' % n)
+          time.sleep(1)
+          r = '200 OK'
+
+  def produce(c):
+      c.__next__()
+      n = 0
+      while n < 3:
+          n = n + 1
+          print('[PRODUCER] Producing %s...' % n)
+          r = c.send(n)
+          print('[PRODUCER] Consumer return: %s' % r)
+      c.close()
+
+  if __name__=='__main__':
+      c = consumer()
+      produce(c)
+
+输出::
+
+  [PRODUCER] Producing 1...
+  [CONSUMER] Consuming 1...
+  [PRODUCER] Consumer return: 200 OK
+  [PRODUCER] Producing 2...
+  [CONSUMER] Consuming 2...
+  [PRODUCER] Consumer return: 200 OK
+  [PRODUCER] Producing 3...
+  [CONSUMER] Consuming 3...
+  [PRODUCER] Consumer return: 200 OK
+
+
 参考资料
 ---------------
 1. Python迭代器，生成器--精华中的精华
@@ -155,3 +224,7 @@ for循环会不断调用迭代器对象的 ``__next__()`` 方法（python3  ``__
 2. python 生成器和迭代器有这篇就够了
 
   https://www.cnblogs.com/wj-1314/p/8490822.html
+
+3. Python生成器（send，close，throw）方法详解
+
+  http://c.biancheng.net/view/7090.html

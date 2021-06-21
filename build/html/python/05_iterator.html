@@ -112,8 +112,14 @@
 <li class="toctree-l4"><a class="reference internal" href="#iterable">5.1.1. 可迭代对象（iterable）</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#generator">5.2. 生成器（generator）</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">5.3. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generator">5.2. 生成器（generator）</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#send">5.2.1. send</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#close">5.2.2. close</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#throw">5.2.3. throw</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">5.2.4. 生产者-消费者模型</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">5.3. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="06_lambda.html">6. lambda用法</a></li>
@@ -129,6 +135,14 @@
 <li class="toctree-l2"><a class="reference internal" href="16_newInit.html">16. __new__ 和 __init__</a></li>
 <li class="toctree-l2"><a class="reference internal" href="17_pip.html">17. pip</a></li>
 <li class="toctree-l2"><a class="reference internal" href="18_exception.html">18. 异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_multiprocessing.html">19. multiprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_logging.html">20. logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_pyM.html">21. python -m</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_buildIn.html">22. 内建属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_glob.html">23. glob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_pyLinux.html">24. Python 执行 linux 命令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_bisect.html">25. bisect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_abc.html">26. abc</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
@@ -366,7 +380,7 @@ for循环会不断调用迭代器对象的 <code class="docutils literal notrans
 <span class="k">print</span> <span class="n">generator_iter</span><span class="o">.</span><span class="n">next</span><span class="p">()</span> <span class="c1">## 抛出 StopIteration 异常</span>
 </pre></div>
 </td></tr></table></div>
-<p><strong>生成器表达式</strong> （类似于列表推导式，只是把 [] 换成 ()）。</p>
+<p><strong>生成器表达式</strong> 类似于列表推导式，只是把 [] 换成 ()。</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -394,9 +408,92 @@ for循环会不断调用迭代器对象的 <code class="docutils literal notrans
     <span class="k">print</span> <span class="n">item</span>
 </pre></div>
 </td></tr></table></div>
+<div class="section" id="send">
+<h3>5.2.1. send<a class="headerlink" href="#send" title="Permalink to this headline">¶</a></h3>
+<p>send 方法可带一个参数，参数可以是 None。None参数的 send 方法和 next/__next__ 的功能完全相同：将暂停在 <code class="docutils literal notranslate"><span class="pre">yield</span></code> 语句出的程序继续执行；非 None 参数的 send 方法会将参数值作为 <code class="docutils literal notranslate"><span class="pre">yield</span></code> 语句返回值赋值给接收者。</p>
+<p>注意：非 None 参数的 send 方法无法启动执行生成器函数。也就是说，程序中第一次使用生成器调用 send 方法时，参数只能是 None（推荐直接使用 next/__next__）。</p>
+</div>
+<div class="section" id="close">
+<h3>5.2.2. close<a class="headerlink" href="#close" title="Permalink to this headline">¶</a></h3>
+<p>当程序在生成器函数中遇到 <code class="docutils literal notranslate"><span class="pre">yield</span></code> 语句暂停运行时，调用 close 方法会阻止生成器函数继续执行，该函数会在程序停止运行的位置抛出 <code class="docutils literal notranslate"><span class="pre">GeneratorExit</span></code> 异常。
+虽然通过捕获 <code class="docutils literal notranslate"><span class="pre">GeneratorExit</span></code> 异常，可以继续执行生成器函数中剩余的代码，但这部分代码中不能再包含 <code class="docutils literal notranslate"><span class="pre">yield</span></code> 语句，否则程序会抛出 <code class="docutils literal notranslate"><span class="pre">RuntimeError</span></code> 异常。</p>
+<p>生成器函数一旦调用 close，后续将无法再通过 next/__next__ 启动生成器，否则会抛出 <code class="docutils literal notranslate"><span class="pre">StopIteration</span></code> 异常。</p>
+</div>
+<div class="section" id="throw">
+<h3>5.2.3. throw<a class="headerlink" href="#throw" title="Permalink to this headline">¶</a></h3>
+<p>在生成器函数执行暂停处，throw 方法抛出一个指定的异常，之后程序会继续执行生成器函数中后续的代码，直到遇到下一个 <code class="docutils literal notranslate"><span class="pre">yield</span></code> 语句。需要注意的是，如果到剩余代码执行完毕没有遇到下一个 <code class="docutils literal notranslate"><span class="pre">yield</span></code> 语句，则程序会抛出 <code class="docutils literal notranslate"><span class="pre">StopIteration</span></code> 异常。</p>
 </div>
 <div class="section" id="id2">
-<h2>5.3. 参考资料<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h3>5.2.4. 生产者-消费者模型<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>生成器中的 <code class="docutils literal notranslate"><span class="pre">yield</span></code> 可以一定程度上实现协程。</p>
+<p>生产者生产消息后，直接通过 <code class="docutils literal notranslate"><span class="pre">yield</span></code> 跳转到消费者开始执行；待消费者执行完毕后，切换回生产者继续生产，效率极高。</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">consumer</span><span class="p">():</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">r</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;[CONSUMER] Consuming </span><span class="si">%s</span><span class="s1">...&#39;</span> <span class="o">%</span> <span class="n">n</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="s1">&#39;200 OK&#39;</span>
+
+<span class="k">def</span> <span class="nf">produce</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">__next__</span><span class="p">()</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;[PRODUCER] Producing </span><span class="si">%s</span><span class="s1">...&#39;</span> <span class="o">%</span> <span class="n">n</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;[PRODUCER] Consumer return: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">r</span><span class="p">)</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">consumer</span><span class="p">()</span>
+    <span class="n">produce</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>输出:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">PRODUCER</span><span class="p">]</span> <span class="n">Producing</span> <span class="mf">1.</span><span class="o">..</span>
+<span class="p">[</span><span class="n">CONSUMER</span><span class="p">]</span> <span class="n">Consuming</span> <span class="mf">1.</span><span class="o">..</span>
+<span class="p">[</span><span class="n">PRODUCER</span><span class="p">]</span> <span class="n">Consumer</span> <span class="k">return</span><span class="p">:</span> <span class="mi">200</span> <span class="n">OK</span>
+<span class="p">[</span><span class="n">PRODUCER</span><span class="p">]</span> <span class="n">Producing</span> <span class="mf">2.</span><span class="o">..</span>
+<span class="p">[</span><span class="n">CONSUMER</span><span class="p">]</span> <span class="n">Consuming</span> <span class="mf">2.</span><span class="o">..</span>
+<span class="p">[</span><span class="n">PRODUCER</span><span class="p">]</span> <span class="n">Consumer</span> <span class="k">return</span><span class="p">:</span> <span class="mi">200</span> <span class="n">OK</span>
+<span class="p">[</span><span class="n">PRODUCER</span><span class="p">]</span> <span class="n">Producing</span> <span class="mf">3.</span><span class="o">..</span>
+<span class="p">[</span><span class="n">CONSUMER</span><span class="p">]</span> <span class="n">Consuming</span> <span class="mf">3.</span><span class="o">..</span>
+<span class="p">[</span><span class="n">PRODUCER</span><span class="p">]</span> <span class="n">Consumer</span> <span class="k">return</span><span class="p">:</span> <span class="mi">200</span> <span class="n">OK</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>5.3. 参考资料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Python迭代器，生成器–精华中的精华</li>
 </ol>
@@ -407,6 +504,11 @@ for循环会不断调用迭代器对象的 <code class="docutils literal notrans
 </ol>
 <blockquote>
 <div><a class="reference external" href="https://www.cnblogs.com/wj-1314/p/8490822.html">https://www.cnblogs.com/wj-1314/p/8490822.html</a></div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Python生成器（send，close，throw）方法详解</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="http://c.biancheng.net/view/7090.html">http://c.biancheng.net/view/7090.html</a></div></blockquote>
 </div>
 </div>
 

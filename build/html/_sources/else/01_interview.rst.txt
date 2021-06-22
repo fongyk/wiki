@@ -44,6 +44,51 @@
 
 3. 海量数据处理。Hint：哈希方法，把大文件划分成小文件，读进内存依次处理，如果需要统计频率/个数，再利用哈希；Bitmap，用一个（或几个）比特位来标记某个元素对应的值。
 
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+      
+      // Bitmap       
+
+      #include <iostream>
+      #include <bitset>
+      using namespace std;
+
+      const int BITSPERWORD = 32;
+      const int SHIFT = 5;        // i / 32 = i >> 5
+      const int MASK = 0x1f;      // i % 32 = i & 0x1f
+      const int N = 10000;
+      int a[1 + N/BITSPERWORD];
+
+      // 设置第 i 位为 1
+      inline void set(int i)
+      {
+          a[i >> SHIFT] |= 1 << (i & MASK);
+      }
+      // 设置第 i 位为 0
+      inline void clear(int i)
+      {
+          a[i >> SHIFT] &= ~ (1 << (i & MASK));
+      }
+      // 检查第 i 位的值是否为 0
+      inline int test(int i)
+      {
+          return a[i >> SHIFT] & (1 << (i & MASK));
+      }
+
+      int main()
+      {
+          set(40);
+          cout << bitset<BITSPERWORD>(a[40 >> SHIFT]) << endl; // 00000000000000000000000100000000
+          cout << test(40) << endl;
+          return 0;
+      }
+
   - 面试题集锦
 
       https://blog.csdn.net/v_july_v/article/details/6685962

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>22. const &mdash; fong alpha documentation</title>
+  <title>22. const和constexpr &mdash; fong alpha documentation</title>
   
 
   
@@ -120,20 +120,23 @@
 <li class="toctree-l2"><a class="reference internal" href="16_staticconst.html">16. 类的static const成员</a></li>
 <li class="toctree-l2"><a class="reference internal" href="17_enumUnion.html">17. 枚举类型与共用体</a></li>
 <li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html">18. 常用函数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用STL类及容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用 STL 容器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
 <li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">22. const</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">22. const和constexpr</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#constconst">22.1. 顶层const与底层const</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id1">22.2. const形参和实参</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">22.3. const成员函数</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">22.4. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#const">22.2. const形参和实参</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">22.3. const成员函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#constexpr">22.4. constexpr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">22.5. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a></li>
 <li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
 <li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
 <li class="toctree-l2"><a class="reference internal" href="26_lambda.html">26. lambda 表达式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="27_singleton.html">27. 单例模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28_vaFunc.html">28. 可变参数函数</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -194,7 +197,7 @@
         
           <li><a href="index.html">C/C++</a> &raquo;</li>
         
-      <li>22. const</li>
+      <li>22. const和constexpr</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -213,8 +216,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="const">
-<h1>22. const<a class="headerlink" href="#const" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="constconstexpr">
+<h1>22. const和constexpr<a class="headerlink" href="#constconstexpr" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="constconst">
 <h2>22.1. 顶层const与底层const<a class="headerlink" href="#constconst" title="Permalink to this headline">¶</a></h2>
 <p>由于指针本身是一个对象，它有可以指向另一个对象，因此，指针本身是不是常量以及指针所指对象是不是常量就是两个相互独立的问题。</p>
@@ -262,8 +265,8 @@
 <p>总结：可以使用 <strong>非常量对象</strong> 初始化一个 <strong>底层const对象</strong> ，但是不能使用 <strong>底层const对象</strong> 初始化一个 <strong>非常量对象</strong> 。同时，一个普通的引用
 必须使用同类型的对象初始化。同样的初始化规则可以应用到函数的 <strong>参数传递</strong> 上。</p>
 </div>
-<div class="section" id="id1">
-<h2>22.2. const形参和实参<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="const">
+<h2>22.2. const形参和实参<a class="headerlink" href="#const" title="Permalink to this headline">¶</a></h2>
 <p>使用实参初始化形参时，会 <strong>忽略掉顶层const</strong> ，换句话说，形参的顶层const被忽略了。因此，当形参有顶层const时，传给它常量对象或非常量对象都是可以的 。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">fcn</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span><span class="cm">/* */</span><span class="p">}</span>
 <span class="kt">void</span> <span class="nf">fcn</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span><span class="cm">/* */</span><span class="p">}</span> <span class="c1">// 重复定义了 fcn</span>
@@ -272,8 +275,8 @@
 <p>上例中其实重复定义了fcn，而不是重载。调用fcn时，既可以传入const int对象，也可以传入int对象。
 反之，如果参数类型是int，也可传入const int对象（传值调用，函数拷贝了实参）。</p>
 </div>
-<div class="section" id="id2">
-<h2>22.3. const成员函数<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h2>22.3. const成员函数<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>默认情况下，<code class="docutils literal notranslate"><span class="pre">this</span></code> 指针的类型是指向 <strong>类类型非常量版本的常量指针</strong> ，即 <code class="docutils literal notranslate"><span class="pre">ClassName</span> <span class="pre">*const</span></code> 。尽管 <code class="docutils literal notranslate"><span class="pre">this</span></code> 是隐式的，但它仍然需要遵守初始化规则。
 意味着在默认情况下，我们不能把 <code class="docutils literal notranslate"><span class="pre">this</span></code> 绑定到一个常量对象上。这一情况也使得我们不能在一个常量对象上调用普通的成员函数。通过把关键字 const 放在成员函数参数列表后面，
 定义该成员函数为 <strong>常量成员函数</strong> 。</p>
@@ -289,8 +292,117 @@
 <p class="last">常量对象、常量对象的引用和指针都只能调用常量成员函数。</p>
 </div>
 </div>
-<div class="section" id="id3">
-<h2>22.4. 参考资料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="constexpr">
+<h2>22.4. constexpr<a class="headerlink" href="#constexpr" title="Permalink to this headline">¶</a></h2>
+<p>constexpr 用于指示常量表达式，在编译阶段就能对该表达式求值。const 变量的值可以在编译时确定，也可以在运行时确定，但 constexpr 变量的值必须在编译时就能确定。</p>
+<p>定义 constexpr 变量的时候，变量的类型只能是基本数据类型、指针和引用，而不能是其它标准库类型；对于自定义类型，constexpr 构造函数的函数体必须为空，所有成员变量的初始化都放到初始化列表中。</p>
+<p>constexpr 函数的参数和返回值必须是字面值类型。
+要是 constexpr 函数所使用的变量其值只能在运行时确定，那么 constexpr 函数就和一般的函数没区别。</p>
+<p>constexpr 声明的指针仅表示指针本身是常量，因此不能直接指向常量对象，需要增加 const 声明。
+同样地，constexpr const 声明的引用才能绑定常量对象；只用 constexpr 声明的引用绑定非常量对象，是可以对该对象进行修改的。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Circle</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">constexpr</span> <span class="n">Circle</span><span class="p">(</span><span class="kt">int</span> <span class="n">_x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_y</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_radius</span><span class="p">)</span><span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="n">_x</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">_y</span><span class="p">),</span> <span class="n">radius</span><span class="p">(</span><span class="n">_radius</span><span class="p">){}</span>
+    <span class="k">constexpr</span> <span class="kt">double</span> <span class="n">getArea</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="mf">3.14</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">radius</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">radius</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">const</span> <span class="n">Circle</span> <span class="n">circle_unit</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">);</span>
+<span class="k">const</span> <span class="kt">double</span> <span class="n">area_unit</span> <span class="o">=</span> <span class="n">circle_unit</span><span class="p">.</span><span class="n">getArea</span><span class="p">();</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">constexpr</span> <span class="kt">int</span> <span class="nf">sum</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="n">sum</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">)];</span>
+
+<span class="kt">int</span> <span class="n">var</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">cv</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="k">constexpr</span> <span class="kt">int</span> <span class="n">ce</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// 可以用 const 指针指向 constexpr 对象</span>
+    <span class="k">const</span> <span class="kt">int</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ce</span><span class="p">;</span>
+
+    <span class="c1">// 去掉 const 关键字则编译出错</span>
+    <span class="k">constexpr</span> <span class="k">const</span> <span class="kt">int</span><span class="o">*</span> <span class="n">pcv</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">cv</span><span class="p">;</span>
+    <span class="k">constexpr</span> <span class="k">const</span> <span class="kt">int</span><span class="o">*</span> <span class="n">pce</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ce</span><span class="p">;</span>
+    <span class="k">constexpr</span> <span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">rcv</span> <span class="o">=</span> <span class="n">cv</span><span class="p">;</span>
+    <span class="k">constexpr</span> <span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">rce</span> <span class="o">=</span> <span class="n">ce</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p</span> <span class="o">&lt;&lt;</span> <span class="n">ends</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">pcv</span> <span class="o">&lt;&lt;</span> <span class="n">ends</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">pce</span> <span class="o">&lt;&lt;</span> <span class="n">ends</span> <span class="o">&lt;&lt;</span> <span class="n">rcv</span> <span class="o">&lt;&lt;</span> <span class="n">ends</span> <span class="o">&lt;&lt;</span> <span class="n">rce</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">constexpr</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">r</span> <span class="o">=</span> <span class="n">var</span><span class="p">;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">var</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// -5</span>
+
+    <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="n">b</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 运行时计算</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id2">
+<h2>22.5. 参考资料<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>1.《C++ Primer 第5版 中文版》 Page 57 – 58， Page 190 – 191，Page 231 – 232。</p>
 </div>
 </div>

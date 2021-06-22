@@ -1,5 +1,5 @@
-const
-============
+const和constexpr
+=======================
 
 顶层const与底层const
 --------------------------
@@ -77,6 +77,75 @@ const成员函数
 
   常量对象、常量对象的引用和指针都只能调用常量成员函数。
 
+constexpr
+--------------
+
+constexpr 用于指示常量表达式，在编译阶段就能对该表达式求值。const 变量的值可以在编译时确定，也可以在运行时确定，但 constexpr 变量的值必须在编译时就能确定。
+
+定义 constexpr 变量的时候，变量的类型只能是基本数据类型、指针和引用，而不能是其它标准库类型；对于自定义类型，constexpr 构造函数的函数体必须为空，所有成员变量的初始化都放到初始化列表中。
+
+constexpr 函数的参数和返回值必须是字面值类型。
+要是 constexpr 函数所使用的变量其值只能在运行时确定，那么 constexpr 函数就和一般的函数没区别。
+
+constexpr 声明的指针仅表示指针本身是常量，因此不能直接指向常量对象，需要增加 const 声明。
+同样地，constexpr const 声明的引用才能绑定常量对象；只用 constexpr 声明的引用绑定非常量对象，是可以对该对象进行修改的。
+
+.. code-block:: cpp
+  :linenos:
+
+  class Circle
+  {
+  public:
+      constexpr Circle(int _x, int _y, int _radius): x(_x), y(_y), radius(_radius){}
+      constexpr double getArea()
+      {
+          return 3.14 * radius * radius;
+      }
+  private:
+      int x; 
+      int y;
+      int radius;
+  };
+
+  const Circle circle_unit = Circle(0, 0, 1.0);
+  const double area_unit = circle_unit.getArea();
+
+.. code-block:: cpp
+  :linenos:
+
+  constexpr int sum(int a, int b)
+  {
+      return a + b;
+  }
+  const int N = 10;
+  int arr[sum(N, 2*N)];
+
+  int var = 5;
+  const int cv = 10;
+  constexpr int ce = 8;
+
+  int main()
+  {
+      // 可以用 const 指针指向 constexpr 对象
+      const int* p = &ce;
+      
+      // 去掉 const 关键字则编译出错
+      constexpr const int* pcv = &cv;
+      constexpr const int* pce = &ce;
+      constexpr const int& rcv = cv;
+      constexpr const int& rce = ce;
+      cout << *p << ends << *pcv << ends << *pce << ends << rcv << ends << rce << endl;
+      
+      constexpr int &r = var;
+      r = -5;
+      cout << var << endl; // -5
+      
+      int a, b;
+      cin >> a >> b;
+      cout << sum(a, b) << endl; // 运行时计算
+
+      return 0;
+  }
 
 参考资料
 ----------------

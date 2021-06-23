@@ -641,7 +641,7 @@
           }
       };
 
-  - [LeetCode] Partition List 分割链表，小于 :math:`x` 的排前面，不小于 :math:`x` 的排后面。Hint：先遍历链表，用一个数组保存小于 :math:`x` 的值，另一个数组保存不小于 :math:`x` 的值。
+  - [LeetCode] Partition List 分割链表，小于 :math:`x` 的排前面，不小于 :math:`x` 的排后面。Hint：建立两个新的链表，一个链表连接小于 :math:`x` 的节点，另一个链表连接其他节点，最后把这两个链表串起来。
 
   .. container:: toggle
 
@@ -652,42 +652,39 @@
     .. code-block:: cpp
       :linenos:
 
-      class Solution
+      class Solution 
       {
       public:
-          ListNode* partition(ListNode* head, int x)
+          ListNode* partition(ListNode* head, int x) 
           {
               if(!head || !head->next) return head;
-              vector<int> small;
-              vector<int> big;
-              ListNode* p = head;
-              while(p)
+              ListNode* h1 = new ListNode(x);
+              ListNode* p1 = h1;
+              ListNode* h2 = new ListNode(x);
+              ListNode* p2 = h2;
+              ListNode* q = head;
+              while(q)
               {
-                  if(p -> val < x) small.push_back(p -> val);
-                  else big.push_back(p -> val);
-                  p = p -> next;
+                  if(q->val < x)
+                  {
+                      p1->next = q;
+                      p1 = p1->next;
+                  }
+                  else
+                  {
+                      p2->next = q;
+                      p2 = p2->next;
+                  }
+                  q = q->next;
               }
-              p = head;
-              int k = 0;
-              while(k < small.size())
-              {
-                  p -> val = small[k];
-                  p = p -> next;
-                  ++k;
-              }
-              k = 0;
-              while(k < big.size())
-              {
-                  p -> val = big[k];
-                  p = p -> next;
-                  ++k;
-              }
-              vector<int>().swap(small);
-              vector<int>().swap(big);
+              p2->next = nullptr; // 尾节点置为空
+              p1->next = h2->next;
+              head = h1->next;
+              delete h1;
+              delete h2;
               return head;
           }
       };
-
 
 5. [LeetCode] Sort Colors（三颜色排序 → K 颜色排序）
 

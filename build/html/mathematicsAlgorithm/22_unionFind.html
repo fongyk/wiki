@@ -47,7 +47,7 @@
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="计算机网络" href="../computerNetwork/index.html" />
+    <link rel="next" title="23. 前缀函数与 KMP 算法" href="23_kmp.html" />
     <link rel="prev" title="21. 随机数" href="21_rand.html" /> 
 </head>
 
@@ -140,9 +140,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#id7">22.3. 启发式合并</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id8">22.4. 复杂度</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#python">22.5. Python 参考代码</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id9">22.6. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#kruskal">22.6. Kruskal 算法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">22.7. 参考资料</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="23_kmp.html">23. 前缀函数与 KMP 算法</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
@@ -905,8 +907,163 @@
 </td></tr></table></div>
 </div>
 </div>
+<div class="section" id="kruskal">
+<h2>22.6. Kruskal 算法<a class="headerlink" href="#kruskal" title="Permalink to this headline">¶</a></h2>
+<p>最小生成树算法中的 Kruskal 算法是基于并查集实现的。首先，将边集合放入优先队列，权重越小的边越靠近队首（小顶堆）；然后，边依次出队，如果边的两个顶点位于两个集合，则将它们合并，边权重累加；当合并两个集合之后得到的新集合已经包括了所有的顶点，表示已经得到一棵最小生成树。</p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// NC159 最小生成树</span>
+<span class="c1">// https://www.nowcoder.com/practice/735a34ff4672498b95660f43b7fcd628?tpId=117&amp;&amp;tqId=37869&amp;rp=1&amp;ru=/ta/job-code-high&amp;qru=/ta/job-code-high/question-ranking</span>
+
+<span class="k">struct</span> <span class="n">comparator</span>
+<span class="p">{</span>
+    <span class="kt">bool</span> <span class="k">operator</span><span class="p">()(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">b</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span> <span class="c1">// 小顶堆</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+<span class="k">class</span> <span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="cm">/**</span>
+<span class="cm">    * 返回最小的花费代价使得这 n 户人家连接起来</span>
+<span class="cm">    * @param n int n户人家的村庄</span>
+<span class="cm">    * @param cost intvector&lt;vector&lt;&gt;&gt; 一维3个参数，表示连接1个村庄到另外1个村庄的花费的代价</span>
+<span class="cm">    * @return int</span>
+<span class="cm">    */</span>
+    <span class="kt">int</span> <span class="n">miniSpanningTree</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;&amp;</span> <span class="n">cost</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// write code here</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">parents</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="n">iota</span><span class="p">(</span><span class="n">parents</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">parents</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">capacity</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span><span class="p">,</span> <span class="n">comparator</span><span class="o">&gt;</span> <span class="n">edges</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="nl">edge</span><span class="p">:</span> <span class="n">cost</span><span class="p">)</span> <span class="n">edges</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">edge</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">edges</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="k">auto</span> <span class="n">edge</span> <span class="o">=</span> <span class="n">edges</span><span class="p">.</span><span class="n">top</span><span class="p">();</span>
+            <span class="n">edges</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+            <span class="kt">bool</span> <span class="n">u</span> <span class="o">=</span> <span class="n">union_</span><span class="p">(</span><span class="n">parents</span><span class="p">,</span> <span class="n">capacity</span><span class="p">,</span> <span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">v</span><span class="p">);</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="n">c</span> <span class="o">+=</span> <span class="n">edge</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">v</span> <span class="o">==</span> <span class="n">n</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span> <span class="c1">// 已经得到最小生成树</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">find_</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">parents</span><span class="p">,</span> <span class="kt">int</span> <span class="n">x</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">parents</span><span class="p">[</span><span class="n">x</span><span class="p">])</span> <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="n">parents</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">find_</span><span class="p">(</span><span class="n">parents</span><span class="p">,</span> <span class="n">parents</span><span class="p">[</span><span class="n">x</span><span class="p">]);</span>
+            <span class="k">return</span> <span class="n">parents</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="kt">bool</span> <span class="n">union_</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">parents</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">capacity</span><span class="p">,</span> <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">v</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">find_</span><span class="p">(</span><span class="n">parents</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">find_</span><span class="p">(</span><span class="n">parents</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">!=</span> <span class="n">y</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">capacity</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">capacity</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
+            <span class="p">{</span>
+                <span class="n">parents</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+                <span class="n">capacity</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+=</span> <span class="n">capacity</span><span class="p">[</span><span class="n">y</span><span class="p">];</span>
+                <span class="n">v</span> <span class="o">=</span> <span class="n">capacity</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="n">parents</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span>
+                <span class="n">capacity</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">+=</span> <span class="n">capacity</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+                <span class="n">v</span> <span class="o">=</span> <span class="n">capacity</span><span class="p">[</span><span class="n">y</span><span class="p">];</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
 <div class="section" id="id9">
-<h2>22.6. 参考资料<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<h2>22.7. 参考资料<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>算法学习笔记(1) : 并查集</li>
 </ol>
@@ -946,7 +1103,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../computerNetwork/index.html" class="btn btn-neutral float-right" title="计算机网络" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="23_kmp.html" class="btn btn-neutral float-right" title="23. 前缀函数与 KMP 算法" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="21_rand.html" class="btn btn-neutral float-left" title="21. 随机数" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

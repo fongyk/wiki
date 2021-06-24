@@ -409,6 +409,94 @@ Python 参考代码
                 # comps.update({x: set(comp) for x in comp})
             return comps
 
+Kruskal 算法
+-----------------
+
+最小生成树算法中的 Kruskal 算法是基于并查集实现的。首先，将边集合放入优先队列，权重越小的边越靠近队首（小顶堆）；然后，边依次出队，如果边的两个顶点位于两个集合，则将它们合并，边权重累加；当合并两个集合之后得到的新集合已经包括了所有的顶点，表示已经得到一棵最小生成树。
+
+.. container:: toggle
+
+  .. container:: header
+
+    :math:`\color{darkgreen}{Code}`
+
+  .. code-block:: cpp
+    :linenos:
+
+    // NC159 最小生成树
+    // https://www.nowcoder.com/practice/735a34ff4672498b95660f43b7fcd628?tpId=117&&tqId=37869&rp=1&ru=/ta/job-code-high&qru=/ta/job-code-high/question-ranking
+
+    struct comparator
+    {
+        bool operator()(vector<int>& a, vector<int>& b)
+        {
+            return a[2] > b[2]; // 小顶堆
+        }
+    };
+    class Solution 
+    {
+    public:
+        /**
+        * 返回最小的花费代价使得这 n 户人家连接起来
+        * @param n int n户人家的村庄
+        * @param cost intvector<vector<>> 一维3个参数，表示连接1个村庄到另外1个村庄的花费的代价
+        * @return int
+        */
+        int miniSpanningTree(int n, vector<vector<int> >& cost) 
+        {
+            // write code here
+            if(n <= 1) return 0;
+            vector<int> parents(n+1, 0);
+            iota(parents.begin(), parents.end(), 0);
+            vector<int> capacity(n+1, 1);
+            priority_queue<vector<int>, vector<vector<int> >, comparator> edges;
+            for(auto& edge: cost) edges.push(edge);
+            int c = 0;
+            int v = 0;
+            while(!edges.empty())
+            {
+                auto edge = edges.top();
+                edges.pop();
+                bool u = union_(parents, capacity, edge[0], edge[1], v);
+                if(u) c += edge[2];
+                if(v == n) break; // 已经得到最小生成树
+            }
+            return c;
+        }
+    private:
+        int find_(vector<int>& parents, int x)
+        {
+            if(x == parents[x]) return x;
+            else
+            {
+                parents[x] = find_(parents, parents[x]);
+                return parents[x];
+            }
+        }
+        bool union_(vector<int>& parents, vector<int>& capacity, int x, int y, int& v)
+        {
+            x = find_(parents, x);
+            y = find_(parents, y);
+            if(x != y)
+            {
+                if(capacity[x] >= capacity[y])
+                {
+                    parents[y] = x;
+                    capacity[x] += capacity[y];
+                    v = capacity[x];
+                }
+                else
+                {
+                    parents[x] = y;
+                    capacity[y] += capacity[x];
+                    v = capacity[y];
+                }
+                return true;
+            }
+            return false;
+        }
+    };
+
 参考资料
 -------------
 

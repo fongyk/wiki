@@ -59,130 +59,130 @@ dropout 的 numpy 实现
 
     def forward_propagation_with_dropout(X, parameters, keep_prob = 0.5):
 
-    """
+        """
 
-    Implements the forward propagation: LINEAR -> RELU + DROPOUT -> LINEAR -> SIGMOID.
+        Implements the forward propagation: LINEAR -> RELU + DROPOUT -> LINEAR -> SIGMOID.
 
-    Arguments:
+        Arguments:
 
-    X -- input dataset, of shape (2, number of examples)
+        X -- input dataset, of shape (2, number of examples)
 
-    parameters -- python dictionary containing your parameters "W1", "b1", "W2", "b2":
+        parameters -- python dictionary containing your parameters "W1", "b1", "W2", "b2":
 
-                    W1 -- weight matrix of shape (20, 2)
+                        W1 -- weight matrix of shape (20, 2)
 
-                    b1 -- bias vector of shape (20, 1)
+                        b1 -- bias vector of shape (20, 1)
 
-                    W2 -- weight matrix of shape (1, 20)
+                        W2 -- weight matrix of shape (1, 20)
 
-                    b2 -- bias vector of shape (1, 1)
+                        b2 -- bias vector of shape (1, 1)
 
-    keep_prob - probability of keeping a neuron active during drop-out, scalar
+        keep_prob - probability of keeping a neuron active during drop-out, scalar
 
-    Returns:
+        Returns:
 
-    A2 -- last activation value, output of the forward propagation, of shape (1,1)
+        A2 -- last activation value, output of the forward propagation, of shape (1,1)
 
-    cache -- tuple, information stored for computing the backward propagation
+        cache -- tuple, information stored for computing the backward propagation
 
-    """
+        """
 
-    np.random.seed(1)
+        np.random.seed(1)
 
-    # retrieve parameters
+        # retrieve parameters
 
-    W1 = parameters["W1"]
+        W1 = parameters["W1"]
 
-    b1 = parameters["b1"]
+        b1 = parameters["b1"]
 
-    W2 = parameters["W2"]
+        W2 = parameters["W2"]
 
-    b2 = parameters["b2"]
+        b2 = parameters["b2"]
 
 
-    # LINEAR -> RELU -> LINEAR -> SIGMOID
-    # Z1 = W1 x X + b1, A1 = relu(Z1), A1 = dropout(A1)
-    # Z2 = W2 x A1 + b2, A2 = sigmoid(Z2)
+        # LINEAR -> RELU -> LINEAR -> SIGMOID
+        # Z1 = W1 x X + b1, A1 = relu(Z1), A1 = dropout(A1)
+        # Z2 = W2 x A1 + b2, A2 = sigmoid(Z2)
 
-    Z1 = np.dot(W1, X) + b1
+        Z1 = np.dot(W1, X) + b1
 
-    A1 = relu(Z1)
+        A1 = relu(Z1)
 
-    # 4 steps
+        # 4 steps
 
-    D1 = np.random.rand(Z1.shape[0], Z1.shape[1])     # Step 1: initialize matrix D1 = np.random.rand(..., ...)
+        D1 = np.random.rand(Z1.shape[0], Z1.shape[1])     # Step 1: initialize matrix D1 = np.random.rand(..., ...)
 
-    D1 = D1 < keep_prob                               # Step 2: convert entries of D1 to 0 or 1 (using keep_prob as the threshold)
+        D1 = D1 < keep_prob                               # Step 2: convert entries of D1 to 0 or 1 (using keep_prob as the threshold)
 
-    A1 = A1 * D1                                        # Step 3: shut down some neurons of A1
+        A1 = A1 * D1                                        # Step 3: shut down some neurons of A1
 
-    A1 = A1 / keep_prob                                 # Step 4: scale the value of neurons that haven't been shut down
+        A1 = A1 / keep_prob                                 # Step 4: scale the value of neurons that haven't been shut down
 
-    Z2 = np.dot(W2, A1) + b2
+        Z2 = np.dot(W2, A1) + b2
 
-    A2 = sigmoid(Z2)
+        A2 = sigmoid(Z2)
 
-    cache = (Z1, D1, A1, W1, b1, Z2, D2, A2, W2, b2)
+        cache = (Z1, D1, A1, W1, b1, Z2, D2, A2, W2, b2)
 
-    return A3, cache
+        return A3, cache
 
   .. code-block:: python
     :linenos:
 
     def backward_propagation_with_dropout(X, Y, cache, keep_prob):
 
-    """
+        """
 
-    Implements the backward propagation of our baseline model to which we added dropout.
+        Implements the backward propagation of our baseline model to which we added dropout.
 
-    Arguments:
+        Arguments:
 
-    X -- input dataset, of shape (2, number of examples)
+        X -- input dataset, of shape (2, number of examples)
 
-    Y -- "true" labels vector, of shape (output size, number of examples)
+        Y -- "true" labels vector, of shape (output size, number of examples)
 
-    cache -- cache output from forward_propagation_with_dropout()
+        cache -- cache output from forward_propagation_with_dropout()
 
-    keep_prob - probability of keeping a neuron active during drop-out, scalar
-
-
-    Returns:
-
-    gradients -- A dictionary with the gradients with respect to each parameter, activation and pre-activation variables
-
-    """
-
-    m = X.shape[1]
-
-    (Z1, D1, A1, W1, b1, Z2, D2, A2, W2, b2) = cache
+        keep_prob - probability of keeping a neuron active during drop-out, scalar
 
 
-    dZ2 = A2 - Y # logistic regression
+        Returns:
 
-    dW2 = 1./m * np.dot(dZ2, A1.T)  # logistic regression
+        gradients -- A dictionary with the gradients with respect to each parameter, activation and pre-activation variables
 
-    db2 = 1./m * np.sum(dZ2, axis=1, keepdims = True)
+        """
 
+        m = X.shape[1]
 
-    dA1 = np.dot(W2.T, dZ2)
-
-    dA1 = D1 * dA1                     # Step 1: Apply mask D1 to shut down the same neurons as during the forward propagation
-
-    dA1 = dA1 / keep_prob              # Step 2: Scale the value of neurons that haven't been shut down
-
-    dZ1 = np.multiply(dA1, np.int64(A1 > 0))   # Hadamard product, i.e., element-wise product
-
-    dW1 = 1./m * np.dot(dZ1, X.T)
-
-    db1 = 1./m * np.sum(dZ1, axis=1, keepdims = True)
+        (Z1, D1, A1, W1, b1, Z2, D2, A2, W2, b2) = cache
 
 
-    gradients = {
-                "dA2": dA2, "dZ2": dZ2, "dW2": dW2, "db2": db2,
-                "dA1": dA1, "dZ1": dZ1, "dW1": dW1, "db1": db1
-                }
+        dZ2 = A2 - Y # logistic regression
 
-    return gradients
+        dW2 = 1./m * np.dot(dZ2, A1.T)  # logistic regression
+
+        db2 = 1./m * np.sum(dZ2, axis=1, keepdims = True)
+
+
+        dA1 = np.dot(W2.T, dZ2)
+
+        dA1 = D1 * dA1                     # Step 1: Apply mask D1 to shut down the same neurons as during the forward propagation
+
+        dA1 = dA1 / keep_prob              # Step 2: Scale the value of neurons that haven't been shut down
+
+        dZ1 = np.multiply(dA1, np.int64(A1 > 0))   # Hadamard product, i.e., element-wise product
+
+        dW1 = 1./m * np.dot(dZ1, X.T)
+
+        db1 = 1./m * np.sum(dZ1, axis=1, keepdims = True)
+
+
+        gradients = {
+                    "dA2": dA2, "dZ2": dZ2, "dW2": dW2, "db2": db2,
+                    "dA1": dA1, "dZ1": dZ1, "dW1": dW1, "db1": db1
+                    }
+
+        return gradients
 
 |
 

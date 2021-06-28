@@ -120,10 +120,13 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">5. pytorch：模型保存与读取</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">6. pytorch: cuda()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">6. pytorch: cuda</a></li>
 <li class="toctree-l2"><a class="reference internal" href="07_backprop.html">7. 反向传播</a></li>
 <li class="toctree-l2"><a class="reference internal" href="08_optimizer.html">8. 优化算法</a></li>
-<li class="toctree-l2"><a class="reference internal" href="09_addModule.html">9. pytorch：add_module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_addModule.html">9. pytorch：Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_receptivaField.html">10. 特征图与感受野</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_nograd.html">11. pytorch：no_grad()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_dml.html">12. Deep Metric Learning</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
@@ -305,72 +308,72 @@
 67
 68</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">forward_propagation_with_dropout</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">keep_prob</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">):</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="sd">Implements the forward propagation: LINEAR -&gt; RELU + DROPOUT -&gt; LINEAR -&gt; SIGMOID.</span>
+<span class="sd">    Implements the forward propagation: LINEAR -&gt; RELU + DROPOUT -&gt; LINEAR -&gt; SIGMOID.</span>
 
-<span class="sd">Arguments:</span>
+<span class="sd">    Arguments:</span>
 
-<span class="sd">X -- input dataset, of shape (2, number of examples)</span>
+<span class="sd">    X -- input dataset, of shape (2, number of examples)</span>
 
-<span class="sd">parameters -- python dictionary containing your parameters &quot;W1&quot;, &quot;b1&quot;, &quot;W2&quot;, &quot;b2&quot;:</span>
+<span class="sd">    parameters -- python dictionary containing your parameters &quot;W1&quot;, &quot;b1&quot;, &quot;W2&quot;, &quot;b2&quot;:</span>
 
-<span class="sd">                W1 -- weight matrix of shape (20, 2)</span>
+<span class="sd">                    W1 -- weight matrix of shape (20, 2)</span>
 
-<span class="sd">                b1 -- bias vector of shape (20, 1)</span>
+<span class="sd">                    b1 -- bias vector of shape (20, 1)</span>
 
-<span class="sd">                W2 -- weight matrix of shape (1, 20)</span>
+<span class="sd">                    W2 -- weight matrix of shape (1, 20)</span>
 
-<span class="sd">                b2 -- bias vector of shape (1, 1)</span>
+<span class="sd">                    b2 -- bias vector of shape (1, 1)</span>
 
-<span class="sd">keep_prob - probability of keeping a neuron active during drop-out, scalar</span>
+<span class="sd">    keep_prob - probability of keeping a neuron active during drop-out, scalar</span>
 
-<span class="sd">Returns:</span>
+<span class="sd">    Returns:</span>
 
-<span class="sd">A2 -- last activation value, output of the forward propagation, of shape (1,1)</span>
+<span class="sd">    A2 -- last activation value, output of the forward propagation, of shape (1,1)</span>
 
-<span class="sd">cache -- tuple, information stored for computing the backward propagation</span>
+<span class="sd">    cache -- tuple, information stored for computing the backward propagation</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="c1"># retrieve parameters</span>
+    <span class="c1"># retrieve parameters</span>
 
-<span class="n">W1</span> <span class="o">=</span> <span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;W1&quot;</span><span class="p">]</span>
+    <span class="n">W1</span> <span class="o">=</span> <span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;W1&quot;</span><span class="p">]</span>
 
-<span class="n">b1</span> <span class="o">=</span> <span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;b1&quot;</span><span class="p">]</span>
+    <span class="n">b1</span> <span class="o">=</span> <span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;b1&quot;</span><span class="p">]</span>
 
-<span class="n">W2</span> <span class="o">=</span> <span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;W2&quot;</span><span class="p">]</span>
+    <span class="n">W2</span> <span class="o">=</span> <span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;W2&quot;</span><span class="p">]</span>
 
-<span class="n">b2</span> <span class="o">=</span> <span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;b2&quot;</span><span class="p">]</span>
+    <span class="n">b2</span> <span class="o">=</span> <span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;b2&quot;</span><span class="p">]</span>
 
 
-<span class="c1"># LINEAR -&gt; RELU -&gt; LINEAR -&gt; SIGMOID</span>
-<span class="c1"># Z1 = W1 x X + b1, A1 = relu(Z1), A1 = dropout(A1)</span>
-<span class="c1"># Z2 = W2 x A1 + b2, A2 = sigmoid(Z2)</span>
+    <span class="c1"># LINEAR -&gt; RELU -&gt; LINEAR -&gt; SIGMOID</span>
+    <span class="c1"># Z1 = W1 x X + b1, A1 = relu(Z1), A1 = dropout(A1)</span>
+    <span class="c1"># Z2 = W2 x A1 + b2, A2 = sigmoid(Z2)</span>
 
-<span class="n">Z1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">W1</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span> <span class="o">+</span> <span class="n">b1</span>
+    <span class="n">Z1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">W1</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span> <span class="o">+</span> <span class="n">b1</span>
 
-<span class="n">A1</span> <span class="o">=</span> <span class="n">relu</span><span class="p">(</span><span class="n">Z1</span><span class="p">)</span>
+    <span class="n">A1</span> <span class="o">=</span> <span class="n">relu</span><span class="p">(</span><span class="n">Z1</span><span class="p">)</span>
 
-<span class="c1"># 4 steps</span>
+    <span class="c1"># 4 steps</span>
 
-<span class="n">D1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">Z1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Z1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>     <span class="c1"># Step 1: initialize matrix D1 = np.random.rand(..., ...)</span>
+    <span class="n">D1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">Z1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Z1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>     <span class="c1"># Step 1: initialize matrix D1 = np.random.rand(..., ...)</span>
 
-<span class="n">D1</span> <span class="o">=</span> <span class="n">D1</span> <span class="o">&lt;</span> <span class="n">keep_prob</span>                               <span class="c1"># Step 2: convert entries of D1 to 0 or 1 (using keep_prob as the threshold)</span>
+    <span class="n">D1</span> <span class="o">=</span> <span class="n">D1</span> <span class="o">&lt;</span> <span class="n">keep_prob</span>                               <span class="c1"># Step 2: convert entries of D1 to 0 or 1 (using keep_prob as the threshold)</span>
 
-<span class="n">A1</span> <span class="o">=</span> <span class="n">A1</span> <span class="o">*</span> <span class="n">D1</span>                                        <span class="c1"># Step 3: shut down some neurons of A1</span>
+    <span class="n">A1</span> <span class="o">=</span> <span class="n">A1</span> <span class="o">*</span> <span class="n">D1</span>                                        <span class="c1"># Step 3: shut down some neurons of A1</span>
 
-<span class="n">A1</span> <span class="o">=</span> <span class="n">A1</span> <span class="o">/</span> <span class="n">keep_prob</span>                                 <span class="c1"># Step 4: scale the value of neurons that haven&#39;t been shut down</span>
+    <span class="n">A1</span> <span class="o">=</span> <span class="n">A1</span> <span class="o">/</span> <span class="n">keep_prob</span>                                 <span class="c1"># Step 4: scale the value of neurons that haven&#39;t been shut down</span>
 
-<span class="n">Z2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">W2</span><span class="p">,</span> <span class="n">A1</span><span class="p">)</span> <span class="o">+</span> <span class="n">b2</span>
+    <span class="n">Z2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">W2</span><span class="p">,</span> <span class="n">A1</span><span class="p">)</span> <span class="o">+</span> <span class="n">b2</span>
 
-<span class="n">A2</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">Z2</span><span class="p">)</span>
+    <span class="n">A2</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">Z2</span><span class="p">)</span>
 
-<span class="n">cache</span> <span class="o">=</span> <span class="p">(</span><span class="n">Z1</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="n">A1</span><span class="p">,</span> <span class="n">W1</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">Z2</span><span class="p">,</span> <span class="n">D2</span><span class="p">,</span> <span class="n">A2</span><span class="p">,</span> <span class="n">W2</span><span class="p">,</span> <span class="n">b2</span><span class="p">)</span>
+    <span class="n">cache</span> <span class="o">=</span> <span class="p">(</span><span class="n">Z1</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="n">A1</span><span class="p">,</span> <span class="n">W1</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">Z2</span><span class="p">,</span> <span class="n">D2</span><span class="p">,</span> <span class="n">A2</span><span class="p">,</span> <span class="n">W2</span><span class="p">,</span> <span class="n">b2</span><span class="p">)</span>
 
-<span class="k">return</span> <span class="n">A3</span><span class="p">,</span> <span class="n">cache</span>
+    <span class="k">return</span> <span class="n">A3</span><span class="p">,</span> <span class="n">cache</span>
 </pre></div>
 </td></tr></table></div>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -428,58 +431,58 @@
 53
 54</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">backward_propagation_with_dropout</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">cache</span><span class="p">,</span> <span class="n">keep_prob</span><span class="p">):</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="sd">Implements the backward propagation of our baseline model to which we added dropout.</span>
+<span class="sd">    Implements the backward propagation of our baseline model to which we added dropout.</span>
 
-<span class="sd">Arguments:</span>
+<span class="sd">    Arguments:</span>
 
-<span class="sd">X -- input dataset, of shape (2, number of examples)</span>
+<span class="sd">    X -- input dataset, of shape (2, number of examples)</span>
 
-<span class="sd">Y -- &quot;true&quot; labels vector, of shape (output size, number of examples)</span>
+<span class="sd">    Y -- &quot;true&quot; labels vector, of shape (output size, number of examples)</span>
 
-<span class="sd">cache -- cache output from forward_propagation_with_dropout()</span>
+<span class="sd">    cache -- cache output from forward_propagation_with_dropout()</span>
 
-<span class="sd">keep_prob - probability of keeping a neuron active during drop-out, scalar</span>
-
-
-<span class="sd">Returns:</span>
-
-<span class="sd">gradients -- A dictionary with the gradients with respect to each parameter, activation and pre-activation variables</span>
-
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="n">m</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-
-<span class="p">(</span><span class="n">Z1</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="n">A1</span><span class="p">,</span> <span class="n">W1</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">Z2</span><span class="p">,</span> <span class="n">D2</span><span class="p">,</span> <span class="n">A2</span><span class="p">,</span> <span class="n">W2</span><span class="p">,</span> <span class="n">b2</span><span class="p">)</span> <span class="o">=</span> <span class="n">cache</span>
+<span class="sd">    keep_prob - probability of keeping a neuron active during drop-out, scalar</span>
 
 
-<span class="n">dZ2</span> <span class="o">=</span> <span class="n">A2</span> <span class="o">-</span> <span class="n">Y</span> <span class="c1"># logistic regression</span>
+<span class="sd">    Returns:</span>
 
-<span class="n">dW2</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="n">m</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dZ2</span><span class="p">,</span> <span class="n">A1</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>  <span class="c1"># logistic regression</span>
+<span class="sd">    gradients -- A dictionary with the gradients with respect to each parameter, activation and pre-activation variables</span>
 
-<span class="n">db2</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="n">m</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dZ2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="n">m</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
-<span class="n">dA1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">W2</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">dZ2</span><span class="p">)</span>
-
-<span class="n">dA1</span> <span class="o">=</span> <span class="n">D1</span> <span class="o">*</span> <span class="n">dA1</span>                     <span class="c1"># Step 1: Apply mask D1 to shut down the same neurons as during the forward propagation</span>
-
-<span class="n">dA1</span> <span class="o">=</span> <span class="n">dA1</span> <span class="o">/</span> <span class="n">keep_prob</span>              <span class="c1"># Step 2: Scale the value of neurons that haven&#39;t been shut down</span>
-
-<span class="n">dZ1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">dA1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">A1</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span>   <span class="c1"># Hadamard product, i.e., element-wise product</span>
-
-<span class="n">dW1</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="n">m</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dZ1</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-
-<span class="n">db1</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="n">m</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dZ1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">Z1</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="n">A1</span><span class="p">,</span> <span class="n">W1</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">Z2</span><span class="p">,</span> <span class="n">D2</span><span class="p">,</span> <span class="n">A2</span><span class="p">,</span> <span class="n">W2</span><span class="p">,</span> <span class="n">b2</span><span class="p">)</span> <span class="o">=</span> <span class="n">cache</span>
 
 
-<span class="n">gradients</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;dA2&quot;</span><span class="p">:</span> <span class="n">dA2</span><span class="p">,</span> <span class="s2">&quot;dZ2&quot;</span><span class="p">:</span> <span class="n">dZ2</span><span class="p">,</span> <span class="s2">&quot;dW2&quot;</span><span class="p">:</span> <span class="n">dW2</span><span class="p">,</span> <span class="s2">&quot;db2&quot;</span><span class="p">:</span> <span class="n">db2</span><span class="p">,</span>
-            <span class="s2">&quot;dA1&quot;</span><span class="p">:</span> <span class="n">dA1</span><span class="p">,</span> <span class="s2">&quot;dZ1&quot;</span><span class="p">:</span> <span class="n">dZ1</span><span class="p">,</span> <span class="s2">&quot;dW1&quot;</span><span class="p">:</span> <span class="n">dW1</span><span class="p">,</span> <span class="s2">&quot;db1&quot;</span><span class="p">:</span> <span class="n">db1</span>
-            <span class="p">}</span>
+    <span class="n">dZ2</span> <span class="o">=</span> <span class="n">A2</span> <span class="o">-</span> <span class="n">Y</span> <span class="c1"># logistic regression</span>
 
-<span class="k">return</span> <span class="n">gradients</span>
+    <span class="n">dW2</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="n">m</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dZ2</span><span class="p">,</span> <span class="n">A1</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>  <span class="c1"># logistic regression</span>
+
+    <span class="n">db2</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="n">m</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dZ2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+
+
+    <span class="n">dA1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">W2</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">dZ2</span><span class="p">)</span>
+
+    <span class="n">dA1</span> <span class="o">=</span> <span class="n">D1</span> <span class="o">*</span> <span class="n">dA1</span>                     <span class="c1"># Step 1: Apply mask D1 to shut down the same neurons as during the forward propagation</span>
+
+    <span class="n">dA1</span> <span class="o">=</span> <span class="n">dA1</span> <span class="o">/</span> <span class="n">keep_prob</span>              <span class="c1"># Step 2: Scale the value of neurons that haven&#39;t been shut down</span>
+
+    <span class="n">dZ1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">dA1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">A1</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span>   <span class="c1"># Hadamard product, i.e., element-wise product</span>
+
+    <span class="n">dW1</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="n">m</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dZ1</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+    <span class="n">db1</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="n">m</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dZ1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+
+
+    <span class="n">gradients</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;dA2&quot;</span><span class="p">:</span> <span class="n">dA2</span><span class="p">,</span> <span class="s2">&quot;dZ2&quot;</span><span class="p">:</span> <span class="n">dZ2</span><span class="p">,</span> <span class="s2">&quot;dW2&quot;</span><span class="p">:</span> <span class="n">dW2</span><span class="p">,</span> <span class="s2">&quot;db2&quot;</span><span class="p">:</span> <span class="n">db2</span><span class="p">,</span>
+                <span class="s2">&quot;dA1&quot;</span><span class="p">:</span> <span class="n">dA1</span><span class="p">,</span> <span class="s2">&quot;dZ1&quot;</span><span class="p">:</span> <span class="n">dZ1</span><span class="p">,</span> <span class="s2">&quot;dW1&quot;</span><span class="p">:</span> <span class="n">dW1</span><span class="p">,</span> <span class="s2">&quot;db1&quot;</span><span class="p">:</span> <span class="n">db1</span>
+                <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">gradients</span>
 </pre></div>
 </td></tr></table></div>
 </div>

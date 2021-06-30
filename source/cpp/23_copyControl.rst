@@ -25,6 +25,16 @@
 如果我们没有为类定义拷贝控制函数，编译器会为我们定义一个。与合成默认构造函数不同（如果定义了其他构造函数，则需要我们再显式定义默认构造函数），
 即使我们定义了其他构造函数，编译器也会为我们合成一个拷贝构造函数。
 
+如果有指针类型的成员数据，编译器合成的拷贝函数就只会复制指针（而不是复制指针指向的内容），从而得到一个相同指向的复制品（浅复制）。
+很可能这并不是我们想要的，这时需要考虑自己动手定义拷贝构造函数。
+
+拷贝构造函数的调用时机有如下三种：
+
+- 当用类的一个对象去初始化该类的另一个对象时。
+
+- 当函数的形参是类的对象，调用函数时。
+
+- 当函数的返回值是类的对象，函数执行完成返回时。
 
 default 和 delete
 ---------------------
@@ -121,6 +131,63 @@ default 和 delete
   // 输出： ClassTest& operator=(const ClassTest &ct)
 
 当把拷贝构造函数设置为 ``private`` ，ct3、ct4、ct5的初始化都无法完成。
+
+
+explicit
+------------
+
+::
+
+	 This keyword is a declaration specifier that can only be applied to in-class constructor declaration. An explicit constructor cannot take part in implicit conversions. It can only be used to explicitly construct an object.
+
+单个参数的构造函数（或者除了第一个参数外其余参数都有缺省值的多参构造函数）承担了两个角色：
+
+- 用于构建单参数的类对象；
+
+- 隐含的类型转换操作符。
+
+``explicit`` 指定转换函数（C++11 起）或构造函数为显式，即它不能用于隐式转换和拷贝初始化。
+
+声明为 ``explicit`` 的构造函数不能在隐式转换中使用，只能显式调用去构造一个类对象。其好处在于可以禁止编译器执行非预期（往往也不被期望）的类型转换。
+但是将拷贝构造函数声明成 ``explicit`` 并不是良好的设计。
+
+.. code-block:: cpp
+  :linenos:
+
+  struct A
+  {
+      A(int) { }      // 转换构造函数
+      A(int, int) { } // 转换构造函数 (C++11)
+      operator bool() const { return true; } // 类型转换函数
+  };
+  
+  struct B
+  {
+      explicit B(int) { }
+      explicit B(int, int) { }
+      explicit operator bool() const { return true; }
+  };
+  
+  int main()
+  {
+      A a1 = 1;      // OK：复制初始化选择 A::A(int)
+      A a2(2);       // OK：直接初始化选择 A::A(int)
+      A a3 {4, 5};   // OK：直接列表初始化选择 A::A(int, int)
+      A a4 = {4, 5}; // OK：复制列表初始化选择 A::A(int, int)
+      A a5 = (A)1;   // OK：显式转型
+      if (a1) ;      // OK：A::operator bool()
+      bool na1 = a1; // OK：复制初始化选择 A::operator bool()
+      bool na2 = static_cast<bool>(a1); // OK：static_cast 进行直接初始化
+  
+  //  B b1 = 1;      // 错误：复制初始化不考虑 B::B(int)
+      B b2(2);       // OK：直接初始化选择 B::B(int)
+      B b3 {4, 5};   // OK：直接列表初始化选择 B::B(int, int)
+  //  B b4 = {4, 5}; // 错误：复制列表初始化不考虑 B::B(int, int)
+      B b5 = (B)1;   // OK：显式转型
+      if (b2) ;      // OK：B::operator bool()
+  //  bool nb1 = b2; // 错误：复制初始化不考虑 B::operator bool()
+      bool nb2 = static_cast<bool>(b2); // OK：static_cast 进行直接初始化
+  }
 
 
 push 和 emplace
@@ -231,3 +298,7 @@ push 和 emplace
 3. C++11使用emplace_back代替push_back
 
   https://blog.csdn.net/yockie/article/details/52674366
+
+4. explicit 说明符
+
+  https://zh.cppreference.com/w/cpp/language/explicit

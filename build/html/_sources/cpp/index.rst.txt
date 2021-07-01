@@ -33,3 +33,4 @@ C/C++
     26_lambda.rst
     27_singleton.rst
     28_vaFunc.rst
+    29_operatorOverload.rst

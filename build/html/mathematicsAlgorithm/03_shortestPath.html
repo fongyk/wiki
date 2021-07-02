@@ -122,6 +122,20 @@
 <li class="toctree-l2"><a class="reference internal" href="07_sort.html">7. 排序算法</a></li>
 <li class="toctree-l2"><a class="reference internal" href="08_dynamicProgramming.html">8. 动态规划</a></li>
 <li class="toctree-l2"><a class="reference internal" href="09_backtrack.html">9. 回溯</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_topoSort.html">10. 拓扑排序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_catalan.html">11. 卡特兰数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_entropy.html">12. 信息熵</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_cltLLN.html">13. 大数定律和中心极限定理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_coinWeigh.html">14. 称重问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_probability.html">15. 概率基础</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_geometry.html">16. 几何</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_graphCycle.html">17. 图环</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_bTree.html">18. B 树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_ballBox.html">19. 球盒问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_poison.html">20. 喝水试毒</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_rand.html">21. 随机数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_unionFind.html">22. 并查集</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_kmp.html">23. 前缀函数与 KMP 算法</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
@@ -443,14 +457,13 @@
 <div class="section" id="id2">
 <h2>3.3. 实例<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p class="first">耗时最短的路径：某些顶点有自行车，骑上自行车之后耗时减半。Hint：广度优先遍历，使用优先队列/堆，最早到达终点的一定是耗时最短路径。这里
-需要设置两个全局数组，一个记录当前顶点有自行车的最短耗时，另一个记录当前顶点没有自行车的最短耗时。</p>
-<p><a class="reference external" href="https://www.nowcoder.com/practice/7689b595f3eb419b9e7816c4f45a400d?tpId=90&amp;tqId=30852&amp;tPage=4&amp;rp=4&amp;ru=/ta/2018test&amp;qru=/ta/2018test/question-ranking">https://www.nowcoder.com/practice/7689b595f3eb419b9e7816c4f45a400d?tpId=90&amp;tqId=30852&amp;tPage=4&amp;rp=4&amp;ru=/ta/2018test&amp;qru=/ta/2018test/question-ranking</a></p>
+<li><p class="first">[LeetCode] Shortest Path to Get All Keys 获取所有钥匙的最短路径。Hint：需要一个状态量来表示到达当前位置已经获得的钥匙（BitMap）；当且仅当钥匙状态不相同时，才可以重复经过某一个坐标点。</p>
+<p><a class="reference external" href="https://leetcode.com/problems/shortest-path-to-get-all-keys/">https://leetcode.com/problems/shortest-path-to-get-all-keys/</a></p>
 <div class="toggle docutils container">
 <div class="header docutils container">
 <p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
 </div>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -492,49 +505,87 @@
 40
 41
 42
-43</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">heapq</span> <span class="kn">as</span> <span class="nn">hq</span>
-
-<span class="n">n</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-<span class="n">edges</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
-<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
-    <span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">cost</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-    <span class="n">begin</span> <span class="o">-=</span> <span class="mi">1</span>
-    <span class="n">end</span> <span class="o">-=</span> <span class="mi">1</span>
-    <span class="n">edges</span><span class="p">[</span><span class="n">begin</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">end</span><span class="p">,</span> <span class="n">cost</span><span class="p">))</span> <span class="c1">## 无向边</span>
-    <span class="n">edges</span><span class="p">[</span><span class="n">end</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">begin</span><span class="p">,</span> <span class="n">cost</span><span class="p">))</span>
-<span class="n">have_bike</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
-<span class="n">k</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
-    <span class="n">v</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-    <span class="n">v</span> <span class="o">-=</span> <span class="mi">1</span>
-    <span class="n">have_bike</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
-
-<span class="n">INF</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span> <span class="c1">## 无穷大</span>
-<span class="c1">## 根据当前顶点是否有自行车，需要定义两个全局数组，存储当前最短耗时</span>
-<span class="n">global_cost</span> <span class="o">=</span> <span class="p">{</span><span class="bp">False</span><span class="p">:</span> <span class="p">[</span><span class="n">INF</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)],</span> <span class="bp">True</span><span class="p">:</span> <span class="p">[</span><span class="n">INF</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]}</span>
-<span class="n">global_cost</span><span class="p">[</span><span class="n">have_bike</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">ans</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-<span class="n">h</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="c1">## 堆元素：(cost, v, have_bike)</span>
-<span class="n">hq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">have_bike</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">v_cost</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">v_bike</span> <span class="o">=</span> <span class="n">hq</span><span class="o">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-        <span class="n">ans</span> <span class="o">=</span> <span class="n">v_cost</span>
-        <span class="k">break</span>
-    <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">uv_cost</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>
-        <span class="k">if</span> <span class="n">v_bike</span><span class="p">:</span>
-            <span class="n">uv_cost</span> <span class="o">/=</span> <span class="mi">2</span>
-        <span class="n">u_cost</span> <span class="o">=</span> <span class="n">v_cost</span> <span class="o">+</span> <span class="n">uv_cost</span>
-        <span class="n">u_bike</span> <span class="o">=</span> <span class="n">have_bike</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="ow">or</span> <span class="n">v_bike</span>
-
-        <span class="k">if</span> <span class="n">u_cost</span> <span class="o">&gt;=</span> <span class="n">global_cost</span><span class="p">[</span><span class="n">u_bike</span><span class="p">][</span><span class="n">u</span><span class="p">]:</span>
-            <span class="k">continue</span>
-        <span class="n">global_cost</span><span class="p">[</span><span class="n">u_bike</span><span class="p">][</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_cost</span>
-        <span class="n">hq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="p">(</span><span class="n">u_cost</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">u_bike</span><span class="p">))</span>
-
-<span class="k">print</span> <span class="n">ans</span>
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">shortestPathAllKeys</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;&amp;</span> <span class="n">grid</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">grid</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">||</span> <span class="n">grid</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">empty</span><span class="p">())</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="n">grid</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+        <span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="n">grid</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">size</span><span class="p">();</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;&gt;&gt;</span> <span class="n">visited</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="nb">false</span><span class="p">)));</span> <span class="c1">// bitmap, row x col x 2^6</span>
+        <span class="n">queue</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">que</span><span class="p">;</span> <span class="c1">// 坐标和key</span>
+        <span class="kt">int</span> <span class="n">nkey</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">row</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">col</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">grid</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;@&#39;</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">que</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="n">i</span><span class="o">*</span><span class="n">col</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="mi">0</span><span class="p">});</span>
+                    <span class="n">visited</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">if</span><span class="p">(</span><span class="sc">&#39;a&#39;</span> <span class="o">&lt;=</span> <span class="n">grid</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">grid</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="sc">&#39;f&#39;</span><span class="p">)</span> <span class="n">nkey</span> <span class="o">|=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">grid</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="sc">&#39;a&#39;</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="kt">int</span> <span class="n">step</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">que</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">qsize</span> <span class="o">=</span> <span class="n">que</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">qsize</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="c1">// 从各个出发点出发，同步向前走一步</span>
+            <span class="p">{</span>
+                <span class="k">auto</span> <span class="n">p</span> <span class="o">=</span> <span class="n">que</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
+                <span class="n">que</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+                <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">first</span><span class="o">/</span><span class="n">col</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">first</span><span class="o">%</span><span class="n">col</span><span class="p">;</span>
+                <span class="kt">int</span> <span class="n">carry</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">carry</span> <span class="o">==</span> <span class="n">nkey</span><span class="p">)</span> <span class="k">return</span> <span class="n">step</span><span class="p">;</span>
+                <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="kt">int</span> <span class="n">nx</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">mv</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">];</span>
+                    <span class="kt">int</span> <span class="n">ny</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">mv</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="mi">1</span><span class="p">];</span>
+                    <span class="kt">int</span> <span class="n">nk</span> <span class="o">=</span> <span class="n">carry</span><span class="p">;</span>
+                    <span class="k">if</span><span class="p">(</span><span class="n">nx</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">nx</span> <span class="o">&gt;=</span> <span class="n">row</span> <span class="o">||</span> <span class="n">ny</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">ny</span> <span class="o">&gt;=</span> <span class="n">col</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+                    <span class="k">if</span><span class="p">(</span><span class="n">grid</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;#&#39;</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+                    <span class="k">if</span><span class="p">(</span><span class="sc">&#39;A&#39;</span> <span class="o">&lt;=</span> <span class="n">grid</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">grid</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="sc">&#39;F&#39;</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">nk</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">grid</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">]</span> <span class="o">-</span> <span class="sc">&#39;A&#39;</span><span class="p">))))</span> <span class="k">continue</span><span class="p">;</span>
+                        <span class="c1">// nk &amp;= ~ (1 &lt;&lt; (grid[nx][ny] - &#39;A&#39;)); // 开门不会消耗钥匙</span>
+                    <span class="p">}</span>
+                    <span class="k">if</span><span class="p">(</span><span class="sc">&#39;a&#39;</span> <span class="o">&lt;=</span> <span class="n">grid</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">grid</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="sc">&#39;f&#39;</span><span class="p">)</span> <span class="n">nk</span> <span class="o">|=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">grid</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">]</span> <span class="o">-</span> <span class="sc">&#39;a&#39;</span><span class="p">);</span>
+                    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">visited</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">][</span><span class="n">nk</span><span class="p">])</span> <span class="c1">// 当前钥匙状态为 nk , 未访问过 (nx, ny)</span>
+                    <span class="p">{</span>
+                        <span class="n">visited</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">][</span><span class="n">nk</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                        <span class="n">que</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="n">nx</span><span class="o">*</span><span class="n">col</span><span class="o">+</span><span class="n">ny</span><span class="p">,</span> <span class="n">nk</span><span class="p">});</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="o">++</span><span class="n">step</span><span class="p">;</span> <span class="c1">// 此时队列中保存的是从各个出发点出发，走完 step 步的结果</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">mv</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span>
+<span class="p">};</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">Solution</span><span class="o">::</span><span class="n">mv</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">},{</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">}};</span>
 </pre></div>
 </td></tr></table></div>
 </div>

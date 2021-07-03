@@ -1093,25 +1093,23 @@
       :linenos:
 
       // 解法二：不断交换位置使得 i == nums[i]-1
-      class Solution
+      class Solution 
       {
       public:
-          vector<int> findDisappearedNumbers(vector<int>& nums)
+          vector<int> findDuplicates(vector<int>& nums) 
           {
-              vector<int> disappear;
-              if(nums.size()<=1) return disappear;
-              for(int k = 0; k < nums.size(); ++k)
+              vector<int> duplicate;
+              for(int i = 0; i < nums.size(); ++i)
               {
-                  while(nums[k] != nums[nums[k]-1]) swap(nums[k], nums[nums[k]-1]);
+                  while(nums[nums[i] - 1] != nums[i]) swap(nums[i], nums[nums[i] - 1]);
               }
-              for(int k = 0; k < nums.size(); ++k)
+              for(int i = 0; i < nums.size(); ++i)
               {
-                  if(nums[k]-1 != k) disappear.push_back(nums[k]);
+                  if(i != nums[i] - 1) duplicate.push_back(nums[i]);
               }
-              return disappear;
+              return duplicate;
           }
       };
-
 
   - [LeetCode] First Missing Positive 找到第一个消失的正整数。Hint：假设数组长度为 :math:`n` ，则第一个消失的正整数所在区间是 :math:`[1, n+1]` ，注意：输入数组中可能存在负数和0。延伸：找到第一个大于 :math:`K` 的正整数。Hint：可知目标数所在区间是 :math:`[K+1, K+n+1]` ；先删除数组中不在该区间的整数；其余数都减 :math:`K` ，范围变成 :math:`[1, n+1]` ，后续解法同上。
 

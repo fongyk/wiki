@@ -705,6 +705,61 @@
           return dp[y-1];
       }
 
+- [LeetCode] Knight Dialer 马踏数字键盘。Hint：回溯算法超时，用动态规划，考虑空间复用。
+
+  https://leetcode.com/problems/knight-dialer/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution 
+      {
+      public:
+          int knightDialer(int n) 
+          {
+              if(n < 1) return 0;
+              if(n == 1) return 10;
+              int mod = 1000000007;
+              const int row = 4;
+              const int col = 3;
+              vector<vector<int>> dp(2, vector<int>(row*col, 0));
+              for(int i = 0; i < row*col; ++i)
+              {
+                  if(i != 9 && i != 11) dp[0][i] = 1;
+              }
+              int res = 0;
+              for(int t = 1; t < n; ++t)
+              {
+                  fill(dp[t&1].begin(), dp[t&1].end(), 0); // 空间复用，需要预先清零
+                  for(int i = 0; i < row*col; ++i)
+                  {
+                      if(i != 9 && i != 11) // 略过非数字键
+                      {
+                          for(int k = 0; k < 8; ++k)
+                          {
+                              int x = i / col + mv[k][0]; // 获取行列号
+                              int y = i % col + mv[k][1];
+                              if(x < 0 || x >= row || y < 0 || y >= col) continue;
+                              dp[t&1][i] += dp[(t-1)&1][x*col+y];
+                              dp[t&1][i] %= mod;
+                          }
+                      }
+                      if(t == n-1) res = (res + dp[t&1][i]) % mod;
+                  }
+              }
+              return res;
+          }
+      private:
+          const static int mv[8][2];
+      };
+      const int Solution::mv[8][2] = {{-2,-1},{-2,1},{-1,-2},{-1,2},{1,-2},{1,2},{2,-1},{2,1}};
+
 - :math:`n` 个骰子点数之和及其频数。
 
   .. container:: toggle

@@ -470,6 +470,10 @@ map
 
     另外，也有无序版本：unordered_multimap 和 unordered_multiset。
 
+.. note::
+
+    map、multimap、set、multiset 是基于红黑树实现的、有序的，查找操作的平均时间复杂度是 O(log N)。unordered_map、unordered_multimap、unordered_set、unordered_multiset 是基于哈希表实现的，查找操作的平均时间复杂度是 O(1)。
+
 stack
 ---------
 ::

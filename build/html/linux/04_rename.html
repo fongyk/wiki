@@ -1,0 +1,342 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. 重命名 &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'alpha',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Git" href="../git/index.html" />
+    <link rel="prev" title="3. 权限管理" href="03_authority.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Linux/Shell</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_basic.html">1. 基本命令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_more.html">2. 更多指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_authority.html">3. 权限管理</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4. 重命名</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mv">4.1. mv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#awk">4.2. awk</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rename">4.3. rename</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Linux/Shell</a> &raquo;</li>
+        
+      <li>4. 重命名</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/linux/04_rename.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>4. 重命名<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p><strong>场景假设</strong> ：需要把某个目录下的文件进行重命名。</p>
+<p>首先生成一批jpg文件:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>touch ustc-<span class="o">{</span><span class="m">1</span>..6<span class="o">}</span>.jpg
+</pre></div>
+</div>
+<div class="section" id="mv">
+<h2>4.1. mv<a class="headerlink" href="#mv" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">for</span> f in /data6/fong/shell/*.jpg
+<span class="k">do</span>
+        <span class="nb">echo</span> <span class="nv">$f</span>
+        mv <span class="nv">$f</span> <span class="si">${</span><span class="nv">f</span><span class="si">}</span>-new
+<span class="k">done</span>
+</pre></div>
+</td></tr></table></div>
+<p>或者写成一行:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> f in /data6/fong/shell/*.jpg<span class="p">;</span> <span class="k">do</span> mv <span class="nv">$f</span> <span class="si">${</span><span class="nv">f</span><span class="si">}</span>-new<span class="p">;</span> <span class="k">done</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">mv</span> <span class="pre">$f</span> <span class="pre">${f}-new</span></code> 在文件名后面加了 <code class="docutils literal notranslate"><span class="pre">-new</span></code> 。</p>
+<p><code class="docutils literal notranslate"><span class="pre">mv</span> <span class="pre">$f</span> <span class="pre">${f%substr_old}substr_new</span></code> 可将 <code class="docutils literal notranslate"><span class="pre">f</span></code> 的子串 <code class="docutils literal notranslate"><span class="pre">substr_old</span></code> 替换为 <code class="docutils literal notranslate"><span class="pre">substr_new</span></code> 。</p>
+</div>
+<div class="section" id="awk">
+<h2>4.2. awk<a class="headerlink" href="#awk" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls *.jpg <span class="p">|</span> awk -F <span class="s2">&quot;jpg&quot;</span> <span class="s1">&#39;{print &quot;mv &quot; $0,$1&quot;JPG&quot;}&#39;</span> <span class="p">|</span> bash
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">awk</span> <span class="pre">-F</span> <span class="pre">&quot;jpg&quot;</span></code> 将文件名进行切分，分隔符是 <code class="docutils literal notranslate"><span class="pre">jpg</span></code> ；<code class="docutils literal notranslate"><span class="pre">$0</span></code> 表示原字符串，<code class="docutils literal notranslate"><span class="pre">$1</span></code> 是分割后的第一段字符串。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fong@GK40:/data6/fong/shell$ ls *.jpg <span class="p">|</span> awk -F <span class="s2">&quot;jpg&quot;</span> <span class="s1">&#39;{print $0,$1&quot;JPG&quot;}&#39;</span>
+ustc-1.jpg ustc-1.JPG
+ustc-2.jpg ustc-2.JPG
+ustc-3.jpg ustc-3.JPG
+ustc-4.jpg ustc-4.JPG
+ustc-5.jpg ustc-5.JPG
+ustc-6.jpg ustc-6.JPG
+</pre></div>
+</div>
+</div>
+<div class="section" id="rename">
+<h2>4.3. rename<a class="headerlink" href="#rename" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">rename</span></code> 可以查看使用手册，这里使用perl版本的正则表达式。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rename <span class="o">[</span> -v <span class="o">]</span> <span class="o">[</span> -n <span class="o">]</span> <span class="o">[</span> -f <span class="o">]</span> perlexpr <span class="o">[</span> files <span class="o">]</span>
+</pre></div>
+</div>
+<p>参数：</p>
+<blockquote>
+<div><ul class="simple">
+<li>v：显示修改成功的文件名；</li>
+<li>n：不执行任何操作，用来测试rename过程，并不直接运行，可以查看测试效果后，然后再运行；</li>
+<li>f：强制修改，会覆盖存在的文件。</li>
+</ul>
+</div></blockquote>
+<p>小写转换成大写:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fong@GK40:/data6/fong/shell$ rename -n <span class="s1">&#39;y/a-z/A-Z/&#39;</span> *.jpg
+rename<span class="o">(</span>ustc-1.jpg, USTC-1.JPG<span class="o">)</span>
+rename<span class="o">(</span>ustc-2.jpg, USTC-2.JPG<span class="o">)</span>
+rename<span class="o">(</span>ustc-3.jpg, USTC-3.JPG<span class="o">)</span>
+rename<span class="o">(</span>ustc-4.jpg, USTC-4.JPG<span class="o">)</span>
+rename<span class="o">(</span>ustc-5.jpg, USTC-5.JPG<span class="o">)</span>
+rename<span class="o">(</span>ustc-6.jpg, USTC-6.JPG<span class="o">)</span>
+</pre></div>
+</div>
+<p>后缀从.jpg改成.JPG:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fong@GK40:/data6/fong/shell$ rename -n <span class="s1">&#39;s/\.jpg/\.JPG/g&#39;</span> *.jpg
+rename<span class="o">(</span>ustc-1.jpg, ustc-1.JPG<span class="o">)</span>
+rename<span class="o">(</span>ustc-2.jpg, ustc-2.JPG<span class="o">)</span>
+rename<span class="o">(</span>ustc-3.jpg, ustc-3.JPG<span class="o">)</span>
+rename<span class="o">(</span>ustc-4.jpg, ustc-4.JPG<span class="o">)</span>
+rename<span class="o">(</span>ustc-5.jpg, ustc-5.JPG<span class="o">)</span>
+rename<span class="o">(</span>ustc-6.jpg, ustc-6.JPG<span class="o">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">s</span></code> 表示替换，<code class="docutils literal notranslate"><span class="pre">g</span></code> 表示替换行内所有匹配到的字符串，去掉 <code class="docutils literal notranslate"><span class="pre">g</span></code> 则只替换匹配到的第一个字符串。</p>
+<p>注意：<code class="docutils literal notranslate"><span class="pre">\.</span></code> 是对 <code class="docutils literal notranslate"><span class="pre">.</span></code> 的转义，<code class="docutils literal notranslate"><span class="pre">.</span></code> 在正则中会匹配任意一个字符。</p>
+<p>错误的结果:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fong@GK40:/data6/fong/shell$ rename -n <span class="s1">&#39;s/.jpg/.JPG/&#39;</span> ustcjpg.jpg
+rename<span class="o">(</span>ustcjpg.jpg, ust.JPG.jpg<span class="o">)</span>
+fong@GK40:/data6/fong/shell$ rename -n <span class="s1">&#39;s/.jpg/.JPG/g&#39;</span> ustcjpg.jpg
+rename<span class="o">(</span>ustcjpg.jpg, ust.JPG.JPG<span class="o">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../git/index.html" class="btn btn-neutral float-right" title="Git" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="03_authority.html" class="btn btn-neutral float-left" title="3. 权限管理" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

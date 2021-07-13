@@ -1,0 +1,384 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>26. lambda 表达式 &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'alpha',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Python" href="../python/index.html" />
+    <link rel="prev" title="25. 命名空间" href="25_namespace.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C/C++</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_main.html">1. main函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_array.html">2. 数组</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_typeSize.html">3. 数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_classSize.html">4. 类的大小</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_swap.html">5. 交换函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_arrayArg.html">6. 数组形参</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_pointerReference.html">7. 指针与引用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_overload.html">8. 重载、覆盖、隐藏</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_strcpy.html">9. strcpy函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_cast.html">10. 强制类型转换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html">11. 堆、栈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_argPass.html">12. 参数传递</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_nullClassPtr.html">13. 空类指针</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html">14. static和extern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_classAccess.html">15. public、protected、private</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_staticconst.html">16. 类的static const成员</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_enumUnion.html">17. 枚举类型与共用体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html">18. 常用函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用STL类及容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">26. lambda 表达式</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">26.1. 捕获列表</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">值捕获</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">引用捕获</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">26.2. 例子</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">26.3. 参考资料</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">C/C++</a> &raquo;</li>
+        
+      <li>26. lambda 表达式</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/cpp/26_lambda.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="lambda">
+<h1>26. lambda 表达式<a class="headerlink" href="#lambda" title="Permalink to this headline">¶</a></h1>
+<p>根据算法接受一元谓词（unary predicate）还是二元谓词（binary predicate），我们传递给算法的谓词必须严格接受一个或两个参数。
+例如，<code class="docutils literal notranslate"><span class="pre">sort</span></code> 接受二元谓词。</p>
+<p>lambda 表达式可以在一定程度上解决这个问题。lambda 表达式表示一个可调用的代码单元。可以将其理解为一个未命名的内联函数。
+lambda 表达式具有返回类型、参数列表、函数体。与普通函数不同的是，其参数列表不能有默认参数，且使用尾置返回 <code class="docutils literal notranslate"><span class="pre">-&gt;</span></code> 来指定返回类型。
+lambda 可能定义在函数内部。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">capture</span> <span class="nb">list</span><span class="p">]</span> <span class="p">(</span><span class="n">parameter</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">return</span> <span class="nb">type</span> <span class="p">{</span><span class="n">function</span> <span class="n">body</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>可以忽略参数列表和返回类型，但是必须包括捕获列表和函数体。</p>
+<blockquote>
+<div><ul class="simple">
+<li>捕获列表是 lambda 所在的函数内部定义的局部变量，即 lambda 表达式需要使用的变量，通常为空。</li>
+<li>如果忽略返回类型，lambda 根据函数体中的代码推断出返回类型：<ul>
+<li>如果函数体只有一个 return 语句，则返回类型从 return 表达式的类型推断。</li>
+<li>否则，返回 void。</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">f</span> <span class="o">=</span> <span class="p">[]</span> <span class="p">{</span><span class="k">return</span> <span class="mi">42</span><span class="p">;};</span> <span class="c1">// 返回 int</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">f</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 打印 42</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<dl class="last docutils">
+<dt>可调用对象</dt>
+<dd><p class="first">对于一个对象或表达式，如果可以对其使用调用运算符 <code class="docutils literal notranslate"><span class="pre">()</span></code> ，则称其为可调用对象。</p>
+<p class="last">可调用对象包括：函数、函数指针、重载了运算符 <code class="docutils literal notranslate"><span class="pre">()</span></code> 的类、lambda 表达式。</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="id1">
+<h2>26.1. 捕获列表<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>类似于参数传递，变量的捕获方式可以是值捕获或引用捕获。</p>
+<p>捕获列表：</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">[]</span></code> ：空捕获列表，lambda 不能使用所在函数中的变量。</li>
+<li><code class="docutils literal notranslate"><span class="pre">[names]</span></code> ：使用逗号分隔的名字列表，默认为值捕获（拷贝），名字前加 <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> 表示引用捕获。</li>
+<li><code class="docutils literal notranslate"><span class="pre">[=]</span></code> ：隐式值捕获，将拷贝 lambda 表达式所使用的来自所在函数中的变量。</li>
+<li><code class="docutils literal notranslate"><span class="pre">[&amp;]</span></code> ：隐式引用捕获，将引用 lambda 表达式所使用的来自所在函数中的变量。</li>
+<li><code class="docutils literal notranslate"><span class="pre">[=,</span> <span class="pre">identifier_list]</span></code> ：identifier_list 声明的变量采用引用捕获，其他使用的变量采用值捕获。</li>
+<li><code class="docutils literal notranslate"><span class="pre">[&amp;,</span> <span class="pre">identifier_list]</span></code> ：identifier_list 声明的变量采用值捕获，其他使用的变量采用引用捕获。</li>
+</ul>
+</div></blockquote>
+<div class="section" id="id2">
+<h3>值捕获<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>捕获变量的值是在 lambda <strong>创建时</strong> 拷贝，而不是调用时拷贝。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">fcn1</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">size_t</span> <span class="n">v1</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+    <span class="k">auto</span> <span class="n">f</span> <span class="o">=</span> <span class="p">[</span><span class="n">v1</span><span class="p">]</span> <span class="p">{</span><span class="k">return</span> <span class="n">v1</span><span class="p">;};</span> <span class="c1">// 拷贝 v1</span>
+    <span class="n">v1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">auto</span> <span class="n">j</span> <span class="o">=</span> <span class="n">f</span><span class="p">();</span> <span class="c1">// j = 42</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id3">
+<h3>引用捕获<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">fcn2</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">size_t</span> <span class="n">v1</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+    <span class="k">auto</span> <span class="n">f</span> <span class="o">=</span> <span class="p">[</span><span class="o">&amp;</span><span class="n">v1</span><span class="p">]</span> <span class="p">{</span><span class="k">return</span> <span class="n">v1</span><span class="p">;};</span> <span class="c1">// 引用 v1</span>
+    <span class="n">v1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">auto</span> <span class="n">j</span> <span class="o">=</span> <span class="n">f</span><span class="p">();</span> <span class="c1">// j = 0</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>26.2. 例子<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>给定一个值 ref，将数组元素按照与 ref 的差值从小到大排序。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">Sort_</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">vec</span><span class="p">,</span> <span class="kt">int</span> <span class="n">ref</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">sort</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[</span><span class="n">ref</span><span class="p">](</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">){</span><span class="k">return</span> <span class="n">abs</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">ref</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">abs</span><span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">ref</span><span class="p">);});</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id5">
+<h2>26.3. 参考资料<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>1.《C++ Primer 第5版 中文版》 Page 344 – 353。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../python/index.html" class="btn btn-neutral float-right" title="Python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="25_namespace.html" class="btn btn-neutral float-left" title="25. 命名空间" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,515 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>C/C++ &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'alpha',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1. main函数" href="01_main.html" />
+    <link rel="prev" title="文档" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">C/C++</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="01_main.html">1. main函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_array.html">2. 数组</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_typeSize.html">3. 数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_classSize.html">4. 类的大小</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_swap.html">5. 交换函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_arrayArg.html">6. 数组形参</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_pointerReference.html">7. 指针与引用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_overload.html">8. 重载、覆盖、隐藏</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_strcpy.html">9. strcpy函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_cast.html">10. 强制类型转换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html">11. 堆和栈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_argPass.html">12. 参数传递</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_nullClassPtr.html">13. 空类指针</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html">14. static和extern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_classAccess.html">15. public、protected、private</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_staticconst.html">16. 类的static const成员</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_enumUnion.html">17. 枚举类型与共用体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html">18. 常用函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用 STL 容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const和constexpr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_lambda.html">26. lambda 表达式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="27_singleton.html">27. 单例模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28_vaFunc.html">28. 可变参数函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="29_operatorOverload.html">29. 运算符重载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30_templateSpecialization.html">30. 模板特化</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>C/C++</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/cpp/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="c-c">
+<h1>C/C++<a class="headerlink" href="#c-c" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="01_main.html">1. main函数</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="01_main.html#id1">1.1. 返回值</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01_main.html#id2">1.2. 处理命令行选项</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01_main.html#id3">1.3. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="02_array.html">2. 数组</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="02_array.html#id2">2.1. 指针</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_array.html#id3">2.2. 指向函数的指针</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_array.html#id4">2.3. 动态数组</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_array.html#id5">2.4. 另类的数组表达</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_array.html#id6">2.5. 数组实参</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_array.html#id7">2.6. 数组地址与加法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_array.html#malloc-freenew-delete">2.7. malloc/free与new/delete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_array.html#id10">2.8. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="03_typeSize.html">3. 数据类型</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="03_typeSize.html#id2">3.1. 常用内置数据类型的大小</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_typeSize.html#sizeofstrlen">3.2. sizeof与strlen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_typeSize.html#floatdouble">3.3. float和double</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_typeSize.html#id3">3.4. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="04_classSize.html">4. 类的大小</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="04_classSize.html#id2">4.1. 空类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_classSize.html#id3">4.2. 普通数据成员</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_classSize.html#id4">4.3. 普通继承</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_classSize.html#id7">4.4. 虚函数与继承</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_classSize.html#id10">4.5. 虚继承</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_classSize.html#id11">4.6. 内存对齐</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_classSize.html#id12">4.7. 位域</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_classSize.html#id13">4.8. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="05_swap.html">5. 交换函数</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="05_swap.html#id2">5.1. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="06_arrayArg.html">6. 数组形参</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="06_arrayArg.html#id2">6.1. 非引用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_arrayArg.html#id3">6.2. 引用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="07_pointerReference.html">7. 指针与引用</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="07_pointerReference.html#id2">7.1. 不同点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_pointerReference.html#id3">7.2. 函数返回对象</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_pointerReference.html#id4">7.3. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="08_overload.html">8. 重载、覆盖、隐藏</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="08_overload.html#overloading">8.1. 重载（Overloading）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_overload.html#overriding">8.2. 覆盖（Overriding）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_overload.html#hiding">8.3. 隐藏（Hiding）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_overload.html#id2">8.4. 例子</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_overload.html#id6">8.5. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="09_strcpy.html">9. strcpy函数</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="09_strcpy.html#src">9.1. 形参src</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_strcpy.html#cp">9.2. 额外指针cp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_strcpy.html#id1">9.3. 返回值</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_strcpy.html#id2">9.4. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="10_cast.html">10. 强制类型转换</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="10_cast.html#static-cast-type-expr">10.1. static_cast&lt;type&gt; (expr)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_cast.html#dynamic-cast-type-expr">10.2. dynamic_cast&lt;type&gt; (expr)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_cast.html#const-cast-type-expr">10.3. const_cast&lt;type&gt; (expr)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_cast.html#reinterpret-cast-type-expr">10.4. reinterpret_cast&lt;type&gt; (expr)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_cast.html#stringstream">10.5. 使用stringstream转换类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_cast.html#id3">10.6. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="11_heapStack.html">11. 堆和栈</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html#id2">11.1. 区别</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html#id9">11.2. 内存分区</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html#id10">11.3. 构造函数的空间分配</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html#id13">11.4. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="12_argPass.html">12. 参数传递</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="12_argPass.html#id2">12.1. 传值参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_argPass.html#id3">12.2. 传引用参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_argPass.html#id4">12.3. 删除指针</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_argPass.html#id5">12.4. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="13_nullClassPtr.html">13. 空类指针</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="13_nullClassPtr.html#id2">13.1. 空类指针调用成员函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_nullClassPtr.html#id3">13.2. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="14_staticExtern.html">14. static和extern</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html#static">14.1. static: 静态全局变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html#id1">14.2. static: 静态函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html#id2">14.3. static: 静态局部变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html#id3">14.4. static: 静态成员变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html#id4">14.5. static: 静态成员函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html#extern">14.6. extern: 修饰函数、变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html#extern-c">14.7. extern “C” {}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html#id6">14.8. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="15_classAccess.html">15. public、protected、private</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="15_classAccess.html#id1">15.1. 继承</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_classAccess.html#classstruct">15.2. class与struct</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_classAccess.html#id2">15.3. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="16_staticconst.html">16. 类的static const成员</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="16_staticconst.html#const">16.1. const 成员</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_staticconst.html#static">16.2. static 成员</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_staticconst.html#id1">16.3. static const 成员</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_staticconst.html#id2">16.4. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="17_enumUnion.html">17. 枚举类型与共用体</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="17_enumUnion.html#id2">17.1. 枚举类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_enumUnion.html#id5">17.2. 共用体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_enumUnion.html#id6">17.3. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="18_commonFunc.html">18. 常用函数</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html#lower-bound-upper-bound">18.1. lower_bound，upper_bound</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html#fill-fill-n-for-each">18.2. fill，fill_n，for_each</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html#sort">18.3. sort</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html#reverse">18.4. reverse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html#min-element-max-element-minmax-element">18.5. min_element，max_element，minmax_element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html#accumulate">18.6. accumulate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html#partial-sum">18.7. partial_sum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html#iota">18.8. iota</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html#inner-product">18.9. inner_product</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html#memset">18.10. memset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html#id2">18.11. 附：头文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html#id3">18.12. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="19_stl.html">19. 常用 STL 容器</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html#id1">19.1. 迭代器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html#vector">19.2. vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html#list">19.3. list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html#deque">19.4. deque</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html#set">19.5. set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html#pair">19.6. pair</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html#map">19.7. map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html#stack">19.8. stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html#queue">19.9. queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html#priority-queue">19.10. priority_queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html#string">19.11. 附录：string</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html#to-string">19.12. to_string函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html#atoi-atof-atol">19.13. atoi，atof，atol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html#size-tsize-type">19.14. size_t和size_type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html#id5">19.15. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="20_define.html">20. #define</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="20_define.html#const">20.1. const</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_define.html#enum">20.2. enum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_define.html#inline">20.3. inline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_define.html#c-c">20.4. 附：C/C++ 编译过程（简）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_define.html#id1">20.5. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html#id2">21.1. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="22_const.html">22. const和constexpr</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="22_const.html#constconst">22.1. 顶层const与底层const</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_const.html#const">22.2. const形参和实参</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_const.html#id1">22.3. const成员函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_const.html#constexpr">22.4. constexpr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_const.html#id2">22.5. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="23_copyControl.html#id2">23.1. 拷贝构造函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_copyControl.html#default-delete">23.2. default 和 delete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_copyControl.html#id3">23.3. 直接初始化和拷贝初始化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_copyControl.html#explicit">23.4. explicit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_copyControl.html#push-emplace">23.5. push 和 emplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_copyControl.html#id4">23.6. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="24_exception.html">24. 异常</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="24_exception.html#id2">24.1. 异常类层次</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_exception.html#try">24.2. try 语句块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_exception.html#id3">24.3. 抛出异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_exception.html#id7">24.4. 捕获异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_exception.html#noexcept">24.5. noexcept 异常说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_exception.html#id11">24.6. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="25_namespace.html">25. 命名空间</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="25_namespace.html#id2">25.1. 命名空间的定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_namespace.html#id8">25.2. 使用命名空间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_namespace.html#id11">25.3. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="26_lambda.html">26. lambda 表达式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="26_lambda.html#id1">26.1. 捕获列表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_lambda.html#id4">26.2. 例子</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_lambda.html#id5">26.3. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="27_singleton.html">27. 单例模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="27_singleton.html#id2">27.1. 基础单例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="27_singleton.html#id3">27.2. 全加锁</a></li>
+<li class="toctree-l2"><a class="reference internal" href="27_singleton.html#dclp">27.3. DCLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="27_singleton.html#id7">27.4. 另一种实现</a></li>
+<li class="toctree-l2"><a class="reference internal" href="27_singleton.html#id8">27.5. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="28_vaFunc.html">28. 可变参数函数</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="28_vaFunc.html#c">28.1. C 语言的方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28_vaFunc.html#id2">28.2. C++ 的方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28_vaFunc.html#id3">28.3. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="29_operatorOverload.html">29. 运算符重载</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="29_operatorOverload.html#id2">29.1. 重载规则</a></li>
+<li class="toctree-l2"><a class="reference internal" href="29_operatorOverload.html#id3">29.2. 下标运算符 []</a></li>
+<li class="toctree-l2"><a class="reference internal" href="29_operatorOverload.html#id4">29.3. 自增和自减</a></li>
+<li class="toctree-l2"><a class="reference internal" href="29_operatorOverload.html#id5">29.4. &gt;&gt; 和 &lt;&lt;</a></li>
+<li class="toctree-l2"><a class="reference internal" href="29_operatorOverload.html#new-delete">29.5. new 和 delete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="29_operatorOverload.html#id6">29.6. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="30_templateSpecialization.html">30. 模板特化</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="30_templateSpecialization.html#id2">30.1. 函数模板特化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30_templateSpecialization.html#id3">30.2. 类模板特化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30_templateSpecialization.html#id4">30.3. 参考资料</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="01_main.html" class="btn btn-neutral float-right" title="1. main函数" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral float-left" title="文档" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

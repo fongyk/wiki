@@ -1,0 +1,307 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. 算法复杂度与主定理 &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'alpha',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. 红黑树" href="02_redblackTree.html" />
+    <link rel="prev" title="数理与算法" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">数理与算法</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1. 算法复杂度与主定理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">1.1. 渐进分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">1.2. 主定理</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="02_redblackTree.html">2. 红黑树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_shortestPath.html">3. 最短路径</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_treeTraversal.html">4. 二叉树遍历</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_game.html">5. 游戏与必胜策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_randomSample.html">6. 蓄水池抽样</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">数理与算法</a> &raquo;</li>
+        
+      <li>1. 算法复杂度与主定理</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/mathematicsAlgorithm/01_complexity.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>1. 算法复杂度与主定理<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>递归算法的复杂性分析方法：代入法、递归树、主定理。这里只讨论主定理方法。</p>
+<p>主定理方法应用于如下的递归形式：</p>
+<div class="math notranslate nohighlight">
+\[T(n) = aT(\frac{n}{b}) + f(n).\]</div>
+<p>其中，<span class="math notranslate nohighlight">\(a \geqslant 1,\ b\geqslant 1\)</span> ，<span class="math notranslate nohighlight">\(f\)</span> 是渐进正的。</p>
+<div class="section" id="id2">
+<h2>1.1. 渐进分析<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>假设对于所有 <span class="math notranslate nohighlight">\(n\)</span> ，满足 <span class="math notranslate nohighlight">\(f(n) \geqslant 0,\ g(n) \geqslant 0\)</span> 。</p>
+<ul>
+<li><p class="first">渐进上界 <span class="math notranslate nohighlight">\(\mathcal{O}\)</span></p>
+<div class="math notranslate nohighlight">
+\[\mathcal{O}(g(n)) = \{ f(n) | \text{存在正常数} c \text{和} n_0 \text{使得对所有} n \geqslant n_0 \text{有：} 0 \leqslant f(n) \leqslant cg(n) \}\]</div>
+</li>
+<li><p class="first">渐进下界 <span class="math notranslate nohighlight">\(\Omega\)</span></p>
+<div class="math notranslate nohighlight">
+\[\Omega(g(n)) = \{ f(n) | \text{存在正常数} c \text{和} n_0 \text{使得对所有} n \geqslant n_0 \text{有：} 0 \leqslant cg(n) \leqslant f(n) \}\]</div>
+</li>
+<li><p class="first">渐进近界 <span class="math notranslate nohighlight">\(\Theta\)</span></p>
+<div class="math notranslate nohighlight">
+\[\Theta(g(n)) = \{ f(n) | \text{存在正常数} c_1,\ c_2 \text{和} n_0 \text{使得对所有} n \geqslant n_0 \text{有：} c_1g(n) \leqslant f(n) \leqslant c_2g(n) \}\]</div>
+</li>
+</ul>
+<p>定理：</p>
+<div class="math notranslate nohighlight">
+\[\Theta(g(n)) = \mathcal{O}(g(n)) \cap \Omega(g(n))\]</div>
+</div>
+<div class="section" id="id3">
+<h2>1.2. 主定理<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>需要比较 <span class="math notranslate nohighlight">\(f(n)\)</span> 和 <span class="math notranslate nohighlight">\(n^{\log_b a}\)</span> 。</p>
+<ul>
+<li><p class="first"><span class="math notranslate nohighlight">\(f(n) = \mathcal{O}(n^{\log_b a - \epsilon})\)</span> ： <span class="math notranslate nohighlight">\(f(n)\)</span> 的增长速度比 <span class="math notranslate nohighlight">\(n^{\log_b a}\)</span> 慢一个 <span class="math notranslate nohighlight">\(n^{\epsilon}\)</span> 因子。</p>
+<div class="math notranslate nohighlight">
+\[T(n) = \Theta (n^{\log_b a})\]</div>
+</li>
+<li><p class="first"><span class="math notranslate nohighlight">\(f(n) = \Theta (n^{\log_b a} \log^k n)\)</span> ： <span class="math notranslate nohighlight">\(f(n)\)</span> 与 <span class="math notranslate nohighlight">\(n^{\log_b a} \log^k n\)</span> 具有相似的增长速度。</p>
+<div class="math notranslate nohighlight">
+\[T(n) = \Theta (n^{\log_b a} \log^{k+1} n)\]</div>
+</li>
+<li><p class="first"><span class="math notranslate nohighlight">\(f(n) = \Omega (n^{\log_b a + \epsilon})\)</span> ： <span class="math notranslate nohighlight">\(f(n)\)</span> 的增长速度比 <span class="math notranslate nohighlight">\(n^{\log_b a}\)</span> 快一个 <span class="math notranslate nohighlight">\(n^{\epsilon}\)</span> 因子，且满足 <span class="math notranslate nohighlight">\(af(\frac{n}{b}) \leqslant cf(n),\ 0 &lt; c &lt; 1\)</span> 。</p>
+<div class="math notranslate nohighlight">
+\[T(n) = \Theta (f(n))\]</div>
+</li>
+</ul>
+<p>例子：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}T(n) = 4T(\frac{n}{2}) + n &amp; \rightarrow &amp;\ \epsilon = 1,\ T(n) = \Theta (n^2) \\
+T(n) = 4T(\frac{n}{2}) + n^2 &amp; \rightarrow &amp;\ k=0,\ T(n) = \Theta (n^2 \log n) \\
+T(n) = 4T(\frac{n}{2}) + n^3 &amp; \rightarrow &amp;\ \epsilon = 1,\ c=\frac{1}{2},\ T(n) = \Theta (n^3)\end{split}\]</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="02_redblackTree.html" class="btn btn-neutral float-right" title="2. 红黑树" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="数理与算法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

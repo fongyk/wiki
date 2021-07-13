@@ -1,0 +1,480 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>24. Python 执行 linux 命令 &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'alpha',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Linux/Shell" href="../linux/index.html" />
+    <link rel="prev" title="23. glob" href="23_glob.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_inplace.html">1. in-place 运算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_all.html">2. __all__ 的使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_is.html">3. is和==</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_decorator.html">4. 装饰器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_iterator.html">5. 迭代器和生成器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_lambda.html">6. lambda用法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_arg.html">7. *args和**kwargs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_basicType.html">8. 基本数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_random.html">9. random</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_normalize.html">10. 归一化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_dataStruct.html">11. 常用数据结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_bool.html">12. 逻辑运算与布尔测试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_name.html">13. 命名规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_classFunc.html">14. 类变量与类方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_memManage.html">15. 内存管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_newInit.html">16. __new__ 和 __init__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_pip.html">17. pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_exception.html">18. 异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_multiprocessing.html">19. multiprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_logging.html">20. logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_pyM.html">21. python -m</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_buildIn.html">22. 内建属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_glob.html">23. glob</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">24. Python 执行 linux 命令</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#os-system">24.1. os.system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#os-popen">24.2. os.popen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#subprocess">24.3. subprocess</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#run">24.3.1. run</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#popen">24.3.2. Popen</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pbs">24.4. pbs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#os">24.5. 附录：os 常用命令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">24.6. 参考资料</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Python</a> &raquo;</li>
+        
+      <li>24. Python 执行 linux 命令</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/python/24_pyLinux.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="python-linux">
+<h1>24. Python 执行 linux 命令<a class="headerlink" href="#python-linux" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="os-system">
+<h2>24.1. os.system<a class="headerlink" href="#os-system" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&quot;cmd&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>返回值是 shell 指令运行后返回的状态码，0 表示 shell 指令成功执行；256 表示未找到。该方法适用于 shell 命令不需要输出内容的场景。</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&quot;pwd&quot;</span><span class="p">)</span>
+<span class="go">/data6/fong/maskrcnn_env/</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&quot;echo </span><span class="se">\&quot;</span><span class="s2">hello world</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="go">hello world</span>
+<span class="go">0</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="os-popen">
+<h2>24.2. os.popen<a class="headerlink" href="#os-popen" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s2">&quot;cmd&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>返回一个类文件对象。当需要得到外部程序的输出结果时，本方法非常有用。调用该对象的 <code class="docutils literal notranslate"><span class="pre">read()/readline()/readlines()</span></code> 方法可以读取输出内容。</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s2">&quot;pwd&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span>
+<span class="go">&lt;os._wrap_close object at 0x7fa0b279ccf8&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="c1">## 读取所有内容，放到一个字符串中</span>
+<span class="go">&#39;/data6/fong/maskrcnn_env\n&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s2">&quot;pwd&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+<span class="go">&#39;/data6/fong/maskrcnn_env\n&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s2">&quot;pwd&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+<span class="go">[&#39;/data6/fong/maskrcnn_env\n&#39;]</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="subprocess">
+<h2>24.3. subprocess<a class="headerlink" href="#subprocess" title="Permalink to this headline">¶</a></h2>
+<p>subprocess 模块允许我们启动一个新进程，并连接到它们的 stdin/stdout/stderr 管道，从而获取返回值。</p>
+<div class="section" id="run">
+<h3>24.3.1. run<a class="headerlink" href="#run" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">stdin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cwd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">universal_newlines</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">args</span></code> ：表示要执行的命令，是一个字符串或参数列表。</li>
+<li><code class="docutils literal notranslate"><span class="pre">stdin/stdout/stderr</span></code> ：子进程的标准输入、输出和错误。其值可以是 <code class="docutils literal notranslate"><span class="pre">subprocess.PIPE</span></code> 、 <code class="docutils literal notranslate"><span class="pre">subprocess.DEVNULL</span></code> 、一个已经存在的文件描述符、已经打开的文件对象或者  <code class="docutils literal notranslate"><span class="pre">None</span></code> 。</li>
+<li><code class="docutils literal notranslate"><span class="pre">shell</span></code> ：如果该参数为 <code class="docutils literal notranslate"><span class="pre">True</span></code> ，将通过操作系统的 shell 执行指定的命令。</li>
+</ul>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">subprocess</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s2">&quot;ls&quot;</span><span class="p">,</span> <span class="s2">&quot;-l&quot;</span><span class="p">,</span> <span class="s2">&quot;./code&quot;</span><span class="p">])</span>
+<span class="go">total 52</span>
+<span class="go">drwxrwxr-x 11 fong fong  4096 3月  13 19:19 Clothes-Detection</span>
+<span class="go">drwxrwxr-x  6 fong fong  4096 3月  13 11:37 DeepFashion2</span>
+<span class="go">drwxrwxr-x  6 fong fong  4096 3月  13 19:23 Deep-Fashion-Analysis-ECCV2018</span>
+<span class="go">drwxrwxr-x  5 fong fong  4096 3月  13 11:43 DeepFashion-retrieval-2019</span>
+<span class="go">drwxrwxr-x  7 fong fong 36864 4月   1 13:20 utils</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span>
+<span class="go">CompletedProcess(args=[&#39;ls&#39;, &#39;-l&#39;, &#39;./code&#39;], returncode=0)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s2">&quot;ls&quot;</span><span class="p">,</span> <span class="s2">&quot;./code&quot;</span><span class="p">],</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span>
+<span class="go">CompletedProcess(args=[&#39;ls&#39;, &#39;./code&#39;], returncode=0, stdout=b&#39;Clothes-Detection\nDeepFashion2\nDeep-Fashion-Analysis-ECCV2018\nDeepFashion-retrieval-2019\nutils\n&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="o">.</span><span class="n">stdout</span>
+<span class="go">b&#39;Clothes-Detection\nDeepFashion2\nDeep-Fashion-Analysis-ECCV2018\nDeepFashion-retrieval-2019\nutils\n&#39;</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="popen">
+<h3>24.3.2. Popen<a class="headerlink" href="#popen" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">bufsize</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">executable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stdin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">preexec_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">close_fds</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cwd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">universal_newlines</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">startupinfo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">creationflags</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">restore_signals</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">start_new_session</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">pass_fds</span><span class="o">=</span><span class="p">(),</span> <span class="o">*</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="s2">&quot;echo 16&quot;</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">STDOUT</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+<span class="go">&lt;class &#39;bytes&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span>
+<span class="go">b&#39;16\n&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">float</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+<span class="go">16.0</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="pbs">
+<h2>24.4. pbs<a class="headerlink" href="#pbs" title="Permalink to this headline">¶</a></h2>
+<p>需要安装 pbs 包（更新后为 sh 包）。</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">sh</span> <span class="kn">as</span> <span class="nn">pbs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pbs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="go">bin    data1  data5  home            lib32       mnt   run   sys  vmlinuz</span>
+<span class="go">boot   data2  data6  initrd.img      lib64       opt   sbin  tmp  vmlinuz.old</span>
+<span class="go">cdrom  data3  dev    initrd.img.old  lost+found  proc  snap  usr</span>
+<span class="go">core   data4  etc    lib             media       root  srv   var</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pbs</span><span class="o">.</span><span class="n">which</span><span class="p">(</span><span class="s2">&quot;python&quot;</span><span class="p">)</span>
+<span class="go">&#39;/home/fong/anaconda3/envs/maskrcnn_benchmark/bin/python&#39;</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="os">
+<h2>24.5. 附录：os 常用命令<a class="headerlink" href="#os" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">os.remove</span></code> 删除文件</li>
+<li><code class="docutils literal notranslate"><span class="pre">os.rename</span></code> 重命名文件</li>
+<li><code class="docutils literal notranslate"><span class="pre">os.walk</span></code> 生成目录树下的所有文件名</li>
+<li><code class="docutils literal notranslate"><span class="pre">os.chdir</span></code> 改变目录</li>
+<li><code class="docutils literal notranslate"><span class="pre">os.mkdir/os.makedirs</span></code> 创建目录/多层目录</li>
+<li><code class="docutils literal notranslate"><span class="pre">os.rmdir/os.removedirs</span></code> 删除目录/多层目录</li>
+<li><code class="docutils literal notranslate"><span class="pre">os.listdir</span></code> 列出指定目录的文件</li>
+<li><code class="docutils literal notranslate"><span class="pre">os.getcwd</span></code> 取得当前工作目录</li>
+<li><code class="docutils literal notranslate"><span class="pre">os.chmod</span></code> 改变目录权限</li>
+<li><code class="docutils literal notranslate"><span class="pre">os.path.basename</span></code> 去掉目录路径，返回文件名</li>
+<li><code class="docutils literal notranslate"><span class="pre">os.path.dirname</span></code> 去掉文件名，返回目录路径</li>
+<li><code class="docutils literal notranslate"><span class="pre">os.path.join</span></code> 将分离的各部分组合成一个路径名</li>
+<li><code class="docutils literal notranslate"><span class="pre">os.path.getsize</span></code> 返回文件大小</li>
+<li><code class="docutils literal notranslate"><span class="pre">os.path.exists</span></code> 是否存在</li>
+<li><code class="docutils literal notranslate"><span class="pre">os.path.isabs</span></code> 是否为绝对路径</li>
+<li><code class="docutils literal notranslate"><span class="pre">os.path.isdir</span></code> 是否为目录</li>
+<li><code class="docutils literal notranslate"><span class="pre">os.path.isfile</span></code> 是否为文件</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>24.6. 参考资料<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>python调用linux命令的方法</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://blog.csdn.net/ZG_24/article/details/80733935">https://blog.csdn.net/ZG_24/article/details/80733935</a></div></blockquote>
+<ol class="arabic simple" start="2">
+<li>subprocess — Subprocess management</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://docs.python.org/3.7/library/subprocess.html">https://docs.python.org/3.7/library/subprocess.html</a></div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Python3 subprocess</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.runoob.com/w3cnote/python3-subprocess.html">https://www.runoob.com/w3cnote/python3-subprocess.html</a></div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../linux/index.html" class="btn btn-neutral float-right" title="Linux/Shell" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="23_glob.html" class="btn btn-neutral float-left" title="23. glob" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

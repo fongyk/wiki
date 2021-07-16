@@ -47,7 +47,7 @@
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Python" href="../python/index.html" />
+    <link rel="next" title="26. lambda 表达式" href="26_lambda.html" />
     <link rel="prev" title="24. 异常" href="24_exception.html" /> 
 </head>
 
@@ -112,7 +112,7 @@
 <li class="toctree-l2"><a class="reference internal" href="08_overload.html">8. 重载、覆盖、隐藏</a></li>
 <li class="toctree-l2"><a class="reference internal" href="09_strcpy.html">9. strcpy函数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="10_cast.html">10. 强制类型转换</a></li>
-<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html">11. 堆、栈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html">11. 堆和栈</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12_argPass.html">12. 参数传递</a></li>
 <li class="toctree-l2"><a class="reference internal" href="13_nullClassPtr.html">13. 空类指针</a></li>
 <li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html">14. static和extern</a></li>
@@ -120,10 +120,10 @@
 <li class="toctree-l2"><a class="reference internal" href="16_staticconst.html">16. 类的static const成员</a></li>
 <li class="toctree-l2"><a class="reference internal" href="17_enumUnion.html">17. 枚举类型与共用体</a></li>
 <li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html">18. 常用函数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用STL类及容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用 STL 容器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
 <li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
-<li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const和constexpr</a></li>
 <li class="toctree-l2"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a></li>
 <li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">25. 命名空间</a><ul>
@@ -144,6 +144,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#id11">25.3. 参考资料</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="26_lambda.html">26. lambda 表达式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="27_singleton.html">27. 单例模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28_vaFunc.html">28. 可变参数函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="29_operatorOverload.html">29. 运算符重载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30_templateSpecialization.html">30. 模板特化</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -343,7 +348,16 @@
 </div>
 <div class="section" id="id7">
 <h3>未命名的命名空间<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
-<p>关键字 <code class="docutils literal notranslate"><span class="pre">namespace</span></code> 紧跟花括号括起来的一系列声明语句。一个未命名的命名空间可以在某个给定的文件内不连续，但是不能跨越多个文件。每个文件定义的未命名的命名空间互不相关。</p>
+<p>未命名的命名空间是由关键字 <code class="docutils literal notranslate"><span class="pre">namespace</span></code> 紧跟花括号括起来的一系列声明语句。</p>
+<p>未命名的命名空间中定义的变量将拥有静态声明周期：它们在第一次使用前创建，并且直到程序结束时才销毁。</p>
+<p>未命名的命名空间可以在某个给定的文件内不连续，但是不能跨越多个文件。每个文件定义自己的未命名的命名空间，如果两个文件都含有未命名的命名空间，则这两个空间互相无关。在这两个未命名的命名空间中可以定义相同的名字，并且这些定义表示不同的实体。</p>
+<p>定义在未命名空间中的名字可以直接使用，不能对未命名空间的成员使用作用域运算符。</p>
+<p>未命名的命名空间中定义的名字的作用域与该命名空间所在的作用域相同。如果未命名的命名空间定义在文件的最外层作用域中，则该命名空间中的名字一定要与全局作用域的名字有所区别，否则将会引起命名冲突。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">在标准 C++ 引入命名空间的概念之前，程序需要将名字声明成 static 以使得其在整个文件有效，在文件之外不可见。
+在文件中进行静态声明的做法已经被 C++ 标准取消了，现在的做法是使用未命名的命名空间。</p>
+</div>
 </div>
 </div>
 <div class="section" id="id8">
@@ -410,6 +424,11 @@
 <div class="section" id="id11">
 <h2>25.3. 参考资料<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
 <p>1.《C++ Primer 第5版 中文版》 Page 695 – 710。</p>
+<ol class="arabic simple" start="2">
+<li>命名空间</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/xiaojianliu/p/12444509.html">https://www.cnblogs.com/xiaojianliu/p/12444509.html</a></div></blockquote>
 </div>
 </div>
 
@@ -421,7 +440,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../python/index.html" class="btn btn-neutral float-right" title="Python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="26_lambda.html" class="btn btn-neutral float-right" title="26. lambda 表达式" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="24_exception.html" class="btn btn-neutral float-left" title="24. 异常" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

@@ -1,0 +1,350 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>13. 大数定律和中心极限定理 &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'alpha',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="计算机网络" href="../computerNetwork/index.html" />
+    <link rel="prev" title="12. 信息熵" href="12_entropy.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">数理与算法</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_complexity.html">1. 算法复杂度与主定理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_redblackTree.html">2. 红黑树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_shortestPath.html">3. 最短路径</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_treeTraversal.html">4. 二叉树遍历</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_game.html">5. 游戏与必胜策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_randomSample.html">6. 蓄水池抽样</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_sort.html">7. 排序算法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_dynamicProgramming.html">8. 动态规划</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_backtrack.html">9. 回溯</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_topoSort.html">10. 拓扑排序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_catalan.html">11. 卡特兰数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_entropy.html">12. 信息熵</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">13. 大数定律和中心极限定理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">13.1. 大数定律</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">表现形式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">弱大数定律</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">强大数定律</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bernoulli">Bernoulli 大数定律</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">13.2. 中心极限定理</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#de-moivre-laplace">棣莫佛－拉普拉斯（de Moivre - Laplace）定理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lindeberg-levy">林德伯格－列维（Lindeberg - Levy）定理</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">13.3. 参考资料</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">数理与算法</a> &raquo;</li>
+        
+      <li>13. 大数定律和中心极限定理</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/mathematicsAlgorithm/13_cltLLN.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>13. 大数定律和中心极限定理<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>13.1. 大数定律<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>大数定律：Law of large numbers。</p>
+<div class="section" id="id3">
+<h3>表现形式<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(X_1, X_2, ...,X_n\)</span> 是独立同分布，期望为 <span class="math notranslate nohighlight">\(\mu\)</span> ，勒贝格可积的随机变量构成的无穷序列（勒贝格可积性意味着期望值存在且有限），有如下收敛性：</p>
+<div class="math notranslate nohighlight">
+\[\overline{X} = \frac{1}{n}(X_1 + X_2 + \cdots + X_n) \rightarrow \mu \quad as \quad n \rightarrow \infty .\]</div>
+</div>
+<div class="section" id="id4">
+<h3>弱大数定律<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>样本均值依概率收敛于期望值。</p>
+<p>对任意正数 <span class="math notranslate nohighlight">\(\mu\)</span> ，</p>
+<div class="math notranslate nohighlight">
+\[\lim_{n \rightarrow \infty} P(|\overline{X} - \mu| &gt; \epsilon) = 0\]</div>
+</div>
+<div class="section" id="id5">
+<h3>强大数定律<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>样本均值以概率 1 收敛于期望值。</p>
+<div class="math notranslate nohighlight">
+\[P(\lim_{n \rightarrow \infty} \overline{X} = \mu) = 1\]</div>
+</div>
+<div class="section" id="bernoulli">
+<h3>Bernoulli 大数定律<a class="headerlink" href="#bernoulli" title="Permalink to this headline">¶</a></h3>
+<p>事件发生的 <strong>频率</strong> 依概率收敛于事件的总体 <strong>概率</strong> 。</p>
+<p>设在 <span class="math notranslate nohighlight">\(n\)</span> 次独立重复 Bernoulli 试验中，事件 <span class="math notranslate nohighlight">\(X\)</span> 发生的次数为 <span class="math notranslate nohighlight">\(n_x\)</span> 。
+事件 <span class="math notranslate nohighlight">\(X\)</span> 在每次试验中发生的总体概率为 <span class="math notranslate nohighlight">\(p\)</span> 。<span class="math notranslate nohighlight">\(\frac{n_x}{n}\)</span> 代表样本发生事件 <span class="math notranslate nohighlight">\(X\)</span> 的频率。</p>
+<p>大数定律可用概率极限值定义：对任意正数 <span class="math notranslate nohighlight">\(\epsilon &gt; 0\)</span> ，下式成立：</p>
+<div class="math notranslate nohighlight">
+\[\lim_{n \rightarrow \infty} P(|\frac{n_x}{n} - p| &lt; \epsilon) = 1\]</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>13.2. 中心极限定理<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>中心极限定理：Central limit theorem。</p>
+<p>在适当的条件下，<strong>大量</strong> 相互 <strong>独立随机变量</strong> 的均值经适当标准化后依分布收敛于正态分布。</p>
+<div class="section" id="de-moivre-laplace">
+<h3>棣莫佛－拉普拉斯（de Moivre - Laplace）定理<a class="headerlink" href="#de-moivre-laplace" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(X \sim B(n, p)\)</span> 是 <span class="math notranslate nohighlight">\(n\)</span> 次 Bernoulli 试验中事件 A 出现的次数（二项分布），每次试验成功的概率为 <span class="math notranslate nohighlight">\(p\)</span> 。</p>
+<p>当 <span class="math notranslate nohighlight">\(n \rightarrow \infty\)</span> ，二项分布的极限为：以 <span class="math notranslate nohighlight">\(np\)</span> 为均值，<span class="math notranslate nohighlight">\(np(1-p)\)</span> 为方差的正态分布。</p>
+</div>
+<div class="section" id="lindeberg-levy">
+<h3>林德伯格－列维（Lindeberg - Levy）定理<a class="headerlink" href="#lindeberg-levy" title="Permalink to this headline">¶</a></h3>
+<p>设随机变量 <span class="math notranslate nohighlight">\(X_1, X_2, ...,X_n\)</span> 独立同分布，且具有有限的数学期望和方差（ <span class="math notranslate nohighlight">\(i= 1,2,...,n\)</span> ）：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}E[X_i] &amp;=&amp;\ \mu \\
+Var[X_i] &amp;=&amp;\ \sigma^2 \neq 0\end{split}\]</div>
+<p>记</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\overline{X} &amp;=&amp;\ \frac{1}{n} \sum_{i=1}^n X_i \\
+\zeta_n &amp;=&amp;\ \frac{\overline{X} - \mu}{\sigma / \sqrt{n}}\end{split}\]</div>
+<p>有</p>
+<div class="math notranslate nohighlight">
+\[\lim_{n \rightarrow \infty} P(\zeta_n \leqslant z) = \Phi(z)\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(\Phi (z)\)</span> 是标准正态分布的分布函数。</p>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>13.3. 参考资料<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>大数定律</li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://zh.wikipedia.org/wiki/%E5%A4%A7%E6%95%B0%E5%AE%9A%E5%BE%8B">https://zh.wikipedia.org/wiki/%E5%A4%A7%E6%95%B0%E5%AE%9A%E5%BE%8B</a></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Law_of_large_numbers">https://en.wikipedia.org/wiki/Law_of_large_numbers</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>中心极限定理</li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%BF%83%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86">https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%BF%83%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86</a></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Central_limit_theorem">https://en.wikipedia.org/wiki/Central_limit_theorem</a></p>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../computerNetwork/index.html" class="btn btn-neutral float-right" title="计算机网络" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="12_entropy.html" class="btn btn-neutral float-left" title="12. 信息熵" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,798 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8. 重载、覆盖、隐藏 &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'alpha',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9. strcpy函数" href="09_strcpy.html" />
+    <link rel="prev" title="7. 指针与引用" href="07_pointerReference.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C/C++</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_main.html">1. main函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_array.html">2. 数组</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_typeSize.html">3. 数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_classSize.html">4. 类的大小</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_swap.html">5. 交换函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_arrayArg.html">6. 数组形参</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_pointerReference.html">7. 指针与引用</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">8. 重载、覆盖、隐藏</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overloading">8.1. 重载（Overloading）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#overriding">8.2. 覆盖（Overriding）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hiding">8.3. 隐藏（Hiding）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">8.4. 例子</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">虚析构函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">析构顺序</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">对象数组的析构</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">8.5. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="09_strcpy.html">9. strcpy函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_cast.html">10. 强制类型转换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html">11. 堆、栈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_argPass.html">12. 参数传递</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_nullClassPtr.html">13. 空类指针</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html">14. static和extern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_classAccess.html">15. public、protected、private</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_staticconst.html">16. 类的static const成员</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_enumUnion.html">17. 枚举类型与共用体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html">18. 常用函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用 STL 容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_lambda.html">26. lambda 表达式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="27_singleton.html">27. 单例模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28_vaFunc.html">28. 可变参数函数</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">C/C++</a> &raquo;</li>
+        
+      <li>8. 重载、覆盖、隐藏</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/cpp/08_overload.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>8. 重载、覆盖、隐藏<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overloading">
+<h2>8.1. 重载（Overloading）<a class="headerlink" href="#overloading" title="Permalink to this headline">¶</a></h2>
+<p>同一可访问区内被声明的几个具有不同参数列表（参数个数，参数类型，参数顺序）的同名函数。不关心函数返回类型。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>函数参数可以有默认值。有默认值的参数必须放在形参表列中的最右端（类似于 python 的键值对参数）。默认值可以是全局变量、全局常量，甚至是函数调用。</p>
+<p>在使用带有默认参数的函数时有两点要注意：</p>
+<ul class="last simple">
+<li>如果函数的定义在函数调用之前，则应在函数定义中给出默认值；如果函数的定义在函数调用之后，则在函数调用之前需要有函数声明，此时必须在函数声明中给出默认值，在函数定义中不给出默认值。</li>
+<li>一个函数不能既作为重载函数，又作为有默认参数的函数。因为当调用函数时如果少写一个参数，系统无法判定是调用重载函数还是调用有默认参数的函数，出现二义性。</li>
+</ul>
+</div>
+</div>
+<div class="section" id="overriding">
+<h2>8.2. 覆盖（Overriding）<a class="headerlink" href="#overriding" title="Permalink to this headline">¶</a></h2>
+<p>基类中被重写的函数，用 <code class="docutils literal notranslate"><span class="pre">virtual</span></code> 修饰。派生类重写的函数与被重写的函数保持同样的 <strong>函数名、参数列表、返回类型</strong> 。</p>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">virtual</span></code> 的同时，配合使用 <code class="docutils literal notranslate"><span class="pre">override</span></code> 关键字来说明派生类中的虚函数。这么做的好处是使得程序员的意图更加清晰（即：希望覆盖基类中的虚函数），同时让编译器发现错误。
+因为只有虚函数才能被覆盖。编译器会检查两个对应函数的声明是否匹配。</p>
+<p>通过把某个函数指定为 <code class="docutils literal notranslate"><span class="pre">final</span></code> ，拒绝对该函数进行覆盖。也在类名后面接 <code class="docutils literal notranslate"><span class="pre">final</span></code> ，以禁止该类被继承。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Base</span>
+<span class="p">{</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="k">const</span> <span class="k">final</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">f1</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">f2</span><span class="p">();</span>
+  <span class="kt">void</span> <span class="nf">f3</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Derived</span><span class="o">:</span> <span class="n">Base</span>
+<span class="p">{</span>
+  <span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span> <span class="c1">// 错误：f 禁止覆盖</span>
+  <span class="kt">void</span> <span class="nf">f1</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span> <span class="c1">// 正确</span>
+  <span class="kt">void</span> <span class="nf">f2</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span> <span class="c1">// 错误：基类中没有形如 f2(int) 的函数</span>
+  <span class="kt">void</span> <span class="nf">f3</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span> <span class="c1">// 错误：f3 不是虚函数</span>
+  <span class="kt">void</span> <span class="nf">f4</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span> <span class="c1">// 错误：基类中没有名为 f4 的函数</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">NoDerived</span> <span class="k">final</span> <span class="p">{</span> <span class="cm">/* */</span> <span class="p">};</span> <span class="c1">// NoDerived 不能作为基类</span>
+</pre></div>
+</td></tr></table></div>
+<dl class="docutils">
+<dt>多态性</dt>
+<dd><p class="first">我们把具有继承关系的多个类型称为多态类型，因为我们能够使用这些类型的“多种形式”而无须在意它们的差异。引用或指针的静态类型与动态类型
+不同，这正是C++支持多态性的根本所在。</p>
+<p>对非虚函数的调用在 <strong>编译时</strong> 进行绑定。类似地，通过 <strong>对象</strong> 本身进行的函数（虚函数或非虚函数）调用也在 <strong>编译时</strong> 绑定。
+因为 <strong>对象</strong> 的类型是确定不变的，通过对象进行的函数调用将在编译时绑定到该对象所属类中的函数版本。</p>
+<p class="last">当且仅当通过 <strong>指针或引用</strong> 调用虚函数时，才在 <strong>运行时</strong> 解析该调用，也只有在这种情况下对象的动态类型才有可能与静态类型不同（ <strong>动态绑定</strong> ）。</p>
+</dd>
+</dl>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Base</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">f</span><span class="p">(){</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;base&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Derived</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Base</span> <span class="c1">// 注意：这里必须为 public 继承</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="kt">void</span> <span class="n">f</span><span class="p">(){</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;derived&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">Derived</span> <span class="n">d</span> <span class="o">=</span> <span class="n">Derived</span><span class="p">();</span> <span class="c1">// 派生类对象</span>
+  <span class="n">Base</span><span class="o">*</span> <span class="n">pb</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">d</span><span class="p">;</span> <span class="c1">// 基类指针</span>
+  <span class="n">pb</span><span class="o">-&gt;</span><span class="n">f</span><span class="p">();</span> <span class="c1">// derived</span>
+
+  <span class="n">Base</span> <span class="n">b</span> <span class="o">=</span> <span class="n">Base</span><span class="p">();</span> <span class="c1">// 基类对象</span>
+  <span class="n">Base</span><span class="o">&amp;</span> <span class="n">rb</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// 基类引用</span>
+  <span class="n">rb</span><span class="p">.</span><span class="n">f</span><span class="p">();</span> <span class="c1">// base</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<dl class="docutils">
+<dt>抽象基类与纯虚函数</dt>
+<dd><ul class="first last simple">
+<li>纯虚函数无须定义（非要定义的话，必须发生在类外部），在该函数的声明语句中（分号之前）加入 <code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">0</span></code> 就可以将一个虚函数声明为纯虚函数。</li>
+<li>含有纯虚函数的类是抽象基类。抽象基类负责声明接口，派生类负责覆盖该接口。如果派生类不给出对应基类中纯虚函数的定义，该派生类也是一个抽象基类。</li>
+<li>不能直接创建抽象基类的对象。</li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>基类中的虚函数在派生类中隐含地也是一个虚函数。当派生类覆盖了某个虚函数时，该函数在基类中的形参必须与派生类中的形参严格匹配。</p>
+<p class="last">我们可以将 <strong>基类的指针或引用</strong> 绑定到派生类的对象上。因此，当我们使用基类指针或引用时，实际上并不清楚该指针或引用所绑定的对象的真实类型。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>构造函数 <strong>不能声明</strong> 为虚函数：一方面，创建一个对象时总要明确指定对象的类型。另一方面，虚函数对应一个指向虚函数表的指针（vptr），在创建对象之前，
+vptr不存在，不可能完成动态绑定。</p>
+<p>析构函数 <strong>可以声明</strong> 为虚函数：当基类指针指向派生类，使用基类指针删除对象时，如果析构函数不定义成虚函数，派生类中派生的部分无法完成析构。</p>
+<p>构造函数 <strong>不要调用</strong> 虚函数。在基类构造的时候，虚函数是非虚，不会走到派生类中，即采用的静态绑定。显然，当我们构造一个子类的对象时，先调用基类的构造函数去构造子类中基类部分，此时子类部分还没有构造、初始化。
+如果在构造中调用虚函数，可能会调用一个还没有被初始化的对象，这是很危险的。</p>
+<p>析构函数 <strong>不要调用</strong> 虚函数。析构的时候，首先调用子类的析构函数，析构掉对象的子类部分，然后调用基类的析构函数析构基类部分。
+如果在基类的析构函数里面调用虚函数，会导致其调用已经析构了的子类对象里面的函数，这是非常危险的。</p>
+<p class="last">总而言之：在运行构造函数或者析构函数时，对象都是不完整的，这种情况下的虚函数调用不会调用到外层派生类的虚函数。</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>error C2243: ‘type cast’ : conversion from ‘Derived *’ to ‘Base *’ exists, but is inaccessible.</p>
+<p class="last">基类的指针和引用不能指向继承方式为 <code class="docutils literal notranslate"><span class="pre">protected</span></code> 与 <code class="docutils literal notranslate"><span class="pre">private</span></code> 的派生类对象，只能通过 <code class="docutils literal notranslate"><span class="pre">public</span></code> 继承。</p>
+</div>
+</div>
+<div class="section" id="hiding">
+<h2>8.3. 隐藏（Hiding）<a class="headerlink" href="#hiding" title="Permalink to this headline">¶</a></h2>
+<p>派生类中的函数屏蔽了基类中的同名函数。
+当参数列表不同时，无论基类中的函数是否被 <code class="docutils literal notranslate"><span class="pre">virtual</span></code> 修饰，基类函数都是被隐藏，而不是被覆盖；
+当参数列表相同，而基类中的函数没有被 <code class="docutils literal notranslate"><span class="pre">virtual</span></code> 修饰，则基类函数也被隐藏。</p>
+<p>通过基类指针调用非虚函数，调用的是基类版本（若基类中没有定义该函数则编译报错）；
+通过派生类指针调用非虚函数，调用的是派生类版本（若派生类中没有定义该函数，则调用的是基类版本）。
+因此，调用非虚函数只与指针类型有关。
+如果基类/派生类调用的非虚函数内部又调用了虚函数，则该虚函数的调用会发生动态绑定。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<dl class="last docutils">
+<dt>C++ 三大特性：</dt>
+<dd><ul class="first last simple">
+<li><strong>封装（Encapsulation）</strong> ：类是支持数据封装的工具，对象是数据封装的实现。在封装中，还提供一种对数据访问的控制机制，使得一些数据被隐藏在封装体内，因此具有隐藏性；封装体与外界进行信息交换是通过操作接口进行的。这种访问控制机制体现在类的成员可以有公有成员（public），私有成员（private），保护成员（protected）。</li>
+<li><strong>继承（Inheritance）</strong> ：一个类可以根据需要生成它的派生类，派生类还可以再生成派生类。派生类继承基类的成员，还可以定义自己的成员。继承是实现抽象和共享的一种机制。</li>
+<li><strong>多态（Polymorphism）</strong> ：一个接口，多种实现。多态性表现在：函数重载、虚函数。</li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>8.4. 例子<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h3>虚析构函数<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>删除一个指向派生类对象的基类指针时，需要虚析构函数。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">A</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="o">~</span><span class="n">A</span><span class="p">();</span>
+<span class="c1">// virtual ~A();</span>
+<span class="p">};</span>
+<span class="n">A</span><span class="o">::~</span><span class="n">A</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;delete A &quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">B</span> <span class="o">:</span> <span class="k">public</span> <span class="n">A</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="o">~</span><span class="n">B</span><span class="p">();</span>
+<span class="p">};</span>
+<span class="n">B</span><span class="o">::~</span><span class="n">B</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;delete B &quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>基类析构函数未加virtual：</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">*</span><span class="n">pa</span> <span class="o">=</span> <span class="k">new</span> <span class="n">B</span><span class="p">();</span>
+<span class="k">delete</span> <span class="n">pa</span><span class="p">;</span>
+<span class="c1">// 输出： delete A</span>
+
+<span class="n">B</span> <span class="o">*</span><span class="n">pb</span> <span class="o">=</span> <span class="k">new</span> <span class="n">B</span><span class="p">();</span>
+<span class="k">delete</span> <span class="n">pb</span><span class="p">;</span>
+<span class="c1">// 输出： delete B delete A</span>
+</pre></div>
+</td></tr></table></div>
+<p>基类析构函数加virtual：</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">*</span><span class="n">pa</span> <span class="o">=</span> <span class="k">new</span> <span class="n">B</span><span class="p">();</span>
+<span class="k">delete</span> <span class="n">pa</span><span class="p">;</span>
+<span class="c1">// 输出： delete B delete A</span>
+
+<span class="n">B</span> <span class="o">*</span><span class="n">pb</span> <span class="o">=</span> <span class="k">new</span> <span class="n">B</span><span class="p">();</span>
+<span class="k">delete</span> <span class="n">pb</span><span class="p">;</span>
+<span class="c1">// 输出： delete B delete A</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id4">
+<h3>析构顺序<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">A</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="n">A</span><span class="p">()</span> <span class="p">{</span>  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;create A&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>  <span class="p">}</span>
+
+  <span class="n">A</span><span class="p">(</span><span class="n">A</span> <span class="o">&amp;</span><span class="n">obj</span><span class="p">)</span> <span class="p">{</span>  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;copy-construct A&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>  <span class="p">}</span>
+
+  <span class="o">~</span><span class="n">A</span><span class="p">()</span> <span class="p">{</span>  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;~A&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">B</span><span class="o">:</span> <span class="k">public</span> <span class="n">A</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="n">B</span><span class="p">(</span><span class="n">A</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">)</span><span class="o">:</span> <span class="n">_a</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">{</span>  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;create B&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>  <span class="p">}</span>
+
+  <span class="o">~</span><span class="n">B</span><span class="p">()</span> <span class="p">{</span>  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;~B&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>  <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+  <span class="n">A</span> <span class="n">_a</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">A</span> <span class="n">a</span><span class="p">;</span>
+
+  <span class="n">B</span> <span class="n">b</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;-----------&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>运行结果:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">create</span> <span class="n">A</span>
+<span class="n">create</span> <span class="n">A</span>
+<span class="n">copy</span><span class="o">-</span><span class="n">construct</span> <span class="n">A</span>
+<span class="n">create</span> <span class="n">B</span>
+<span class="o">-----------</span>
+<span class="o">~</span><span class="n">B</span>
+<span class="o">~</span><span class="n">A</span>
+<span class="o">~</span><span class="n">A</span>
+<span class="o">~</span><span class="n">A</span>
+</pre></div>
+</div>
+<p>创建派生类对象时，调用构造函数的顺序如下:</p>
+<blockquote>
+<div><ul class="simple">
+<li>先是父类的构造函数；（create A）</li>
+<li>然后如果类成员变量中有某类（可能是父类，也可能不是）的对象，调用其相应的构造函数；（create A）</li>
+<li>最后调用派生类自身的构造函数。（copy-construct A, create B）</li>
+</ul>
+</div></blockquote>
+<p>析构函数的调用顺序正好相反。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">A</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="n">A</span><span class="p">()</span>  <span class="p">{</span>  <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;create A&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>   <span class="p">}</span>
+
+  <span class="n">A</span><span class="p">(</span><span class="k">const</span> <span class="n">A</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="p">{</span> <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;copy A&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;}</span> <span class="c1">// 拷贝构造函数</span>
+
+  <span class="o">~</span><span class="n">A</span><span class="p">()</span> <span class="p">{</span>  <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;~A&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>   <span class="p">}</span>
+<span class="p">};</span>
+<span class="k">class</span> <span class="nc">C</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="n">C</span><span class="p">()</span>  <span class="p">{</span>  <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;create C&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>   <span class="p">}</span>
+
+  <span class="n">C</span><span class="p">(</span><span class="k">const</span> <span class="n">A</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="p">{</span> <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;copy C&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;}</span> <span class="c1">// 拷贝构造函数</span>
+
+  <span class="o">~</span><span class="n">C</span><span class="p">()</span> <span class="p">{</span>  <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;~C&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>   <span class="p">}</span>
+<span class="p">};</span>
+<span class="k">class</span> <span class="nc">B</span><span class="o">:</span><span class="k">public</span> <span class="n">A</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="n">B</span><span class="p">()</span> <span class="p">{</span>  <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;create B&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>  <span class="p">}</span>
+
+  <span class="o">~</span><span class="n">B</span><span class="p">()</span> <span class="p">{</span>  <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;~B&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>  <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+  <span class="n">C</span> <span class="n">_c</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">B</span> <span class="n">b</span><span class="p">;</span>
+  <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;-----------&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>运行结果:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">create</span> <span class="n">A</span>
+<span class="n">create</span> <span class="n">C</span>
+<span class="n">create</span> <span class="n">B</span>
+<span class="o">-----------</span>
+<span class="o">~</span><span class="n">B</span>
+<span class="o">~</span><span class="n">C</span>
+<span class="o">~</span><span class="n">A</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>对象数组的析构<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>数组的多态会导致未定义的行为，不管析构函数是否声明为虚函数。所以在对数组元素执行析构时，还是要用 <strong>派生类的指针</strong> 来 delete 。</p>
+<p>参考：<a class="reference external" href="https://www.nowcoder.com/profile/3704231/myFollowings/detail/8528425">https://www.nowcoder.com/profile/3704231/myFollowings/detail/8528425</a>。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">A</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="n">A</span><span class="p">()</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;A&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">ends</span><span class="p">;</span> <span class="p">}</span>
+  <span class="o">~</span><span class="n">A</span><span class="p">()</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;~A&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">ends</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+<span class="k">class</span> <span class="nc">B</span><span class="o">:</span><span class="k">public</span> <span class="n">A</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="n">B</span><span class="p">()</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;B&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">ends</span><span class="p">;</span> <span class="p">}</span>
+  <span class="o">~</span><span class="n">B</span><span class="p">()</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;~B&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">ends</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">A</span> <span class="o">*</span><span class="n">arrA</span> <span class="o">=</span> <span class="k">new</span> <span class="n">B</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+  <span class="k">delete</span> <span class="p">[]</span> <span class="n">arrA</span><span class="p">;</span>
+  <span class="c1">// 输出： A B A B ~A ~A</span>
+
+  <span class="n">B</span> <span class="o">*</span><span class="n">arrB</span> <span class="o">=</span> <span class="k">new</span> <span class="n">B</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+  <span class="k">delete</span> <span class="p">[]</span> <span class="n">arrB</span><span class="p">;</span>
+  <span class="c1">// 输出： A B A B ~B ~A ~B ~A</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">直接定义类的指针（不使用 new）和引用并不会调用构造函数。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>8.5. 参考资料<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>C++中重载、重写（覆盖）和隐藏的区别</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://blog.csdn.net/zx3517288/article/details/48976097">https://blog.csdn.net/zx3517288/article/details/48976097</a></div></blockquote>
+<ol class="arabic simple" start="2">
+<li>《C++ Primer 第5版 中文版》 Page 538 – 540。</li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="09_strcpy.html" class="btn btn-neutral float-right" title="9. strcpy函数" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="07_pointerReference.html" class="btn btn-neutral float-left" title="7. 指针与引用" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

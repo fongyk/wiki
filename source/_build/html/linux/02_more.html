@@ -1,0 +1,545 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. 更多指令 &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'alpha',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. 权限管理" href="03_authority.html" />
+    <link rel="prev" title="1. 基本命令" href="01_basic.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Linux/Shell</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_basic.html">1. 基本命令</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2. 更多指令</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#debianpms">2.1. Debian系PMS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dpkg">dpkg</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#apt-get">apt-get</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#apt-cache">apt-cache</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#aptitude">aptitude</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tee">2.2. tee</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2.3. 查找</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#alias">2.4. alias</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ln">2.5. ln</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.6. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="03_authority.html">3. 权限管理</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Linux/Shell</a> &raquo;</li>
+        
+      <li>2. 更多指令</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/linux/02_more.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>2. 更多指令<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="debianpms">
+<h2>2.1. Debian系PMS<a class="headerlink" href="#debianpms" title="Permalink to this headline">¶</a></h2>
+<p><strong>PMS</strong> : Package Management System，包管理系统。主要介绍：</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>dpkg</strong></li>
+<li><strong>apt-get</strong></li>
+<li><strong>apt-cache</strong></li>
+<li><strong>aptitude</strong></li>
+</ul>
+</div></blockquote>
+<div class="section" id="dpkg">
+<h3>dpkg<a class="headerlink" href="#dpkg" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>dpkg -L package_name：列出软件包所安装的所有文件</li>
+<li>dpkg -S absolute_file_name：查找特定的某个文件属于哪个软件包（使用绝对路径）</li>
+</ul>
+</div>
+<div class="section" id="apt-get">
+<h3>apt-get<a class="headerlink" href="#apt-get" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>apt-get install package_name：安装一个新软件包</li>
+<li>apt-get remove package_name：卸载一个已安装的软件包（保留配置文件）</li>
+<li>apt-get –purge remove package_name：卸载一个已安装的软件包（删除配置文件）</li>
+<li>apt-get clean：删除安装的软件的备份，不过不影响软件的使用。</li>
+<li>apt-get update：更新 <strong>软件包列表</strong></li>
+<li>apt-get upgrade：升级所有已安装的 <strong>软件包</strong> （upgrade之前先update，确保升级的是最新版本）</li>
+</ul>
+</div>
+<div class="section" id="apt-cache">
+<h3>apt-cache<a class="headerlink" href="#apt-cache" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>apt-cache showpkg package_name：显示软件包信息</li>
+<li>apt-cache policy package_name：显示软件包是否已经安装、版本号等</li>
+</ul>
+</div>
+<div class="section" id="aptitude">
+<h3>aptitude<a class="headerlink" href="#aptitude" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>aptitude install package_name：安装软件包</li>
+<li>aptitude remove package_name：删除软件包</li>
+<li>aptitude purge package_name：删除软件包及其配置文件</li>
+<li>aptitude search package_name：搜索软件包</li>
+<li>aptitude show package_name：显示软件包的详细信息</li>
+<li>aptitude clean：删除下载的软件包文件</li>
+<li>aptitude autoclean：仅删除过期的软件包文件</li>
+<li>aptitude update：更新可用的软件包列表</li>
+<li>aptitude upgrade：升级可用的软件包</li>
+</ul>
+</div>
+</div>
+<div class="section" id="tee">
+<h2>2.2. tee<a class="headerlink" href="#tee" title="Permalink to this headline">¶</a></h2>
+<p>读取标准输入的数据，并将其内容输出成文件。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tee <span class="o">[</span>-ai<span class="o">]</span> <span class="o">[</span>--help<span class="o">]</span> <span class="o">[</span>--version<span class="o">]</span> <span class="o">[</span>file ...<span class="o">]</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>参数</dt>
+<dd><ul class="first last simple">
+<li>-a或- -append：追加到既有文件</li>
+<li>-i或- -ignore-interrupts：忽略中断信号</li>
+<li>- -help：帮助</li>
+<li>- -version：版本信息</li>
+</ul>
+</dd>
+</dl>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Example}\)</span></div>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">## 将用户输入的数据同时保存到 out1 out2</span>
+$ tee out1 out2
+a b c d e f g <span class="c1"># 输入</span>
+a b c d e f g <span class="c1"># 反馈</span>
+^C            <span class="c1"># 结束输入</span>
+$ cat out1
+a b c d e f g
+$ cat out2
+a b c d e f g
+
+<span class="c1">## 管道：将屏幕的输出保存到文件</span>
+$ <span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span> <span class="p">|</span> tee out
+hello world
+$ cat out
+hello world
+
+<span class="c1">## 把python程序打印到屏幕的内容保存到文件</span>
+$ python test.py <span class="p">|</span> tee out
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>2.3. 查找<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p><strong>which</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>which <span class="o">[</span>可执行文件...<span class="o">]</span>
+</pre></div>
+</div>
+<p>在PATH变量指定的路径中，搜索某个系统命令的位置，并且返回第一个搜索结果。</p>
+<p><strong>whereis</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>whereis <span class="o">[</span>-bmsu<span class="o">]</span> <span class="o">[</span>-BMS -f 目录...<span class="o">]</span> <span class="o">[</span>文件...<span class="o">]</span>
+</pre></div>
+</div>
+<p>只能用于程序名的搜索，而且只搜索二进制文件（-b）、帮助说明文件（-m）和源代码文件（-s）。如果省略参数，则返回所有信息。
+参数：</p>
+<blockquote>
+<div><ul class="simple">
+<li>-b：定位可执行文件。</li>
+<li>-m：定位帮助文件。</li>
+<li>-s：定位源代码文件。</li>
+<li>-u：搜索默认路径下除可执行文件、源代码文件、帮助文件以外的其它文件。</li>
+<li>-B：指定搜索可执行文件的路径。</li>
+<li>-M：指定搜索帮助文件的路径。</li>
+<li>-S：指定搜索源代码文件的路径。</li>
+</ul>
+</div></blockquote>
+<p><strong>locate</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>locate <span class="o">[</span>-d<span class="o">]</span> <span class="o">[</span>--help<span class="o">]</span> <span class="o">[</span>--version<span class="o">]</span> <span class="o">[</span>范本样式...<span class="o">]</span>
+</pre></div>
+</div>
+<p>配合数据库查找文件位置。参数：</p>
+<blockquote>
+<div><ul class="simple">
+<li>-d：配置locate指令使用的数据库。locate指令预设的数据库位于/var/lib/slocate目录里，文档名为slocate.db。</li>
+</ul>
+</div></blockquote>
+<p><strong>find</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find pathname -options <span class="o">[</span>-print -exec -ok ...<span class="o">]</span>
+</pre></div>
+</div>
+<p>find是在硬盘文件树查找。参数：</p>
+<blockquote>
+<div><ul class="simple">
+<li>pathname：查找的目录。例如用 . 来表示当前目录，用 / 来表示系统根目录。</li>
+<li>-name：按照文件名查找文件。</li>
+<li>-print：将匹配的文件输出到标准输出。也可以使用 <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> 或  <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> （追加）写到文件。</li>
+<li>-exec：对匹配的文件执行该参数所给出的shell命令。相应命令的形式为 <code class="docutils literal notranslate"><span class="pre">'command'</span> <span class="pre">{}</span> <span class="pre">\;</span></code> ，注意 <code class="docutils literal notranslate"><span class="pre">{}</span></code> 和 <code class="docutils literal notranslate"><span class="pre">\;</span></code> 之间的空格。</li>
+<li>-ok：和-exec的作用相同，只不过以一种更为安全的模式来执行该参数所给出的shell命令，在执行每一个命令之前，都会给出提示，让用户来确定是否执行。</li>
+</ul>
+</div></blockquote>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Example}\)</span></div>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ which python
+/usr/bin/python
+
+$ whereis -s -S /usr/lib -f python
+python: /usr/lib/python3.5 /usr/lib/python2.7
+
+$ locate /usr/bin/pytho <span class="c1">## 以 pytho 开头的文件</span>
+/usr/bin/python
+/usr/bin/python-config
+/usr/bin/python2
+...
+
+<span class="c1">## 查找 /var/log 中扩展名为 .tmp 的文件，并在删除之前询问用户 （y/n）</span>
+$ find /var/log -name <span class="s2">&quot;*.tmp&quot;</span> -ok rm <span class="o">{}</span> <span class="se">\;</span>
+&lt; rm ... ./t.tmp &gt; ? y
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="alias">
+<h2>2.4. alias<a class="headerlink" href="#alias" title="Permalink to this headline">¶</a></h2>
+<p>alias 命令用来设置指令的别名；我们可以使用该命令可以将一些较长的命令进行简化。
+使用 alias 时，用户必须使用引号将原来的命令引起来，防止特殊字符导致错误。</p>
+<p>alias 命令的作用只局限于该次登入的操作，可以写入 <cite>~/.bashrc</cite> 中。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">alias</span> 新的命令<span class="o">=</span><span class="s1">&#39;原命令 -选项/参数&#39;</span>
+</pre></div>
+</div>
+<p>如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">alias</span> <span class="nv">ll</span><span class="o">=</span><span class="s1">&#39;ls -lsh&#39;</span>
+</pre></div>
+</div>
+<p>删除：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">unalias</span> ll
+</pre></div>
+</div>
+</div>
+<div class="section" id="ln">
+<h2>2.5. ln<a class="headerlink" href="#ln" title="Permalink to this headline">¶</a></h2>
+<p>ln 命令的功能是为某一个文件/目录在另外一个位置建立一个同步的链接，不重复占用磁盘空间。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ln <span class="o">[</span>参数<span class="o">][</span>源文件或目录<span class="o">][</span>目标文件或目录<span class="o">]</span>
+</pre></div>
+</div>
+<p>目标文件或目录就是新建立的链接。使用 <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-F</span></code> 指令查看后缀为 <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> 的文件就是 ln 建立的文件， <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code> 指令可以查看具体的链接路径。</p>
+<p>参数：</p>
+<ul class="simple">
+<li>-b：删除，覆盖以前建立的链接。</li>
+<li>-d：允许超级用户制作目录的硬链接。</li>
+<li>-f：强制执行。</li>
+<li>-i：交互模式，文件存在则提示用户是否覆盖。</li>
+<li>-n：把符号链接视为一般目录。</li>
+<li>-s：软链接（符号链接 symbolic）。</li>
+<li>-v：显示详细的处理过程。</li>
+</ul>
+<p><strong>软链接</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>软链接以路径的形式存在，类似于 Windows 操作系统中的快捷方式。</li>
+<li>软链接可以跨文件系统。</li>
+<li>软链接可以对一个不存在的文件名进行链接。</li>
+<li>软链接可以对目录进行链接。</li>
+</ul>
+</div></blockquote>
+<p><strong>硬链接</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>硬链接以文件副本的形式存在，但不占用实际空间。</li>
+<li>不允许给目录创建硬链接。</li>
+<li>硬链接只有在同一个文件系统中才能创建。</li>
+</ul>
+</div></blockquote>
+<p>例：将 python 软链接到 python3.5，则执行 python 指令使用的是 python3.5 版本。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo ln -s /usr/bin/python3.5 /usr/bin/python
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>2.6. 参考资料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>runoob.com</li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://www.runoob.com/linux/linux-comm-tee.html">https://www.runoob.com/linux/linux-comm-tee.html</a></p>
+<p><a class="reference external" href="https://www.runoob.com/linux/linux-comm-find.html">https://www.runoob.com/linux/linux-comm-find.html</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>每天一个linux命令目录</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="http://www.cnblogs.com/peida/archive/2012/12/05/2803591.html">http://www.cnblogs.com/peida/archive/2012/12/05/2803591.html</a></div></blockquote>
+<ol class="arabic simple" start="3">
+<li>aptitude和apt-get的区别和联系【转，有添加和修改】</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://blog.csdn.net/u010670794/article/details/42520209">https://blog.csdn.net/u010670794/article/details/42520209</a></div></blockquote>
+<ol class="arabic simple" start="4">
+<li>apt-get update与upgrade的区别</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.jianshu.com/p/42a1850bdcf6">https://www.jianshu.com/p/42a1850bdcf6</a></div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="03_authority.html" class="btn btn-neutral float-right" title="3. 权限管理" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="01_basic.html" class="btn btn-neutral float-left" title="1. 基本命令" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

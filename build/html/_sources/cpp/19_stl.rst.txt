@@ -643,6 +643,81 @@ string 是 ``basic_string<char, std::char_traits<char>, std::allocator<char>>`` 
     size_t find (char c, size_t pos = 0) const noexcept;
 
 
+string 类的一个简明实现：
+
+.. container:: toggle
+
+  .. container:: header
+
+    :math:`\color{darkgreen}{Code}`
+
+  .. code-block:: cpp
+    :linenos:
+
+    #include<iostream>
+    #include<cstring>
+    #include<utility>
+
+    class String
+    {
+    public:
+        String(): _data(new char[1]){}
+        String(const char* cs): _data(new char[1 + strlen(cs)])
+        {
+            strcpy(_data, cs); // strcpy: 目标字符串需要预先申请足够的空间以容纳源字符串
+        }
+        String(const String& s): _data(new char[1 + s.size()])
+        {
+            strcpy(_data, s.c_str());
+        }
+        String(String&& s): _data(s._data)
+        {
+            s._data = nullptr;
+        }
+        String& operator=(String rhs) // 传值参数
+        {
+            std::swap(_data, rhs._data);
+            return *this;
+        }
+        ~String()
+        {
+            delete[] _data;
+        }
+        size_t size() const // const 成员函数
+        {
+            return strlen(_data);
+        }
+        const char* c_str() const // const 成员函数
+        {
+            return _data;
+        }
+        
+        friend std::ostream& operator<<(std::ostream& out, const String& s);
+    private:
+        char* _data;
+    };
+
+    std::ostream& operator<<(std::ostream& out, const String& s)
+    {
+        out << s._data;
+        return out;
+    }
+
+    int main()
+    {
+        String a; // 默认构造
+        String b("abcddf"); // const char* 参数构造
+        String c(b); // 拷贝构造
+        a = b; // 赋值运算
+        String d(std::move(b)); // 移动构造
+        return 0;
+    }
+
+.. note::
+
+  ``char* data = new char[10]`` 将数组的所有元素都初始化为 ``\0`` 。
+
+
 to\_string函数
 --------------------
 
@@ -837,3 +912,7 @@ VS 64位编译器
   http://c.biancheng.net/view/338.html
 
   http://c.biancheng.net/view/6675.html
+
+7. C++面试中string类的一种正确简明的写法
+
+  https://www.cnblogs.com/Solstice/p/3362913.html

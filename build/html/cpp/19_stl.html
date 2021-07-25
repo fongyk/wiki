@@ -916,6 +916,132 @@ They are implemented as class templates, which allows a great flexibility in the
 </div>
 </li>
 </ul>
+<p>string 类的一个简明实现：</p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;cstring&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;utility&gt;</span><span class="cp"></span>
+
+<span class="k">class</span> <span class="nc">String</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">String</span><span class="p">()</span><span class="o">:</span> <span class="n">_data</span><span class="p">(</span><span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="mi">1</span><span class="p">]){}</span>
+    <span class="n">String</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">cs</span><span class="p">)</span><span class="o">:</span> <span class="n">_data</span><span class="p">(</span><span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="mi">1</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="n">cs</span><span class="p">)])</span>
+    <span class="p">{</span>
+        <span class="n">strcpy</span><span class="p">(</span><span class="n">_data</span><span class="p">,</span> <span class="n">cs</span><span class="p">);</span> <span class="c1">// strcpy: 目标字符串需要预先申请足够的空间以容纳源字符串</span>
+    <span class="p">}</span>
+    <span class="n">String</span><span class="p">(</span><span class="k">const</span> <span class="n">String</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">)</span><span class="o">:</span> <span class="n">_data</span><span class="p">(</span><span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="mi">1</span> <span class="o">+</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">()])</span>
+    <span class="p">{</span>
+        <span class="n">strcpy</span><span class="p">(</span><span class="n">_data</span><span class="p">,</span> <span class="n">s</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+    <span class="p">}</span>
+    <span class="n">String</span><span class="p">(</span><span class="n">String</span><span class="o">&amp;&amp;</span> <span class="n">s</span><span class="p">)</span><span class="o">:</span> <span class="n">_data</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">_data</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">s</span><span class="p">.</span><span class="n">_data</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">String</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">String</span> <span class="n">rhs</span><span class="p">)</span> <span class="c1">// 传值参数</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="n">_data</span><span class="p">,</span> <span class="n">rhs</span><span class="p">.</span><span class="n">_data</span><span class="p">);</span>
+        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="o">~</span><span class="n">String</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">delete</span><span class="p">[]</span> <span class="n">_data</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">size_t</span> <span class="n">size</span><span class="p">()</span> <span class="k">const</span> <span class="c1">// const 成员函数</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">strlen</span><span class="p">(</span><span class="n">_data</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">c_str</span><span class="p">()</span> <span class="k">const</span> <span class="c1">// const 成员函数</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">_data</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">friend</span> <span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="n">out</span><span class="p">,</span> <span class="k">const</span> <span class="n">String</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">);</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="kt">char</span><span class="o">*</span> <span class="n">_data</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="n">out</span><span class="p">,</span> <span class="k">const</span> <span class="n">String</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="n">s</span><span class="p">.</span><span class="n">_data</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">out</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">String</span> <span class="n">a</span><span class="p">;</span> <span class="c1">// 默认构造</span>
+    <span class="n">String</span> <span class="nf">b</span><span class="p">(</span><span class="s">&quot;abcddf&quot;</span><span class="p">);</span> <span class="c1">// const char* 参数构造</span>
+    <span class="n">String</span> <span class="nf">c</span><span class="p">(</span><span class="n">b</span><span class="p">);</span> <span class="c1">// 拷贝构造</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// 赋值运算</span>
+    <span class="n">String</span> <span class="nf">d</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">b</span><span class="p">));</span> <span class="c1">// 移动构造</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><code class="docutils literal notranslate"><span class="pre">char*</span> <span class="pre">data</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">char[10]</span></code> 将数组的所有元素都初始化为 <code class="docutils literal notranslate"><span class="pre">\0</span></code> 。</p>
+</div>
 </div>
 <div class="section" id="to-string">
 <h2>19.12. to_string函数<a class="headerlink" href="#to-string" title="Permalink to this headline">¶</a></h2>
@@ -1115,6 +1241,11 @@ size_t 是通过 typedef 定义的一些 <strong>无符号整型</strong> 的别
 <div><p><a class="reference external" href="http://c.biancheng.net/view/338.html">http://c.biancheng.net/view/338.html</a></p>
 <p><a class="reference external" href="http://c.biancheng.net/view/6675.html">http://c.biancheng.net/view/6675.html</a></p>
 </div></blockquote>
+<ol class="arabic simple" start="7">
+<li>C++面试中string类的一种正确简明的写法</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.cnblogs.com/Solstice/p/3362913.html">https://www.cnblogs.com/Solstice/p/3362913.html</a></div></blockquote>
 </div>
 </div>
 

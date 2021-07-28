@@ -190,10 +190,92 @@ explicit
   }
 
 
+initializer_list
+-------------------------
+
+::
+
+  #include <initializer_list>
+
+``initializer_list<T>`` 类的对象是一个访问 ``const T`` 类型对象数组的轻量代理对象。
+
+以下场景会发生 initializer_list 对象的自动构造：
+
+- 用花括号列表初始化一个对象（列表初始化），对应的构造函数接受一个 initializer_list 参数。
+
+- 以花括号列表为赋值运算符的右运算数，或作为函数调用的参数，而对应的赋值运算符/函数接受 initializer_list 参数。
+
+- 绑定花括号列表到 ``auto`` ，在范围 for 循环（Range For Loop）中使用。
+
+initializer_list 可由一对指针（分别指向列表首、尾）或指针+长度实现，
+复制一个 initializer_list 不会复制其底层对象。
+
+成员函数包括： ``size`` ``begin`` ``end`` 。
+
+.. code-block:: cpp
+  :linenos:
+
+  #include <iostream>
+  #include <vector>
+  #include <initializer_list>
+  using namespace std;
+
+  template<typename T>
+  class Vec
+  {
+  public:
+      vector<T> v;
+      Vec(initializer_list<T>);
+      void append(initializer_list<T>);
+      pair<const T*, size_t> c_arr() const;
+  };
+
+  template<typename T>
+  Vec<T>::Vec(initializer_list<T> lt): v(lt){}
+
+  template<typename T>
+  void Vec<T>::append(initializer_list<T> lt)
+  {
+      v.insert(v.end(), lt.begin(), lt.end());
+  }
+
+  template<typename T>
+  pair<const T*, size_t> Vec<T>::c_arr() const
+  {
+      return {&v[0], v.size()};
+  }
+
+  template<class T>
+  void print(T val_list)
+  {
+      for(auto& val: val_list) cout << val << "#"; // range for loop
+      cout << endl;
+  }
+
+  int main()
+  {
+      Vec<int> va = {1,2,3}; //  拷贝初始化
+      va.append({4,5});
+      
+      print(va.v); // 1#2#3#4#5#
+      
+      auto p = va.c_arr();
+      cout << *p.first << " " << p.second << endl; // 1 5
+      
+      // print({1,2,3,4,5}); // 编译错误，{1,2,3,4,5} 不是表达式，无类型，因此 T 无法推导
+      print<vector<int>>({1,2,3,4,5}); // 1#2#3#4#5#
+      print<initializer_list<int>>({1,2,3,4,5}); // 1#2#3#4#5#
+      
+      for(auto n: {1,2,3,4,5}) cout << n << ends;
+      
+      return 0;
+  }
+
+
 push 和 emplace
 ---------------------------
 
-在18章提到了 push 和 emplace 的区别，这里用一个例子解释。
+在 19 章提到了 push 和 emplace 的区别，这里用一个例子解释。
 
 .. container:: toggle
 
@@ -302,3 +384,7 @@ push 和 emplace
 4. explicit 说明符
 
   https://zh.cppreference.com/w/cpp/language/explicit
+
+5. initializer_list
+
+  https://en.cppreference.com/w/cpp/utility/initializer_list

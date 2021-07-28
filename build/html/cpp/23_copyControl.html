@@ -112,7 +112,7 @@
 <li class="toctree-l2"><a class="reference internal" href="08_overload.html">8. 重载、覆盖、隐藏</a></li>
 <li class="toctree-l2"><a class="reference internal" href="09_strcpy.html">9. strcpy函数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="10_cast.html">10. 强制类型转换</a></li>
-<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html">11. 堆、栈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html">11. 堆和栈</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12_argPass.html">12. 参数传递</a></li>
 <li class="toctree-l2"><a class="reference internal" href="13_nullClassPtr.html">13. 空类指针</a></li>
 <li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html">14. static和extern</a></li>
@@ -129,8 +129,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#default-delete">23.2. default 和 delete</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">23.3. 直接初始化和拷贝初始化</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#explicit">23.4. explicit</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#push-emplace">23.5. push 和 emplace</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">23.6. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#initializer-list">23.5. initializer_list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#push-emplace">23.6. push 和 emplace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">23.7. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
@@ -138,6 +139,8 @@
 <li class="toctree-l2"><a class="reference internal" href="26_lambda.html">26. lambda 表达式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="27_singleton.html">27. 单例模式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="28_vaFunc.html">28. 可变参数函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="29_operatorOverload.html">29. 运算符重载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30_templateSpecialization.html">30. 模板特化</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -450,9 +453,136 @@
 </pre></div>
 </td></tr></table></div>
 </div>
+<div class="section" id="initializer-list">
+<h2>23.5. initializer_list<a class="headerlink" href="#initializer-list" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;initializer_list&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">initializer_list&lt;T&gt;</span></code> 类的对象是一个访问 <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">T</span></code> 类型对象数组的轻量代理对象。</p>
+<p>以下场景会发生 initializer_list 对象的自动构造：</p>
+<ul class="simple">
+<li>用花括号列表初始化一个对象（列表初始化），对应的构造函数接受一个 initializer_list 参数。</li>
+<li>以花括号列表为赋值运算符的右运算数，或作为函数调用的参数，而对应的赋值运算符/函数接受 initializer_list 参数。</li>
+<li>绑定花括号列表到 <code class="docutils literal notranslate"><span class="pre">auto</span></code> ，在范围 for 循环（Range For Loop）中使用。</li>
+</ul>
+<p>initializer_list 可由一对指针（分别指向列表首、尾）或指针+长度实现，
+复制一个 initializer_list 不会复制其底层对象。</p>
+<p>成员函数包括： <code class="docutils literal notranslate"><span class="pre">size</span></code> <code class="docutils literal notranslate"><span class="pre">begin</span></code> <code class="docutils literal notranslate"><span class="pre">end</span></code> 。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;initializer_list&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Vec</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">;</span>
+    <span class="n">Vec</span><span class="p">(</span><span class="n">initializer_list</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="nf">append</span><span class="p">(</span><span class="n">initializer_list</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">);</span>
+    <span class="n">pair</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">T</span><span class="o">*</span><span class="p">,</span> <span class="kt">size_t</span><span class="o">&gt;</span> <span class="n">c_arr</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">Vec</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">Vec</span><span class="p">(</span><span class="n">initializer_list</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">lt</span><span class="p">)</span><span class="o">:</span> <span class="n">v</span><span class="p">(</span><span class="n">lt</span><span class="p">){}</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">append</span><span class="p">(</span><span class="n">initializer_list</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">lt</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">v</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">lt</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">lt</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">pair</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">T</span><span class="o">*</span><span class="p">,</span> <span class="kt">size_t</span><span class="o">&gt;</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">c_arr</span><span class="p">()</span> <span class="k">const</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span><span class="o">&amp;</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">()};</span>
+<span class="p">}</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">print</span><span class="p">(</span><span class="n">T</span> <span class="n">val_list</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="nl">val</span><span class="p">:</span> <span class="n">val_list</span><span class="p">)</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">val</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;#&quot;</span><span class="p">;</span> <span class="c1">// range for loop</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Vec</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">va</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">};</span> <span class="c1">//  拷贝初始化</span>
+    <span class="n">va</span><span class="p">.</span><span class="n">append</span><span class="p">({</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">});</span>
+
+    <span class="n">print</span><span class="p">(</span><span class="n">va</span><span class="p">.</span><span class="n">v</span><span class="p">);</span> <span class="c1">// 1#2#3#4#5#</span>
+
+    <span class="k">auto</span> <span class="n">p</span> <span class="o">=</span> <span class="n">va</span><span class="p">.</span><span class="n">c_arr</span><span class="p">();</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p</span><span class="p">.</span><span class="n">first</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">.</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 1 5</span>
+
+    <span class="c1">// print({1,2,3,4,5}); // 编译错误，{1,2,3,4,5} 不是表达式，无类型，因此 T 无法推导</span>
+    <span class="n">print</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">});</span> <span class="c1">// 1#2#3#4#5#</span>
+    <span class="n">print</span><span class="o">&lt;</span><span class="n">initializer_list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">});</span> <span class="c1">// 1#2#3#4#5#</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">n</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">})</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="n">ends</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
 <div class="section" id="push-emplace">
-<h2>23.5. push 和 emplace<a class="headerlink" href="#push-emplace" title="Permalink to this headline">¶</a></h2>
-<p>在18章提到了 push 和 emplace 的区别，这里用一个例子解释。</p>
+<h2>23.6. push 和 emplace<a class="headerlink" href="#push-emplace" title="Permalink to this headline">¶</a></h2>
+<p>在 19 章提到了 push 和 emplace 的区别，这里用一个例子解释。</p>
 <div class="toggle docutils container">
 <div class="header docutils container">
 <span class="math notranslate nohighlight">\(\color{darkgreen}{Example}\)</span></div>
@@ -609,7 +739,7 @@
 </div>
 </div>
 <div class="section" id="id4">
-<h2>23.6. 参考资料<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2>23.7. 参考资料<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>1.《C++ Primer 第5版 中文版》 Page 440 – 442，449，470 – 475。</p>
 <ol class="arabic simple" start="2">
 <li>C++的一大误区——深入解释直接初始化与复制初始化的区别</li>
@@ -626,6 +756,11 @@
 </ol>
 <blockquote>
 <div><a class="reference external" href="https://zh.cppreference.com/w/cpp/language/explicit">https://zh.cppreference.com/w/cpp/language/explicit</a></div></blockquote>
+<ol class="arabic simple" start="5">
+<li>initializer_list</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://en.cppreference.com/w/cpp/utility/initializer_list">https://en.cppreference.com/w/cpp/utility/initializer_list</a></div></blockquote>
 </div>
 </div>
 

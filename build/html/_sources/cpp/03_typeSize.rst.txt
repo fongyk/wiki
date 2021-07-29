@@ -93,6 +93,7 @@ float和double
   :emphasize-lines: 17 - 20, 22
 
   #include <iostream>
+  #include <iomanip> // std::setprecision
   using namespace std;
 
   int main(int argc, char ** argv)
@@ -119,6 +120,16 @@ float和double
     cout << (i == static_cast<int>(f_f)) << endl; // false
     cout << (i == static_cast<int>(f_d)) << endl; // false
     cout << (i == static_cast<int>(d_d)) << endl; // true （只有double转换到int的结果与 i 一致）
+
+    float f_a = 0.1000001;
+    float f_a2 = f_a * f_a; // 0.1000001^2 = 0.01000002000001
+    cout << setprecision(7) << f_a2 << endl; // 0.01000002
+    cout << setprecision(15) << f_a2 << endl; // 0.0100000193342566
+    
+    double d_a = 0.1000001;
+    double d_a2 = d_a * d_a; // 0.1000001^2 = 0.01000002000001
+    cout << setprecision(7) << d_a2 << endl; // 0.01000002
+    cout << setprecision(15) << d_a2 << endl; // 0.01000002000001
 
     return 0;
   }

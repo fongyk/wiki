@@ -66,6 +66,7 @@
 
   cat -n log.txt
   tail log.txt
+  tail -f log.txt ## 追踪、动态打印
   head -5 log.txt
 
   wc file -c -w -l
@@ -100,6 +101,16 @@
   tar -cvf test.tar test/
   tar -xvf test.tar
   tar -xzvf test.tgz
+
+系统信息
+----------------
+
+.. code-block:: bash
+
+  uname -a ## 内核版本、硬件架构、处理器
+  cat /etc/issue ## 操作系统版本
+  cat /proc/cpuinfo ## cpu 信息
+  cat /proc/meminfo ## 内存信息
 
 参考资料
 -----------

@@ -4651,6 +4651,46 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
       };
 
 
+55. [LeetCode] House Robber II 环形房屋偷盗。Hint：在区间 :math:`[0, n-2]` 和区间 :math:`[1, n-1]` 分别做动态规划。
+
+  https://leetcode-cn.com/problems/house-robber-ii/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution 
+      {
+      public:
+          int rob(vector<int>& nums) 
+          {
+              int n = nums.size();
+              if(n == 0) return 0;
+              if(n == 1) return nums[0];
+              int res = 0;
+              _rob(nums, 0, n-2, res);
+              _rob(nums, 1, n-1, res);
+              return res;
+          }
+      private:
+          void _rob(vector<int>& nums, int from, int to, int& res)
+          {
+              vector<int> dp(nums);
+              res = max(res, nums[from]);
+              for(int i = from+1; i <= to; ++i)
+              {
+                  for(int j = from; j < i-1; ++j) dp[i] = max(dp[i], dp[j] + nums[i]);
+                  res = max(res, dp[i]);
+              }
+          }
+      };
+
+
 C++
 ------------
 

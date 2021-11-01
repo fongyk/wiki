@@ -219,7 +219,7 @@ list
 
   #include<list>
 
-**底层实现：双向链表。**
+**底层实现：双向循环链表。**
 
 - 元素个数：size()，empty()
 - 表首元素：front()
@@ -477,7 +477,7 @@ map
 
 .. note::
 
-    map、multimap、set、multiset 是基于红黑树实现的、有序的，查找操作的平均时间复杂度是 O(log N)。unordered_map、unordered_multimap、unordered_set、unordered_multiset 是基于哈希表实现的，查找操作的平均时间复杂度是 O(1)。
+    map、multimap、set、multiset 是基于红黑树实现的、有序的，查找操作的平均时间复杂度是 O(log N)。unordered_map、unordered_multimap、unordered_set、unordered_multiset 是基于哈希表实现的，查找操作的平均时间复杂度是 O(1)。哈希方法为了减小冲突概率，需要消耗更多的空间。
 
 stack
 ---------

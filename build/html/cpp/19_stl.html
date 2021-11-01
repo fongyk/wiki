@@ -444,7 +444,7 @@ They are implemented as class templates, which allows a great flexibility in the
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;list&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
-<p><strong>底层实现：双向链表。</strong></p>
+<p><strong>底层实现：双向循环链表。</strong></p>
 <ul>
 <li><p class="first">元素个数：size()，empty()</p>
 </li>
@@ -715,7 +715,7 @@ They are implemented as class templates, which allows a great flexibility in the
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">map、multimap、set、multiset 是基于红黑树实现的、有序的，查找操作的平均时间复杂度是 O(log N)。unordered_map、unordered_multimap、unordered_set、unordered_multiset 是基于哈希表实现的，查找操作的平均时间复杂度是 O(1)。</p>
+<p class="last">map、multimap、set、multiset 是基于红黑树实现的、有序的，查找操作的平均时间复杂度是 O(log N)。unordered_map、unordered_multimap、unordered_set、unordered_multiset 是基于哈希表实现的，查找操作的平均时间复杂度是 O(1)。哈希方法为了减小冲突概率，需要消耗更多的空间。</p>
 </div>
 </div>
 <div class="section" id="stack">

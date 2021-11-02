@@ -384,6 +384,10 @@
 </td></tr></table></div>
 <p><strong>成员模板函数不能为虚函数</strong> 。编译器在编译一个类的时候，需要确定这个类的虚函数表的大小。一般来说，如果一个类有N个虚函数，它的虚函数表的大小就是N（4N字节）。
 如果允许一个成员模板函数为虚函数的话，由于我们可以为该成员模板函数实例化出很多不同的版本，也就是可以实例化出很多不同版本的虚函数，那么编译器为了确定类的虚函数表的大小，就必须要知道我们一共为该成员模板函数实例化了多少个不同版本的虚函数。显然编译器需要查找所有的代码文件，才能够知道到底有几个虚函数，这对于多文件的项目来说，代价是非常高的，所以规定成员模板函数不能够为虚函数。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">模板的声明和定义都放在头文件中。</p>
+</div>
 </div>
 <div class="section" id="id4">
 <h2>30.3. 参考资料<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>

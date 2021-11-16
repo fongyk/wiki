@@ -129,18 +129,19 @@
 <li class="toctree-l2"><a class="reference internal" href="19_ballBox.html">19. 球盒问题</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20_poison.html">20. 喝水试毒</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">21. 随机数</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">21.1. 取样</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">21.1. 伪随机数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">21.2. 取样</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#knuth">Knuth 算法</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#knuth-shuffle">Knuth Shuffle</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#floyd">Floyd 算法</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">21.2. 随机函数</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">21.3. 随机函数</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#rand5-rand3">利用 rand5() 生成 rand3()</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#rand5-rand7">利用 rand5() 生成 rand7()</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">21.3. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">21.4. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="22_unionFind.html">22. 并查集</a></li>
@@ -221,7 +222,22 @@
   <div class="section" id="id1">
 <h1>21. 随机数<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id2">
-<h2>21.1. 取样<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>21.1. 伪随机数<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>现在进行随机模拟的主流方法是使用计算机实时地产生随机数，严格来说是 <strong>伪随机数</strong> 。伪随机数是用计算机算法产生的序列，其表现与真实的独立同分布序列很难区分开来。
+因为计算机算法的结果是固定的，所以伪随机数不是真正的随机数。 但是，好的伪随机数序列与真实随机数序列表现相同，很难区分。</p>
+<p>线性同余发生器（Linear Congruence Generator）是一种常用的产生伪随机数的方法，其递推公式为：</p>
+<div class="math notranslate nohighlight">
+\[x_n = (ax_{n-1} + c) \mod M,\quad n = 1,2,\cdots\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(a\)</span> 和 <span class="math notranslate nohighlight">\(M\)</span> 是正整数，<span class="math notranslate nohighlight">\(c\)</span> 是非负整数。初值 <span class="math notranslate nohighlight">\(x_0\)</span> 称为种子数（Seed）。</p>
+<p>令 <span class="math notranslate nohighlight">\(r_n = x_n / M\)</span> ，则 <span class="math notranslate nohighlight">\(r_n \in [0,1)\)</span> ，可把 <span class="math notranslate nohighlight">\(r_n\)</span> 作为均匀分布随机数序列。适当选取 <span class="math notranslate nohighlight">\(M,a,c\)</span> 才能使得产生的随机数序列和真正的 <span class="math notranslate nohighlight">\(U[0,1]\)</span> 随机数表现接近。</p>
+<p>线性同余法的递推算法仅依赖于前一项，序列元素最多只有 <span class="math notranslate nohighlight">\(M\)</span> 个可能取值，所以产生的序列一定会重复。假设重复周期为 <span class="math notranslate nohighlight">\(T\)</span> ， <span class="math notranslate nohighlight">\(T \leq M\)</span> ；当 <span class="math notranslate nohighlight">\(T = M\)</span> ，称为满周期。
+满周期时，不管初值 <span class="math notranslate nohighlight">\(x_0\)</span> 取 <span class="math notranslate nohighlight">\([0, M-1]\)</span> 间的任意数，序列都从 <span class="math notranslate nohighlight">\(x_M\)</span> 开始重复。 如果发生器从某个初值开始迭代不是满周期的，那么它从任何初值出发都不是满周期的。不同初值有可能得到不同序列。</p>
+<p>下面是一个满周期 <span class="math notranslate nohighlight">\(2^{31}\)</span> 的线性同余发生器，其周期较长，统计性质比较好。</p>
+<div class="math notranslate nohighlight">
+\[x_n = (314159269 x_{n-1} + 453806245) \mod 2^{31}\]</div>
+</div>
+<div class="section" id="id3">
+<h2>21.2. 取样<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p><strong>问题描述</strong> ：输入整数 <span class="math notranslate nohighlight">\(m\)</span> 和 <span class="math notranslate nohighlight">\(n\)</span> ，其中 <span class="math notranslate nohighlight">\(m &lt; n\)</span> ；输出 <span class="math notranslate nohighlight">\([0, n-1]\)</span> 范围内的 <span class="math notranslate nohighlight">\(m\)</span> 个随机整数的有序列表，不允许重复（无放回抽样），且要求所有可能的长度为 <span class="math notranslate nohighlight">\(m\)</span> 的列表出现的概率相等。</p>
 <div class="section" id="knuth">
 <h3>Knuth 算法<a class="headerlink" href="#knuth" title="Permalink to this headline">¶</a></h3>
@@ -316,8 +332,8 @@
 </td></tr></table></div>
 </div>
 </div>
-<div class="section" id="id3">
-<h2>21.2. 随机函数<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h2>21.3. 随机函数<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>rand5() 可以等概率产生 <span class="math notranslate nohighlight">\([1, 5]\)</span> 之间的整数。</p>
 <div class="section" id="rand5-rand3">
 <h3>利用 rand5() 生成 rand3()<a class="headerlink" href="#rand5-rand3" title="Permalink to this headline">¶</a></h3>
@@ -343,8 +359,8 @@
 </ul>
 </div>
 </div>
-<div class="section" id="id4">
-<h2>21.3. 参考资料<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h2>21.4. 参考资料<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>今日头条面试题：生成随机数(根据rand5()生成rand7())</li>
 </ol>
@@ -352,7 +368,10 @@
 <div><a class="reference external" href="https://blog.csdn.net/leadai/article/details/79824224">https://blog.csdn.net/leadai/article/details/79824224</a></div></blockquote>
 <ol class="arabic simple" start="2">
 <li>《编程珠玑 第2版》第12章：取样问题。</li>
+<li>均匀分布随机数生成</li>
 </ol>
+<blockquote>
+<div><a class="reference external" href="https://www.math.pku.edu.cn/teachers/lidf/docs/statcomp/html/_statcompbook/rng-uniform.html">https://www.math.pku.edu.cn/teachers/lidf/docs/statcomp/html/_statcompbook/rng-uniform.html</a></div></blockquote>
 </div>
 </div>
 

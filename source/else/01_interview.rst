@@ -4690,6 +4690,71 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           }
       };
 
+56. [LeetCode] Serialize And Deserialize Binary Tree 序列化与反序列化二叉树。
+
+  https://leetcode-cn.com/problems/h54YBf/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Codec {
+      public:
+          // Encodes a tree to a single string.
+          string serialize(TreeNode* root) {
+              // # 作为空节点, $ 用于分割不同节点的 val
+              if(!root) return "#";
+              return to_string(root->val) + 
+                  "$" + 
+                  serialize(root->left) + 
+                  serialize(root->right);
+          }
+
+          // Decodes your encoded data to tree.
+          TreeNode* deserialize(string data) {
+              if(data.empty()) return nullptr;
+              int i = 0;
+              TreeNode* root = deserialize(data, i);
+              return root;
+          }
+      private:
+          TreeNode* deserialize(string& data, int& i)
+          {
+              if(data[i] == '#')
+              {
+                  ++i;
+                  return nullptr;
+              }
+              int val = scanDigit(data, i);
+              TreeNode* node = new TreeNode(val);
+              node->left = deserialize(data, i);
+              node->right = deserialize(data, i);
+              return node;
+          }
+          int scanDigit(string& data, int& i)
+          {
+              if(i == data.size()) return -9999;
+              bool pos = true;
+              if(data[i] == '-')
+              {
+                  pos = false;
+                  i++;
+              }
+              int res = 0;
+              while(i < data.size() && '0' <= data[i] && data[i] <= '9')
+              {
+                  res = 10 * res + data[i] - '0';
+                  i++;
+              }
+              ++i; // 略过 $
+              return pos? res: -1*res;
+          }
+      };
 
 C++
 ------------

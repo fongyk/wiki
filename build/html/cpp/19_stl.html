@@ -136,7 +136,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#stack">19.8. stack</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#queue">19.9. queue</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#priority-queue">19.10. priority_queue</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#string">19.11. 附录：string</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#string">19.11. 附：string</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#to-string">19.12. to_string函数</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#atoi-atof-atol">19.13. atoi，atof，atol</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#size-tsize-type">19.14. size_t和size_type</a><ul>
@@ -852,13 +852,21 @@ They are implemented as class templates, which allows a great flexibility in the
 <p>调用 emplace 时，将 <strong>参数</strong> 传递给元素类型的 <strong>构造函数</strong> ，在容器管理的内存空间中使用这些参数直接构造元素。传递给 emplace 的参数必须与构造函数匹配。</p>
 <p class="last">相应地，<strong>pop</strong> 操作会调用析构函数。</p>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">当 STL 容器使用默认的空间配置器 <code class="docutils literal notranslate"><span class="pre">std::allocator&lt;T&gt;</span></code> 时，容器中存储的 <strong>数据项</strong> 都是位于堆内存（new 出来的），容器对象析构时这些空间会被释放。
+而容器的 metadata （比如 vector 的头指针、数据尾指针、空间尾指针）所在的空间受对象创建方式的影响而有所差异。
+比如， <code class="docutils literal notranslate"><span class="pre">vector&lt;T&gt;</span> <span class="pre">vec</span></code> 如果被定义为全局/静态变量，则 vec 位于全局/静态存储区；如果被定义为局部变量，则 vec 位于栈空间。
+<code class="docutils literal notranslate"><span class="pre">vector&lt;T&gt;*</span> <span class="pre">vec</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">vector&lt;T&gt;;</span></code> 则所有数据都位于堆空间。
+假设有局部变量 <code class="docutils literal notranslate"><span class="pre">vector&lt;T*&gt;</span> <span class="pre">vec;</span></code> ，则 vec 位于栈空间，vec 存储的 <code class="docutils literal notranslate"><span class="pre">T*</span></code> 指针位于堆空间；这些指针所指的数据所在的位置由其创建方式决定。vec 析构时会释放这些指针所占的空间，但是并不会释放这些指针所指数据的空间。如果这些空间位于堆上，则在析构之前需要手动释放。</p>
+</div>
 </div>
 <div class="section" id="string">
-<h2>19.11. 附录：string<a class="headerlink" href="#string" title="Permalink to this headline">¶</a></h2>
+<h2>19.11. 附：string<a class="headerlink" href="#string" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
-<p>string 是 <code class="docutils literal notranslate"><span class="pre">basic_string&lt;char,</span> <span class="pre">std::char_traits&lt;char&gt;,</span> <span class="pre">std::allocator&lt;char&gt;&gt;</span></code> 这种类型的别名，不是 stl 的标准容器，但是其与 stl 容器有一些相似的行为，因此这里也作简单介绍。</p>
+<p>string 是 <code class="docutils literal notranslate"><span class="pre">basic_string&lt;char,</span> <span class="pre">std::char_traits&lt;char&gt;,</span> <span class="pre">std::allocator&lt;char&gt;&gt;</span></code> 这种类型的别名，不是 STL 的标准容器，但是其与 STL 容器有一些相似的行为，因此这里也作简单介绍。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="n">basic_string</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">string</span><span class="p">;</span>
 </pre></div>
 </div>

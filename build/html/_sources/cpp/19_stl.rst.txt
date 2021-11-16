@@ -581,14 +581,22 @@ priority\_queue
 
   相应地，**pop** 操作会调用析构函数。
 
+.. note::
 
-附录：string
+    当 STL 容器使用默认的空间配置器 ``std::allocator<T>`` 时，容器中存储的 **数据项** 都是位于堆内存（new 出来的），容器对象析构时这些空间会被释放。
+    而容器的 metadata （比如 vector 的头指针、数据尾指针、空间尾指针）所在的空间受对象创建方式的影响而有所差异。
+    比如， ``vector<T> vec`` 如果被定义为全局/静态变量，则 vec 位于全局/静态存储区；如果被定义为局部变量，则 vec 位于栈空间。
+    ``vector<T>* vec = new vector<T>;`` 则所有数据都位于堆空间。
+    假设有局部变量 ``vector<T*> vec;`` ，则 vec 位于栈空间，vec 存储的 ``T*`` 指针位于堆空间；这些指针所指的数据所在的位置由其创建方式决定。vec 析构时会释放这些指针所占的空间，但是并不会释放这些指针所指数据的空间。如果这些空间位于堆上，则在析构之前需要手动释放。
+
+
+附：string
 -------------------
 ::
 
   #include<string>
 
-string 是 ``basic_string<char, std::char_traits<char>, std::allocator<char>>`` 这种类型的别名，不是 stl 的标准容器，但是其与 stl 容器有一些相似的行为，因此这里也作简单介绍。
+string 是 ``basic_string<char, std::char_traits<char>, std::allocator<char>>`` 这种类型的别名，不是 STL 的标准容器，但是其与 STL 容器有一些相似的行为，因此这里也作简单介绍。
 
 ::
 

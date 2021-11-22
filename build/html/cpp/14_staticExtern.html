@@ -112,7 +112,7 @@
 <li class="toctree-l2"><a class="reference internal" href="08_overload.html">8. 重载、覆盖、隐藏</a></li>
 <li class="toctree-l2"><a class="reference internal" href="09_strcpy.html">9. strcpy函数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="10_cast.html">10. 强制类型转换</a></li>
-<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html">11. 堆、栈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html">11. 堆和栈</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12_argPass.html">12. 参数传递</a></li>
 <li class="toctree-l2"><a class="reference internal" href="13_nullClassPtr.html">13. 空类指针</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">14. static和extern</a><ul>
@@ -136,13 +136,15 @@
 <li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用 STL 容器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
 <li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
-<li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const和constexpr</a></li>
 <li class="toctree-l2"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a></li>
 <li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
 <li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
 <li class="toctree-l2"><a class="reference internal" href="26_lambda.html">26. lambda 表达式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="27_singleton.html">27. 单例模式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="28_vaFunc.html">28. 可变参数函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="29_operatorOverload.html">29. 运算符重载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30_templateSpecialization.html">30. 模板特化</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -367,6 +369,14 @@
 </div>
 <p>在这里要注意 <code class="docutils literal notranslate"><span class="pre">extern</span></code> 声明的位置对其作用域也有关系，如果是在 main 函数中进行声明的，则只能在 main 函数中调用，在其它函数中不能调用。
 其实要调用其它文件中的函数和变量，只需把该文件用 <code class="docutils literal notranslate"><span class="pre">#include</span></code> 包含进来即可，但是用 <code class="docutils literal notranslate"><span class="pre">extern</span></code> 会加速程序的编译过程，这样能节省时间。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>全局变量是不显式用 static 修饰的全局变量，全局变量默认是有外部链接性的，作用域是整个工程。在一个文件内定义的全局变量，在另一个文件中，通过 extern 全局变量名的声明，就可以使用该全局变量。</li>
+<li>全局静态变量是显式用 static 修饰的全局变量，作用域是声明此变量所在的文件，其他的文件即使用 extern 声明也不能使用。</li>
+<li>C++ const 全局常量具有静态/内部链接，这与 C 语言不同。编译器优化全局常量，不为其保留任何空间。如果尝试在其他文件中通过 extern 使用该全局常量，则出现编译错误（ <em>无法解析的外部符号 unresolved external symbol</em> ）。解决此错误的一种方式是在头文件中进行 const 全局常量初始化，在需要使用该全局常量的源文件中 include 该头文件。在不同源文件中对该常量进行取址（ <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> ），会得到不同的地址，这说明每个源文件都有一份常量的定义，而不是共享一个常量。</li>
+</ul>
+</div>
 </div>
 <div class="section" id="extern-c">
 <h2>14.7. extern “C” {}<a class="headerlink" href="#extern-c" title="Permalink to this headline">¶</a></h2>

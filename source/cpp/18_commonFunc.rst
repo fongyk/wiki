@@ -71,6 +71,27 @@ lower\_bound，upper\_bound
 
 |
 
+.. note:: 
+
+    map、multimap、set、multiset 是基于红黑树实现的、有序的，其中 map、multimap 默认按照 key 排序。
+    这四种模板都自带 lower_bound 和 upper_bound 成员函数。
+
+    ::
+
+        map<int,int> m;
+        int val = 5;
+        auto it = m.lower_bound(val);
+
+    相当于 ::
+
+        auto it = lower_bound(
+            m.begin(), 
+            m.end(), 
+            val,
+            [](pair<int,int> p, const int v){return p.first < v;}
+        );
+
+
 fill，fill\_n，for\_each
 -----------------------------
 

@@ -47,7 +47,7 @@
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="19. 常用STL类及容器" href="19_stl.html" />
+    <link rel="next" title="19. 常用 STL 容器" href="19_stl.html" />
     <link rel="prev" title="17. 枚举类型与共用体" href="17_enumUnion.html" /> 
 </head>
 
@@ -112,7 +112,7 @@
 <li class="toctree-l2"><a class="reference internal" href="08_overload.html">8. 重载、覆盖、隐藏</a></li>
 <li class="toctree-l2"><a class="reference internal" href="09_strcpy.html">9. strcpy函数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="10_cast.html">10. 强制类型转换</a></li>
-<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html">11. 堆、栈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html">11. 堆和栈</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12_argPass.html">12. 参数传递</a></li>
 <li class="toctree-l2"><a class="reference internal" href="13_nullClassPtr.html">13. 空类指针</a></li>
 <li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html">14. static和extern</a></li>
@@ -134,14 +134,18 @@
 <li class="toctree-l3"><a class="reference internal" href="#id3">18.12. 参考资料</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用STL类及容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用 STL 容器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
 <li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
-<li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const和constexpr</a></li>
 <li class="toctree-l2"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a></li>
 <li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
 <li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
 <li class="toctree-l2"><a class="reference internal" href="26_lambda.html">26. lambda 表达式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="27_singleton.html">27. 单例模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28_vaFunc.html">28. 可变参数函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="29_operatorOverload.html">29. 运算符重载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30_templateSpecialization.html">30. 模板特化</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -300,6 +304,25 @@
 </div>
 <div class="line-block">
 <div class="line"><br /></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>map、multimap、set、multiset 是基于红黑树实现的、有序的，其中 map、multimap 默认按照 key 排序。
+这四种模板都自带 lower_bound 和 upper_bound 成员函数。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">m</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">m</span><span class="p">.</span><span class="n">lower_bound</span><span class="p">(</span><span class="n">val</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>相当于</p>
+<div class="last highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">lower_bound</span><span class="p">(</span>
+    <span class="n">m</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span>
+    <span class="n">m</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span>
+    <span class="n">val</span><span class="p">,</span>
+    <span class="p">[](</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">v</span><span class="p">){</span><span class="k">return</span> <span class="n">p</span><span class="p">.</span><span class="n">first</span> <span class="o">&lt;</span> <span class="n">v</span><span class="p">;}</span>
+<span class="p">);</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="fill-fill-n-for-each">
@@ -1199,7 +1222,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="19_stl.html" class="btn btn-neutral float-right" title="19. 常用STL类及容器" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="19_stl.html" class="btn btn-neutral float-right" title="19. 常用 STL 容器" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="17_enumUnion.html" class="btn btn-neutral float-left" title="17. 枚举类型与共用体" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

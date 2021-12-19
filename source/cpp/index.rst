@@ -35,3 +35,4 @@ C/C++
     28_vaFunc.rst
     29_operatorOverload.rst
     30_templateSpecialization.rst
+    31_autoType.rst

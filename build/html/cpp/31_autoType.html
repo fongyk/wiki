@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>31. 类型推导 &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'alpha',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Python" href="../python/index.html" />
+    <link rel="prev" title="30. 模板特化" href="30_templateSpecialization.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C/C++</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_main.html">1. main函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_array.html">2. 数组</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_typeSize.html">3. 数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_classSize.html">4. 类的大小</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_swap.html">5. 交换函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_arrayArg.html">6. 数组形参</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_pointerReference.html">7. 指针与引用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_overload.html">8. 重载、覆盖、隐藏</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_strcpy.html">9. strcpy函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_cast.html">10. 强制类型转换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html">11. 堆和栈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_argPass.html">12. 参数传递</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_nullClassPtr.html">13. 空类指针</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html">14. static和extern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_classAccess.html">15. public、protected、private</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_staticconst.html">16. 类的static const成员</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_enumUnion.html">17. 枚举类型与共用体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html">18. 常用函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用 STL 容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const和constexpr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_lambda.html">26. lambda 表达式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="27_singleton.html">27. 单例模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28_vaFunc.html">28. 可变参数函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="29_operatorOverload.html">29. 运算符重载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30_templateSpecialization.html">30. 模板特化</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">31. 类型推导</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#auto">31.1. auto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decltype">31.2. decltype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">31.3. 后置返回类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">31.4. 参考资料</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">C/C++</a> &raquo;</li>
+        
+      <li>31. 类型推导</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/cpp/31_autoType.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>31. 类型推导<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>C++ 11 引入了 <strong>auto</strong> 和 <strong>decltype</strong> 关键字，使用它们可以在编译期就推导出变量或者表达式的类型，方便开发者编码也简化了代码。</p>
+<div class="section" id="auto">
+<h2>31.1. auto<a class="headerlink" href="#auto" title="Permalink to this headline">¶</a></h2>
+<p>auto 让编译器通过初始值来进行类型推演，从而获得定义变量的类型，所以 auto 定义的变量必须有初始值。</p>
+<p>auto 会忽略引用。当引用被用作初始值的时候，真正参与初始化的其实是引用对象的值，此时编译器以引用对象的类型作为 auto 的类型。</p>
+<p>auto 一般会忽略掉顶层 const，但底层 const 会被保留下来。如果希望推断出的 auto 类型是一个顶层 const，需要显示声明。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span><span class="o">&amp;</span> <span class="n">ri</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">ci</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">j</span> <span class="o">=</span> <span class="n">ri</span><span class="p">;</span> <span class="c1">// int</span>
+<span class="k">auto</span> <span class="n">pi</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ci</span><span class="p">;</span> <span class="c1">// const int* ，底层 const</span>
+<span class="k">const</span> <span class="k">auto</span> <span class="n">pc</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ci</span><span class="p">;</span> <span class="c1">// const int* const</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="decltype">
+<h2>31.2. decltype<a class="headerlink" href="#decltype" title="Permalink to this headline">¶</a></h2>
+<p>有的时候我们希望从表达式中推断出要定义变量的类型，但却不想用表达式的值去初始化变量。decltype 的作用是选择并返回操作数的数据类型，在此过程中，编译器只是分析表达式并得到它的类型，却 <strong>不实际计算表达式的值</strong> 。</p>
+<p>decltype 处理顶层 const 、引用的方式与 auto 有些许不同，如果 decltype 使用的表达式是一个变量，则 decltype 返回该变量的类型（包括顶层 const 和引用在内）。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">int</span> <span class="n">ci</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">ri</span> <span class="o">=</span> <span class="n">ci</span><span class="p">;</span>
+<span class="k">decltype</span><span class="p">(</span><span class="n">ci</span><span class="p">)</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// const int</span>
+<span class="k">decltype</span><span class="p">(</span><span class="n">ri</span><span class="p">)</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// const int&amp;</span>
+<span class="k">decltype</span><span class="p">(</span><span class="n">ri</span><span class="p">)</span> <span class="n">z</span><span class="p">;</span> <span class="c1">// 错误，引用必须初始化</span>
+</pre></div>
+</td></tr></table></div>
+<p>有些表达式会使得 decltype 返回一个引用类型，当这种情况发生时，意味着该表达式的结果对象能作为一条赋值语句的左值。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span>
+<span class="k">decltype</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span> <span class="n">j</span><span class="p">;</span> <span class="c1">// int</span>
+<span class="k">decltype</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="n">k</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="c1">// int&amp;，赋值语句返回引用类型，这里的赋值不会实际执行。</span>
+<span class="k">decltype</span><span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">)</span> <span class="n">m</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="c1">// int&amp;</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 0</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">k</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">m</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 6 6</span>
+</pre></div>
+</td></tr></table></div>
+<p>如果表达式的内容是解引用操作，则 decltype 将得到引用类型。正如我们所熟悉的那样，解引用指针可以得到指针所指对象，而且还可以给这个对象赋值，因此 <code class="docutils literal notranslate"><span class="pre">decltype(*p)</span></code> 的结果类型就是 `` int&amp;``  。</p>
+<p>对于 decltype 所用的表达式来说，如果变量名加上一对括号，则得到的类型与不加上括号的时候可能不同。
+如果 decltype 使用的是一个不加括号的变量，那么得到的结果就是这个变量的类型；但是如果给这个变量加上一层或多层括号，那么编译器会把这个变量当作一个表达式看待，变量是一个可以作为左值的特殊表达式，所以这样的 decltype 就会返回引用类型。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">decltype</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="n">j</span><span class="p">;</span>
+<span class="k">decltype</span><span class="p">((</span><span class="n">i</span><span class="p">))</span> <span class="n">ri</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="c1">// int&amp;</span>
+</pre></div>
+</td></tr></table></div>
+<p>利用 decltype 来推断类型还可以减少类的定义，下面两段代码是等价的：</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">Comparator</span>
+<span class="p">{</span>
+    <span class="kt">bool</span> <span class="k">operator</span><span class="p">()(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">i</span><span class="o">%</span><span class="mi">10</span> <span class="o">&gt;</span> <span class="n">j</span><span class="o">%</span><span class="mi">10</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">{</span><span class="mi">11</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">73</span><span class="p">,</span><span class="mi">93</span><span class="p">,</span><span class="mi">36</span><span class="p">};</span>
+<span class="n">priority_queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">Comparator</span><span class="o">&gt;</span> <span class="n">pq</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">());</span> <span class="c1">// 11 73 93 24 36 8</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">{</span><span class="mi">11</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">73</span><span class="p">,</span><span class="mi">93</span><span class="p">,</span><span class="mi">36</span><span class="p">};</span>
+<span class="k">auto</span> <span class="n">comp</span> <span class="o">=</span> <span class="p">[](</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">){</span><span class="k">return</span> <span class="n">i</span><span class="o">%</span><span class="mi">10</span> <span class="o">&gt;</span> <span class="n">j</span><span class="o">%</span><span class="mi">10</span><span class="p">;};</span>
+<span class="n">priority_queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span> <span class="k">decltype</span><span class="p">(</span><span class="n">comp</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">pq</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">comp</span><span class="p">);</span> <span class="c1">// 11 73 93 24 36 8</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id2">
+<h2>31.3. 后置返回类型<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>在C++ 11中，函数声明 <code class="docutils literal notranslate"><span class="pre">double</span> <span class="pre">foo(int</span> <span class="pre">i);</span></code> 可以写成 <code class="docutils literal notranslate"><span class="pre">auto</span> <span class="pre">foo(int</span> <span class="pre">i)</span> <span class="pre">-&gt;</span> <span class="pre">double;</span></code> 。</p>
+<p>泛型编程场景中，返回值类型后置语法结合 decltype 用于自动推导返回值类型。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">U</span><span class="o">&gt;</span>
+<span class="k">auto</span> <span class="n">add</span><span class="p">(</span><span class="n">T</span> <span class="n">x</span><span class="p">,</span> <span class="n">U</span> <span class="n">y</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">decltype</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id3">
+<h2>31.4. 参考资料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>《C++ Primer 第5版 中文版》 Page 61 – 63。</li>
+<li>C++11：后置返回类型</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://hijk.tech/cpp/cpp11/trailing_return_type/">https://hijk.tech/cpp/cpp11/trailing_return_type/</a></div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../python/index.html" class="btn btn-neutral float-right" title="Python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="30_templateSpecialization.html" class="btn btn-neutral float-left" title="30. 模板特化" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

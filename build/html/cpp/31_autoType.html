@@ -273,7 +273,7 @@
 <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">k</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">m</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 6 6</span>
 </pre></div>
 </td></tr></table></div>
-<p>如果表达式的内容是解引用操作，则 decltype 将得到引用类型。正如我们所熟悉的那样，解引用指针可以得到指针所指对象，而且还可以给这个对象赋值，因此 <code class="docutils literal notranslate"><span class="pre">decltype(*p)</span></code> 的结果类型就是 `` int&amp;``  。</p>
+<p>如果表达式的内容是解引用操作，则 decltype 将得到引用类型。正如我们所熟悉的那样，解引用指针可以得到指针所指对象，而且还可以给这个对象赋值，因此 <code class="docutils literal notranslate"><span class="pre">decltype(*p)</span></code> 的结果类型就是 <code class="docutils literal notranslate"><span class="pre">int&amp;</span></code>  。</p>
 <p>对于 decltype 所用的表达式来说，如果变量名加上一对括号，则得到的类型与不加上括号的时候可能不同。
 如果 decltype 使用的是一个不加括号的变量，那么得到的结果就是这个变量的类型；但是如果给这个变量加上一层或多层括号，那么编译器会把这个变量当作一个表达式看待，变量是一个可以作为左值的特殊表达式，所以这样的 decltype 就会返回引用类型。</p>
 <div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1

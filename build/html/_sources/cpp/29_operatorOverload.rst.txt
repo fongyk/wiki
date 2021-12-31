@@ -245,6 +245,81 @@ delete 表达式完成了两件事：
   A::delete[]
 
 
+new 的三种形态
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+new 的三种形态分别是：new operator、operator new()、 placement new()。
+
+new operator
+"""""""""""""""""""
+
+new operator 就是上文提到的 new 表达式，它完成三件事：申请内存、构造对象、令指针指向该块内存。这个过程中调用了 operator new() 和 placement new()。
+
+``string* p = new string("hello world");`` 等价于：
+
+::
+
+    void* m = operator new(strlen("hello world")); // operator new()
+    new(m) string("hello world"); // placement new()
+    string* p = static_cast<string*>(m);
+    
+``delete p;`` 等价于：
+
+::
+
+    p->~string();
+    operator delete(p);
+
+operator new()
+"""""""""""""""""""
+
+operator new() 用于申请堆空间，功能类似于 C 语言的库函数 malloc() 。如果申请成功则直接返回，如果失败则抛出一个 bad_alloc 异常。
+
+::
+
+    void* operator new(std::size_t size) throw (std::bad_alloc);
+    
+正如 new 与 delete 相互对应，operator new() 与 operator delete() 也是一一对应，如果重载了 operator new()，那么理应重载 operator delete()。
+
+
+placement new()
+""""""""""""""""""""""
+
+使用 new 申请空间时，是从系统的堆中分配空间，申请所得空间的 **位置** 是根据当时内存实际使用情况决定。但是，在某些特殊情况下，可能需要在指定的内存位置去创建对象。
+
+placement new() 的作用是在已经获得的堆空间上调用构造函数来初始化对象，也就是定位构造对象。placement new() 是 C++ 标准库的一部分，被申明在头文件 ``<new>`` 中，其函数原型是：
+
+::
+
+    void* operator new(std::size_t, void* __p) throw()
+    {
+        return __p;
+    }
+
+placement new() 只是 operator new() 的一个重载，多了一个已经申请好的空间，由 ``void* __p`` 指定。用法是 ``new(addr) constructor()`` ，在 addr 指向的内存空间调用构造函数进行初始化。
+
+placement new() 既可以在栈上构造对象，也可以在堆上构造对象，取决于参数 ``__p`` 所指的空间位置。
+
+正如 new 与 delete 相互对应，operator new() 需要对应一个析构函数来清理所在内存中的内容（不是直接释放内存）。
+
+::
+
+    string* p = new string(""); // 堆
+    new(p) string("hello world");
+    p->~string();
+    string* q = new(p) string("goodbye");
+    assert(p == q);
+    q->~string();
+    operator delete(q);
+    
+::
+
+    string mem = "abcd"; // 栈
+    string* p = new(&mem) string("hello world");
+    assert(&mem == p);
+    p->~string();
+
+
 参考资料
 --------------
 
@@ -255,3 +330,7 @@ delete 表达式完成了两件事：
 2. 重载new和delete运算符
 
   https://www.cnblogs.com/xiangtingshen/p/10970903.html
+
+3. C++ new的三种面貌
+
+  https://cloud.tencent.com/developer/article/1177460

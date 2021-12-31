@@ -47,7 +47,7 @@
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Python" href="../python/index.html" />
+    <link rel="next" title="30. 模板特化" href="30_templateSpecialization.html" />
     <link rel="prev" title="28. 可变参数函数" href="28_vaFunc.html" /> 
 </head>
 
@@ -112,7 +112,7 @@
 <li class="toctree-l2"><a class="reference internal" href="08_overload.html">8. 重载、覆盖、隐藏</a></li>
 <li class="toctree-l2"><a class="reference internal" href="09_strcpy.html">9. strcpy函数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="10_cast.html">10. 强制类型转换</a></li>
-<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html">11. 堆、栈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html">11. 堆和栈</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12_argPass.html">12. 参数传递</a></li>
 <li class="toctree-l2"><a class="reference internal" href="13_nullClassPtr.html">13. 空类指针</a></li>
 <li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html">14. static和extern</a></li>
@@ -135,10 +135,15 @@
 <li class="toctree-l3"><a class="reference internal" href="#id3">29.2. 下标运算符 []</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id4">29.3. 自增和自减</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id5">29.4. &gt;&gt; 和 &lt;&lt;</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#new-delete">29.5. new 和 delete</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#new-delete">29.5. new 和 delete</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#new">new 的三种形态</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#id6">29.6. 参考资料</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="30_templateSpecialization.html">30. 模板特化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="31_autoType.html">31. 类型推导</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -559,6 +564,62 @@ const ClassName operator--(int); // 后缀--
 <span class="n">A</span><span class="p">::</span><span class="n">delete</span><span class="p">[]</span>
 </pre></div>
 </div>
+<div class="section" id="new">
+<h3>new 的三种形态<a class="headerlink" href="#new" title="Permalink to this headline">¶</a></h3>
+<p>new 的三种形态分别是：new operator、operator new()、 placement new()。</p>
+<div class="section" id="new-operator">
+<h4>new operator<a class="headerlink" href="#new-operator" title="Permalink to this headline">¶</a></h4>
+<p>new operator 就是上文提到的 new 表达式，它完成三件事：申请内存、构造对象、令指针指向该块内存。这个过程中调用了 operator new() 和 placement new()。</p>
+<p><code class="docutils literal notranslate"><span class="pre">string*</span> <span class="pre">p</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">string(&quot;hello</span> <span class="pre">world&quot;);</span></code> 等价于：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span><span class="o">*</span> <span class="n">m</span> <span class="o">=</span> <span class="n">operator</span> <span class="n">new</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">));</span> <span class="o">//</span> <span class="n">operator</span> <span class="n">new</span><span class="p">()</span>
+<span class="n">new</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="n">string</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">);</span> <span class="o">//</span> <span class="n">placement</span> <span class="n">new</span><span class="p">()</span>
+<span class="n">string</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="n">static_cast</span><span class="o">&lt;</span><span class="n">string</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">delete</span> <span class="pre">p;</span></code> 等价于：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="o">-&gt;~</span><span class="n">string</span><span class="p">();</span>
+<span class="n">operator</span> <span class="n">delete</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="operator-new">
+<h4>operator new()<a class="headerlink" href="#operator-new" title="Permalink to this headline">¶</a></h4>
+<p>operator new() 用于申请堆空间，功能类似于 C 语言的库函数 malloc() 。如果申请成功则直接返回，如果失败则抛出一个 bad_alloc 异常。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span><span class="o">*</span> <span class="n">operator</span> <span class="n">new</span><span class="p">(</span><span class="n">std</span><span class="p">::</span><span class="n">size_t</span> <span class="n">size</span><span class="p">)</span> <span class="n">throw</span> <span class="p">(</span><span class="n">std</span><span class="p">::</span><span class="n">bad_alloc</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>正如 new 与 delete 相互对应，operator new() 与 operator delete() 也是一一对应，如果重载了 operator new()，那么理应重载 operator delete()。</p>
+</div>
+<div class="section" id="placement-new">
+<h4>placement new()<a class="headerlink" href="#placement-new" title="Permalink to this headline">¶</a></h4>
+<p>使用 new 申请空间时，是从系统的堆中分配空间，申请所得空间的 <strong>位置</strong> 是根据当时内存实际使用情况决定。但是，在某些特殊情况下，可能需要在指定的内存位置去创建对象。</p>
+<p>placement new() 的作用是在已经获得的堆空间上调用构造函数来初始化对象，也就是定位构造对象。placement new() 是 C++ 标准库的一部分，被申明在头文件 <code class="docutils literal notranslate"><span class="pre">&lt;new&gt;</span></code> 中，其函数原型是：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span><span class="o">*</span> <span class="n">operator</span> <span class="n">new</span><span class="p">(</span><span class="n">std</span><span class="p">::</span><span class="n">size_t</span><span class="p">,</span> <span class="n">void</span><span class="o">*</span> <span class="n">__p</span><span class="p">)</span> <span class="n">throw</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">__p</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>placement new() 只是 operator new() 的一个重载，多了一个已经申请好的空间，由 <code class="docutils literal notranslate"><span class="pre">void*</span> <span class="pre">__p</span></code> 指定。用法是 <code class="docutils literal notranslate"><span class="pre">new(addr)</span> <span class="pre">constructor()</span></code> ，在 addr 指向的内存空间调用构造函数进行初始化。</p>
+<p>placement new() 既可以在栈上构造对象，也可以在堆上构造对象，取决于参数 <code class="docutils literal notranslate"><span class="pre">__p</span></code> 所指的空间位置。</p>
+<p>正如 new 与 delete 相互对应，operator new() 需要对应一个析构函数来清理所在内存中的内容（不是直接释放内存）。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">string</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="n">new</span> <span class="n">string</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">);</span> <span class="o">//</span> <span class="n">堆</span>
+<span class="n">new</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="n">string</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">);</span>
+<span class="n">p</span><span class="o">-&gt;~</span><span class="n">string</span><span class="p">();</span>
+<span class="n">string</span><span class="o">*</span> <span class="n">q</span> <span class="o">=</span> <span class="n">new</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="n">string</span><span class="p">(</span><span class="s2">&quot;goodbye&quot;</span><span class="p">);</span>
+<span class="k">assert</span><span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="n">q</span><span class="p">);</span>
+<span class="n">q</span><span class="o">-&gt;~</span><span class="n">string</span><span class="p">();</span>
+<span class="n">operator</span> <span class="n">delete</span><span class="p">(</span><span class="n">q</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">string</span> <span class="n">mem</span> <span class="o">=</span> <span class="s2">&quot;abcd&quot;</span><span class="p">;</span> <span class="o">//</span> <span class="n">栈</span>
+<span class="n">string</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="n">new</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mem</span><span class="p">)</span> <span class="n">string</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">);</span>
+<span class="k">assert</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mem</span> <span class="o">==</span> <span class="n">p</span><span class="p">);</span>
+<span class="n">p</span><span class="o">-&gt;~</span><span class="n">string</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="id6">
 <h2>29.6. 参考资料<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
@@ -572,6 +633,11 @@ const ClassName operator--(int); // 后缀--
 </ol>
 <blockquote>
 <div><a class="reference external" href="https://www.cnblogs.com/xiangtingshen/p/10970903.html">https://www.cnblogs.com/xiangtingshen/p/10970903.html</a></div></blockquote>
+<ol class="arabic simple" start="3">
+<li>C++ new的三种面貌</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://cloud.tencent.com/developer/article/1177460">https://cloud.tencent.com/developer/article/1177460</a></div></blockquote>
 </div>
 </div>
 
@@ -583,7 +649,7 @@ const ClassName operator--(int); // 后缀--
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../python/index.html" class="btn btn-neutral float-right" title="Python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="30_templateSpecialization.html" class="btn btn-neutral float-right" title="30. 模板特化" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="28_vaFunc.html" class="btn btn-neutral float-left" title="28. 可变参数函数" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

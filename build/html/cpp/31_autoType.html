@@ -47,7 +47,7 @@
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Python" href="../python/index.html" />
+    <link rel="next" title="32. 通用引用和右值引用" href="32_universalReference.html" />
     <link rel="prev" title="30. 模板特化" href="30_templateSpecialization.html" /> 
 </head>
 
@@ -139,6 +139,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#id3">31.4. 参考资料</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="32_universalReference.html">32. 通用引用和右值引用</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -225,7 +226,7 @@
 <h2>31.1. auto<a class="headerlink" href="#auto" title="Permalink to this headline">¶</a></h2>
 <p>auto 让编译器通过初始值来进行类型推演，从而获得定义变量的类型，所以 auto 定义的变量必须有初始值。</p>
 <p>auto 会忽略引用。当引用被用作初始值的时候，真正参与初始化的其实是引用对象的值，此时编译器以引用对象的类型作为 auto 的类型。</p>
-<p>auto 一般会忽略掉顶层 const，但底层 const 会被保留下来。如果希望推断出的 auto 类型是一个顶层 const，需要显示声明。</p>
+<p>auto 一般会忽略掉顶层 const，但底层 const 会被保留下来。如果希望推断出的 auto 类型是一个顶层 const，需要显式声明。</p>
 <div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -346,7 +347,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../python/index.html" class="btn btn-neutral float-right" title="Python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="32_universalReference.html" class="btn btn-neutral float-right" title="32. 通用引用和右值引用" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="30_templateSpecialization.html" class="btn btn-neutral float-left" title="30. 模板特化" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

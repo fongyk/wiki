@@ -1,0 +1,381 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>32. 通用引用和右值引用 &mdash; fong alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'alpha',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Python" href="../python/index.html" />
+    <link rel="prev" title="31. 类型推导" href="31_autoType.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fong
+          
+
+          
+            
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                alpha
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C/C++</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_main.html">1. main函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_array.html">2. 数组</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_typeSize.html">3. 数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_classSize.html">4. 类的大小</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_swap.html">5. 交换函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_arrayArg.html">6. 数组形参</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_pointerReference.html">7. 指针与引用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_overload.html">8. 重载、覆盖、隐藏</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_strcpy.html">9. strcpy函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_cast.html">10. 强制类型转换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html">11. 堆和栈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_argPass.html">12. 参数传递</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_nullClassPtr.html">13. 空类指针</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html">14. static和extern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_classAccess.html">15. public、protected、private</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_staticconst.html">16. 类的static const成员</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_enumUnion.html">17. 枚举类型与共用体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html">18. 常用函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用 STL 容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const和constexpr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_lambda.html">26. lambda 表达式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="27_singleton.html">27. 单例模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28_vaFunc.html">28. 可变参数函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="29_operatorOverload.html">29. 运算符重载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30_templateSpecialization.html">30. 模板特化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="31_autoType.html">31. 类型推导</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">32. 通用引用和右值引用</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">32.1. 通用引用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">32.2. 右值引用变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">32.3. 参考资料</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">C/C++</a> &raquo;</li>
+        
+      <li>32. 通用引用和右值引用</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/cpp/32_universalReference.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>32. 通用引用和右值引用<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">T&amp;&amp;</span></code> 有两种不同的含义。一种是右值引用，这种引用的行为就如你想象的那样：它们只能绑定右值，它们主要的存在理由是识别可能被移动的对象。
+另一种含义既不是右值引用，也不是左值引用。这种引用在源代码中（ <code class="docutils literal notranslate"><span class="pre">T&amp;&amp;</span></code> ）看起来像右值引用，但是它们可以表现左值引用（即 <code class="docutils literal notranslate"><span class="pre">T&amp;</span></code> ）的行为。它们的双重性质允许它们绑定右值（就像右值引用那样）和左值（就像左值引用那样）。
+而且，它们可以绑定 const 或者非 const 对象，可以绑定 volatile 和非 volatile 对象，还可以绑定 const 和 volatile 同时作用的对象。
+它们实际上可以绑定任何东西。这种灵活的引用称为通用引用（Universal Referense）。</p>
+<p>出现 <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> 的时候，如何判断它是右值引用还是通用引用呢？通用引用有两个条件：</p>
+<ul class="simple">
+<li>形式必须是精确的 <code class="docutils literal notranslate"><span class="pre">T&amp;&amp;</span></code> （ <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">T&amp;&amp;</span></code> 一定是右值引用）。</li>
+<li><code class="docutils literal notranslate"><span class="pre">T</span></code> 的类型需要推导。</li>
+</ul>
+<div class="section" id="id2">
+<h2>32.1. 通用引用<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>通用引用在两种语境出现。最常见的就是模板函数参数，第二个语境是 auto 声明。这两种语境有个共同点，就是出现了类型推断。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>int lvalue = 3;
+const auto&amp;&amp; r = lvalue; // 错误：r 是右值引用，不能通过左值初始化
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>template&lt;typename T&gt;
+void func(const T&amp;&amp; p);
+
+func(lvalue);            // 错误：p 是右值引用，不能通过左值初始化
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>template &lt;class T, class Allocator = allocator&lt;T&gt;&gt;
+class vector
+{
+public:
+    void push_back(T&amp;&amp; x); // 右值引用，类模板实例化的时候类型参数已经确定，不存在类型推导。
+};
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>template&lt;typename S&gt;
+void func(std::vector&lt;S&gt;&amp;&amp; p); // p 不是通用引用。虽然存在类型推导，但推导的是 std::vector 的类型参数，而不是 T&amp;&amp; 中的T。
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="k">class</span> <span class="nc">Allocator</span> <span class="o">=</span> <span class="n">allocator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">vector</span>
+<span class="p">{</span>
+<span class="n">public</span><span class="p">:</span>
+    <span class="n">template</span> <span class="o">&lt;</span><span class="n">class</span><span class="o">...</span> <span class="n">Args</span><span class="o">&gt;</span>
+    <span class="n">void</span> <span class="n">emplace_back</span><span class="p">(</span><span class="n">Args</span><span class="o">&amp;&amp;...</span> <span class="n">args</span><span class="p">);</span>  <span class="o">//</span> <span class="n">args</span> <span class="n">中的每一个参数都是是通用引用</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>int i = 10;
+auto&amp;&amp; ai = i; // 通用引用，int&amp;
+
+const int ci = 10;
+auto&amp;&amp; ac = ci; // 通用引用，const int&amp;
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>32.2. 右值引用变量<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Foo</span><span class="o">&amp;&amp;</span> <span class="n">foo</span> <span class="o">=</span> <span class="n">Foo</span><span class="p">{</span><span class="mi">10</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>一个类型为右值引用的变量，一旦被初始化之后，临时对象的生命将被扩展，会在其被创建的 scope 内始终有效。</p>
+<p>因而，看似 foo 被定义的类型为右值引用，但这仅仅约束它的 <em>初始化</em> ：只能从一个右值进行初始化。一旦初始化完成，它就和一个左值引用再也没有任何差别：都是一个已存在对象的 <em>标识</em> 。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>void stupid(Foo&amp;&amp; foo)
+{
+   foo.a += 10;   // 在函数体内，foo的性质与一个左值引用毫无差别
+   // blah ...
+}
+
+stupid(Foo{10});  // 在执行函数体之前，进行参数初始化: Foo&amp;&amp; foo = Foo{10}
+</pre></div>
+</div>
+<p>而临时对象 Foo{10} 的生命周期，会比参数变量 foo 更长。所以将 foo 看作左值引用随意访问，是没有任何风险的。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>对于任何类型为右值引用的变量（也包括函数参数），只能由右值来初始化.</li>
+<li>一旦初始化完成，右值引用类型的变量，其性质与一个左值引用再也没有任何差别。</li>
+<li>类型为右值引用的变量，是一个左值，因而不能赋值给其它类型为右值引用的变量，当然也不能匹配参数类型为右值引用的函数。</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>32.3. 参考资料<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Effective Modern C++ 条款24 区分通用引用和右值引用</li>
+<li>C++11中的通用引用</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://www.yuanguohuo.com/2018/05/25/cpp11-universal-ref/">https://www.yuanguohuo.com/2018/05/25/cpp11-universal-ref/</a></div></blockquote>
+<ol class="arabic simple" start="3">
+<li>右值引用</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://modern-cpp.readthedocs.io/zh_CN/latest/rvalue-ref.html">https://modern-cpp.readthedocs.io/zh_CN/latest/rvalue-ref.html</a></div></blockquote>
+<ol class="arabic simple" start="4">
+<li>C++ 右值引用使用总结</li>
+</ol>
+<blockquote>
+<div><a class="reference external" href="https://murphypei.github.io/blog/2020/02/right-reference">https://murphypei.github.io/blog/2020/02/right-reference</a></div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../python/index.html" class="btn btn-neutral float-right" title="Python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="31_autoType.html" class="btn btn-neutral float-left" title="31. 类型推导" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, fong
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

@@ -112,7 +112,7 @@
 <li class="toctree-l2"><a class="reference internal" href="08_overload.html">8. 重载、覆盖、隐藏</a></li>
 <li class="toctree-l2"><a class="reference internal" href="09_strcpy.html">9. strcpy函数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="10_cast.html">10. 强制类型转换</a></li>
-<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html">11. 堆、栈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html">11. 堆和栈</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12_argPass.html">12. 参数传递</a></li>
 <li class="toctree-l2"><a class="reference internal" href="13_nullClassPtr.html">13. 空类指针</a></li>
 <li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html">14. static和extern</a></li>
@@ -120,10 +120,10 @@
 <li class="toctree-l2"><a class="reference internal" href="16_staticconst.html">16. 类的static const成员</a></li>
 <li class="toctree-l2"><a class="reference internal" href="17_enumUnion.html">17. 枚举类型与共用体</a></li>
 <li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html">18. 常用函数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用STL类及容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用 STL 容器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
 <li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
-<li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const和constexpr</a></li>
 <li class="toctree-l2"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">24. 异常</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2">24.1. 异常类层次</a></li>
@@ -141,11 +141,23 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#noexcept">24.5. noexcept 异常说明</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id11">24.6. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">24.6. 函数传参与异常传递</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id12">异常拷贝</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">捕获异常</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">类型转换</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">24.7. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
 <li class="toctree-l2"><a class="reference internal" href="26_lambda.html">26. lambda 表达式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="27_singleton.html">27. 单例模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28_vaFunc.html">28. 可变参数函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="29_operatorOverload.html">29. 运算符重载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30_templateSpecialization.html">30. 模板特化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="31_autoType.html">31. 类型推导</a></li>
+<li class="toctree-l2"><a class="reference internal" href="32_universalReference.html">32. 通用引用和右值引用</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -416,7 +428,85 @@ what 负责返回一个 const char* 指针，指向一个字符数组，包含�
 <p>尽管函数声明了不会抛出异常，但是仍然可以抛出异常。一旦 <code class="docutils literal notranslate"><span class="pre">noexcept</span></code> 函数抛出了异常，程序就会调用 <code class="docutils literal notranslate"><span class="pre">terminate</span></code> 以中止程序。</p>
 </div>
 <div class="section" id="id11">
-<h2>24.6. 参考资料<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<h2>24.6. 函数传参与异常传递<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id12">
+<h3>异常拷贝<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<p>用 throw 抛出一个异常到 catch 子句中与通过函数调用传递一个参数有一些相同点，但是他们也存在着巨大的差异。</p>
+<p>传递函数参数与异常的途径可以是传值、传引用或传指针，这是相同的。但是当你传递参数和异常时，系统所要完成的操作过程则是完全不同的。
+产生这个差异的原因是：你调用函数时，程序的控制权最终还会返回到函数的调用处，但是当你抛出一个异常时，控制权永远不会回到抛出异常的地方。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Widget</span> <span class="n">localW</span><span class="p">;</span> <span class="o">//</span> <span class="n">局部异常对象</span>
+<span class="n">throw</span> <span class="n">localW</span><span class="p">;</span> <span class="o">//</span> <span class="n">抛出异常</span>
+</pre></div>
+</div>
+<p>在上例中，不论通过传值捕获异常还是通过引用捕获（不能通过指针捕获这个异常，因为类型不匹配）都将进行 localW 的拷贝操作，也就说传递到 catch 子句中的是 localW 的拷贝。
+必须这么做，因为当 localW 离开了生存空间后，其析构函数将被调用。如果把 localW 本身（而不是它的拷贝）传递给 catch 子句，这个子句接收到的只是一个被析构了的 Widget，一个 Widget 的“尸体”，这是无法使用的。
+因此 C++ 规范要求被做为异常抛出的对象必须被复制。</p>
+<p>对异常对象进行强制复制拷贝，这个限制有助于我们理解参数传递与抛出异常的第二个差异：抛出异常运行速度比参数传递要慢。</p>
+<p>当异常对象被拷贝时，拷贝操作是由对象的拷贝构造函数完成的。该拷贝构造函数是对象的静态类型（Static Type）所对应类的拷贝构造函数，而不是对象的动态类型（Dynamic Type）对应类的拷贝构造函数。
+也就是说，抛出对象的类型与定义引用或指针的类型相同，而与引用或指针所绑定的对象的类型无关。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>DerivedWidget localW; // 派生类对象
+Widget&amp; rw = localW; // 静态类型是 Widget，动态类型是 DerivedWidget
+throw rw; // 抛出对象类型是 Widget
+</pre></div>
+</div>
+</div>
+<div class="section" id="id13">
+<h3>捕获异常<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<p>捕获异常的方法可以是传值、传引用或传指针。</p>
+<p>先说说通过传值捕获：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">catch</span><span class="p">(</span><span class="n">Widget</span> <span class="n">w</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>它会建立两个被抛出对象的拷贝，一个是所有异常都必须建立的临时对象，第二个是把临时对象拷贝进 w 中（重要：是两个！）。
+而且它会产生 Slicing Problem，即派生类的异常对象被做为基类异常对象捕获时，那它的派生类行为就被切掉了（Sliced Off）。
+这样的 sliced 对象实际上是一个基类对象：它们没有派生类的数据成员，而且当本准备调用它们的虚函数时，系统解析后调用的是基类版本。</p>
+<p>如果是传引用捕获：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">catch</span><span class="p">(</span><span class="n">Widget</span><span class="o">&amp;</span> <span class="n">w</span><span class="p">)</span>
+<span class="n">catch</span><span class="p">(</span><span class="n">const</span> <span class="n">Widget</span><span class="o">&amp;</span> <span class="n">w</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>这仍旧会建立一个被抛出对象的拷贝：拷贝同样是一个临时对象。相反当我们通过引用传递函数参数时，没有进行对象拷贝。
+传递参数与传递异常的另一个差异是：一个被异常抛出的对象（总是一个临时对象）可以通过普通的引用捕获，它不需要通过常量引用捕获，而在函数调用中不允许传递一个临时对象到一个非常量引用类型的参数里。</p>
+<p>通过指针抛出异常与通过指针传递参数是相同的。不论哪种方法都是一个指针的拷贝被传递。但抛出的指针不能是一个指向普通局部对象的指针，因为当异常离开局部变量的生存空间时，该局部变量已经被释放，catch 子句将获得一个指向已经不存在的对象的指针。
+该指针指向的对象必须是全局/静态的或者是在堆上的。这避免了捕获一个指向已被释放对象的指针的问题，但是 catch 子句的作者又面临一个令人头疼的问题：他们是否应该删除他们接受的指针？如果是在堆中建立的异常对象，那他们必须删除它，否则会造成资源泄漏。
+如果不是在堆中建立的异常对象，他们绝对不能删除它，否则程序的行为将不可预测。所以最好避开使用指针。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">如果通过引用捕获异常（Catch By Reference），就能避开上述所有问题：不会为是否删除异常对象而烦恼；能够避开 slicing 异常对象；能够捕获标准异常类型；减少异常对象需要被拷贝的数目。
+所以建议通过引用捕获异常。</p>
+</div>
+<p>异常是其它对象的拷贝，这个事实影响到你如何在 catch 块中再抛出一个异常。
+下面两个 catch 块的差别在于第一个 catch 块中重新抛出的是当前捕获的异常，而第二个catch 块中重新抛出的是当前捕获异常的一个新的拷贝。
+如果忽略生成额外拷贝的系统开销，这两种方法还有差异么？</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">catch</span><span class="p">(</span><span class="n">Widget</span><span class="o">&amp;</span> <span class="n">w</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="o">...</span>
+    <span class="n">throw</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">catch</span><span class="p">(</span><span class="n">Widget</span><span class="o">&amp;</span> <span class="n">w</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="o">...</span>
+    <span class="n">throw</span> <span class="n">w</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>当然有。第一个块中重新抛出的是当前异常（current exception），无论它是什么类型。特别是如果 w 绑定的是派生类对象，那么第一个块中传递出去的还是派生类异常，即使 w 的静态类型是 Widget。这是因为重新抛出异常时没有进行拷贝操作。
+第二个 catch 块重新抛出的是新异常，类型总是 Widget，因为 w 的静态类型是 Widget。一般来说，应该用 <code class="docutils literal notranslate"><span class="pre">throw;</span></code> 来重新抛出当前的异常，因为这样不会改变被传递出去的异常类型，而且更有效率，因为不用生成一个新拷贝。</p>
+</div>
+<div class="section" id="id14">
+<h3>类型转换<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<p>在 catch 子句中进行异常匹配时可以进行两种类型转换。</p>
+<p>第一种是派生类与基类间的转换。一个用来捕获基类的 catch 子句也可以处理派生类类型的异常。catch 子句匹配顺序总是取决于它们在程序中出现的顺序，因此一个派生类异常可能被处理其基类异常的 catch 子句捕获，即使同时存在能直接处理该派生类异常的 catch 子句与相同的 try 块相对应。
+因此，不要把处理基类异常的 catch 子句放在处理派生类异常的 catch 子句的前面。</p>
+<p>第二种是允许从一个类型化指针（Typed Pointer）转变成无类型指针（Untyped Pointer），带有 <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">void*</span></code> 指针的 catch 子句能捕获任何类型的指针类型异常：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">catch</span> <span class="p">(</span><span class="n">const</span> <span class="n">void</span><span class="o">*</span><span class="p">)</span> <span class="o">//</span> <span class="n">捕获任何指针类型异常</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id15">
+<h2>24.7. 参考资料<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
 <p>1.《C++ Primer 第5版 中文版》 Page 173 – 176, Page 684 – 695。</p>
 <ol class="arabic simple" start="2">
 <li>C++ reference</li>
@@ -435,6 +525,10 @@ what 负责返回一个 const char* 指针，指向一个字符数组，包含�
 </ol>
 <blockquote>
 <div><a class="reference external" href="https://www.runoob.com/cplusplus/cpp-exceptions-handling.html">https://www.runoob.com/cplusplus/cpp-exceptions-handling.html</a></div></blockquote>
+<ol class="arabic simple" start="5">
+<li>《More Effective C++》Item M12：理解“抛出一个异常”与“传递一个参数”或“调用一个虚函数”间的差异</li>
+<li>《More Effective C++》Item M13：通过引用捕获异常</li>
+</ol>
 </div>
 </div>
 

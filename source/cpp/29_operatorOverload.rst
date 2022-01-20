@@ -32,19 +32,19 @@
       Complex(double real=0.0, double imag=0.0): m_real(real), m_imag(imag){}
   public:  //运算符重载
       //以全局函数的形式重载
-      friend Complex operator+(const Complex &c1, const Complex &c2);
-      friend Complex operator-(const Complex &c1, const Complex &c2);
-      friend Complex operator*(const Complex &c1, const Complex &c2);
-      friend Complex operator/(const Complex &c1, const Complex &c2);
+      friend const Complex operator+(const Complex &c1, const Complex &c2);
+      friend const Complex operator-(const Complex &c1, const Complex &c2);
+      friend const Complex operator*(const Complex &c1, const Complex &c2);
+      friend const Complex operator/(const Complex &c1, const Complex &c2);
       friend bool operator==(const Complex &c1, const Complex &c2);
       friend bool operator!=(const Complex &c1, const Complex &c2);
-      friend istream & operator>>(istream &in, complex &A);
-      friend ostream & operator<<(ostream &out, complex &A);
+      friend istream& operator>>(istream &in, complex &A);
+      friend ostream& operator<<(ostream &out, complex &A);
       //以成员函数的形式重载
-      Complex & operator+=(const Complex &c);
-      Complex & operator-=(const Complex &c);
-      Complex & operator*=(const Complex &c);
-      Complex & operator/=(const Complex &c);
+      Complex& operator+=(const Complex &c);
+      Complex& operator-=(const Complex &c);
+      Complex& operator*=(const Complex &c);
+      Complex& operator/=(const Complex &c);
   public:
       double real() const{ return m_real; }
       double imag() const{ return m_imag; }
@@ -52,6 +52,11 @@
       double m_real;  //实部
       double m_imag;  //虚部
   };
+
+
+.. note::
+
+    把 operator ``+`` 等四则运算的返回类型定义为 const，是为了防止类似于 ``a + b = c`` 之类的赋值操作通过编译。
 
 下标运算符 []
 ------------------

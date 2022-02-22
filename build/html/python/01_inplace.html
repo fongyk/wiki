@@ -129,12 +129,23 @@
 <li class="toctree-l2"><a class="reference internal" href="15_memManage.html">15. 内存管理</a></li>
 <li class="toctree-l2"><a class="reference internal" href="16_newInit.html">16. __new__ 和 __init__</a></li>
 <li class="toctree-l2"><a class="reference internal" href="17_pip.html">17. pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_exception.html">18. 异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_multiprocessing.html">19. multiprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_logging.html">20. logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_pyM.html">21. python -m</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_buildIn.html">22. 内建属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_glob.html">23. glob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_pyLinux.html">24. Python 执行 linux 命令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_bisect.html">25. bisect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_abc.html">26. abc</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
@@ -294,7 +305,7 @@ Inplace operator’s <code class="docutils literal notranslate"><span class="pre
 </div>
 <div class="section" id="mutable-targets">
 <h3>1.2.2. mutable targets<a class="headerlink" href="#mutable-targets" title="Permalink to this headline">¶</a></h3>
-<p>对于可变目标（mutable targets），如列表、字典，输入实参会被重现赋值和更新。</p>
+<p>对于可变目标（mutable targets），如列表、字典、集合，输入实参会被重现赋值和更新。</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -324,7 +335,7 @@ Inplace operator’s <code class="docutils literal notranslate"><span class="pre
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p><strong>不可变目标</strong> （数字、字符串、元组）作为函数参数，相当于 <strong>值传递</strong> ，函数对实参进行拷贝。</p>
-<p class="last"><strong>可变目标</strong> （列表、字典）作为函数参数，相当于 <strong>引用传递</strong> ，函数对实参的修改有效。</p>
+<p class="last"><strong>可变目标</strong> （列表、字典、集合）作为函数参数，相当于 <strong>引用传递</strong> ，函数对实参的修改有效。</p>
 </div>
 </div>
 </div>

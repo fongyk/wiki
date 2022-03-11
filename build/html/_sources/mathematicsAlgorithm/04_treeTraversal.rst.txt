@@ -526,6 +526,41 @@
           }
       };
 
+- [LeetCode] Lowest Common Ancestor of A Binary Tree 二叉树的最近公共祖先。Hint：后序遍历，两个节点在同一子树中，或有一个是根节点。
+
+  https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution {
+      public:
+          TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+              if(!root || !p || !q) return root;
+              TreeNode* res = nullptr;
+              postOrderTraversal(root, p, q, res);
+              return res;
+          }
+      private:
+          // 返回值表示：p 或 q 在 root 的子树中（包括根节点root） 
+          bool postOrderTraversal(TreeNode* root, TreeNode* p, TreeNode* q, TreeNode* &res)
+          {
+              if(!root) return false;
+              if(res) return false; // 已经有结果了，后面不需要再遍历了
+              bool lson = postOrderTraversal(root->left, p, q, res);
+              bool rson = postOrderTraversal(root->right, p, q, res);
+              if((lson && rson) || ((root == p || root == q) && (lson || rson))) res = root;
+              return lson || rson || root == p || root == q;
+          }
+      };
+
+
 参考资料
 --------------
 

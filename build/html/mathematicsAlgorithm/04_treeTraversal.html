@@ -138,6 +138,8 @@
 <li class="toctree-l2"><a class="reference internal" href="19_ballBox.html">19. 球盒问题</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20_poison.html">20. 喝水试毒</a></li>
 <li class="toctree-l2"><a class="reference internal" href="21_rand.html">21. 随机数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_unionFind.html">22. 并查集</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_kmp.html">23. 前缀函数与 KMP 算法</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
@@ -1025,6 +1027,55 @@
         <span class="c1">// 当后续路径和为 0，也是一条满足要求的路径，因此当 target 减到 0 之后不能立即返回，也需要继续遍历。</span>
         <span class="k">if</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">)</span> <span class="n">getSumFromRoot</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span> <span class="n">target</span> <span class="o">-</span> <span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">,</span> <span class="n">cnt</span><span class="p">);</span>
         <span class="k">if</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">)</span> <span class="n">getSumFromRoot</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span> <span class="n">target</span> <span class="o">-</span> <span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">,</span> <span class="n">cnt</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</li>
+<li><p class="first">[LeetCode] Lowest Common Ancestor of A Binary Tree 二叉树的最近公共祖先。Hint：后序遍历，两个节点在同一子树中，或有一个是根节点。</p>
+<p><a class="reference external" href="https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree">https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree</a></p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
+</div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">TreeNode</span><span class="o">*</span> <span class="n">lowestCommonAncestor</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">,</span> <span class="n">TreeNode</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">TreeNode</span><span class="o">*</span> <span class="n">q</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">root</span> <span class="o">||</span> <span class="o">!</span><span class="n">p</span> <span class="o">||</span> <span class="o">!</span><span class="n">q</span><span class="p">)</span> <span class="k">return</span> <span class="n">root</span><span class="p">;</span>
+        <span class="n">TreeNode</span><span class="o">*</span> <span class="n">res</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+        <span class="n">postOrderTraversal</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="c1">// 返回值表示：p 或 q 在 root 的子树中（包括根节点root）</span>
+    <span class="kt">bool</span> <span class="n">postOrderTraversal</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">,</span> <span class="n">TreeNode</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">TreeNode</span><span class="o">*</span> <span class="n">q</span><span class="p">,</span> <span class="n">TreeNode</span><span class="o">*</span> <span class="o">&amp;</span><span class="n">res</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">root</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">res</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span> <span class="c1">// 已经有结果了，后面不需要再遍历了</span>
+        <span class="kt">bool</span> <span class="n">lson</span> <span class="o">=</span> <span class="n">postOrderTraversal</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span>
+        <span class="kt">bool</span> <span class="n">rson</span> <span class="o">=</span> <span class="n">postOrderTraversal</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">((</span><span class="n">lson</span> <span class="o">&amp;&amp;</span> <span class="n">rson</span><span class="p">)</span> <span class="o">||</span> <span class="p">((</span><span class="n">root</span> <span class="o">==</span> <span class="n">p</span> <span class="o">||</span> <span class="n">root</span> <span class="o">==</span> <span class="n">q</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">lson</span> <span class="o">||</span> <span class="n">rson</span><span class="p">)))</span> <span class="n">res</span> <span class="o">=</span> <span class="n">root</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">lson</span> <span class="o">||</span> <span class="n">rson</span> <span class="o">||</span> <span class="n">root</span> <span class="o">==</span> <span class="n">p</span> <span class="o">||</span> <span class="n">root</span> <span class="o">==</span> <span class="n">q</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">};</span>
 </pre></div>

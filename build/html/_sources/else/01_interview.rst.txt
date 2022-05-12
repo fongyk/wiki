@@ -4756,6 +4756,49 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
           }
       };
 
+57. [LeetCode] 生存人数：统计生存人数最多的年份。Hint：用差分数组记录出生年份和死亡年份的人数变化，差分数组的前缀和表示该年份的生存人数。
+
+  https://leetcode.cn/problems/living-people-lcci/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+      :linenos:
+
+      class Solution 
+      {
+      public:
+          int maxAliveYear(vector<int>& birth, vector<int>& death) 
+          {
+              const int SY = 1900;
+              const int EY = 2000;
+              int count[EY - SY + 2] = {0};
+              int N = birth.size();
+              for(int i = 0; i < N; ++i)
+              {
+                  count[birth[i] - SY] += 1;
+                  count[death[i] + 1 - SY] -= 1; // 区间 [birth[i], death[i]] 内生存人数都+1
+              }
+              int most = 0, year = -1;
+              int sum = 0;
+              for(int k = 0; k <= EY - SY; ++k)
+              {
+                  sum += count[k];
+                  if(sum > most)
+                  {
+                      most = sum;
+                      year = k + SY;
+                  }
+              }
+              return year;
+          }
+      };
+
+
 C++
 ------------
 

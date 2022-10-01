@@ -20,11 +20,11 @@ PCA 是一种正交线性变换，把数据变换到一个新的坐标系统中�
 
 .. math::
 
-  \underset{W}{max} & & \ Tr(W^{\top}XX^{\top}W) \\
-  s.t. & & \ W^{\top}W=I. \\
-  & &\ X \in \mathbb{R}^{d \times m}, \\
-  & &\ W \in \mathbb{R}^{d \times d^\prime}, \\
-  & &\ d^\prime < d.
+  \underset{W}{max} & \ Tr(W^{\top}XX^{\top}W) \\
+  s.t. & \ W^{\top}W=I. \\
+  & \ X \in \mathbb{R}^{d \times m}, \\
+  & \ W \in \mathbb{R}^{d \times d^\prime}, \\
+  & \ d^\prime < d.
 
 推导
 ---------
@@ -39,8 +39,8 @@ PCA 是一种正交线性变换，把数据变换到一个新的坐标系统中�
 
 .. math::
 
-    XX^{\top}W &=&\ \lambda W, \\
-    W^{\top}W &=&\ I.
+    XX^{\top}W &=\ \lambda W, \\
+    W^{\top}W &=\ I.
 
 对协方差矩阵 :math:`XX^{\top}` 进行特征值分解即可。
 
@@ -76,20 +76,20 @@ PCA-Whitening
 
 .. math::
 
-  x_{rot} & = &\  W^{\top} x, \\
-  x_{pca\ white, i} & = &\  \frac{x_{rot, i}}{\sqrt{\lambda_i}}
+  x_{rot} &=\  W^{\top} x, \\
+  x_{pca\ white, i} &=\  \frac{x_{rot, i}}{\sqrt{\lambda_i}}
 
 SVD分解
 ----------
 
 .. math::
 
-  A & = &\ U \Sigma V^{\top},\\
-  A & \in &\ \mathbb{R}^{m \times n}, \\
-  r & = &\ rank(A),\\
-  U & \in &\ \mathbb{R}^{m \times r}, \\
-  \Sigma & \in &\ \mathbb{R}^{r \times r}, \\
-  V & \in &\ \mathbb{R}^{n \times r}.
+  A &=\ U \Sigma V^{\top},\\
+  A & \in \mathbb{R}^{m \times n}, \\
+  r &=\ rank(A),\\
+  U & \in \mathbb{R}^{m \times r}, \\
+  \Sigma & \in \mathbb{R}^{r \times r}, \\
+  V & \in \mathbb{R}^{n \times r}.
 
 其中 :math:`U` 是 :math:`AA^{\top}` 的特征向量矩阵， :math:`V` 是 :math:`A^{\top}A` 的特征向量矩阵。
 

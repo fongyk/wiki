@@ -4,6 +4,10 @@
 分支管理
 ------------
 
+.. warning::
+
+    Github 已经将 master 分支改名为 main。
+
 - ``git checkout -b dev`` 创建分支dev，并切换到dev分支（此时可以正常add，commit等）。相当于下面两条指令：
 
   - ``git branch dev`` 创建分支

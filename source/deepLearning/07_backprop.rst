@@ -37,8 +37,8 @@
 
   .. math::
 
-      \frac{\partial{z}}{\partial{x_1}} &=&\ \frac{\partial{z}}{\partial{y_1}} \frac{\partial{y_1}}{\partial{x_1}} + \frac{\partial{z}}{\partial{y_2}} \frac{\partial{y_2}}{\partial{x_1}} \\
-      \frac{\partial{z}}{\partial{x_2}} &=&\ \frac{\partial{z}}{\partial{y_1}} \frac{\partial{y_1}}{\partial{x_2}} + \frac{\partial{z}}{\partial{y_2}} \frac{\partial{y_2}}{\partial{x_2}}
+      \frac{\partial{z}}{\partial{x_1}} &=\ \frac{\partial{z}}{\partial{y_1}} \frac{\partial{y_1}}{\partial{x_1}} + \frac{\partial{z}}{\partial{y_2}} \frac{\partial{y_2}}{\partial{x_1}} \\
+      \frac{\partial{z}}{\partial{x_2}} &=\ \frac{\partial{z}}{\partial{y_1}} \frac{\partial{y_1}}{\partial{x_2}} + \frac{\partial{z}}{\partial{y_2}} \frac{\partial{y_2}}{\partial{x_2}}
 
 - :math:`u = f(x, y(x), z(x))` 。 :math:`\frac{du}{dx}` 表示全导数， :math:`\frac{\partial{u}}{\partial{x}}` 表示偏导数。
 
@@ -57,10 +57,10 @@
 
 .. math::
 
-  z^{(l+1)}_i & = & \  b^{(l)}_i + \sum_{j=1}^{C_l}w^{(l)}_{ij}a^{(l)}_j, \\
-  g(t) & = & \  \frac{1}{1 + e^{-t}}, \\
-  g^{\prime}(t) & = & \ (1 - g(t))g(t) , \\
-  a^{(l)}_i & = & \  g(z^{(l)}_i).
+  z^{(l+1)}_i &= \  b^{(l)}_i + \sum_{j=1}^{C_l}w^{(l)}_{ij}a^{(l)}_j, \\
+  g(t) &= \  \frac{1}{1 + e^{-t}}, \\
+  g^{\prime}(t) &= \ (1 - g(t))g(t) , \\
+  a^{(l)}_i &= \  g(z^{(l)}_i).
 
 **误差** 定义为：
 
@@ -85,31 +85,31 @@
 
 .. math::
 
-  \delta^{(n)}_i & = & \  \frac{\partial{\mathcal{L}}}{\partial{z^{(n)}_i}} \\
-                 & = & \  \frac{1}{2} \frac{\partial{\bigg [ \sum_{j=1}^{C_n}(y_j - a^{(n)}_j)^2 \bigg ]}}{\partial{z^{(n)}_i}} \\
-                 & = & \  \frac{1}{2} \frac{\partial{\bigg [ (y_i - g(z^{(n)}_i))^2 \bigg ]}}{\partial{z^{(n)}_i}} \\
-                 & = & \  - (y_i - g(z^{(n)}_i)) g^{\prime}(z^{(n)}_i)
+  \delta^{(n)}_i &= \  \frac{\partial{\mathcal{L}}}{\partial{z^{(n)}_i}} \\
+                 &= \  \frac{1}{2} \frac{\partial{\bigg [ \sum_{j=1}^{C_n}(y_j - a^{(n)}_j)^2 \bigg ]}}{\partial{z^{(n)}_i}} \\
+                 &= \  \frac{1}{2} \frac{\partial{\bigg [ (y_i - g(z^{(n)}_i))^2 \bigg ]}}{\partial{z^{(n)}_i}} \\
+                 &= \  - (y_i - g(z^{(n)}_i)) g^{\prime}(z^{(n)}_i)
 
 递推前层误差：
 
 .. math::
 
-  \delta^{(l)}_i & = & \  \frac{\partial{\mathcal{L}}}{\partial{z^{(l)}_i}} \\
-                  & = & \  \sum_{j=1}^{C_{l+1}} \frac{\partial{\mathcal{L}}}{\partial{z^{(l+1)}_j}} \frac{\partial{z^{(l+1)}_j}}{\partial{a^{(l)}_i}} \frac{\partial{a^{(l)}_i}}{\partial{z^{(l)}_i}} \\
-                  & = & \  \sum_{j=1}^{C_{l+1}} \frac{\partial{\mathcal{L}}}{\partial{z^{(l+1)}_j}} \frac{\partial{\left ( b^{(l)}_i + \sum_{k=1}^{C_l}w^{(l)}_{jk}a^{(l)}_k \right )}}{\partial{a^{(l)}_i}} \frac{\partial{a^{(l)}_i}}{\partial{z^{(l)}_i}} \\
-                  & = & \  \sum_{j=1}^{C_{l+1}} \delta^{(l+1)}_j w_{ji}^{(l)} g^{\prime}(z^{(l)}_i) \\
-                  & = & \  g^{\prime}(z^{(l)}_i) \sum_{j=1}^{C_{l+1}} \delta^{(l+1)}_j w_{ji}^{(l)}
+  \delta^{(l)}_i &= \  \frac{\partial{\mathcal{L}}}{\partial{z^{(l)}_i}} \\
+                  &= \  \sum_{j=1}^{C_{l+1}} \frac{\partial{\mathcal{L}}}{\partial{z^{(l+1)}_j}} \frac{\partial{z^{(l+1)}_j}}{\partial{a^{(l)}_i}} \frac{\partial{a^{(l)}_i}}{\partial{z^{(l)}_i}} \\
+                  &= \  \sum_{j=1}^{C_{l+1}} \frac{\partial{\mathcal{L}}}{\partial{z^{(l+1)}_j}} \frac{\partial{\left ( b^{(l)}_i + \sum_{k=1}^{C_l}w^{(l)}_{jk}a^{(l)}_k \right )}}{\partial{a^{(l)}_i}} \frac{\partial{a^{(l)}_i}}{\partial{z^{(l)}_i}} \\
+                  &= \  \sum_{j=1}^{C_{l+1}} \delta^{(l+1)}_j w_{ji}^{(l)} g^{\prime}(z^{(l)}_i) \\
+                  &= \  g^{\prime}(z^{(l)}_i) \sum_{j=1}^{C_{l+1}} \delta^{(l+1)}_j w_{ji}^{(l)}
 
 
 权重和偏置的梯度：
 
 .. math::
 
-  \frac{\partial{\mathcal{L}}}{\partial{w_{ij}^{(l)}}} & = & \  \frac{\partial{\mathcal{L}}}{\partial{z^{(l+1)}_i}} \frac{\partial{z^{(l+1)}_i}}{\partial{w_{ij}^{(l)}}} \\
-                                                     & = & \  \delta^{(l+1)}_i \frac{\partial{z^{(l+1)}_i}}{\partial{w_{ij}^{(l)}}} \\
-                                                     & = & \  \delta^{(l+1)}_i \frac{\partial{\left ( b^{(l)}_i + \sum_{k=1}^{C_l}w^{(l)}_{ik}a^{(l)}_k \right )}}{\partial{w_{ij}^{(l)}}} \\
-                                                     & = & \  \delta^{(l+1)}_i a^{(l)}_j \\
-  \frac{\partial{\mathcal{L}}}{\partial{b_i^{(l)}}} & = & \  \delta^{(l+1)}_i
+  \frac{\partial{\mathcal{L}}}{\partial{w_{ij}^{(l)}}} &= \  \frac{\partial{\mathcal{L}}}{\partial{z^{(l+1)}_i}} \frac{\partial{z^{(l+1)}_i}}{\partial{w_{ij}^{(l)}}} \\
+                                                     &= \  \delta^{(l+1)}_i \frac{\partial{z^{(l+1)}_i}}{\partial{w_{ij}^{(l)}}} \\
+                                                     &= \  \delta^{(l+1)}_i \frac{\partial{\left ( b^{(l)}_i + \sum_{k=1}^{C_l}w^{(l)}_{ik}a^{(l)}_k \right )}}{\partial{w_{ij}^{(l)}}} \\
+                                                     &= \  \delta^{(l+1)}_i a^{(l)}_j \\
+  \frac{\partial{\mathcal{L}}}{\partial{b_i^{(l)}}} &= \  \delta^{(l+1)}_i
 
 
 梯度下降
@@ -155,29 +155,29 @@ softmax偏导为：
 
 .. math::
 
-  \frac{\partial{\mathcal{L}}}{\partial{z^{(n)}_i}} & = & \  \frac{\partial{\mathcal{L}}}{\partial{a^{(n)}_i}} \frac{\partial{a^{(n)}_i}}{\partial{z^{(n)}_i}} \\
-  \frac{\partial{\mathcal{L}}}{\partial{a^{(n)}_i}} & = & \  \sum_{j=1}^{C_n} \frac{\partial{\mathcal{L}}}{\partial{\hat{y}_j}} \frac{\partial{\hat{y}_j}}{\partial{a^{(n)}_i}} \\
-  \frac{\partial{\mathcal{L}}}{\partial{\hat{y}_j}} & = & \  - \frac{y_j}{\hat{y}_j}
+  \frac{\partial{\mathcal{L}}}{\partial{z^{(n)}_i}} &= \  \frac{\partial{\mathcal{L}}}{\partial{a^{(n)}_i}} \frac{\partial{a^{(n)}_i}}{\partial{z^{(n)}_i}} \\
+  \frac{\partial{\mathcal{L}}}{\partial{a^{(n)}_i}} &= \  \sum_{j=1}^{C_n} \frac{\partial{\mathcal{L}}}{\partial{\hat{y}_j}} \frac{\partial{\hat{y}_j}}{\partial{a^{(n)}_i}} \\
+  \frac{\partial{\mathcal{L}}}{\partial{\hat{y}_j}} &= \  - \frac{y_j}{\hat{y}_j}
 
 可推得：
 
 .. math::
 
-  \frac{\partial{\mathcal{L}}}{\partial{a^{(n)}_i}} & = & \  \sum_{j=1}^{C_n} \frac{\partial{\mathcal{L}}}{\partial{\hat{y}_j}} \frac{\partial{\hat{y}_j}}{\partial{a^{(n)}_i}} \\
-                                                    & = & \  \frac{\partial{\mathcal{L}}}{\partial{\hat{y}_i}} \frac{\partial{\hat{y}_i}}{\partial{a^{(n)}_i}} + \sum_{j \ne i}^{C_n} \frac{\partial{\mathcal{L}}}{\partial{\hat{y}_j}} \frac{\partial{\hat{y}_j}}{\partial{a^{(n)}_i}} \\
-                                                    & = & \  - \frac{y_i}{\hat{y}_i} \times \hat{y}_i (1 - \hat{y}_i) + \sum_{j \ne i}^{C_n} - \frac{y_j}{\hat{y}_j} \times \left ( - \hat{y}_j \hat{y}_i \right) \\
-                                                    & = & \  - y_i \times (1 - \hat{y}_i) + \sum_{j \ne i}^{C_n}  y_j \times \hat{y}_i \\
-                                                    & = & \  - y_i + \sum_{j=1}^{C_n}  y_j \times \hat{y}_i \\
-                                                    & = & \  - y_i + \hat{y}_i
+  \frac{\partial{\mathcal{L}}}{\partial{a^{(n)}_i}} &= \  \sum_{j=1}^{C_n} \frac{\partial{\mathcal{L}}}{\partial{\hat{y}_j}} \frac{\partial{\hat{y}_j}}{\partial{a^{(n)}_i}} \\
+                                                    &= \  \frac{\partial{\mathcal{L}}}{\partial{\hat{y}_i}} \frac{\partial{\hat{y}_i}}{\partial{a^{(n)}_i}} + \sum_{j \ne i}^{C_n} \frac{\partial{\mathcal{L}}}{\partial{\hat{y}_j}} \frac{\partial{\hat{y}_j}}{\partial{a^{(n)}_i}} \\
+                                                    &= \  - \frac{y_i}{\hat{y}_i} \times \hat{y}_i (1 - \hat{y}_i) + \sum_{j \ne i}^{C_n} - \frac{y_j}{\hat{y}_j} \times \left ( - \hat{y}_j \hat{y}_i \right) \\
+                                                    &= \  - y_i \times (1 - \hat{y}_i) + \sum_{j \ne i}^{C_n}  y_j \times \hat{y}_i \\
+                                                    &= \  - y_i + \sum_{j=1}^{C_n}  y_j \times \hat{y}_i \\
+                                                    &= \  - y_i + \hat{y}_i
 
 
 最后一层的误差：
 
 .. math::
 
-  \delta^{(n)}_i & = & \ \frac{\partial{\mathcal{L}}}{\partial{z^{(n)}_i}} \\
-                 & = & \ \frac{\partial{\mathcal{L}}}{\partial{a^{(n)}_i}} \frac{\partial{a^{(n)}_i}}{\partial{z^{(n)}_i}} \\
-                 & = & \ (- y_i + \hat{y}_i) g^{\prime}(z^{(n)}_i)
+  \delta^{(n)}_i &= \ \frac{\partial{\mathcal{L}}}{\partial{z^{(n)}_i}} \\
+                 &= \ \frac{\partial{\mathcal{L}}}{\partial{a^{(n)}_i}} \frac{\partial{a^{(n)}_i}}{\partial{z^{(n)}_i}} \\
+                 &= \ (- y_i + \hat{y}_i) g^{\prime}(z^{(n)}_i)
 
 
 参考资料

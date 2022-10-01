@@ -486,12 +486,10 @@
 递推关系：
 
 .. math::
-  :nowrap:
 
-  $$
-  dp[V][0] = 0 \\
-  dp[S][v] =  min\{ dp[S \cup u][u] + d[v][u] \},\ u \notin S
-  $$
+  dp[V][0] &= 0 \\
+  dp[S][v] &=  min\{ dp[S \cup u][u] + d[v][u] \},\ u \notin S
+  
 
 .. container:: toggle
 

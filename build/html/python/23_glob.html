@@ -1,86 +1,40 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>23. glob &mdash; fong alpha documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript">
-          var DOCUMENTATION_OPTIONS = {
-              URL_ROOT:'../',
-              VERSION:'alpha',
-              LANGUAGE:'None',
-              COLLAPSE_INDEX:false,
-              FILE_SUFFIX:'.html',
-              HAS_SOURCE:  true,
-              SOURCELINK_SUFFIX: '.txt'
-          };
-      </script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="24. Python 执行 linux 命令" href="24_pyLinux.html" />
     <link rel="prev" title="22. 内建属性" href="22_buildIn.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> fong
-          
-
-          
-            
             <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
                 alpha
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -88,18 +42,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">目录</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Python</a><ul class="current">
@@ -133,6 +77,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="24_pyLinux.html">24. Python 执行 linux 命令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_bisect.html">25. bisect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_abc.html">26. abc</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
@@ -147,115 +93,66 @@
 <li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">fong</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">Python</a> &raquo;</li>
-        
-      <li>23. glob</li>
-    
-    
+      <li><span class="section-number">23. </span>glob</li>
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../_sources/python/23_glob.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="glob">
-<h1>23. glob<a class="headerlink" href="#glob" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="glob">
+<h1><span class="section-number">23. </span>glob<a class="headerlink" href="#glob" title="Permalink to this headline"></a></h1>
 <p>glob 是 python 自带的用来处理文件路径相关操作的模块，它可以找出所有和特定模式匹配的文件路径名（pathname）。</p>
-<div class="section" id="id1">
-<h2>23.1. 通配符<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<section id="id1">
+<h2><span class="section-number">23.1. </span>通配符<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
 <p>glob 只有3个通配符：</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">*</span></code>   匹配所有字符</li>
-<li><code class="docutils literal notranslate"><span class="pre">?</span></code>   匹配单个字符</li>
-<li><code class="docutils literal notranslate"><span class="pre">[]</span></code>  匹配指定范围的字符，如 [0-9], [a-z], [0-3, a-c]</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">*</span></code>   匹配所有字符</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">?</span></code>   匹配单个字符</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[]</span></code>  匹配指定范围的字符，如 [0-9], [a-z], [0-3, a-c]</p></li>
 </ul>
-</div>
-<div class="section" id="glob-glob">
-<h2>23.2. glob.glob<a class="headerlink" href="#glob-glob" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="glob-glob">
+<h2><span class="section-number">23.2. </span>glob.glob<a class="headerlink" href="#glob-glob" title="Permalink to this headline"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">pathname</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>返回匹配文件名的一个列表， <code class="docutils literal notranslate"><span class="pre">pathname</span></code> 可以是绝对路径也可以是相对路径。</p>
 <p>当 <code class="docutils literal notranslate"><span class="pre">recursive=True</span></code> ，通配符 <code class="docutils literal notranslate"><span class="pre">**</span></code> 可以匹配任意文件、目录、子目录、符号链接目录等。</p>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">glob</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;./[0-9].*&#39;</span><span class="p">)</span>
-<span class="go">[&#39;./1.gif&#39;, &#39;./2.txt&#39;]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;*.gif&#39;</span><span class="p">)</span>
-<span class="go">[&#39;1.gif&#39;, &#39;card.gif&#39;]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;?.gif&#39;</span><span class="p">)</span>
-<span class="go">[&#39;1.gif&#39;]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;**/*.txt&#39;</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="go">[&#39;2.txt&#39;, &#39;sub/3.txt&#39;]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;./**/&#39;</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="go">[&#39;./&#39;, &#39;./sub/&#39;]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">glob</span>
+<span class="linenos"> 2</span><span class="gp">&gt;&gt;&gt; </span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;./[0-9].*&#39;</span><span class="p">)</span>
+<span class="linenos"> 3</span><span class="go">[&#39;./1.gif&#39;, &#39;./2.txt&#39;]</span>
+<span class="linenos"> 4</span><span class="gp">&gt;&gt;&gt; </span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;*.gif&#39;</span><span class="p">)</span>
+<span class="linenos"> 5</span><span class="go">[&#39;1.gif&#39;, &#39;card.gif&#39;]</span>
+<span class="linenos"> 6</span><span class="gp">&gt;&gt;&gt; </span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;?.gif&#39;</span><span class="p">)</span>
+<span class="linenos"> 7</span><span class="go">[&#39;1.gif&#39;]</span>
+<span class="linenos"> 8</span><span class="gp">&gt;&gt;&gt; </span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;**/*.txt&#39;</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos"> 9</span><span class="go">[&#39;2.txt&#39;, &#39;sub/3.txt&#39;]</span>
+<span class="linenos">10</span><span class="gp">&gt;&gt;&gt; </span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;./**/&#39;</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">11</span><span class="go">[&#39;./&#39;, &#39;./sub/&#39;]</span>
 </pre></div>
-</td></tr></table></div>
 </div>
-<div class="section" id="glob-iglob">
-<h2>23.3. glob.iglob<a class="headerlink" href="#glob-iglob" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="glob-iglob">
+<h2><span class="section-number">23.3. </span>glob.iglob<a class="headerlink" href="#glob-iglob" title="Permalink to this headline"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="n">pathname</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -268,69 +165,53 @@
 <span class="n">fg</span><span class="o">.</span><span class="n">next</span><span class="p">()</span> <span class="c1">## Python2</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="id2">
-<h2>23.4. 参考资料<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id2">
+<h2><span class="section-number">23.4. </span>参考资料<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
-<li>python的glob模块</li>
+<li><p>python的glob模块</p></li>
 </ol>
 <blockquote>
-<div><a class="reference external" href="https://www.cnblogs.com/luobuda/p/glob.html">https://www.cnblogs.com/luobuda/p/glob.html</a></div></blockquote>
+<div><p><a class="reference external" href="https://www.cnblogs.com/luobuda/p/glob.html">https://www.cnblogs.com/luobuda/p/glob.html</a></p>
+</div></blockquote>
 <ol class="arabic simple" start="2">
-<li>glob — Unix style pathname pattern expansion</li>
+<li><p>glob — Unix style pathname pattern expansion</p></li>
 </ol>
 <blockquote>
-<div><a class="reference external" href="https://docs.python.org/3/library/glob.html">https://docs.python.org/3/library/glob.html</a></div></blockquote>
-</div>
-</div>
+<div><p><a class="reference external" href="https://docs.python.org/3/library/glob.html">https://docs.python.org/3/library/glob.html</a></p>
+</div></blockquote>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="24_pyLinux.html" class="btn btn-neutral float-right" title="24. Python 执行 linux 命令" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="22_buildIn.html" class="btn btn-neutral float-left" title="22. 内建属性" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="22_buildIn.html" class="btn btn-neutral float-left" title="22. 内建属性" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="24_pyLinux.html" class="btn btn-neutral float-right" title="24. Python 执行 linux 命令" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2018, fong
-
-    </p>
+    <p>&#169; Copyright 2018, fong.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-
-  
-  
-    
-  
 <script type="text/javascript">
     $(document).ready(function() {
      $(".toggle > *").hide();

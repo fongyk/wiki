@@ -2652,8 +2652,8 @@ Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数�
 
           .. math::
 
-            dp[i][j] & = &\ dp[i+1][j] + dp[i][j-1] - dp[i+1][j-1] + 1 + dp[i+1][j-1] \\
-                     & = &\ dp[i+1][j] + dp[i][j-1] + 1
+            dp[i][j] &=\ dp[i+1][j] + dp[i][j-1] - dp[i+1][j-1] + 1 + dp[i+1][j-1] \\
+                     &=\ dp[i+1][j] + dp[i][j-1] + 1
 
         - 如果只统计不同回文子序列的个数，分三种情况。
 
@@ -4969,8 +4969,8 @@ Python
 
   .. math::
 
-      CE & = &\ -y \log y_t - (1 - y) \log (1 - y_t) & &\ [\text{Cross Entropy Loss}] \\
-      FL & = &\ -y \alpha (1 - y_t)^\gamma \log y_t - (1 - y) (1 - \alpha) y_t^\gamma \log (1 - y_t) & &\ [\text{Focal Loss}]
+      CE &=\ -y \log y_t - (1 - y) \log (1 - y_t) & &\ [\text{Cross Entropy Loss}] \\
+      FL &=\ -y \alpha (1 - y_t)^\gamma \log y_t - (1 - y) (1 - \alpha) y_t^\gamma \log (1 - y_t) & &\ [\text{Focal Loss}]
 
   即
 

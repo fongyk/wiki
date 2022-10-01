@@ -8,9 +8,9 @@
 
 .. math::
 
-    H(X) & = &\ E[I(X)] = E[-\log (P(X))] \\
-         & = &\ - \sum_{i=1}^n P(x_i) \log P(x_i) \ \text{比特/信源符号} \\
-         & \geqslant &\ 0
+    H(X) &=\ E[I(X)] = E[-\log (P(X))] \\
+         &=\ - \sum_{i=1}^n P(x_i) \log P(x_i) \ \text{比特/信源符号} \\
+         & \geqslant 0
 
 条件熵（给定随机变量 :math:`Y` ，对随机变量 :math:`X` 仍存在的平均不确定性）：
 
@@ -22,8 +22,8 @@ Differential entropy（连续状态下的熵）：
 
 .. math::
 
-    h(f) & = &\ E[- \log f(x)] \\
-         & = &\ - \int f(x) \log f(x) dx
+    h(f) &=\ E[- \log f(x)] \\
+         &=\ - \int f(x) \log f(x) dx
 
 其中 :math:`f(x)` 是概率密度函数（probability density function）。
 
@@ -37,13 +37,13 @@ Differential entropy（连续状态下的熵）：
 
 .. math::
 
-    I(X, Y) & = &\ \sum_i \sum_j p(x_i, y_j) \log \frac{p(x_i|y_j)}{p(x_i)} \\
-            & = &\ H(X) - H(X|Y) \\
-            & = &\ H(Y) - H(Y|X) \\
-            & = &\ H(X) + H(Y) - H(X,Y) \\
-            & = &\ H(X, Y) - H(X|Y) - H(Y|X) \\
-            & = &\ I(Y, X) \\
-            & \geqslant &\ 0
+    I(X, Y) &=\ \sum_i \sum_j p(x_i, y_j) \log \frac{p(x_i|y_j)}{p(x_i)} \\
+            &=\ H(X) - H(X|Y) \\
+            &=\ H(Y) - H(Y|X) \\
+            &=\ H(X) + H(Y) - H(X,Y) \\
+            &=\ H(X, Y) - H(X|Y) - H(Y|X) \\
+            &=\ I(Y, X) \\
+            & \geqslant 0
 
 互信息（mutual information，MI） :math:`I(X, Y)` 总体上表示每传递一个符号所传递的平均信息量，衡量了两个随机变量的独立性。
 
@@ -57,9 +57,9 @@ KL 散度（Kullback–Leibler divergence 或 relative entropy），衡量了两
 
 .. math::
 
-    D_{KL}(P \| Q) & = &\ - \sum_x P(x) \log \frac{Q(x)}{P(x)}  & & \text{[离散]} \\
-                   & = &\ - \int p(x) \log \frac{q(x)}{p(x)} dx  & & \text{[连续]} \\
-                   & \geqslant &\ 0 \\
+    D_{KL}(P \| Q) &=\ - \sum_x P(x) \log \frac{Q(x)}{P(x)}  & & \text{[离散]} \\
+                   &=\ - \int p(x) \log \frac{q(x)}{p(x)} dx  & & \text{[连续]} \\
+                   & \geqslant 0 \\
 .. math::
 
     I(X, Y)  =\ D_{KL} ( p(X, Y)\ \| \ p(X)p(Y) )

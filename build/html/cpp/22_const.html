@@ -1,86 +1,40 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>22. const和constexpr &mdash; fong alpha documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript">
-          var DOCUMENTATION_OPTIONS = {
-              URL_ROOT:'../',
-              VERSION:'alpha',
-              LANGUAGE:'None',
-              COLLAPSE_INDEX:false,
-              FILE_SUFFIX:'.html',
-              HAS_SOURCE:  true,
-              SOURCELINK_SUFFIX: '.txt'
-          };
-      </script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="23. 拷贝控制" href="23_copyControl.html" />
     <link rel="prev" title="21. 运算符优先级" href="21_operatorPrior.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> fong
-          
-
-          
-            
             <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
                 alpha
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -88,18 +42,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">目录</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">C/C++</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="01_main.html">1. main函数</a></li>
@@ -112,7 +56,7 @@
 <li class="toctree-l2"><a class="reference internal" href="08_overload.html">8. 重载、覆盖、隐藏</a></li>
 <li class="toctree-l2"><a class="reference internal" href="09_strcpy.html">9. strcpy函数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="10_cast.html">10. 强制类型转换</a></li>
-<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html">11. 堆、栈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_heapStack.html">11. 堆和栈</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12_argPass.html">12. 参数传递</a></li>
 <li class="toctree-l2"><a class="reference internal" href="13_nullClassPtr.html">13. 空类指针</a></li>
 <li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html">14. static和extern</a></li>
@@ -137,6 +81,10 @@
 <li class="toctree-l2"><a class="reference internal" href="26_lambda.html">26. lambda 表达式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="27_singleton.html">27. 单例模式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="28_vaFunc.html">28. 可变参数函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="29_operatorOverload.html">29. 运算符重载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30_templateSpecialization.html">30. 模板特化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="31_autoType.html">31. 类型推导</a></li>
+<li class="toctree-l2"><a class="reference internal" href="32_universalReference.html">32. 通用引用和右值引用</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -152,308 +100,188 @@
 <li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">fong</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">C/C++</a> &raquo;</li>
-        
-      <li>22. const和constexpr</li>
-    
-    
+      <li><span class="section-number">22. </span>const和constexpr</li>
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../_sources/cpp/22_const.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="constconstexpr">
-<h1>22. const和constexpr<a class="headerlink" href="#constconstexpr" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="constconst">
-<h2>22.1. 顶层const与底层const<a class="headerlink" href="#constconst" title="Permalink to this headline">¶</a></h2>
+             
+  <section id="constconstexpr">
+<h1><span class="section-number">22. </span>const和constexpr<a class="headerlink" href="#constconstexpr" title="Permalink to this headline"></a></h1>
+<section id="constconst">
+<h2><span class="section-number">22.1. </span>顶层const与底层const<a class="headerlink" href="#constconst" title="Permalink to this headline"></a></h2>
 <p>由于指针本身是一个对象，它有可以指向另一个对象，因此，指针本身是不是常量以及指针所指对象是不是常量就是两个相互独立的问题。</p>
 <p><strong>顶层const</strong> （top-level const）表示 <strong>对象本身</strong> 是常量，<strong>底层const</strong> （low-level const）与指针或引用等复合类型的 <strong>基本类型</strong> 部分有关。
 对指针而言，既可以是顶层const，也可以是底层const。</p>
-<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7
-8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="kt">int</span> <span class="o">*</span><span class="k">const</span> <span class="n">p1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span> <span class="c1">// 顶层const，不能改变 p1 的值</span>
-
-<span class="k">const</span> <span class="kt">int</span> <span class="n">ci</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span> <span class="c1">// 顶层const，不能改变 ci 的值</span>
-<span class="k">const</span> <span class="kt">int</span> <span class="o">*</span><span class="n">p2</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ci</span><span class="p">;</span>  <span class="c1">// 底层const，可以改变 p2 的值，但不能通过 p2 改变 ci 的值。</span>
-<span class="k">const</span> <span class="kt">int</span> <span class="o">*</span><span class="k">const</span> <span class="n">p3</span> <span class="o">=</span> <span class="n">p2</span><span class="p">;</span>  <span class="c1">// 顶层const + 底层const</span>
-
-<span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">r</span> <span class="o">=</span> <span class="n">ci</span><span class="p">;</span> <span class="c1">// 用于声明引用的const都是底层const，r 不能改变 i</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">2</span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="k">const</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="c1">// 顶层const，不能改变 p1 的值</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ci</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span><span class="w"> </span><span class="c1">// 顶层const，不能改变 ci 的值</span>
+<span class="linenos">5</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">p2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ci</span><span class="p">;</span><span class="w">  </span><span class="c1">// 底层const，可以改变 p2 的值，但不能通过 p2 改变 ci 的值。</span>
+<span class="linenos">6</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="k">const</span><span class="w"> </span><span class="n">p3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p2</span><span class="p">;</span><span class="w">  </span><span class="c1">// 顶层const + 底层const</span>
+<span class="linenos">7</span>
+<span class="linenos">8</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ci</span><span class="p">;</span><span class="w"> </span><span class="c1">// 用于声明引用的const都是底层const，r 不能改变 i</span>
 </pre></div>
-</td></tr></table></div>
+</div>
 <p>执行拷贝操作，被拷贝对象的顶层const属性不受影响。而对于底层const，要求拷入和拷出的对象具有相同的底层const属性，或在两个对象的数据类型能够转换。</p>
-<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 承接上例的定义</span>
-
-<span class="n">i</span> <span class="o">=</span> <span class="n">ci</span><span class="p">;</span> <span class="c1">// 正确</span>
-<span class="n">p2</span> <span class="o">=</span> <span class="n">p3</span><span class="p">;</span> <span class="c1">// 正确</span>
-
-<span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">p3</span><span class="p">;</span> <span class="c1">// 错误，p 没有底层const，防止通过 p 间接改变 p3 所指对象。</span>
-<span class="n">p2</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span> <span class="c1">// 正确，int* 能转换为 const int*</span>
-
-<span class="kt">int</span> <span class="o">&amp;</span><span class="n">r1</span> <span class="o">=</span> <span class="n">ci</span><span class="p">;</span> <span class="c1">// 错误，r1 没有底层const</span>
-<span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">r2</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="c1">// 正确，const int&amp; 可以绑定到普通 int</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">// 承接上例的定义</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ci</span><span class="p">;</span><span class="w"> </span><span class="c1">// 正确</span>
+<span class="linenos"> 4</span><span class="n">p2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p3</span><span class="p">;</span><span class="w"> </span><span class="c1">// 正确</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p3</span><span class="p">;</span><span class="w"> </span><span class="c1">// 错误，p 没有底层const，防止通过 p 间接改变 p3 所指对象。</span>
+<span class="linenos"> 7</span><span class="n">p2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="c1">// 正确，int* 能转换为 const int*</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">r1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ci</span><span class="p">;</span><span class="w"> </span><span class="c1">// 错误，r1 没有底层const</span>
+<span class="linenos">10</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">r2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="c1">// 正确，const int&amp; 可以绑定到普通 int</span>
 </pre></div>
-</td></tr></table></div>
+</div>
 <p>总结：可以使用 <strong>非常量对象</strong> 初始化一个 <strong>底层const对象</strong> ，但是不能使用 <strong>底层const对象</strong> 初始化一个 <strong>非常量对象</strong> 。同时，一个普通的引用
 必须使用同类型的对象初始化。同样的初始化规则可以应用到函数的 <strong>参数传递</strong> 上。</p>
-</div>
-<div class="section" id="const">
-<h2>22.2. const形参和实参<a class="headerlink" href="#const" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="const">
+<h2><span class="section-number">22.2. </span>const形参和实参<a class="headerlink" href="#const" title="Permalink to this headline"></a></h2>
 <p>使用实参初始化形参时，会 <strong>忽略掉顶层const</strong> ，换句话说，形参的顶层const被忽略了。因此，当形参有顶层const时，传给它常量对象或非常量对象都是可以的 。</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">fcn</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span><span class="cm">/* */</span><span class="p">}</span>
-<span class="kt">void</span> <span class="nf">fcn</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span><span class="cm">/* */</span><span class="p">}</span> <span class="c1">// 重复定义了 fcn</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">fcn</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="cm">/* */</span><span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">fcn</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="cm">/* */</span><span class="p">}</span><span class="w"> </span><span class="c1">// 重复定义了 fcn</span>
 </pre></div>
 </div>
 <p>上例中其实重复定义了fcn，而不是重载。调用fcn时，既可以传入const int对象，也可以传入int对象。
 反之，如果参数类型是int，也可传入const int对象（传值调用，函数拷贝了实参）。</p>
-</div>
-<div class="section" id="id1">
-<h2>22.3. const成员函数<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id1">
+<h2><span class="section-number">22.3. </span>const成员函数<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
 <p>默认情况下，<code class="docutils literal notranslate"><span class="pre">this</span></code> 指针的类型是指向 <strong>类类型非常量版本的常量指针</strong> ，即 <code class="docutils literal notranslate"><span class="pre">ClassName</span> <span class="pre">*const</span></code> 。尽管 <code class="docutils literal notranslate"><span class="pre">this</span></code> 是隐式的，但它仍然需要遵守初始化规则。
 意味着在默认情况下，我们不能把 <code class="docutils literal notranslate"><span class="pre">this</span></code> 绑定到一个常量对象上。这一情况也使得我们不能在一个常量对象上调用普通的成员函数。通过把关键字 const 放在成员函数参数列表后面，
 定义该成员函数为 <strong>常量成员函数</strong> 。</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Sale</span>
-<span class="p">{</span>
-  <span class="kt">double</span> <span class="n">avg_price</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
-<span class="p">};</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Sale</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="nf">avg_price</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>
 <p>此时，<code class="docutils literal notranslate"><span class="pre">this</span></code> 成为指向常量的指针，所以常量成员函数 <strong>不能改变调用它的对象的内容</strong> 。</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">常量对象、常量对象的引用和指针都只能调用常量成员函数。</p>
+<p class="admonition-title">Note</p>
+<p>常量对象、常量对象的引用和指针都只能调用常量成员函数。</p>
 </div>
-</div>
-<div class="section" id="constexpr">
-<h2>22.4. constexpr<a class="headerlink" href="#constexpr" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="constexpr">
+<h2><span class="section-number">22.4. </span>constexpr<a class="headerlink" href="#constexpr" title="Permalink to this headline"></a></h2>
 <p>constexpr 用于指示常量表达式，在编译阶段就能对该表达式求值。const 变量的值可以在编译时确定，也可以在运行时确定，但 constexpr 变量的值必须在编译时就能确定。</p>
 <p>定义 constexpr 变量的时候，变量的类型只能是基本数据类型、指针和引用，而不能是其它标准库类型；对于自定义类型，constexpr 构造函数的函数体必须为空，所有成员变量的初始化都放到初始化列表中。</p>
 <p>constexpr 函数的参数和返回值必须是字面值类型。
 要是 constexpr 函数所使用的变量其值只能在运行时确定，那么 constexpr 函数就和一般的函数没区别。</p>
 <p>constexpr 声明的指针仅表示指针本身是常量，因此不能直接指向常量对象，需要增加 const 声明。
 同样地，constexpr const 声明的引用才能绑定常量对象；只用 constexpr 声明的引用绑定非常量对象，是可以对该对象进行修改的。</p>
-<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Circle</span>
-<span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="k">constexpr</span> <span class="n">Circle</span><span class="p">(</span><span class="kt">int</span> <span class="n">_x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_y</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_radius</span><span class="p">)</span><span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="n">_x</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">_y</span><span class="p">),</span> <span class="n">radius</span><span class="p">(</span><span class="n">_radius</span><span class="p">){}</span>
-    <span class="k">constexpr</span> <span class="kt">double</span> <span class="n">getArea</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">return</span> <span class="mf">3.14</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">radius</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="k">private</span><span class="o">:</span>
-    <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">radius</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="k">const</span> <span class="n">Circle</span> <span class="n">circle_unit</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">);</span>
-<span class="k">const</span> <span class="kt">double</span> <span class="n">area_unit</span> <span class="o">=</span> <span class="n">circle_unit</span><span class="p">.</span><span class="n">getArea</span><span class="p">();</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span><span class="w"> </span><span class="nc">Circle</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="n">Circle</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">_x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">_y</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">_radius</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="n">_x</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="n">_y</span><span class="p">),</span><span class="w"> </span><span class="n">radius</span><span class="p">(</span><span class="n">_radius</span><span class="p">){}</span><span class="w"></span>
+<span class="linenos"> 5</span><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">getArea</span><span class="p">()</span><span class="w"></span>
+<span class="linenos"> 6</span><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 7</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mf">3.14</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">radius</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">radius</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="k">private</span><span class="o">:</span><span class="w"></span>
+<span class="linenos">10</span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">11</span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">12</span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">radius</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">13</span><span class="p">};</span><span class="w"></span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="k">const</span><span class="w"> </span><span class="n">Circle</span><span class="w"> </span><span class="n">circle_unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Circle</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">16</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">area_unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">circle_unit</span><span class="p">.</span><span class="n">getArea</span><span class="p">();</span><span class="w"></span>
 </pre></div>
-</td></tr></table></div>
-<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">constexpr</span> <span class="kt">int</span> <span class="nf">sum</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">const</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-<span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="n">sum</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">)];</span>
-
-<span class="kt">int</span> <span class="n">var</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
-<span class="k">const</span> <span class="kt">int</span> <span class="n">cv</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-<span class="k">constexpr</span> <span class="kt">int</span> <span class="n">ce</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="c1">// 可以用 const 指针指向 constexpr 对象</span>
-    <span class="k">const</span> <span class="kt">int</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ce</span><span class="p">;</span>
-
-    <span class="c1">// 去掉 const 关键字则编译出错</span>
-    <span class="k">constexpr</span> <span class="k">const</span> <span class="kt">int</span><span class="o">*</span> <span class="n">pcv</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">cv</span><span class="p">;</span>
-    <span class="k">constexpr</span> <span class="k">const</span> <span class="kt">int</span><span class="o">*</span> <span class="n">pce</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ce</span><span class="p">;</span>
-    <span class="k">constexpr</span> <span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">rcv</span> <span class="o">=</span> <span class="n">cv</span><span class="p">;</span>
-    <span class="k">constexpr</span> <span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">rce</span> <span class="o">=</span> <span class="n">ce</span><span class="p">;</span>
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p</span> <span class="o">&lt;&lt;</span> <span class="n">ends</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">pcv</span> <span class="o">&lt;&lt;</span> <span class="n">ends</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">pce</span> <span class="o">&lt;&lt;</span> <span class="n">ends</span> <span class="o">&lt;&lt;</span> <span class="n">rcv</span> <span class="o">&lt;&lt;</span> <span class="n">ends</span> <span class="o">&lt;&lt;</span> <span class="n">rce</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-
-    <span class="k">constexpr</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">r</span> <span class="o">=</span> <span class="n">var</span><span class="p">;</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span><span class="p">;</span>
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">var</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// -5</span>
-
-    <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
-    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="n">b</span><span class="p">;</span>
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 运行时计算</span>
-
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</td></tr></table></div>
 </div>
-<div class="section" id="id2">
-<h2>22.5. 参考资料<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 5</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 6</span><span class="kt">int</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">sum</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">)];</span><span class="w"></span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="kt">int</span><span class="w"> </span><span class="n">var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">cv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">10</span><span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ce</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"></span>
+<span class="linenos">13</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">14</span><span class="w">    </span><span class="c1">// 可以用 const 指针指向 constexpr 对象</span>
+<span class="linenos">15</span><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ce</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="w">    </span><span class="c1">// 去掉 const 关键字则编译出错</span>
+<span class="linenos">18</span><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">pcv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cv</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">19</span><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">pce</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ce</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">20</span><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">rcv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cv</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">21</span><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">rce</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ce</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">22</span><span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ends</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">pcv</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ends</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">pce</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ends</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">rcv</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ends</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">rce</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">var</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">25</span><span class="w">    </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-5</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">26</span><span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">var</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"> </span><span class="c1">// -5</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">29</span><span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">30</span><span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"> </span><span class="c1">// 运行时计算</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">33</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2><span class="section-number">22.5. </span>参考资料<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <p>1.《C++ Primer 第5版 中文版》 Page 57 – 58， Page 190 – 191，Page 231 – 232。</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="23_copyControl.html" class="btn btn-neutral float-right" title="23. 拷贝控制" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="21_operatorPrior.html" class="btn btn-neutral float-left" title="21. 运算符优先级" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="21_operatorPrior.html" class="btn btn-neutral float-left" title="21. 运算符优先级" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="23_copyControl.html" class="btn btn-neutral float-right" title="23. 拷贝控制" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2018, fong
-
-    </p>
+    <p>&#169; Copyright 2018, fong.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-
-  
-  
-    
-  
 <script type="text/javascript">
     $(document).ready(function() {
      $(".toggle > *").hide();

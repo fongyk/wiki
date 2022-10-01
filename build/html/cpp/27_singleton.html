@@ -1,86 +1,40 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>27. 单例模式 &mdash; fong alpha documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript">
-          var DOCUMENTATION_OPTIONS = {
-              URL_ROOT:'../',
-              VERSION:'alpha',
-              LANGUAGE:'None',
-              COLLAPSE_INDEX:false,
-              FILE_SUFFIX:'.html',
-              HAS_SOURCE:  true,
-              SOURCELINK_SUFFIX: '.txt'
-          };
-      </script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="28. 可变参数函数" href="28_vaFunc.html" />
     <link rel="prev" title="26. lambda 表达式" href="26_lambda.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> fong
-          
-
-          
-            
             <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
                 alpha
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -88,18 +42,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">目录</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">C/C++</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="01_main.html">1. main函数</a></li>
@@ -146,6 +90,8 @@
 <li class="toctree-l2"><a class="reference internal" href="28_vaFunc.html">28. 可变参数函数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="29_operatorOverload.html">29. 运算符重载</a></li>
 <li class="toctree-l2"><a class="reference internal" href="30_templateSpecialization.html">30. 模板特化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="31_autoType.html">31. 类型推导</a></li>
+<li class="toctree-l2"><a class="reference internal" href="32_universalReference.html">32. 通用引用和右值引用</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -161,185 +107,107 @@
 <li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">fong</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">C/C++</a> &raquo;</li>
-        
-      <li>27. 单例模式</li>
-    
-    
+      <li><span class="section-number">27. </span>单例模式</li>
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../_sources/cpp/27_singleton.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="id1">
-<h1>27. 单例模式<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="id1">
+<h1><span class="section-number">27. </span>单例模式<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
 <p>单例是一种创建型设计模式，保证一个类只有一个实例（对象），并提供一个访问该实例的全局节点。</p>
-<div class="section" id="id2">
-<h2>27.1. 基础单例<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// from the header file</span>
-<span class="k">class</span> <span class="nc">Singleton</span>
-<span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-  <span class="k">static</span> <span class="n">Singleton</span><span class="o">*</span> <span class="n">instance</span><span class="p">();</span>
-  <span class="c1">// something else ...</span>
-<span class="k">private</span><span class="o">:</span>
-  <span class="k">static</span> <span class="n">Singleton</span><span class="o">*</span> <span class="n">pInstance</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="c1">// from the implementation file</span>
-<span class="n">Singleton</span><span class="o">*</span> <span class="n">Singleton</span><span class="o">::</span><span class="n">pInstance</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// nullptr</span>
-
-<span class="n">Singleton</span><span class="o">*</span> <span class="n">Singleton</span><span class="o">::</span><span class="n">instance</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">pInstance</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">pInstance</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Singleton</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="n">pInstance</span><span class="p">;</span>
-<span class="p">}</span>
+<section id="id2">
+<h2><span class="section-number">27.1. </span>基础单例<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">// from the header file</span>
+<span class="linenos"> 2</span><span class="k">class</span><span class="w"> </span><span class="nc">Singleton</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="linenos"> 5</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">Singleton</span><span class="o">*</span><span class="w"> </span><span class="n">instance</span><span class="p">();</span><span class="w"></span>
+<span class="linenos"> 6</span><span class="w">  </span><span class="c1">// something else ...</span>
+<span class="linenos"> 7</span><span class="k">private</span><span class="o">:</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">Singleton</span><span class="o">*</span><span class="w"> </span><span class="n">pInstance</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="p">};</span><span class="w"></span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="c1">// from the implementation file</span>
+<span class="linenos">12</span><span class="n">Singleton</span><span class="o">*</span><span class="w"> </span><span class="n">Singleton</span><span class="o">::</span><span class="n">pInstance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// nullptr</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="n">Singleton</span><span class="o">*</span><span class="w"> </span><span class="nf">Singleton::instance</span><span class="p">()</span><span class="w"></span>
+<span class="linenos">15</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">16</span><span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">pInstance</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">17</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">18</span><span class="w">    </span><span class="n">pInstance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Singleton</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">19</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">20</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">pInstance</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">21</span><span class="p">}</span><span class="w"></span>
 </pre></div>
-</td></tr></table></div>
-<p>这种实现方法不是线程安全的（Thread-safe)，多个线程同时调用 <code class="docutils literal notranslate"><span class="pre">instance()</span></code> 可能会构造出多个对象。</p>
 </div>
-<div class="section" id="id3">
-<h2>27.2. 全加锁<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">Singleton</span><span class="o">*</span> <span class="n">Singleton</span><span class="o">::</span><span class="n">instance</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">Lock</span> <span class="n">lock</span><span class="p">;</span> <span class="c1">// acquire lock (params omitted for simplicity)</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">pInstance</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">pInstance</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Singleton</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="n">pInstance</span><span class="p">;</span>
-<span class="p">}</span> <span class="c1">// release lock (via Lock destructor)</span>
+<p>这种实现方法不是线程安全的（Thread-safe)，多个线程同时调用 <code class="docutils literal notranslate"><span class="pre">instance()</span></code> 可能会构造出多个对象。</p>
+</section>
+<section id="id3">
+<h2><span class="section-number">27.2. </span>全加锁<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">Singleton</span><span class="o">*</span><span class="w"> </span><span class="nf">Singleton::instance</span><span class="p">()</span><span class="w"></span>
+<span class="linenos">2</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">3</span><span class="w">  </span><span class="n">Lock</span><span class="w"> </span><span class="n">lock</span><span class="p">;</span><span class="w"> </span><span class="c1">// acquire lock (params omitted for simplicity)</span>
+<span class="linenos">4</span><span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">pInstance</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">5</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">6</span><span class="w">    </span><span class="n">pInstance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Singleton</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">7</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">8</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">pInstance</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">9</span><span class="p">}</span><span class="w"> </span><span class="c1">// release lock (via Lock destructor)</span>
 </pre></div>
-</td></tr></table></div>
+</div>
 <p>所有线程调用 <code class="docutils literal notranslate"><span class="pre">instance()</span></code> 都会先加锁，如果加锁不成功，则该线程会阻塞直到加锁成功。因此，可以保证只有一个实例。</p>
 <p>缺点是：每一次调用 <code class="docutils literal notranslate"><span class="pre">instance()</span></code> 都需要加锁，开销很大，尽管实际上只有在第一次调用的时候有加锁的必要。</p>
-</div>
-<div class="section" id="dclp">
-<h2>27.3. DCLP<a class="headerlink" href="#dclp" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="dclp">
+<h2><span class="section-number">27.3. </span>DCLP<a class="headerlink" href="#dclp" title="Permalink to this headline"></a></h2>
 <p>DCLP（Double-Checked Locking Pattern）避免了重复加锁，只需要在第一次调用的时候加锁。</p>
-<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">Singleton</span><span class="o">*</span> <span class="n">Singleton</span><span class="o">::</span><span class="n">instance</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">pInstance</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1">// 1st test</span>
-  <span class="p">{</span>
-    <span class="n">Lock</span> <span class="n">lock</span><span class="p">;</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">pInstance</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1">// 2nd test</span>
-    <span class="p">{</span>
-      <span class="n">pInstance</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Singleton</span><span class="p">;</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="n">pInstance</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">Singleton</span><span class="o">*</span><span class="w"> </span><span class="nf">Singleton::instance</span><span class="p">()</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">pInstance</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w">  </span><span class="c1">// 1st test</span>
+<span class="linenos"> 4</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 5</span><span class="w">    </span><span class="n">Lock</span><span class="w"> </span><span class="n">lock</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 6</span><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">pInstance</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w">  </span><span class="c1">// 2nd test</span>
+<span class="linenos"> 7</span><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="w">      </span><span class="n">pInstance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Singleton</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">10</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">11</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">pInstance</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">12</span><span class="p">}</span><span class="w"></span>
 </pre></div>
-</td></tr></table></div>
-<div class="section" id="id4">
-<h3>执行顺序<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+</div>
+<section id="id4">
+<h3>执行顺序<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">pInstance</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">Singleton</span></code> 需要完成三件事情：</p>
 <ul class="simple">
-<li>step-1：分配内存给即将构造的实例。</li>
-<li>step-2：在分配的内存上构造 Singleton 实例。</li>
-<li>step-3：指针 pInstance 指向分配的内存。</li>
+<li><p>step-1：分配内存给即将构造的实例。</p></li>
+<li><p>step-2：在分配的内存上构造 Singleton 实例。</p></li>
+<li><p>step-3：指针 pInstance 指向分配的内存。</p></li>
 </ul>
 <p>事实上，由于编译器的优化，这三个步骤并不一定是按照上述顺序完成的，也许 step-3 会在 step-2 之前完成，
 这就导致指针 pInstance 在 <strong>实例构造之前</strong> 已经是非空指针了，另一个线程判断非空之后，可能会去解引用/访问该实例，会导致出错。因此，这不是线程安全的。</p>
-</div>
-<div class="section" id="volatile">
-<h3>volatile<a class="headerlink" href="#volatile" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="volatile">
+<h3>volatile<a class="headerlink" href="#volatile" title="Permalink to this headline"></a></h3>
 <p>可以尝试使用关键字 <code class="docutils literal notranslate"><span class="pre">volatile</span></code></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">static</span> <span class="n">volatile</span> <span class="n">Singleton</span><span class="o">*</span> <span class="n">volatile</span> <span class="n">instance</span><span class="p">();</span>
 <span class="n">static</span> <span class="n">Singleton</span><span class="o">*</span> <span class="n">volatile</span> <span class="n">pInstance</span><span class="p">;</span>
@@ -352,17 +220,17 @@
 <p><code class="docutils literal notranslate"><span class="pre">volatile</span></code> 提醒编译器它后面所定义的变量随时都有可能改变，因此编译后的程序每次需要存储或读取这个变量的时候，都会直接从变量地址中读取数据，从而可以提供对特殊地址的稳定访问。如果没有 <code class="docutils literal notranslate"><span class="pre">volatile</span></code> 关键字，则编译器可能优化读取和存储，可能暂时使用寄存器中的值，如果这个变量由别的程序更新了的话，将出现不一致的现象。 <code class="docutils literal notranslate"><span class="pre">volatile</span></code> 可以保证指令执行的顺序。</p>
 <p>但是使用 <code class="docutils literal notranslate"><span class="pre">volatile</span></code> 仍然面临两个问题：</p>
 <ul class="simple">
-<li>可以保证单线程内读写数据的顺序，但是不能保证跨线程的读写顺序。</li>
-<li>一个实例只有当构造完成、退出构造函数时才会赋予 <code class="docutils literal notranslate"><span class="pre">volatile</span></code> 属性，因而分配内存和实例初始化的顺序不能保证。</li>
+<li><p>可以保证单线程内读写数据的顺序，但是不能保证跨线程的读写顺序。</p></li>
+<li><p>一个实例只有当构造完成、退出构造函数时才会赋予 <code class="docutils literal notranslate"><span class="pre">volatile</span></code> 属性，因而分配内存和实例初始化的顺序不能保证。</p></li>
 </ul>
-</div>
-<div class="section" id="id5">
-<h3>缓存一致性<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id5">
+<h3>缓存一致性<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
 <p>在多处理器的机器上，DCLP 还面临缓存一致性问题（Cache Coherency Problem）：一个处理器上的线程正在创建实例，而另一个处理器上的线程可能会访问到未初始化的实例。</p>
 <p>如果一个 CPU 缓存了某块内存，那么在其他 CPU 修改这块内存的时候，希望得到通知。拥有多组缓存的时候，需要它们保持同步，但是，系统的内存在各个 CPU 之间无法做到与生俱来的同步。</p>
-</div>
-<div class="section" id="id6">
-<h3>结论<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id6">
+<h3>结论<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h3>
 <p>推荐使用全加锁方式。为了避免多线程重复加锁，可以缓存指向该实例的指针，即用:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Singleton</span><span class="o">*</span> <span class="n">const</span> <span class="n">instance</span> <span class="o">=</span> <span class="n">Singleton</span><span class="p">::</span><span class="n">instance</span><span class="p">();</span> <span class="o">//</span> <span class="n">cache</span> <span class="n">instance</span> <span class="n">pointer</span>
 <span class="n">instance</span><span class="o">-&gt;</span><span class="n">transmogrify</span><span class="p">();</span>
@@ -376,233 +244,152 @@
 <span class="n">Singleton</span><span class="p">::</span><span class="n">instance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">transmute</span><span class="p">();</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="id7">
-<h2>27.4. 另一种实现<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">S</span>
-<span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="k">static</span> <span class="n">S</span><span class="o">&amp;</span> <span class="n">getInstance</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">static</span> <span class="n">S</span>    <span class="n">instance</span><span class="p">;</span> <span class="c1">// Guaranteed to be destroyed.</span>
-                              <span class="c1">// Instantiated on first use.</span>
-        <span class="k">return</span> <span class="n">instance</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="k">private</span><span class="o">:</span>
-    <span class="n">S</span><span class="p">()</span> <span class="p">{}</span>                    <span class="c1">// Constructor? (the {} brackets) are needed here.</span>
-
-    <span class="c1">// C++ 03</span>
-    <span class="c1">// ========</span>
-    <span class="c1">// Don&#39;t forget to declare these two. You want to make sure they</span>
-    <span class="c1">// are inaccessible(especially from outside), otherwise, you may accidentally get copies of</span>
-    <span class="c1">// your singleton appearing.</span>
-    <span class="n">S</span><span class="p">(</span><span class="n">S</span> <span class="k">const</span><span class="o">&amp;</span><span class="p">);</span>              <span class="c1">// Don&#39;t Implement</span>
-    <span class="n">S</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">S</span> <span class="k">const</span><span class="o">&amp;</span><span class="p">);</span> <span class="c1">// Don&#39;t implement</span>
-
-    <span class="c1">// C++ 11</span>
-    <span class="c1">// =======</span>
-    <span class="c1">// We can use the better technique of deleting the methods</span>
-    <span class="c1">// we don&#39;t want.</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="n">S</span><span class="p">(</span><span class="n">S</span> <span class="k">const</span><span class="o">&amp;</span><span class="p">)</span>               <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
-    <span class="n">S</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">S</span> <span class="k">const</span><span class="o">&amp;</span><span class="p">)</span>  <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
-
-    <span class="c1">// Note: Scott Meyers mentions in his Effective Modern</span>
-    <span class="c1">//       C++ book, that deleted functions should generally</span>
-    <span class="c1">//       be public as it results in better error messages</span>
-    <span class="c1">//       due to the compilers behavior to check accessibility</span>
-    <span class="c1">//       before deleted status</span>
-<span class="p">};</span>
+</section>
+</section>
+<section id="id7">
+<h2><span class="section-number">27.4. </span>另一种实现<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span><span class="w"> </span><span class="nc">S</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">S</span><span class="o">&amp;</span><span class="w"> </span><span class="n">getInstance</span><span class="p">()</span><span class="w"></span>
+<span class="linenos"> 5</span><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 6</span><span class="w">        </span><span class="k">static</span><span class="w"> </span><span class="n">S</span><span class="w">    </span><span class="n">instance</span><span class="p">;</span><span class="w"> </span><span class="c1">// Guaranteed to be destroyed.</span>
+<span class="linenos"> 7</span><span class="w">                              </span><span class="c1">// Instantiated on first use.</span>
+<span class="linenos"> 8</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">instance</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">10</span><span class="k">private</span><span class="o">:</span><span class="w"></span>
+<span class="linenos">11</span><span class="w">    </span><span class="n">S</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w">                    </span><span class="c1">// Constructor? (the {} brackets) are needed here.</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="w">    </span><span class="c1">// C++ 03</span>
+<span class="linenos">14</span><span class="w">    </span><span class="c1">// ========</span>
+<span class="linenos">15</span><span class="w">    </span><span class="c1">// Don&#39;t forget to declare these two. You want to make sure they</span>
+<span class="linenos">16</span><span class="w">    </span><span class="c1">// are inaccessible(especially from outside), otherwise, you may accidentally get copies of</span>
+<span class="linenos">17</span><span class="w">    </span><span class="c1">// your singleton appearing.</span>
+<span class="linenos">18</span><span class="w">    </span><span class="n">S</span><span class="p">(</span><span class="n">S</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="p">);</span><span class="w">              </span><span class="c1">// Don&#39;t Implement</span>
+<span class="linenos">19</span><span class="w">    </span><span class="n">S</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">S</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Don&#39;t implement</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span><span class="w">    </span><span class="c1">// C++ 11</span>
+<span class="linenos">22</span><span class="w">    </span><span class="c1">// =======</span>
+<span class="linenos">23</span><span class="w">    </span><span class="c1">// We can use the better technique of deleting the methods</span>
+<span class="linenos">24</span><span class="w">    </span><span class="c1">// we don&#39;t want.</span>
+<span class="linenos">25</span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="linenos">26</span><span class="w">    </span><span class="n">S</span><span class="p">(</span><span class="n">S</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="p">)</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="k">delete</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">27</span><span class="w">    </span><span class="n">S</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">S</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="p">)</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">delete</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">28</span>
+<span class="linenos">29</span><span class="w">    </span><span class="c1">// Note: Scott Meyers mentions in his Effective Modern</span>
+<span class="linenos">30</span><span class="w">    </span><span class="c1">//       C++ book, that deleted functions should generally</span>
+<span class="linenos">31</span><span class="w">    </span><span class="c1">//       be public as it results in better error messages</span>
+<span class="linenos">32</span><span class="w">    </span><span class="c1">//       due to the compilers behavior to check accessibility</span>
+<span class="linenos">33</span><span class="w">    </span><span class="c1">//       before deleted status</span>
+<span class="linenos">34</span><span class="p">};</span><span class="w"></span>
 </pre></div>
-</td></tr></table></div>
-<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">S</span>
-<span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="k">static</span> <span class="n">S</span><span class="o">&amp;</span> <span class="n">getInstance</span><span class="p">(</span><span class="kt">int</span> <span class="n">_x</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">static</span> <span class="n">S</span> <span class="n">instance</span><span class="p">(</span><span class="n">_x</span><span class="p">);</span>
-        <span class="k">return</span> <span class="n">instance</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="n">S</span><span class="p">(</span><span class="k">const</span> <span class="n">S</span><span class="o">&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
-    <span class="n">S</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">S</span><span class="o">&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
-<span class="k">private</span><span class="o">:</span>
-    <span class="n">S</span><span class="p">(</span><span class="kt">int</span> <span class="n">_x</span><span class="p">)</span><span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="n">_x</span><span class="p">){}</span>
-<span class="p">};</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="k">const</span> <span class="n">S</span><span class="o">*</span> <span class="n">ps</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">S</span><span class="o">::</span><span class="n">getInstance</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ps</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">ps</span><span class="o">-&gt;</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>   <span class="c1">// 0x6013e0 5</span>
-    <span class="k">const</span> <span class="n">S</span><span class="o">*</span> <span class="n">pss</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">S</span><span class="o">::</span><span class="n">getInstance</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">pss</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">pss</span><span class="o">-&gt;</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 0x6013e0 5</span>
-<span class="p">}</span>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span><span class="w"> </span><span class="nc">S</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">S</span><span class="o">&amp;</span><span class="w"> </span><span class="n">getInstance</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">_x</span><span class="p">)</span><span class="w"></span>
+<span class="linenos"> 5</span><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 6</span><span class="w">        </span><span class="k">static</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="nf">instance</span><span class="p">(</span><span class="n">_x</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 7</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">instance</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="n">S</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">S</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">delete</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">10</span><span class="w">    </span><span class="n">S</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">S</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">delete</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">11</span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">12</span><span class="k">private</span><span class="o">:</span><span class="w"></span>
+<span class="linenos">13</span><span class="w">    </span><span class="n">S</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">_x</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="n">_x</span><span class="p">){}</span><span class="w"></span>
+<span class="linenos">14</span><span class="p">};</span><span class="w"></span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"></span>
+<span class="linenos">17</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">18</span><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">S</span><span class="o">*</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">S</span><span class="o">::</span><span class="n">getInstance</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">19</span><span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ps</span><span class="o">-&gt;</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w">   </span><span class="c1">// 0x6013e0 5</span>
+<span class="linenos">20</span><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">S</span><span class="o">*</span><span class="w"> </span><span class="n">pss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">S</span><span class="o">::</span><span class="n">getInstance</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">21</span><span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">pss</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">pss</span><span class="o">-&gt;</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"> </span><span class="c1">// 0x6013e0 5</span>
+<span class="linenos">22</span><span class="p">}</span><span class="w"></span>
 </pre></div>
-</td></tr></table></div>
+</div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">拷贝构造函数和拷贝赋值运算符需要声明为不可调用；无参构造函数、有参构造函数应该声明为 private。</p>
+<p class="admonition-title">Note</p>
+<p>拷贝构造函数和拷贝赋值运算符需要声明为不可调用；无参构造函数、有参构造函数应该声明为 private。</p>
 </div>
-</div>
-<div class="section" id="id8">
-<h2>27.5. 饿汉与懒汉模式<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id8">
+<h2><span class="section-number">27.5. </span>饿汉与懒汉模式<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h2>
 <p>第一节和第四节都是“懒汉”模式（Lazy Mode）的例子：第一次使用到类实例的时候才创建。</p>
 <p>“饿汉”模式（Hungry Mode）：在使用之前已经创建好了实例，取之即用。</p>
-<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Singleton</span>
-<span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="k">static</span> <span class="n">Singleton</span><span class="o">*</span> <span class="n">getInstance</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">return</span> <span class="n">p</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="k">private</span><span class="o">:</span>
-    <span class="k">static</span> <span class="n">Singleton</span><span class="o">*</span> <span class="n">p</span><span class="p">;</span>
-    <span class="n">Singleton</span><span class="p">(){}</span>
-<span class="p">};</span>
-
-<span class="n">Singleton</span><span class="o">*</span> <span class="n">Singleton</span><span class="o">::</span><span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Singleton</span><span class="p">();</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span><span class="w"> </span><span class="nc">Singleton</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">Singleton</span><span class="o">*</span><span class="w"> </span><span class="n">getInstance</span><span class="p">()</span><span class="w"></span>
+<span class="linenos"> 5</span><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 6</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">p</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 7</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="k">private</span><span class="o">:</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">Singleton</span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">10</span><span class="w">    </span><span class="n">Singleton</span><span class="p">(){}</span><span class="w"></span>
+<span class="linenos">11</span><span class="p">};</span><span class="w"></span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="n">Singleton</span><span class="o">*</span><span class="w"> </span><span class="n">Singleton</span><span class="o">::</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Singleton</span><span class="p">();</span><span class="w"></span>
 </pre></div>
-</td></tr></table></div>
+</div>
 <p>“饿汉”模式是线程安全的，因为在进入 main 函数之前就由单线程方式进行了实例化。</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">上面例子中，静态成员指针初始化调用了私有构造函数。创建普通实例是不能直接调用私有构造函数的。</p>
+<p class="admonition-title">Note</p>
+<p>上面例子中，静态成员指针初始化调用了私有构造函数。创建普通实例是不能直接调用私有构造函数的。</p>
 </div>
-</div>
-<div class="section" id="id9">
-<h2>27.6. 参考资料<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id9">
+<h2><span class="section-number">27.6. </span>参考资料<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
-<li>C++ and the Perils of Double-Checked Locking</li>
+<li><p>C++ and the Perils of Double-Checked Locking</p></li>
 </ol>
 <blockquote>
-<div><a class="reference external" href="https://www.aristeia.com/Papers/DDJ_Jul_Aug_2004_revised.pdf">https://www.aristeia.com/Papers/DDJ_Jul_Aug_2004_revised.pdf</a></div></blockquote>
+<div><p><a class="reference external" href="https://www.aristeia.com/Papers/DDJ_Jul_Aug_2004_revised.pdf">https://www.aristeia.com/Papers/DDJ_Jul_Aug_2004_revised.pdf</a></p>
+</div></blockquote>
 <ol class="arabic simple" start="2">
-<li>C++ Singleton design pattern</li>
+<li><p>C++ Singleton design pattern</p></li>
 </ol>
 <blockquote>
-<div><a class="reference external" href="https://stackoverflow.com/questions/1008019/c-singleton-design-pattern">https://stackoverflow.com/questions/1008019/c-singleton-design-pattern</a></div></blockquote>
+<div><p><a class="reference external" href="https://stackoverflow.com/questions/1008019/c-singleton-design-pattern">https://stackoverflow.com/questions/1008019/c-singleton-design-pattern</a></p>
+</div></blockquote>
 <ol class="arabic simple" start="3">
-<li>C++ 单例模式讲解和代码示例</li>
+<li><p>C++ 单例模式讲解和代码示例</p></li>
 </ol>
 <blockquote>
-<div><a class="reference external" href="https://refactoringguru.cn/design-patterns/singleton/cpp/example">https://refactoringguru.cn/design-patterns/singleton/cpp/example</a></div></blockquote>
-</div>
-</div>
+<div><p><a class="reference external" href="https://refactoringguru.cn/design-patterns/singleton/cpp/example">https://refactoringguru.cn/design-patterns/singleton/cpp/example</a></p>
+</div></blockquote>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="28_vaFunc.html" class="btn btn-neutral float-right" title="28. 可变参数函数" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="26_lambda.html" class="btn btn-neutral float-left" title="26. lambda 表达式" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="26_lambda.html" class="btn btn-neutral float-left" title="26. lambda 表达式" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="28_vaFunc.html" class="btn btn-neutral float-right" title="28. 可变参数函数" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2018, fong
-
-    </p>
+    <p>&#169; Copyright 2018, fong.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-
-  
-  
-    
-  
 <script type="text/javascript">
     $(document).ready(function() {
      $(".toggle > *").hide();

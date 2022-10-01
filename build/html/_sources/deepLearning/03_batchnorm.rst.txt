@@ -3,8 +3,8 @@ Batch Normalization
 
 .. math::
 
-    \hat{x}^{(k)} &=&\ \frac{x^{(k)} - E[x^{(k)}]}{\sqrt{Var[x^{{(k)}}] + \epsilon}}, \\
-    y^{(k)} &=&\ \gamma^{(k)} \hat{x}^{(k)} + \beta^{(k)}.
+    \hat{x}^{(k)} &=\ \frac{x^{(k)} - E[x^{(k)}]}{\sqrt{Var[x^{{(k)}}] + \epsilon}}, \\
+    y^{(k)} &=\ \gamma^{(k)} \hat{x}^{(k)} + \beta^{(k)}.
 
 上标 :math:`(k)` 表示向量第 :math:`k` 维。
 
@@ -35,8 +35,8 @@ BN消除
 
 .. math::
 
-    \gamma^{(k)} &=&\ \sqrt{Var[x^{{(k)}}]}, \\
-    \beta^{(k)} &=&\ E[x^{(k)}].
+    \gamma^{(k)} &=\ \sqrt{Var[x^{{(k)}}]}, \\
+    \beta^{(k)} &=\ E[x^{(k)}].
 
 从而消除 BN 的作用。
 
@@ -53,8 +53,8 @@ BN消除
 
 .. math::
 
-   \gamma &=&\ [\gamma^{(1)}, \gamma^{(2)}, ..., \gamma^{(C)}], \\
-   \beta &=&\ [\beta^{(1)}, \beta^{(2)}, ..., \beta^{(C)}].
+   \gamma &=\ [\gamma^{(1)}, \gamma^{(2)}, ..., \gamma^{(C)}], \\
+   \beta &=\ [\beta^{(1)}, \beta^{(2)}, ..., \beta^{(C)}].
 
 其中 :math:`C` 是通道数（channel）。
 
@@ -68,15 +68,15 @@ BN消除
 
 .. math::
 
-    E[x] & \leftarrow &\ E_B[\mu_B], \\
-    Var[x] & \leftarrow &\ \frac{m}{m-1}E_B[\sigma_B^2].
+    E[x] & \leftarrow \ E_B[\mu_B], \\
+    Var[x] & \leftarrow \ \frac{m}{m-1}E_B[\sigma_B^2].
 
 而实际实现过程中，一般使用指数加权平均（Exponentially Weighted Averges，也称“移动平均”）来获得全局统计量，即在训练过程中使用下式更新全局统计量：
 
 .. math::
 
-    mean &=&\ (1 - momentum) \times mean + momentum \times \mu_B,\\
-    var &=&\ (1 - momentum) \times var + momentum \times \sigma_B^2.
+    mean &=\ (1 - momentum) \times mean + momentum \times \mu_B,\\
+    var &=\ (1 - momentum) \times var + momentum \times \sigma_B^2.
 
 
 缺点
@@ -98,10 +98,10 @@ BN 统计均值、方差与 batch size 有关，batch size 太小会导致性能
 
 .. math::
 
-    \mu_B &=&\ \frac{1}{m} \sum_{i=1}^m x_i \\
-    \sigma_B^2 &=&\ \frac{1}{m} \sum_{i=1}^m (x_i - \mu_B)^2 \\
-    \hat{x}_i &=&\ \frac{x_i - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}} \\
-    y_i &=&\ \gamma \hat{x}_i + \beta
+    \mu_B &=\ \frac{1}{m} \sum_{i=1}^m x_i \\
+    \sigma_B^2 &=\ \frac{1}{m} \sum_{i=1}^m (x_i - \mu_B)^2 \\
+    \hat{x}_i &=\ \frac{x_i - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}} \\
+    y_i &=\ \gamma \hat{x}_i + \beta
 
 设 :math:`\hat{x}_i = f(x_i, \mu_B, \sigma_B^2)` 。
 
@@ -112,8 +112,8 @@ BN 统计均值、方差与 batch size 有关，batch size 太小会导致性能
 
   .. math::
 
-      \frac{\partial{\mathcal{L}}}{\partial{\gamma}} &=&\ \sum_{i=1}^m \frac{\partial{\mathcal{L}}}{\partial{y_i}} \frac{\partial{y_i}}{\gamma} = \sum_{i=1}^m \frac{\partial{\mathcal{L}}}{\partial{y_i}} \hat{x}_i \\
-      \frac{\partial{\mathcal{L}}}{\partial{\beta}} &=&\ \sum_{i=1}^m \frac{\partial{\mathcal{L}}}{\partial{y_i}} \frac{\partial{y_i}}{\beta} = \sum_{i=1}^m \frac{\partial{\mathcal{L}}}{\partial{y_i}}
+      \frac{\partial{\mathcal{L}}}{\partial{\gamma}} &=\ \sum_{i=1}^m \frac{\partial{\mathcal{L}}}{\partial{y_i}} \frac{\partial{y_i}}{\gamma} = \sum_{i=1}^m \frac{\partial{\mathcal{L}}}{\partial{y_i}} \hat{x}_i \\
+      \frac{\partial{\mathcal{L}}}{\partial{\beta}} &=\ \sum_{i=1}^m \frac{\partial{\mathcal{L}}}{\partial{y_i}} \frac{\partial{y_i}}{\beta} = \sum_{i=1}^m \frac{\partial{\mathcal{L}}}{\partial{y_i}}
 
 - :math:`\hat{x}_i`
 
@@ -125,20 +125,20 @@ BN 统计均值、方差与 batch size 有关，batch size 太小会导致性能
 
   .. math::
 
-      \frac{\partial{\mathcal{L}}}{\partial{\sigma_B^2}} &=&\ \sum_{i=1}^m \frac{\partial{\mathcal{L}}}{\partial{\hat{x}_i}} \frac{\partial{\hat{x}_i}}{\partial{\sigma_B^2}} \\
-                                                         &=&\ \sum_{i=1}^m \frac{\partial{\mathcal{L}}}{\partial{\hat{x}_i}} \cdot (x_i - \mu_B) \cdot \left( -\frac{1}{2} (\sigma_B^2 + \epsilon)^{-\frac{3}{2}} \right) \\
-      \frac{\partial{\mathcal{L}}}{\partial{\mu_B}} &=&\ \sum_{i=1}^m \frac{\partial{\mathcal{L}}}{\partial{\hat{x}_i}} \frac{\partial{\hat{x}_i}}{\partial{\mu_B}} \\
-                                                    &=&\ \sum_{i=1}^m \frac{\partial{\mathcal{L}}}{\partial{\hat{x}_i}} \left( \frac{\partial{f}}{\partial{\mu_B}} + \frac{\partial{f}}{\partial{\sigma_B^2}}\frac{\partial{\sigma_B^2}}{\partial{\mu_B}} \right) \\
-                                                    &=&\ \sum_{i=1}^m \frac{\partial{\mathcal{L}}}{\partial{\hat{x}_i}} \cdot \left( -\frac{1}{\sqrt{\sigma_B^2 + \epsilon}} \right) + \frac{\partial{\mathcal{L}}}{\partial{\sigma_B^2}} \cdot \left( - \frac{2}{m} \sum_{i=1}^m (x_i - \mu_B) \right)
+      \frac{\partial{\mathcal{L}}}{\partial{\sigma_B^2}} &=\ \sum_{i=1}^m \frac{\partial{\mathcal{L}}}{\partial{\hat{x}_i}} \frac{\partial{\hat{x}_i}}{\partial{\sigma_B^2}} \\
+                                                         &=\ \sum_{i=1}^m \frac{\partial{\mathcal{L}}}{\partial{\hat{x}_i}} \cdot (x_i - \mu_B) \cdot \left( -\frac{1}{2} (\sigma_B^2 + \epsilon)^{-\frac{3}{2}} \right) \\
+      \frac{\partial{\mathcal{L}}}{\partial{\mu_B}} &=\ \sum_{i=1}^m \frac{\partial{\mathcal{L}}}{\partial{\hat{x}_i}} \frac{\partial{\hat{x}_i}}{\partial{\mu_B}} \\
+                                                    &=\ \sum_{i=1}^m \frac{\partial{\mathcal{L}}}{\partial{\hat{x}_i}} \left( \frac{\partial{f}}{\partial{\mu_B}} + \frac{\partial{f}}{\partial{\sigma_B^2}}\frac{\partial{\sigma_B^2}}{\partial{\mu_B}} \right) \\
+                                                    &=\ \sum_{i=1}^m \frac{\partial{\mathcal{L}}}{\partial{\hat{x}_i}} \cdot \left( -\frac{1}{\sqrt{\sigma_B^2 + \epsilon}} \right) + \frac{\partial{\mathcal{L}}}{\partial{\sigma_B^2}} \cdot \left( - \frac{2}{m} \sum_{i=1}^m (x_i - \mu_B) \right)
 
 - :math:`x_i`
 
   .. math::
 
-      \frac{\partial{\mathcal{L}}}{\partial{x_i}} &=&\ \sum_{i=1}^m \frac{\partial{\mathcal{L}}}{\partial{\hat{x}_i}} \frac{\partial{\hat{x}_i}}{\partial{x_i}} \\
-                                                  &=&\ \sum_{i=1}^m \frac{\partial{\mathcal{L}}}{\partial{\hat{x}_i}} \left( \frac{\partial{f}}{\partial{x_i}} + \frac{\partial{f}}{\partial{\mu_B}}\frac{\partial{\mu_B}}{\partial{x_i}} + \frac{\partial{f}}{\partial{\sigma_B^2}}\frac{\partial{\sigma_B^2}}{\partial{x_i}} \right) \\
-                                                  &=&\ \sum_{i=1}^m \frac{\partial{\mathcal{L}}}{\partial{\hat{x}_i}} \left( \frac{1}{\sqrt{\sigma_B^2 + \epsilon}} + \frac{\partial{f}}{\partial{\mu_B}} \cdot \frac{1}{m} + \frac{\partial{f}}{\partial{\sigma_B^2}} \cdot \frac{2}{m} (x_i - \mu_B) \right) \\
-                                                  &=&\ \sum_{i=1}^m \frac{\partial{\mathcal{L}}}{\partial{\hat{x}_i}} \cdot \frac{1}{\sqrt{\sigma_B^2 + \epsilon}} + \frac{\partial{\mathcal{L}}}{\partial{\mu_B}} \cdot \frac{1}{m} + \frac{\partial{\mathcal{L}}}{\partial{\sigma_B^2}} \cdot \frac{2}{m} (x_i - \mu_B)
+      \frac{\partial{\mathcal{L}}}{\partial{x_i}} &=\ \sum_{i=1}^m \frac{\partial{\mathcal{L}}}{\partial{\hat{x}_i}} \frac{\partial{\hat{x}_i}}{\partial{x_i}} \\
+                                                  &=\ \sum_{i=1}^m \frac{\partial{\mathcal{L}}}{\partial{\hat{x}_i}} \left( \frac{\partial{f}}{\partial{x_i}} + \frac{\partial{f}}{\partial{\mu_B}}\frac{\partial{\mu_B}}{\partial{x_i}} + \frac{\partial{f}}{\partial{\sigma_B^2}}\frac{\partial{\sigma_B^2}}{\partial{x_i}} \right) \\
+                                                  &=\ \sum_{i=1}^m \frac{\partial{\mathcal{L}}}{\partial{\hat{x}_i}} \left( \frac{1}{\sqrt{\sigma_B^2 + \epsilon}} + \frac{\partial{f}}{\partial{\mu_B}} \cdot \frac{1}{m} + \frac{\partial{f}}{\partial{\sigma_B^2}} \cdot \frac{2}{m} (x_i - \mu_B) \right) \\
+                                                  &=\ \sum_{i=1}^m \frac{\partial{\mathcal{L}}}{\partial{\hat{x}_i}} \cdot \frac{1}{\sqrt{\sigma_B^2 + \epsilon}} + \frac{\partial{\mathcal{L}}}{\partial{\mu_B}} \cdot \frac{1}{m} + \frac{\partial{\mathcal{L}}}{\partial{\sigma_B^2}} \cdot \frac{2}{m} (x_i - \mu_B)
 
 
 

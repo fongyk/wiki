@@ -24,8 +24,8 @@
 
 .. math::
 
-  \underset{w,b}{min} & &\  \frac{1}{2} \left \| w \right \|^2 \\
-  s.t. & &\  y_i(w^{\top} x_i + b) \geqslant 1, i=1,2,...,m
+  \underset{w,b}{min} &\  \frac{1}{2} \left \| w \right \|^2 \\
+  s.t. &\  y_i(w^{\top} x_i + b) \geqslant 1, i=1,2,...,m
 
 拉格朗日函数：
 
@@ -49,16 +49,16 @@
 
 .. math::
 
-  w & = &\ \sum_{i=1}^m \alpha_i y_i x_i,\\
-  0 & = &\ \sum_{i=1}^m \alpha_i y_i.
+  w &=\ \sum_{i=1}^m \alpha_i y_i x_i,\\
+  0 &=\ \sum_{i=1}^m \alpha_i y_i.
 
 对偶问题变成：
 
 .. math::
 
-  \underset{\alpha \geqslant 0}{max} &  &\  \sum_{i=1}^m\alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y_i y_j x_i^{\top} x_j,\\
-  s.t.  &  &\  \sum_{i=1}^m \alpha_i y_i = 0,\\
-        &  &\  \alpha_i \geqslant 0, \ i=1,2,...,m.
+  \underset{\alpha \geqslant 0}{max} & \  \sum_{i=1}^m\alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y_i y_j x_i^{\top} x_j,\\
+  s.t.  & \  \sum_{i=1}^m \alpha_i y_i = 0,\\
+        & \  \alpha_i \geqslant 0, \ i=1,2,...,m.
 
 
 KKT条件：
@@ -79,9 +79,9 @@ KKT条件：
 
 .. math::
 
-  \underset{w,b,\xi_i}{min} & &\  \frac{1}{2} \left \| w \right \|^2 + C \sum_{i=1}^m \xi_i \\
-  s.t. & &\  y_i(w^{\top} x_i + b) \geqslant 1 - \xi_i \\
-       & &\ \xi_i \geqslant 0,\ i=1,2,...,m
+  \underset{w,b,\xi_i}{min} &\  \frac{1}{2} \left \| w \right \|^2 + C \sum_{i=1}^m \xi_i \\
+  s.t. &\  y_i(w^{\top} x_i + b) \geqslant 1 - \xi_i \\
+       &\ \xi_i \geqslant 0,\ i=1,2,...,m
 
 拉格朗日函数：
 
@@ -93,17 +93,17 @@ KKT条件：
 
 .. math::
 
- w & = &\ \sum_{i=1}^m \alpha_i y_i x_i,\\
- 0 & = &\ \sum_{i=1}^m \alpha_i y_i, \\
- C & = &\ \alpha_i + \mu_i.
+ w &=\ \sum_{i=1}^m \alpha_i y_i x_i,\\
+ 0 &=\ \sum_{i=1}^m \alpha_i y_i, \\
+ C &=\ \alpha_i + \mu_i.
 
 对偶问题：
 
 .. math::
 
- \underset{\alpha \geqslant 0}{max} &  &\  \sum_{i=1}^m\alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y_i y_j x_i^{\top} x_j,\\
- s.t.  &  &\  \sum_{i=1}^m \alpha_i y_i = 0,\\
-       &  &\  0 \leqslant \alpha_i \leqslant C, \ i=1,2,...,m.
+ \underset{\alpha \geqslant 0}{max} & \  \sum_{i=1}^m\alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y_i y_j x_i^{\top} x_j,\\
+ s.t.  & \  \sum_{i=1}^m \alpha_i y_i = 0,\\
+       & \  0 \leqslant \alpha_i \leqslant C, \ i=1,2,...,m.
 
 
 KKT条件：
@@ -129,13 +129,13 @@ KKT条件：
 
     .. math::
 
-        z^{\top}\mathcal{K}z & = &\ \sum_{i=1}^m \sum_{j=1}^m z^{(i)} \kappa(x_i, x_j) z^{(j)} \\
-                             & = &\ \sum_{i=1}^m \sum_{j=1}^m z^{(i)} \phi(x_i)^{\top} \phi(x_j) z^{(j)} \\
-                             & = &\ \sum_{i=1}^m \sum_{j=1}^m z^{(i)} \cdot \sum_{k=1}^D \phi^{(k)}(x_i)\phi^{(k)}(x_j) \cdot z^{(j)} \\
-                             & = &\ \sum_{i=1}^m \sum_{j=1}^m \sum_{k=1}^D z^{(i)} \phi^{(k)}(x_i) \cdot z^{(j)} \phi^{(k)}(x_j) \\
-                             & = &\ \sum_{k=1}^D \sum_{i=1}^m \sum_{j=1}^m z^{(i)} \phi^{(k)}(x_i) \cdot z^{(j)} \phi^{(k)}(x_j) \\
-                             & = &\ \sum_{k=1}^D \left( \sum_{l=1}^m z^{(l)} \phi^{(k)}(x_l) \right)^2 \\
-                             & \geqslant &\ 0.
+        z^{\top}\mathcal{K}z &=\ \sum_{i=1}^m \sum_{j=1}^m z^{(i)} \kappa(x_i, x_j) z^{(j)} \\
+                             &=\ \sum_{i=1}^m \sum_{j=1}^m z^{(i)} \phi(x_i)^{\top} \phi(x_j) z^{(j)} \\
+                             &=\ \sum_{i=1}^m \sum_{j=1}^m z^{(i)} \cdot \sum_{k=1}^D \phi^{(k)}(x_i)\phi^{(k)}(x_j) \cdot z^{(j)} \\
+                             &=\ \sum_{i=1}^m \sum_{j=1}^m \sum_{k=1}^D z^{(i)} \phi^{(k)}(x_i) \cdot z^{(j)} \phi^{(k)}(x_j) \\
+                             &=\ \sum_{k=1}^D \sum_{i=1}^m \sum_{j=1}^m z^{(i)} \phi^{(k)}(x_i) \cdot z^{(j)} \phi^{(k)}(x_j) \\
+                             &=\ \sum_{k=1}^D \left( \sum_{l=1}^m z^{(l)} \phi^{(k)}(x_l) \right)^2 \\
+                             & \geqslant \ 0.
 
     其中上标 :math:`(i),(j),(k),(l)` 分别表示向量的第 :math:`i,j,k,l` 维分量。当 :math:`\phi` 维度很高，单独计算 :math:`\phi(x_i)` 和  :math:`\phi(x_j)` 复杂度较高，
     而直接计算 :math:`\kappa(x_i, x_j)` 则简单得多。

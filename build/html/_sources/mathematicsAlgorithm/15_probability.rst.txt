@@ -21,8 +21,8 @@
 
 .. math::
 
-    P(AB) &=&\ P(A|B)P(B) = P(B|A)P(A) \\
-    P(A_1 A_2 \cdots A_n) &=&\ P(A_1) P(A_2|A_1) P(A_3|A_1 A_2) \cdots P(A_n|A_1 A_2 \cdots A_{n-1})
+    P(AB) &=\ P(A|B)P(B) = P(B|A)P(A) \\
+    P(A_1 A_2 \cdots A_n) &=\ P(A_1) P(A_2|A_1) P(A_3|A_1 A_2) \cdots P(A_n|A_1 A_2 \cdots A_{n-1})
 
 
 事件独立
@@ -30,8 +30,8 @@
 
 .. math::
 
-    P(AB) &=&\ P(A)P(B) \\
-    P(A|B) &=&\ P(A)
+    P(AB) &=\ P(A)P(B) \\
+    P(A|B) &=\ P(A)
 
 
 
@@ -42,16 +42,16 @@
 
 .. math::
 
-    |A \cup B \cup C| &=&\ |A| + |B| + |C| - |A \cap B| - |A \cap C| - |B \cap C| + |A \cap B \cap C| \\
-    \left| \bigcup_{i=1}^n A_i \right| &=&\ \sum_{i=1}^n |A_i| - \sum_{i < j} |A_i \cap A_j| + \sum_{i < j < k} |A_i \cap A_j \cap A_k| + \cdots + (-1)^{n-1} |A_1 \cap A_2 \cap \cdots \cap A_n|
+    |A \cup B \cup C| &=\ |A| + |B| + |C| - |A \cap B| - |A \cap C| - |B \cap C| + |A \cap B \cap C| \\
+    \left| \bigcup_{i=1}^n A_i \right| &=\ \sum_{i=1}^n |A_i| - \sum_{i < j} |A_i \cap A_j| + \sum_{i < j < k} |A_i \cap A_j \cap A_k| + \cdots + (-1)^{n-1} |A_1 \cap A_2 \cap \cdots \cap A_n|
 
 
 概率：
 
 .. math::
 
-    P(A \cup B \cup C) &=&\ P(A) + P(B) + P(C) - P(A \cap B) - P(A \cap C) - P(B \cap C) + P(A \cap B \cap C) \\
-    P \left( \bigcup_{i=1}^n A_i \right) &=&\ \sum_{i=1}^n P(A_i) - \sum_{i < j} P(A_i \cap A_j) + \sum_{i < j < k} P(A_i \cap A_j \cap A_k) + \cdots + (-1)^{n-1} P(A_1 \cap A_2 \cap \cdots \cap A_n)
+    P(A \cup B \cup C) &=\ P(A) + P(B) + P(C) - P(A \cap B) - P(A \cap C) - P(B \cap C) + P(A \cap B \cap C) \\
+    P \left( \bigcup_{i=1}^n A_i \right) &=\ \sum_{i=1}^n P(A_i) - \sum_{i < j} P(A_i \cap A_j) + \sum_{i < j < k} P(A_i \cap A_j \cap A_k) + \cdots + (-1)^{n-1} P(A_1 \cap A_2 \cap \cdots \cap A_n)
 
 
 
@@ -107,11 +107,11 @@
 
 .. math::
 
-    f_X(x) &=&\ \frac{d}{dx} Pr(X \leqslant x) = \frac{d}{dx} Pr(\ln X \leqslant \ln x) \\
-           &=&\ \frac{d}{dx} \Phi \left( \frac{\ln x - \mu}{\sigma} \right) \\
-           &=&\ \varphi \left( \frac{\ln x - \mu}{\sigma} \right) \frac{d}{dx} \left( \frac{\ln x - \mu}{\sigma} \right) \\
-           &=&\ \varphi \left( \frac{\ln x - \mu}{\sigma} \right) \frac{1}{\sigma x} \\
-           &=&\ \frac{1}{x}\cdot\frac{1}{\sqrt{2\pi}\sigma}exp\left(-\frac{(\ln x-\mu)^2}{2\sigma^2} \right)
+    f_X(x) &=\ \frac{d}{dx} Pr(X \leqslant x) = \frac{d}{dx} Pr(\ln X \leqslant \ln x) \\
+           &=\ \frac{d}{dx} \Phi \left( \frac{\ln x - \mu}{\sigma} \right) \\
+           &=\ \varphi \left( \frac{\ln x - \mu}{\sigma} \right) \frac{d}{dx} \left( \frac{\ln x - \mu}{\sigma} \right) \\
+           &=\ \varphi \left( \frac{\ln x - \mu}{\sigma} \right) \frac{1}{\sigma x} \\
+           &=\ \frac{1}{x}\cdot\frac{1}{\sqrt{2\pi}\sigma}exp\left(-\frac{(\ln x-\mu)^2}{2\sigma^2} \right)
 
 .. math::
 
@@ -131,11 +131,11 @@
 
     .. math::
 
-        F_Y(y) &=&\ P(Y \leqslant y) \\
-               &=&\ P(max(X_1, X_2, ..., X_n) \leqslant y) \\
-               &=&\ P(X_1 \leqslant y, X_2 \leqslant y, ..., X_n \leqslant y) \\
-               &=&\ P(X_1 \leqslant y)P(X_2 \leqslant y) \cdots P(X_n \leqslant y) \\
-               &=&\ [F_X(y)]^n
+        F_Y(y) &=\ P(Y \leqslant y) \\
+               &=\ P(max(X_1, X_2, ..., X_n) \leqslant y) \\
+               &=\ P(X_1 \leqslant y, X_2 \leqslant y, ..., X_n \leqslant y) \\
+               &=\ P(X_1 \leqslant y)P(X_2 \leqslant y) \cdots P(X_n \leqslant y) \\
+               &=\ [F_X(y)]^n
     .. math::
 
         p_Y(y) = \frac{d}{dy} F_Y(y) = n [F_X(y)]^{n-1} p_X(y)
@@ -144,10 +144,10 @@
 
     .. math::
 
-        F_Z(z) &=&\ P(Z \leqslant z) \\
-               &=&\ 1 - P(Z \geqslant z) \\
-               &=&\ 1 - P(X_1 \geqslant z, X_2 \geqslant z, ..., X_n \geqslant z) \\
-               &=&\ 1 - [1 - F_X(z)]^n
+        F_Z(z) &=\ P(Z \leqslant z) \\
+               &=\ 1 - P(Z \geqslant z) \\
+               &=\ 1 - P(X_1 \geqslant z, X_2 \geqslant z, ..., X_n \geqslant z) \\
+               &=\ 1 - [1 - F_X(z)]^n
     .. math::
 
         p_Z(z) = \frac{d}{dz} F_Z(z) = n [1 - F_X(z)]^{n-1} p_X(z)

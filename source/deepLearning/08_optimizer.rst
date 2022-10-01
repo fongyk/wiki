@@ -34,8 +34,8 @@ SGD
 
 .. math::
 
-  g & \leftarrow &\ \nabla_{\theta} \mathcal{L} (\theta; x^{(i:i+n)}; y^{(i:i+n)}) &\  [\text{计算梯度}] \\
-  \theta & \leftarrow &\  \theta - \eta g &\  [\text{参数更新}]
+  g & \leftarrow \nabla_{\theta} \mathcal{L} (\theta; x^{(i:i+n)}; y^{(i:i+n)}) &\  [\text{计算梯度}] \\
+  \theta & \leftarrow \theta - \eta g &\  [\text{参数更新}]
 
 特点
   - 相比于单样本SGD，可以降低参数更新时的方差，收敛更稳定；可以充分地利用深度学习库中高度优化的矩阵操作来进行更有效的梯度计算
@@ -49,8 +49,8 @@ Momentum
 
 .. math::
 
-  v & \leftarrow &\  \gamma v - \eta \nabla_{\theta} \mathcal{L}(\theta) &\  [\text{速度更新}] \\
-  \theta & \leftarrow &\  \theta + v &\ [\text{参数更新}]
+  v & \leftarrow  \gamma v - \eta \nabla_{\theta} \mathcal{L}(\theta) &\  [\text{速度更新}] \\
+  \theta & \leftarrow  \theta + v &\ [\text{参数更新}]
 
 动量（momentum）方法旨在加速学习，特别是处理高曲率、小但一致的梯度，或是带噪声的梯度。动量算法积累了之前梯度指数级衰减的移动平均，并且沿该方向继续移动。
 当许多连续的梯度指向相同的方向时，步长最大。
@@ -68,10 +68,10 @@ Adagrad
 
 .. math::
 
-  g & \leftarrow &\ \nabla_{\theta} \mathcal{L}(\theta) &\  [\text{计算梯度}] \\
-  r & \leftarrow &\ r + g \odot g &\  [\text{累计平方梯度}] \\
-  \Delta \theta & \leftarrow &\ - \frac{\eta}{\sqrt{r+\epsilon}} \odot g &\  [\text{梯度除以累计平方梯度的平方根}] \\
-  \theta & \leftarrow &\  \theta + \Delta \theta &\ [\text{参数更新}]
+  g & \leftarrow \nabla_{\theta} \mathcal{L}(\theta) &\  [\text{计算梯度}] \\
+  r & \leftarrow r + g \odot g &\  [\text{累计平方梯度}] \\
+  \Delta \theta & \leftarrow  - \frac{\eta}{\sqrt{r+\epsilon}} \odot g &\  [\text{梯度除以累计平方梯度的平方根}] \\
+  \theta & \leftarrow  \theta + \Delta \theta &\ [\text{参数更新}]
 
 
 特点
@@ -86,13 +86,13 @@ Adadelta
 
 .. math::
 
-  g & \leftarrow &\ \nabla_{\theta} \mathcal{L}(\theta) &\  [\text{计算梯度}] \\
-  E[g^2] & \leftarrow &\ \gamma E[g^2] + (1 - \gamma) g \odot g  &\  [\text{累计平方梯度：指数衰减平均}] \\
-  RMS[g] & \leftarrow &\ \sqrt{E[g^2] + \epsilon} &\  [\text{梯度均方根}] \\
-  E[\Delta \theta^2] & \leftarrow &\ \gamma E[\Delta \theta^2] + (1 - \gamma) \Delta \theta \odot \Delta \theta  &\  [\text{平方参数增量平滑}] \\
-  RMS[\Delta \theta] & \leftarrow &\ \sqrt{E[\Delta \theta^2] + \epsilon} &\  [\text{参数增量均方根}] \\
-  \Delta \theta & \leftarrow &\  - \frac{RMS[\Delta \theta]}{RMS[g]} \odot g  &\ [\text{参数增量}] \\
-  \theta & \leftarrow &\  \theta + \Delta \theta &\ [\text{参数更新}]
+  g & \leftarrow \nabla_{\theta} \mathcal{L}(\theta) &\  [\text{计算梯度}] \\
+  E[g^2] & \leftarrow \gamma E[g^2] + (1 - \gamma) g \odot g  &\  [\text{累计平方梯度：指数衰减平均}] \\
+  RMS[g] & \leftarrow \sqrt{E[g^2] + \epsilon} &\  [\text{梯度均方根}] \\
+  E[\Delta \theta^2] & \leftarrow \gamma E[\Delta \theta^2] + (1 - \gamma) \Delta \theta \odot \Delta \theta  &\  [\text{平方参数增量平滑}] \\
+  RMS[\Delta \theta] & \leftarrow \sqrt{E[\Delta \theta^2] + \epsilon} &\  [\text{参数增量均方根}] \\
+  \Delta \theta & \leftarrow  - \frac{RMS[\Delta \theta]}{RMS[g]} \odot g  &\ [\text{参数增量}] \\
+  \theta & \leftarrow  \theta + \Delta \theta &\ [\text{参数更新}]
 
 Adadelta 是 Adagrad 的改进。
 
@@ -109,10 +109,10 @@ RMSprop
 
 .. math::
 
-  g & \leftarrow &\ \nabla_{\theta} \mathcal{L}(\theta) &\  [\text{计算梯度}] \\
-  r & \leftarrow &\ \gamma r + (1 - \gamma) g \odot g &\  [\text{累计平方梯度：指数衰减平均}] \\
-  \Delta \theta & \leftarrow &\  - \frac{\eta}{\sqrt{r+\epsilon}} \odot g &\ [\text{参数增量}] \\
-  \theta & \leftarrow &\  \theta + \Delta \theta &\ [\text{参数更新}]
+  g & \leftarrow \nabla_{\theta} \mathcal{L}(\theta) &\  [\text{计算梯度}] \\
+  r & \leftarrow \gamma r + (1 - \gamma) g \odot g &\  [\text{累计平方梯度：指数衰减平均}] \\
+  \Delta \theta & \leftarrow  - \frac{\eta}{\sqrt{r+\epsilon}} \odot g &\ [\text{参数增量}] \\
+  \theta & \leftarrow  \theta + \Delta \theta &\ [\text{参数更新}]
 
 
 RMSprop 趋于 Adagrad 和 Adadelta 之间。
@@ -128,14 +128,14 @@ Adam
 
 .. math::
 
-  g & \leftarrow &\ \nabla_{\theta} \mathcal{L}(\theta) &\  [\text{计算梯度}] \\
-  t & \leftarrow &\ t + 1 &\  [\text{迭代次数}] \\
-  m & \leftarrow &\ \beta_1 m + (1 - \beta_1) g &\  [\text{有偏一阶矩}] \\
-  n & \leftarrow &\ \beta_1 n + (1 - \beta_2) g \odot g &\  [\text{有偏二阶矩}] \\
-  \hat{m} & \leftarrow &\ \frac{m}{1 - \beta_1^t} &\  [\text{修正一阶矩}] \\
-  \hat{n} & \leftarrow &\ \frac{n}{1 - \beta_2^t} &\  [\text{修正二阶矩}] \\
-  \Delta \theta & \leftarrow &\  - \eta \frac{\hat{m}}{\sqrt{\hat{n}+\epsilon}} \odot g &\ [\text{参数增量}] \\
-  \theta & \leftarrow &\  \theta + \Delta \theta &\ [\text{参数更新}]
+  g & \leftarrow \nabla_{\theta} \mathcal{L}(\theta) &\  [\text{计算梯度}] \\
+  t & \leftarrow t + 1 &\  [\text{迭代次数}] \\
+  m & \leftarrow \beta_1 m + (1 - \beta_1) g &\  [\text{有偏一阶矩}] \\
+  n & \leftarrow \beta_1 n + (1 - \beta_2) g \odot g &\  [\text{有偏二阶矩}] \\
+  \hat{m} & \leftarrow \frac{m}{1 - \beta_1^t} &\  [\text{修正一阶矩}] \\
+  \hat{n} & \leftarrow \frac{n}{1 - \beta_2^t} &\  [\text{修正二阶矩}] \\
+  \Delta \theta & \leftarrow  - \eta \frac{\hat{m}}{\sqrt{\hat{n}+\epsilon}} \odot g &\ [\text{参数增量}] \\
+  \theta & \leftarrow  \theta + \Delta \theta &\ [\text{参数更新}]
 
 相当于 RMSprop + Momentum。
 

@@ -5,9 +5,9 @@ Logistic Regression
 
 .. math::
 
-  h_\theta(x) & = & \  g(\theta^\top x),\\
-  g(z) & = & \  \frac{1}{1+e^{-z}},\\
-  g^\prime(z) & = & \  (1-g(z))g(z) \in (0, 0.25].
+  h_\theta(x) &= \  g(\theta^\top x),\\
+  g(z) &= \  \frac{1}{1+e^{-z}},\\
+  g^\prime(z) &= \  (1-g(z))g(z) \in (0, 0.25].
 
 对数损失函数（极大似然）：
 

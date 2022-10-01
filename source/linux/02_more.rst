@@ -30,7 +30,7 @@ apt-get
 
 - apt-get remove package_name：卸载一个已安装的软件包（保留配置文件）
 
-- apt-get –purge remove package_name：卸载一个已安装的软件包（删除配置文件）
+- apt-get –-purge remove package_name：卸载一个已安装的软件包（删除配置文件）
 
 - apt-get clean：删除安装的软件的备份，不过不影响软件的使用。
 
@@ -68,6 +68,15 @@ aptitude
 
 - aptitude upgrade：升级可用的软件包
 
+.. note::
+
+  使用清华或科大的 Ubuntu 软件源镜像加速软件安装（需要选择相应的处理器架构、系统版本）：
+    - x86
+        - https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/
+        - http://mirrors.ustc.edu.cn/help/ubuntu.html
+    - arm64
+        - https://mirror.tuna.tsinghua.edu.cn/help/ubuntu-ports/
+        - http://mirrors.ustc.edu.cn/help/ubuntu-ports.html
 
 tee
 -----------

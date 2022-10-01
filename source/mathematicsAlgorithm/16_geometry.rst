@@ -163,8 +163,8 @@
 
     .. math::
 
-      \overrightarrow{a} \times \overrightarrow{b} &=&\ - \overrightarrow{b} \times \overrightarrow{a} \\
-      \overrightarrow{a} \times \lambda \overrightarrow{a} &=&\ 0
+      \overrightarrow{a} \times \overrightarrow{b} &=\ - \overrightarrow{b} \times \overrightarrow{a} \\
+      \overrightarrow{a} \times \lambda \overrightarrow{a} &=\ 0
 
 
     .. math::
@@ -246,15 +246,15 @@
 
   $$
   \begin{cases}
-     x &=&\ x_a + \lambda (x_b - x_a) \\
-     y &=&\ y_a + \lambda (y_b - y_a)
+     x &=\ x_a + \lambda (x_b - x_a) \\
+     y &=\ y_a + \lambda (y_b - y_a)
   \end{cases}
   $$
 
   $$
   \begin{cases}
-     x &=&\ x_c + \mu (x_d - x_c) \\
-     y &=&\ y_c + \mu (y_d - y_c)
+     x &=\ x_c + \mu (x_d - x_c) \\
+     y &=\ y_c + \mu (y_d - y_c)
   \end{cases}
   $$
 
@@ -265,8 +265,8 @@
 
   $$
   \begin{cases}
-    x_a + \lambda (x_b - x_a) &=&\ x_c + \mu (x_d - x_c) \\
-    y_a + \lambda (y_b - y_a) &=&\ y_c + \mu (y_d - y_c)
+    x_a + \lambda (x_b - x_a) &=\ x_c + \mu (x_d - x_c) \\
+    y_a + \lambda (y_b - y_a) &=\ y_c + \mu (y_d - y_c)
   \end{cases}
   $$
 
@@ -277,8 +277,8 @@
 
   $$
   \begin{cases}
-    \lambda (x_b - x_a) - \mu (x_d - x_c) &=&\ x_c - x_a \\
-    \lambda (y_b - y_a) - \mu (y_d - y_c) &=&\ y_c - y_a
+    \lambda (x_b - x_a) - \mu (x_d - x_c) &=\ x_c - x_a \\
+    \lambda (y_b - y_a) - \mu (y_d - y_c) &=\ y_c - y_a
   \end{cases}
   $$
 

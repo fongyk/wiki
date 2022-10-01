@@ -115,10 +115,10 @@ rand5() 可以等概率产生 :math:`[1, 5]` 之间的整数。
 
 .. math::
 
-    p &=&\ \frac{1}{5} + \frac{2}{5} \times \frac{1}{5} + \frac{2}{5} \times \frac{2}{5} \times \frac{1}{5} + \cdots \\
-      &=&\ \frac{1}{5} \times (1 + \frac{2}{5} + \frac{2}{5} \times \frac{2}{5} + \cdots) \\
-      &=&\ \frac{1}{5} \times \frac{5}{3} \\
-      &=&\ \frac{1}{3}
+    p &=\ \frac{1}{5} + \frac{2}{5} \times \frac{1}{5} + \frac{2}{5} \times \frac{2}{5} \times \frac{1}{5} + \cdots \\
+      &=\ \frac{1}{5} \times (1 + \frac{2}{5} + \frac{2}{5} \times \frac{2}{5} + \cdots) \\
+      &=\ \frac{1}{5} \times \frac{5}{3} \\
+      &=\ \frac{1}{3}
 
 因此是等概率的。
 

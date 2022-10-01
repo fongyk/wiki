@@ -1,86 +1,40 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3. 分支管理 &mdash; fong alpha documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript">
-          var DOCUMENTATION_OPTIONS = {
-              URL_ROOT:'../',
-              VERSION:'alpha',
-              LANGUAGE:'None',
-              COLLAPSE_INDEX:false,
-              FILE_SUFFIX:'.html',
-              HAS_SOURCE:  true,
-              SOURCELINK_SUFFIX: '.txt'
-          };
-      </script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="机器学习" href="../machineLearning/index.html" />
+    <link rel="next" title="4. SSH" href="04_ssh.html" />
     <link rel="prev" title="2. 远程仓库" href="02_remoteRep.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> fong
-          
-
-          
-            
             <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
                 alpha
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -88,18 +42,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">目录</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -112,6 +56,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#id3">3.2. 参考资料</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="04_ssh.html">4. SSH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_proxy.html">5. 代理</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
@@ -124,89 +70,55 @@
 <li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">fong</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">Git</a> &raquo;</li>
-        
-      <li>3. 分支管理</li>
-    
-    
+      <li><span class="section-number">3. </span>分支管理</li>
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../_sources/git/03_branch.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="id1">
-<h1>3. 分支管理<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id2">
-<h2>3.1. 分支管理<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+             
+  <section id="id1">
+<h1><span class="section-number">3. </span>分支管理<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<section id="id2">
+<h2><span class="section-number">3.1. </span>分支管理<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Github 已经将 master 分支改名为 main。</p>
+</div>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">dev</span></code> 创建分支dev，并切换到dev分支（此时可以正常add，commit等）。相当于下面两条指令：<ul>
-<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">dev</span></code> 创建分支</li>
-<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">dev</span></code> 切换分支</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">dev</span></code> 创建分支dev，并切换到dev分支（此时可以正常add，commit等）。相当于下面两条指令：</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">dev</span></code> 创建分支</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">dev</span></code> 切换分支</p></li>
 </ul>
 </li>
 </ul>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">dev分支的仓库已经包含了master分支的内容，但是在master分支下，无法看到dev分支新增或修改的内容。</p>
+<p class="admonition-title">Note</p>
+<p>dev分支的仓库已经包含了master分支的内容，但是在master分支下，无法看到dev分支新增或修改的内容。</p>
 </div>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code> -r：查看远程分支，-a：查看所有分支（包括本地分支）。</li>
-<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span> <span class="pre">dev</span></code> 把dev分支的内容合并到当前分支（如，master分支）。</li>
-<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-d</span> <span class="pre">dev</span></code> （合并之后）删除dev分支。</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code> -r：查看远程分支，-a：查看所有分支（包括本地分支）。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span> <span class="pre">dev</span></code> 把dev分支的内容合并到当前分支（如，master分支）。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-d</span> <span class="pre">dev</span></code> （合并之后）删除dev分支。</p></li>
 </ul>
 <p>流程如下（图片来源于 <a class="reference external" href="https://www.liaoxuefeng.com/wiki/896043488029600/900003767775424">Git教程 - 廖雪峰的官方网站</a> ）：</p>
 <p><strong>1.</strong> 初始状态： <strong>master</strong> 分支。</p>
@@ -219,79 +131,65 @@
 <a class="reference internal image-reference" href="../_images/03_merge_branch.png"><img alt="../_images/03_merge_branch.png" class="align-center" src="../_images/03_merge_branch.png" style="width: 300px;" /></a>
 <p><strong>5.</strong> 删除 <strong>dev</strong> 分支。</p>
 <a class="reference internal image-reference" href="../_images/03_delete_branch.png"><img alt="../_images/03_delete_branch.png" class="align-center" src="../_images/03_delete_branch.png" style="width: 300px;" /></a>
-</div>
-<div class="section" id="id3">
-<h2>3.2. 参考资料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id3">
+<h2><span class="section-number">3.2. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
-<li>Git和Github简单教程</li>
+<li><p>Git和Github简单教程</p></li>
 </ol>
 <blockquote>
-<div><a class="reference external" href="https://www.cnblogs.com/schaepher/p/5561193.html#reset">https://www.cnblogs.com/schaepher/p/5561193.html#reset</a></div></blockquote>
+<div><p><a class="reference external" href="https://www.cnblogs.com/schaepher/p/5561193.html#reset">https://www.cnblogs.com/schaepher/p/5561193.html#reset</a></p>
+</div></blockquote>
 <ol class="arabic simple" start="2">
-<li>Git教程</li>
+<li><p>Git教程</p></li>
 </ol>
 <blockquote>
-<div><a class="reference external" href="https://www.liaoxuefeng.com/wiki/896043488029600">https://www.liaoxuefeng.com/wiki/896043488029600</a></div></blockquote>
+<div><p><a class="reference external" href="https://www.liaoxuefeng.com/wiki/896043488029600">https://www.liaoxuefeng.com/wiki/896043488029600</a></p>
+</div></blockquote>
 <ol class="arabic simple" start="3">
-<li>Git使用教程</li>
+<li><p>Git使用教程</p></li>
 </ol>
 <blockquote>
-<div><a class="reference external" href="http://www.cnblogs.com/tugenhua0707/p/4050072.html">http://www.cnblogs.com/tugenhua0707/p/4050072.html</a></div></blockquote>
+<div><p><a class="reference external" href="http://www.cnblogs.com/tugenhua0707/p/4050072.html">http://www.cnblogs.com/tugenhua0707/p/4050072.html</a></p>
+</div></blockquote>
 <ol class="arabic simple" start="4">
-<li>Git操作详解</li>
+<li><p>Git操作详解</p></li>
 </ol>
 <blockquote>
-<div><a class="reference external" href="https://www.cnblogs.com/bestzhang/p/6903338.html">https://www.cnblogs.com/bestzhang/p/6903338.html</a></div></blockquote>
-</div>
-</div>
+<div><p><a class="reference external" href="https://www.cnblogs.com/bestzhang/p/6903338.html">https://www.cnblogs.com/bestzhang/p/6903338.html</a></p>
+</div></blockquote>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../machineLearning/index.html" class="btn btn-neutral float-right" title="机器学习" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="02_remoteRep.html" class="btn btn-neutral float-left" title="2. 远程仓库" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="02_remoteRep.html" class="btn btn-neutral float-left" title="2. 远程仓库" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="04_ssh.html" class="btn btn-neutral float-right" title="4. SSH" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2018, fong
-
-    </p>
+    <p>&#169; Copyright 2018, fong.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-
-  
-  
-    
-  
 <script type="text/javascript">
     $(document).ready(function() {
      $(".toggle > *").hide();

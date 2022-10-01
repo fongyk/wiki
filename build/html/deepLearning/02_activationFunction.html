@@ -1,86 +1,41 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>2. 激活函数 &mdash; fong alpha documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript">
-          var DOCUMENTATION_OPTIONS = {
-              URL_ROOT:'../',
-              VERSION:'alpha',
-              LANGUAGE:'None',
-              COLLAPSE_INDEX:false,
-              FILE_SUFFIX:'.html',
-              HAS_SOURCE:  true,
-              SOURCELINK_SUFFIX: '.txt'
-          };
-      </script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3. Batch Normalization" href="03_batchnorm.html" />
     <link rel="prev" title="1. pytorch：多GPU模式" href="01_dataParallel.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> fong
-          
-
-          
-            
             <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
                 alpha
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -88,18 +43,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">目录</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
@@ -120,10 +65,13 @@
 <li class="toctree-l2"><a class="reference internal" href="03_batchnorm.html">3. Batch Normalization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_overfit.html">4. 过拟合</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">5. pytorch：模型保存与读取</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">6. pytorch: cuda()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">6. pytorch: cuda</a></li>
 <li class="toctree-l2"><a class="reference internal" href="07_backprop.html">7. 反向传播</a></li>
 <li class="toctree-l2"><a class="reference internal" href="08_optimizer.html">8. 优化算法</a></li>
-<li class="toctree-l2"><a class="reference internal" href="09_addModule.html">9. pytorch：add_module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_addModule.html">9. pytorch：Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_receptivaField.html">10. 特征图与感受野</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_nograd.html">11. pytorch：no_grad()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_dml.html">12. Deep Metric Learning</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
@@ -134,83 +82,44 @@
 <li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">fong</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">深度学习</a> &raquo;</li>
-        
-      <li>2. 激活函数</li>
-    
-    
+      <li><span class="section-number">2. </span>激活函数</li>
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../_sources/deepLearning/02_activationFunction.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="id1">
-<h1>2. 激活函数<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="id1">
+<h1><span class="section-number">2. </span>激活函数<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
 <p>神经网络引入激活函数（Activation Function）主要是为了增强网络的非线性，提升网络的拟合能力和学习能力。激活函数有以下几个性质：</p>
 <blockquote>
 <div><ul class="simple">
-<li>非线性</li>
-<li>可微性</li>
-<li>单调性：保证单层网络是凸函数</li>
+<li><p>非线性</p></li>
+<li><p>可微性</p></li>
+<li><p>单调性：保证单层网络是凸函数</p></li>
 </ul>
 </div></blockquote>
 <p>下面介绍 <strong>sigmoid</strong> 、<strong>tanh</strong> 以及 <strong>ReLU</strong> 。</p>
-<div class="section" id="sigmoid">
-<h2>2.1. sigmoid<a class="headerlink" href="#sigmoid" title="Permalink to this headline">¶</a></h2>
+<section id="sigmoid">
+<h2><span class="section-number">2.1. </span>sigmoid<a class="headerlink" href="#sigmoid" title="Permalink to this headline"></a></h2>
 <p><strong>sigmoid</strong> 函数的数学表达式如下：</p>
 <div class="math notranslate nohighlight">
 \[\sigma(z) = \frac{1}{1 + e^{-z}}.\]</div>
@@ -222,31 +131,31 @@
 <p>优点：</p>
 <blockquote>
 <div><ul class="simple">
-<li>单调连续，输出范围有限，优化稳定</li>
-<li>求导容易</li>
+<li><p>单调连续，输出范围有限，优化稳定</p></li>
+<li><p>求导容易</p></li>
 </ul>
 </div></blockquote>
 <p>缺点：</p>
 <blockquote>
 <div><ul class="simple">
-<li>容易饱和。当输入很大/很小时（saturation, 饱和），神经元的梯度接近0，出现“梯度消失”（gradient vanishing），导致无法完成深层网络的训练。</li>
-<li>输出不是零均值的（not zero-centered）。假设某个神经元的输入一直是正的，即 <span class="math notranslate nohighlight">\(x&gt;0\)</span> . 对于 <span class="math notranslate nohighlight">\(f(x)=w^{\top} x + b\)</span> ，则 <span class="math notranslate nohighlight">\(w\)</span> 获得的梯度将是恒正或者恒负
+<li><p>容易饱和。当输入很大/很小时（saturation, 饱和），神经元的梯度接近0，出现“梯度消失”（gradient vanishing），导致无法完成深层网络的训练。</p></li>
+<li><p>输出不是零均值的（not zero-centered）。假设某个神经元的输入一直是正的，即 <span class="math notranslate nohighlight">\(x&gt;0\)</span> . 对于 <span class="math notranslate nohighlight">\(f(x)=w^{\top} x + b\)</span> ，则 <span class="math notranslate nohighlight">\(w\)</span> 获得的梯度将是恒正或者恒负
 （取决于 <span class="math notranslate nohighlight">\(f\)</span> 得到的梯度的符号），导致 <span class="math notranslate nohighlight">\(w\)</span> 的更新非常“曲折”（zig-zagging）。
-当然，如果是按batch训练，最终梯度是各个样本下梯度的和，而每个样本下的梯度可能是符号各异的，因此在一定程度上可以缓解这个问题。</li>
+当然，如果是按batch训练，最终梯度是各个样本下梯度的和，而每个样本下的梯度可能是符号各异的，因此在一定程度上可以缓解这个问题。</p></li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="tanh">
-<h2>2.2. tanh<a class="headerlink" href="#tanh" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="tanh">
+<h2><span class="section-number">2.2. </span>tanh<a class="headerlink" href="#tanh" title="Permalink to this headline"></a></h2>
 <p><strong>tanh</strong> 函数的数学表达式如下：</p>
 <div class="math notranslate nohighlight">
 \[tanh(z) = \frac{e^z-e^{-z}}{e^z+e^{-z}} = 2\sigma(2z)-1.\]</div>
 <p>其函数曲线如下：</p>
 <a class="reference internal image-reference" href="../_images/02_tanh.jpeg"><img alt="../_images/02_tanh.jpeg" class="align-center" src="../_images/02_tanh.jpeg" style="width: 500px;" /></a>
 <p>与 <strong>sigmoid</strong> 一样， <strong>tanh</strong> 也会产生饱和现象，但是 <strong>tanh</strong> 的输出是零均值的（zero-centered）。</p>
-</div>
-<div class="section" id="relu">
-<h2>2.3. ReLU<a class="headerlink" href="#relu" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="relu">
+<h2><span class="section-number">2.3. </span>ReLU<a class="headerlink" href="#relu" title="Permalink to this headline"></a></h2>
 <p><strong>ReLU</strong> 函数的数学表达式如下：</p>
 <div class="math notranslate nohighlight">
 \[relu(z) = max(0,z).\]</div>
@@ -255,11 +164,9 @@
 <p>优点：</p>
 <blockquote>
 <div><ul>
-<li><p class="first">避免梯度消失。</p>
-</li>
-<li><p class="first">计算简单。 <strong>sigmoid</strong> 和 <strong>tanh</strong> 都需要计算指数。</p>
-</li>
-<li><p class="first">收敛速度快。 <a class="reference external" href="http://www.cs.toronto.edu/~fritz/absps/imagenet.pdf">Krizhevsky et al. 论文</a> 指出 <strong>ReLU</strong> 收敛速度比 <strong>tanh</strong> 快6倍。</p>
+<li><p>避免梯度消失。</p></li>
+<li><p>计算简单。 <strong>sigmoid</strong> 和 <strong>tanh</strong> 都需要计算指数。</p></li>
+<li><p>收敛速度快。 <a class="reference external" href="http://www.cs.toronto.edu/~fritz/absps/imagenet.pdf">Krizhevsky et al. 论文</a> 指出 <strong>ReLU</strong> 收敛速度比 <strong>tanh</strong> 快6倍。</p>
 <blockquote>
 <div><a class="reference internal image-reference" href="../_images/02_alexplot.jpeg"><img alt="../_images/02_alexplot.jpeg" class="align-center" src="../_images/02_alexplot.jpeg" style="width: 500px;" /></a>
 </div></blockquote>
@@ -269,113 +176,99 @@
 <p>缺点:</p>
 <blockquote>
 <div><ul class="simple">
-<li>容易产生死亡节点（dead ReLU）。一个非常大的梯度流过一个 <strong>ReLU</strong> 神经元，更新过参数之后，这个神经元对很多输入数据都输出0，则梯度一直为0。
-当然 <strong>ReLU</strong> 的输出依靠 <span class="math notranslate nohighlight">\(w\)</span> 和 <span class="math notranslate nohighlight">\(x\)</span> 的共同作用，死亡节点可能会被重新激活。</li>
-<li>输出不是零均值的。</li>
+<li><p>容易产生死亡节点（dead ReLU）。一个非常大的梯度流过一个 <strong>ReLU</strong> 神经元，更新过参数之后，这个神经元对很多输入数据都输出0，则梯度一直为0。
+当然 <strong>ReLU</strong> 的输出依靠 <span class="math notranslate nohighlight">\(w\)</span> 和 <span class="math notranslate nohighlight">\(x\)</span> 的共同作用，死亡节点可能会被重新激活。</p></li>
+<li><p>输出不是零均值的。</p></li>
 </ul>
 </div></blockquote>
 <p><strong>LeakyReLU</strong> 可以有效应对上述缺点。</p>
-</div>
-<div class="section" id="softmax">
-<h2>2.4. softmax 与最大化对数似然<a class="headerlink" href="#softmax" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="softmax">
+<h2><span class="section-number">2.4. </span>softmax 与最大化对数似然<a class="headerlink" href="#softmax" title="Permalink to this headline"></a></h2>
 <p>对数似然之外的许多目标函数对 softmax 单元不起作用。本质原因：若目标函数中不使用对数抵消 softmax 中的指数，当指数函数的变量取非常小的负值时，
 会造成梯度消失，从而无法学习。</p>
 <p>当 softmax 单元的输入值之间差异变得极端时，softmax 的输出会饱和，因此许多基于 softmax 的代价函数也会饱和，除非它们能够转换饱和的激活函数（例如，取对数）。
 特别是平方误差，对 softmax 单元来说，它是一个很差的损失函数。</p>
-</div>
-<div class="section" id="id2">
-<h2>2.5. 梯度消失与梯度爆炸<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id2">
+<h2><span class="section-number">2.5. </span>梯度消失与梯度爆炸<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <p>梯度消失（gradient vanishing）：梯度太小，难以确定参数更新方向。解决策略：</p>
 <blockquote>
 <div><ul class="simple">
-<li>使用激活函数 ReLU（正部导数恒为 1）</li>
-<li>Batch Normalization（将输出从饱和区拉到非饱和区）</li>
-<li>残差网络</li>
-<li>LSTM（long-short term memory networks）：遗忘门、输入门、输出门。</li>
+<li><p>使用激活函数 ReLU（正部导数恒为 1）</p></li>
+<li><p>Batch Normalization（将输出从饱和区拉到非饱和区）</p></li>
+<li><p>残差网络</p></li>
+<li><p>LSTM（long-short term memory networks）：遗忘门、输入门、输出门。</p></li>
 </ul>
 </div></blockquote>
 <p>梯度爆炸（gradient exploding）：梯度太大，学习不稳定。解决策略：</p>
 <blockquote>
 <div><ul class="simple">
-<li>梯度截断（gradient clipping/clamping）</li>
-<li>权重正则化</li>
-<li>使用激活函数 ReLU（正部导数恒为 1）</li>
-<li>Batch Normalization（有正则化的作用）</li>
+<li><p>梯度截断（gradient clipping/clamping）</p></li>
+<li><p>权重正则化</p></li>
+<li><p>使用激活函数 ReLU（正部导数恒为 1）</p></li>
+<li><p>Batch Normalization（有正则化的作用）</p></li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="id3">
-<h2>2.6. 参考资料<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id3">
+<h2><span class="section-number">2.6. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
-<li>CS231n</li>
+<li><p>CS231n</p></li>
 </ol>
 <blockquote>
-<div><a class="reference external" href="http://cs231n.github.io/neural-networks-1/#actfun">http://cs231n.github.io/neural-networks-1/#actfun</a></div></blockquote>
+<div><p><a class="reference external" href="http://cs231n.github.io/neural-networks-1/#actfun">http://cs231n.github.io/neural-networks-1/#actfun</a></p>
+</div></blockquote>
 <ol class="arabic simple" start="2">
-<li>神经网络之激活函数(Activation Function)</li>
+<li><p>神经网络之激活函数(Activation Function)</p></li>
 </ol>
 <blockquote>
-<div><a class="reference external" href="https://blog.csdn.net/memray/article/details/51442059">https://blog.csdn.net/memray/article/details/51442059</a></div></blockquote>
+<div><p><a class="reference external" href="https://blog.csdn.net/memray/article/details/51442059">https://blog.csdn.net/memray/article/details/51442059</a></p>
+</div></blockquote>
 <ol class="arabic simple" start="3">
-<li>What is the “dying ReLU” problem in neural networks?</li>
+<li><p>What is the “dying ReLU” problem in neural networks?</p></li>
 </ol>
 <blockquote>
-<div><a class="reference external" href="https://www.quora.com/What-is-the-dying-ReLU-problem-in-neural-networks">https://www.quora.com/What-is-the-dying-ReLU-problem-in-neural-networks</a></div></blockquote>
+<div><p><a class="reference external" href="https://www.quora.com/What-is-the-dying-ReLU-problem-in-neural-networks">https://www.quora.com/What-is-the-dying-ReLU-problem-in-neural-networks</a></p>
+</div></blockquote>
 <ol class="arabic simple" start="4">
-<li>详解机器学习中的梯度消失、爆炸原因及其解决方法</li>
+<li><p>详解机器学习中的梯度消失、爆炸原因及其解决方法</p></li>
 </ol>
 <blockquote>
-<div><a class="reference external" href="https://blog.csdn.net/qq_25737169/article/details/78847691">https://blog.csdn.net/qq_25737169/article/details/78847691</a></div></blockquote>
-</div>
-</div>
+<div><p><a class="reference external" href="https://blog.csdn.net/qq_25737169/article/details/78847691">https://blog.csdn.net/qq_25737169/article/details/78847691</a></p>
+</div></blockquote>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="03_batchnorm.html" class="btn btn-neutral float-right" title="3. Batch Normalization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="01_dataParallel.html" class="btn btn-neutral float-left" title="1. pytorch：多GPU模式" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="01_dataParallel.html" class="btn btn-neutral float-left" title="1. pytorch：多GPU模式" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="03_batchnorm.html" class="btn btn-neutral float-right" title="3. Batch Normalization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2018, fong
-
-    </p>
+    <p>&#169; Copyright 2018, fong.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-
-  
-  
-    
-  
 <script type="text/javascript">
     $(document).ready(function() {
      $(".toggle > *").hide();

@@ -11,3 +11,4 @@ Linux/Shell
     04_rename.rst
     05_sed.rst
     06_shellBasis.rst
+    07_loginShell.rst

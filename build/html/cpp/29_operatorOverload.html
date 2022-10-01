@@ -1,86 +1,40 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>29. 运算符重载 &mdash; fong alpha documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript">
-          var DOCUMENTATION_OPTIONS = {
-              URL_ROOT:'../',
-              VERSION:'alpha',
-              LANGUAGE:'None',
-              COLLAPSE_INDEX:false,
-              FILE_SUFFIX:'.html',
-              HAS_SOURCE:  true,
-              SOURCELINK_SUFFIX: '.txt'
-          };
-      </script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="30. 模板特化" href="30_templateSpecialization.html" />
     <link rel="prev" title="28. 可变参数函数" href="28_vaFunc.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> fong
-          
-
-          
-            
             <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
                 alpha
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -88,18 +42,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">目录</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">C/C++</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="01_main.html">1. main函数</a></li>
@@ -160,149 +104,84 @@
 <li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">fong</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">C/C++</a> &raquo;</li>
-        
-      <li>29. 运算符重载</li>
-    
-    
+      <li><span class="section-number">29. </span>运算符重载</li>
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../_sources/cpp/29_operatorOverload.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="id1">
-<h1>29. 运算符重载<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id2">
-<h2>29.1. 重载规则<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+             
+  <section id="id1">
+<h1><span class="section-number">29. </span>运算符重载<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<section id="id2">
+<h2><span class="section-number">29.1. </span>重载规则<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li>不能重载的运算符：成员运算符 <code class="docutils literal notranslate"><span class="pre">.</span></code> ，条件运算符 <code class="docutils literal notranslate"><span class="pre">?</span> <span class="pre">:</span></code> ，长度运算 <code class="docutils literal notranslate"><span class="pre">sizeof</span></code> ，成员指针访问运算符 <code class="docutils literal notranslate"><span class="pre">.*</span></code> ，域解析运算符 <code class="docutils literal notranslate"><span class="pre">::</span></code> 。主要是出于对安全的考虑：如果这些运算符也可以被重载的话，将会造成危害或破坏安全机制，使得事情变得困难或混淆现有的习惯。比如，如果成员运算符 <code class="docutils literal notranslate"><span class="pre">.</span></code> 被重载，就不能用普通的方法访问成员，只能通过指针和 <code class="docutils literal notranslate"><span class="pre">-&gt;</span></code> 访问。</li>
-<li>必须以成员函数的形式重载的运算符：箭头运算符 <code class="docutils literal notranslate"><span class="pre">-&gt;</span></code> ，下标运算符 <code class="docutils literal notranslate"><span class="pre">[]</span></code> ，函数调用运算符 <code class="docutils literal notranslate"><span class="pre">()</span></code> （用于定义函数对象类），赋值运算符 <code class="docutils literal notranslate"><span class="pre">=</span></code> 。</li>
-<li>重载不能改变运算符的优先级和结合性。</li>
-<li>运算符重载函数不能有默认的参数，否则就改变了运算符操作数的个数。</li>
-<li>以全局函数的形式重载，是为了保证该运算符的操作数能够被 <strong>对称的处理</strong> 。比如， <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span></code> 和 <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">+</span> <span class="pre">a</span></code> 的行为应该是一样的，如果定义成类成员函数：<code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">operator+(const</span> <span class="pre">B</span> <span class="pre">b)</span></code> ，<code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span></code> 被转换成 <code class="docutils literal notranslate"><span class="pre">a.operator+(b)</span></code> ，而 <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">+</span> <span class="pre">a</span></code> 被转换成 <code class="docutils literal notranslate"><span class="pre">b.operator+(a)</span></code> ，它们的行为是不一样的。</li>
-<li>如果需要访问非public成员，全局函数需要在类内声明为友元（friend）。</li>
+<li><p>不能重载的运算符：成员运算符 <code class="docutils literal notranslate"><span class="pre">.</span></code> ，条件运算符 <code class="docutils literal notranslate"><span class="pre">?</span> <span class="pre">:</span></code> ，长度运算 <code class="docutils literal notranslate"><span class="pre">sizeof</span></code> ，成员指针访问运算符 <code class="docutils literal notranslate"><span class="pre">.*</span></code> ，域解析运算符 <code class="docutils literal notranslate"><span class="pre">::</span></code> 。主要是出于对安全的考虑：如果这些运算符也可以被重载的话，将会造成危害或破坏安全机制，使得事情变得困难或混淆现有的习惯。比如，如果成员运算符 <code class="docutils literal notranslate"><span class="pre">.</span></code> 被重载，就不能用普通的方法访问成员，只能通过指针和 <code class="docutils literal notranslate"><span class="pre">-&gt;</span></code> 访问。</p></li>
+<li><p>必须以成员函数的形式重载的运算符：箭头运算符 <code class="docutils literal notranslate"><span class="pre">-&gt;</span></code> ，下标运算符 <code class="docutils literal notranslate"><span class="pre">[]</span></code> ，函数调用运算符 <code class="docutils literal notranslate"><span class="pre">()</span></code> （用于定义函数对象类），赋值运算符 <code class="docutils literal notranslate"><span class="pre">=</span></code> 。</p></li>
+<li><p>重载不能改变运算符的优先级和结合性。</p></li>
+<li><p>运算符重载函数不能有默认的参数，否则就改变了运算符操作数的个数。</p></li>
+<li><p>以全局函数的形式重载，是为了保证该运算符的操作数能够被 <strong>对称的处理</strong> 。比如， <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span></code> 和 <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">+</span> <span class="pre">a</span></code> 的行为应该是一样的，如果定义成类成员函数：<code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">operator+(const</span> <span class="pre">B</span> <span class="pre">b)</span></code> ，<code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span></code> 被转换成 <code class="docutils literal notranslate"><span class="pre">a.operator+(b)</span></code> ，而 <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">+</span> <span class="pre">a</span></code> 被转换成 <code class="docutils literal notranslate"><span class="pre">b.operator+(a)</span></code> ，它们的行为是不一样的。</p></li>
+<li><p>如果需要访问非public成员，全局函数需要在类内声明为友元（friend）。</p></li>
 </ul>
 <p>运算符重载函数的参数个数取决于：</p>
 <ul class="simple">
-<li>运算符是一元运算符还是二元运算符。</li>
-<li>运算符重载函数是全局函数还是成员函数。对于全局函数，一元运算符有一个参数，二元运算符有两个参数；对于成员函数，一元运算符没有参数，二元运算符有一个参数，类的 <code class="docutils literal notranslate"><span class="pre">this</span></code> 指针会被绑定到运算符的 <strong>左侧</strong> 运算对象，成员运算符函数的显式参数一般少一个。new/delete 例外，两种重载形式下参数个数是一样的。</li>
+<li><p>运算符是一元运算符还是二元运算符。</p></li>
+<li><p>运算符重载函数是全局函数还是成员函数。对于全局函数，一元运算符有一个参数，二元运算符有两个参数；对于成员函数，一元运算符没有参数，二元运算符有一个参数，类的 <code class="docutils literal notranslate"><span class="pre">this</span></code> 指针会被绑定到运算符的 <strong>左侧</strong> 运算对象，成员运算符函数的显式参数一般少一个。new/delete 例外，两种重载形式下参数个数是一样的。</p></li>
 </ul>
-<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 复数类</span>
-<span class="k">class</span> <span class="nc">Complex</span>
-<span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>  <span class="c1">//构造函数</span>
-    <span class="n">Complex</span><span class="p">(</span><span class="kt">double</span> <span class="n">real</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="kt">double</span> <span class="n">imag</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span><span class="o">:</span> <span class="n">m_real</span><span class="p">(</span><span class="n">real</span><span class="p">),</span> <span class="n">m_imag</span><span class="p">(</span><span class="n">imag</span><span class="p">){}</span>
-<span class="k">public</span><span class="o">:</span>  <span class="c1">//运算符重载</span>
-    <span class="c1">//以全局函数的形式重载</span>
-    <span class="k">friend</span> <span class="k">const</span> <span class="n">Complex</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span> <span class="n">Complex</span> <span class="o">&amp;</span><span class="n">c1</span><span class="p">,</span> <span class="k">const</span> <span class="n">Complex</span> <span class="o">&amp;</span><span class="n">c2</span><span class="p">);</span>
-    <span class="k">friend</span> <span class="k">const</span> <span class="n">Complex</span> <span class="k">operator</span><span class="o">-</span><span class="p">(</span><span class="k">const</span> <span class="n">Complex</span> <span class="o">&amp;</span><span class="n">c1</span><span class="p">,</span> <span class="k">const</span> <span class="n">Complex</span> <span class="o">&amp;</span><span class="n">c2</span><span class="p">);</span>
-    <span class="k">friend</span> <span class="k">const</span> <span class="n">Complex</span> <span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="k">const</span> <span class="n">Complex</span> <span class="o">&amp;</span><span class="n">c1</span><span class="p">,</span> <span class="k">const</span> <span class="n">Complex</span> <span class="o">&amp;</span><span class="n">c2</span><span class="p">);</span>
-    <span class="k">friend</span> <span class="k">const</span> <span class="n">Complex</span> <span class="k">operator</span><span class="o">/</span><span class="p">(</span><span class="k">const</span> <span class="n">Complex</span> <span class="o">&amp;</span><span class="n">c1</span><span class="p">,</span> <span class="k">const</span> <span class="n">Complex</span> <span class="o">&amp;</span><span class="n">c2</span><span class="p">);</span>
-    <span class="k">friend</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">Complex</span> <span class="o">&amp;</span><span class="n">c1</span><span class="p">,</span> <span class="k">const</span> <span class="n">Complex</span> <span class="o">&amp;</span><span class="n">c2</span><span class="p">);</span>
-    <span class="k">friend</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">!=</span><span class="p">(</span><span class="k">const</span> <span class="n">Complex</span> <span class="o">&amp;</span><span class="n">c1</span><span class="p">,</span> <span class="k">const</span> <span class="n">Complex</span> <span class="o">&amp;</span><span class="n">c2</span><span class="p">);</span>
-    <span class="k">friend</span> <span class="n">istream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">istream</span> <span class="o">&amp;</span><span class="n">in</span><span class="p">,</span> <span class="n">complex</span> <span class="o">&amp;</span><span class="n">A</span><span class="p">);</span>
-    <span class="k">friend</span> <span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="n">out</span><span class="p">,</span> <span class="n">complex</span> <span class="o">&amp;</span><span class="n">A</span><span class="p">);</span>
-    <span class="c1">//以成员函数的形式重载</span>
-    <span class="n">Complex</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="k">const</span> <span class="n">Complex</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">);</span>
-    <span class="n">Complex</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">-=</span><span class="p">(</span><span class="k">const</span> <span class="n">Complex</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">);</span>
-    <span class="n">Complex</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">*=</span><span class="p">(</span><span class="k">const</span> <span class="n">Complex</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">);</span>
-    <span class="n">Complex</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">/=</span><span class="p">(</span><span class="k">const</span> <span class="n">Complex</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">);</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="kt">double</span> <span class="n">real</span><span class="p">()</span> <span class="k">const</span><span class="p">{</span> <span class="k">return</span> <span class="n">m_real</span><span class="p">;</span> <span class="p">}</span>
-    <span class="kt">double</span> <span class="n">imag</span><span class="p">()</span> <span class="k">const</span><span class="p">{</span> <span class="k">return</span> <span class="n">m_imag</span><span class="p">;</span> <span class="p">}</span>
-<span class="k">private</span><span class="o">:</span>
-    <span class="kt">double</span> <span class="n">m_real</span><span class="p">;</span>  <span class="c1">//实部</span>
-    <span class="kt">double</span> <span class="n">m_imag</span><span class="p">;</span>  <span class="c1">//虚部</span>
-<span class="p">};</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">// 复数类</span>
+<span class="linenos"> 2</span><span class="k">class</span><span class="w"> </span><span class="nc">Complex</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="k">public</span><span class="o">:</span><span class="w">  </span><span class="c1">//构造函数</span>
+<span class="linenos"> 5</span><span class="w">    </span><span class="n">Complex</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">real</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">imag</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="n">m_real</span><span class="p">(</span><span class="n">real</span><span class="p">),</span><span class="w"> </span><span class="n">m_imag</span><span class="p">(</span><span class="n">imag</span><span class="p">){}</span><span class="w"></span>
+<span class="linenos"> 6</span><span class="k">public</span><span class="o">:</span><span class="w">  </span><span class="c1">//运算符重载</span>
+<span class="linenos"> 7</span><span class="w">    </span><span class="c1">//以全局函数的形式重载</span>
+<span class="linenos"> 8</span><span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c2</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="k">operator</span><span class="o">-</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c2</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">10</span><span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c2</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">11</span><span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="k">operator</span><span class="o">/</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c2</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">12</span><span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c2</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">13</span><span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="k">operator</span><span class="o">!=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c2</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">14</span><span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">istream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">istream</span><span class="w"> </span><span class="o">&amp;</span><span class="n">in</span><span class="p">,</span><span class="w"> </span><span class="n">complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">A</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">15</span><span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">ostream</span><span class="w"> </span><span class="o">&amp;</span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">A</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">16</span><span class="w">    </span><span class="c1">//以成员函数的形式重载</span>
+<span class="linenos">17</span><span class="w">    </span><span class="n">Complex</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">18</span><span class="w">    </span><span class="n">Complex</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">-=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">19</span><span class="w">    </span><span class="n">Complex</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">*=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">20</span><span class="w">    </span><span class="n">Complex</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">/=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">21</span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="linenos">22</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">real</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_real</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">23</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">imag</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_imag</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">24</span><span class="k">private</span><span class="o">:</span><span class="w"></span>
+<span class="linenos">25</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">m_real</span><span class="p">;</span><span class="w">  </span><span class="c1">//实部</span>
+<span class="linenos">26</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">m_imag</span><span class="p">;</span><span class="w">  </span><span class="c1">//虚部</span>
+<span class="linenos">27</span><span class="p">};</span><span class="w"></span>
 </pre></div>
-</td></tr></table></div>
+</div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">把 operator <code class="docutils literal notranslate"><span class="pre">+</span></code> 等四则运算的返回类型定义为 const，是为了防止类似于 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span> <span class="pre">=</span> <span class="pre">c</span></code> 之类的赋值操作通过编译。</p>
+<p class="admonition-title">Note</p>
+<p>把 operator <code class="docutils literal notranslate"><span class="pre">+</span></code> 等四则运算的返回类型定义为 const，是为了防止类似于 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span> <span class="pre">=</span> <span class="pre">c</span></code> 之类的赋值操作通过编译。</p>
 </div>
-</div>
-<div class="section" id="id3">
-<h2>29.2. 下标运算符 []<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id3">
+<h2><span class="section-number">29.2. </span>下标运算符 []<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <p>为了适应 const 对象，需要重载下面两种函数</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">返回值类型</span><span class="o">&amp;</span> <span class="n">operator</span><span class="p">[]</span> <span class="p">(</span><span class="n">参数</span><span class="p">);</span> <span class="o">//</span> <span class="n">参数一般为无符号整型</span>
 <span class="n">const</span> <span class="n">返回值类型</span><span class="o">&amp;</span> <span class="n">operator</span><span class="p">[]</span> <span class="p">(</span><span class="n">参数</span><span class="p">)</span> <span class="n">const</span><span class="p">;</span>
@@ -310,9 +189,9 @@
 </div>
 <p>因为 const 对象只能调用 const 成员函数。</p>
 <p>通过下标访问数组中的元素并不具有检查边界溢出功能，我们可以通过重载实现该功能（抛出异常）。</p>
-</div>
-<div class="section" id="id4">
-<h2>29.3. 自增和自减<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id4">
+<h2><span class="section-number">29.3. </span>自增和自减<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ClassName&amp; operator++(); // 前缀++，返回的是引用
 const ClassName operator++(int); // 后缀++，返回的是临时变量
 ClassName&amp; operator--(); // 前缀--
@@ -324,236 +203,138 @@ const ClassName operator--(int); // 后缀--
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">i</span><span class="o">++++</span><span class="p">;</span> <span class="o">//</span> <span class="n">same</span> <span class="k">as</span> <span class="n">i</span><span class="o">.</span><span class="n">operator</span><span class="o">++</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">operator</span><span class="o">++</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 </pre></div>
 </div>
-<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span>
-<span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="n">A</span><span class="p">(</span><span class="kt">int</span> <span class="n">_m</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="o">:</span> <span class="n">m</span><span class="p">(</span><span class="n">_m</span><span class="p">){}</span>
-
-    <span class="n">A</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">++</span><span class="p">();</span>
-    <span class="k">const</span> <span class="n">A</span> <span class="k">operator</span><span class="o">++</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
-    <span class="n">A</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">--</span><span class="p">();</span>
-    <span class="k">const</span> <span class="n">A</span> <span class="k">operator</span><span class="o">--</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
-
-    <span class="kt">int</span> <span class="n">m</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="n">A</span><span class="o">&amp;</span> <span class="n">A</span><span class="o">::</span><span class="k">operator</span><span class="o">++</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">m</span><span class="o">++</span><span class="p">;</span>
-    <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="n">A</span><span class="o">&amp;</span> <span class="n">A</span><span class="o">::</span><span class="k">operator</span><span class="o">--</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">m</span><span class="o">--</span><span class="p">;</span>
-    <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">const</span> <span class="n">A</span> <span class="n">A</span><span class="o">::</span><span class="k">operator</span><span class="o">++</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">A</span> <span class="n">_a</span> <span class="o">=</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
-    <span class="k">this</span><span class="o">-&gt;</span><span class="n">m</span> <span class="o">++</span><span class="p">;</span>
-    <span class="k">return</span> <span class="n">_a</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">const</span> <span class="n">A</span> <span class="n">A</span><span class="o">::</span><span class="k">operator</span><span class="o">--</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">A</span> <span class="n">_a</span> <span class="o">=</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
-    <span class="k">this</span><span class="o">-&gt;</span><span class="n">m</span> <span class="o">--</span><span class="p">;</span>
-    <span class="k">return</span> <span class="n">_a</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">A</span> <span class="n">a</span><span class="p">;</span>
-    <span class="n">A</span> <span class="n">b</span> <span class="o">=</span> <span class="o">++</span><span class="n">a</span><span class="p">;</span>
-    <span class="n">A</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="o">++</span><span class="p">;</span>
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">m</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">m</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">c</span><span class="p">.</span><span class="n">m</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 12 11 11</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">c</span><span class="o">--</span><span class="p">;</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="o">--</span><span class="n">b</span><span class="p">;</span>
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">m</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">m</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">c</span><span class="p">.</span><span class="n">m</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 11 10 10</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="w">    </span><span class="n">A</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">_m</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="n">m</span><span class="p">(</span><span class="n">_m</span><span class="p">){}</span><span class="w"></span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="w">    </span><span class="n">A</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">++</span><span class="p">();</span><span class="w"></span>
+<span class="linenos"> 7</span><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="k">operator</span><span class="o">++</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="w">    </span><span class="n">A</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">--</span><span class="p">();</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="k">operator</span><span class="o">--</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">m</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">12</span><span class="p">};</span><span class="w"></span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="n">A</span><span class="o">&amp;</span><span class="w"> </span><span class="n">A</span><span class="o">::</span><span class="k">operator</span><span class="o">++</span><span class="p">()</span><span class="w"></span>
+<span class="linenos">15</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">16</span><span class="w">    </span><span class="n">m</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">17</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">18</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">19</span><span class="n">A</span><span class="o">&amp;</span><span class="w"> </span><span class="n">A</span><span class="o">::</span><span class="k">operator</span><span class="o">--</span><span class="p">()</span><span class="w"></span>
+<span class="linenos">20</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">21</span><span class="w">    </span><span class="n">m</span><span class="o">--</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">22</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">23</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">24</span><span class="k">const</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">A</span><span class="o">::</span><span class="k">operator</span><span class="o">++</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">25</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">26</span><span class="w">    </span><span class="n">A</span><span class="w"> </span><span class="n">_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">27</span><span class="w">    </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">m</span><span class="w"> </span><span class="o">++</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">28</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">_a</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">29</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">30</span><span class="k">const</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">A</span><span class="o">::</span><span class="k">operator</span><span class="o">--</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">31</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">32</span><span class="w">    </span><span class="n">A</span><span class="w"> </span><span class="n">_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">33</span><span class="w">    </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">m</span><span class="w"> </span><span class="o">--</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">34</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">_a</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">35</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">36</span>
+<span class="linenos">37</span><span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"></span>
+<span class="linenos">38</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">39</span><span class="w">    </span><span class="n">A</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">40</span><span class="w">    </span><span class="n">A</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">++</span><span class="n">a</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">41</span><span class="w">    </span><span class="n">A</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">42</span><span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">m</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">m</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">m</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"> </span><span class="c1">// 12 11 11</span>
+<span class="linenos">43</span><span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="o">--</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">44</span><span class="w">    </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">--</span><span class="n">b</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">45</span><span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">m</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">m</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">m</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"> </span><span class="c1">// 11 10 10</span>
+<span class="linenos">46</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">47</span><span class="p">}</span><span class="w"></span>
 </pre></div>
-</td></tr></table></div>
 </div>
-<div class="section" id="id5">
-<h2>29.4. &gt;&gt; 和 &lt;&lt;<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id5">
+<h2><span class="section-number">29.4. </span>&gt;&gt; 和 &lt;&lt;<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
 <p>C++ 的 I/O stream 对象不可拷贝，形参和返回值都是引用。流对象形参不能声明为 const，因为流的缓冲成员（buffer）需要改变。
 返回引用有个好处是可以连续输入/输出（ <code class="docutils literal notranslate"><span class="pre">cout</span> <span class="pre">&lt;&lt;</span> <span class="pre">a</span> <span class="pre">&lt;&lt;</span> <span class="pre">b;</span></code> ）。</p>
 <p>由于 <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> 和 <code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code> 左侧对象是流对象（cin、cout等），而不是自定义的类对象本身，因此只能重载为全局函数。</p>
-<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">istream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">istream</span> <span class="o">&amp;</span><span class="n">in</span><span class="p">,</span> <span class="n">complex</span> <span class="o">&amp;</span><span class="n">A</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">in</span> <span class="o">&gt;&gt;</span> <span class="n">A</span><span class="p">.</span><span class="n">m_real</span> <span class="o">&gt;&gt;</span> <span class="n">A</span><span class="p">.</span><span class="n">m_imag</span><span class="p">;</span>
-    <span class="k">return</span> <span class="n">in</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="n">out</span><span class="p">,</span> <span class="n">complex</span> <span class="o">&amp;</span><span class="n">A</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="n">A</span><span class="p">.</span><span class="n">m_real</span> <span class="o">&lt;&lt;</span><span class="s">&quot; + &quot;</span><span class="o">&lt;&lt;</span> <span class="n">A</span><span class="p">.</span><span class="n">m_imag</span> <span class="o">&lt;&lt;</span><span class="s">&quot; i &quot;</span><span class="p">;</span>
-    <span class="k">return</span> <span class="n">out</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">istream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">istream</span><span class="w"> </span><span class="o">&amp;</span><span class="n">in</span><span class="p">,</span><span class="w"> </span><span class="n">complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">A</span><span class="p">)</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="w">    </span><span class="n">in</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">m_real</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">m_imag</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">in</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 5</span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">ostream</span><span class="w"> </span><span class="o">&amp;</span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">A</span><span class="p">)</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="n">out</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">m_real</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="s">&quot; + &quot;</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">m_imag</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="s">&quot; i &quot;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">10</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">out</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">11</span><span class="p">}</span><span class="w"></span>
 </pre></div>
-</td></tr></table></div>
 </div>
-<div class="section" id="new-delete">
-<h2>29.5. new 和 delete<a class="headerlink" href="#new-delete" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="new-delete">
+<h2><span class="section-number">29.5. </span>new 和 delete<a class="headerlink" href="#new-delete" title="Permalink to this headline"></a></h2>
 <p>内存管理运算符 new、new[]、delete 和 delete[] 也可以进行重载，其重载形式既可以是类的成员函数，也可以是全局函数。一般情况下，内建的内存管理运算符就够用了，只有在需要自己管理内存时才会重载。</p>
 <p>new 表达式实际完成了三件事：</p>
 <ul class="simple">
-<li>调用 operator new 或 operator new[]，作用是分配一块足够大的内存空间以便存储特定类型的对象。</li>
-<li>执行构造函数，在这块内存上构造对象。</li>
-<li>返回一个带类型的指针，指向这块内存。</li>
+<li><p>调用 operator new 或 operator new[]，作用是分配一块足够大的内存空间以便存储特定类型的对象。</p></li>
+<li><p>执行构造函数，在这块内存上构造对象。</p></li>
+<li><p>返回一个带类型的指针，指向这块内存。</p></li>
 </ul>
 <p>delete 表达式完成了两件事：</p>
 <ul class="simple">
-<li>调用指针所指对象的析构函数。</li>
-<li>调用 operator delete 或 operator delete[] 释放内存。</li>
+<li><p>调用指针所指对象的析构函数。</p></li>
+<li><p>调用 operator delete 或 operator delete[] 释放内存。</p></li>
 </ul>
 <p>在重载 new 或 new[] 时，无论是作为成员函数还是作为全局函数，它的第一个参数必须是 size_t 类型，表示的是要分配空间的大小；对于 new[] 的重载函数而言，表示所需要分配空间的总和。这个参数由编译器产生并传递给我们。</p>
 <p>注意，new 的返回值是类型 <code class="docutils literal notranslate"><span class="pre">void*</span></code> ，而不是指向任何特定类型的指针。该操作符本身做的是分配内存，而不是完成一个对象构造。</p>
 <p>为一个类重载 new 和 delete 的时候，尽管不必显式使用 <code class="docutils literal notranslate"><span class="pre">static</span></code> ，但是实际上仍是在创建 <code class="docutils literal notranslate"><span class="pre">static</span></code> 成员函数。</p>
 <p>如果类中没有定义 new 和 delete 的重载函数，那么会自动调用内建的 new 和 delete 运算符。</p>
-<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span>
-<span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="n">A</span><span class="p">(){</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;+A&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;}</span>
-    <span class="o">~</span><span class="n">A</span><span class="p">(){</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;~A&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;}</span>
-
-    <span class="kt">void</span><span class="o">*</span> <span class="k">operator</span> <span class="k">new</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">sz</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;A::new &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">sz</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; bytes&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-        <span class="kt">void</span><span class="o">*</span> <span class="n">m</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">sz</span><span class="p">);</span>
-        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">m</span><span class="p">)</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;out of memory&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-        <span class="k">return</span> <span class="n">m</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="kt">void</span> <span class="k">operator</span> <span class="k">delete</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">m</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;A::delete&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-        <span class="n">free</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="kt">void</span><span class="o">*</span> <span class="k">operator</span> <span class="k">new</span><span class="p">[](</span><span class="kt">size_t</span> <span class="n">sz</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;A::new[] &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">sz</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; bytes&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-        <span class="kt">void</span><span class="o">*</span> <span class="n">m</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">sz</span><span class="p">);</span>
-        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">m</span><span class="p">)</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;out of memory&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-        <span class="k">return</span> <span class="n">m</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="kt">void</span> <span class="k">operator</span> <span class="k">delete</span><span class="p">[](</span><span class="kt">void</span><span class="o">*</span> <span class="n">m</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;A::delete[]&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-        <span class="n">free</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="k">private</span><span class="o">:</span>
-    <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
-<span class="p">};</span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">A</span><span class="o">*</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="n">A</span><span class="p">();</span>
-    <span class="k">delete</span> <span class="n">a</span><span class="p">;</span>
-
-    <span class="n">A</span><span class="o">*</span> <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
-    <span class="k">delete</span><span class="p">[]</span> <span class="n">arr</span><span class="p">;</span>
-
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="w">    </span><span class="n">A</span><span class="p">(){</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;+A&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;}</span><span class="w"></span>
+<span class="linenos"> 5</span><span class="w">    </span><span class="o">~</span><span class="n">A</span><span class="p">(){</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;~A&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;}</span><span class="w"></span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="w">    </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="k">operator</span><span class="w"> </span><span class="k">new</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">sz</span><span class="p">)</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;A::new &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sz</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; bytes&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">10</span><span class="w">        </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">sz</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">11</span><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;out of memory&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">12</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">m</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">13</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">14</span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="k">operator</span><span class="w"> </span><span class="k">delete</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">m</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">15</span><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">16</span><span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;A::delete&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">17</span><span class="w">        </span><span class="n">free</span><span class="p">(</span><span class="n">m</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">18</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">19</span><span class="w">    </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="k">operator</span><span class="w"> </span><span class="k">new</span><span class="p">[](</span><span class="kt">size_t</span><span class="w"> </span><span class="n">sz</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">20</span><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">21</span><span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;A::new[] &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sz</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; bytes&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">22</span><span class="w">        </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">sz</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">23</span><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;out of memory&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">24</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">m</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">25</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">26</span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="k">operator</span><span class="w"> </span><span class="k">delete</span><span class="p">[](</span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">m</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">27</span><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">28</span><span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;A::delete[]&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">29</span><span class="w">        </span><span class="n">free</span><span class="p">(</span><span class="n">m</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">30</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">31</span><span class="k">private</span><span class="o">:</span><span class="w"></span>
+<span class="linenos">32</span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span><span class="w"></span>
+<span class="linenos">33</span><span class="p">};</span><span class="w"></span>
+<span class="linenos">34</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"></span>
+<span class="linenos">35</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">36</span><span class="w">    </span><span class="n">A</span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">A</span><span class="p">();</span><span class="w"></span>
+<span class="linenos">37</span><span class="w">    </span><span class="k">delete</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">38</span>
+<span class="linenos">39</span><span class="w">    </span><span class="n">A</span><span class="o">*</span><span class="w"> </span><span class="n">arr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span><span class="w"></span>
+<span class="linenos">40</span><span class="w">    </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">arr</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">41</span>
+<span class="linenos">42</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">43</span><span class="p">}</span><span class="w"></span>
 </pre></div>
-</td></tr></table></div>
+</div>
 <p>输出</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">::</span><span class="n">new</span> <span class="mi">40</span> <span class="nb">bytes</span>
 <span class="o">+</span><span class="n">A</span>
@@ -569,11 +350,11 @@ const ClassName operator--(int); // 后缀--
 <span class="n">A</span><span class="p">::</span><span class="n">delete</span><span class="p">[]</span>
 </pre></div>
 </div>
-<div class="section" id="new">
-<h3>new 的三种形态<a class="headerlink" href="#new" title="Permalink to this headline">¶</a></h3>
+<section id="new">
+<h3>new 的三种形态<a class="headerlink" href="#new" title="Permalink to this headline"></a></h3>
 <p>new 的三种形态分别是：new operator、operator new()、 placement new()。</p>
-<div class="section" id="new-operator">
-<h4>new operator<a class="headerlink" href="#new-operator" title="Permalink to this headline">¶</a></h4>
+<section id="new-operator">
+<h4>new operator<a class="headerlink" href="#new-operator" title="Permalink to this headline"></a></h4>
 <p>new operator 就是上文提到的 new 表达式，它完成三件事：申请内存、构造对象、令指针指向该块内存。这个过程中调用了 operator new() 和 placement new()。</p>
 <p><code class="docutils literal notranslate"><span class="pre">string*</span> <span class="pre">p</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">string(&quot;hello</span> <span class="pre">world&quot;);</span></code> 等价于：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span><span class="o">*</span> <span class="n">m</span> <span class="o">=</span> <span class="n">operator</span> <span class="n">new</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">));</span> <span class="o">//</span> <span class="n">operator</span> <span class="n">new</span><span class="p">()</span>
@@ -586,17 +367,17 @@ const ClassName operator--(int); // 后缀--
 <span class="n">operator</span> <span class="n">delete</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="operator-new">
-<h4>operator new()<a class="headerlink" href="#operator-new" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="operator-new">
+<h4>operator new()<a class="headerlink" href="#operator-new" title="Permalink to this headline"></a></h4>
 <p>operator new() 用于申请堆空间，功能类似于 C 语言的库函数 malloc() 。如果申请成功则直接返回，如果失败则抛出一个 bad_alloc 异常。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span><span class="o">*</span> <span class="n">operator</span> <span class="n">new</span><span class="p">(</span><span class="n">std</span><span class="p">::</span><span class="n">size_t</span> <span class="n">size</span><span class="p">)</span> <span class="n">throw</span> <span class="p">(</span><span class="n">std</span><span class="p">::</span><span class="n">bad_alloc</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>正如 new 与 delete 相互对应，operator new() 与 operator delete() 也是一一对应，如果重载了 operator new()，那么理应重载 operator delete()。</p>
-</div>
-<div class="section" id="placement-new">
-<h4>placement new()<a class="headerlink" href="#placement-new" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="placement-new">
+<h4>placement new()<a class="headerlink" href="#placement-new" title="Permalink to this headline"></a></h4>
 <p>使用 new 申请空间时，是从系统的堆中分配空间，申请所得空间的 <strong>位置</strong> 是根据当时内存实际使用情况决定。但是，在某些特殊情况下，可能需要在指定的内存位置去创建对象。</p>
 <p>placement new() 的作用是在已经获得的堆空间上调用构造函数来初始化对象，也就是定位构造对象。placement new() 是 C++ 标准库的一部分，被申明在头文件 <code class="docutils literal notranslate"><span class="pre">&lt;new&gt;</span></code> 中，其函数原型是：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span><span class="o">*</span> <span class="n">operator</span> <span class="n">new</span><span class="p">(</span><span class="n">std</span><span class="p">::</span><span class="n">size_t</span><span class="p">,</span> <span class="n">void</span><span class="o">*</span> <span class="n">__p</span><span class="p">)</span> <span class="n">throw</span><span class="p">()</span>
@@ -623,76 +404,61 @@ const ClassName operator--(int); // 后缀--
 <span class="n">p</span><span class="o">-&gt;~</span><span class="n">string</span><span class="p">();</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
-<div class="section" id="id6">
-<h2>29.6. 参考资料<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+</section>
+<section id="id6">
+<h2><span class="section-number">29.6. </span>参考资料<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
-<li>C++运算符重载</li>
+<li><p>C++运算符重载</p></li>
 </ol>
 <blockquote>
-<div><a class="reference external" href="http://c.biancheng.net/cpp/biancheng/cpp/rumen_10/">http://c.biancheng.net/cpp/biancheng/cpp/rumen_10/</a></div></blockquote>
+<div><p><a class="reference external" href="http://c.biancheng.net/cpp/biancheng/cpp/rumen_10/">http://c.biancheng.net/cpp/biancheng/cpp/rumen_10/</a></p>
+</div></blockquote>
 <ol class="arabic simple" start="2">
-<li>重载new和delete运算符</li>
+<li><p>重载new和delete运算符</p></li>
 </ol>
 <blockquote>
-<div><a class="reference external" href="https://www.cnblogs.com/xiangtingshen/p/10970903.html">https://www.cnblogs.com/xiangtingshen/p/10970903.html</a></div></blockquote>
+<div><p><a class="reference external" href="https://www.cnblogs.com/xiangtingshen/p/10970903.html">https://www.cnblogs.com/xiangtingshen/p/10970903.html</a></p>
+</div></blockquote>
 <ol class="arabic simple" start="3">
-<li>C++ new的三种面貌</li>
+<li><p>C++ new的三种面貌</p></li>
 </ol>
 <blockquote>
-<div><a class="reference external" href="https://cloud.tencent.com/developer/article/1177460">https://cloud.tencent.com/developer/article/1177460</a></div></blockquote>
-</div>
-</div>
+<div><p><a class="reference external" href="https://cloud.tencent.com/developer/article/1177460">https://cloud.tencent.com/developer/article/1177460</a></p>
+</div></blockquote>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="30_templateSpecialization.html" class="btn btn-neutral float-right" title="30. 模板特化" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="28_vaFunc.html" class="btn btn-neutral float-left" title="28. 可变参数函数" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="28_vaFunc.html" class="btn btn-neutral float-left" title="28. 可变参数函数" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="30_templateSpecialization.html" class="btn btn-neutral float-right" title="30. 模板特化" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2018, fong
-
-    </p>
+    <p>&#169; Copyright 2018, fong.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-
-  
-  
-    
-  
 <script type="text/javascript">
     $(document).ready(function() {
      $(".toggle > *").hide();

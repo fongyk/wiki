@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5. 代理 &mdash; fong alpha documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="机器学习" href="../machineLearning/index.html" />
+    <link rel="prev" title="4. SSH" href="04_ssh.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> fong
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                alpha
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Git</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_localRep.html">1. 本地版本库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_remoteRep.html">2. 远程仓库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_branch.html">3. 分支管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_ssh.html">4. SSH</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5. 代理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#https">5.1. HTTPS 连接</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ssh">5.2. SSH 连接</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">5.3. 参考资料</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Git</a> &raquo;</li>
+      <li><span class="section-number">5. </span>代理</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/git/05_proxy.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">5. </span>代理<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<section id="https">
+<h2><span class="section-number">5.1. </span>HTTPS 连接<a class="headerlink" href="#https" title="Permalink to this headline"></a></h2>
+<p>使用 http 协议的代理:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">http</span><span class="o">.</span><span class="n">proxy</span> <span class="s2">&quot;http://127.0.0.1:7890&quot;</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">https</span><span class="o">.</span><span class="n">proxy</span> <span class="s2">&quot;http://127.0.0.1:7890&quot;</span>
+</pre></div>
+</div>
+<p>使用 SOCKS 协议的代理:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">http</span><span class="o">.</span><span class="n">proxy</span> <span class="s1">&#39;socks5://127.0.0.1:7890&#39;</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">https</span><span class="o">.</span><span class="n">proxy</span> <span class="s1">&#39;socks5://127.0.0.1:7890&#39;</span>
+</pre></div>
+</div>
+<p>查看配置： <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">-l</span> <span class="pre">--global</span></code> 。配置保存在 <code class="docutils literal notranslate"><span class="pre">~/.gitconfig</span></code> 。</p>
+<p>取消代理:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="o">--</span><span class="n">unset</span> <span class="n">http</span><span class="o">.</span><span class="n">proxy</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="o">--</span><span class="n">unset</span> <span class="n">https</span><span class="o">.</span><span class="n">proxy</span>
+</pre></div>
+</div>
+</section>
+<section id="ssh">
+<h2><span class="section-number">5.2. </span>SSH 连接<a class="headerlink" href="#ssh" title="Permalink to this headline"></a></h2>
+<p>新建/编辑 <code class="docutils literal notranslate"><span class="pre">~/.ssh/config</span></code> 文件</p>
+<ul>
+<li><p>使用 http 协议的代理:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Host</span> <span class="n">github</span><span class="o">.</span><span class="n">com</span>
+    <span class="n">HostName</span> <span class="n">github</span><span class="o">.</span><span class="n">com</span>
+    <span class="n">User</span> <span class="n">git</span>
+    <span class="n">ProxyCommand</span> <span class="n">nc</span> <span class="o">-</span><span class="n">X</span> <span class="n">connect</span> <span class="o">-</span><span class="n">x</span> <span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">7890</span> <span class="o">%</span><span class="n">h</span> <span class="o">%</span><span class="n">p</span>
+</pre></div>
+</div>
+</li>
+<li><p>使用 SOCKS 协议的代理:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Host</span> <span class="n">github</span><span class="o">.</span><span class="n">com</span>
+    <span class="n">HostName</span> <span class="n">github</span><span class="o">.</span><span class="n">com</span>
+    <span class="n">User</span> <span class="n">git</span>
+    <span class="n">ProxyCommand</span> <span class="n">nc</span> <span class="o">-</span><span class="n">X</span> <span class="mi">5</span> <span class="o">-</span><span class="n">x</span> <span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">7890</span> <span class="o">%</span><span class="n">h</span> <span class="o">%</span><span class="n">p</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="id2">
+<h2><span class="section-number">5.3. </span>参考资料<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>如何为 Git 设置代理</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://www.cnblogs.com/cscshi/p/15705045.html">https://www.cnblogs.com/cscshi/p/15705045.html</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>设置 socks5/http 代理，可用于git和shell终端</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://blog.kelu.org/tech/2017/06/19/setting-socks5-proxy.html">https://blog.kelu.org/tech/2017/06/19/setting-socks5-proxy.html</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>.ssh/config 文件配置</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://www.jianshu.com/p/a4ad95935f3f">https://www.jianshu.com/p/a4ad95935f3f</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p>git设置使用代理</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://blog.csdn.net/libusi001/article/details/122229807">https://blog.csdn.net/libusi001/article/details/122229807</a></p>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="04_ssh.html" class="btn btn-neutral float-left" title="4. SSH" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../machineLearning/index.html" class="btn btn-neutral float-right" title="机器学习" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, fong.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

@@ -8,11 +8,11 @@
 
 .. math::
 
-    \mathbb{C}_n & = &\ \mathbb{C}_0 \mathbb{C}_{n-1} + \mathbb{C}_1 \mathbb{C}_{n-2} + \mathbb{C}_2 \mathbb{C}_{n-3} + \cdots + \mathbb{C}_{n-2} \mathbb{C}_1 + \mathbb{C}_{n-1} \mathbb{C}_0 \\
-                  & = &\ C_{2n}^n - C_{2n}^{n-1} \\
-                  & = &\ \frac{1}{n+1} C_{2n}^n \\
-                  & = &\ \frac{1}{n+1} \frac{(2n)!}{n!n!} \\
-                  & = &\ \frac{4n-2}{n+1} \mathbb{C}_{n-1} \\
+    \mathbb{C}_n &=\ \mathbb{C}_0 \mathbb{C}_{n-1} + \mathbb{C}_1 \mathbb{C}_{n-2} + \mathbb{C}_2 \mathbb{C}_{n-3} + \cdots + \mathbb{C}_{n-2} \mathbb{C}_1 + \mathbb{C}_{n-1} \mathbb{C}_0 \\
+                  &=\ C_{2n}^n - C_{2n}^{n-1} \\
+                  &=\ \frac{1}{n+1} C_{2n}^n \\
+                  &=\ \frac{1}{n+1} \frac{(2n)!}{n!n!} \\
+                  &=\ \frac{4n-2}{n+1} \mathbb{C}_{n-1} \\
 
 前几项卡特兰数是：
 

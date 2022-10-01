@@ -44,10 +44,10 @@
 
 .. math::
 
-  dp[n][m] &=&\ m \times dp[n-1][m] + dp[n-1][m-1],\quad 1 \leqslant m \leqslant n. \\
-  dp[k][k] &=&\ 1,\quad k \geqslant 0. \\
-  dp[k][0] &=&\ 0,\quad k \geqslant 1. \\
-  dp[0][k] &=&\ 1,\quad k \geqslant 0.
+  dp[n][m] &=\ m \times dp[n-1][m] + dp[n-1][m-1],\quad 1 \leqslant m \leqslant n. \\
+  dp[k][k] &=\ 1,\quad k \geqslant 0. \\
+  dp[k][0] &=\ 0,\quad k \geqslant 1. \\
+  dp[0][k] &=\ 1,\quad k \geqslant 0.
 
 
 
@@ -95,12 +95,12 @@
 
 .. math::
 
-  dp[n][m] &=&\ dp[n][m-1] + dp[n-m][m],\quad 1 \leqslant m \leqslant n. \\
-  dp[n][m] &=&\ dp[n][n],\quad m \geqslant n. \\
-  dp[k][0] &=&\ 0,\quad k \geqslant 1. \\
-  dp[0][k] &=&\ 1,\quad k \geqslant 0. \\
-  dp[1][k] &=&\ 1,\quad k \geqslant 1. \\
-  dp[k][1] &=&\ 1,\quad k \geqslant 0.
+  dp[n][m] &=\ dp[n][m-1] + dp[n-m][m],\quad 1 \leqslant m \leqslant n. \\
+  dp[n][m] &=\ dp[n][n],\quad m \geqslant n. \\
+  dp[k][0] &=\ 0,\quad k \geqslant 1. \\
+  dp[0][k] &=\ 1,\quad k \geqslant 0. \\
+  dp[1][k] &=\ 1,\quad k \geqslant 1. \\
+  dp[k][1] &=\ 1,\quad k \geqslant 0.
 
 
 球同，盒同，无空盒

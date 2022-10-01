@@ -26,8 +26,8 @@ Center Loss
 
 .. math::
 
-    \mathcal{L}(x_i) \ & = &\  \frac{1}{2} \| x_i - c_{y_i} \|_2^2 \\
-    \Delta c_j \ & = &\  \frac{\sum_{i=1}^{m} \delta(y_i=j) \cdot (c_j - x_i)}{1 + \sum_{i=1}^{m} \delta(y_i=j)}
+    \mathcal{L}(x_i) \ &=\  \frac{1}{2} \| x_i - c_{y_i} \|_2^2 \\
+    \Delta c_j \ &=\  \frac{\sum_{i=1}^{m} \delta(y_i=j) \cdot (c_j - x_i)}{1 + \sum_{i=1}^{m} \delta(y_i=j)}
 
 :math:`m` 是一个 batch 的大小。
 

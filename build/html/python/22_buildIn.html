@@ -1,86 +1,40 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>22. 内建属性 &mdash; fong alpha documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript">
-          var DOCUMENTATION_OPTIONS = {
-              URL_ROOT:'../',
-              VERSION:'alpha',
-              LANGUAGE:'None',
-              COLLAPSE_INDEX:false,
-              FILE_SUFFIX:'.html',
-              HAS_SOURCE:  true,
-              SOURCELINK_SUFFIX: '.txt'
-          };
-      </script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="23. glob" href="23_glob.html" />
     <link rel="prev" title="21. python -m" href="21_pyM.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> fong
-          
-
-          
-            
             <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
                 alpha
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -88,18 +42,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">目录</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Python</a><ul class="current">
@@ -138,6 +82,7 @@
 <li class="toctree-l2"><a class="reference internal" href="23_glob.html">23. glob</a></li>
 <li class="toctree-l2"><a class="reference internal" href="24_pyLinux.html">24. Python 执行 linux 命令</a></li>
 <li class="toctree-l2"><a class="reference internal" href="25_bisect.html">25. bisect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_abc.html">26. abc</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
@@ -152,316 +97,193 @@
 <li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">fong</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">Python</a> &raquo;</li>
-        
-      <li>22. 内建属性</li>
-    
-    
+      <li><span class="section-number">22. </span>内建属性</li>
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../_sources/python/22_buildIn.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="id1">
-<h1>22. 内建属性<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="name">
-<h2>22.1. __name__<a class="headerlink" href="#name" title="Permalink to this headline">¶</a></h2>
+             
+  <section id="id1">
+<h1><span class="section-number">22. </span>内建属性<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<section id="name">
+<h2><span class="section-number">22.1. </span>__name__<a class="headerlink" href="#name" title="Permalink to this headline"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">__name__</span></code> 标识模块的名字，可以显示一个模块的某功能是 <strong>被自己执行还是被别的文件调用执行</strong> 。</p>
 <p>如果被自己执行，那么 <code class="docutils literal notranslate"><span class="pre">__name__==</span> <span class="pre">&quot;__main__&quot;</span></code> ；</p>
 <p>如果被调用执行，那么 <code class="docutils literal notranslate"><span class="pre">__name__</span></code> 值为被调用模块的名字。</p>
-</div>
-<div class="section" id="doc">
-<h2>22.2. __doc__<a class="headerlink" href="#doc" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="doc">
+<h2><span class="section-number">22.2. </span>__doc__<a class="headerlink" href="#doc" title="Permalink to this headline"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">__doc__</span></code> 是模块的文档字符串（docstring），是由三引号包围的字符串，定义在文件/类/函数的头部。</p>
 <p>定义 <strong>Module.py</strong> 内容如下：</p>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; An example module.&quot;&quot;&quot;</span>
-
-<span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    class A.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
-
-<span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot; function f. &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="sd">&quot;&quot;&quot; An example module.&quot;&quot;&quot;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="linenos"> 4</span>    <span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 5</span><span class="sd">    class A.</span>
+<span class="linenos"> 6</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos"> 7</span>    <span class="k">pass</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
+<span class="linenos">10</span>    <span class="sd">&quot;&quot;&quot; function f. &quot;&quot;&quot;</span>
+<span class="linenos">11</span>    <span class="k">pass</span>
 </pre></div>
-</td></tr></table></div>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">Module</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">Module</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
-<span class="go">An example module.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">Module</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
-
-<span class="go">    class A.</span>
-
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">Module</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
-
-<span class="go">    function f.</span>
-</pre></div>
-</td></tr></table></div>
 </div>
-<div class="section" id="call">
-<h2>22.3. __call__<a class="headerlink" href="#call" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">Module</span>
+<span class="linenos"> 2</span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">Module</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+<span class="linenos"> 3</span><span class="go">An example module.</span>
+<span class="linenos"> 4</span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">Module</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="go">    class A.</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">Module</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="go">    function f.</span>
+</pre></div>
+</div>
+</section>
+<section id="call">
+<h2><span class="section-number">22.3. </span>__call__<a class="headerlink" href="#call" title="Permalink to this headline"></a></h2>
 <p>如果在类中实现了 <code class="docutils literal notranslate"><span class="pre">__call__</span></code> 方法，那么实例对象将成为一个可调用对象。自定义函数、内建函数和类都属于可调用对象，但凡是可以把一对括号 <code class="docutils literal notranslate"><span class="pre">()</span></code> 应用到某个对象身上都可称之为可调用对象，判断对象是否为可调用对象可以用函数 <code class="docutils literal notranslate"><span class="pre">callable</span></code> 。</p>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_a</span> <span class="o">=</span> <span class="n">a</span>
-
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_a</span> <span class="o">*</span> <span class="n">b</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="linenos">2</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="linenos">3</span>        <span class="bp">self</span><span class="o">.</span><span class="n">_a</span> <span class="o">=</span> <span class="n">a</span>
+<span class="linenos">4</span>
+<span class="linenos">5</span>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="linenos">6</span>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_a</span> <span class="o">*</span> <span class="n">b</span>
 </pre></div>
-</td></tr></table></div>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">callable</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-<span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">callable</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
-<span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="go">50</span>
-</pre></div>
-</td></tr></table></div>
 </div>
-<div class="section" id="dict">
-<h2>22.4. __dict__<a class="headerlink" href="#dict" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="linenos">2</span><span class="gp">&gt;&gt;&gt; </span><span class="n">callable</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="linenos">3</span><span class="go">True</span>
+<span class="linenos">4</span><span class="gp">&gt;&gt;&gt; </span><span class="n">callable</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+<span class="linenos">5</span><span class="go">True</span>
+<span class="linenos">6</span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="linenos">7</span><span class="go">50</span>
+</pre></div>
+</div>
+</section>
+<section id="dict">
+<h2><span class="section-number">22.4. </span>__dict__<a class="headerlink" href="#dict" title="Permalink to this headline"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">__dict__</span></code> 存储了类和实例的一些属性。</p>
 <p>在 <code class="docutils literal notranslate"><span class="pre">__init__</span></code> 中声明的变量（ <code class="docutils literal notranslate"><span class="pre">self.xxx</span></code> ），会存到实例的 <code class="docutils literal notranslate"><span class="pre">__dict__</span></code> 中；类的静态函数、类函数、普通函数、全局变量以及一些内置的属性都是放在类的 <code class="docutils literal notranslate"><span class="pre">__dict__</span></code> 中。</p>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7
-8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<span class="sd">&quot;&quot;&quot; class A. &quot;&quot;&quot;</span>
-    <span class="n">Aa</span> <span class="o">=</span> <span class="mi">10</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_a</span> <span class="o">=</span> <span class="n">a</span>
-
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_a</span> <span class="o">*</span> <span class="n">b</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="linenos">2</span><span class="sd">&quot;&quot;&quot; class A. &quot;&quot;&quot;</span>
+<span class="linenos">3</span>    <span class="n">Aa</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="linenos">4</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="linenos">5</span>        <span class="bp">self</span><span class="o">.</span><span class="n">_a</span> <span class="o">=</span> <span class="n">a</span>
+<span class="linenos">6</span>
+<span class="linenos">7</span>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="linenos">8</span>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_a</span> <span class="o">*</span> <span class="n">b</span>
 </pre></div>
-</td></tr></table></div>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">Module</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">.</span><span class="vm">__dict__</span>
-<span class="go">mappingproxy({&#39;__module__&#39;: &#39;Module&#39;, &#39;__doc__&#39;: &#39; class A. &#39;, &#39;Aa&#39;: 10, &#39;__init__&#39;: &lt;function A.__init__ at 0x000001F1D9E2CEE0&gt;, &#39;__call__&#39;: &lt;function A.__call__ at 0x000001F1D9E2CF70&gt;, &#39;__dict__&#39;: &lt;attribute &#39;__dict__&#39; of &#39;A&#39; objects&gt;, &#39;__weakref__&#39;: &lt;attribute &#39;__weakref__&#39; of &#39;A&#39; objects&gt;})</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span>
-<span class="go">{&#39;_a&#39;: 0}</span>
-</pre></div>
-</td></tr></table></div>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="n">Aa</span> <span class="o">=</span> <span class="mi">10</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-        <span class="k">pass</span>
-</pre></div>
-</td></tr></table></div>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7
-8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span>
-<span class="go">{&#39;a&#39;: 1, &#39;b&#39;: 2, &#39;c&#39;: 3}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">c</span>
-<span class="go">3</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">.</span><span class="vm">__dict__</span>
-<span class="go">mappingproxy({&#39;__module__&#39;: &#39;Module&#39;, &#39;Aa&#39;: 10, &#39;__init__&#39;: &lt;function A.__init__ at 0x0000024E2C82CEE0&gt;, &#39;func&#39;: &lt;function A.func at 0x0000024E2C82CF70&gt;, &#39;__dict__&#39;: &lt;attribute &#39;__dict__&#39; of &#39;A&#39; objects&gt;, &#39;__weakref__&#39;: &lt;attribute &#39;__weakref__&#39; of &#39;A&#39; objects&gt;, &#39;__doc__&#39;: None})</span>
-</pre></div>
-</td></tr></table></div>
 </div>
-<div class="section" id="setattr">
-<h2>22.5. __setattr__<a class="headerlink" href="#setattr" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">Module</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="linenos">2</span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">.</span><span class="vm">__dict__</span>
+<span class="linenos">3</span><span class="go">mappingproxy({&#39;__module__&#39;: &#39;Module&#39;, &#39;__doc__&#39;: &#39; class A. &#39;, &#39;Aa&#39;: 10, &#39;__init__&#39;: &lt;function A.__init__ at 0x000001F1D9E2CEE0&gt;, &#39;__call__&#39;: &lt;function A.__call__ at 0x000001F1D9E2CF70&gt;, &#39;__dict__&#39;: &lt;attribute &#39;__dict__&#39; of &#39;A&#39; objects&gt;, &#39;__weakref__&#39;: &lt;attribute &#39;__weakref__&#39; of &#39;A&#39; objects&gt;})</span>
+<span class="linenos">4</span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">5</span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span>
+<span class="linenos">6</span><span class="go">{&#39;_a&#39;: 0}</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="linenos">2</span>    <span class="n">Aa</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="linenos">3</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="linenos">4</span>        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="linenos">5</span>
+<span class="linenos">6</span>    <span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="linenos">7</span>        <span class="k">pass</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="gp">&gt;&gt;&gt; </span><span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="linenos">2</span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="linenos">3</span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span>
+<span class="linenos">4</span><span class="go">{&#39;a&#39;: 1, &#39;b&#39;: 2, &#39;c&#39;: 3}</span>
+<span class="linenos">5</span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">c</span>
+<span class="linenos">6</span><span class="go">3</span>
+<span class="linenos">7</span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">.</span><span class="vm">__dict__</span>
+<span class="linenos">8</span><span class="go">mappingproxy({&#39;__module__&#39;: &#39;Module&#39;, &#39;Aa&#39;: 10, &#39;__init__&#39;: &lt;function A.__init__ at 0x0000024E2C82CEE0&gt;, &#39;func&#39;: &lt;function A.func at 0x0000024E2C82CF70&gt;, &#39;__dict__&#39;: &lt;attribute &#39;__dict__&#39; of &#39;A&#39; objects&gt;, &#39;__weakref__&#39;: &lt;attribute &#39;__weakref__&#39; of &#39;A&#39; objects&gt;, &#39;__doc__&#39;: None})</span>
+</pre></div>
+</div>
+</section>
+<section id="setattr">
+<h2><span class="section-number">22.5. </span>__setattr__<a class="headerlink" href="#setattr" title="Permalink to this headline"></a></h2>
 <p>默认情况下，实例属性赋值，被赋值的属性和值会存入实例属性字典 <code class="docutils literal notranslate"><span class="pre">__dict__</span></code> 中。</p>
 <p>如果类自定义了 <code class="docutils literal notranslate"><span class="pre">__setattr__</span></code> 方法，当通过实例获取属性（instance.attr）并尝试赋值时，就会调用 <code class="docutils literal notranslate"><span class="pre">__setattr__</span></code> 。</p>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_a</span> <span class="o">=</span> <span class="n">a</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="linenos">2</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="linenos">3</span>        <span class="bp">self</span><span class="o">.</span><span class="n">_a</span> <span class="o">=</span> <span class="n">a</span>
 </pre></div>
-</td></tr></table></div>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">_b</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span>
-<span class="go">{&#39;_a&#39;: 0, &#39;_b&#39;: 1}</span>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">2</span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">_b</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos">3</span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span>
+<span class="linenos">4</span><span class="go">{&#39;_a&#39;: 0, &#39;_b&#39;: 1}</span>
 </pre></div>
-</td></tr></table></div>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_a</span> <span class="o">=</span> <span class="n">a</span>
-    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;set attr.&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="linenos">2</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="linenos">3</span>        <span class="bp">self</span><span class="o">.</span><span class="n">_a</span> <span class="o">=</span> <span class="n">a</span>
+<span class="linenos">4</span>    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="linenos">5</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;set attr.&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<span class="linenos">6</span>        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
 </pre></div>
-</td></tr></table></div>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1">## 初始化会调用 __setattr__</span>
-<span class="go">set attr. _a</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">_b</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="go">set attr. _b</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span>
-<span class="go">{&#39;_a&#39;: 0, &#39;_b&#39;: 1}</span>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1">## 初始化会调用 __setattr__</span>
+<span class="linenos">2</span><span class="go">set attr. _a</span>
+<span class="linenos">3</span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">_b</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos">4</span><span class="go">set attr. _b</span>
+<span class="linenos">5</span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span>
+<span class="linenos">6</span><span class="go">{&#39;_a&#39;: 0, &#39;_b&#39;: 1}</span>
 </pre></div>
-</td></tr></table></div>
+</div>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">如果在 <code class="docutils literal notranslate"><span class="pre">__setattr__</span></code> 中试图通过  <code class="docutils literal notranslate"><span class="pre">self.xxx</span></code> 来访问其他属性，容易出现错误。比如，初始化之前， <code class="docutils literal notranslate"><span class="pre">__dict__</span></code> 中还没有插入属性，是无法访问的。</p>
+<p class="admonition-title">Warning</p>
+<p>如果在 <code class="docutils literal notranslate"><span class="pre">__setattr__</span></code> 中试图通过  <code class="docutils literal notranslate"><span class="pre">self.xxx</span></code> 来访问其他属性，容易出现错误。比如，初始化之前， <code class="docutils literal notranslate"><span class="pre">__dict__</span></code> 中还没有插入属性，是无法访问的。</p>
 </div>
-</div>
-<div class="section" id="getattr">
-<h2>22.6. __getattr__<a class="headerlink" href="#getattr" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="getattr">
+<h2><span class="section-number">22.6. </span>__getattr__<a class="headerlink" href="#getattr" title="Permalink to this headline"></a></h2>
 <p>实例通过 <strong>点号</strong> 访问属性（instance.attr），只有当属性没有在实例的 <code class="docutils literal notranslate"><span class="pre">__dict__</span></code> 或类的 <code class="docutils literal notranslate"><span class="pre">__dict__</span></code> 中没有找到，才会调用 <code class="docutils literal notranslate"><span class="pre">__getattr__</span></code> 。当属性可以通过正常机制追溯到时，<code class="docutils literal notranslate"><span class="pre">__getattr__</span></code> 是不会被调用的。</p>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_a</span> <span class="o">=</span> <span class="n">a</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;_b&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;_c&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
-
-    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;get attr.&quot;</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">attr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span>
-        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="linenos"> 2</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="linenos"> 3</span>        <span class="bp">self</span><span class="o">.</span><span class="n">_a</span> <span class="o">=</span> <span class="n">a</span>
+<span class="linenos"> 4</span>        <span class="bp">self</span><span class="o">.</span><span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;_b&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;_c&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+<span class="linenos"> 7</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;get attr.&quot;</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+<span class="linenos"> 8</span>        <span class="k">if</span> <span class="n">attr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">:</span>
+<span class="linenos"> 9</span>            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span>
+<span class="linenos">10</span>        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 </pre></div>
-</td></tr></table></div>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">_a</span>
-<span class="go">0</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">_b</span>
-<span class="go">get attr._b</span>
-<span class="go">1</span>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">2</span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">_a</span>
+<span class="linenos">3</span><span class="go">0</span>
+<span class="linenos">4</span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">_b</span>
+<span class="linenos">5</span><span class="go">get attr._b</span>
+<span class="linenos">6</span><span class="go">1</span>
 </pre></div>
-</td></tr></table></div>
+</div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="admonition-title">Note</p>
 <p>多进程 multiprocessing 为了实现数据共享，会对数据进行序列化（pickling），其他进程读的时候再反序列化（unpickling）。反序列化时，数据所对应的类的 <code class="docutils literal notranslate"><span class="pre">__init__</span></code> 方法不会被调用，因而上例中 <code class="docutils literal notranslate"><span class="pre">self.dic</span></code> 对执行反序列化的进程是不可见的，会造成 <code class="docutils literal notranslate"><span class="pre">__getattr__</span></code> 无限循环调用:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pickle</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -470,127 +292,94 @@
 <span class="go">RecursionError: maximum recursion depth exceeded while calling a Python object.</span>
 </pre></div>
 </div>
-<p class="last">解决方法：直接用 <code class="docutils literal notranslate"><span class="pre">self.__dict__</span></code> 来存放原本 <code class="docutils literal notranslate"><span class="pre">self.dic</span></code> 的数据。
+<p>解决方法：直接用 <code class="docutils literal notranslate"><span class="pre">self.__dict__</span></code> 来存放原本 <code class="docutils literal notranslate"><span class="pre">self.dic</span></code> 的数据。
 参考：<a class="reference external" href="https://stackoverflow.com/questions/62331047/why-am-i-receiving-a-recursion-error-with-multiprocessing">https://stackoverflow.com/questions/62331047/why-am-i-receiving-a-recursion-error-with-multiprocessing</a></p>
 </div>
-</div>
-<div class="section" id="getattribute">
-<h2>22.7. __getattribute__<a class="headerlink" href="#getattribute" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="getattribute">
+<h2><span class="section-number">22.7. </span>__getattribute__<a class="headerlink" href="#getattribute" title="Permalink to this headline"></a></h2>
 <p>实例通过 <strong>点号</strong> 访问属性（instance.attr）， <code class="docutils literal notranslate"><span class="pre">__getattribute__</span></code> 方法始终会被调用，无论属性是否能通过 <code class="docutils literal notranslate"><span class="pre">__dict__</span></code> 追溯到。如果类还定义了 <code class="docutils literal notranslate"><span class="pre">__getattr__</span></code> 方法，除非它被 <code class="docutils literal notranslate"><span class="pre">__getattribute__</span></code> 显式调用，或者 <code class="docutils literal notranslate"><span class="pre">__getattribute__</span></code> 方法出现 <code class="docutils literal notranslate"><span class="pre">AttributeError</span></code> 异常，否则 <code class="docutils literal notranslate"><span class="pre">__getattr__</span></code> 方法永远不会被调用。</p>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_a</span> <span class="o">=</span> <span class="n">a</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;_b&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;_c&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
-
-    <span class="k">def</span> <span class="fm">__getattribute__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">attribute</span> <span class="o">==</span> <span class="s2">&quot;_a&quot;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;no attribute {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">attribute</span><span class="p">))</span>
-
-    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;get attr.&quot;</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
-        <span class="k">return</span> <span class="mi">2</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="linenos"> 2</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="linenos"> 3</span>        <span class="bp">self</span><span class="o">.</span><span class="n">_a</span> <span class="o">=</span> <span class="n">a</span>
+<span class="linenos"> 4</span>        <span class="bp">self</span><span class="o">.</span><span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;_b&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;_c&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>    <span class="k">def</span> <span class="fm">__getattribute__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">):</span>
+<span class="linenos"> 7</span>        <span class="k">if</span> <span class="n">attribute</span> <span class="o">==</span> <span class="s2">&quot;_a&quot;</span><span class="p">:</span>
+<span class="linenos"> 8</span>            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+<span class="linenos"> 9</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos">10</span>            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;no attribute </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">attribute</span><span class="p">))</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span>    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+<span class="linenos">13</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;get attr.&quot;</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+<span class="linenos">14</span>        <span class="k">return</span> <span class="mi">2</span>
 </pre></div>
-</td></tr></table></div>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span><span class="n">A</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">_a</span>
-<span class="go">-1</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">_b</span>
-<span class="go">get attr. _b</span>
-<span class="go">2</span>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span><span class="n">A</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">2</span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">_a</span>
+<span class="linenos">3</span><span class="go">-1</span>
+<span class="linenos">4</span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">_b</span>
+<span class="linenos">5</span><span class="go">get attr. _b</span>
+<span class="linenos">6</span><span class="go">2</span>
 </pre></div>
-</td></tr></table></div>
+</div>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">在抛出 <code class="docutils literal notranslate"><span class="pre">AttributeError</span></code> 异常之后，如果此时在 <code class="docutils literal notranslate"><span class="pre">__getattr__</span></code> 中试图通过  <code class="docutils literal notranslate"><span class="pre">self.xxx</span></code> 来访问其他属性（如 <code class="docutils literal notranslate"><span class="pre">self.dic</span></code> ）时，会出现死循环。</p>
+<p class="admonition-title">Warning</p>
+<p>在抛出 <code class="docutils literal notranslate"><span class="pre">AttributeError</span></code> 异常之后，如果此时在 <code class="docutils literal notranslate"><span class="pre">__getattr__</span></code> 中试图通过  <code class="docutils literal notranslate"><span class="pre">self.xxx</span></code> 来访问其他属性（如 <code class="docutils literal notranslate"><span class="pre">self.dic</span></code> ）时，会出现死循环。</p>
 </div>
-</div>
-<div class="section" id="id2">
-<h2>22.8. 参考资料<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id2">
+<h2><span class="section-number">22.8. </span>参考资料<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
-<li>Python __dict__属性详解</li>
+<li><p>Python __dict__属性详解</p></li>
 </ol>
 <blockquote>
-<div><a class="reference external" href="https://www.cnblogs.com/alvin2010/p/9102344.html">https://www.cnblogs.com/alvin2010/p/9102344.html</a></div></blockquote>
+<div><p><a class="reference external" href="https://www.cnblogs.com/alvin2010/p/9102344.html">https://www.cnblogs.com/alvin2010/p/9102344.html</a></p>
+</div></blockquote>
 <ol class="arabic simple" start="2">
-<li>python 自定义属性访问 __setattr__, __getattr__,__getattribute__, __call__</li>
+<li><p>python 自定义属性访问 __setattr__, __getattr__,__getattribute__, __call__</p></li>
 </ol>
 <blockquote>
-<div><a class="reference external" href="https://www.cnblogs.com/elie/p/6685429.html">https://www.cnblogs.com/elie/p/6685429.html</a></div></blockquote>
+<div><p><a class="reference external" href="https://www.cnblogs.com/elie/p/6685429.html">https://www.cnblogs.com/elie/p/6685429.html</a></p>
+</div></blockquote>
 <ol class="arabic simple" start="3">
-<li>Python中__setattr__, __getattr__和__getattribute__</li>
+<li><p>Python中__setattr__, __getattr__和__getattribute__</p></li>
 </ol>
 <blockquote>
-<div><a class="reference external" href="https://www.jianshu.com/p/0beee5a49b90">https://www.jianshu.com/p/0beee5a49b90</a></div></blockquote>
-</div>
-</div>
+<div><p><a class="reference external" href="https://www.jianshu.com/p/0beee5a49b90">https://www.jianshu.com/p/0beee5a49b90</a></p>
+</div></blockquote>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="23_glob.html" class="btn btn-neutral float-right" title="23. glob" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="21_pyM.html" class="btn btn-neutral float-left" title="21. python -m" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="21_pyM.html" class="btn btn-neutral float-left" title="21. python -m" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="23_glob.html" class="btn btn-neutral float-right" title="23. glob" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2018, fong
-
-    </p>
+    <p>&#169; Copyright 2018, fong.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-
-  
-  
-    
-  
 <script type="text/javascript">
     $(document).ready(function() {
      $(".toggle > *").hide();

@@ -70,10 +70,10 @@
 
 .. math::
 
-    P & = &\ \frac{k}{m} \times \left[ \left( (1-\frac{k}{m+1}) + \frac{k}{m+1} \times \frac{k-1}{k}  \right) \times \left( (1-\frac{k}{m+2}) + \frac{k}{m+2} \times \frac{k-1}{k}  \right) \times \right. \\
-      &   &\ \quad \left. \cdots \times \left( (1-\frac{k}{n}) + \frac{k}{n} \times \frac{k-1}{k}  \right) \right] \\
-      & = &\ \frac{k}{m} \times \frac{m}{m+1} \times \frac{m+1}{m+2} \times \cdots \times \frac{n-1}{n} \\
-      & = &\ \frac{k}{n}.
+    P &=\ \frac{k}{m} \times \left[ \left( (1-\frac{k}{m+1}) + \frac{k}{m+1} \times \frac{k-1}{k}  \right) \times \left( (1-\frac{k}{m+2}) + \frac{k}{m+2} \times \frac{k-1}{k}  \right) \times \right. \\
+      &  \ \quad \left. \cdots \times \left( (1-\frac{k}{n}) + \frac{k}{n} \times \frac{k-1}{k}  \right) \right] \\
+      &=\ \frac{k}{m} \times \frac{m}{m+1} \times \frac{m+1}{m+2} \times \cdots \times \frac{n-1}{n} \\
+      &=\ \frac{k}{n}.
 
 
 .. code-block:: cpp

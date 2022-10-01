@@ -72,15 +72,15 @@ Bernoulli 大数定律
 
 .. math::
 
-  E[X_i] &=&\ \mu \\
-  Var[X_i] &=&\ \sigma^2 \neq 0
+  E[X_i] &=\ \mu \\
+  Var[X_i] &=\ \sigma^2 \neq 0
 
 记
 
 .. math::
 
-  \overline{X} &=&\ \frac{1}{n} \sum_{i=1}^n X_i \\
-  \zeta_n &=&\ \frac{\overline{X} - \mu}{\sigma / \sqrt{n}}
+  \overline{X} &=\ \frac{1}{n} \sum_{i=1}^n X_i \\
+  \zeta_n &=\ \frac{\overline{X} - \mu}{\sigma / \sqrt{n}}
 
 有
 

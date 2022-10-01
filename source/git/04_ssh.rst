@@ -94,7 +94,7 @@ Github 添加公钥
 
     如果 push 的时候仍然要求输入用户名和密码，说明之前是用 HTTPS URL 指向远程主机，执行以下命令修改成 SSH URL::
 
-        git remote set-url origin git@github.com:<Username>/<Project>.gits
+        git remote set-url origin git@github.com:<Username>/<Project>.git
 
 参考资料
 ---------------

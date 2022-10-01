@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>7. 排序算法 &mdash; fong alpha documentation</title>
@@ -16,7 +16,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -125,7 +127,7 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">7. </span>排序算法<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">7. </span>排序算法<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <dl class="simple">
 <dt>比较排序</dt><dd><ul class="simple">
 <li><p>插入排序</p></li>
@@ -152,7 +154,7 @@
 <li><p><strong>k</strong> ：计数排序/桶排序，桶的个数；基数排序，关键字位数。</p></li>
 </ul>
 <section id="id2">
-<h2><span class="section-number">7.1. </span>插入排序<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">7.1. </span>插入排序<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <a class="reference internal image-reference" href="../_images/07_insertion.gif"><img alt="../_images/07_insertion.gif" class="align-center" src="../_images/07_insertion.gif" style="width: 800px;" /></a>
 <div class="toggle docutils container">
 <div class="header docutils container">
@@ -180,7 +182,7 @@
 </div>
 </section>
 <section id="id3">
-<h2><span class="section-number">7.2. </span>选择排序<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">7.2. </span>选择排序<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <a class="reference internal image-reference" href="../_images/07_selection.gif"><img alt="../_images/07_selection.gif" class="align-center" src="../_images/07_selection.gif" style="width: 800px;" /></a>
 <div class="toggle docutils container">
 <div class="header docutils container">
@@ -208,7 +210,7 @@
 </div>
 </section>
 <section id="id4">
-<h2><span class="section-number">7.3. </span>冒泡排序<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">7.3. </span>冒泡排序<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <a class="reference internal image-reference" href="../_images/07_bubble.gif"><img alt="../_images/07_bubble.gif" class="align-center" src="../_images/07_bubble.gif" style="width: 800px;" /></a>
 <div class="toggle docutils container">
 <div class="header docutils container">
@@ -250,7 +252,7 @@
 </div>
 </section>
 <section id="id5">
-<h2><span class="section-number">7.4. </span>快速排序<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">7.4. </span>快速排序<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
 <a class="reference internal image-reference" href="../_images/07_quick.gif"><img alt="../_images/07_quick.gif" class="align-center" src="../_images/07_quick.gif" style="width: 800px;" /></a>
 <div class="toggle docutils container">
 <div class="header docutils container">
@@ -291,7 +293,7 @@
 <p>快速排序的空间复杂度是 <span class="math notranslate nohighlight">\(\mathcal{O}(\log n)\)</span> ，用于保存递归的函数栈，最差情况下为 <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span> 。</p>
 </section>
 <section id="id6">
-<h2><span class="section-number">7.5. </span>堆排序<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">7.5. </span>堆排序<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
 <a class="reference internal image-reference" href="../_images/07_heap.gif"><img alt="../_images/07_heap.gif" class="align-center" src="../_images/07_heap.gif" style="width: 800px;" /></a>
 <p>建堆，从 <strong>最后一个非叶子节点</strong> 开始调整，使其成为大顶堆；将堆顶元素放到数组末尾；最后一个叶子节点放到堆顶，重新调整堆；…。</p>
 <div class="toggle docutils container">
@@ -334,7 +336,7 @@
 <p>初始建立大顶堆的时间复杂度为 <span class="math notranslate nohighlight">\(\mathcal{O}(n \log n)\)</span> ；每次取出堆的最大元素并重新调整堆也要用 <span class="math notranslate nohighlight">\(\mathcal{O}(\log n)\)</span> 时间。</p>
 </section>
 <section id="id7">
-<h2><span class="section-number">7.6. </span>归并排序<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">7.6. </span>归并排序<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
 <a class="reference internal image-reference" href="../_images/07_merge.gif"><img alt="../_images/07_merge.gif" class="align-center" src="../_images/07_merge.gif" style="width: 800px;" /></a>
 <div class="toggle docutils container">
 <div class="header docutils container">
@@ -417,7 +419,7 @@
 </div>
 </section>
 <section id="id8">
-<h2><span class="section-number">7.7. </span>希尔排序<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">7.7. </span>希尔排序<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
 <a class="reference internal image-reference" href="../_images/07_shell.gif"><img alt="../_images/07_shell.gif" class="align-center" src="../_images/07_shell.gif" style="width: 800px;" /></a>
 <p>缩小增量排序法：对于每一个增量（步长），利用插入排序方法进行排序。如果序列是基本有序的，使用直接插入排序效率非常高。</p>
 <div class="toggle docutils container">
@@ -455,7 +457,7 @@
 </div>
 </section>
 <section id="id9">
-<h2><span class="section-number">7.8. </span>计数排序<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">7.8. </span>计数排序<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h2>
 <a class="reference internal image-reference" href="../_images/07_counting.gif"><img alt="../_images/07_counting.gif" class="align-center" src="../_images/07_counting.gif" style="width: 800px;" /></a>
 <div class="toggle docutils container">
 <div class="header docutils container">
@@ -506,7 +508,7 @@
 </div>
 </section>
 <section id="id10">
-<h2><span class="section-number">7.9. </span>桶排序<a class="headerlink" href="#id10" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">7.9. </span>桶排序<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h2>
 <a class="reference internal image-reference" href="../_images/07_bucket.gif"><img alt="../_images/07_bucket.gif" class="align-center" src="../_images/07_bucket.gif" style="width: 800px;" /></a>
 <p>参考：<a class="reference external" href="https://blog.csdn.net/developer1024/article/details/79770240">https://blog.csdn.net/developer1024/article/details/79770240</a></p>
 <div class="toggle docutils container">
@@ -607,7 +609,7 @@
 </dl>
 </section>
 <section id="id11">
-<h2><span class="section-number">7.10. </span>基数排序<a class="headerlink" href="#id11" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">7.10. </span>基数排序<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h2>
 <a class="reference internal image-reference" href="../_images/07_radix.gif"><img alt="../_images/07_radix.gif" class="align-center" src="../_images/07_radix.gif" style="width: 800px;" /></a>
 <div class="toggle docutils container">
 <div class="header docutils container">
@@ -647,7 +649,7 @@
 </div>
 </section>
 <section id="id12">
-<h2><span class="section-number">7.11. </span>总结<a class="headerlink" href="#id12" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">7.11. </span>总结<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>从平均时间来看，<strong>快速排序</strong> 是效率最高的，但快速排序在最坏情况下的时间性能不如堆排序和归并排序。</p></li>
 <li><p>在 <span class="math notranslate nohighlight">\(n\)</span> 较大时 <strong>归并排序</strong> 使用时间较少，但使用辅助空间较多。</p></li>
@@ -659,7 +661,7 @@
 </ul>
 </section>
 <section id="id13">
-<h2><span class="section-number">7.12. </span>参考资料<a class="headerlink" href="#id13" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">7.12. </span>参考资料<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>十大经典排序算法（动图演示）</p></li>
 </ol>

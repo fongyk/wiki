@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>26. lambda 表达式 &mdash; fong alpha documentation</title>
@@ -16,7 +16,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -128,7 +130,7 @@
            <div itemprop="articleBody">
              
   <section id="lambda">
-<h1><span class="section-number">26. </span>lambda 表达式<a class="headerlink" href="#lambda" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">26. </span>lambda 表达式<a class="headerlink" href="#lambda" title="Permalink to this heading"></a></h1>
 <p>根据算法接受一元谓词（unary predicate）还是二元谓词（binary predicate），我们传递给算法的谓词必须严格接受一个或两个参数。
 例如，<code class="docutils literal notranslate"><span class="pre">sort</span></code> 接受二元谓词。</p>
 <p>lambda 表达式可以在一定程度上解决这个问题。lambda 表达式表示一个可调用的代码单元。可以将其理解为一个未命名的内联函数。
@@ -162,7 +164,7 @@ lambda 可能定义在函数内部。</p>
 </dl>
 </div>
 <section id="id1">
-<h2><span class="section-number">26.1. </span>捕获列表<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">26.1. </span>捕获列表<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>类似于参数传递，变量的捕获方式可以是值捕获或引用捕获。</p>
 <p>捕获列表：</p>
 <blockquote>
@@ -176,7 +178,7 @@ lambda 可能定义在函数内部。</p>
 </ul>
 </div></blockquote>
 <section id="id2">
-<h3>值捕获<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h3>
+<h3>值捕获<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <p>捕获变量的值是在 lambda <strong>创建时</strong> 拷贝，而不是调用时拷贝。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">void</span><span class="w"> </span><span class="nf">fcn1</span><span class="p">()</span><span class="w"></span>
 <span class="linenos">2</span><span class="p">{</span><span class="w"></span>
@@ -189,7 +191,7 @@ lambda 可能定义在函数内部。</p>
 </div>
 </section>
 <section id="id3">
-<h3>引用捕获<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
+<h3>引用捕获<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">void</span><span class="w"> </span><span class="nf">fcn2</span><span class="p">()</span><span class="w"></span>
 <span class="linenos">2</span><span class="p">{</span><span class="w"></span>
 <span class="linenos">3</span><span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span><span class="w"></span>
@@ -202,7 +204,7 @@ lambda 可能定义在函数内部。</p>
 </section>
 </section>
 <section id="id4">
-<h2><span class="section-number">26.2. </span>例子<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">26.2. </span>例子<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <p>给定一个值 ref，将数组元素按照与 ref 的差值从小到大排序。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">void</span><span class="w"> </span><span class="nf">Sort_</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">vec</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ref</span><span class="p">)</span><span class="w"></span>
 <span class="linenos">2</span><span class="p">{</span><span class="w"></span>
@@ -212,7 +214,7 @@ lambda 可能定义在函数内部。</p>
 </div>
 </section>
 <section id="id5">
-<h2><span class="section-number">26.3. </span>参考资料<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">26.3. </span>参考资料<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
 <p>1.《C++ Primer 第5版 中文版》 Page 344 – 353。</p>
 </section>
 </section>

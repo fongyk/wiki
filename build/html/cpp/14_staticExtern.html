@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>14. static和extern &mdash; fong alpha documentation</title>
@@ -16,7 +16,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -132,9 +134,9 @@
            <div itemprop="articleBody">
              
   <section id="staticextern">
-<h1><span class="section-number">14. </span>static和extern<a class="headerlink" href="#staticextern" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">14. </span>static和extern<a class="headerlink" href="#staticextern" title="Permalink to this heading"></a></h1>
 <section id="static">
-<h2><span class="section-number">14.1. </span>static: 静态全局变量<a class="headerlink" href="#static" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">14.1. </span>static: 静态全局变量<a class="headerlink" href="#static" title="Permalink to this heading"></a></h2>
 <p>在全局变量前，加上关键字 static，该变量就被定义成为一个静态全局变量。
 特点：</p>
 <blockquote>
@@ -146,13 +148,13 @@
 </div></blockquote>
 </section>
 <section id="id1">
-<h2><span class="section-number">14.2. </span>static: 静态函数<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">14.2. </span>static: 静态函数<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>在函数的返回类型前加上 static 关键字，函数即被定义为静态函数。
 静态函数与普通函数不同，它 <strong>只能在声明它的文件当中可见</strong> ，不能被其它文件使用。
 其它文件中可以定义相同名字的函数，不会发生冲突，这点与静态全局变量相似。</p>
 </section>
 <section id="id2">
-<h2><span class="section-number">14.3. </span>static: 静态局部变量<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">14.3. </span>static: 静态局部变量<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <p>在局部变量前，加上关键字 static，该变量就被定义成为一个静态局部变量。
 特点：</p>
 <blockquote>
@@ -180,7 +182,7 @@
 </div>
 </section>
 <section id="id3">
-<h2><span class="section-number">14.4. </span>static: 静态成员变量<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">14.4. </span>static: 静态成员变量<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <p>在类内数据成员的声明前加上关键字 static，该数据成员就是类内的静态数据成员。
 特点：</p>
 <blockquote>
@@ -196,7 +198,7 @@
 </div></blockquote>
 </section>
 <section id="id4">
-<h2><span class="section-number">14.5. </span>static: 静态成员函数<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">14.5. </span>static: 静态成员函数<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <p>普通的成员函数一般都隐含了一个 <code class="docutils literal notranslate"><span class="pre">this</span></code> 指针， <code class="docutils literal notranslate"><span class="pre">this</span></code> 指针指向类的对象本身，因为普通成员函数总是具体的属于某个类的具体对象的。
 通常情况下， <code class="docutils literal notranslate"><span class="pre">this</span></code> 是缺省的。如函数 <code class="docutils literal notranslate"><span class="pre">fn()</span></code> 实际上是 <code class="docutils literal notranslate"><span class="pre">this-&gt;fn()</span></code> 。
 但是与普通函数相比，静态成员函数由于不是与任何的对象相联系，因此它 <strong>不具有this指针</strong> 。
@@ -233,7 +235,7 @@
 </div>
 </section>
 <section id="extern">
-<h2><span class="section-number">14.6. </span>extern: 修饰函数、变量<a class="headerlink" href="#extern" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">14.6. </span>extern: 修饰函数、变量<a class="headerlink" href="#extern" title="Permalink to this heading"></a></h2>
 <p>修饰符 <code class="docutils literal notranslate"><span class="pre">extern</span></code> 用在变量或者函数的声明前，用来说明 <strong>“此变量/函数是在别处定义的，要在此处引用”</strong> 。
 在别的文件中如果想调用 <code class="docutils literal notranslate"><span class="pre">file1.c</span></code> 中的变量 <code class="docutils literal notranslate"><span class="pre">a</span></code> ，只须用 <code class="docutils literal notranslate"><span class="pre">extern</span></code> 进行声明即可调用 <code class="docutils literal notranslate"><span class="pre">a</span></code></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"> </span><span class="c1">// file2.c</span>
@@ -252,9 +254,9 @@
 </div>
 </section>
 <section id="extern-c">
-<h2><span class="section-number">14.7. </span>extern “C” {}<a class="headerlink" href="#extern-c" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">14.7. </span>extern “C” {}<a class="headerlink" href="#extern-c" title="Permalink to this heading"></a></h2>
 <section id="id5">
-<h3>例子<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
+<h3>例子<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#ifndef HEADER_INCLUDED </span><span class="c1">// 条件编译，避免重复包含头文件</span>
 <span class="linenos"> 2</span><span class="cp">#define HEADER_INCLUDED</span>
 <span class="linenos"> 3</span>
@@ -284,7 +286,7 @@
 </section>
 </section>
 <section id="id6">
-<h2><span class="section-number">14.8. </span>参考资料<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">14.8. </span>参考资料<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>C/C++中的static关键字详解</p></li>
 </ol>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3. 网桥、交换机、路由器、网关 &mdash; fong alpha documentation</title>
@@ -16,7 +16,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -97,32 +99,32 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">3. </span>网桥、交换机、路由器、网关<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">3. </span>网桥、交换机、路由器、网关<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <section id="bridge">
-<h2><span class="section-number">3.1. </span>网桥（Bridge）<a class="headerlink" href="#bridge" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">3.1. </span>网桥（Bridge）<a class="headerlink" href="#bridge" title="Permalink to this heading"></a></h2>
 <p>两个或多个以太网通过 <strong>网桥</strong> 连接起来后，就成为一个覆盖范围更大的以太网，而原来的每个以太网就可称为一个网段。</p>
 <p><strong>网桥工作在数据链路层的MAC子层</strong> ，可以互联不同的物理层、不同的MAC子层以及不同速率的以太网，使以太网各网段成为隔离开的碰撞域。</p>
 <p><strong>网桥</strong> 具有过滤帧以及存储转发帧的功能，可以隔离冲突域，但不能隔离广播域。</p>
 </section>
 <section id="switch">
-<h2><span class="section-number">3.2. </span>交换机（Switch）<a class="headerlink" href="#switch" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">3.2. </span>交换机（Switch）<a class="headerlink" href="#switch" title="Permalink to this heading"></a></h2>
 <p><strong>交换机工作在数据链路层</strong> ，相当于一个多端口的网桥，是交换式局域网的核心设备。</p>
 <p><strong>交换机</strong> 内部的CPU会在每个端口成功连接时，通过ARP协议学习它的MAC地址，保存成一张ARP表。
 在今后的通讯中，发往该MAC地址的数据包将仅送往其对应的端口，而不是所有的端口。</p>
 <p>利用 <strong>交换机</strong> 可以实现虚拟局域网(VLAN)，VLAN可以隔离冲突域，也可以隔离广播域。</p>
 </section>
 <section id="router">
-<h2><span class="section-number">3.3. </span>路由器（Router）<a class="headerlink" href="#router" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">3.3. </span>路由器（Router）<a class="headerlink" href="#router" title="Permalink to this heading"></a></h2>
 <p><strong>路由器是网络层设备</strong> ，可以连接不同的网络（异构网络）并主要完成两个功能：分组转发和路由计算。
 前者处理通过路由器的数据流，关键操作是转发表查询、转发以及相关的队列管理和任务调度等；后者通过和其他路由器进行基于路由协议的交互，完成路由表的计算。</p>
 </section>
 <section id="gateway">
-<h2><span class="section-number">3.4. </span>网关（Gateway）<a class="headerlink" href="#gateway" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">3.4. </span>网关（Gateway）<a class="headerlink" href="#gateway" title="Permalink to this heading"></a></h2>
 <p><strong>网关</strong> 能在不同协议间移动数据，而路由器是在不同网络间移动数据。</p>
 <p><strong>网关</strong> 是连接两个网络的设备。语音网关可以连接PSTN网络和以太网，这就相当于VOIP，把不同电话中的模拟信号通过网关而转换成数字信号，并加入协议再进行传输。</p>
 </section>
 <section id="id2">
-<h2><span class="section-number">3.5. </span>参考资料<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">3.5. </span>参考资料<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>牛客网：精华专题</p></li>
 </ol>

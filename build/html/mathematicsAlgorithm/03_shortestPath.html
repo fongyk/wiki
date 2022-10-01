@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3. 最短路径 &mdash; fong alpha documentation</title>
@@ -16,7 +16,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -116,9 +118,9 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">3. </span>最短路径<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">3. </span>最短路径<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <section id="bellman-ford">
-<h2><span class="section-number">3.1. </span>Bellman-Ford 算法<a class="headerlink" href="#bellman-ford" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">3.1. </span>Bellman-Ford 算法<a class="headerlink" href="#bellman-ford" title="Permalink to this heading"></a></h2>
 <p>时间复杂度 <span class="math notranslate nohighlight">\(\mathcal{O}(VE)\)</span> 其中顶点数 <span class="math notranslate nohighlight">\(V\)</span> ，边数 <span class="math notranslate nohighlight">\(E\)</span> 。如果不存在负圈（一条回路的代价和为负），那么每一条最短路径都不会经过同一个顶点两次，因此 while 循环最多执行 <span class="math notranslate nohighlight">\(V-1\)</span> 次。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">struct</span><span class="w"> </span><span class="nc">edge</span><span class="w"> </span><span class="p">{</span><span class="kt">int</span><span class="w"> </span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="p">,</span><span class="w"> </span><span class="n">cost</span><span class="p">;};</span><span class="w"></span>
 <span class="linenos"> 2</span>
@@ -171,7 +173,7 @@
 </div>
 </section>
 <section id="dijkstra">
-<h2><span class="section-number">3.2. </span>Dijkstra 算法<a class="headerlink" href="#dijkstra" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">3.2. </span>Dijkstra 算法<a class="headerlink" href="#dijkstra" title="Permalink to this heading"></a></h2>
 <p>适合处理没有负边的情形。每一次循环，在尚未确定最短距离的顶点中，d[i] 最小的顶点就是下一个确定的顶点。但是如果存在负边，d[i] 在之后的更新中还会变小，因此算法失效。</p>
 <ul class="simple">
 <li><dl class="simple">
@@ -257,7 +259,7 @@
 </div>
 </section>
 <section id="id2">
-<h2><span class="section-number">3.3. </span>实例<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">3.3. </span>实例<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <ul>
 <li><p>[LeetCode] Shortest Path to Get All Keys 获取所有钥匙的最短路径。Hint：需要一个状态量来表示到达当前位置已经获得的钥匙（BitMap）；当且仅当钥匙状态不相同时，才可以重复经过某一个坐标点。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/shortest-path-to-get-all-keys/">https://leetcode.com/problems/shortest-path-to-get-all-keys/</a></p>

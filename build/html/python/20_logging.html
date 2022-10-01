@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>20. logging &mdash; fong alpha documentation</title>
@@ -16,7 +16,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -123,7 +125,7 @@
            <div itemprop="articleBody">
              
   <section id="logging">
-<h1><span class="section-number">20. </span>logging<a class="headerlink" href="#logging" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">20. </span>logging<a class="headerlink" href="#logging" title="Permalink to this heading"></a></h1>
 <p>logging 模块是 Python 内置的标准模块，主要用于输出运行日志。</p>
 <p>日志等级（从高到低）：</p>
 <ul class="simple">
@@ -143,7 +145,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">Formatter</span></code> 决定日志记录的最终输出格式。</p></li>
 </ul>
 <section id="logger">
-<h2><span class="section-number">20.1. </span>Logger<a class="headerlink" href="#logger" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">20.1. </span>Logger<a class="headerlink" href="#logger" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">logging</span><span class="o">.</span><span class="n">Logger</span>
 </pre></div>
 </div>
@@ -159,7 +161,7 @@
 </ul>
 </section>
 <section id="handler">
-<h2><span class="section-number">20.2. </span>Handler<a class="headerlink" href="#handler" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">20.2. </span>Handler<a class="headerlink" href="#handler" title="Permalink to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">Handler</span></code> 通常也不直接实例化。以下是几个常用的 handler ：</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">logging.StreamHandler(stream=None)</span></code></p>
@@ -190,7 +192,7 @@
 </ul>
 </section>
 <section id="formatter">
-<h2><span class="section-number">20.3. </span>Formatter<a class="headerlink" href="#formatter" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">20.3. </span>Formatter<a class="headerlink" href="#formatter" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">fmt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">datefmt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;%&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -215,7 +217,7 @@
 </ul>
 </section>
 <section id="id1">
-<h2><span class="section-number">20.4. </span>示例<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">20.4. </span>示例<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>logging 基本设置</p></li>
 </ul>
@@ -273,7 +275,7 @@
 </div>
 </section>
 <section id="id2">
-<h2><span class="section-number">20.5. </span>配置文件<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">20.5. </span>配置文件<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <p>可以从字典中加载 logging 配置，这也就意味着可以通过 JSON 或者 YAML 文件加载日志的配置。</p>
 <p>以 YAML 为例，新建 log.yaml：</p>
 <div class="toggle docutils container">
@@ -373,7 +375,7 @@
 </div>
 </section>
 <section id="print">
-<h2><span class="section-number">20.6. </span>附录：print 函数<a class="headerlink" href="#print" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">20.6. </span>附录：print 函数<a class="headerlink" href="#print" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">objects</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -412,7 +414,7 @@
 </ul>
 </section>
 <section id="id3">
-<h2><span class="section-number">20.7. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">20.7. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Python logger模块</p></li>
 </ol>

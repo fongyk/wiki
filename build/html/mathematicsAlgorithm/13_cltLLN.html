@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>13. 大数定律和中心极限定理 &mdash; fong alpha documentation</title>
@@ -16,7 +16,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -126,31 +128,31 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">13. </span>大数定律和中心极限定理<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">13. </span>大数定律和中心极限定理<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <section id="id2">
-<h2><span class="section-number">13.1. </span>大数定律<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">13.1. </span>大数定律<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <p>大数定律：Law of large numbers。</p>
 <section id="id3">
-<h3>表现形式<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
+<h3>表现形式<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
 <p><span class="math notranslate nohighlight">\(X_1, X_2, ...,X_n\)</span> 是独立同分布，期望为 <span class="math notranslate nohighlight">\(\mu\)</span> ，勒贝格可积的随机变量构成的无穷序列（勒贝格可积性意味着期望值存在且有限），有如下收敛性：</p>
 <div class="math notranslate nohighlight">
 \[\overline{X} = \frac{1}{n}(X_1 + X_2 + \cdots + X_n) \rightarrow \mu \quad as \quad n \rightarrow \infty .\]</div>
 </section>
 <section id="id4">
-<h3>弱大数定律<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
+<h3>弱大数定律<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
 <p>样本均值依概率收敛于期望值。</p>
 <p>对任意正数 <span class="math notranslate nohighlight">\(\mu\)</span> ，</p>
 <div class="math notranslate nohighlight">
 \[\lim_{n \rightarrow \infty} P(|\overline{X} - \mu| &gt; \epsilon) = 0\]</div>
 </section>
 <section id="id5">
-<h3>强大数定律<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
+<h3>强大数定律<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
 <p>样本均值以概率 1 收敛于期望值。</p>
 <div class="math notranslate nohighlight">
 \[P(\lim_{n \rightarrow \infty} \overline{X} = \mu) = 1\]</div>
 </section>
 <section id="bernoulli">
-<h3>Bernoulli 大数定律<a class="headerlink" href="#bernoulli" title="Permalink to this headline"></a></h3>
+<h3>Bernoulli 大数定律<a class="headerlink" href="#bernoulli" title="Permalink to this heading"></a></h3>
 <p>事件发生的 <strong>频率</strong> 依概率收敛于事件的总体 <strong>概率</strong> 。</p>
 <p>设在 <span class="math notranslate nohighlight">\(n\)</span> 次独立重复 Bernoulli 试验中，事件 <span class="math notranslate nohighlight">\(X\)</span> 发生的次数为 <span class="math notranslate nohighlight">\(n_x\)</span> 。
 事件 <span class="math notranslate nohighlight">\(X\)</span> 在每次试验中发生的总体概率为 <span class="math notranslate nohighlight">\(p\)</span> 。<span class="math notranslate nohighlight">\(\frac{n_x}{n}\)</span> 代表样本发生事件 <span class="math notranslate nohighlight">\(X\)</span> 的频率。</p>
@@ -160,16 +162,16 @@
 </section>
 </section>
 <section id="id6">
-<h2><span class="section-number">13.2. </span>中心极限定理<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">13.2. </span>中心极限定理<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
 <p>中心极限定理：Central limit theorem。</p>
 <p>在适当的条件下，<strong>大量</strong> 相互 <strong>独立随机变量</strong> 的均值经适当标准化后依分布收敛于正态分布。</p>
 <section id="de-moivre-laplace">
-<h3>棣莫佛－拉普拉斯（de Moivre - Laplace）定理<a class="headerlink" href="#de-moivre-laplace" title="Permalink to this headline"></a></h3>
+<h3>棣莫佛－拉普拉斯（de Moivre - Laplace）定理<a class="headerlink" href="#de-moivre-laplace" title="Permalink to this heading"></a></h3>
 <p><span class="math notranslate nohighlight">\(X \sim B(n, p)\)</span> 是 <span class="math notranslate nohighlight">\(n\)</span> 次 Bernoulli 试验中事件 A 出现的次数（二项分布），每次试验成功的概率为 <span class="math notranslate nohighlight">\(p\)</span> 。</p>
 <p>当 <span class="math notranslate nohighlight">\(n \rightarrow \infty\)</span> ，二项分布的极限为：以 <span class="math notranslate nohighlight">\(np\)</span> 为均值，<span class="math notranslate nohighlight">\(np(1-p)\)</span> 为方差的正态分布。</p>
 </section>
 <section id="lindeberg-levy">
-<h3>林德伯格－列维（Lindeberg - Levy）定理<a class="headerlink" href="#lindeberg-levy" title="Permalink to this headline"></a></h3>
+<h3>林德伯格－列维（Lindeberg - Levy）定理<a class="headerlink" href="#lindeberg-levy" title="Permalink to this heading"></a></h3>
 <p>设随机变量 <span class="math notranslate nohighlight">\(X_1, X_2, ...,X_n\)</span> 独立同分布，且具有有限的数学期望和方差（ <span class="math notranslate nohighlight">\(i= 1,2,...,n\)</span> ）：</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}E[X_i] &amp;=\ \mu \\
@@ -185,7 +187,7 @@ Var[X_i] &amp;=\ \sigma^2 \neq 0\end{split}\]</div>
 </section>
 </section>
 <section id="id7">
-<h2><span class="section-number">13.3. </span>参考资料<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">13.3. </span>参考资料<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>大数定律</p></li>
 </ol>

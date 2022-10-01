@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>5. pytorch：模型保存与读取 &mdash; fong alpha documentation</title>
@@ -16,7 +16,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -105,9 +107,9 @@
            <div itemprop="articleBody">
              
   <section id="pytorch">
-<h1><span class="section-number">5. </span>pytorch：模型保存与读取<a class="headerlink" href="#pytorch" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">5. </span>pytorch：模型保存与读取<a class="headerlink" href="#pytorch" title="Permalink to this heading"></a></h1>
 <section id="id1">
-<h2><span class="section-number">5.1. </span>简单<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">5.1. </span>简单<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="c1">## save</span>
 <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s1">&#39;model.pkl&#39;</span><span class="p">)</span>
@@ -118,7 +120,7 @@
 <p>这种方法存储的模型包括了模型框架及模型参数等，存取的 pkl 文件较大。</p>
 </section>
 <section id="id2">
-<h2><span class="section-number">5.2. </span>详细<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">5.2. </span>详细<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <p>模型除了本身的框架、参数信息，还应包括训练的信息，比如训练迭代次数、优化器参数等。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">shutil</span>
@@ -164,7 +166,7 @@
 </div>
 </section>
 <section id="id3">
-<h2><span class="section-number">5.3. </span>导入部分参数<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">5.3. </span>导入部分参数<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <p>当我们只需要从 <code class="docutils literal notranslate"><span class="pre">state_dict()</span></code> 导入部分模型参数时，可以采用如下方法：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1"># args has the model name, num classes and other irrelevant stuff</span>
 <span class="linenos">2</span><span class="o">&gt;&gt;&gt;</span> <span class="n">pretrained_state</span> <span class="o">=</span> <span class="n">model_zoo</span><span class="o">.</span><span class="n">load_url</span><span class="p">(</span><span class="n">model_names</span><span class="p">[</span><span class="n">args</span><span class="o">.</span><span class="n">arch</span><span class="p">])</span>
@@ -180,7 +182,7 @@
 </div>
 </section>
 <section id="id4">
-<h2><span class="section-number">5.4. </span>参考资料<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">5.4. </span>参考资料<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Saving and loading a model in Pytorch?</p></li>
 </ol>

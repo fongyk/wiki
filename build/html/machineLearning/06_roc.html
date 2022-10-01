@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>6. ROC 曲线 &mdash; fong alpha documentation</title>
@@ -16,7 +16,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -100,7 +102,7 @@
            <div itemprop="articleBody">
              
   <section id="roc">
-<h1><span class="section-number">6. </span>ROC 曲线<a class="headerlink" href="#roc" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">6. </span>ROC 曲线<a class="headerlink" href="#roc" title="Permalink to this heading"></a></h1>
 <p><strong>ROC</strong> ：Receiver operating characteristic curve，接收者操作特征曲线。</p>
 <blockquote>
 <div><ul class="simple">
@@ -122,7 +124,7 @@
 <li><p>C’ 与 C 互为镜像点。不管 C 预测了什么，C’ 就做相反的预测。</p></li>
 </ul>
 <section id="id1">
-<h2><span class="section-number">6.1. </span>基本概念<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">6.1. </span>基本概念<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>ROC 分析的是二元分类模型。</p>
 <p>2 类标签：</p>
 <ul class="simple">
@@ -161,7 +163,7 @@
 <a class="reference internal image-reference" href="../_images/06_confusionMatrix.jpg"><img alt="../_images/06_confusionMatrix.jpg" class="align-center" src="../_images/06_confusionMatrix.jpg" style="width: 800px;" /></a>
 </section>
 <section id="auc">
-<h2><span class="section-number">6.2. </span>AUC<a class="headerlink" href="#auc" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">6.2. </span>AUC<a class="headerlink" href="#auc" title="Permalink to this heading"></a></h2>
 <p>ROC 空间里的单点，是给定分类模型且给定得分阈值后得出的。但同一个二元分类模型的阈值可能设定为高或低，每种阈值的设定会得出不同的 FPR 和 TPR。
 一般地，减小阈值，FPR 和 TPR 都会增大。
 将同一模型每个阈值的 (FPR, TPR) 坐标都画在 ROC 空间里，就成为特定模型的 ROC 曲线。</p>
@@ -222,7 +224,7 @@
 </div>
 </section>
 <section id="id2">
-<h2><span class="section-number">6.3. </span>参考资料<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">6.3. </span>参考资料<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>机器学习之分类性能度量指标 : ROC曲线、AUC值、正确率、召回率</p></li>
 </ol>

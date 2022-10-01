@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>8. 重载、覆盖、隐藏 &mdash; fong alpha documentation</title>
@@ -16,7 +16,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -131,9 +133,9 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">8. </span>重载、覆盖、隐藏<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">8. </span>重载、覆盖、隐藏<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <section id="overloading">
-<h2><span class="section-number">8.1. </span>重载（Overloading）<a class="headerlink" href="#overloading" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">8.1. </span>重载（Overloading）<a class="headerlink" href="#overloading" title="Permalink to this heading"></a></h2>
 <p>同一可访问区内被声明的几个具有不同参数列表（参数个数，参数类型，参数顺序）的同名函数。不关心函数返回类型。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -146,7 +148,7 @@
 </div>
 </section>
 <section id="overriding">
-<h2><span class="section-number">8.2. </span>覆盖（Overriding）<a class="headerlink" href="#overriding" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">8.2. </span>覆盖（Overriding）<a class="headerlink" href="#overriding" title="Permalink to this heading"></a></h2>
 <p>基类中被重写的函数，用 <code class="docutils literal notranslate"><span class="pre">virtual</span></code> 修饰。派生类重写的函数与被重写的函数保持同样的 <strong>函数名、参数列表、返回类型</strong> 。</p>
 <p>使用 <code class="docutils literal notranslate"><span class="pre">virtual</span></code> 的同时，配合使用 <code class="docutils literal notranslate"><span class="pre">override</span></code> 关键字来说明派生类中的虚函数。这么做的好处是使得程序员的意图更加清晰（即：希望覆盖基类中的虚函数），同时让编译器发现错误。
 因为只有虚函数才能被覆盖。编译器会检查两个对应函数的声明是否匹配。</p>
@@ -239,7 +241,7 @@ vptr不存在，不可能完成动态绑定。</p>
 </div>
 </section>
 <section id="hiding">
-<h2><span class="section-number">8.3. </span>隐藏（Hiding）<a class="headerlink" href="#hiding" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">8.3. </span>隐藏（Hiding）<a class="headerlink" href="#hiding" title="Permalink to this heading"></a></h2>
 <p>派生类中的函数屏蔽了基类中的同名函数。
 当参数列表不同时，无论基类中的函数是否被 <code class="docutils literal notranslate"><span class="pre">virtual</span></code> 修饰，基类函数都是被隐藏，而不是被覆盖；
 当参数列表相同，而基类中的函数没有被 <code class="docutils literal notranslate"><span class="pre">virtual</span></code> 修饰，则基类函数也被隐藏。</p>
@@ -260,9 +262,9 @@ vptr不存在，不可能完成动态绑定。</p>
 </div>
 </section>
 <section id="id2">
-<h2><span class="section-number">8.4. </span>例子<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">8.4. </span>例子<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <section id="id3">
-<h3>虚析构函数<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
+<h3>虚析构函数<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
 <p>删除一个指向派生类对象的基类指针时，需要虚析构函数。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="linenos"> 2</span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w"></span>
@@ -311,7 +313,7 @@ vptr不存在，不可能完成动态绑定。</p>
 </div>
 </section>
 <section id="id4">
-<h3>析构顺序<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
+<h3>析构顺序<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="linenos"> 2</span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w"></span>
 <span class="linenos"> 3</span>
@@ -418,7 +420,7 @@ vptr不存在，不可能完成动态绑定。</p>
 </div>
 </section>
 <section id="id5">
-<h3>对象数组的析构<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
+<h3>对象数组的析构<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
 <p>数组的多态会导致未定义的行为，不管析构函数是否声明为虚函数。所以在对数组元素执行析构时，还是要用 <strong>派生类的指针</strong> 来 delete 。</p>
 <p>参考：<a class="reference external" href="https://www.nowcoder.com/profile/3704231/myFollowings/detail/8528425">https://www.nowcoder.com/profile/3704231/myFollowings/detail/8528425</a>。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
@@ -458,7 +460,7 @@ vptr不存在，不可能完成动态绑定。</p>
 </section>
 </section>
 <section id="id6">
-<h2><span class="section-number">8.5. </span>参考资料<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">8.5. </span>参考资料<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>C++中重载、重写（覆盖）和隐藏的区别</p></li>
 </ol>

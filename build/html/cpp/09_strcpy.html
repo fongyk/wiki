@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>9. strcpy函数 &mdash; fong alpha documentation</title>
@@ -16,7 +16,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -125,7 +127,7 @@
            <div itemprop="articleBody">
              
   <section id="strcpy">
-<h1><span class="section-number">9. </span>strcpy函数<a class="headerlink" href="#strcpy" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">9. </span>strcpy函数<a class="headerlink" href="#strcpy" title="Permalink to this heading"></a></h1>
 <p>函数定义：</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="nf">strcpy</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">src</span><span class="p">)</span><span class="w"></span>
 <span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
@@ -140,22 +142,22 @@
 </pre></div>
 </div>
 <section id="src">
-<h2><span class="section-number">9.1. </span>形参src<a class="headerlink" href="#src" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">9.1. </span>形参src<a class="headerlink" href="#src" title="Permalink to this heading"></a></h2>
 <p>形参 <code class="docutils literal notranslate"><span class="pre">src</span></code> 定义为  <code class="docutils literal notranslate"><span class="pre">const</span></code> ，防止函数对其进行修改。</p>
 </section>
 <section id="cp">
-<h2><span class="section-number">9.2. </span>额外指针cp<a class="headerlink" href="#cp" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">9.2. </span>额外指针cp<a class="headerlink" href="#cp" title="Permalink to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">cp++</span></code> 导致复制结束时， <code class="docutils literal notranslate"><span class="pre">cp</span></code> 指向的是 <code class="docutils literal notranslate"><span class="pre">dst</span></code> 绑定的字符串的尾部，因此不能直接返回 <code class="docutils literal notranslate"><span class="pre">cp</span></code> 。</p>
 </section>
 <section id="id1">
-<h2><span class="section-number">9.3. </span>返回值<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">9.3. </span>返回值<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>为了实现链式操作，将目的地址返回。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">strcpy</span><span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Hello World&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="id2">
-<h2><span class="section-number">9.4. </span>参考资料<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">9.4. </span>参考资料<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>标准的strcpy函数</p></li>
 </ol>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>4. 过拟合 &mdash; fong alpha documentation</title>
@@ -16,7 +16,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -108,14 +110,14 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">4. </span>过拟合<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">4. </span>过拟合<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <p>复杂的模型将训练数据的抽样误差考虑在内，对抽样误差也进行了拟合。过拟合的模型可以看成是完全记忆型模型。</p>
 <section id="id2">
-<h2><span class="section-number">4.1. </span>表现<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">4.1. </span>表现<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <p>训练误差小，测试误差大，泛化能力差。</p>
 </section>
 <section id="id3">
-<h2><span class="section-number">4.2. </span>原因<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">4.2. </span>原因<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>训练集大小与模型复杂度不匹配；</p></li>
 <li><p>样本的噪声太大甚至掩盖了真实样本的分布规律；</p></li>
@@ -123,7 +125,7 @@
 </ul>
 </section>
 <section id="id4">
-<h2><span class="section-number">4.3. </span>解决方案<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">4.3. </span>解决方案<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <p><strong>1</strong>. 调小模型复杂度。</p>
 <p><strong>2</strong>. data augmentation.</p>
 <p><strong>3</strong>. dropout. dropout 随机屏蔽了部分神经元的前向和反向传播，有利于保持神经元的独立性；由于每次迭代都屏蔽不同神经元，因此模型的训练过程可以看作是多个模型的集成。</p>
@@ -139,7 +141,7 @@
 </div></blockquote>
 </section>
 <section id="dropout-numpy">
-<h2><span class="section-number">4.4. </span>dropout 的 numpy 实现<a class="headerlink" href="#dropout-numpy" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">4.4. </span>dropout 的 numpy 实现<a class="headerlink" href="#dropout-numpy" title="Permalink to this heading"></a></h2>
 <p>前向传播：生成 mask，乘以当前层的激活函数输出。新的输出需要除以 keep_prob，保证能量一致。</p>
 <p>反向传播：也要关闭 mask 对应的神经元，同样也需要除以 keep_prob。</p>
 <div class="toggle docutils container">
@@ -278,7 +280,7 @@
 </div>
 </section>
 <section id="id5">
-<h2><span class="section-number">4.5. </span>附：正则化<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">4.5. </span>附：正则化<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
 <div class="math notranslate nohighlight">
 \[L_q\text{-norm}: \ \| w \|^q_q = \sum_j | w_j |^q.\]</div>
 <a class="reference internal image-reference" href="../_images/04_norm.jpg"><img alt="../_images/04_norm.jpg" class="align-center" src="../_images/04_norm.jpg" style="width: 600px;" /></a>
@@ -295,7 +297,7 @@
 </dl>
 </section>
 <section id="id6">
-<h2><span class="section-number">4.6. </span>参考资料<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">4.6. </span>参考资料<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>深度学习（Deep Learning）基础概念8：L2正则化（L2 Regularization）、Dropout原理及其python实现</p></li>
 </ol>

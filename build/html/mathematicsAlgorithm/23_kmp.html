@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>23. 前缀函数与 KMP 算法 &mdash; fong alpha documentation</title>
@@ -16,7 +16,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -134,37 +136,37 @@
            <div itemprop="articleBody">
              
   <section id="kmp">
-<h1><span class="section-number">23. </span>前缀函数与 KMP 算法<a class="headerlink" href="#kmp" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">23. </span>前缀函数与 KMP 算法<a class="headerlink" href="#kmp" title="Permalink to this heading"></a></h1>
 <section id="id1">
-<h2><span class="section-number">23.1. </span>字符串基础<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">23.1. </span>字符串基础<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <section id="id2">
-<h3>子串<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h3>
+<h3>子串<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <p>字符串 <span class="math notranslate nohighlight">\(S\)</span> 的子串 <span class="math notranslate nohighlight">\(S[i:j],\ i \leq j\)</span> ，表示 <span class="math notranslate nohighlight">\(S\)</span> 串中从 <span class="math notranslate nohighlight">\(i\)</span> 到 <span class="math notranslate nohighlight">\(j\)</span> 这一段（注意，这里表示为双闭区间），也就是顺次排列 <span class="math notranslate nohighlight">\(S[i],S[i+1],\cdots,S[j]\)</span> 形成的字符串，子串长度为 <span class="math notranslate nohighlight">\(j-i+1\)</span> 。</p>
 <p>有时也会用 <span class="math notranslate nohighlight">\(S[i:j],\ i &gt; j\)</span> 来表示空串。</p>
 </section>
 <section id="id3">
-<h3>子序列<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
+<h3>子序列<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
 <p>字符串 <span class="math notranslate nohighlight">\(S\)</span> 的子序列是从 <span class="math notranslate nohighlight">\(S\)</span> 中将若干元素提取出来且不改变相对位置形成的序列，即 <span class="math notranslate nohighlight">\(S[p_1],S[p_2],\cdots,S[p_k]\)</span> ， <span class="math notranslate nohighlight">\(0\le p_1 &lt; p_2 &lt; \cdots &lt; p_k &lt; |S|\)</span> 。</p>
 </section>
 <section id="id4">
-<h3>前缀<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
+<h3>前缀<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
 <p>前缀是指从串首开始到某个位置 <span class="math notranslate nohighlight">\(i\)</span> 结束的一个特殊子串。字符串 <span class="math notranslate nohighlight">\(S\)</span> 以 <span class="math notranslate nohighlight">\(S[i]\)</span> 结尾的前缀表示为 <span class="math notranslate nohighlight">\(Prefix(S,i) = S[0:i]\)</span> 。</p>
 <p><strong>真前缀</strong> 指除了 <span class="math notranslate nohighlight">\(S\)</span> 本身之外的前缀。</p>
 <p>举例来说，字符串 <code class="docutils literal notranslate"><span class="pre">abcabcd</span></code> 的所有前缀为 <code class="docutils literal notranslate"><span class="pre">{a,</span> <span class="pre">ab,</span> <span class="pre">abc,</span> <span class="pre">abca,</span> <span class="pre">abcab,</span> <span class="pre">abcabc,</span> <span class="pre">abcabcd}</span></code> ，而它的真前缀为 <code class="docutils literal notranslate"><span class="pre">{a,</span> <span class="pre">ab,</span> <span class="pre">abc,</span> <span class="pre">abca,</span> <span class="pre">abcab,</span> <span class="pre">abcabc}</span></code> 。</p>
 </section>
 <section id="id5">
-<h3>后缀<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
+<h3>后缀<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
 <p>后缀是指从某个位置 <span class="math notranslate nohighlight">\(i\)</span> 开始到整个串末尾结束的一个特殊子串。字符串 <span class="math notranslate nohighlight">\(S\)</span> 以 <span class="math notranslate nohighlight">\(S[i]\)</span> 开头的后缀表示为 <span class="math notranslate nohighlight">\(Suffix(S,i) = S[i:|S|-1]\)</span> 。</p>
 <p><strong>真后缀</strong> 指除了 <span class="math notranslate nohighlight">\(S\)</span> 本身之外的前缀。</p>
 <p>举例来说，字符串 <code class="docutils literal notranslate"><span class="pre">abcabcd</span></code> 的所有后缀为 <code class="docutils literal notranslate"><span class="pre">{d,</span> <span class="pre">cd,</span> <span class="pre">bcd,</span> <span class="pre">abcd,</span> <span class="pre">cabcd,</span> <span class="pre">bcabcd,</span> <span class="pre">abcabcd}</span></code> ，而它的真后缀为 <code class="docutils literal notranslate"><span class="pre">{d,</span> <span class="pre">cd,</span> <span class="pre">bcd,</span> <span class="pre">abcd,</span> <span class="pre">cabcd,</span> <span class="pre">bcabcd}</span></code> 。</p>
 </section>
 <section id="id6">
-<h3>字典序<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h3>
+<h3>字典序<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
 <p>以第 <span class="math notranslate nohighlight">\(i\)</span> 个字符作为第 <span class="math notranslate nohighlight">\(i\)</span> 关键字进行大小比较，空字符小于字符集内任何字符（即： <span class="math notranslate nohighlight">\(a &lt; aa\)</span> ）。</p>
 </section>
 </section>
 <section id="id7">
-<h2><span class="section-number">23.2. </span>前缀函数<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">23.2. </span>前缀函数<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
 <p>给定一个长度为 <span class="math notranslate nohighlight">\(n\)</span> 的字符串 <span class="math notranslate nohighlight">\(S\)</span> ，其前缀函数被定义为一个长度为 <span class="math notranslate nohighlight">\(n\)</span> 的数组 <span class="math notranslate nohighlight">\(\pi\)</span> ：</p>
 <ul class="simple">
 <li><p>如果子串 <span class="math notranslate nohighlight">\(S[0:i]\)</span> 有一对相等的真前缀与真后缀：<span class="math notranslate nohighlight">\(S[0:k-1]\)</span> 和 <span class="math notranslate nohighlight">\(S[i-(k-1):i]\)</span> ，那么 <span class="math notranslate nohighlight">\(\pi[i]\)</span> 就是这个相等的真前缀/真后缀的长度，即 <span class="math notranslate nohighlight">\(\pi[i] = k\)</span> ；</p></li>
@@ -185,7 +187,7 @@
 <p>同理可以计算字符串 <code class="docutils literal notranslate"><span class="pre">aabaaab</span></code> 的前缀函数为 <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">2,</span> <span class="pre">3]</span></code> 。</p>
 </section>
 <section id="id8">
-<h2><span class="section-number">23.3. </span>朴素算法<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">23.3. </span>朴素算法<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
 <p>两重循环、子串比较，时间复杂度 <span class="math notranslate nohighlight">\(\mathcal{O}(n^3)\)</span> 。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">prefixFunction</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"></span>
 <span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
@@ -204,16 +206,16 @@
 </div>
 </section>
 <section id="id9">
-<h2><span class="section-number">23.4. </span>优化算法<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">23.4. </span>优化算法<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h2>
 <section id="id10">
-<h3>第一个优化<a class="headerlink" href="#id10" title="Permalink to this headline"></a></h3>
+<h3>第一个优化<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h3>
 <p>相邻的前缀函数值至多增加 1，即 <span class="math notranslate nohighlight">\(\pi[i+1] - \pi[i] \leq 1\)</span> 。</p>
 <p>当 <span class="math notranslate nohighlight">\(S[i+1] = S[\pi[i]]\)</span> ，此时 <span class="math notranslate nohighlight">\(\pi[i+1] = \pi[i] + 1\)</span> 。</p>
 <div class="math notranslate nohighlight">
 \[\underbrace{\overbrace{S_0 ~ S_1 ~ S_2}^{\pi[i] = 3} ~ S_3}_{\pi[i+1] = 4} ~ \cdots ~ \underbrace{\overbrace{S_{i-2} ~ S_{i-1} ~ S_{i}}^{\pi[i] = 3} ~ S_{i+1}}_{\pi[i+1] = 4}\]</div>
 </section>
 <section id="id11">
-<h3>第二个优化<a class="headerlink" href="#id11" title="Permalink to this headline"></a></h3>
+<h3>第二个优化<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h3>
 <p>当 <span class="math notranslate nohighlight">\(S[i+1] \neq S[\pi[i]]\)</span> ，我们希望找到对于子串 <span class="math notranslate nohighlight">\(S[0:i]\)</span> ，仅次于 <span class="math notranslate nohighlight">\(\pi[i]\)</span> 的第二长度 <span class="math notranslate nohighlight">\(j\)</span> ，使得在位置 <span class="math notranslate nohighlight">\(i\)</span> 的前缀性质仍得以保持，也即 <span class="math notranslate nohighlight">\(S[0:j - 1] = S[i - j + 1: i]\)</span> 。</p>
 <div class="math notranslate nohighlight">
 \[\overbrace{\underbrace{S_0 ~ S_1}_j ~ S_2 ~ S_3}^{\pi[i]} ~ \cdots ~ \overbrace{S_{i-3} ~ S_{i-2} ~ \underbrace{S_{i-1} ~ S_{i}}_j}^{\pi[i]} ~ S_{i+1}\]</div>
@@ -246,13 +248,13 @@
 </section>
 </section>
 <section id="id12">
-<h2><span class="section-number">23.5. </span>查找子串：KMP 算法<a class="headerlink" href="#id12" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">23.5. </span>查找子串：KMP 算法<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h2>
 <section id="id13">
-<h3>问题描述<a class="headerlink" href="#id13" title="Permalink to this headline"></a></h3>
+<h3>问题描述<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h3>
 <p>给定一个文本 <span class="math notranslate nohighlight">\(T\)</span> 和一个字符串 <span class="math notranslate nohighlight">\(S\)</span> ，我们尝试找到并展示 <span class="math notranslate nohighlight">\(S\)</span> 在 <span class="math notranslate nohighlight">\(T\)</span> 中的所有出现位置（occurrence）。</p>
 </section>
 <section id="id14">
-<h3>KMP 算法<a class="headerlink" href="#id14" title="Permalink to this headline"></a></h3>
+<h3>KMP 算法<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h3>
 <p>设 <span class="math notranslate nohighlight">\(S\)</span> 长度为 <span class="math notranslate nohighlight">\(n\)</span> ， <span class="math notranslate nohighlight">\(T\)</span> 长度为 <span class="math notranslate nohighlight">\(m\)</span> 。</p>
 <p>构造一个字符串 <span class="math notranslate nohighlight">\(S\#T\)</span> ，长度为 <span class="math notranslate nohighlight">\(m+n+1\)</span> ，其中 <span class="math notranslate nohighlight">\(\#\)</span> 是一个既不出现在 <span class="math notranslate nohighlight">\(S\)</span> 中也不出现在 <span class="math notranslate nohighlight">\(T\)</span> 中的分隔符。接下来计算该字符串的前缀函数。现在考虑该前缀函数除去开头 <span class="math notranslate nohighlight">\(n+1\)</span> 个值（即属于字符串 <span class="math notranslate nohighlight">\(S\)</span> 和分隔符的函数值）后其余函数值的意义。根据定义，<span class="math notranslate nohighlight">\(\pi[i]\)</span> 为右端点在 <span class="math notranslate nohighlight">\(i\)</span> 处的前缀函数值，由于分隔符的存在，该长度不可能超过 <span class="math notranslate nohighlight">\(n\)</span> 。而如果等式 <span class="math notranslate nohighlight">\(\pi[i] = n\)</span> 成立，则意味着 <span class="math notranslate nohighlight">\(S\)</span> 完整地出现在该位置（即 <span class="math notranslate nohighlight">\(S\)</span> 右端点与位置 <span class="math notranslate nohighlight">\(i\)</span> 对齐）。注意：该位置的下标 <span class="math notranslate nohighlight">\(i\)</span> 是对字符串 <span class="math notranslate nohighlight">\(S\#T\)</span> 而言的，
 当 <span class="math notranslate nohighlight">\(\pi[i] = n\)</span> 成立，则字符串 <span class="math notranslate nohighlight">\(S\)</span> 在字符串 <span class="math notranslate nohighlight">\(T\)</span> 的 <span class="math notranslate nohighlight">\(i - (n + 1) - (n - 1) = i - 2n\)</span> 处出现。</p>
@@ -261,7 +263,7 @@
 </section>
 </section>
 <section id="id15">
-<h2><span class="section-number">23.6. </span>参考资料<a class="headerlink" href="#id15" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">23.6. </span>参考资料<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>字符串基础</p></li>
 </ol>

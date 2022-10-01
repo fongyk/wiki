@@ -4,9 +4,11 @@
 }
 
 .toggle .header:after {
-    content: " ▼";
+    /* content: " ▼"; */
+    content: "";
 }
 
 .toggle .header.open:after {
-    content: " ▲";
+    /* content: " ▲"; */
+    content: "";
 } 

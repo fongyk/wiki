@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>12. Deep Metric Learning &mdash; fong alpha documentation</title>
@@ -16,7 +16,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -137,18 +139,18 @@
            <div itemprop="articleBody">
              
   <section id="deep-metric-learning">
-<h1><span class="section-number">12. </span>Deep Metric Learning<a class="headerlink" href="#deep-metric-learning" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">12. </span>Deep Metric Learning<a class="headerlink" href="#deep-metric-learning" title="Permalink to this heading"></a></h1>
 <p>介绍一些 Deep Metric Learning （深度度量学习）的损失函数和训练样本对挖掘方法。</p>
 <section id="id1">
-<h2><span class="section-number">12.1. </span>损失函数<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">12.1. </span>损失函数<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>以下损失函数中的 <span class="math notranslate nohighlight">\(x\)</span> 表示 embedding。</p>
 <section id="softmax-loss">
-<h3>Softmax Loss<a class="headerlink" href="#softmax-loss" title="Permalink to this headline"></a></h3>
+<h3>Softmax Loss<a class="headerlink" href="#softmax-loss" title="Permalink to this heading"></a></h3>
 <div class="math notranslate nohighlight">
 \[\mathcal{L}(x_i) = - \log \left( \frac{e^{w^{\top}_{y_i} x_i + b_{y_i}}}{\sum_j e^{w^{\top}_j x_i + b_j}} \right)\]</div>
 </section>
 <section id="center-loss">
-<h3>Center Loss<a class="headerlink" href="#center-loss" title="Permalink to this headline"></a></h3>
+<h3>Center Loss<a class="headerlink" href="#center-loss" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://kpzhang93.github.io/papers/eccv2016.pdf">A Discriminative Feature Learning Approach for Deep Face Recognition</a></p>
 <p>减小类内差异，每个类别在特征空间分别维护一个类中心。</p>
 <div class="math notranslate nohighlight">
@@ -157,7 +159,7 @@
 <p><span class="math notranslate nohighlight">\(m\)</span> 是一个 batch 的大小。</p>
 </section>
 <section id="large-margin-softmax-loss">
-<h3>Large Margin Softmax Loss<a class="headerlink" href="#large-margin-softmax-loss" title="Permalink to this headline"></a></h3>
+<h3>Large Margin Softmax Loss<a class="headerlink" href="#large-margin-softmax-loss" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://arxiv.org/pdf/1612.02295.pdf">Large-Margin Softmax Loss for Convolutional Neural Networks</a></p>
 <p>减小类内差异，增大类间差异。</p>
 <div class="math notranslate nohighlight">
@@ -174,7 +176,7 @@ $$
 $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin，<span class="math notranslate nohighlight">\(D(\theta)\)</span> 是一个单调减函数，且 <span class="math notranslate nohighlight">\(D(\frac{\pi}{m})=\cos(\frac{\pi}{m})\)</span> 。</p>
 </section>
 <section id="sphereface-loss">
-<h3>SphereFace Loss<a class="headerlink" href="#sphereface-loss" title="Permalink to this headline"></a></h3>
+<h3>SphereFace Loss<a class="headerlink" href="#sphereface-loss" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://arxiv.org/pdf/1704.08063.pdf">SphereFace: Deep Hypersphere Embedding for Face Recognition</a></p>
 <p>在 Large Margin Softmax Loss 的基础上，令 <span class="math notranslate nohighlight">\(\| w \| = 1\)</span> 。</p>
 <div class="math notranslate nohighlight">
@@ -183,7 +185,7 @@ $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin
 \[\mathcal{L}(x_i) = - \log \left( \frac{e^{\| x_i \| \cos(m \theta_{y_i}) }}{e^{\| x_i \| \cos(m \theta_{y_i}) } + \sum_{j \neq y_i} e^{\| x_i \| \cos(\theta_j) }} \right)\]</div>
 </section>
 <section id="cosface-loss">
-<h3>CosFace Loss<a class="headerlink" href="#cosface-loss" title="Permalink to this headline"></a></h3>
+<h3>CosFace Loss<a class="headerlink" href="#cosface-loss" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://arxiv.org/pdf/1801.09414.pdf">CosFace: Large Margin Cosine Loss for Deep Face Recognition</a></p>
 <p>在余弦空间中最大化分类界限。</p>
 <div class="math notranslate nohighlight">
@@ -193,7 +195,7 @@ $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin
 <p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin，<span class="math notranslate nohighlight">\(s\)</span> 表示超球面的半径。</p>
 </section>
 <section id="arcface-loss">
-<h3>ArcFace Loss<a class="headerlink" href="#arcface-loss" title="Permalink to this headline"></a></h3>
+<h3>ArcFace Loss<a class="headerlink" href="#arcface-loss" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://arxiv.org/pdf/1801.07698.pdf">ArcFace: Additive Angular Margin Loss for Deep Face Recognition</a></p>
 <p>在角度空间中最大化分类界限。</p>
 <div class="math notranslate nohighlight">
@@ -203,26 +205,26 @@ $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin
 <p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin，<span class="math notranslate nohighlight">\(s\)</span> 表示超球面的半径。</p>
 </section>
 <section id="contrastive-loss">
-<h3>Contrastive Loss<a class="headerlink" href="#contrastive-loss" title="Permalink to this headline"></a></h3>
+<h3>Contrastive Loss<a class="headerlink" href="#contrastive-loss" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="http://yann.lecun.com/exdb/publis/pdf/hadsell-chopra-lecun-06.pdf">Dimensionality Reduction by Learning an Invariant Mapping</a></p>
 <div class="math notranslate nohighlight">
 \[\mathcal{L}(x_i, x_j) = \mathbf{1} (y_i = y_j) \| x_i - x_j \|_2^2 + \mathbf{1} (y_i \neq y_j) max(0, m - \| x_i - x_j \|_2)^2\]</div>
 </section>
 <section id="triplet-loss">
-<h3>Triplet Loss<a class="headerlink" href="#triplet-loss" title="Permalink to this headline"></a></h3>
+<h3>Triplet Loss<a class="headerlink" href="#triplet-loss" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://papers.nips.cc/paper/2795-distance-metric-learning-for-large-margin-nearest-neighbor-classification.pdf">Distance Metric Learning for Large Margin Nearest Neighbor Classification</a></p>
 <div class="math notranslate nohighlight">
 \[\mathcal{L}(x_a, x_p, x_n) = max(0, m + \| x_a - x_p \|_2^2 - \| x_a - x_n \|_2^2)\]</div>
 </section>
 <section id="margin-loss">
-<h3>Margin Loss<a class="headerlink" href="#margin-loss" title="Permalink to this headline"></a></h3>
+<h3>Margin Loss<a class="headerlink" href="#margin-loss" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://arxiv.org/pdf/1706.07567.pdf">Sampling Matters in Deep Embedding Learning</a></p>
 <div class="math notranslate nohighlight">
 \[\mathcal{L}(x_i, x_j) = max(0, \alpha + y_{ij} (D_{i,j} - \beta))\]</div>
 <p><span class="math notranslate nohighlight">\(y_{ij} \in \{ -1, 1 \}\)</span>，<span class="math notranslate nohighlight">\(D_{ij}\)</span> 表示距离，<span class="math notranslate nohighlight">\(\beta\)</span> 是可学习的参数。</p>
 </section>
 <section id="tuplet-margin-loss">
-<h3>Tuplet Margin Loss<a class="headerlink" href="#tuplet-margin-loss" title="Permalink to this headline"></a></h3>
+<h3>Tuplet Margin Loss<a class="headerlink" href="#tuplet-margin-loss" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="http://openaccess.thecvf.com/content_ICCV_2019/papers/Yu_Deep_Metric_Learning_With_Tuplet_Margin_Loss_ICCV_2019_paper.pdf">Deep Metric Learning with Tuplet Margin Loss</a></p>
 <p>每个 batch 包含 <span class="math notranslate nohighlight">\(k\)</span> 个类别，每个类别 <span class="math notranslate nohighlight">\(n\)</span> 个样本，从其他的 <span class="math notranslate nohighlight">\(k-1\)</span> 个类别中随机选取一个样本作为负例，可以组成 <span class="math notranslate nohighlight">\(kn(n-1)\)</span> 个三元组。</p>
 <div class="math notranslate nohighlight">
@@ -230,7 +232,7 @@ $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin
 <p><span class="math notranslate nohighlight">\(s\)</span> 是一个缩放因子。</p>
 </section>
 <section id="angular-loss">
-<h3>Angular Loss<a class="headerlink" href="#angular-loss" title="Permalink to this headline"></a></h3>
+<h3>Angular Loss<a class="headerlink" href="#angular-loss" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://arxiv.org/pdf/1708.01682.pdf">Deep Metric Learning with Angular Loss</a></p>
 <p>以三元组的角度为优化目标，最小化负样本对应的 <span class="math notranslate nohighlight">\(\angle n\)</span> 。相比于 Triplet Loss 的优势：角度具有缩放不变性；角度的计算过程可以利用到三条边；角度的阈值比 Triplet Loss 的 margin 具有更明确的物理意义。</p>
 <div class="math notranslate nohighlight">
@@ -240,14 +242,14 @@ $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin
 <p><span class="math notranslate nohighlight">\(\mathcal{B}\)</span> 表示一个 batch 的样本集合，<span class="math notranslate nohighlight">\(N\)</span> 是 batch 的大小，<span class="math notranslate nohighlight">\(\alpha\)</span> 是角度阈值。</p>
 </section>
 <section id="n-pair-loss">
-<h3>N-pair Loss<a class="headerlink" href="#n-pair-loss" title="Permalink to this headline"></a></h3>
+<h3>N-pair Loss<a class="headerlink" href="#n-pair-loss" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="http://www.nec-labs.com/uploads/images/Department-Images/MediaAnalytics/papers/nips16_npairmetriclearning.pdf">Improved Deep Metric Learning with Multi-class N-pair Loss Objective</a></p>
 <p>利用一个 batch 内的所有负例。</p>
 <div class="math notranslate nohighlight">
 \[\mathcal{L}(x_i, x_i^+) = \log \left( 1 + \sum_{j \neq i} e^{x_i^{\top} x_j^+ - x_i^{\top} x_i^+} \right)\]</div>
 </section>
 <section id="lifted-structure-loss">
-<h3>Lifted Structure Loss<a class="headerlink" href="#lifted-structure-loss" title="Permalink to this headline"></a></h3>
+<h3>Lifted Structure Loss<a class="headerlink" href="#lifted-structure-loss" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://arxiv.org/pdf/1511.06452.pdf">Deep Metric Learning via Lifted Structured Feature Embedding</a></p>
 <p>利用一个 batch 内的所有正负样本对。</p>
 <div class="math notranslate nohighlight">
@@ -257,21 +259,21 @@ $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin
 <p><span class="math notranslate nohighlight">\(\mathcal{P}\)</span> 表示正样本对，<span class="math notranslate nohighlight">\(\mathcal{N}\)</span> 表示负样本对，<span class="math notranslate nohighlight">\(D_{i,j}\)</span> 表示样本对的距离，<span class="math notranslate nohighlight">\(\alpha\)</span> 表示 margin。</p>
 </section>
 <section id="nca-loss">
-<h3>NCA Loss<a class="headerlink" href="#nca-loss" title="Permalink to this headline"></a></h3>
+<h3>NCA Loss<a class="headerlink" href="#nca-loss" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://www.cs.toronto.edu/~hinton/absps/nca.pdf">Neighbourhood Components Analysis</a></p>
 <div class="math notranslate nohighlight">
 \[\mathcal{L}(x, y, \mathcal{Z}) = - \log \left( \frac{e^{-d(x, y)}}{\sum_{z \in \mathcal{Z}} e^{-d(x,z)}} \right)\]</div>
 <p><span class="math notranslate nohighlight">\(d\)</span> 是距离函数，<span class="math notranslate nohighlight">\(y\)</span> 是正例，<span class="math notranslate nohighlight">\(\mathcal{Z}\)</span> 是负例集合。</p>
 </section>
 <section id="proxy-nca-loss">
-<h3>Proxy NCA Loss<a class="headerlink" href="#proxy-nca-loss" title="Permalink to this headline"></a></h3>
+<h3>Proxy NCA Loss<a class="headerlink" href="#proxy-nca-loss" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://arxiv.org/pdf/1703.07464.pdf">No Fuss Distance Metric Learning using Proxies</a></p>
 <p>每一个类别都有一个可学习的 proxy，用来近似真实的数据点。<span class="math notranslate nohighlight">\(x\)</span> 对应的正例为本类别的 proxy <span class="math notranslate nohighlight">\(p(y)\)</span>，负例为所有其他类别的 proxy <span class="math notranslate nohighlight">\(p(\mathcal{Z})\)</span> 。</p>
 <div class="math notranslate nohighlight">
 \[\mathcal{L}(x) = - \log \left( \frac{e^{-d(x, p(y))}}{\sum_{p(z) \in p(\mathcal{Z})} e^{-d(x,p(z))}} \right)\]</div>
 </section>
 <section id="proxy-anchor-loss">
-<h3>Proxy Anchor Loss<a class="headerlink" href="#proxy-anchor-loss" title="Permalink to this headline"></a></h3>
+<h3>Proxy Anchor Loss<a class="headerlink" href="#proxy-anchor-loss" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://arxiv.org/pdf/2003.13911.pdf">Proxy Anchor Loss for Deep Metric Learning</a></p>
 <p>为每一个类别赋予了一个 proxy，将一个 batch 的样本和所有的 proxy 之间求距离，拉近每个类别的样本和该类别对应的 proxy 之间的距离，拉远与其他类别的 proxy 之间的距离。相比于 Proxy NCA Loss，更加充分地利用了 batch 的数据。</p>
 <div class="math notranslate nohighlight">
@@ -279,7 +281,7 @@ $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin
 <p><span class="math notranslate nohighlight">\(\mathcal{X}\)</span> 表示一个 batch 内所有样本的 embedding 集合；<span class="math notranslate nohighlight">\(\mathcal{P}^+\)</span> 表示正例 proxy 的集合，也就是 batch 内的样本对应的 proxy 的集合；<span class="math notranslate nohighlight">\(\mathcal{P}\)</span> 表示所有 proxy 的集合，也就是所有类别对应的 proxy 的集合；<span class="math notranslate nohighlight">\(\mathcal{X}_p^+\)</span> 表示与 <span class="math notranslate nohighlight">\(p\)</span> 同一类别的 embedding 集合，<span class="math notranslate nohighlight">\(\mathcal{X}_p^- = \mathcal{X} - \mathcal{X}_p^+\)</span> ；<span class="math notranslate nohighlight">\(s\)</span> 表示余弦相似度。</p>
 </section>
 <section id="softtriple-loss">
-<h3>SoftTriple Loss<a class="headerlink" href="#softtriple-loss" title="Permalink to this headline"></a></h3>
+<h3>SoftTriple Loss<a class="headerlink" href="#softtriple-loss" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="http://openaccess.thecvf.com/content_ICCV_2019/papers/Qian_SoftTriple_Loss_Deep_Metric_Learning_Without_Triplet_Sampling_ICCV_2019_paper.pdf">SoftTriple Loss: Deep Metric Learning Without Triplet Sampling</a></p>
 <p>考虑到同类数据的多样性，为每类数据学习 <span class="math notranslate nohighlight">\(K\)</span> 个类中心；通过正则项自适应地合并相似的类中心。</p>
 <div class="math notranslate nohighlight">
@@ -288,7 +290,7 @@ $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin
 \[\mathcal{L}(x_i) = - \log \frac{e^{\lambda (S_{i, y_i} - \delta )}}{e^{\lambda (S_{i, y_i} - \delta )} + \sum_{j \neq y_i} e^{\lambda S_{i, j}}}\]</div>
 </section>
 <section id="multi-similarity-loss">
-<h3>Multi-Similarity loss<a class="headerlink" href="#multi-similarity-loss" title="Permalink to this headline"></a></h3>
+<h3>Multi-Similarity loss<a class="headerlink" href="#multi-similarity-loss" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="http://openaccess.thecvf.com/content_CVPR_2019/papers/Wang_Multi-Similarity_Loss_With_General_Pair_Weighting_for_Deep_Metric_Learning_CVPR_2019_paper.pdf">Multi-Similarity Loss with General Pair Weighting for Deep Metric Learning</a></p>
 <p>为给每一个样本对动态赋予一个权重，这个权重是体现在梯度上的。给样本赋权的核心在于判断样本的局部分布，即它们之间的相似性。局部样本之间的分布和相互关系并不仅仅取决于当前两个样本之间的距离或相似性，还取决于当前样本对与其周围样本对之间的关系。</p>
 <div class="math notranslate nohighlight">
@@ -300,7 +302,7 @@ $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin
 <p><span class="math notranslate nohighlight">\(\mathcal{P}_i\)</span> 表示正样本集合，<span class="math notranslate nohighlight">\(\mathcal{N}_i\)</span> 表示负样本集合，<span class="math notranslate nohighlight">\(S_{ij}\)</span> 表示样本对的相似度。</p>
 </section>
 <section id="normalized-temperature-scaled-cross-entropy-loss">
-<h3>Normalized Temperature-scaled Cross Entropy Loss<a class="headerlink" href="#normalized-temperature-scaled-cross-entropy-loss" title="Permalink to this headline"></a></h3>
+<h3>Normalized Temperature-scaled Cross Entropy Loss<a class="headerlink" href="#normalized-temperature-scaled-cross-entropy-loss" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://arxiv.org/pdf/2002.05709.pdf">A Simple Framework for Contrastive Learning of Visual Representations</a></p>
 <p>自监督学习方法，采用数据增强的方法生成正样本对。</p>
 <div class="math notranslate nohighlight">
@@ -313,13 +315,13 @@ $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin
 </section>
 </section>
 <section id="id2">
-<h2><span class="section-number">12.2. </span>样本对挖掘<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">12.2. </span>样本对挖掘<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <section id="packaged-triplets">
-<h3>Packaged Triplets<a class="headerlink" href="#packaged-triplets" title="Permalink to this headline"></a></h3>
+<h3>Packaged Triplets<a class="headerlink" href="#packaged-triplets" title="Permalink to this heading"></a></h3>
 <p>已经预先采样好的三元组。</p>
 </section>
 <section id="triplet-margin-miner">
-<h3>Triplet-Margin Miner<a class="headerlink" href="#triplet-margin-miner" title="Permalink to this headline"></a></h3>
+<h3>Triplet-Margin Miner<a class="headerlink" href="#triplet-margin-miner" title="Permalink to this heading"></a></h3>
 <p>根据 anchor-positive 与 anchor-negative 距离差来挖掘样本。只选择最困难的样本对是不利于训练的。</p>
 <ul class="simple">
 <li><p>Hard：<span class="math notranslate nohighlight">\(d_{an} &lt; d_{ap}\)</span></p></li>
@@ -327,16 +329,16 @@ $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin
 </ul>
 </section>
 <section id="angular-miner">
-<h3>Angular Miner<a class="headerlink" href="#angular-miner" title="Permalink to this headline"></a></h3>
+<h3>Angular Miner<a class="headerlink" href="#angular-miner" title="Permalink to this heading"></a></h3>
 <p>对应 Angular Loss，根据角度阈值构建三元组。</p>
 </section>
 <section id="batch-hard-miner">
-<h3>Batch-Hard Miner<a class="headerlink" href="#batch-hard-miner" title="Permalink to this headline"></a></h3>
+<h3>Batch-Hard Miner<a class="headerlink" href="#batch-hard-miner" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://arxiv.org/pdf/1703.07737.pdf">In Defense of the Triplet Loss for Person Re-Identification</a></p>
 <p>在 batch 内选择最困难的正样本对和负样本对。</p>
 </section>
 <section id="distance-weighted-miner">
-<h3>Distance-Weighted Miner<a class="headerlink" href="#distance-weighted-miner" title="Permalink to this headline"></a></h3>
+<h3>Distance-Weighted Miner<a class="headerlink" href="#distance-weighted-miner" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://arxiv.org/pdf/1706.07567.pdf">Sampling Matters in Deep Embedding Learning</a></p>
 <p>根据距离分布均匀采样负样本，可以保证得到的样本分布在一个较大的距离范围，保证样本多样性。</p>
 <div class="math notranslate nohighlight">
@@ -344,25 +346,25 @@ $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin
 <p><span class="math notranslate nohighlight">\(d\)</span> 表示 anchor 与 negative 的距离，<span class="math notranslate nohighlight">\(n\)</span> 表示 embedding 的维度。</p>
 </section>
 <section id="hdc-miner">
-<h3>HDC Miner<a class="headerlink" href="#hdc-miner" title="Permalink to this headline"></a></h3>
+<h3>HDC Miner<a class="headerlink" href="#hdc-miner" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="http://openaccess.thecvf.com/content_ICCV_2017/papers/Yuan_Hard-Aware_Deeply_Cascaded_ICCV_2017_paper.pdf">Hard-Aware Deeply Cascaded Embedding</a></p>
 <p>让更复杂的模型处理更困难的样本。</p>
 <p>在 batch 内，对正负样本对都按距离排序，将固定比例的困难样本输入更深层的网络进行提特征、计算损失。</p>
 <p>推理阶段，将不同层级的网络输出进行级联。</p>
 </section>
 <section id="maximum-loss-miner">
-<h3>Maximum-Loss Miner<a class="headerlink" href="#maximum-loss-miner" title="Permalink to this headline"></a></h3>
+<h3>Maximum-Loss Miner<a class="headerlink" href="#maximum-loss-miner" title="Permalink to this heading"></a></h3>
 <p>重复多次采样 batch 的子集，提取出损失最大的样本对。</p>
 </section>
 <section id="multi-similarity-miner">
-<h3>Multi-Similarity Miner<a class="headerlink" href="#multi-similarity-miner" title="Permalink to this headline"></a></h3>
+<h3>Multi-Similarity Miner<a class="headerlink" href="#multi-similarity-miner" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>选择负样本，满足 <span class="math notranslate nohighlight">\(d_{an} &gt; d_{ap}^{max} - \epsilon\)</span></p></li>
 <li><p>选择正样本，满足 <span class="math notranslate nohighlight">\(d_{ap} &lt; d_{an}^{min} + \epsilon\)</span></p></li>
 </ul>
 </section>
 <section id="pair-margin-miner">
-<h3>Pair-Margin Miner<a class="headerlink" href="#pair-margin-miner" title="Permalink to this headline"></a></h3>
+<h3>Pair-Margin Miner<a class="headerlink" href="#pair-margin-miner" title="Permalink to this heading"></a></h3>
 <p>根据距离阈值挑选样本对。</p>
 <ul class="simple">
 <li><p>选择负样本，满足 <span class="math notranslate nohighlight">\(d_{an} &lt; m_n\)</span></p></li>
@@ -371,7 +373,7 @@ $$</div><p><span class="math notranslate nohighlight">\(m\)</span> 表示 margin
 </section>
 </section>
 <section id="id4">
-<h2><span class="section-number">12.3. </span>参考资料<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">12.3. </span>参考资料<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>A Metric Learning Reality Check</p></li>
 </ol>

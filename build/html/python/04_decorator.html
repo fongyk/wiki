@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>4. 装饰器 &mdash; fong alpha documentation</title>
@@ -16,7 +16,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -126,16 +128,16 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">4. </span>装饰器<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">4. </span>装饰器<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <section id="id2">
-<h2><span class="section-number">4.1. </span>作用<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">4.1. </span>作用<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <p>装饰器本质上是一个 Python 函数，它可以让其他函数在 <strong>不需要做任何代码变动</strong> 的前提下 <strong>增加额外功能</strong> ，装饰器的返回值也是一个函数对象。
 它经常用于有切面需求的场景，比如：插入日志、性能测试、事务处理、缓存、权限校验等场景。
 装饰器是解决这类问题的绝佳设计，有了装饰器，我们就可以抽离出大量与函数功能本身无关的雷同代码并继续重用。</p>
 <p>概括的讲，装饰器的作用就是为已经存在的函数或对象添加额外的功能。</p>
 </section>
 <section id="id3">
-<h2><span class="section-number">4.2. </span>使用装饰器计时<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">4.2. </span>使用装饰器计时<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">time</span>
 <span class="linenos"> 3</span>
@@ -161,9 +163,9 @@
 <p>使用 <code class="docutils literal notranslate"><span class="pre">wraps</span></code> 可以保持函数 <code class="docutils literal notranslate"><span class="pre">foo()</span></code> 的属性 <code class="docutils literal notranslate"><span class="pre">__name__</span></code> 和 <code class="docutils literal notranslate"><span class="pre">__doc__</span></code> ，而不变成函数 <code class="docutils literal notranslate"><span class="pre">function_timer</span></code> 的相关属性。</p>
 </section>
 <section id="property">
-<h2><span class="section-number">4.3. </span>&#64;property<a class="headerlink" href="#property" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">4.3. </span>&#64;property<a class="headerlink" href="#property" title="Permalink to this heading"></a></h2>
 <section id="id4">
-<h3><span class="section-number">4.3.1. </span>暴露属性<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">4.3.1. </span>暴露属性<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="linenos">2</span>
 <span class="linenos">3</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
@@ -181,7 +183,7 @@
 <p>直接把属性暴露出去，虽然写起来很简单，但是没办法检查参数，导致 <code class="docutils literal notranslate"><span class="pre">score</span></code> 可以被随意改动。</p>
 </section>
 <section id="id5">
-<h3><span class="section-number">4.3.2. </span>实例方法<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">4.3.2. </span>实例方法<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
 <p>为了限制 <code class="docutils literal notranslate"><span class="pre">score</span></code> 的范围，可以通过一个 <code class="docutils literal notranslate"><span class="pre">set_score()</span></code> 方法来设置成绩，再通过一个 <code class="docutils literal notranslate"><span class="pre">get_score()</span></code> 方法来获取成绩。
 这样，在 <code class="docutils literal notranslate"><span class="pre">set_score()</span></code> 方法里，就可以检查参数。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -210,7 +212,7 @@
 <p>但是，上面的调用方法又略显复杂，没有直接调用属性那么直接简单。</p>
 </section>
 <section id="id6">
-<h3><span class="section-number">4.3.3. </span>&#64;property<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h3>
+<h3><span class="section-number">4.3.3. </span>&#64;property<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">&#64;property</span></code> 装饰器负责把一个方法变成属性。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="linenos"> 2</span>
@@ -245,7 +247,7 @@
 </section>
 </section>
 <section id="register">
-<h2><span class="section-number">4.4. </span>&#64;register<a class="headerlink" href="#register" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">4.4. </span>&#64;register<a class="headerlink" href="#register" title="Permalink to this heading"></a></h2>
 <p>装饰器不是必须要修饰被装饰的函数，它还可以简单地注册一个函数，并将其解包返回。例如，可以使用它来创建一个轻量级插件体系结构:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">PLUGINS</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
 <span class="linenos"> 2</span>
@@ -271,7 +273,7 @@
 </div>
 </section>
 <section id="id7">
-<h2><span class="section-number">4.5. </span>缓存装饰器<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">4.5. </span>缓存装饰器<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
 <p>LRU，即 Least Recently Used，最近最少使用，是一种常用的页面置换算法，选择最近最久未使用的页面予以淘汰。</p>
 <p><code class="docutils literal notranslate"><span class="pre">lru_cache</span></code> 根据参数缓存每次函数调用结果，对于相同参数的，无需重新函数计算，直接返回之前缓存的返回值。 <code class="docutils literal notranslate"><span class="pre">maxsize</span></code> 指定了缓存的长度， <code class="docutils literal notranslate"><span class="pre">typed=True</span></code> 则不同类型的函数参数将单独缓存，例如，f(3)和f(3.0)将视为不同的调用。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">functools</span>
@@ -286,7 +288,7 @@
 </div>
 </section>
 <section id="id8">
-<h2><span class="section-number">4.6. </span>参考资料<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">4.6. </span>参考资料<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>详解Python的装饰器</p></li>
 </ol>

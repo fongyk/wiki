@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>2. 更多指令 &mdash; fong alpha documentation</title>
@@ -16,7 +16,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -109,9 +111,9 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">2. </span>更多指令<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">2. </span>更多指令<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <section id="debianpms">
-<h2><span class="section-number">2.1. </span>Debian系PMS<a class="headerlink" href="#debianpms" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">2.1. </span>Debian系PMS<a class="headerlink" href="#debianpms" title="Permalink to this heading"></a></h2>
 <p><strong>PMS</strong> : Package Management System，包管理系统。主要介绍：</p>
 <blockquote>
 <div><ul class="simple">
@@ -122,14 +124,14 @@
 </ul>
 </div></blockquote>
 <section id="dpkg">
-<h3>dpkg<a class="headerlink" href="#dpkg" title="Permalink to this headline"></a></h3>
+<h3>dpkg<a class="headerlink" href="#dpkg" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>dpkg -L package_name：列出软件包所安装的所有文件</p></li>
 <li><p>dpkg -S absolute_file_name：查找特定的某个文件属于哪个软件包（使用绝对路径）</p></li>
 </ul>
 </section>
 <section id="apt-get">
-<h3>apt-get<a class="headerlink" href="#apt-get" title="Permalink to this headline"></a></h3>
+<h3>apt-get<a class="headerlink" href="#apt-get" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>apt-get install package_name：安装一个新软件包</p></li>
 <li><p>apt-get remove package_name：卸载一个已安装的软件包（保留配置文件）</p></li>
@@ -140,14 +142,14 @@
 </ul>
 </section>
 <section id="apt-cache">
-<h3>apt-cache<a class="headerlink" href="#apt-cache" title="Permalink to this headline"></a></h3>
+<h3>apt-cache<a class="headerlink" href="#apt-cache" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>apt-cache showpkg package_name：显示软件包信息</p></li>
 <li><p>apt-cache policy package_name：显示软件包是否已经安装、版本号等</p></li>
 </ul>
 </section>
 <section id="aptitude">
-<h3>aptitude<a class="headerlink" href="#aptitude" title="Permalink to this headline"></a></h3>
+<h3>aptitude<a class="headerlink" href="#aptitude" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>aptitude install package_name：安装软件包</p></li>
 <li><p>aptitude remove package_name：删除软件包</p></li>
@@ -186,7 +188,7 @@
 </section>
 </section>
 <section id="tee">
-<h2><span class="section-number">2.2. </span>tee<a class="headerlink" href="#tee" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">2.2. </span>tee<a class="headerlink" href="#tee" title="Permalink to this heading"></a></h2>
 <p>读取标准输入的数据，并将其内容输出成文件。</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tee <span class="o">[</span>-ai<span class="o">]</span> <span class="o">[</span>--help<span class="o">]</span> <span class="o">[</span>--version<span class="o">]</span> <span class="o">[</span>file ...<span class="o">]</span>
 </pre></div>
@@ -230,7 +232,7 @@
 </div>
 </section>
 <section id="id2">
-<h2><span class="section-number">2.3. </span>查找<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">2.3. </span>查找<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <p><strong>which</strong></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>which <span class="o">[</span>可执行文件...<span class="o">]</span>
 </pre></div>
@@ -304,7 +306,7 @@
 </div>
 </section>
 <section id="alias">
-<h2><span class="section-number">2.4. </span>alias<a class="headerlink" href="#alias" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">2.4. </span>alias<a class="headerlink" href="#alias" title="Permalink to this heading"></a></h2>
 <p>alias 命令用来设置指令的别名；我们可以使用该命令可以将一些较长的命令进行简化。
 使用 alias 时，用户必须使用引号将原来的命令引起来，防止特殊字符导致错误。</p>
 <p>alias 命令的作用只局限于该次登入的操作，可以写入 <cite>~/.bashrc</cite> 中。</p>
@@ -321,7 +323,7 @@
 </div>
 </section>
 <section id="ln">
-<h2><span class="section-number">2.5. </span>ln<a class="headerlink" href="#ln" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">2.5. </span>ln<a class="headerlink" href="#ln" title="Permalink to this heading"></a></h2>
 <p>ln 命令的功能是为某一个文件/目录在另外一个位置建立一个同步的链接，不重复占用磁盘空间。</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ln <span class="o">[</span>参数<span class="o">][</span>源文件或目录<span class="o">][</span>目标文件或目录<span class="o">]</span>
 </pre></div>
@@ -360,7 +362,7 @@
 </div>
 </section>
 <section id="id3">
-<h2><span class="section-number">2.6. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">2.6. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>runoob.com</p></li>
 </ol>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>9. 回溯 &mdash; fong alpha documentation</title>
@@ -16,7 +16,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -118,10 +120,10 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">9. </span>回溯<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">9. </span>回溯<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <p>总体思路是深度优先遍历（DFS）。</p>
 <section id="id2">
-<h2><span class="section-number">9.1. </span>子集树<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">9.1. </span>子集树<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <p>子集树大小为 <span class="math notranslate nohighlight">\(\mathcal{O}(m^n)\)</span> ，<span class="math notranslate nohighlight">\(m\)</span> 是树的分支个数（ <span class="math notranslate nohighlight">\(m\)</span> 叉树），<span class="math notranslate nohighlight">\(n\)</span> 是树的深度。</p>
 <p>算法描述：</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kt">void</span><span class="w"> </span><span class="nf">backtrack</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"></span>
@@ -140,7 +142,7 @@
 </div>
 </section>
 <section id="id3">
-<h2><span class="section-number">9.2. </span>排列树<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">9.2. </span>排列树<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <p>排列树大小为 <span class="math notranslate nohighlight">\(\mathcal{O}(n!)\)</span> 。</p>
 <p>算法描述：</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kt">void</span><span class="w"> </span><span class="nf">backtrack</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"></span>
@@ -160,7 +162,7 @@
 </div>
 </section>
 <section id="id4">
-<h2><span class="section-number">9.3. </span>0-1背包问题<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">9.3. </span>0-1背包问题<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <p>算法描述：</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kt">void</span><span class="w"> </span><span class="nf">backtrack</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"></span>
 <span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
@@ -190,7 +192,7 @@
 </div>
 </section>
 <section id="id5">
-<h2><span class="section-number">9.4. </span>八皇后问题<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">9.4. </span>八皇后问题<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
 <p>八皇后问题共有 92 组解。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kt">bool</span><span class="w"> </span><span class="nf">place</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"></span>
 <span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
@@ -217,7 +219,7 @@
 </div>
 </section>
 <section id="id6">
-<h2><span class="section-number">9.5. </span>实例<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">9.5. </span>实例<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
 <ul>
 <li><p>全排列（含重复元素）。Hint：在交换第 <span class="math notranslate nohighlight">\(i\)</span> 个元素与第 <span class="math notranslate nohighlight">\(j\)</span> 个元素之前，要求数组的 <span class="math notranslate nohighlight">\([i, j)\)</span> 区间中的元素没有与第 <span class="math notranslate nohighlight">\(j\)</span> 个元素重复。</p>
 <blockquote>

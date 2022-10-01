@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>13. 空类指针 &mdash; fong alpha documentation</title>
@@ -16,7 +16,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -123,14 +125,14 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">13. </span>空类指针<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">13. </span>空类指针<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <p>类的成员函数并不与特定对象绑定，所有成员函数共用一份成员函数体，当程序编译后，成员函数的地址即已经确定。
 那为什么同一个类的不同对象调用对应成员函数可以出现不同的结果呢？答案就是 <code class="docutils literal notranslate"><span class="pre">this</span></code> 指针。
 共有的成员函数体之所以能够把不同对象的数据区分开来，靠的是隐式传递给成员函数的 <code class="docutils literal notranslate"><span class="pre">this</span></code> 指针，
 成员函数中对成员变量的访问都是转化成 <strong>“this-&gt;数据成员”</strong> 的方式。
 因此，从这一角度说，成员函数与普通函数一样，只是多了一个隐式参数，即指向对象的 <code class="docutils literal notranslate"><span class="pre">this</span></code> 指针。</p>
 <section id="id2">
-<h2><span class="section-number">13.1. </span>空类指针调用成员函数<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">13.1. </span>空类指针调用成员函数<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span><span class="w"> </span><span class="nc">TestNullPtr</span><span class="w"></span>
 <span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
 <span class="linenos"> 3</span><span class="k">public</span><span class="o">:</span><span class="w"></span>
@@ -169,7 +171,7 @@
 另外，虚函数的特性是动态绑定，运行时根据指针或引用绑定的对象是基类对象还是派生类对象调用相关函数，空指针显然会导致错误。</p>
 </section>
 <section id="id3">
-<h2><span class="section-number">13.2. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">13.2. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>C++空指针调用成员函数</p></li>
 </ol>

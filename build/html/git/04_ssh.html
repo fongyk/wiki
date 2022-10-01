@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>4. SSH &mdash; fong alpha documentation</title>
@@ -16,7 +16,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -103,7 +105,7 @@
            <div itemprop="articleBody">
              
   <section id="ssh">
-<h1><span class="section-number">4. </span>SSH<a class="headerlink" href="#ssh" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">4. </span>SSH<a class="headerlink" href="#ssh" title="Permalink to this heading"></a></h1>
 <p>git 提供两类 URL 地址：</p>
 <ul class="simple">
 <li><p>HTTPS URL（例如 <a class="reference external" href="https://github.com/user/repo.git">https://github.com/user/repo.git</a>）</p></li>
@@ -114,9 +116,9 @@
 SSH 采用加密技术验证远程主机，同时允许远程主机验证用户。
 设置 SSH key 的目的是为了节省输入用户名、密码的过程，同时保证传输安全。</p>
 <section id="ssh-key">
-<h2><span class="section-number">4.1. </span>配置 SSH key<a class="headerlink" href="#ssh-key" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">4.1. </span>配置 SSH key<a class="headerlink" href="#ssh-key" title="Permalink to this heading"></a></h2>
 <section id="git-config">
-<h3>git config<a class="headerlink" href="#git-config" title="Permalink to this headline"></a></h3>
+<h3>git config<a class="headerlink" href="#git-config" title="Permalink to this heading"></a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="s1">&#39;&lt;your name&gt;&#39;</span>
 <span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="s1">&#39;&lt;your email&gt;&#39;</span>
 </pre></div>
@@ -125,7 +127,7 @@ SSH 采用加密技术验证远程主机，同时允许远程主机验证用户�
 <p>所有的配置保存在 <code class="docutils literal notranslate"><span class="pre">~/.gitconfig</span></code> 。</p>
 </section>
 <section id="id1">
-<h3>生成密钥<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
+<h3>生成密钥<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
 <p>首先检查 <code class="docutils literal notranslate"><span class="pre">~/.ssh</span></code> 目录是否存在、目录中是否已经存在密钥文件。如果没有，说明还未生成过密钥。执行下列命令生成密钥:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span><span class="o">-</span><span class="n">keygen</span> <span class="o">-</span><span class="n">t</span> <span class="n">rsa</span> <span class="o">-</span><span class="n">C</span> <span class="s2">&quot;&lt;your email&gt;&quot;</span>
 </pre></div>
@@ -133,7 +135,7 @@ SSH 采用加密技术验证远程主机，同时允许远程主机验证用户�
 <p>如果不设置密码可以一路回车。 <code class="docutils literal notranslate"><span class="pre">~/.ssh</span></code> 目录下会生成 id_rsa（私钥）和 id_rsa.pub（公钥）。</p>
 </section>
 <section id="ssh-agent">
-<h3>使用 SSH agent<a class="headerlink" href="#ssh-agent" title="Permalink to this headline"></a></h3>
+<h3>使用 SSH agent<a class="headerlink" href="#ssh-agent" title="Permalink to this heading"></a></h3>
 <p>SSH agent 是密钥管理器，保护 SSH 密钥并配置身份验证代理，这样就不必在每次使用 SSH 密钥时重新输入密码。
 运行 ssh-agent 以后，使用 <code class="docutils literal notranslate"><span class="pre">ssh-add</span></code> 将私钥交给 ssh-agent 保管，其他程序需要身份验证的时候可以将验证申请交给 ssh-agent 来完成整个认证过程。
 使用不同的密钥连接到不同的主机时，需要手动指定对应的密钥，而 ssh-agent 可以自动帮助我们选择对应的密钥进行认证。</p>
@@ -146,11 +148,11 @@ SSH 采用加密技术验证远程主机，同时允许远程主机验证用户�
 如果想杀掉 ssh-agent 进程，执行 <code class="docutils literal notranslate"><span class="pre">ssh-agent</span> <span class="pre">-k</span></code> 。</p>
 </section>
 <section id="github">
-<h3>Github 添加公钥<a class="headerlink" href="#github" title="Permalink to this headline"></a></h3>
+<h3>Github 添加公钥<a class="headerlink" href="#github" title="Permalink to this heading"></a></h3>
 <p>把 <code class="docutils literal notranslate"><span class="pre">~/.ssh</span></code> 目录下公钥的内容添加到 Github 。</p>
 </section>
 <section id="id2">
-<h3>测试 SSH 连接<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h3>
+<h3>测试 SSH 连接<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>% ssh -T git@github.com
 Hi &lt;your name&gt;! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
 </pre></div>
@@ -181,7 +183,7 @@ Hi &lt;your name&gt;! You&#39;ve successfully authenticated, but GitHub does not
 </section>
 </section>
 <section id="id3">
-<h2><span class="section-number">4.2. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">4.2. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>关于远程仓库</p></li>
 </ol>

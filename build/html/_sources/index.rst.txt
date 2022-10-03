@@ -22,6 +22,7 @@
    machineLearning/index
    deepLearning/index
    mathematicsAlgorithm/index
+   regularExpression/index
    computerNetwork/index
    link/index
    softwares/index

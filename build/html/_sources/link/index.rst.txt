@@ -105,3 +105,21 @@ https://github.com/jgraph/drawio-desktop
 ------------------------
 
 https://refactoringguru.cn/
+
+
+Docker
+------------
+
+https://docs.docker.com/engine/reference/run/
+
+https://hub.docker.com/search?q=&image_filter=official
+
+
+curl
+---------
+
+https://curl.se/
+
+https://curl.se/docs/manpage.html
+
+https://everything.curl.dev/

@@ -54,7 +54,7 @@ Linux 系统下 ssh-agent 是自动启动的。
 
 - 如果没有被加载，则执行 ``ssh-add ~/.ssh/<private_key_file>`` 加载私钥。
 
-如果提示 “Error connecting to agent: No such file or directory” 说明你的 ssh-agent 并没有运行，执行 ``ssh-agent`` 启动。
+如果提示 “Error connecting to agent: No such file or directory” 说明你的 ssh-agent 并没有运行，执行 ``eval $(ssh-agent)`` 或 ``eval `ssh-agent``` 启动。 ``echo $SSH_AGENT_PID`` 查看 ssh-agent 进程 ID。
 如果想杀掉 ssh-agent 进程，执行 ``ssh-agent -k`` 。
 
 

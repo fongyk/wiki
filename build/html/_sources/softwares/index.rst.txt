@@ -46,7 +46,7 @@ EmEditor
 
 .. note::
 
-    强大的文本阅读/编辑器
+    Windows下强大的文本阅读/编辑器
 
     https://zh-cn.emeditor.com/text-editor-features/history/emeditor-free/
 
@@ -59,3 +59,34 @@ cmder
     Windows下终端神器
 
     https://cmder.net/
+
+
+Free Download Manager
+-----------------------------
+
+.. note::
+
+    下载工具
+
+    https://www.freedownloadmanager.org/zh/
+
+
+
+Clash for Windows
+--------------------------
+
+.. note::
+
+    多平台代理客户端
+
+    https://github.com/Fndroid/clash_for_windows_pkg
+
+
+Postman
+-------------
+
+.. note::
+
+    API 设计、构建、测试平台
+
+    https://www.postman.com/

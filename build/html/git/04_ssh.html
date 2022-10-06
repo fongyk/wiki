@@ -72,6 +72,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../regularExpression/index.html">正则表达式</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
@@ -144,7 +145,7 @@ SSH 采用加密技术验证远程主机，同时允许远程主机验证用户�
 <li><p>执行 <code class="docutils literal notranslate"><span class="pre">ssh-add</span> <span class="pre">-l</span></code> 查看是否有密钥被加载。</p></li>
 <li><p>如果没有被加载，则执行 <code class="docutils literal notranslate"><span class="pre">ssh-add</span> <span class="pre">~/.ssh/&lt;private_key_file&gt;</span></code> 加载私钥。</p></li>
 </ul>
-<p>如果提示 “Error connecting to agent: No such file or directory” 说明你的 ssh-agent 并没有运行，执行 <code class="docutils literal notranslate"><span class="pre">ssh-agent</span></code> 启动。
+<p>如果提示 “Error connecting to agent: No such file or directory” 说明你的 ssh-agent 并没有运行，执行 <code class="docutils literal notranslate"><span class="pre">eval</span> <span class="pre">$(ssh-agent)</span></code> 或 <code class="docutils literal notranslate"><span class="pre">eval</span> <span class="pre">`ssh-agent`</span></code> 启动。 <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$SSH_AGENT_PID</span></code> 查看 ssh-agent 进程 ID。
 如果想杀掉 ssh-agent 进程，执行 <code class="docutils literal notranslate"><span class="pre">ssh-agent</span> <span class="pre">-k</span></code> 。</p>
 </section>
 <section id="github">

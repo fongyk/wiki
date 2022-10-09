@@ -10,5 +10,6 @@ Linux/Shell
     03_authority.rst
     04_rename.rst
     05_sed.rst
+    08_awk.rst
     06_shellBasis.rst
     07_loginShell.rst

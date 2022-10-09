@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>7. Shell 交互与登录 &mdash; fong alpha documentation</title>
+  <title>8. Shell 交互与登录 &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -23,7 +23,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Git" href="../git/index.html" />
-    <link rel="prev" title="6. Shell 基础" href="06_shellBasis.html" /> 
+    <link rel="prev" title="7. Shell 基础" href="06_shellBasis.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -55,17 +55,18 @@
 <li class="toctree-l2"><a class="reference internal" href="03_authority.html">3. 权限管理</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_rename.html">4. 重命名</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05_sed.html">5. sed</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06_shellBasis.html">6. Shell 基础</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">7. Shell 交互与登录</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">7.1. 配置文件</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">7.2. 交互式 Shell</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="08_awk.html">6. awk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_shellBasis.html">7. Shell 基础</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">8. Shell 交互与登录</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">8.1. 配置文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">8.2. 交互式 Shell</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#login-shell">登录式（Login Shell）</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#non-login-shell">非登录式（Non-Login Shell）</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">7.3. 非交互式 Shell</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">7.4. Shell 父子关系</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">7.5. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">8.3. 非交互式 Shell</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">8.4. Shell 父子关系</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">8.5. 参考资料</a></li>
 </ul>
 </li>
 </ul>
@@ -74,6 +75,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../regularExpression/index.html">正则表达式</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
@@ -96,7 +98,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">Linux/Shell</a> &raquo;</li>
-      <li><span class="section-number">7. </span>Shell 交互与登录</li>
+      <li><span class="section-number">8. </span>Shell 交互与登录</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/linux/07_loginShell.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -107,9 +109,9 @@
            <div itemprop="articleBody">
              
   <section id="shell">
-<h1><span class="section-number">7. </span>Shell 交互与登录<a class="headerlink" href="#shell" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">8. </span>Shell 交互与登录<a class="headerlink" href="#shell" title="Permalink to this heading"></a></h1>
 <section id="id1">
-<h2><span class="section-number">7.1. </span>配置文件<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">8.1. </span>配置文件<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>配置文件分为系统级和用户级。</p>
 <p>系统级有：</p>
 <ul class="simple">
@@ -138,7 +140,7 @@
 </div>
 </section>
 <section id="id2">
-<h2><span class="section-number">7.2. </span>交互式 Shell<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">8.2. </span>交互式 Shell<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <p>交互式 Shell 是指在终端命令行上执行，以提示符的方式在终端等待用户输入，并实时运行用户输入的命令的模式，即与用户交互的模式。</p>
 <section id="login-shell">
 <h3>登录式（Login Shell）<a class="headerlink" href="#login-shell" title="Permalink to this heading"></a></h3>
@@ -181,13 +183,13 @@
 </section>
 </section>
 <section id="id3">
-<h2><span class="section-number">7.3. </span>非交互式 Shell<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">8.3. </span>非交互式 Shell<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <p>非交互式 Shell 是指以 Shell 脚本形式执行。在这种模式下，Shell 不与用户进行交互，而是读取存放在 Shell 脚本文件中的命令并执行，当读取到脚本文件结尾 <code class="docutils literal notranslate"><span class="pre">EOF</span></code> 时，Shell 终止。</p>
 <p>Bash Shell 提供了 <code class="docutils literal notranslate"><span class="pre">BASH_ENV</span></code> 环境变量用于指定启动非交互式 Shell 时需要启动的文件（大多数 Linux 发行版没有设定该环境变量）。</p>
 <p>非交互式 Shell 如果作为交互式 Shell 的孩子 Shell，此时会继承父 Shell 的全部全局环境变量；如果直接在交互式 Shell 下执行，则可以直接使用当前 Shell 的所有环境变量。</p>
 </section>
 <section id="id4">
-<h2><span class="section-number">7.4. </span>Shell 父子关系<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">8.4. </span>Shell 父子关系<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <p><strong>父 Shell</strong> 是用于登录某个远程主机或虚拟控制器终端或在 GUI 中运行终端仿真器时所启动的默认的交互式 Shell。</p>
 <p>在当前 Shell 执行脚本文件的方式有：</p>
 <ul class="simple">
@@ -254,7 +256,7 @@
 </div>
 </section>
 <section id="id5">
-<h2><span class="section-number">7.5. </span>参考资料<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">8.5. </span>参考资料<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>linux之登录式shell和非登录式shell</p></li>
 </ol>
@@ -304,7 +306,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="06_shellBasis.html" class="btn btn-neutral float-left" title="6. Shell 基础" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="06_shellBasis.html" class="btn btn-neutral float-left" title="7. Shell 基础" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../git/index.html" class="btn btn-neutral float-right" title="Git" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

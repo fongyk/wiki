@@ -13,3 +13,4 @@ Linux/Shell
     08_awk.rst
     06_shellBasis.rst
     07_loginShell.rst
+    09_curl.rst

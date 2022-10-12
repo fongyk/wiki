@@ -240,7 +240,7 @@
 </pre></div>
 </div>
 <p>上面命令会发出一个 GET 请求，实际请求的 URL 为 <code class="docutils literal notranslate"><span class="pre">https://google.com/search?q=kitties&amp;count=20</span></code> 。如果省略 <code class="docutils literal notranslate"><span class="pre">--G</span></code> ，会发出一个 POST 请求。</p>
-<p>如果数据需要 URL 编码，使用 <code class="docutils literal notranslate"><span class="pre">--data--urlencode</span></code> 参数:</p>
+<p>如果数据需要 URL 编码，使用 <code class="docutils literal notranslate"><span class="pre">--data-urlencode</span></code> 参数:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">G</span> <span class="o">--</span><span class="n">data</span><span class="o">-</span><span class="n">urlencode</span> <span class="s1">&#39;wd=百度&#39;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;pn=0&#39;</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">baidu</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">s</span>
 </pre></div>
 </div>

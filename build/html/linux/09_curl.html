@@ -132,7 +132,7 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span>
 </pre></div>
 </div>
-<p>上面命令对 <code class="docutils literal notranslate"><span class="pre">https://www.example.com发出</span></code> POST 请求。</p>
+<p>上面命令对 <code class="docutils literal notranslate"><span class="pre">https://www.example.com</span></code> 发出 POST 请求。</p>
 </section>
 <section id="h">
 <h2><span class="section-number">9.2. </span>-H<a class="headerlink" href="#h" title="Permalink to this heading"></a></h2>
@@ -239,7 +239,7 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">G</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;q=kitties&#39;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;count=20&#39;</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">google</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">search</span>
 </pre></div>
 </div>
-<p>上面命令会发出一个 GET 请求，实际请求的 URL 为 <code class="docutils literal notranslate"><span class="pre">https://google.com/search?q=kitties&amp;count=20</span></code> 。如果省略 <code class="docutils literal notranslate"><span class="pre">--G</span></code> ，会发出一个 POST 请求。</p>
+<p>上面命令会发出一个 GET 请求，实际请求的 URL 为 <code class="docutils literal notranslate"><span class="pre">https://google.com/search?q=kitties&amp;count=20</span></code> 。如果省略 <code class="docutils literal notranslate"><span class="pre">-G</span></code> ，会发出一个 POST 请求。</p>
 <p>如果数据需要 URL 编码，使用 <code class="docutils literal notranslate"><span class="pre">--data-urlencode</span></code> 参数:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">G</span> <span class="o">--</span><span class="n">data</span><span class="o">-</span><span class="n">urlencode</span> <span class="s1">&#39;wd=百度&#39;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;pn=0&#39;</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">baidu</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">s</span>
 </pre></div>

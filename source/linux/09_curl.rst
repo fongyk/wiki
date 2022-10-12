@@ -16,7 +16,7 @@ curl（Client URL）是常用的命令行工具，用来请求 Web 服务器以�
 
     curl -X POST https://www.example.com
 
-上面命令对 ``https://www.example.com发出`` POST 请求。
+上面命令对 ``https://www.example.com`` 发出 POST 请求。
 
 
 -H
@@ -149,7 +149,7 @@ curl（Client URL）是常用的命令行工具，用来请求 Web 服务器以�
 
     curl -G -d 'q=kitties' -d 'count=20' https://www.google.com/search
 
-上面命令会发出一个 GET 请求，实际请求的 URL 为 ``https://google.com/search?q=kitties&count=20`` 。如果省略 ``--G`` ，会发出一个 POST 请求。
+上面命令会发出一个 GET 请求，实际请求的 URL 为 ``https://google.com/search?q=kitties&count=20`` 。如果省略 ``-G`` ，会发出一个 POST 请求。
 
 如果数据需要 URL 编码，使用 ``--data-urlencode`` 参数::
 

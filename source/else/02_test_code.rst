@@ -223,9 +223,9 @@ command
 
   https://www.jianshu.com/p/1885d5570b37
 
-2. RST 语法
+2. reStructuredText Directives
 
-  https://3vshej.cn/rstSyntax/rstSyntax.html
+  https://docutils.sourceforge.io/docs/ref/rst/directives.html
 
 3. 代码隐藏（自定义，_templates放在conf.py同目录下）
 

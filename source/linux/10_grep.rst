@@ -17,7 +17,7 @@ grep（Global search Regular Expression and Print out the line）是一种强大
 常用参数
 --------------
 
--c    统计
+-c    统计匹配的行数
 -o    只打印匹配上的内容，而不是整行；如果一行有多个匹配，则会打印成多行
 -i    不区分大小写
 -n    显示匹配内容的行号

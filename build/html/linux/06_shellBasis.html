@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>7. Shell 基础 &mdash; fong alpha documentation</title>
+  <title>8. Shell 基础 &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -22,8 +22,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="8. Shell 交互与登录" href="07_loginShell.html" />
-    <link rel="prev" title="6. awk" href="08_awk.html" /> 
+    <link rel="next" title="9. Shell 交互与登录" href="07_loginShell.html" />
+    <link rel="prev" title="7. grep" href="10_grep.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -56,13 +56,14 @@
 <li class="toctree-l2"><a class="reference internal" href="04_rename.html">4. 重命名</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05_sed.html">5. sed</a></li>
 <li class="toctree-l2"><a class="reference internal" href="08_awk.html">6. awk</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">7. Shell 基础</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">7.1. 变量</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">7.2. 字符串</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">7.3. 数组</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">7.4. 注释</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">7.5. 传递参数</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id6">7.6. 运算</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="10_grep.html">7. grep</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">8. Shell 基础</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">8.1. 变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">8.2. 字符串</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">8.3. 数组</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">8.4. 注释</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">8.5. 传递参数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">8.6. 运算</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id7">数值运算</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id8">关系运算</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id9">逻辑运算</a></li>
@@ -72,7 +73,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#printf">printf</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id13">7.7. 流程控制</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id13">8.7. 流程控制</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#if-else">if else</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#for">for</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#while">while</a></li>
@@ -81,11 +82,12 @@
 <li class="toctree-l4"><a class="reference internal" href="#break-continue">break 和 continue</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id14">7.8. 函数</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id15">7.9. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">8.8. 函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">8.9. 参考资料</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="07_loginShell.html">8. Shell 交互与登录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_loginShell.html">9. Shell 交互与登录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_curl.html">10. curl</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
@@ -115,7 +117,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">Linux/Shell</a> &raquo;</li>
-      <li><span class="section-number">7. </span>Shell 基础</li>
+      <li><span class="section-number">8. </span>Shell 基础</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/linux/06_shellBasis.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -126,7 +128,7 @@
            <div itemprop="articleBody">
              
   <section id="shell">
-<h1><span class="section-number">7. </span>Shell 基础<a class="headerlink" href="#shell" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">8. </span>Shell 基础<a class="headerlink" href="#shell" title="Permalink to this heading"></a></h1>
 <p>Shell 是命令行解释器，有众多版本，比如 sh（Bourne Shell）、bash（Bourne Again Shell）、dash（Debian Almquist Shell）。</p>
 <p>以前 bash 是 GNU/Linux 操作系统中的 <code class="docutils literal notranslate"><span class="pre">/bin/sh</span></code> 的符号连接，后来有人把 bash 从 NetBSD 移植到 Linux 并更名为 dash，且 <code class="docutils literal notranslate"><span class="pre">/bin/sh</span></code> 符号连接到 dash。
 Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。</p>
@@ -135,7 +137,7 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。</p>
 想要脚本写法多样化、不需要考虑效率的，可以在文件头注明 <code class="docutils literal notranslate"><span class="pre">#!/bin/bash</span></code> ，使用 <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">xx.sh</span></code> 或 <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">xx.sh;</span> <span class="pre">./xx.sh</span></code> 来执行。</p>
 <p>后文介绍的是 bash。</p>
 <section id="id1">
-<h2><span class="section-number">7.1. </span>变量<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">8.1. </span>变量<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>变量定义的时候不需要 <cite>$</cite> 符号，引用取值的时候需要。定义的时候等号两边不允许带空格:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">var</span><span class="o">=</span><span class="s2">&quot;hello world&quot;</span>
 <span class="nb">echo</span> <span class="nv">$var</span>
@@ -153,7 +155,7 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。</p>
 </div>
 </section>
 <section id="id2">
-<h2><span class="section-number">7.2. </span>字符串<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">8.2. </span>字符串<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <p>字符串可以用单引号、双引号，也可以不用引号，如果字符串中有空格则需要带上引号。</p>
 <ul class="simple">
 <li><p>获取字符串长度：<code class="docutils literal notranslate"><span class="pre">${#string}</span></code></p></li>
@@ -161,7 +163,7 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。</p>
 </ul>
 </section>
 <section id="id3">
-<h2><span class="section-number">7.3. </span>数组<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">8.3. </span>数组<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <p>定义:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">array</span><span class="o">=(</span>value0 value1 value2 value3<span class="o">)</span>
 </pre></div>
@@ -195,7 +197,7 @@ value3
 </ul>
 </section>
 <section id="id4">
-<h2><span class="section-number">7.4. </span>注释<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">8.4. </span>注释<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <ul>
 <li><p>单行注释：<code class="docutils literal notranslate"><span class="pre">#</span></code></p></li>
 <li><p>多行注释:</p>
@@ -222,7 +224,7 @@ value3
 </ul>
 </section>
 <section id="id5">
-<h2><span class="section-number">7.5. </span>传递参数<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">8.5. </span>传递参数<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
 <p>在执行 Shell 脚本时，可以向脚本传递参数，脚本内获取参数的格式为：<code class="docutils literal notranslate"><span class="pre">$n</span></code> 。 <code class="docutils literal notranslate"><span class="pre">$1</span></code> 为执行脚本的第一个参数，<code class="docutils literal notranslate"><span class="pre">$2</span></code> 为执行脚本的第二个参数，以此类推；超过 9 应该使用花括号如 <code class="docutils literal notranslate"><span class="pre">${10}</span></code> ；<code class="docutils literal notranslate"><span class="pre">$0</span></code> 为执行的文件名（包含文件路径）。</p>
 <ul class="simple">
 <li><p>获取参数个数：<code class="docutils literal notranslate"><span class="pre">$#</span></code></p></li>
@@ -231,7 +233,7 @@ value3
 </ul>
 </section>
 <section id="id6">
-<h2><span class="section-number">7.6. </span>运算<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">8.6. </span>运算<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
 <section id="id7">
 <h3>数值运算<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
 <p>数值计算需要借助 <code class="docutils literal notranslate"><span class="pre">expr</span></code> 和反引号 <code class="docutils literal notranslate"><span class="pre">`</span></code>:</p>
@@ -370,7 +372,7 @@ value3
 </section>
 </section>
 <section id="id13">
-<h2><span class="section-number">7.7. </span>流程控制<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">8.7. </span>流程控制<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h2>
 <section id="if-else">
 <h3>if else<a class="headerlink" href="#if-else" title="Permalink to this heading"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> condition1
@@ -472,7 +474,7 @@ value2<span class="o">)</span>
 </section>
 </section>
 <section id="id14">
-<h2><span class="section-number">7.8. </span>函数<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">8.8. </span>函数<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h2>
 <p>定义形式如下:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="k">function</span><span class="o">]</span> funname <span class="o">[()]</span>
 <span class="o">{</span>
@@ -520,7 +522,7 @@ param-1: goodbye
 </div>
 </section>
 <section id="id15">
-<h2><span class="section-number">7.9. </span>参考资料<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">8.9. </span>参考资料<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Shell 教程</p></li>
 </ol>
@@ -534,8 +536,8 @@ param-1: goodbye
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="08_awk.html" class="btn btn-neutral float-left" title="6. awk" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="07_loginShell.html" class="btn btn-neutral float-right" title="8. Shell 交互与登录" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="10_grep.html" class="btn btn-neutral float-left" title="7. grep" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="07_loginShell.html" class="btn btn-neutral float-right" title="9. Shell 交互与登录" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

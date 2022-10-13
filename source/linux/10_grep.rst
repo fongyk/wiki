@@ -10,7 +10,7 @@ grep（Global search Regular Expression and Print out the line）是一种强大
 
 .. note::
 
-    pattern 中包含正则或者空格等符号时，需要使用引号：‘pattern’ 或 “pattern”。
+    pattern 中包含正则或者空格等符号时，需要使用引号：'pattern' 或 "pattern"。
 
 
 

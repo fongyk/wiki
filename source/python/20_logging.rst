@@ -221,8 +221,6 @@ Formatter
         level: DEBUG
         handlers: [console, info_file_handler, error_file_handler]
 
-|
-
 导入：
 
 .. code-block:: python

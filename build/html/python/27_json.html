@@ -179,14 +179,6 @@
 <dd><p>将 <code class="docutils literal notranslate"><span class="pre">obj</span></code> 序列化为 JSON 格式的 <code class="docutils literal notranslate"><span class="pre">str</span></code> 。其他参数的含义与 <code class="docutils literal notranslate"><span class="pre">json.dump</span></code> 相同。</p>
 </dd></dl>
 
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="s1">&#39;[{&quot;a&quot;: 123}, {&quot;abc&quot;: [1,2,&quot;3&quot;]}, 45.67, [100, &quot;hex&quot;]]&#39;</span><span class="p">)</span>
-<span class="go">[{&#39;a&#39;: 123}, {&#39;abc&#39;: [1, 2, &#39;3&#39;]}, 45.67, [100, &#39;hex&#39;]]</span>
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>JSON 中的键-值对中的键永远是 <code class="docutils literal notranslate"><span class="pre">str</span></code> 类型的。当一个对象被转化为 JSON 时，字典中所有的键都会被强制转换为字符串。这造成的结果是：字典被转换为 JSON 然后转换回字典时可能和原来的不相等。换句话说，如果 <code class="docutils literal notranslate"><span class="pre">x</span></code> 具有非字符串的键，则 <code class="docutils literal notranslate"><span class="pre">loads(dumps(x))</span> <span class="pre">!=</span> <span class="pre">x</span></code> 。</p>
-</div>
 <dl class="py function">
 <dt class="sig sig-object py" id="json.load">
 <span class="sig-prename descclassname"><span class="pre">json.</span></span><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fp</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cls</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_hook</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parse_float</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parse_int</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parse_constant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_pairs_hook</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#json.load" title="Permalink to this definition"></a></dt>
@@ -208,6 +200,14 @@
 <dd><p>将 <code class="docutils literal notranslate"><span class="pre">s</span></code> (一个包含 JSON 文档的 <code class="docutils literal notranslate"><span class="pre">str</span></code> ， <code class="docutils literal notranslate"><span class="pre">bytes</span></code> 或 <code class="docutils literal notranslate"><span class="pre">bytearray</span></code> 实例) 反序列化为 Python 对象。其他参数的含义与 <code class="docutils literal notranslate"><span class="pre">json.load</span></code> 中的相同。</p>
 </dd></dl>
 
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="s1">&#39;[{&quot;a&quot;: 123}, {&quot;abc&quot;: [1,2,&quot;3&quot;]}, 45.67, [100, &quot;hex&quot;]]&#39;</span><span class="p">)</span>
+<span class="go">[{&#39;a&#39;: 123}, {&#39;abc&#39;: [1, 2, &#39;3&#39;]}, 45.67, [100, &#39;hex&#39;]]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>JSON 中的键-值对中的键永远是 <code class="docutils literal notranslate"><span class="pre">str</span></code> 类型的。当一个对象被转化为 JSON 时，字典中所有的键都会被强制转换为字符串。这造成的结果是：字典被转换为 JSON 然后转换回字典时可能和原来的不相等。换句话说，如果 <code class="docutils literal notranslate"><span class="pre">x</span></code> 具有非字符串的键，则 <code class="docutils literal notranslate"><span class="pre">loads(dumps(x))</span> <span class="pre">!=</span> <span class="pre">x</span></code> 。</p>
+</div>
 <section id="id3">
 <h3><span class="section-number">27.1.1. </span>美化输出<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">{</span><span class="mi">4</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span> <span class="mi">7</span><span class="p">}],</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">))</span>
@@ -268,14 +268,14 @@ $ echo &#39;{&quot;1.2&quot;:3.4}&#39; | python -m json.tool
 <dd class="field-odd"><p><strong>strict</strong> (<em>bool</em>) – 默认为 True，如果为 False，那么控制字符（ASCII 码范围 0 - 31）将被允许包含在字符串内，比如 <code class="docutils literal notranslate"><span class="pre">\t</span></code> <code class="docutils literal notranslate"><span class="pre">\r</span></code> <code class="docutils literal notranslate"><span class="pre">\n</span></code> 。</p>
 </dd>
 </dl>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">json</span><span class="o">.</span><span class="n">JSONDecoder</span><span class="p">(</span><span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;{&quot;foo&quot;: [&quot;bar&quot;, &quot;baz</span><span class="se">\t</span><span class="s1">&quot;]}&#39;</span><span class="p">)</span>
-<span class="go">{&#39;foo&#39;: [&#39;bar&#39;, &#39;baz\t&#39;]}</span>
-</pre></div>
-</div>
 <dl class="py method">
 <dt class="sig sig-object py" id="json.JSONDecoder.decode">
 <span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#json.JSONDecoder.decode" title="Permalink to this definition"></a></dt>
 <dd><p>返回 <code class="docutils literal notranslate"><span class="pre">s</span></code> （包含一个 JSON 文档的 <code class="docutils literal notranslate"><span class="pre">str</span></code> 实例）的 Python 表示形式。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">json</span><span class="o">.</span><span class="n">JSONDecoder</span><span class="p">(</span><span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;{&quot;foo&quot;: [&quot;bar&quot;, &quot;baz</span><span class="se">\t</span><span class="s1">&quot;]}&#39;</span><span class="p">)</span>
+<span class="go">{&#39;foo&#39;: [&#39;bar&#39;, &#39;baz\t&#39;]}</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">

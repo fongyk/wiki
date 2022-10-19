@@ -42,16 +42,6 @@ Python 的 `json <https://docs.python.org/3/library/json.html>`_ 模块提供了
 
     将 ``obj`` 序列化为 JSON 格式的 ``str`` 。其他参数的含义与 ``json.dump`` 相同。
 
-::
-
-    >>> json.loads('[{"a": 123}, {"abc": [1,2,"3"]}, 45.67, [100, "hex"]]')
-    [{'a': 123}, {'abc': [1, 2, '3']}, 45.67, [100, 'hex']]
-
-.. note::
-
-    JSON 中的键-值对中的键永远是 ``str`` 类型的。当一个对象被转化为 JSON 时，字典中所有的键都会被强制转换为字符串。这造成的结果是：字典被转换为 JSON 然后转换回字典时可能和原来的不相等。换句话说，如果 ``x`` 具有非字符串的键，则 ``loads(dumps(x)) != x`` 。
-
-
 .. py:function:: json.load(fp, *, cls=None, object_hook=None, parse_float=None, parse_int=None, parse_constant=None, object_pairs_hook=None, **kw)
 
     将 ``fp`` (一个支持 ``.read()`` 并包含一个 JSON 文档的 text file 或者 binary file) 反序列化为一个 Python 对象。
@@ -63,6 +53,15 @@ Python 的 `json <https://docs.python.org/3/library/json.html>`_ 模块提供了
 .. py:function:: json.loads(s, *, cls=None, object_hook=None, parse_float=None, parse_int=None, parse_constant=None, object_pairs_hook=None, **kw)
 
     将 ``s`` (一个包含 JSON 文档的 ``str`` ， ``bytes`` 或 ``bytearray`` 实例) 反序列化为 Python 对象。其他参数的含义与 ``json.load`` 中的相同。
+
+::
+
+    >>> json.loads('[{"a": 123}, {"abc": [1,2,"3"]}, 45.67, [100, "hex"]]')
+    [{'a': 123}, {'abc': [1, 2, '3']}, 45.67, [100, 'hex']]
+
+.. note::
+
+    JSON 中的键-值对中的键永远是 ``str`` 类型的。当一个对象被转化为 JSON 时，字典中所有的键都会被强制转换为字符串。这造成的结果是：字典被转换为 JSON 然后转换回字典时可能和原来的不相等。换句话说，如果 ``x`` 具有非字符串的键，则 ``loads(dumps(x)) != x`` 。
 
 
 美化输出
@@ -117,14 +116,14 @@ Python 的 `json <https://docs.python.org/3/library/json.html>`_ 模块提供了
 
     :param bool strict: 默认为 True，如果为 False，那么控制字符（ASCII 码范围 0 - 31）将被允许包含在字符串内，比如 ``\t`` ``\r`` ``\n`` 。
 
-    ::
-
-        >>> json.JSONDecoder(strict=False).decode('{"foo": ["bar", "baz\t"]}')
-        {'foo': ['bar', 'baz\t']}
-
     .. py:method:: decode(s)
 
         返回 ``s`` （包含一个 JSON 文档的 ``str`` 实例）的 Python 表示形式。
+
+        ::
+
+            >>> json.JSONDecoder(strict=False).decode('{"foo": ["bar", "baz\t"]}')
+            {'foo': ['bar', 'baz\t']}
 
     .. py:method:: raw_decode(s)
 

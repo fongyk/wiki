@@ -69,8 +69,6 @@ lower\_bound，upper\_bound
       return 0;
     }
 
-|
-
 .. note:: 
 
     map、multimap、set、multiset 是基于红黑树实现的、有序的，其中 map、multimap 默认按照 key 排序。
@@ -176,7 +174,6 @@ fill，fill\_n，for\_each
       return 0;
     }
 
-|
 
 最长上升子序列：
 
@@ -283,7 +280,6 @@ sort
       return 0;
     }
 
-|
 
 **string** 类也是可以排序的，如 ::
 
@@ -341,8 +337,6 @@ reverse
       return 0;
     }
 
-|
-
 
 min\_element，max\_element，minmax\_element
 --------------------------------------------------------
@@ -396,7 +390,6 @@ min\_element，max\_element，minmax\_element
       return 0;
     }
 
-|
 
 accumulate
 ----------------
@@ -459,7 +452,6 @@ accumulate
         return 0;
       }
 
-|
 
 partial_sum
 ---------------
@@ -532,7 +524,6 @@ partial_sum
     }
 
 
-|
 
 iota
 ---------------
@@ -571,7 +562,6 @@ iota
     }
 
 
-|
 
 inner\_product
 ------------------
@@ -581,7 +571,7 @@ inner\_product
   #include <numeric>
 
   // sum/multiply
-  emplate <class InputIterator1, class InputIterator2, class T>
+  template <class InputIterator1, class InputIterator2, class T>
   T inner_product (InputIterator1 first1, InputIterator1 last1, InputIterator2 first2, T init);
 
   // custom
@@ -642,7 +632,6 @@ inner\_product
     }
 
 
-|
 
 memset
 ------------------
@@ -686,8 +675,6 @@ memset
       return 0;
     }
 
-
-|
 
 附：头文件
 ----------------

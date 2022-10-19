@@ -36,7 +36,7 @@ import sphinx_rtd_theme
 # -- Project information -----------------------------------------------------
 
 project = u'fong'
-copyright = u'2018, fong'
+copyright = u'2018-2022, fong'
 author = u'fong'
 
 # The short X.Y version

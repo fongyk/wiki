@@ -42,6 +42,10 @@ Python 的 `json <https://docs.python.org/3/library/json.html>`_ 模块提供了
 
     将 ``obj`` 序列化为 JSON 格式的 ``str`` 。其他参数的含义与 ``json.dump`` 相同。
 
+::
+
+    >>> json.loads('[{"a": 123}, {"abc": [1,2,"3"]}, 45.67, [100, "hex"]]')
+    [{'a': 123}, {'abc': [1, 2, '3']}, 45.67, [100, 'hex']]
 
 .. note::
 
@@ -66,7 +70,7 @@ Python 的 `json <https://docs.python.org/3/library/json.html>`_ 模块提供了
 
 :: 
 
-    >>> json.dumps([1, 2, 3, {'4': 5, '6': 7}], separators=(',', ':'))
+    >>> json.dumps([1, 2, 3, {4: 5, 6: 7}], separators=(',', ':'))
     '[1,2,3,{"4":5,"6":7}]'
     >>> json.dumps({'4': 5, '6': 7}, sort_keys=True, indent=4)
     '{\n    "4": 5,\n    "6": 7\n}'

@@ -50,16 +50,16 @@ queue 模块实现了多生产者、多消费者队列，适用于消息必须�
 
 .. py:exception:: queue.Empty
 
-  对空的 ``queue.Queue`` 对象，调用非阻塞的 ``get()`` 或 ``get_nowait()`` 时引发的异常。
+  对 **空** 的队列对象调用非阻塞的 ``get()`` 或 ``get_nowait()`` 时引发的异常。
 
 .. py:exception:: queue.Full 
 
-  对满的 ``queue.Queue`` 对象，调用非阻塞的 ``put()`` 或 ``put_nowait()`` 时引发的异常。
+  对 **满** 的队列对象调用非阻塞的 ``put()`` 或 ``put_nowait()`` 时引发的异常。
 
 方法
 """"""""
 
-队列对象（ ``Queue`` ``LifoQueue`` ``PriorityQueue`` ）具有以下公共方法。
+队列（ ``Queue`` ``LifoQueue`` ``PriorityQueue`` ）具有以下公共方法。
 
 .. py:method:: qsize()
 

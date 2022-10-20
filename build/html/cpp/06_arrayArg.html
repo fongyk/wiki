@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="zh-CN" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>6. 数组形参 &mdash; fong alpha documentation</title>
+  <title>6. 数组形参 &mdash; fong alpha 文档</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,9 +19,10 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="7. 指针与引用" href="07_pointerReference.html" />
     <link rel="prev" title="5. 交换函数" href="05_swap.html" /> 
 </head>
@@ -39,7 +40,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="在文档中搜索" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -117,7 +118,7 @@
           <li><a href="index.html">C/C++</a> &raquo;</li>
       <li><span class="section-number">6. </span>数组形参</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/cpp/06_arrayArg.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/cpp/06_arrayArg.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
   </ul>
   <hr/>
@@ -126,9 +127,9 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">6. </span>数组形参<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">6. </span>数组形参<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
 <section id="id2">
-<h2><span class="section-number">6.1. </span>非引用<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">6.1. </span>非引用<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
 <p>当数组以 <strong>非引用</strong> 类型传递，数组会悄悄退化为指针，形参复制的是这个指针的值（指向数组第一个元素）。通过该形参做的任何改变都是在修改数组元素本身。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kt">void</span><span class="w"> </span><span class="nf">func1</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">100</span><span class="p">])</span><span class="w"></span>
 <span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
@@ -152,7 +153,7 @@
 </div>
 </section>
 <section id="id3">
-<h2><span class="section-number">6.2. </span>引用<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">6.2. </span>引用<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
 <p>如果形参是数组的 <strong>引用</strong> ，编译器不会将数组实参转化为指针，而是传递数组的引用本身。编译器会检查数组实参的大小与形参是否匹配。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kt">void</span><span class="w"> </span><span class="nf">func1</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">arr</span><span class="p">)[</span><span class="mi">10</span><span class="p">])</span><span class="w"></span>
 <span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
@@ -173,19 +174,19 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="05_swap.html" class="btn btn-neutral float-left" title="5. 交换函数" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="07_pointerReference.html" class="btn btn-neutral float-right" title="7. 指针与引用" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="05_swap.html" class="btn btn-neutral float-left" title="5. 交换函数" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="07_pointerReference.html" class="btn btn-neutral float-right" title="7. 指针与引用" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018-2022, fong.</p>
+    <p>&#169; 版权所有 2018-2022, fong.</p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
    
 
 </footer>

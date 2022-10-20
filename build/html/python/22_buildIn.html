@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="zh-CN" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>22. 内建属性 &mdash; fong alpha documentation</title>
+  <title>22. 内建属性 &mdash; fong alpha 文档</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,9 +19,10 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="23. glob" href="23_glob.html" />
     <link rel="prev" title="21. python -m" href="21_pyM.html" /> 
 </head>
@@ -39,7 +40,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="在文档中搜索" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -118,7 +119,7 @@
           <li><a href="index.html">Python</a> &raquo;</li>
       <li><span class="section-number">22. </span>内建属性</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/python/22_buildIn.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/python/22_buildIn.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
   </ul>
   <hr/>
@@ -127,15 +128,15 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">22. </span>内建属性<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">22. </span>内建属性<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
 <section id="name">
-<h2><span class="section-number">22.1. </span>__name__<a class="headerlink" href="#name" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">22.1. </span>__name__<a class="headerlink" href="#name" title="此标题的永久链接"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">__name__</span></code> 标识模块的名字，可以显示一个模块的某功能是 <strong>被自己执行还是被别的文件调用执行</strong> 。</p>
 <p>如果被自己执行，那么 <code class="docutils literal notranslate"><span class="pre">__name__==</span> <span class="pre">&quot;__main__&quot;</span></code> ；</p>
 <p>如果被调用执行，那么 <code class="docutils literal notranslate"><span class="pre">__name__</span></code> 值为被调用模块的名字。</p>
 </section>
 <section id="doc">
-<h2><span class="section-number">22.2. </span>__doc__<a class="headerlink" href="#doc" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">22.2. </span>__doc__<a class="headerlink" href="#doc" title="此标题的永久链接"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">__doc__</span></code> 是模块的文档字符串（docstring），是由三引号包围的字符串，定义在文件/类/函数的头部。</p>
 <p>定义 <strong>Module.py</strong> 内容如下：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="sd">&quot;&quot;&quot; An example module.&quot;&quot;&quot;</span>
@@ -165,7 +166,7 @@
 </div>
 </section>
 <section id="call">
-<h2><span class="section-number">22.3. </span>__call__<a class="headerlink" href="#call" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">22.3. </span>__call__<a class="headerlink" href="#call" title="此标题的永久链接"></a></h2>
 <p>如果在类中实现了 <code class="docutils literal notranslate"><span class="pre">__call__</span></code> 方法，那么实例对象将成为一个可调用对象。自定义函数、内建函数和类都属于可调用对象，但凡是可以把一对括号 <code class="docutils literal notranslate"><span class="pre">()</span></code> 应用到某个对象身上都可称之为可调用对象，判断对象是否为可调用对象可以用函数 <code class="docutils literal notranslate"><span class="pre">callable</span></code> 。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="linenos">2</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
@@ -186,7 +187,7 @@
 </div>
 </section>
 <section id="dict">
-<h2><span class="section-number">22.4. </span>__dict__<a class="headerlink" href="#dict" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">22.4. </span>__dict__<a class="headerlink" href="#dict" title="此标题的永久链接"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">__dict__</span></code> 存储了类和实例的一些属性。</p>
 <p>在 <code class="docutils literal notranslate"><span class="pre">__init__</span></code> 中声明的变量（ <code class="docutils literal notranslate"><span class="pre">self.xxx</span></code> ），会存到实例的 <code class="docutils literal notranslate"><span class="pre">__dict__</span></code> 中；类的静态函数、类函数、普通函数、全局变量以及一些内置的属性都是放在类的 <code class="docutils literal notranslate"><span class="pre">__dict__</span></code> 中。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -228,7 +229,7 @@
 </div>
 </section>
 <section id="setattr">
-<h2><span class="section-number">22.5. </span>__setattr__<a class="headerlink" href="#setattr" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">22.5. </span>__setattr__<a class="headerlink" href="#setattr" title="此标题的永久链接"></a></h2>
 <p>默认情况下，实例属性赋值，被赋值的属性和值会存入实例属性字典 <code class="docutils literal notranslate"><span class="pre">__dict__</span></code> 中。</p>
 <p>如果类自定义了 <code class="docutils literal notranslate"><span class="pre">__setattr__</span></code> 方法，当通过实例获取属性（instance.attr）并尝试赋值时，就会调用 <code class="docutils literal notranslate"><span class="pre">__setattr__</span></code> 。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -259,12 +260,12 @@
 </pre></div>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<p class="admonition-title">警告</p>
 <p>如果在 <code class="docutils literal notranslate"><span class="pre">__setattr__</span></code> 中试图通过  <code class="docutils literal notranslate"><span class="pre">self.xxx</span></code> 来访问其他属性，容易出现错误。比如，初始化之前， <code class="docutils literal notranslate"><span class="pre">__dict__</span></code> 中还没有插入属性，是无法访问的。</p>
 </div>
 </section>
 <section id="getattr">
-<h2><span class="section-number">22.6. </span>__getattr__<a class="headerlink" href="#getattr" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">22.6. </span>__getattr__<a class="headerlink" href="#getattr" title="此标题的永久链接"></a></h2>
 <p>实例通过 <strong>点号</strong> 访问属性（instance.attr），只有当属性没有在实例的 <code class="docutils literal notranslate"><span class="pre">__dict__</span></code> 或类的 <code class="docutils literal notranslate"><span class="pre">__dict__</span></code> 中没有找到，才会调用 <code class="docutils literal notranslate"><span class="pre">__getattr__</span></code> 。当属性可以通过正常机制追溯到时，<code class="docutils literal notranslate"><span class="pre">__getattr__</span></code> 是不会被调用的。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="linenos"> 2</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
@@ -287,7 +288,7 @@
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">备注</p>
 <p>多进程 multiprocessing 为了实现数据共享，会对数据进行序列化（pickling），其他进程读的时候再反序列化（unpickling）。反序列化时，数据所对应的类的 <code class="docutils literal notranslate"><span class="pre">__init__</span></code> 方法不会被调用，因而上例中 <code class="docutils literal notranslate"><span class="pre">self.dic</span></code> 对执行反序列化的进程是不可见的，会造成 <code class="docutils literal notranslate"><span class="pre">__getattr__</span></code> 无限循环调用:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pickle</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -301,7 +302,7 @@
 </div>
 </section>
 <section id="getattribute">
-<h2><span class="section-number">22.7. </span>__getattribute__<a class="headerlink" href="#getattribute" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">22.7. </span>__getattribute__<a class="headerlink" href="#getattribute" title="此标题的永久链接"></a></h2>
 <p>实例通过 <strong>点号</strong> 访问属性（instance.attr）， <code class="docutils literal notranslate"><span class="pre">__getattribute__</span></code> 方法始终会被调用，无论属性是否能通过 <code class="docutils literal notranslate"><span class="pre">__dict__</span></code> 追溯到。如果类还定义了 <code class="docutils literal notranslate"><span class="pre">__getattr__</span></code> 方法，除非它被 <code class="docutils literal notranslate"><span class="pre">__getattribute__</span></code> 显式调用，或者 <code class="docutils literal notranslate"><span class="pre">__getattribute__</span></code> 方法出现 <code class="docutils literal notranslate"><span class="pre">AttributeError</span></code> 异常，否则 <code class="docutils literal notranslate"><span class="pre">__getattr__</span></code> 方法永远不会被调用。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="linenos"> 2</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
@@ -328,12 +329,12 @@
 </pre></div>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<p class="admonition-title">警告</p>
 <p>在抛出 <code class="docutils literal notranslate"><span class="pre">AttributeError</span></code> 异常之后，如果此时在 <code class="docutils literal notranslate"><span class="pre">__getattr__</span></code> 中试图通过  <code class="docutils literal notranslate"><span class="pre">self.xxx</span></code> 来访问其他属性（如 <code class="docutils literal notranslate"><span class="pre">self.dic</span></code> ）时，会出现死循环。</p>
 </div>
 </section>
 <section id="id2">
-<h2><span class="section-number">22.8. </span>参考资料<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">22.8. </span>参考资料<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
 <ol class="arabic simple">
 <li><p>Python __dict__属性详解</p></li>
 </ol>
@@ -359,19 +360,19 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="21_pyM.html" class="btn btn-neutral float-left" title="21. python -m" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="23_glob.html" class="btn btn-neutral float-right" title="23. glob" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="21_pyM.html" class="btn btn-neutral float-left" title="21. python -m" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="23_glob.html" class="btn btn-neutral float-right" title="23. glob" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018-2022, fong.</p>
+    <p>&#169; 版权所有 2018-2022, fong.</p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
    
 
 </footer>

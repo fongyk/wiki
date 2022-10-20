@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="zh-CN" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>5. 迭代器和生成器 &mdash; fong alpha documentation</title>
+  <title>5. 迭代器和生成器 &mdash; fong alpha 文档</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,9 +19,10 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="6. lambda用法" href="06_lambda.html" />
     <link rel="prev" title="4. 装饰器" href="04_decorator.html" /> 
 </head>
@@ -39,7 +40,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="在文档中搜索" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -122,7 +123,7 @@
           <li><a href="index.html">Python</a> &raquo;</li>
       <li><span class="section-number">5. </span>迭代器和生成器</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/python/05_iterator.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/python/05_iterator.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
   </ul>
   <hr/>
@@ -131,10 +132,10 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">5. </span>迭代器和生成器<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">5. </span>迭代器和生成器<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
 <a class="reference internal image-reference" href="../_images/05_iterator.png"><img alt="../_images/05_iterator.png" class="align-center" src="../_images/05_iterator.png" style="width: 500px;" /></a>
 <section id="iterator">
-<h2><span class="section-number">5.1. </span>迭代器（iterator）<a class="headerlink" href="#iterator" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.1. </span>迭代器（iterator）<a class="headerlink" href="#iterator" title="此标题的永久链接"></a></h2>
 <dl>
 <dt>特点：</dt><dd><ul class="simple">
 <li><p>迭代器是访问集合元素的一种方式，不能随机访问集合中的某个值，只能从头到尾依次访问（ <code class="docutils literal notranslate"><span class="pre">next()</span></code> 方法），访问到一半时不能往回退。</p></li>
@@ -162,7 +163,7 @@
 </dd>
 </dl>
 <section id="iterable">
-<h3><span class="section-number">5.1.1. </span>可迭代对象（iterable）<a class="headerlink" href="#iterable" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.1.1. </span>可迭代对象（iterable）<a class="headerlink" href="#iterable" title="此标题的永久链接"></a></h3>
 <p><strong>可以直接作用于 for 循环的对象统称为可迭代对象（Iterable）</strong> 。只要定义了可以返回一个迭代器的 <code class="docutils literal notranslate"><span class="pre">__iter__()</span></code> 方法，或者定义了可以支持下标索引的 <code class="docutils literal notranslate"><span class="pre">__getitem__()</span></code> 方法，那么它就是一个可迭代对象。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">Iterator_test</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="linenos"> 2</span>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
@@ -221,7 +222,7 @@ for循环会不断调用迭代器对象的 <code class="docutils literal notrans
 </section>
 </section>
 <section id="generator">
-<h2><span class="section-number">5.2. </span>生成器（generator）<a class="headerlink" href="#generator" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.2. </span>生成器（generator）<a class="headerlink" href="#generator" title="此标题的永久链接"></a></h2>
 <p>生成器其实是一种特殊的迭代器。它不需要再像上面的类一样写 <code class="docutils literal notranslate"><span class="pre">__iter__()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">__next__()</span></code> 方法了，只需要一个 <code class="docutils literal notranslate"><span class="pre">yield</span></code> 关键字。 <code class="docutils literal notranslate"><span class="pre">yield</span></code> 就是 return 返回的一个值，并且记住这个返回的位置。下一次迭代就从这个位置开始。
 生成器一定是迭代器（反之不成立），因此任何生成器也是以一种懒加载的模式生成值。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">generator_winter</span><span class="p">():</span>
@@ -254,22 +255,22 @@ for循环会不断调用迭代器对象的 <code class="docutils literal notrans
 </pre></div>
 </div>
 <section id="send">
-<h3><span class="section-number">5.2.1. </span>send<a class="headerlink" href="#send" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.2.1. </span>send<a class="headerlink" href="#send" title="此标题的永久链接"></a></h3>
 <p>send 方法可带一个参数，参数可以是 None。None参数的 send 方法和 next/__next__ 的功能完全相同：将暂停在 <code class="docutils literal notranslate"><span class="pre">yield</span></code> 语句出的程序继续执行；非 None 参数的 send 方法会将参数值作为 <code class="docutils literal notranslate"><span class="pre">yield</span></code> 语句返回值赋值给接收者。</p>
 <p>注意：非 None 参数的 send 方法无法启动执行生成器函数。也就是说，程序中第一次使用生成器调用 send 方法时，参数只能是 None（推荐直接使用 next/__next__）。</p>
 </section>
 <section id="close">
-<h3><span class="section-number">5.2.2. </span>close<a class="headerlink" href="#close" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.2.2. </span>close<a class="headerlink" href="#close" title="此标题的永久链接"></a></h3>
 <p>当程序在生成器函数中遇到 <code class="docutils literal notranslate"><span class="pre">yield</span></code> 语句暂停运行时，调用 close 方法会阻止生成器函数继续执行，该函数会在程序停止运行的位置抛出 <code class="docutils literal notranslate"><span class="pre">GeneratorExit</span></code> 异常。
 虽然通过捕获 <code class="docutils literal notranslate"><span class="pre">GeneratorExit</span></code> 异常，可以继续执行生成器函数中剩余的代码，但这部分代码中不能再包含 <code class="docutils literal notranslate"><span class="pre">yield</span></code> 语句，否则程序会抛出 <code class="docutils literal notranslate"><span class="pre">RuntimeError</span></code> 异常。</p>
 <p>生成器函数一旦调用 close，后续将无法再通过 next/__next__ 启动生成器，否则会抛出 <code class="docutils literal notranslate"><span class="pre">StopIteration</span></code> 异常。</p>
 </section>
 <section id="throw">
-<h3><span class="section-number">5.2.3. </span>throw<a class="headerlink" href="#throw" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.2.3. </span>throw<a class="headerlink" href="#throw" title="此标题的永久链接"></a></h3>
 <p>在生成器函数执行暂停处，throw 方法抛出一个指定的异常，之后程序会继续执行生成器函数中后续的代码，直到遇到下一个 <code class="docutils literal notranslate"><span class="pre">yield</span></code> 语句。需要注意的是，如果到剩余代码执行完毕没有遇到下一个 <code class="docutils literal notranslate"><span class="pre">yield</span></code> 语句，则程序会抛出 <code class="docutils literal notranslate"><span class="pre">StopIteration</span></code> 异常。</p>
 </section>
 <section id="id2">
-<h3><span class="section-number">5.2.4. </span>生产者-消费者模型<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.2.4. </span>生产者-消费者模型<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h3>
 <p>生成器中的 <code class="docutils literal notranslate"><span class="pre">yield</span></code> 可以一定程度上实现协程。</p>
 <p>生产者生产消息后，直接通过 <code class="docutils literal notranslate"><span class="pre">yield</span></code> 跳转到消费者开始执行；待消费者执行完毕后，切换回生产者继续生产，效率极高。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">time</span>
@@ -314,7 +315,7 @@ for循环会不断调用迭代器对象的 <code class="docutils literal notrans
 </section>
 </section>
 <section id="id3">
-<h2><span class="section-number">5.3. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.3. </span>参考资料<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
 <ol class="arabic simple">
 <li><p>Python迭代器，生成器–精华中的精华</p></li>
 </ol>
@@ -340,19 +341,19 @@ for循环会不断调用迭代器对象的 <code class="docutils literal notrans
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="04_decorator.html" class="btn btn-neutral float-left" title="4. 装饰器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="06_lambda.html" class="btn btn-neutral float-right" title="6. lambda用法" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="04_decorator.html" class="btn btn-neutral float-left" title="4. 装饰器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="06_lambda.html" class="btn btn-neutral float-right" title="6. lambda用法" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018-2022, fong.</p>
+    <p>&#169; 版权所有 2018-2022, fong.</p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
    
 
 </footer>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="zh-CN" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>20. #define &mdash; fong alpha documentation</title>
+  <title>20. #define &mdash; fong alpha 文档</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,9 +19,10 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="21. 运算符优先级" href="21_operatorPrior.html" />
     <link rel="prev" title="19. 常用 STL 容器" href="19_stl.html" /> 
 </head>
@@ -39,7 +40,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="在文档中搜索" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -120,7 +121,7 @@
           <li><a href="index.html">C/C++</a> &raquo;</li>
       <li><span class="section-number">20. </span>#define</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/cpp/20_define.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/cpp/20_define.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
   </ul>
   <hr/>
@@ -129,7 +130,7 @@
            <div itemprop="articleBody">
              
   <section id="define">
-<h1><span class="section-number">20. </span>#define<a class="headerlink" href="#define" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">20. </span>#define<a class="headerlink" href="#define" title="此标题的永久链接"></a></h1>
 <dl class="simple">
 <dt><strong>原则</strong></dt><dd><ul class="simple">
 <li><p><strong>对于单纯常量，最好以 const 对象或 enum 替换 #define。</strong></p></li>
@@ -138,7 +139,7 @@
 </dd>
 </dl>
 <section id="const">
-<h2><span class="section-number">20.1. </span>const<a class="headerlink" href="#const" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">20.1. </span>const<a class="headerlink" href="#const" title="此标题的永久链接"></a></h2>
 <p>“宁可以编译器替换 <strong>预编译器</strong> ”。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#define ASPECT_RATIO 1.653</span>
 
@@ -162,7 +163,7 @@
 </div>
 </section>
 <section id="enum">
-<h2><span class="section-number">20.2. </span>enum<a class="headerlink" href="#enum" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">20.2. </span>enum<a class="headerlink" href="#enum" title="此标题的永久链接"></a></h2>
 <p>如果编译器不允许 static 成员在声明式上获得初始值，一方面，可以在头文件定义类，在源文件中初始化它；另一方面，如果该类在编译期间
 必须使用一个常量值，例如上例中数组 scores 的大小必须在编译期间知道，此时可以使用 enum。一个属于枚举类型的数值可以权当 int 被使用。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"></span>
@@ -174,12 +175,12 @@
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">备注</p>
 <p>enum 的行为类似于 #define，取一个 enum 的地址或 #define 的地址通常不合法，而取一个 const 的地址是合法的。</p>
 </div>
 </section>
 <section id="inline">
-<h2><span class="section-number">20.3. </span>inline<a class="headerlink" href="#inline" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">20.3. </span>inline<a class="headerlink" href="#inline" title="此标题的永久链接"></a></h2>
 <p>使用宏（macros）不会有函数调用带来的额外开销。宏中的所有实参必须添加括号，但是仍然可能出现问题。</p>
 <p>此时，可以定义内联函数（inline），它与普通函数一样遵守作用域（scope）和访问规则。内联函数的特点：</p>
 <blockquote>
@@ -237,7 +238,7 @@
 </div>
 </section>
 <section id="c-c">
-<h2><span class="section-number">20.4. </span>附：C/C++ 编译过程（简）<a class="headerlink" href="#c-c" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">20.4. </span>附：C/C++ 编译过程（简）<a class="headerlink" href="#c-c" title="此标题的永久链接"></a></h2>
 <p><strong>编译过程</strong> ：</p>
 <blockquote>
 <div><p><strong>1.（分离式）编译</strong> ：每个文件独立编译</p>
@@ -262,7 +263,7 @@
 </div></blockquote>
 </section>
 <section id="id1">
-<h2><span class="section-number">20.5. </span>参考资料<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">20.5. </span>参考资料<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
 <ol class="arabic simple">
 <li><p>《Effective C++》条款02。</p></li>
 <li><p>《C++ Primer 第5版 中文版》 Page 213–214。</p></li>
@@ -278,19 +279,19 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="19_stl.html" class="btn btn-neutral float-left" title="19. 常用 STL 容器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="21_operatorPrior.html" class="btn btn-neutral float-right" title="21. 运算符优先级" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="19_stl.html" class="btn btn-neutral float-left" title="19. 常用 STL 容器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="21_operatorPrior.html" class="btn btn-neutral float-right" title="21. 运算符优先级" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018-2022, fong.</p>
+    <p>&#169; 版权所有 2018-2022, fong.</p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
    
 
 </footer>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="zh-CN" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>4. 类的大小 &mdash; fong alpha documentation</title>
+  <title>4. 类的大小 &mdash; fong alpha 文档</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,10 +19,11 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="5. 交换函数" href="05_swap.html" />
     <link rel="prev" title="3. 数据类型" href="03_typeSize.html" /> 
 </head>
@@ -40,7 +41,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="在文档中搜索" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -132,7 +133,7 @@
           <li><a href="index.html">C/C++</a> &raquo;</li>
       <li><span class="section-number">4. </span>类的大小</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/cpp/04_classSize.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/cpp/04_classSize.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
   </ul>
   <hr/>
@@ -141,7 +142,7 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">4. </span>类的大小<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">4. </span>类的大小<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
 <p>计算类的大小遵循以下原则：</p>
 <blockquote>
 <div><ul class="simple">
@@ -153,7 +154,7 @@
 </div></blockquote>
 <p>以下结果均是在 32 位 Visual Studio 2013 下编译得到。</p>
 <section id="id2">
-<h2><span class="section-number">4.1. </span>空类<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.1. </span>空类<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
 <p>C++ 标准指出，不允许一个对象（当然包括类对象）的大小为 0，不同的对象不能具有相同的地址。这是由于：</p>
 <blockquote>
 <div><ul class="simple">
@@ -170,7 +171,7 @@
 </div>
 </section>
 <section id="id3">
-<h2><span class="section-number">4.2. </span>普通数据成员<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.2. </span>普通数据成员<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
 <p>遵循内存对齐原则。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="w"></span>
 <span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
@@ -189,7 +190,7 @@
 </div>
 </section>
 <section id="id4">
-<h2><span class="section-number">4.3. </span>普通继承<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.3. </span>普通继承<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
 <p>普通类的继承，派生类的大小 = 派生类数据成员大小 + 基类数据成员大小。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="w"></span>
 <span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
@@ -212,7 +213,7 @@
 </pre></div>
 </div>
 <section id="id5">
-<h3>继承空类<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<h3>继承空类<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h3>
 <p>派生类继承空类后，派生类如果有自己的数据成员，而空基类的一个字节并不会加到派生类中去。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">class</span><span class="w"> </span><span class="nc">Empty</span><span class="w"></span>
 <span class="linenos">2</span><span class="p">{</span><span class="w"></span>
@@ -227,7 +228,7 @@
 </div>
 </section>
 <section id="id6">
-<h3>类包含空类对象数据成员<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<h3>类包含空类对象数据成员<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h3>
 <p>空类的1字节是会被计算进去的。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span><span class="w"> </span><span class="nc">Empty</span><span class="w"></span>
 <span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
@@ -244,14 +245,14 @@
 </section>
 </section>
 <section id="id7">
-<h2><span class="section-number">4.4. </span>虚函数与继承<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.4. </span>虚函数与继承<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h2>
 <p>虚函数（Virtual Function）是通过一张 <strong>虚函数表（Virtual Table, vtable）</strong> 来实现的。
 每当 <strong>创建一个包含有虚函数的类</strong> 或 <strong>从包含有虚函数的类派生一个类</strong> 时，编译器就会为这个类创建一个虚函数表保存该类 <strong>所有虚函数</strong> 的地址。</p>
 <p>当一个类中包含虚函数时，会有一个指向其虚函数表的指针 vptr，系统为类指针分配大小为 4 个字节（即使有多个虚函数）。
 当构造该派生类对象时，其成员 vptr 被初始化指向该派生类的 vtable。
 所以可以认为 vtable 是该类的所有对象共有的，在定义该类时被初始化；而 vptr 则是每个类对象都有独立一份的，且在该类对象被构造时被初始化。</p>
 <section id="id8">
-<h3>单继承<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
+<h3>单继承<a class="headerlink" href="#id8" title="此标题的永久链接"></a></h3>
 <p>派生类的大小 = 派生类的普通数据成员的大小 + 1 个 vptr 指针的大小</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span><span class="w"> </span><span class="nc">Base</span><span class="w"></span>
 <span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
@@ -270,7 +271,7 @@
 </div>
 </section>
 <section id="id9">
-<h3>多继承<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>
+<h3>多继承<a class="headerlink" href="#id9" title="此标题的永久链接"></a></h3>
 <p>每个基类都有自己的虚表（vtable）。</p>
 <p>派生类的成员函数被放到了第一个基类的表中。</p>
 <p>派生类的大小 = 派生类的普通数据成员的大小 + 基类的普通数据成员的大小 + <span class="math notranslate nohighlight">\(n\)</span> 个 vptr 指针的大小。<span class="math notranslate nohighlight">\(n\)</span> 是继承的有虚函数的基类的个数。</p>
@@ -315,7 +316,7 @@
 </section>
 </section>
 <section id="id10">
-<h2><span class="section-number">4.5. </span>虚继承<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.5. </span>虚继承<a class="headerlink" href="#id10" title="此标题的永久链接"></a></h2>
 <p>尽管派生列表中同一个基类只能出现一次，但实际上派生类可以多次继承同一个类。派生类可以通过它的两个直接基类分别继承同一个间接基类，也可以直接
 继承某个基类，然后通过另一个基类再一次间接继承该类。</p>
 <p>在默认情况下，派生类中含有继承链上每个类对应的子部分。如果某个类在派生过程中出现多次，则派生类中将包含该类的多个子对象。这会导致两个问题：第一，
@@ -361,7 +362,7 @@
 </div>
 </section>
 <section id="id11">
-<h2><span class="section-number">4.6. </span>内存对齐<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.6. </span>内存对齐<a class="headerlink" href="#id11" title="此标题的永久链接"></a></h2>
 <dl class="simple">
 <dt>内存对齐，是为了让内存存取更有效率而采用的一种编译阶段优化内存存取的手段。</dt><dd><ul class="simple">
 <li><p>内存对齐是指首地址对齐，而不是说每个变量大小对齐。</p></li>
@@ -412,7 +413,7 @@
 </div>
 </section>
 <section id="id12">
-<h2><span class="section-number">4.7. </span>位域<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.7. </span>位域<a class="headerlink" href="#id12" title="此标题的永久链接"></a></h2>
 <p>C/C++ 中以一定区域内的位（bit）为单位来表示的数据成为位域，位域必须指明具体的数目。
 位域的作用主要是节省内存资源，使数据结构更紧凑。</p>
 <ol class="arabic simple">
@@ -499,12 +500,12 @@
 </ul>
 </div></blockquote>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">备注</p>
 <p>C++ 标准库提供了一个 <strong>bitset</strong> 类模板，它可以辅助操纵位的集合。</p>
 </div>
 </section>
 <section id="id13">
-<h2><span class="section-number">4.8. </span>参考资料<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8. </span>参考资料<a class="headerlink" href="#id13" title="此标题的永久链接"></a></h2>
 <ol class="arabic simple">
 <li><p>c++ 类大小问题</p></li>
 </ol>
@@ -554,19 +555,19 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="03_typeSize.html" class="btn btn-neutral float-left" title="3. 数据类型" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="05_swap.html" class="btn btn-neutral float-right" title="5. 交换函数" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="03_typeSize.html" class="btn btn-neutral float-left" title="3. 数据类型" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="05_swap.html" class="btn btn-neutral float-right" title="5. 交换函数" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018-2022, fong.</p>
+    <p>&#169; 版权所有 2018-2022, fong.</p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
    
 
 </footer>

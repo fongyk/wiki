@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="zh-CN" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>16. 类的static const成员 &mdash; fong alpha documentation</title>
+  <title>16. 类的static const成员 &mdash; fong alpha 文档</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,9 +19,10 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="17. 枚举类型与共用体" href="17_enumUnion.html" />
     <link rel="prev" title="15. public、protected、private" href="15_classAccess.html" /> 
 </head>
@@ -39,7 +40,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="在文档中搜索" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -119,7 +120,7 @@
           <li><a href="index.html">C/C++</a> &raquo;</li>
       <li><span class="section-number">16. </span>类的static const成员</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/cpp/16_staticconst.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/cpp/16_staticconst.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
   </ul>
   <hr/>
@@ -128,12 +129,12 @@
            <div itemprop="articleBody">
              
   <section id="static-const">
-<h1><span class="section-number">16. </span>类的static const成员<a class="headerlink" href="#static-const" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">16. </span>类的static const成员<a class="headerlink" href="#static-const" title="此标题的永久链接"></a></h1>
 <section id="const">
-<h2><span class="section-number">16.1. </span>const 成员<a class="headerlink" href="#const" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">16.1. </span>const 成员<a class="headerlink" href="#const" title="此标题的永久链接"></a></h2>
 <p>const数据成员的初始化只能在类的构造函数的初始化列表中进行。声明const变量时不能初始化。</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">备注</p>
 <p>必须使用初始化列表的情形</p>
 <ul class="simple">
 <li><p><strong>常量成员</strong> ，因为常量只能初始化不能赋值，所以必须放在初始化列表里面。</p></li>
@@ -142,17 +143,17 @@
 </ul>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<p class="admonition-title">警告</p>
 <p>成员是按照他们在类中 <strong>声明</strong> 的顺序进行初始化的，而不是按照他们在初始化列表出现的顺序初始化的。</p>
 </div>
 </section>
 <section id="static">
-<h2><span class="section-number">16.2. </span>static 成员<a class="headerlink" href="#static" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">16.2. </span>static 成员<a class="headerlink" href="#static" title="此标题的永久链接"></a></h2>
 <p>不能在定义对象时对静态变量进行 <strong>定义和初始化</strong> ，即不能用构造函数进行初始化。
 初始化在类体外进行，前面不加static修饰符。</p>
 </section>
 <section id="id1">
-<h2><span class="section-number">16.3. </span>static const 成员<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">16.3. </span>static const 成员<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
 <p>静态常量成员，可以直接初始化（static cosnt 和 const static 含义相同）。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cm">/* header.h */</span><span class="w"></span>
 <span class="linenos"> 2</span><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="w"></span>
@@ -181,19 +182,19 @@
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">备注</p>
 <p><strong>初始化</strong> ：变量还没有值，现在赋予它一个值。</p>
 <p><strong>赋值</strong> ：变量已经有一个值，现在擦除它之前的值，赋予一个新的值。</p>
 <p><strong>声明</strong> ：告诉编译器类型及其细节，不涉及内存分配。</p>
 <p><strong>定义</strong> ：编译器将在内存地址上为该对象定址，即分配内存；定义的同时也作了声明。</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<p class="admonition-title">警告</p>
 <p><strong>static</strong> 和 <strong>const</strong>  不能 <strong>同时</strong> 修饰成员函数，只能修饰成员变量。
 因为常量成员函数（const）拥有一个 <strong>this</strong> 指针，是一个指向常量类类型的常量指针，而静态成员函数（static）没有 <strong>this</strong> 指针。</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">备注</p>
 <dl class="simple">
 <dt>头文件中应该写什么？</dt><dd><ul class="simple">
 <li><p>变量和函数的声明，而不是定义。如：<code class="docutils literal notranslate"><span class="pre">extern</span> <span class="pre">int</span> <span class="pre">a;</span> <span class="pre">void</span> <span class="pre">f();</span></code> 是允许的，而 <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">a;</span> <span class="pre">void</span> <span class="pre">f()</span> <span class="pre">{};</span></code> 是不允许的。</p></li>
@@ -211,7 +212,7 @@
 </div>
 </section>
 <section id="id2">
-<h2><span class="section-number">16.4. </span>参考资料<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">16.4. </span>参考资料<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
 <ol class="arabic simple">
 <li><p>C++ static、const和static const类型成员变量声明以及初始化</p></li>
 </ol>
@@ -256,19 +257,19 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="15_classAccess.html" class="btn btn-neutral float-left" title="15. public、protected、private" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="17_enumUnion.html" class="btn btn-neutral float-right" title="17. 枚举类型与共用体" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="15_classAccess.html" class="btn btn-neutral float-left" title="15. public、protected、private" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="17_enumUnion.html" class="btn btn-neutral float-right" title="17. 枚举类型与共用体" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018-2022, fong.</p>
+    <p>&#169; 版权所有 2018-2022, fong.</p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
    
 
 </footer>

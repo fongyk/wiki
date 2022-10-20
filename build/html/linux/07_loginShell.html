@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="zh-CN" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>9. Shell 交互与登录 &mdash; fong alpha documentation</title>
+  <title>9. Shell 交互与登录 &mdash; fong alpha 文档</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,9 +19,10 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="10. curl" href="09_curl.html" />
     <link rel="prev" title="8. Shell 基础" href="06_shellBasis.html" /> 
 </head>
@@ -39,7 +40,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="在文档中搜索" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -102,7 +103,7 @@
           <li><a href="index.html">Linux/Shell</a> &raquo;</li>
       <li><span class="section-number">9. </span>Shell 交互与登录</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/linux/07_loginShell.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/linux/07_loginShell.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
   </ul>
   <hr/>
@@ -111,9 +112,9 @@
            <div itemprop="articleBody">
              
   <section id="shell">
-<h1><span class="section-number">9. </span>Shell 交互与登录<a class="headerlink" href="#shell" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">9. </span>Shell 交互与登录<a class="headerlink" href="#shell" title="此标题的永久链接"></a></h1>
 <section id="id1">
-<h2><span class="section-number">9.1. </span>配置文件<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">9.1. </span>配置文件<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
 <p>配置文件分为系统级和用户级。</p>
 <p>系统级有：</p>
 <ul class="simple">
@@ -135,17 +136,17 @@
 <p>类似的， <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code> 配置用户级环境、执行启动程序，会调用 <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> ； <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> 用于定义用户级函数和别名（alias）， <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> 会调用 <code class="docutils literal notranslate"><span class="pre">/etc/bashrc</span></code> 。</p>
 <p>这些文件不一定全部存在，依系统而定。</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">备注</p>
 <p>如果将一些设定的系统全局环境变量存放在 <code class="docutils literal notranslate"><span class="pre">/etc/profile</span></code> 或 <code class="docutils literal notranslate"><span class="pre">/etc/bashrc</span></code> 文件中，那么当所用 Linux 发行版升级时，该文件也会跟着升级，则所定制的所有变量设置就都被覆盖了。</p>
 <p><strong>存储系统永久性环境变量</strong> ：建议将定制的系统全局变量存放在 <code class="docutils literal notranslate"><span class="pre">/etc/profile.d</span></code> 目录下新建的一个以 <code class="docutils literal notranslate"><span class="pre">.sh</span></code> 结尾的文件中（而不是直接修改 <code class="docutils literal notranslate"><span class="pre">/etc/profile</span></code> 或 <code class="docutils literal notranslate"><span class="pre">/etc/bashrc</span></code> ）。</p>
 <p><strong>存储个人用户永久性环境变量</strong> ：将个人用户所有定制的环境变量写入 <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> 文件中。</p>
 </div>
 </section>
 <section id="id2">
-<h2><span class="section-number">9.2. </span>交互式 Shell<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">9.2. </span>交互式 Shell<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
 <p>交互式 Shell 是指在终端命令行上执行，以提示符的方式在终端等待用户输入，并实时运行用户输入的命令的模式，即与用户交互的模式。</p>
 <section id="login-shell">
-<h3>登录式（Login Shell）<a class="headerlink" href="#login-shell" title="Permalink to this heading"></a></h3>
+<h3>登录式（Login Shell）<a class="headerlink" href="#login-shell" title="此标题的永久链接"></a></h3>
 <p>交互登录式 Shell 是需要用户名和密码登录后进入的 Shell（比如终端下登录远程服务器）或者通过 -login 选项（ <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">-login</span></code> ）在终端启动的 Shell 。此外，执行 <code class="docutils literal notranslate"><span class="pre">su</span> <span class="pre">-</span> <span class="pre">username</span></code> 或 <code class="docutils literal notranslate"><span class="pre">su</span> <span class="pre">-l</span> <span class="pre">username</span></code> 也将进入登录式 Shell。</p>
 <p>登入时，首先会读取启动文件 <code class="docutils literal notranslate"><span class="pre">/etc/profile</span></code> ， <code class="docutils literal notranslate"><span class="pre">/etc/profile</span></code> 是 Bash Shell 默认的主启动文件，不同 Linux 发行版其内容不尽相同。然后会执行 <code class="docutils literal notranslate"><span class="pre">/etc/profile.d/*.sh</span></code> 和 <code class="docutils literal notranslate"><span class="pre">/etc/bashrc</span></code> 。</p>
 <p>接着检查是否存在 <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code> ，如果存在，则 bash 在当前 Shell 中执行 <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code> ，并停止寻找其他文件。如果没有找到，那么它将按照顺序查找 <code class="docutils literal notranslate"><span class="pre">~/.bash_login</span></code> 和 <code class="docutils literal notranslate"><span class="pre">~/.profile</span></code> ，并只执行第一个可读的文件。</p>
@@ -154,27 +155,27 @@
 <p>交互登录式 Shell 可以使用 <code class="docutils literal notranslate"><span class="pre">exit</span></code> 或 <code class="docutils literal notranslate"><span class="pre">logout</span></code> 命令退出 Shell。</p>
 <p>登出时首先会读取 <code class="docutils literal notranslate"><span class="pre">~/.bash_logout</span></code> 文件，然后会读取 <code class="docutils literal notranslate"><span class="pre">/etc/bash.bash_logout</span></code> 文件。</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">备注</p>
 <p>su 加了 <code class="docutils literal notranslate"><span class="pre">-</span></code> 或 <code class="docutils literal notranslate"><span class="pre">-l</span></code> 参数，会进入登录式 Shell，即切换到新用户之后，当前的 Shell 会加载新用户对应的环境变量和各种设置，并进入新用户的目录（ <code class="docutils literal notranslate"><span class="pre">pwd</span></code> ）。</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">备注</p>
 <p>su 表示 <strong>switch user</strong> ；sudo 表示 <strong>super user do</strong> 。 bashrc 的 rc 表示 <strong>run commands</strong> 。</p>
 </div>
 </section>
 <section id="non-login-shell">
-<h3>非登录式（Non-Login Shell）<a class="headerlink" href="#non-login-shell" title="Permalink to this heading"></a></h3>
+<h3>非登录式（Non-Login Shell）<a class="headerlink" href="#non-login-shell" title="此标题的永久链接"></a></h3>
 <p>交互非登录式 Shell 是指不需要用户名和密码也不指定 -login 选项即可打开的 Shell，比如直接在终端运行 <code class="docutils literal notranslate"><span class="pre">bash</span></code> 打开一个 Bash Shell，或者在 Linux 系统桌面上打开一个终端 terminal 窗口程序，亦或者通过 <code class="docutils literal notranslate"><span class="pre">su</span> <span class="pre">username</span></code> 进入。</p>
 <p>非登录式 Shell 读取配置文件过程：</p>
 <p><code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> –&gt; <code class="docutils literal notranslate"><span class="pre">/etc/bashrc</span></code> –&gt; <code class="docutils literal notranslate"><span class="pre">/etc/prodile.d/*.sh</span></code></p>
 <p>Shell 会读取（执行） <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> 文件而不会读取 <code class="docutils literal notranslate"><span class="pre">/etc/profile</span></code> 文件，这也是为什么修改 <code class="docutils literal notranslate"><span class="pre">/etc/profile</span></code> 文件后，如果未重新登录系统，则新打开的交互非登录式 Shell 下并未生效修改过的内容。</p>
 <p>交互非登录式 Shell 只能使用 <code class="docutils literal notranslate"><span class="pre">exit</span></code> 退出 Shell。</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">备注</p>
 <p>要识别一个 Shell 是否为登录式 Shell，只需在该 Shell 下执行 <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$0</span></code> ，如果输出的前缀是 <code class="docutils literal notranslate"><span class="pre">-</span></code> ，例如 <code class="docutils literal notranslate"><span class="pre">-bash</span></code> <code class="docutils literal notranslate"><span class="pre">-su</span></code> ，则说明是登录式 Shell。</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">备注</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">id</span></code> 查询有效用户的 UID 和 GID、groups 信息（print real and effective user and groups）</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">who</span></code> 查询当前登录在系统上的登录用户（登录前）的信息（show who is logged on）</p></li>
@@ -185,13 +186,13 @@
 </section>
 </section>
 <section id="id3">
-<h2><span class="section-number">9.3. </span>非交互式 Shell<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">9.3. </span>非交互式 Shell<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
 <p>非交互式 Shell 是指以 Shell 脚本形式执行。在这种模式下，Shell 不与用户进行交互，而是读取存放在 Shell 脚本文件中的命令并执行，当读取到脚本文件结尾 <code class="docutils literal notranslate"><span class="pre">EOF</span></code> 时，Shell 终止。</p>
 <p>Bash Shell 提供了 <code class="docutils literal notranslate"><span class="pre">BASH_ENV</span></code> 环境变量用于指定启动非交互式 Shell 时需要启动的文件（大多数 Linux 发行版没有设定该环境变量）。</p>
 <p>非交互式 Shell 如果作为交互式 Shell 的孩子 Shell，此时会继承父 Shell 的全部全局环境变量；如果直接在交互式 Shell 下执行，则可以直接使用当前 Shell 的所有环境变量。</p>
 </section>
 <section id="id4">
-<h2><span class="section-number">9.4. </span>Shell 父子关系<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">9.4. </span>Shell 父子关系<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
 <p><strong>父 Shell</strong> 是用于登录某个远程主机或虚拟控制器终端或在 GUI 中运行终端仿真器时所启动的默认的交互式 Shell。</p>
 <p>在当前 Shell 执行脚本文件的方式有：</p>
 <ul class="simple">
@@ -246,7 +247,7 @@
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">备注</p>
 <p>全局环境变量通过 <code class="docutils literal notranslate"><span class="pre">export</span></code> 定义:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">GLOBALVAR</span><span class="o">=</span><span class="s1">&#39;global var&#39;</span>
 <span class="nv">localvar</span><span class="o">=</span><span class="s1">&#39;local var&#39;</span>
@@ -258,7 +259,7 @@
 </div>
 </section>
 <section id="id5">
-<h2><span class="section-number">9.5. </span>参考资料<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">9.5. </span>参考资料<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
 <ol class="arabic simple">
 <li><p>linux之登录式shell和非登录式shell</p></li>
 </ol>
@@ -308,19 +309,19 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="06_shellBasis.html" class="btn btn-neutral float-left" title="8. Shell 基础" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="09_curl.html" class="btn btn-neutral float-right" title="10. curl" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="06_shellBasis.html" class="btn btn-neutral float-left" title="8. Shell 基础" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="09_curl.html" class="btn btn-neutral float-right" title="10. curl" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018-2022, fong.</p>
+    <p>&#169; 版权所有 2018-2022, fong.</p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
    
 
 </footer>

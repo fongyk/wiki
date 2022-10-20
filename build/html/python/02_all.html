@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="zh-CN" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2. __all__ 的使用 &mdash; fong alpha documentation</title>
+  <title>2. __all__ 的使用 &mdash; fong alpha 文档</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,9 +19,10 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="3. is和==" href="03_is.html" />
     <link rel="prev" title="1. in-place 运算" href="01_inplace.html" /> 
 </head>
@@ -39,7 +40,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="在文档中搜索" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -116,7 +117,7 @@
           <li><a href="index.html">Python</a> &raquo;</li>
       <li><span class="section-number">2. </span>__all__ 的使用</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/python/02_all.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/python/02_all.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
   </ul>
   <hr/>
@@ -125,9 +126,9 @@
            <div itemprop="articleBody">
              
   <section id="all">
-<h1><span class="section-number">2. </span>__all__ 的使用<a class="headerlink" href="#all" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">2. </span>__all__ 的使用<a class="headerlink" href="#all" title="此标题的永久链接"></a></h1>
 <section id="init-py">
-<h2><span class="section-number">2.1. </span>从__init__.py谈起<a class="headerlink" href="#init-py" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.1. </span>从__init__.py谈起<a class="headerlink" href="#init-py" title="此标题的永久链接"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> 的 <strong>作用一</strong> ：package 的标识</p>
 <blockquote>
 <div><p>在每一个 package 文件夹中都会有一个 <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> 文件。我们导入一个包时，实际上是导入了它的 <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> 文件。因此我们可以在 <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> 文件中批量导入所需的模块，
@@ -192,7 +193,7 @@
 </div>
 </section>
 <section id="id1">
-<h2><span class="section-number">2.2. </span>路径<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.2. </span>路径<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">import</span></code> 在导入模块时，会根据 <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> 中的路径来搜索对应的模块。 <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> 是一个列表，<code class="docutils literal notranslate"><span class="pre">import</span></code> 时会从 <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> 的第一个路径开始搜索。
 <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> 默认的路径为：</p>
 <blockquote>
@@ -220,7 +221,7 @@
 </div></blockquote>
 </section>
 <section id="id2">
-<h2><span class="section-number">2.3. </span>命名空间包<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.3. </span>命名空间包<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
 <p>Python3.3 之后引入了命名空间包（namespace packages）的概念，目录下不再需要 <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> 。
 命名空间包可以避免名字空间的污染，且具有不连续性（类似于C++），即同一个包内的模块可以不在同一个文件系统。</p>
 <p>相比之下，有 <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> 的包叫做常规包（regular packages），同一个包内的模块在同一个文件目录下。</p>
@@ -273,7 +274,7 @@
 </div>
 </section>
 <section id="id3">
-<h2><span class="section-number">2.4. </span>相对路径导入<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.4. </span>相对路径导入<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">.Module</span> <span class="pre">import</span> <span class="pre">func</span></code> 表示从当前目录的模块中导入。</p>
 <p><code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">..PKG.Module</span> <span class="pre">import</span> <span class="pre">func</span></code> 表示从上一级目录的包中导入。</p>
 <ul>
@@ -292,7 +293,7 @@
 </ul>
 </section>
 <section id="getattr">
-<h2><span class="section-number">2.5. </span>getattr<a class="headerlink" href="#getattr" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.5. </span>getattr<a class="headerlink" href="#getattr" title="此标题的永久链接"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">getattr()</span></code> 函数用于返回一个对象属性值:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">getattr</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">name</span><span class="p">[,</span> <span class="n">default</span><span class="p">])</span>
 </pre></div>
@@ -346,7 +347,7 @@
 </div>
 </section>
 <section id="id4">
-<h2><span class="section-number">2.6. </span>参考资料<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.6. </span>参考资料<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
 <ol class="arabic simple">
 <li><p>Python中的 __all__</p></li>
 </ol>
@@ -408,19 +409,19 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="01_inplace.html" class="btn btn-neutral float-left" title="1. in-place 运算" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="03_is.html" class="btn btn-neutral float-right" title="3. is和==" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="01_inplace.html" class="btn btn-neutral float-left" title="1. in-place 运算" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="03_is.html" class="btn btn-neutral float-right" title="3. is和==" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018-2022, fong.</p>
+    <p>&#169; 版权所有 2018-2022, fong.</p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
    
 
 </footer>

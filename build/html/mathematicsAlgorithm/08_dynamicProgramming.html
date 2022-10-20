@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="zh-CN" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>8. 动态规划 &mdash; fong alpha documentation</title>
+  <title>8. 动态规划 &mdash; fong alpha 文档</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,10 +19,11 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="9. 回溯" href="09_backtrack.html" />
     <link rel="prev" title="7. 排序算法" href="07_sort.html" /> 
 </head>
@@ -40,7 +41,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="在文档中搜索" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -119,7 +120,7 @@
           <li><a href="index.html">数理与算法</a> &raquo;</li>
       <li><span class="section-number">8. </span>动态规划</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/mathematicsAlgorithm/08_dynamicProgramming.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/mathematicsAlgorithm/08_dynamicProgramming.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
   </ul>
   <hr/>
@@ -128,9 +129,9 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">8. </span>动态规划<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">8. </span>动态规划<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
 <section id="id2">
-<h2><span class="section-number">8.1. </span>矩阵连乘<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">8.1. </span>矩阵连乘<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
 <p>矩阵连乘，通过调整加括号的方式，使得乘法元素次数最少。设矩阵链 <span class="math notranslate nohighlight">\(A[0:n-1]\)</span> ， <span class="math notranslate nohighlight">\(A[i]\)</span> 的维度为 <span class="math notranslate nohighlight">\(p_i \times p_{i+1}\)</span> 。
 <span class="math notranslate nohighlight">\(m[i][j]\)</span> 是计算 <span class="math notranslate nohighlight">\(A[i:j],\ 0 \leqslant i \leqslant j \leqslant n-1\)</span> 所需的最少乘法次数。</p>
 <p>递推关系：</p>
@@ -177,7 +178,7 @@ $$</div><div class="toggle docutils container">
 </div>
 </section>
 <section id="id3">
-<h2><span class="section-number">8.2. </span>最长公共子序列<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">8.2. </span>最长公共子序列<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
 <p>用 <span class="math notranslate nohighlight">\(c[i][j]\)</span> 记录序列 <span class="math notranslate nohighlight">\(X[0:i-1]\)</span> （前 <span class="math notranslate nohighlight">\(i\)</span> 个字符）和 <span class="math notranslate nohighlight">\(Y[0:j-1]\)</span> （前 <span class="math notranslate nohighlight">\(j\)</span> 个字符）的最长公共子序列的长度。</p>
 <p>递推关系：</p>
 <div class="math notranslate nohighlight">
@@ -298,7 +299,7 @@ d[i][j] =
 \end{cases}
 $$</div></section>
 <section id="id4">
-<h2><span class="section-number">8.3. </span>最长上升子序列<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">8.3. </span>最长上升子序列<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
 <ul>
 <li><p>方法一</p>
 <p>设 <span class="math notranslate nohighlight">\(dp[i]\)</span> 是以 <span class="math notranslate nohighlight">\(a[i]\)</span> 结尾的最长上升子序列的长度。</p>
@@ -369,7 +370,7 @@ $$</div></section>
 </div>
 </section>
 <section id="id5">
-<h2><span class="section-number">8.4. </span>最大子段和<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">8.4. </span>最大子段和<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
 <p>设 <span class="math notranslate nohighlight">\(dp[i]\)</span> 是以 <span class="math notranslate nohighlight">\(a[i]\)</span> 结尾的最大子段和。</p>
 <p>递推关系：</p>
 <div class="math notranslate nohighlight">
@@ -397,7 +398,7 @@ $$</div></section>
 </div>
 </section>
 <section id="id6">
-<h2><span class="section-number">8.5. </span>0-1背包问题<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">8.5. </span>0-1背包问题<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h2>
 <p>设 <span class="math notranslate nohighlight">\(dp[i][j]\)</span> 表示从 <span class="math notranslate nohighlight">\(0\)</span> 到 <span class="math notranslate nohighlight">\(i-1\)</span> 这前 <span class="math notranslate nohighlight">\(i\)</span> 个物品中选出总重量不超过 <span class="math notranslate nohighlight">\(j\)</span> 的物品时总价值的最大值。</p>
 <p>递推关系：</p>
 <div class="math notranslate nohighlight">
@@ -454,11 +455,11 @@ $$</div><div class="toggle docutils container">
 </div>
 </section>
 <section id="id7">
-<h2><span class="section-number">8.6. </span>状态压缩动态规划<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">8.6. </span>状态压缩动态规划<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h2>
 <p>动态规划的状态有时候容易表示出来，需要用一些编码技术，把状态用简单的方式表示出来（压缩）。
 典型方式：当需要表示一个集合有哪些元素时，往往用一个整数表示，整数的二进制表示中的1表示对应位置的元素存在于集合中，0表示不存在。</p>
 <section id="poj-3254-corn-fields">
-<h3>[Poj 3254] Corn Fields<a class="headerlink" href="#poj-3254-corn-fields" title="Permalink to this heading"></a></h3>
+<h3>[Poj 3254] Corn Fields<a class="headerlink" href="#poj-3254-corn-fields" title="此标题的永久链接"></a></h3>
 <p>问题描述：一个 <span class="math notranslate nohighlight">\(N \times N\)</span> 的矩阵牧场，每个方格单元有两种状态：可放牧（1）和不可放牧（0）；在这块牧场放牛，要求两个相邻的方格不能同时放牛（不包括斜着的），即牛与牛不能挨着；问有多少种放牛方案（一头牛都不放也是一种方案）。</p>
 <p>策略：用一个集合（状态压缩）维护所有不相邻的情况，在此基础上再去考虑哪些方格可放牧。
 设 <span class="math notranslate nohighlight">\(dp[i][j]\)</span> 表示：在第 <span class="math notranslate nohighlight">\(i\)</span> 行状态为 <span class="math notranslate nohighlight">\(j\ (0 \leq j \leq 2^m-1)\)</span> 时，
@@ -542,7 +543,7 @@ $$</div><div class="toggle docutils container">
 </div>
 </section>
 <section id="poj-3311-hie-with-the-pie">
-<h3>[Poj 3311] Hie With The Pie<a class="headerlink" href="#poj-3311-hie-with-the-pie" title="Permalink to this heading"></a></h3>
+<h3>[Poj 3311] Hie With The Pie<a class="headerlink" href="#poj-3311-hie-with-the-pie" title="此标题的永久链接"></a></h3>
 <p>问题描述：一个送外卖的人，从起点0出发，要经过所有地点一次，然后再回到起点，求最少花费的代价（旅行商问题）。</p>
 <p>策略：假设当前已经访问过的顶点集合为 <span class="math notranslate nohighlight">\(S\)</span> （起点0当做未访问过），当前所在顶点为 <span class="math notranslate nohighlight">\(v\)</span> ，  <span class="math notranslate nohighlight">\(dp[S][v]\)</span> 表示：从 <span class="math notranslate nohighlight">\(v\)</span> 出发访问剩余所有顶点，最终回到起点0的路径的权重总和的最小值。设 <span class="math notranslate nohighlight">\(V\)</span> 表示所有顶点的集合。</p>
 <p>递推关系：</p>
@@ -607,7 +608,7 @@ dp[S][v] &amp;=  min\{ dp[S \cup u][u] + d[v][u] \},\ u \notin S\end{split}\]</d
 </section>
 </section>
 <section id="id8">
-<h2><span class="section-number">8.7. </span>实例<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">8.7. </span>实例<a class="headerlink" href="#id8" title="此标题的永久链接"></a></h2>
 <ul>
 <li><p>有面值1,5,10,20,50,100的人民币，求问10000有多少种组成方法？</p>
 <p><a class="reference external" href="https://www.zhihu.com/question/315108379">https://www.zhihu.com/question/315108379</a></p>
@@ -933,7 +934,7 @@ dp[S][v] &amp;=  min\{ dp[S \cup u][u] + d[v][u] \},\ u \notin S\end{split}\]</d
 </ul>
 </section>
 <section id="id9">
-<h2><span class="section-number">8.8. </span>参考资料<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">8.8. </span>参考资料<a class="headerlink" href="#id9" title="此标题的永久链接"></a></h2>
 <ol class="arabic simple">
 <li><p>状态压缩DP入门</p></li>
 </ol>
@@ -947,19 +948,19 @@ dp[S][v] &amp;=  min\{ dp[S \cup u][u] + d[v][u] \},\ u \notin S\end{split}\]</d
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="07_sort.html" class="btn btn-neutral float-left" title="7. 排序算法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="09_backtrack.html" class="btn btn-neutral float-right" title="9. 回溯" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="07_sort.html" class="btn btn-neutral float-left" title="7. 排序算法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="09_backtrack.html" class="btn btn-neutral float-right" title="9. 回溯" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018-2022, fong.</p>
+    <p>&#169; 版权所有 2018-2022, fong.</p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
    
 
 </footer>

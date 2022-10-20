@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="zh-CN" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>9. 回溯 &mdash; fong alpha documentation</title>
+  <title>9. 回溯 &mdash; fong alpha 文档</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,10 +19,11 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="10. 拓扑排序" href="10_topoSort.html" />
     <link rel="prev" title="8. 动态规划" href="08_dynamicProgramming.html" /> 
 </head>
@@ -40,7 +41,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="在文档中搜索" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -112,7 +113,7 @@
           <li><a href="index.html">数理与算法</a> &raquo;</li>
       <li><span class="section-number">9. </span>回溯</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/mathematicsAlgorithm/09_backtrack.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/mathematicsAlgorithm/09_backtrack.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
   </ul>
   <hr/>
@@ -121,10 +122,10 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">9. </span>回溯<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">9. </span>回溯<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
 <p>总体思路是深度优先遍历（DFS）。</p>
 <section id="id2">
-<h2><span class="section-number">9.1. </span>子集树<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">9.1. </span>子集树<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
 <p>子集树大小为 <span class="math notranslate nohighlight">\(\mathcal{O}(m^n)\)</span> ，<span class="math notranslate nohighlight">\(m\)</span> 是树的分支个数（ <span class="math notranslate nohighlight">\(m\)</span> 叉树），<span class="math notranslate nohighlight">\(n\)</span> 是树的深度。</p>
 <p>算法描述：</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kt">void</span><span class="w"> </span><span class="nf">backtrack</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"></span>
@@ -143,7 +144,7 @@
 </div>
 </section>
 <section id="id3">
-<h2><span class="section-number">9.2. </span>排列树<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">9.2. </span>排列树<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
 <p>排列树大小为 <span class="math notranslate nohighlight">\(\mathcal{O}(n!)\)</span> 。</p>
 <p>算法描述：</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kt">void</span><span class="w"> </span><span class="nf">backtrack</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"></span>
@@ -163,7 +164,7 @@
 </div>
 </section>
 <section id="id4">
-<h2><span class="section-number">9.3. </span>0-1背包问题<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">9.3. </span>0-1背包问题<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
 <p>算法描述：</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kt">void</span><span class="w"> </span><span class="nf">backtrack</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"></span>
 <span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
@@ -193,7 +194,7 @@
 </div>
 </section>
 <section id="id5">
-<h2><span class="section-number">9.4. </span>八皇后问题<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">9.4. </span>八皇后问题<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
 <p>八皇后问题共有 92 组解。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kt">bool</span><span class="w"> </span><span class="nf">place</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"></span>
 <span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
@@ -220,7 +221,7 @@
 </div>
 </section>
 <section id="id6">
-<h2><span class="section-number">9.5. </span>实例<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">9.5. </span>实例<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h2>
 <ul>
 <li><p>全排列（含重复元素）。Hint：在交换第 <span class="math notranslate nohighlight">\(i\)</span> 个元素与第 <span class="math notranslate nohighlight">\(j\)</span> 个元素之前，要求数组的 <span class="math notranslate nohighlight">\([i, j)\)</span> 区间中的元素没有与第 <span class="math notranslate nohighlight">\(j\)</span> 个元素重复。</p>
 <blockquote>
@@ -701,19 +702,19 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="08_dynamicProgramming.html" class="btn btn-neutral float-left" title="8. 动态规划" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="10_topoSort.html" class="btn btn-neutral float-right" title="10. 拓扑排序" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="08_dynamicProgramming.html" class="btn btn-neutral float-left" title="8. 动态规划" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="10_topoSort.html" class="btn btn-neutral float-right" title="10. 拓扑排序" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018-2022, fong.</p>
+    <p>&#169; 版权所有 2018-2022, fong.</p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
    
 
 </footer>

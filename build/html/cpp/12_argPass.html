@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="zh-CN" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>12. 参数传递 &mdash; fong alpha documentation</title>
+  <title>12. 参数传递 &mdash; fong alpha 文档</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,9 +19,10 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="13. 空类指针" href="13_nullClassPtr.html" />
     <link rel="prev" title="11. 堆和栈" href="11_heapStack.html" /> 
 </head>
@@ -39,7 +40,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="在文档中搜索" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -119,7 +120,7 @@
           <li><a href="index.html">C/C++</a> &raquo;</li>
       <li><span class="section-number">12. </span>参数传递</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/cpp/12_argPass.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/cpp/12_argPass.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
   </ul>
   <hr/>
@@ -128,11 +129,11 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">12. </span>参数传递<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">12. </span>参数传递<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
 <p>当形参是引用类型时，称对应实参被 <strong>引用传递</strong> （passed by reference）或者函数被 <strong>传引用调用</strong> （called by reference）。</p>
 <p>当实参的值被 <strong>拷贝</strong> 给形参时，形参和实参时两个相互独立的对象。这样的实参被 <strong>值传递</strong> （passed by value)或者函数被 <strong>传值调用</strong> （called by value）。</p>
 <section id="id2">
-<h2><span class="section-number">12.1. </span>传值参数<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">12.1. </span>传值参数<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
 <p>当初始化一个非引用类型的变量时，初始化被拷贝给变量。此时，对变量的改动 <strong>不会</strong> 影响初始值。</p>
 <dl class="simple">
 <dt><strong>指针形参</strong></dt><dd><p>指针的行为和其他 <strong>非引用</strong> 类型一样。当执行指针拷贝操作时，拷贝的是指针的值。拷贝之后， <strong>两个指针是不同的指针</strong> 。因为指针
@@ -176,14 +177,14 @@
 </div>
 </section>
 <section id="id3">
-<h2><span class="section-number">12.2. </span>传引用参数<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">12.2. </span>传引用参数<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
 <p>通过使用引用形参，允许函数改变实参的值。</p>
 <p>使用引用避免拷贝：拷贝大的类类型对象或者容器对象比较低效，甚至有的类类型（比如IO类型）根本不支持拷贝操作。当某种类型不支持拷贝操作时，函数只能通过
 引用形参访问该类型的对象。例如，需要比较两个string对象，而这样的对象可能会很长，为了避免拷贝且不改变对象的值，可以将形参声明为常量引用（const &amp;）。</p>
 <p>使用引用形参返回额外信息：通过给函数传入一个额外的引用形参，让其保存需要的值，而不需要作为函数返回值返回（避免函数返回值太多）。</p>
 </section>
 <section id="id4">
-<h2><span class="section-number">12.3. </span>删除指针<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">12.3. </span>删除指针<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
 <p>如果实参是一个动态申请的指针（new），在函数内 delete 该指针需要慎重。下例基于 Visual Studio 2013。</p>
 <ul>
 <li><p>值传递：删除之后实参指针本身的值不变，指向的值仍然可以访问，但结果是未知的。</p>
@@ -224,7 +225,7 @@
 </ul>
 </section>
 <section id="id5">
-<h2><span class="section-number">12.4. </span>参考资料<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">12.4. </span>参考资料<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
 <ol class="arabic simple">
 <li><p>《C++ Primer 第5版 中文版》 Page 187 – 190。</p></li>
 </ol>
@@ -235,19 +236,19 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="11_heapStack.html" class="btn btn-neutral float-left" title="11. 堆和栈" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="13_nullClassPtr.html" class="btn btn-neutral float-right" title="13. 空类指针" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="11_heapStack.html" class="btn btn-neutral float-left" title="11. 堆和栈" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="13_nullClassPtr.html" class="btn btn-neutral float-right" title="13. 空类指针" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018-2022, fong.</p>
+    <p>&#169; 版权所有 2018-2022, fong.</p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
    
 
 </footer>

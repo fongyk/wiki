@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="zh-CN" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2. Python 正则 &mdash; fong alpha documentation</title>
+  <title>2. Python 正则 &mdash; fong alpha 文档</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,9 +19,10 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="计算机网络" href="../computerNetwork/index.html" />
     <link rel="prev" title="1. 字符" href="01_character.html" /> 
 </head>
@@ -39,7 +40,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="在文档中搜索" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -111,7 +112,7 @@
           <li><a href="index.html">正则表达式</a> &raquo;</li>
       <li><span class="section-number">2. </span>Python 正则</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/regularExpression/02_pythonRe.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/regularExpression/02_pythonRe.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
   </ul>
   <hr/>
@@ -120,7 +121,7 @@
            <div itemprop="articleBody">
              
   <section id="python">
-<h1><span class="section-number">2. </span>Python 正则<a class="headerlink" href="#python" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">2. </span>Python 正则<a class="headerlink" href="#python" title="此标题的永久链接"></a></h1>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
 </pre></div>
 </div>
@@ -128,7 +129,7 @@
 <p>模式（Pattern）和被搜索的字符串既可以是 Unicode 字符串（ <code class="docutils literal notranslate"><span class="pre">str</span></code> ），也可以是 8 位字节串（ <code class="docutils literal notranslate"><span class="pre">bytes</span></code> ），但是两者不能混用。</p>
 <p>模式通常都使用原始字符串表示法：在带有 <code class="docutils literal notranslate"><span class="pre">r</span></code> 前缀的字符串字面值中，反斜杠不必做任何特殊处理。</p>
 <section id="id1">
-<h2><span class="section-number">2.1. </span>正则标志<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.1. </span>正则标志<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">re.I</span></code> ：忽略大小写。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">re.M</span></code> ：多行模式， <code class="docutils literal notranslate"><span class="pre">^</span></code> 匹配字符串的开始，以及每一行的开始（换行符后面紧跟的符号）； <code class="docutils literal notranslate"><span class="pre">$</span></code> 匹配字符串尾，以及每一行的结尾（换行符前面那个符号）。</p></li>
@@ -144,7 +145,7 @@
 </ul>
 </section>
 <section id="re-compile">
-<h2><span class="section-number">2.2. </span>re.compile<a class="headerlink" href="#re-compile" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.2. </span>re.compile<a class="headerlink" href="#re-compile" title="此标题的永久链接"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -152,56 +153,56 @@
 <p>正则表达式对象 Pattern 支持以下方法和属性：</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="Pattern.search">
-<span class="sig-prename descclassname"><span class="pre">Pattern.</span></span><span class="sig-name descname"><span class="pre">search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">endpos</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Pattern.search" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">Pattern.</span></span><span class="sig-name descname"><span class="pre">search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">endpos</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Pattern.search" title="永久链接至目标"></a></dt>
 <dd><p>扫描整个 string 寻找第一个匹配的位置，并返回一个相应的匹配对象；如果没有匹配，就返回 <code class="docutils literal notranslate"><span class="pre">None</span></code> 。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="Pattern.match">
-<span class="sig-prename descclassname"><span class="pre">Pattern.</span></span><span class="sig-name descname"><span class="pre">match</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">endpos</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Pattern.match" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">Pattern.</span></span><span class="sig-name descname"><span class="pre">match</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">endpos</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Pattern.match" title="永久链接至目标"></a></dt>
 <dd><p>如果 string 的开始位置能够找到这个正则样式的任意个匹配，就返回一个相应的匹配对象；如果不匹配，就返回 <code class="docutils literal notranslate"><span class="pre">None</span></code> 。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="Pattern.fullmatch">
-<span class="sig-prename descclassname"><span class="pre">Pattern.</span></span><span class="sig-name descname"><span class="pre">fullmatch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">endpos</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Pattern.fullmatch" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">Pattern.</span></span><span class="sig-name descname"><span class="pre">fullmatch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">endpos</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Pattern.fullmatch" title="永久链接至目标"></a></dt>
 <dd><p>如果整个 string 匹配这个正则表达式，就返回一个相应的匹配对象，否则就返回 <code class="docutils literal notranslate"><span class="pre">None</span></code> 。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="Pattern.split">
-<span class="sig-prename descclassname"><span class="pre">Pattern.</span></span><span class="sig-name descname"><span class="pre">split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxsplit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Pattern.split" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">Pattern.</span></span><span class="sig-name descname"><span class="pre">split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxsplit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Pattern.split" title="永久链接至目标"></a></dt>
 <dd><p>等价于 <code class="docutils literal notranslate"><span class="pre">re.split</span></code> 。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="Pattern.findall">
-<span class="sig-prename descclassname"><span class="pre">Pattern.</span></span><span class="sig-name descname"><span class="pre">findall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">endpos</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Pattern.findall" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">Pattern.</span></span><span class="sig-name descname"><span class="pre">findall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">endpos</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Pattern.findall" title="永久链接至目标"></a></dt>
 <dd><p>类似于 <code class="docutils literal notranslate"><span class="pre">re.findall</span></code> ，也可以接收可选参数 pos 和 endpos ，限制搜索范围。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="Pattern.sub">
-<span class="sig-prename descclassname"><span class="pre">Pattern.</span></span><span class="sig-name descname"><span class="pre">sub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Pattern.sub" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">Pattern.</span></span><span class="sig-name descname"><span class="pre">sub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Pattern.sub" title="永久链接至目标"></a></dt>
 <dd><p>等价于 <code class="docutils literal notranslate"><span class="pre">re.sub</span></code> 。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="Pattern.groups">
-<span class="sig-prename descclassname"><span class="pre">Pattern.</span></span><span class="sig-name descname"><span class="pre">groups</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Pattern.groups" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">Pattern.</span></span><span class="sig-name descname"><span class="pre">groups</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Pattern.groups" title="永久链接至目标"></a></dt>
 <dd><p>捕获到的模式串中组的数量。</p>
 </dd></dl>
 
 </section>
 <section id="re-search">
-<h2><span class="section-number">2.3. </span>re.search<a class="headerlink" href="#re-search" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.3. </span>re.search<a class="headerlink" href="#re-search" title="此标题的永久链接"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>扫描整个字符串找到匹配样式的 <strong>第一个位置</strong> ，并返回一个相应的匹配对象；如果没有匹配，就返回一个 <code class="docutils literal notranslate"><span class="pre">None</span></code> 。</p>
 </section>
 <section id="re-match">
-<h2><span class="section-number">2.4. </span>re.match<a class="headerlink" href="#re-match" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.4. </span>re.match<a class="headerlink" href="#re-match" title="此标题的永久链接"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -216,11 +217,11 @@
 </div>
 </section>
 <section id="id2">
-<h2><span class="section-number">2.5. </span>匹配对象<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.5. </span>匹配对象<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
 <p>匹配对象 Match 常用成员方法如下：</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="Match.groups">
-<span class="sig-prename descclassname"><span class="pre">Match.</span></span><span class="sig-name descname"><span class="pre">groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Match.groups" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">Match.</span></span><span class="sig-name descname"><span class="pre">groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Match.groups" title="永久链接至目标"></a></dt>
 <dd><ul class="simple">
 <li><p>返回一个元组，包含所有匹配的子组。</p></li>
 </ul>
@@ -228,7 +229,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="Match.groupdict">
-<span class="sig-prename descclassname"><span class="pre">Match.</span></span><span class="sig-name descname"><span class="pre">groupdict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Match.groupdict" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">Match.</span></span><span class="sig-name descname"><span class="pre">groupdict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Match.groupdict" title="永久链接至目标"></a></dt>
 <dd><ul class="simple">
 <li><p>返回匹配子组的字典形式，需要配合 <code class="docutils literal notranslate"><span class="pre">?P&lt;first_name&gt;</span></code> 使用。</p></li>
 </ul>
@@ -243,7 +244,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="Match.group">
-<span class="sig-prename descclassname"><span class="pre">Match.</span></span><span class="sig-name descname"><span class="pre">group</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">group1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">...</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Match.group" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">Match.</span></span><span class="sig-name descname"><span class="pre">group</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">group1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">...</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Match.group" title="永久链接至目标"></a></dt>
 <dd><ul class="simple">
 <li><p>返回一个或者多个匹配的子组。如果只有一个参数，结果就是一个字符串；如果有多个参数，结果就是一个元组（每个参数对应一个项）；如果没有参数，或者参数是 0，返回所有的匹配。</p></li>
 </ul>
@@ -262,7 +263,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="Match.start">
-<span class="sig-prename descclassname"><span class="pre">Match.</span></span><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Match.start" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">Match.</span></span><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Match.start" title="永久链接至目标"></a></dt>
 <dd><ul class="simple">
 <li><p>返回 group 匹配到的字串的开始位置。group 默认为 0（意思是整个匹配的子串）。</p></li>
 </ul>
@@ -270,7 +271,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="Match.end">
-<span class="sig-prename descclassname"><span class="pre">Match.</span></span><span class="sig-name descname"><span class="pre">end</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Match.end" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">Match.</span></span><span class="sig-name descname"><span class="pre">end</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Match.end" title="永久链接至目标"></a></dt>
 <dd><ul class="simple">
 <li><p>返回 group 匹配到的字串的结束位置（前闭后开）。group 默认为 0（意思是整个匹配的子串）。</p></li>
 </ul>
@@ -278,7 +279,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="Match.span">
-<span class="sig-prename descclassname"><span class="pre">Match.</span></span><span class="sig-name descname"><span class="pre">span</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Match.span" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">Match.</span></span><span class="sig-name descname"><span class="pre">span</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Match.span" title="永久链接至目标"></a></dt>
 <dd><ul class="simple">
 <li><p>对于一个匹配 m ， 返回一个二元组 <code class="docutils literal notranslate"><span class="pre">(m.start(group),</span> <span class="pre">m.end(group))</span></code> 。 注意如果 group 没有在这个匹配中，就返回 <code class="docutils literal notranslate"><span class="pre">(-1,</span> <span class="pre">-1)</span></code> 。group 默认为0，就是整个匹配。</p></li>
 </ul>
@@ -286,7 +287,7 @@
 
 </section>
 <section id="re-findall">
-<h2><span class="section-number">2.6. </span>re.findall<a class="headerlink" href="#re-findall" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.6. </span>re.findall<a class="headerlink" href="#re-findall" title="此标题的永久链接"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -302,7 +303,7 @@
 <p>迭代器版本： <code class="docutils literal notranslate"><span class="pre">re.finditer(pattern,</span> <span class="pre">string,</span> <span class="pre">flags=0)</span></code> 。</p>
 </section>
 <section id="re-split">
-<h2><span class="section-number">2.7. </span>re.split<a class="headerlink" href="#re-split" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.7. </span>re.split<a class="headerlink" href="#re-split" title="此标题的永久链接"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">maxsplit</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -317,7 +318,7 @@
 </div>
 </section>
 <section id="re-sub">
-<h2><span class="section-number">2.8. </span>re.sub<a class="headerlink" href="#re-sub" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.8. </span>re.sub<a class="headerlink" href="#re-sub" title="此标题的永久链接"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">repl</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -331,7 +332,7 @@
 </div>
 </section>
 <section id="id3">
-<h2><span class="section-number">2.9. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.9. </span>参考资料<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
 <ol class="arabic simple">
 <li><p>Python 正则表达式</p></li>
 </ol>
@@ -351,19 +352,19 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="01_character.html" class="btn btn-neutral float-left" title="1. 字符" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../computerNetwork/index.html" class="btn btn-neutral float-right" title="计算机网络" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="01_character.html" class="btn btn-neutral float-left" title="1. 字符" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="../computerNetwork/index.html" class="btn btn-neutral float-right" title="计算机网络" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018-2022, fong.</p>
+    <p>&#169; 版权所有 2018-2022, fong.</p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
    
 
 </footer>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="zh-CN" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>8. 基本数据类型 &mdash; fong alpha documentation</title>
+  <title>8. 基本数据类型 &mdash; fong alpha 文档</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,9 +19,10 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="9. random" href="09_random.html" />
     <link rel="prev" title="7. *args和**kwargs" href="07_arg.html" /> 
 </head>
@@ -39,7 +40,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="在文档中搜索" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -114,7 +115,7 @@
           <li><a href="index.html">Python</a> &raquo;</li>
       <li><span class="section-number">8. </span>基本数据类型</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/python/08_basicType.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/python/08_basicType.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
   </ul>
   <hr/>
@@ -123,9 +124,9 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">8. </span>基本数据类型<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">8. </span>基本数据类型<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
 <section id="id2">
-<h2><span class="section-number">8.1. </span>类型与方法<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">8.1. </span>类型与方法<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
 <ul>
 <li><p><strong>str</strong></p>
 <ul class="simple">
@@ -161,7 +162,7 @@
 </pre></div>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<p class="admonition-title">警告</p>
 <p><strong>str</strong> 是不可变对象，其所有方法都 <strong>不改变对象本身</strong> ，而是返回所创建的新对象。</p>
 </div>
 </li>
@@ -290,7 +291,7 @@
 </pre></div>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<p class="admonition-title">警告</p>
 <p>如果一个 defaultdict 必须包含给定的 key，则首先要 <strong>显式</strong> 地对所有的 key 进行访问和初始化。毕竟 defaultdict 只会为访问过的 key 关联一个默认值。</p>
 </div>
 </li>
@@ -310,7 +311,7 @@
 </li>
 </ul>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">备注</p>
 <p>对于 <code class="docutils literal notranslate"><span class="pre">切片（slice）</span></code> 操作，下标越界 <strong>不会</strong> 报错，返回空。</p>
 <p>对于 <code class="docutils literal notranslate"><span class="pre">索引（index）</span></code> 操作，下标越界 <strong>会</strong> 报错。</p>
 </div>
@@ -326,7 +327,7 @@
 </div>
 </section>
 <section id="id3">
-<h2><span class="section-number">8.2. </span>深复制和浅复制<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">8.2. </span>深复制和浅复制<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
 <ul>
 <li><p><strong>直接赋值</strong> ：并没有拷贝对象，而是拷贝了对象的引用，因此原始对象或被赋值对象的改变，都会导致另一个对象被修改。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="gp">&gt;&gt;&gt; </span><span class="n">alist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
@@ -396,12 +397,12 @@
 </li>
 </ul>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">备注</p>
 <p>对于可变对象 <strong>dict</strong> 和 <strong>list</strong> 、 <strong>set</strong> ，需要暂存临时对象或者作为函数参数传递时，如果不希望对象被更改，都需要使用深复制。</p>
 </div>
 </section>
 <section id="id4">
-<h2><span class="section-number">8.3. </span>再谈可变对象与不可变对象<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">8.3. </span>再谈可变对象与不可变对象<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
 <p>第一章和第十五章提到可变对象与不可变对象。</p>
 <p><strong>dict</strong> 和 <strong>set</strong> 的底层实现都是 <strong>哈希表</strong> 。哈希要求key唯一，因此 <strong>dict</strong> 和 <strong>set</strong> 的key都要求是 <strong>不可变对象</strong> 。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;abcd&#39;</span>
@@ -435,7 +436,7 @@
 </div>
 </section>
 <section id="id5">
-<h2><span class="section-number">8.4. </span>参考资料<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">8.4. </span>参考资料<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
 <ol class="arabic simple">
 <li><p>Python基本数据类型</p></li>
 </ol>
@@ -479,19 +480,19 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="07_arg.html" class="btn btn-neutral float-left" title="7. *args和**kwargs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="09_random.html" class="btn btn-neutral float-right" title="9. random" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="07_arg.html" class="btn btn-neutral float-left" title="7. *args和**kwargs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="09_random.html" class="btn btn-neutral float-right" title="9. random" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018-2022, fong.</p>
+    <p>&#169; 版权所有 2018-2022, fong.</p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
    
 
 </footer>

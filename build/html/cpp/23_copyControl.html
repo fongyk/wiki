@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="zh-CN" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>23. 拷贝控制 &mdash; fong alpha documentation</title>
+  <title>23. 拷贝控制 &mdash; fong alpha 文档</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,10 +19,11 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="24. 异常" href="24_exception.html" />
     <link rel="prev" title="22. const和constexpr" href="22_const.html" /> 
 </head>
@@ -40,7 +41,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="在文档中搜索" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -123,7 +124,7 @@
           <li><a href="index.html">C/C++</a> &raquo;</li>
       <li><span class="section-number">23. </span>拷贝控制</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/cpp/23_copyControl.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/cpp/23_copyControl.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
   </ul>
   <hr/>
@@ -132,7 +133,7 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">23. </span>拷贝控制<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">23. </span>拷贝控制<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
 <dl class="simple">
 <dt>拷贝控制（copy control）</dt><dd><ul class="simple">
 <li><p>拷贝构造函数（copy constructor）</p></li>
@@ -144,7 +145,7 @@
 </dd>
 </dl>
 <section id="id2">
-<h2><span class="section-number">23.1. </span>拷贝构造函数<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">23.1. </span>拷贝构造函数<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
 <p><strong>拷贝构造函数的第一个参数必须是引用类型</strong> 。</p>
 <p>在函数调用中，具有非引用类型的参数要进行拷贝初始化。类似地，当一个函数具有非引用类型的返回类型时，返回值会被用来初始化调用方的结果。</p>
 <p>拷贝构造函数被用来初始化 <strong>非引用类类型</strong> （被初始化的是类的非引用对象）参数，如果拷贝构造函数的参数不是引用类型，为了调用拷贝构造函数，
@@ -161,7 +162,7 @@
 </ul>
 </section>
 <section id="default-delete">
-<h2><span class="section-number">23.2. </span>default 和 delete<a class="headerlink" href="#default-delete" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">23.2. </span>default 和 delete<a class="headerlink" href="#default-delete" title="此标题的永久链接"></a></h2>
 <dl>
 <dt>使用 <code class="docutils literal notranslate"><span class="pre">=default</span></code></dt><dd><p>将拷贝控制成员定义为 <code class="docutils literal notranslate"><span class="pre">=default</span></code> ，显式要求编译器生成合成的版本。</p>
 <blockquote>
@@ -178,7 +179,7 @@
 </dl>
 </section>
 <section id="id3">
-<h2><span class="section-number">23.3. </span>直接初始化和拷贝初始化<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">23.3. </span>直接初始化和拷贝初始化<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
 <p>直接初始化直接调用与实参匹配的构造函数，拷贝初始化总是调用拷贝构造函数。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">string</span><span class="w"> </span><span class="n">dots</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;.&#39;</span><span class="p">);</span><span class="w">         </span><span class="c1">// 直接初始化</span>
 <span class="n">string</span><span class="w"> </span><span class="nf">s</span><span class="p">(</span><span class="n">dots</span><span class="p">);</span><span class="w">               </span><span class="c1">// 直接初始化</span>
@@ -249,7 +250,7 @@
 <p>当把拷贝构造函数设置为 <code class="docutils literal notranslate"><span class="pre">private</span></code> ，ct3、ct4、ct5的初始化都无法完成。</p>
 </section>
 <section id="explicit">
-<h2><span class="section-number">23.4. </span>explicit<a class="headerlink" href="#explicit" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">23.4. </span>explicit<a class="headerlink" href="#explicit" title="此标题的永久链接"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">This</span><span class="w"> </span><span class="n">keyword</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">declaration</span><span class="w"> </span><span class="n">specifier</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">only</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">applied</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">in</span><span class="o">-</span><span class="k">class</span><span class="w"> </span><span class="nc">constructor</span><span class="w"> </span><span class="n">declaration</span><span class="p">.</span><span class="w"> </span><span class="n">An</span><span class="w"> </span><span class="k">explicit</span><span class="w"> </span><span class="n">constructor</span><span class="w"> </span><span class="n">cannot</span><span class="w"> </span><span class="n">take</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">implicit</span><span class="w"> </span><span class="n">conversions</span><span class="p">.</span><span class="w"> </span><span class="n">It</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">only</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">explicitly</span><span class="w"> </span><span class="n">construct</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">object</span><span class="p">.</span><span class="w"></span>
 </pre></div>
 </div>
@@ -299,7 +300,7 @@
 </div>
 </section>
 <section id="initializer-list">
-<h2><span class="section-number">23.5. </span>initializer_list<a class="headerlink" href="#initializer-list" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">23.5. </span>initializer_list<a class="headerlink" href="#initializer-list" title="此标题的永久链接"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;initializer_list&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
@@ -372,7 +373,7 @@
 </div>
 </section>
 <section id="push-emplace">
-<h2><span class="section-number">23.6. </span>push 和 emplace<a class="headerlink" href="#push-emplace" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">23.6. </span>push 和 emplace<a class="headerlink" href="#push-emplace" title="此标题的永久链接"></a></h2>
 <p>在 19 章提到了 push 和 emplace 的区别，这里用一个例子解释。</p>
 <div class="toggle docutils container">
 <div class="header docutils container">
@@ -455,14 +456,14 @@
 <div class="line"><br /></div>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">备注</p>
 <p><code class="docutils literal notranslate"><span class="pre">std::move</span></code> 并不会真正地移动对象（真正的移动操作是移动构造函数、移动赋值运算符等完成的）， <code class="docutils literal notranslate"><span class="pre">std::move</span></code> 只是将参数转换为右值引用。</p>
 <p>我们可以销毁一个移动之后的源对象（moved-from），也可以赋予它新值，但是不能使用一个移后源对象的值。</p>
 <p>如：上例中的 temp 被移动后，就不能再取它的值来使用。</p>
 </div>
 </section>
 <section id="id4">
-<h2><span class="section-number">23.7. </span>参考资料<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">23.7. </span>参考资料<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
 <p>1.《C++ Primer 第5版 中文版》 Page 440 – 442，449，470 – 475。</p>
 <ol class="arabic simple" start="2">
 <li><p>C++的一大误区——深入解释直接初始化与复制初始化的区别</p></li>
@@ -495,19 +496,19 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="22_const.html" class="btn btn-neutral float-left" title="22. const和constexpr" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="24_exception.html" class="btn btn-neutral float-right" title="24. 异常" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="22_const.html" class="btn btn-neutral float-left" title="22. const和constexpr" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="24_exception.html" class="btn btn-neutral float-right" title="24. 异常" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018-2022, fong.</p>
+    <p>&#169; 版权所有 2018-2022, fong.</p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
    
 
 </footer>

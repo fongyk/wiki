@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="zh-CN" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>22. const和constexpr &mdash; fong alpha documentation</title>
+  <title>22. const和constexpr &mdash; fong alpha 文档</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,9 +19,10 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="23. 拷贝控制" href="23_copyControl.html" />
     <link rel="prev" title="21. 运算符优先级" href="21_operatorPrior.html" /> 
 </head>
@@ -39,7 +40,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="在文档中搜索" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -120,7 +121,7 @@
           <li><a href="index.html">C/C++</a> &raquo;</li>
       <li><span class="section-number">22. </span>const和constexpr</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/cpp/22_const.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/cpp/22_const.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
   </ul>
   <hr/>
@@ -129,9 +130,9 @@
            <div itemprop="articleBody">
              
   <section id="constconstexpr">
-<h1><span class="section-number">22. </span>const和constexpr<a class="headerlink" href="#constconstexpr" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">22. </span>const和constexpr<a class="headerlink" href="#constconstexpr" title="此标题的永久链接"></a></h1>
 <section id="constconst">
-<h2><span class="section-number">22.1. </span>顶层const与底层const<a class="headerlink" href="#constconst" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">22.1. </span>顶层const与底层const<a class="headerlink" href="#constconst" title="此标题的永久链接"></a></h2>
 <p>由于指针本身是一个对象，它有可以指向另一个对象，因此，指针本身是不是常量以及指针所指对象是不是常量就是两个相互独立的问题。</p>
 <p><strong>顶层const</strong> （top-level const）表示 <strong>对象本身</strong> 是常量，<strong>底层const</strong> （low-level const）与指针或引用等复合类型的 <strong>基本类型</strong> 部分有关。
 对指针而言，既可以是顶层const，也可以是底层const。</p>
@@ -162,7 +163,7 @@
 必须使用同类型的对象初始化。同样的初始化规则可以应用到函数的 <strong>参数传递</strong> 上。</p>
 </section>
 <section id="const">
-<h2><span class="section-number">22.2. </span>const形参和实参<a class="headerlink" href="#const" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">22.2. </span>const形参和实参<a class="headerlink" href="#const" title="此标题的永久链接"></a></h2>
 <p>使用实参初始化形参时，会 <strong>忽略掉顶层const</strong> ，换句话说，形参的顶层const被忽略了。因此，当形参有顶层const时，传给它常量对象或非常量对象都是可以的 。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">fcn</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="cm">/* */</span><span class="p">}</span><span class="w"></span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">fcn</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="cm">/* */</span><span class="p">}</span><span class="w"> </span><span class="c1">// 重复定义了 fcn</span>
@@ -172,7 +173,7 @@
 反之，如果参数类型是int，也可传入const int对象（传值调用，函数拷贝了实参）。</p>
 </section>
 <section id="id1">
-<h2><span class="section-number">22.3. </span>const成员函数<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">22.3. </span>const成员函数<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
 <p>默认情况下，<code class="docutils literal notranslate"><span class="pre">this</span></code> 指针的类型是指向 <strong>类类型非常量版本的常量指针</strong> ，即 <code class="docutils literal notranslate"><span class="pre">ClassName</span> <span class="pre">*const</span></code> 。尽管 <code class="docutils literal notranslate"><span class="pre">this</span></code> 是隐式的，但它仍然需要遵守初始化规则。
 意味着在默认情况下，我们不能把 <code class="docutils literal notranslate"><span class="pre">this</span></code> 绑定到一个常量对象上。这一情况也使得我们不能在一个常量对象上调用普通的成员函数。通过把关键字 const 放在成员函数参数列表后面，
 定义该成员函数为 <strong>常量成员函数</strong> 。</p>
@@ -184,12 +185,12 @@
 </div>
 <p>此时，<code class="docutils literal notranslate"><span class="pre">this</span></code> 成为指向常量的指针，所以常量成员函数 <strong>不能改变调用它的对象的内容</strong> 。</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">备注</p>
 <p>常量对象、常量对象的引用和指针都只能调用常量成员函数。</p>
 </div>
 </section>
 <section id="constexpr">
-<h2><span class="section-number">22.4. </span>constexpr<a class="headerlink" href="#constexpr" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">22.4. </span>constexpr<a class="headerlink" href="#constexpr" title="此标题的永久链接"></a></h2>
 <p>constexpr 用于指示常量表达式，在编译阶段就能对该表达式求值。const 变量的值可以在编译时确定，也可以在运行时确定，但 constexpr 变量的值必须在编译时就能确定。</p>
 <p>定义 constexpr 变量的时候，变量的类型只能是基本数据类型、指针和引用，而不能是其它标准库类型；对于自定义类型，constexpr 构造函数的函数体必须为空，所有成员变量的初始化都放到初始化列表中。</p>
 <p>constexpr 函数的参数和返回值必须是字面值类型。
@@ -251,7 +252,7 @@
 </div>
 </section>
 <section id="id2">
-<h2><span class="section-number">22.5. </span>参考资料<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">22.5. </span>参考资料<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
 <p>1.《C++ Primer 第5版 中文版》 Page 57 – 58， Page 190 – 191，Page 231 – 232。</p>
 </section>
 </section>
@@ -260,19 +261,19 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="21_operatorPrior.html" class="btn btn-neutral float-left" title="21. 运算符优先级" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="23_copyControl.html" class="btn btn-neutral float-right" title="23. 拷贝控制" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="21_operatorPrior.html" class="btn btn-neutral float-left" title="21. 运算符优先级" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="23_copyControl.html" class="btn btn-neutral float-right" title="23. 拷贝控制" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018-2022, fong.</p>
+    <p>&#169; 版权所有 2018-2022, fong.</p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
    
 
 </footer>

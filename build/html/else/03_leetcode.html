@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="zh-CN" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2. 编程算法 &mdash; fong alpha documentation</title>
+  <title>2. 编程算法 &mdash; fong alpha 文档</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,10 +19,11 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="3. rst语法" href="02_test_code.html" />
     <link rel="prev" title="1. 复习" href="01_interview.html" /> 
 </head>
@@ -40,7 +41,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="在文档中搜索" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -144,7 +145,7 @@
           <li><a href="index.html">其他</a> &raquo;</li>
       <li><span class="section-number">2. </span>编程算法</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/else/03_leetcode.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/else/03_leetcode.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
   </ul>
   <hr/>
@@ -153,9 +154,9 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">2. </span>编程算法<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">2. </span>编程算法<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
 <section id="single-number">
-<h2><span class="section-number">2.1. </span>找出数组中的特异数字（Single Number）<a class="headerlink" href="#single-number" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.1. </span>找出数组中的特异数字（Single Number）<a class="headerlink" href="#single-number" title="此标题的永久链接"></a></h2>
 <ul>
 <li><p>1 个数字出现奇数次，其余数字出现偶数次。Hint：异或运算。</p></li>
 <li><p>2 个数字出现奇数次，其余数字出现偶数次。Hint：先做异或运算，得到的是这两个数的异或结果；找到该结果的二进制表示中为 1 的某一位，根据该位为 0/1 将数组分为两组，分别做异或运算。</p>
@@ -178,12 +179,12 @@
 </ul>
 </section>
 <section id="id2">
-<h2><span class="section-number">2.2. </span>均匀分布生成其他分布的方法<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.2. </span>均匀分布生成其他分布的方法<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
 <p>Hint：中心极限定理。</p>
 <p><a class="reference external" href="https://blog.csdn.net/haolexiao/article/details/60511164">https://blog.csdn.net/haolexiao/article/details/60511164</a></p>
 </section>
 <section id="id3">
-<h2><span class="section-number">2.3. </span>海量数据处理<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.3. </span>海量数据处理<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
 <p>Hint：哈希方法，把大文件划分成小文件，读进内存依次处理，如果需要统计频率/个数，再利用哈希；Bitmap，用一个（或几个）比特位来标记某个元素对应的值。</p>
 <blockquote>
 <div><div class="toggle docutils container">
@@ -243,7 +244,7 @@
 </ul>
 </section>
 <section id="id4">
-<h2><span class="section-number">2.4. </span>链表<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.4. </span>链表<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
 <p>对每一个节点操作之前，应先考虑该节点是否为空。</p>
 <ul>
 <li><p>反转链表。Hint：方法一，逐个反转；方法二，递归；方法三，使用栈保存节点的值，反向赋给所有节点。</p>
@@ -799,7 +800,7 @@
 </ul>
 </section>
 <section id="leetcode-sort-colors-k">
-<h2><span class="section-number">2.5. </span>[LeetCode] Sort Colors（三颜色排序 → K 颜色排序）<a class="headerlink" href="#leetcode-sort-colors-k" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.5. </span>[LeetCode] Sort Colors（三颜色排序 → K 颜色排序）<a class="headerlink" href="#leetcode-sort-colors-k" title="此标题的永久链接"></a></h2>
 <p><a class="reference external" href="https://blog.csdn.net/princexiexiaofeng/article/details/79645511">https://blog.csdn.net/princexiexiaofeng/article/details/79645511</a></p>
 <blockquote>
 <div><div class="toggle docutils container">
@@ -839,7 +840,7 @@
 </div></blockquote>
 </section>
 <section id="k">
-<h2><span class="section-number">2.6. </span>找到数组第 <span class="math notranslate nohighlight">\(k\)</span> 大的数<a class="headerlink" href="#k" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.6. </span>找到数组第 <span class="math notranslate nohighlight">\(k\)</span> 大的数<a class="headerlink" href="#k" title="此标题的永久链接"></a></h2>
 <p><a class="reference external" href="https://leetcode.com/problems/kth-largest-element-in-an-array/">https://leetcode.com/problems/kth-largest-element-in-an-array/</a></p>
 <ul>
 <li><p>排序。时间复杂度 <span class="math notranslate nohighlight">\(\mathcal{O}(N \log N)\)</span> 。</p></li>
@@ -908,7 +909,7 @@
 </ul>
 </section>
 <section id="leetcode-best-time-to-buy-and-sell-stock">
-<h2><span class="section-number">2.7. </span>[LeetCode] Best Time to Buy and Sell Stock 买卖股票的最佳时间<a class="headerlink" href="#leetcode-best-time-to-buy-and-sell-stock" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.7. </span>[LeetCode] Best Time to Buy and Sell Stock 买卖股票的最佳时间<a class="headerlink" href="#leetcode-best-time-to-buy-and-sell-stock" title="此标题的永久链接"></a></h2>
 <ul>
 <li><p>最多一次交易</p>
 <blockquote>
@@ -1011,7 +1012,7 @@
 </ul>
 </section>
 <section id="leetcode-partition-equal-subset-sum">
-<h2><span class="section-number">2.8. </span>[LeetCode] Partition Equal Subset Sum 数组分成两个子集，和相等<a class="headerlink" href="#leetcode-partition-equal-subset-sum" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.8. </span>[LeetCode] Partition Equal Subset Sum 数组分成两个子集，和相等<a class="headerlink" href="#leetcode-partition-equal-subset-sum" title="此标题的永久链接"></a></h2>
 <p><a class="reference external" href="https://leetcode.com/problems/partition-equal-subset-sum/">https://leetcode.com/problems/partition-equal-subset-sum/</a></p>
 <blockquote>
 <div><div class="toggle docutils container">
@@ -1047,7 +1048,7 @@
 </div></blockquote>
 </section>
 <section id="leetcode-find-all-anagrams-in-a-string">
-<h2><span class="section-number">2.9. </span>[LeetCode] Find All Anagrams in a String 统计变位词出现的位置。<a class="headerlink" href="#leetcode-find-all-anagrams-in-a-string" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.9. </span>[LeetCode] Find All Anagrams in a String 统计变位词出现的位置。<a class="headerlink" href="#leetcode-find-all-anagrams-in-a-string" title="此标题的永久链接"></a></h2>
 <p>Hint：采用滑动窗口和 <strong>计数器</strong> 进行比较。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/find-all-anagrams-in-a-string/">https://leetcode.com/problems/find-all-anagrams-in-a-string/</a></p>
 <blockquote>
@@ -1086,7 +1087,7 @@
 </div></blockquote>
 </section>
 <section id="id5">
-<h2><span class="section-number">2.10. </span>寻找重复数<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.10. </span>寻找重复数<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
 <p>数值范围为 <span class="math notranslate nohighlight">\(\{ 1,2,3,...,n \}\)</span> ，有的出现 2 次，有的出现 1 次。Hint：把数组元素的值当做下标，由于元素存在重复，因此必然会 <strong>重复多次访问同一个位置</strong> 。
 从另一个角度讲，访问序列中存在“环”。排序的时间复杂度高，哈希不满足空间复杂度为 <span class="math notranslate nohighlight">\(\mathcal{O}(1)\)</span> 的要求。</p>
 <ul>
@@ -1255,7 +1256,7 @@
 </ul>
 </section>
 <section id="leetcode-spiral-matrix">
-<h2><span class="section-number">2.11. </span>[LeetCode] Spiral Matrix 环形打印矩阵<a class="headerlink" href="#leetcode-spiral-matrix" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.11. </span>[LeetCode] Spiral Matrix 环形打印矩阵<a class="headerlink" href="#leetcode-spiral-matrix" title="此标题的永久链接"></a></h2>
 <p><a class="reference external" href="https://leetcode.com/problems/spiral-matrix/">https://leetcode.com/problems/spiral-matrix/</a></p>
 <blockquote>
 <div><div class="toggle docutils container">
@@ -1309,7 +1310,7 @@
 </div></blockquote>
 </section>
 <section id="leetcode-longest-consecutive-sequence">
-<h2><span class="section-number">2.12. </span>[LeetCode] Longest Consecutive Sequence 最长连续序列<a class="headerlink" href="#leetcode-longest-consecutive-sequence" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.12. </span>[LeetCode] Longest Consecutive Sequence 最长连续序列<a class="headerlink" href="#leetcode-longest-consecutive-sequence" title="此标题的永久链接"></a></h2>
 <p>Hint：方法一，排序；方法二，对于每个元素 <span class="math notranslate nohighlight">\(n\)</span> ，搜索 <span class="math notranslate nohighlight">\(n+1\)</span> 是否在数组中，使用 hash/set 可以获得 <span class="math notranslate nohighlight">\(\mathcal{O}(1)\)</span> 的查找复杂度。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/longest-consecutive-sequence/">https://leetcode.com/problems/longest-consecutive-sequence/</a></p>
 <blockquote>
@@ -1344,12 +1345,12 @@
 </div></blockquote>
 </section>
 <section id="id6">
-<h2><span class="section-number">2.13. </span>最大公约数与最小公倍数<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.13. </span>最大公约数与最小公倍数<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h2>
 <p>Hint：辗转相除法；最小公倍数等于两数乘积除以最大公约数。</p>
 <p><a class="reference external" href="https://www.cnblogs.com/Arvin-JIN/p/7247619.html">https://www.cnblogs.com/Arvin-JIN/p/7247619.html</a></p>
 </section>
 <section id="id7">
-<h2><span class="section-number">2.14. </span>跳跃的蚂蚱<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.14. </span>跳跃的蚂蚱<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h2>
 <p>从 0 点出发，往正或负向跳跃，第一次跳跃一个单位，之后每次跳跃距离比上一次多一个单位，跳跃多少次可到到达坐标 <span class="math notranslate nohighlight">\(x\)</span> 处？
 Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能到达的坐标是一个差为 2 的等差数列（如 <span class="math notranslate nohighlight">\(n=2\)</span> ，可到达 <span class="math notranslate nohighlight">\(\{-3,-1,1,3\}\)</span> ）。
 只需找到最小的 <span class="math notranslate nohighlight">\(n\)</span> 使得</p>
@@ -1381,7 +1382,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </div></blockquote>
 </section>
 <section id="n-0">
-<h2><span class="section-number">2.15. </span>求 <span class="math notranslate nohighlight">\(n\)</span> 的阶乘末尾有多少个 <span class="math notranslate nohighlight">\(0\)</span><a class="headerlink" href="#n-0" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.15. </span>求 <span class="math notranslate nohighlight">\(n\)</span> 的阶乘末尾有多少个 <span class="math notranslate nohighlight">\(0\)</span><a class="headerlink" href="#n-0" title="此标题的永久链接"></a></h2>
 <p>Hint：1个 <span class="math notranslate nohighlight">\(5\)</span> 和1个 <span class="math notranslate nohighlight">\(2\)</span> 搭配可以得到1个 <span class="math notranslate nohighlight">\(0\)</span> ；<span class="math notranslate nohighlight">\(2\)</span> 的个数比 <span class="math notranslate nohighlight">\(5\)</span> 多，
 因此只关心 <span class="math notranslate nohighlight">\(5\)</span> 的个数；<span class="math notranslate nohighlight">\(25\)</span> 包含2个 <span class="math notranslate nohighlight">\(5\)</span> ，<span class="math notranslate nohighlight">\(125\)</span> 包含3个 <span class="math notranslate nohighlight">\(5\)</span> …。</p>
 <blockquote>
@@ -1410,7 +1411,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </div></blockquote>
 </section>
 <section id="id8">
-<h2><span class="section-number">2.16. </span>求一个整数的二进制表示中 <span class="math notranslate nohighlight">\(1\)</span> 的个数<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.16. </span>求一个整数的二进制表示中 <span class="math notranslate nohighlight">\(1\)</span> 的个数<a class="headerlink" href="#id8" title="此标题的永久链接"></a></h2>
 <p>Hint：移位操作；负数可能造成死循环。</p>
 <p><strong>C++中，指定移位次数大于或等于对象类型的比特数（如int型的32位），或者对负数进行左移操作，结果都是未定义的</strong> 。
 例如：<code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&gt;&gt;</span> <span class="pre">32</span></code> 是未定义的，但是允许 <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&gt;&gt;=</span> <span class="pre">1</span></code> 执行无限次，这是安全的。延伸：检查一个数是否是 2 的整次幂，Hint：二进制表示只有一个 1；检查一个数是否是 4 的整次幂，Hint：4 的整次幂的二进制表示中，
@@ -1489,7 +1490,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </div></blockquote>
 </section>
 <section id="leetcode-subarray-sum-equals-k-k">
-<h2><span class="section-number">2.17. </span>[LeetCode] Subarray Sum Equals K 子数组和为 <span class="math notranslate nohighlight">\(K\)</span><a class="headerlink" href="#leetcode-subarray-sum-equals-k-k" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.17. </span>[LeetCode] Subarray Sum Equals K 子数组和为 <span class="math notranslate nohighlight">\(K\)</span><a class="headerlink" href="#leetcode-subarray-sum-equals-k-k" title="此标题的永久链接"></a></h2>
 <p>Hint：依次求数组的前 <span class="math notranslate nohighlight">\(n\)</span> 项和 <span class="math notranslate nohighlight">\(sum[n]\)</span> ，<span class="math notranslate nohighlight">\(n \in [0, arr\_size]\)</span> （注意：0也在内），
 将和作为哈希表的key，和的值出现次数作为value；如果存在 <span class="math notranslate nohighlight">\(sum[i]−sum[j]=K \ (i \ge j)\)</span> ，则 <span class="math notranslate nohighlight">\(sum[i]\)</span> 和 <span class="math notranslate nohighlight">\(sum[j]\)</span> 都应该在哈希表中。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/subarray-sum-equals-k/">https://leetcode.com/problems/subarray-sum-equals-k/</a></p>
@@ -1532,7 +1533,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </div></blockquote>
 </section>
 <section id="id9">
-<h2><span class="section-number">2.18. </span>使用位运算进行加法运算<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.18. </span>使用位运算进行加法运算<a class="headerlink" href="#id9" title="此标题的永久链接"></a></h2>
 <p>Hint：原位加法运算等效为 <code class="docutils literal notranslate"><span class="pre">^</span></code> 运算，进位等效为 <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> 和 <code class="docutils literal notranslate"><span class="pre">移位</span></code> 的复合。 <strong>注：C++不允许对负数进行左移运算。</strong></p>
 <p><a class="reference external" href="https://leetcode.com/problems/sum-of-two-integers/">https://leetcode.com/problems/sum-of-two-integers/</a></p>
 <blockquote>
@@ -1588,7 +1589,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </div></blockquote>
 </section>
 <section id="leetcode-longest-substring-with-at-least-k-repeating-characters">
-<h2><span class="section-number">2.19. </span>[LeetCode] Longest Substring with At Least K Repeating Characters 包含重复字符的最长子串<a class="headerlink" href="#leetcode-longest-substring-with-at-least-k-repeating-characters" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.19. </span>[LeetCode] Longest Substring with At Least K Repeating Characters 包含重复字符的最长子串<a class="headerlink" href="#leetcode-longest-substring-with-at-least-k-repeating-characters" title="此标题的永久链接"></a></h2>
 <p>Hint：由于该字符串只包含小写字母，因此直接使用长度为26的静态数组来统计字符频率更为简洁高效，不需要使用map。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/">https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/</a></p>
 <blockquote>
@@ -1638,7 +1639,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </div></blockquote>
 </section>
 <section id="id10">
-<h2><span class="section-number">2.20. </span>几个数的和。<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.20. </span>几个数的和。<a class="headerlink" href="#id10" title="此标题的永久链接"></a></h2>
 <ul>
 <li><p>[LeetCode] Two Sum 两数之和为目标值。Hint：哈希，时间复杂度 <span class="math notranslate nohighlight">\(\mathcal{O}(N)\)</span> 。</p>
 <blockquote>
@@ -1816,7 +1817,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </ul>
 </section>
 <section id="leetcode-maximum-product-subarray">
-<h2><span class="section-number">2.21. </span>[LeetCode] Maximum Product Subarray 求连续子数组的最大乘积<a class="headerlink" href="#leetcode-maximum-product-subarray" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.21. </span>[LeetCode] Maximum Product Subarray 求连续子数组的最大乘积<a class="headerlink" href="#leetcode-maximum-product-subarray" title="此标题的永久链接"></a></h2>
 <p>Hint：数组中存在负数，负负得正，因此相比于连续子数组最大和问题，不仅需要记录以每个元素结尾的连续乘积的最大值，还需要记录最小值。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/maximum-product-subarray/">https://leetcode.com/problems/maximum-product-subarray/</a></p>
 <blockquote>
@@ -1851,7 +1852,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </div></blockquote>
 </section>
 <section id="id11">
-<h2><span class="section-number">2.22. </span>统计 1 的数目<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.22. </span>统计 1 的数目<a class="headerlink" href="#id11" title="此标题的永久链接"></a></h2>
 <p>给定一个十进制整数 <span class="math notranslate nohighlight">\(N\)</span> ，统计从 <span class="math notranslate nohighlight">\(1\)</span> 到 <span class="math notranslate nohighlight">\(N\)</span> 所有的整数各位出现的 <span class="math notranslate nohighlight">\(1\)</span> 的数目。Hint： <span class="math notranslate nohighlight">\(1\)</span> 的数目 = 个位出现 <span class="math notranslate nohighlight">\(1\)</span> 的数目 + 十位出现 <span class="math notranslate nohighlight">\(1\)</span> 的数目 + 百位出现 <span class="math notranslate nohighlight">\(1\)</span> 的数目  + ……。以百位为例：如果百位数字为0，则百位出现1的次数只由更高位决定，如12013，次数为12 * 100；如果百位数字为1，则百位出现1的次数由更高位和更低位同时决定，如12113，次数为12 * 100 + (13 + 1)；如果百位数字大于1，则百位出现1的次数只由更高位决定，如12213，次数为(12 + 1) * 100。时间复杂度 <span class="math notranslate nohighlight">\(\mathcal{O}(\log_{10}(N))\)</span> 。</p>
 <p><a class="reference external" href="http://www.cnblogs.com/jy02414216/archive/2011/03/09/1977724.html">http://www.cnblogs.com/jy02414216/archive/2011/03/09/1977724.html</a></p>
 <blockquote>
@@ -1894,7 +1895,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </div></blockquote>
 </section>
 <section id="id12">
-<h2><span class="section-number">2.23. </span>数组循环移位<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.23. </span>数组循环移位<a class="headerlink" href="#id12" title="此标题的永久链接"></a></h2>
 <p>循环右移 <span class="math notranslate nohighlight">\(K\)</span> 位，时间复杂度 <span class="math notranslate nohighlight">\(\mathcal{O}(N)\)</span> 。Hint：三次翻转。</p>
 <blockquote>
 <div><div class="toggle docutils container">
@@ -1919,7 +1920,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </div></blockquote>
 </section>
 <section id="leetcode-divide-two-integers">
-<h2><span class="section-number">2.24. </span>[LeetCode] Divide Two Integers 整数除法<a class="headerlink" href="#leetcode-divide-two-integers" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.24. </span>[LeetCode] Divide Two Integers 整数除法<a class="headerlink" href="#leetcode-divide-two-integers" title="此标题的永久链接"></a></h2>
 <p>Hint：先取绝对值，做正整数之间的除法；防止溢出。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/divide-two-integers/">https://leetcode.com/problems/divide-two-integers/</a></p>
 <blockquote>
@@ -1973,7 +1974,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </div></blockquote>
 </section>
 <section id="leetcode-fraction-to-recurring-decimal">
-<h2><span class="section-number">2.25. </span>[LeetCode] Fraction to Recurring Decimal 循环小数<a class="headerlink" href="#leetcode-fraction-to-recurring-decimal" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.25. </span>[LeetCode] Fraction to Recurring Decimal 循环小数<a class="headerlink" href="#leetcode-fraction-to-recurring-decimal" title="此标题的永久链接"></a></h2>
 <p>Hint：小数除法：余数乘以10再求余；如果余数出现重复，则说明是循环小数。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/fraction-to-recurring-decimal/">https://leetcode.com/problems/fraction-to-recurring-decimal/</a></p>
 <blockquote>
@@ -2028,7 +2029,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </div></blockquote>
 </section>
 <section id="id13">
-<h2><span class="section-number">2.26. </span>正整数质因数分解。<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.26. </span>正整数质因数分解。<a class="headerlink" href="#id13" title="此标题的永久链接"></a></h2>
 <blockquote>
 <div><div class="toggle docutils container">
 <div class="header docutils container">
@@ -2050,7 +2051,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </div></blockquote>
 </section>
 <section id="hint">
-<h2><span class="section-number">2.27. </span>旋转数组查找。Hint：采用二分查找的思路。<a class="headerlink" href="#hint" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.27. </span>旋转数组查找。Hint：采用二分查找的思路。<a class="headerlink" href="#hint" title="此标题的永久链接"></a></h2>
 <ul>
 <li><p>二分查找</p>
 <div class="toggle docutils container">
@@ -2263,7 +2264,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </ul>
 </section>
 <section id="leetcode-maximum-gap">
-<h2><span class="section-number">2.28. </span>[LeetCode] Maximum Gap 最大间隔<a class="headerlink" href="#leetcode-maximum-gap" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.28. </span>[LeetCode] Maximum Gap 最大间隔<a class="headerlink" href="#leetcode-maximum-gap" title="此标题的永久链接"></a></h2>
 <p>Hint：方法一，普通排序，逐个比较；方法二，桶排序。将 <span class="math notranslate nohighlight">\(n\)</span> 个数放到 <span class="math notranslate nohighlight">\(n+1\)</span> 个桶中，最小值放第一个桶，
 最大值放最后一个桶，每个桶的大小为 <span class="math notranslate nohighlight">\(\frac{max-min}{n}\)</span> 。根据鸽巢原理，至少存在一个桶为空。最大间隔必然出现在空桶两侧，且只与左侧桶的最大值、
 右侧桶的最小值有关。（事实上，可以将 <span class="math notranslate nohighlight">\(n\)</span> 个数放到 <span class="math notranslate nohighlight">\(n\)</span> 个桶中，如果没有空桶，则刚好每个桶有且仅有一个数，最大间隔出现在相邻桶中；如果某个桶有2个数以上，
@@ -2330,7 +2331,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </div></blockquote>
 </section>
 <section id="id14">
-<h2><span class="section-number">2.29. </span>数组操作模拟大数乘法<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.29. </span>数组操作模拟大数乘法<a class="headerlink" href="#id14" title="此标题的永久链接"></a></h2>
 <p>Hint：从低位到高位，采用竖式计算，记录所有位的乘积，再将对应位的结果相加，最后进位。假设数组 <span class="math notranslate nohighlight">\(a\)</span> 和 <span class="math notranslate nohighlight">\(b\)</span> 从低位到高位存储了两个大数（可能存在小数点），则乘积为 <span class="math notranslate nohighlight">\(ans[k] = \sum_{i+j=k}  a[i] \times b[j]\)</span> 。</p>
 <blockquote>
 <div><div class="toggle docutils container">
@@ -2384,7 +2385,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </div></blockquote>
 </section>
 <section id="leetcode-number-of-islands">
-<h2><span class="section-number">2.30. </span>[LeetCode] Number of Islands 孤岛个数<a class="headerlink" href="#leetcode-number-of-islands" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.30. </span>[LeetCode] Number of Islands 孤岛个数<a class="headerlink" href="#leetcode-number-of-islands" title="此标题的永久链接"></a></h2>
 <p>Hint：使用队列，广度优先遍历（BFS）。延伸：从坐标 <span class="math notranslate nohighlight">\((0, 0)\)</span> 到 <span class="math notranslate nohighlight">\((n-1, m-1)\)</span> 的最短时间，只能走四邻域，<span class="math notranslate nohighlight">\(map[i][j] = 1\)</span> 表示有障碍。Hint：BFS，第一个到达的就是时间最短的。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/number-of-islands/">https://leetcode.com/problems/number-of-islands/</a></p>
 <blockquote>
@@ -2514,7 +2515,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </div></blockquote>
 </section>
 <section id="palindrome">
-<h2><span class="section-number">2.31. </span>回文（Palindrome）<a class="headerlink" href="#palindrome" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.31. </span>回文（Palindrome）<a class="headerlink" href="#palindrome" title="此标题的永久链接"></a></h2>
 <ul>
 <li><p>[LeetCode] Longest Palindromic Substring 最长回文子串（子串连续）。Hint：方法一，中心扩展法，回文中心的两侧互为镜像，将每一个位置作为中心进行扩展，回文分偶数和奇数；方法二，动态规划，类似于矩阵连乘问题，逐渐增大步长。</p>
 <blockquote>
@@ -2866,7 +2867,7 @@ $$</div></div></blockquote>
 </ul>
 </section>
 <section id="s1-s2-s2-s1">
-<h2><span class="section-number">2.32. </span>给定两个字符串 s1 和 s2，检查 s2 是否由 s1 旋转得到<a class="headerlink" href="#s1-s2-s2-s1" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.32. </span>给定两个字符串 s1 和 s2，检查 s2 是否由 s1 旋转得到<a class="headerlink" href="#s1-s2-s2-s1" title="此标题的永久链接"></a></h2>
 <p>Hint：对 s1 做循环移位，所得字符串都将是字符串 s1s1 的子串。</p>
 <blockquote>
 <div><div class="toggle docutils container">
@@ -2887,7 +2888,7 @@ $$</div></div></blockquote>
 </div></blockquote>
 </section>
 <section id="leetcode-validate-binary-search-tree">
-<h2><span class="section-number">2.33. </span>[LeetCode] Validate Binary Search Tree 检查一棵二叉树是否为二叉查找树<a class="headerlink" href="#leetcode-validate-binary-search-tree" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.33. </span>[LeetCode] Validate Binary Search Tree 检查一棵二叉树是否为二叉查找树<a class="headerlink" href="#leetcode-validate-binary-search-tree" title="此标题的永久链接"></a></h2>
 <p>Hint：不仅要求左节点比当前节点小，右节点比当前节点大，而是要求左子树所有节点都小于当前节点，右子树所有节点都大于当前节点；利用二叉树的中序遍历，BST 得到的序列是升序排列的。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/validate-binary-search-tree/">https://leetcode.com/problems/validate-binary-search-tree/</a></p>
 <blockquote>
@@ -2921,7 +2922,7 @@ $$</div></div></blockquote>
 </div></blockquote>
 </section>
 <section id="id15">
-<h2><span class="section-number">2.34. </span>判断一个数是否是奇数<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.34. </span>判断一个数是否是奇数<a class="headerlink" href="#id15" title="此标题的永久链接"></a></h2>
 <p>Hint：考虑负数的情形；方法一，判断模 2 结果不为 0；方法二，位运算判断最低位为 1。延伸：判断两个数是否相等（或判断某个数是否为 0），
 如果是浮点数，应该判断两者差的绝对值是否小于一个阈值，而不是直接使用 ==。</p>
 <blockquote>
@@ -2949,7 +2950,7 @@ $$</div></div></blockquote>
 </div></blockquote>
 </section>
 <section id="leetcode-valid-number">
-<h2><span class="section-number">2.35. </span>[LeetCode] Valid Number 验证一个字符串是否表示某个有效数字<a class="headerlink" href="#leetcode-valid-number" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.35. </span>[LeetCode] Valid Number 验证一个字符串是否表示某个有效数字<a class="headerlink" href="#leetcode-valid-number" title="此标题的永久链接"></a></h2>
 <p>Hint：完整的数字表达是“空格+正负号+整数+小数点+整数+e+正负号+整数+空格”；小数点的相邻两边至少要有一边是整数；如果出现 e，其两边都必须出现整数，但不要求相邻；如 05.e-3 是一个有效数字。</p>
 <p>延伸：将字符串转换为整数，需要考虑：空串、正负号、无效字符、溢出。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/valid-number/">https://leetcode.com/problems/valid-number/</a></p>
@@ -3074,7 +3075,7 @@ $$</div></div></blockquote>
 </div></blockquote>
 </section>
 <section id="cdots-n">
-<h2><span class="section-number">2.36. </span>求 <span class="math notranslate nohighlight">\(1+2+3+ \cdots +n\)</span> ，不使用：乘除法，判断，循环，库函数。<a class="headerlink" href="#cdots-n" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.36. </span>求 <span class="math notranslate nohighlight">\(1+2+3+ \cdots +n\)</span> ，不使用：乘除法，判断，循环，库函数。<a class="headerlink" href="#cdots-n" title="此标题的永久链接"></a></h2>
 <blockquote>
 <div><div class="toggle docutils container">
 <div class="header docutils container">
@@ -3154,7 +3155,7 @@ $$</div></div></blockquote>
 </div></blockquote>
 </section>
 <section id="leetcode-lexicographical-numbers-1-sim-n">
-<h2><span class="section-number">2.37. </span>[LeetCode] Lexicographical Numbers 按字典序排列 <span class="math notranslate nohighlight">\(1 \sim n\)</span><a class="headerlink" href="#leetcode-lexicographical-numbers-1-sim-n" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.37. </span>[LeetCode] Lexicographical Numbers 按字典序排列 <span class="math notranslate nohighlight">\(1 \sim n\)</span><a class="headerlink" href="#leetcode-lexicographical-numbers-1-sim-n" title="此标题的永久链接"></a></h2>
 <p>Hint：方法一，定义排序规则，按字符串的字典序排序；方法二，回溯，递归深度只与 <span class="math notranslate nohighlight">\(n\)</span> 的位数有关。延伸：找到字典序排列的第 <span class="math notranslate nohighlight">\(k\)</span> 个数。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/lexicographical-numbers/">https://leetcode.com/problems/lexicographical-numbers/</a></p>
 <blockquote>
@@ -3233,7 +3234,7 @@ $$</div></div></blockquote>
 </div></blockquote>
 </section>
 <section id="leetcode-merge-k-sorted-lists-k">
-<h2><span class="section-number">2.38. </span>[LeetCode] Merge k Sorted Lists 合并 <span class="math notranslate nohighlight">\(k\)</span> 条有序链表为一条有序链表（都是升序）<a class="headerlink" href="#leetcode-merge-k-sorted-lists-k" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.38. </span>[LeetCode] Merge k Sorted Lists 合并 <span class="math notranslate nohighlight">\(k\)</span> 条有序链表为一条有序链表（都是升序）<a class="headerlink" href="#leetcode-merge-k-sorted-lists-k" title="此标题的永久链接"></a></h2>
 <p>Hint：建立大小为 <span class="math notranslate nohighlight">\(k\)</span> 的小顶堆，每次弹出一个节点，并把该节点的下一个节点插入小顶堆中。时间复杂度 <span class="math notranslate nohighlight">\(\mathcal{O}(n \log k)\)</span> ，<span class="math notranslate nohighlight">\(n\)</span> 是节点个数。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/merge-k-sorted-lists/">https://leetcode.com/problems/merge-k-sorted-lists/</a></p>
 <blockquote>
@@ -3292,7 +3293,7 @@ $$</div></div></blockquote>
 </div></blockquote>
 </section>
 <section id="leetcode-max-points-on-a-line">
-<h2><span class="section-number">2.39. </span>[LeetCode] Max Points on a Line 统计共线的最多点数<a class="headerlink" href="#leetcode-max-points-on-a-line" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.39. </span>[LeetCode] Max Points on a Line 统计共线的最多点数<a class="headerlink" href="#leetcode-max-points-on-a-line" title="此标题的永久链接"></a></h2>
 <p>Hint：直线需要考虑三种斜率：水平，垂直，斜线，还要考虑点重合的情形；由于浮点运算的精度问题，将斜率表示为两个整数的分数形式，保存到哈希表中。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/max-points-on-a-line/">https://leetcode.com/problems/max-points-on-a-line/</a></p>
 <blockquote>
@@ -3367,7 +3368,7 @@ $$</div></div></blockquote>
 </div></blockquote>
 </section>
 <section id="leetcode-word-break">
-<h2><span class="section-number">2.40. </span>[LeetCode] Word Break 字符串按字典切分<a class="headerlink" href="#leetcode-word-break" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.40. </span>[LeetCode] Word Break 字符串按字典切分<a class="headerlink" href="#leetcode-word-break" title="此标题的永久链接"></a></h2>
 <p>Hint：回溯；动态规划。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/word-break/">https://leetcode.com/problems/word-break/</a></p>
 <blockquote>
@@ -3473,7 +3474,7 @@ $$</div></div></blockquote>
 </div></blockquote>
 </section>
 <section id="leetcode-gas-station">
-<h2><span class="section-number">2.41. </span>[LeetCode] Gas Station 加油站回路<a class="headerlink" href="#leetcode-gas-station" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.41. </span>[LeetCode] Gas Station 加油站回路<a class="headerlink" href="#leetcode-gas-station" title="此标题的永久链接"></a></h2>
 <p>Hint：只要 gas 总和不小于 cost 总和，一定存在可以完成回路的出发点。延伸：从起点到终点的最少加油次数。Hint：贪心算法，把路过的每个加油站的油量存入优先队列，当需要加油时，
 弹出队列中的最大油量。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/gas-station/">https://leetcode.com/problems/gas-station/</a></p>
@@ -3538,7 +3539,7 @@ $$</div></div></blockquote>
 </div></blockquote>
 </section>
 <section id="id16">
-<h2><span class="section-number">2.42. </span>最短过桥时间<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.42. </span>最短过桥时间<a class="headerlink" href="#id16" title="此标题的永久链接"></a></h2>
 <p><span class="math notranslate nohighlight">\(n\)</span> 个人过桥，每次最多通过两个人（过桥时间按较长者计算），只有一个手电筒，每次过桥之后需要一个人把手电筒送回来，求最短过桥时间。Hint：耗时第 <span class="math notranslate nohighlight">\(k\)</span> 小的人过桥有两种方案，第一，由耗时最短的人送回手电筒，并陪同过河；
 第二，耗时最短的人送回手电筒之后，耗时第 <span class="math notranslate nohighlight">\(k\)</span> 小的人与耗时第 <span class="math notranslate nohighlight">\(k-1\)</span> 小的人一起过桥，他们过桥之后，手电筒再由耗时第二短的人送回，最后耗时最短的人和耗时第二短的人一起过桥。</p>
 <p><a class="reference external" href="https://blog.csdn.net/u014113686/article/details/82464635">https://blog.csdn.net/u014113686/article/details/82464635</a></p>
@@ -3568,7 +3569,7 @@ $$</div></div></blockquote>
 </div></blockquote>
 </section>
 <section id="leetcode-minimum-window-substring-s-t">
-<h2><span class="section-number">2.43. </span>[LeetCode] Minimum Window Substring 字符串 S 中包含字符串 T 中所有字符（可能会重复）的最短子串<a class="headerlink" href="#leetcode-minimum-window-substring-s-t" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.43. </span>[LeetCode] Minimum Window Substring 字符串 S 中包含字符串 T 中所有字符（可能会重复）的最短子串<a class="headerlink" href="#leetcode-minimum-window-substring-s-t" title="此标题的永久链接"></a></h2>
 <p>Hint：用两个指针表示滑动窗口的起始和结尾；当窗口满足要求，则计算当前窗口的长度，然后两个指针都往后移动一步；终止条件是尾指针移动到了字符串 S 的结尾（’\0’）。
 延伸：不考虑字符串 T 中重复的字符，求字符串 S 中包含字符串 T 中出现的字符的最短子串。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/minimum-window-substring/">https://leetcode.com/problems/minimum-window-substring/</a></p>
@@ -3689,7 +3690,7 @@ $$</div></div></blockquote>
 </div></blockquote>
 </section>
 <section id="leetcode-nth-digit-n">
-<h2><span class="section-number">2.44. </span>[LeetCode] Nth Digit 第 <span class="math notranslate nohighlight">\(N\)</span> 个数字<a class="headerlink" href="#leetcode-nth-digit-n" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.44. </span>[LeetCode] Nth Digit 第 <span class="math notranslate nohighlight">\(N\)</span> 个数字<a class="headerlink" href="#leetcode-nth-digit-n" title="此标题的永久链接"></a></h2>
 <p>Hint：<span class="math notranslate nohighlight">\(k\)</span> 位数的个数是 <span class="math notranslate nohighlight">\(9 \times 10^{k-1}\)</span> ，例如，两位数有 <span class="math notranslate nohighlight">\(90\)</span> 个；先确定第 <span class="math notranslate nohighlight">\(N\)</span> 个数字是几位数，再定位到具体的数，取出相应数字。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/nth-digit/">https://leetcode.com/problems/nth-digit/</a></p>
 <blockquote>
@@ -3722,7 +3723,7 @@ $$</div></div></blockquote>
 </div></blockquote>
 </section>
 <section id="leetcode-pow-x-n">
-<h2><span class="section-number">2.45. </span>[LeetCode] Pow(x, n) 求幂<a class="headerlink" href="#leetcode-pow-x-n" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.45. </span>[LeetCode] Pow(x, n) 求幂<a class="headerlink" href="#leetcode-pow-x-n" title="此标题的永久链接"></a></h2>
 <p>Hint：<span class="math notranslate nohighlight">\(x^{2k} = x^k \times x^k,\ x^{2k+1} = x \times x^k \times x^k\)</span> 。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/powx-n/">https://leetcode.com/problems/powx-n/</a></p>
 <blockquote>
@@ -3799,7 +3800,7 @@ $$</div></div></blockquote>
 </div></blockquote>
 </section>
 <section id="leetcode-longest-valid-parentheses">
-<h2><span class="section-number">2.46. </span>[LeetCode] Longest Valid Parentheses 最长有效匹配括号长度<a class="headerlink" href="#leetcode-longest-valid-parentheses" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.46. </span>[LeetCode] Longest Valid Parentheses 最长有效匹配括号长度<a class="headerlink" href="#leetcode-longest-valid-parentheses" title="此标题的永久链接"></a></h2>
 <p><a class="reference external" href="https://leetcode.com/problems/longest-valid-parentheses/">https://leetcode.com/problems/longest-valid-parentheses/</a></p>
 <blockquote>
 <div><div class="toggle docutils container">
@@ -3886,7 +3887,7 @@ $$</div></div></blockquote>
 </div></blockquote>
 </section>
 <section id="id17">
-<h2><span class="section-number">2.47. </span>丢弃的数<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.47. </span>丢弃的数<a class="headerlink" href="#id17" title="此标题的永久链接"></a></h2>
 <p>从 <span class="math notranslate nohighlight">\(1,2,...,n\)</span> 中取丢弃 <span class="math notranslate nohighlight">\(k\)</span> 个数，剩余的数形成一个数组 <span class="math notranslate nohighlight">\(arr\)</span> ，求出丢弃的数。</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(k=1\)</span> 。Hint：<span class="math notranslate nohighlight">\(a = \sum_{i=1}^n i - \sum arr\)</span> 。</p></li>
@@ -3894,7 +3895,7 @@ $$</div></div></blockquote>
 </ul>
 </section>
 <section id="leetcode-trapping-rain-water">
-<h2><span class="section-number">2.48. </span>[LeetCode] Trapping Rain Water 接雨水<a class="headerlink" href="#leetcode-trapping-rain-water" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.48. </span>[LeetCode] Trapping Rain Water 接雨水<a class="headerlink" href="#leetcode-trapping-rain-water" title="此标题的永久链接"></a></h2>
 <p>Hint：方法一，水从地面往上溢，统计每一层的积水，时间复杂度 <span class="math notranslate nohighlight">\(\mathcal{O}(NH_{max})\)</span> ；方法二，双指针，当左高右低，推进右边的指针，当左低右高，推进左边的指针。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/trapping-rain-water/">https://leetcode.com/problems/trapping-rain-water/</a></p>
 <blockquote>
@@ -3976,7 +3977,7 @@ $$</div></div></blockquote>
 </div></blockquote>
 </section>
 <section id="leetcode-sudoku-solver">
-<h2><span class="section-number">2.49. </span>[LeetCode] Sudoku Solver 数独。<a class="headerlink" href="#leetcode-sudoku-solver" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.49. </span>[LeetCode] Sudoku Solver 数独。<a class="headerlink" href="#leetcode-sudoku-solver" title="此标题的永久链接"></a></h2>
 <p><a class="reference external" href="https://leetcode.com/problems/sudoku-solver/">https://leetcode.com/problems/sudoku-solver/</a></p>
 <blockquote>
 <div><div class="toggle docutils container">
@@ -4059,7 +4060,7 @@ $$</div></div></blockquote>
 </div></blockquote>
 </section>
 <section id="leetcode-median-of-two-sorted-arrays">
-<h2><span class="section-number">2.50. </span>[LeetCode] Median of Two Sorted Arrays 两个排序数组的中位数<a class="headerlink" href="#leetcode-median-of-two-sorted-arrays" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.50. </span>[LeetCode] Median of Two Sorted Arrays 两个排序数组的中位数<a class="headerlink" href="#leetcode-median-of-two-sorted-arrays" title="此标题的永久链接"></a></h2>
 <p>Hint：方法一，归并，时间复杂度 <span class="math notranslate nohighlight">\(\mathcal{O}(m+n)\)</span> ；方法二，二分查找，时间复杂度 <span class="math notranslate nohighlight">\(\mathcal{O}(\log (m+n))\)</span> 。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/median-of-two-sorted-arrays/">https://leetcode.com/problems/median-of-two-sorted-arrays/</a></p>
 <p><a class="reference external" href="https://windliang.cc/2018/07/18/leetCode-4-Median-of-Two-Sorted-Arrays/">https://windliang.cc/2018/07/18/leetCode-4-Median-of-Two-Sorted-Arrays/</a></p>
@@ -4177,7 +4178,7 @@ $$</div></div></blockquote>
 </div></blockquote>
 </section>
 <section id="id18">
-<h2><span class="section-number">2.51. </span>滑动窗口。<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.51. </span>滑动窗口。<a class="headerlink" href="#id18" title="此标题的永久链接"></a></h2>
 <ul>
 <li><p>[LeetCode] Sliding Window Maximum 滑动窗口最大值。Hint：使用双端队列；新加入元素如果比队尾元素小，则直接入队，否则删除队尾元素直到队空或队尾元素比新加入元素大；
 如果队首元素在滑动窗口之外，则删除之；队首元素就是当前窗口的最大值。</p>
@@ -4312,7 +4313,7 @@ $$</div></div></blockquote>
 </ul>
 </section>
 <section id="id19">
-<h2><span class="section-number">2.52. </span>逆波兰式：转换与求值。<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.52. </span>逆波兰式：转换与求值。<a class="headerlink" href="#id19" title="此标题的永久链接"></a></h2>
 <p><a class="reference external" href="https://leetcode.com/problems/evaluate-reverse-polish-notation/">https://leetcode.com/problems/evaluate-reverse-polish-notation/</a></p>
 <blockquote>
 <div><div class="toggle docutils container">
@@ -4436,7 +4437,7 @@ $$</div></div></blockquote>
 </div></blockquote>
 </section>
 <section id="id20">
-<h2><span class="section-number">2.53. </span>字典树/前缀树（ <a class="reference external" href="https://oi-wiki.org/string/trie/">Trie</a> ）。<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.53. </span>字典树/前缀树（ <a class="reference external" href="https://oi-wiki.org/string/trie/">Trie</a> ）。<a class="headerlink" href="#id20" title="此标题的永久链接"></a></h2>
 <p><a class="reference external" href="https://leetcode.com/problems/implement-trie-prefix-tree">https://leetcode.com/problems/implement-trie-prefix-tree</a></p>
 <blockquote>
 <div><div class="toggle docutils container">
@@ -4564,7 +4565,7 @@ $$</div></div></blockquote>
 </div></blockquote>
 </section>
 <section id="lru-least-recently-used">
-<h2><span class="section-number">2.54. </span>LRU（Least Recently Used） 缓存机制<a class="headerlink" href="#lru-least-recently-used" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.54. </span>LRU（Least Recently Used） 缓存机制<a class="headerlink" href="#lru-least-recently-used" title="此标题的永久链接"></a></h2>
 <p>Hint：通过双向链表辅以哈希表实现；双向链表按照被使用的顺序存储了这些键值对，靠近头部的键值对是最近使用的，而靠近尾部的键值对是最久未使用的；哈希表将缓存数据的 key 映射到其在双向链表中的位置；访问和插入数据的时间复杂度都是 <span class="math notranslate nohighlight">\(\mathcal{O}(1)\)</span> 。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/lru-cache/">https://leetcode.com/problems/lru-cache/</a></p>
 <blockquote>
@@ -4619,7 +4620,7 @@ $$</div></div></blockquote>
 </div></blockquote>
 </section>
 <section id="leetcode-house-robber-ii">
-<h2><span class="section-number">2.55. </span>[LeetCode] House Robber II 环形房屋偷盗<a class="headerlink" href="#leetcode-house-robber-ii" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.55. </span>[LeetCode] House Robber II 环形房屋偷盗<a class="headerlink" href="#leetcode-house-robber-ii" title="此标题的永久链接"></a></h2>
 <p>Hint：在区间 <span class="math notranslate nohighlight">\([0, n-2]\)</span> 和区间 <span class="math notranslate nohighlight">\([1, n-1]\)</span> 分别做动态规划。</p>
 <p><a class="reference external" href="https://leetcode-cn.com/problems/house-robber-ii/">https://leetcode-cn.com/problems/house-robber-ii/</a></p>
 <blockquote>
@@ -4658,7 +4659,7 @@ $$</div></div></blockquote>
 </div></blockquote>
 </section>
 <section id="leetcode-serialize-and-deserialize-binary-tree">
-<h2><span class="section-number">2.56. </span>[LeetCode] Serialize And Deserialize Binary Tree 序列化与反序列化二叉树。<a class="headerlink" href="#leetcode-serialize-and-deserialize-binary-tree" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.56. </span>[LeetCode] Serialize And Deserialize Binary Tree 序列化与反序列化二叉树。<a class="headerlink" href="#leetcode-serialize-and-deserialize-binary-tree" title="此标题的永久链接"></a></h2>
 <p><a class="reference external" href="https://leetcode-cn.com/problems/h54YBf/">https://leetcode-cn.com/problems/h54YBf/</a></p>
 <blockquote>
 <div><div class="toggle docutils container">
@@ -4723,7 +4724,7 @@ $$</div></div></blockquote>
 </div></blockquote>
 </section>
 <section id="leetcode">
-<h2><span class="section-number">2.57. </span>[LeetCode] 生存人数：统计生存人数最多的年份<a class="headerlink" href="#leetcode" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.57. </span>[LeetCode] 生存人数：统计生存人数最多的年份<a class="headerlink" href="#leetcode" title="此标题的永久链接"></a></h2>
 <p>Hint：用差分数组记录出生年份和死亡年份的人数变化，差分数组的前缀和表示该年份的生存人数。</p>
 <p><a class="reference external" href="https://leetcode.cn/problems/living-people-lcci/">https://leetcode.cn/problems/living-people-lcci/</a></p>
 <blockquote>
@@ -4770,19 +4771,19 @@ $$</div></div></blockquote>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="01_interview.html" class="btn btn-neutral float-left" title="1. 复习" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="02_test_code.html" class="btn btn-neutral float-right" title="3. rst语法" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="01_interview.html" class="btn btn-neutral float-left" title="1. 复习" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="02_test_code.html" class="btn btn-neutral float-right" title="3. rst语法" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018-2022, fong.</p>
+    <p>&#169; 版权所有 2018-2022, fong.</p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
    
 
 </footer>

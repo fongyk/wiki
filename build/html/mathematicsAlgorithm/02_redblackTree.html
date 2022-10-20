@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="zh-CN" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2. 红黑树 &mdash; fong alpha documentation</title>
+  <title>2. 红黑树 &mdash; fong alpha 文档</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,10 +19,11 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="3. 最短路径" href="03_shortestPath.html" />
     <link rel="prev" title="1. 算法复杂度与主定理" href="01_complexity.html" /> 
 </head>
@@ -40,7 +41,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="在文档中搜索" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -110,7 +111,7 @@
           <li><a href="index.html">数理与算法</a> &raquo;</li>
       <li><span class="section-number">2. </span>红黑树</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/mathematicsAlgorithm/02_redblackTree.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/mathematicsAlgorithm/02_redblackTree.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
   </ul>
   <hr/>
@@ -119,11 +120,11 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">2. </span>红黑树<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">2. </span>红黑树<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
 <p>R-B Tree，全称是 Red-Black Tree，又称为“红黑树”，它是一种特殊的二叉查找树。
 红黑树的每个节点上都有存储位表示节点的颜色，可以是红（Red）或黑（Black）。</p>
 <section id="id2">
-<h2><span class="section-number">2.1. </span>特性<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.1. </span>特性<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
 <ul class="simple">
 <li><p>满足二叉查找树的性质。</p></li>
 <li><p>每个节点或者是黑色，或者是红色。</p></li>
@@ -141,14 +142,14 @@
 </div></blockquote>
 </section>
 <section id="bst-avl">
-<h2><span class="section-number">2.2. </span>BST 与 AVL 树<a class="headerlink" href="#bst-avl" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.2. </span>BST 与 AVL 树<a class="headerlink" href="#bst-avl" title="此标题的永久链接"></a></h2>
 <p>BST（二叉查找树）的特点是左子树的所有节点值比父亲节点小，而右子树的所有节点值比父亲节点大。查找的平均时间复杂度是 <span class="math notranslate nohighlight">\(\mathcal{O}(\log n)\)</span> ，但是如果二叉查找树很不平衡，甚至退化为“链表”（除了叶子节点，每个节点只有一个子节点），则时间复杂度是 <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span> 。</p>
 <p>AVL 树是最早被发明的自平衡二叉查找树。在 AVL 树中，任一节点对应的两棵子树的最大高度差为 1，因此它也被称为高度平衡树。查找、插入和删除在平均和最坏情况下的时间复杂度都是 <span class="math notranslate nohighlight">\(\mathcal{O}(\log n)\)</span> 。
 然而，这种高度平衡性是很严格的条件，如果需要频繁插入、删除节点，那么需要较大的代价来维护树的平衡性。</p>
 <p>对红黑树而言，一方面，在最坏情况下，查找的时间复杂度也是 <span class="math notranslate nohighlight">\(\mathcal{O}(\log n)\)</span> ，查找性能有保证；另一方面，即使需要频繁插入、删除节点，红黑树的维护代价也比 AVL 树更低。</p>
 </section>
 <section id="id3">
-<h2><span class="section-number">2.3. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.3. </span>参考资料<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
 <ol class="arabic simple">
 <li><p>红黑树(一)之 原理和算法详细介绍</p></li>
 </ol>
@@ -174,19 +175,19 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="01_complexity.html" class="btn btn-neutral float-left" title="1. 算法复杂度与主定理" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="03_shortestPath.html" class="btn btn-neutral float-right" title="3. 最短路径" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="01_complexity.html" class="btn btn-neutral float-left" title="1. 算法复杂度与主定理" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="03_shortestPath.html" class="btn btn-neutral float-right" title="3. 最短路径" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018-2022, fong.</p>
+    <p>&#169; 版权所有 2018-2022, fong.</p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
    
 
 </footer>

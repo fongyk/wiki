@@ -219,37 +219,41 @@ command
 参考资料
 -----------------
 
-1. reStructuredText
+1. sphinx_rtd_theme 配置
+
+  https://www.sphinx-doc.org/en/master/usage/configuration.html
+
+2. reStructuredText
 
   https://www.sphinx-doc.org/zh_CN/master/usage/restructuredtext/index.html
 
   https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html
 
-2. reStructuredText 域
+3. reStructuredText 域
 
   https://www.sphinx-doc.org/zh_CN/master/usage/restructuredtext/domains.html
 
-3. reStructuredText Directives
+4. reStructuredText Directives
 
   https://docutils.sourceforge.io/docs/ref/rst/directives.html
 
-4. reStructuredText(rst)快速入门语法说明
+5. reStructuredText(rst)快速入门语法说明
 
   https://www.jianshu.com/p/1885d5570b37
 
-5. 代码隐藏（自定义，_templates放在conf.py同目录下）
+6. 代码隐藏（自定义，_templates放在conf.py同目录下）
 
   http://cn.voidcc.com/question/p-pnfmhomd-v.html
 
   https://stackoverflow.com/questions/2454577/sphinx-restructuredtext-show-hide-code-snippets
 
-6. 代码隐藏（安装扩展，全屏显示，体验不好）
+7. 代码隐藏（安装扩展，全屏显示，体验不好）
 
   https://sphinxcontrib-contentui.readthedocs.io/en/latest/installation.html
 
   https://sphinxcontrib-contentui.readthedocs.io/en/latest/toggle.html
 
-7. Sphinx + Github Page + Read the Docs
+8. Sphinx + Github Page + Read the Docs
 
   https://kyzhang.me/2018/05/08/Sphinx-Readthedocs-GitHub2build-wiki/
 
@@ -265,6 +269,6 @@ command
 
   https://github.com/rtfd/sphinx_rtd_theme
 
-8. latex 颜色
+9. latex 颜色
 
   http://latexcolor.com/

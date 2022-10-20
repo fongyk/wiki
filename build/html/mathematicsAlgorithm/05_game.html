@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="zh-CN" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>5. 游戏与必胜策略 &mdash; fong alpha documentation</title>
+  <title>5. 游戏与必胜策略 &mdash; fong alpha 文档</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,10 +19,11 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="6. 蓄水池抽样" href="06_randomSample.html" />
     <link rel="prev" title="4. 二叉树遍历" href="04_treeTraversal.html" /> 
 </head>
@@ -40,7 +41,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="在文档中搜索" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -111,7 +112,7 @@
           <li><a href="index.html">数理与算法</a> &raquo;</li>
       <li><span class="section-number">5. </span>游戏与必胜策略</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/mathematicsAlgorithm/05_game.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/mathematicsAlgorithm/05_game.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
   </ul>
   <hr/>
@@ -120,9 +121,9 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">5. </span>游戏与必胜策略<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">5. </span>游戏与必胜策略<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
 <section id="id2">
-<h2><span class="section-number">5.1. </span>硬币游戏<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.1. </span>硬币游戏<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
 <p><strong>描述</strong> ：有 <span class="math notranslate nohighlight">\(x\)</span> 枚硬币，A 和 B 两个人轮流取，每次所取的硬币数量要在 <span class="math notranslate nohighlight">\(a_1, a_2,...,a_k\)</span> 当中（其中包含 <span class="math notranslate nohighlight">\(1\)</span> ）。
 A 先取，取走最后一枚硬币的一方获胜。当双方都采取最优策略，谁会获胜？</p>
 <p><strong>策略</strong> ：动态规划。考虑轮到 A 时，还剩下 <span class="math notranslate nohighlight">\(j\)</span> 枚硬币。当 <span class="math notranslate nohighlight">\(j=0\)</span> ，A 必败；如果存在 <span class="math notranslate nohighlight">\(a_i\)</span> ，使得 <span class="math notranslate nohighlight">\(j - a_i\)</span> 是必败态，则 <span class="math notranslate nohighlight">\(j\)</span> 就是必胜态；
@@ -147,12 +148,12 @@ A 先取，取走最后一枚硬币的一方获胜。当双方都采取最优策
 </div>
 </section>
 <section id="nim">
-<h2><span class="section-number">5.2. </span>Nim 游戏<a class="headerlink" href="#nim" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.2. </span>Nim 游戏<a class="headerlink" href="#nim" title="此标题的永久链接"></a></h2>
 <p><strong>描述</strong> ：有 <span class="math notranslate nohighlight">\(n\)</span> 堆石子，每堆 <span class="math notranslate nohighlight">\(a_i\)</span> 颗石子。A 和 B 两个人轮流取，每次从石子堆中至少取走一颗。A 先取，最后取光所有石子的一方获胜。当双方都采取最优策略，谁会获胜？</p>
 <p><strong>策略</strong> ： <span class="math notranslate nohighlight">\(a_1\ \oplus\ a_2\ \oplus\ ...\ \oplus\ a_n \ne 0\)</span> （异或运算），则 A 必胜； <span class="math notranslate nohighlight">\(a_1\ \oplus\ a_2\ \oplus\ ...\ \oplus\ a_n = 0\)</span> ，则 A 必败。</p>
 </section>
 <section id="grundy">
-<h2><span class="section-number">5.3. </span>Grundy 数<a class="headerlink" href="#grundy" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.3. </span>Grundy 数<a class="headerlink" href="#grundy" title="此标题的永久链接"></a></h2>
 <p><strong>描述</strong> ：有 <span class="math notranslate nohighlight">\(n\)</span> 堆硬币，每堆 <span class="math notranslate nohighlight">\(x_i\)</span> 枚硬币。A 和 B 两个人轮流取，每次所取的硬币数量要在 <span class="math notranslate nohighlight">\(a_1, a_2,...,a_k\)</span> 当中（其中包含 <span class="math notranslate nohighlight">\(1\)</span> ）。
 A 先取，取走最后一枚硬币的一方获胜。当双方都采取最优策略，谁会获胜？</p>
 <p><strong>策略</strong> ：转换成 Nim， <span class="math notranslate nohighlight">\(grundy(x_1)\ \oplus\ grundy(x_2)\ \oplus\ ...\ \oplus\ grundy(x_n) \ne 0\)</span> 则 A 必胜，否则必败。
@@ -187,7 +188,7 @@ A 先取，取走最后一枚硬币的一方获胜。当双方都采取最优策
 </div>
 </section>
 <section id="id3">
-<h2><span class="section-number">5.4. </span>两端取数<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.4. </span>两端取数<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
 <p><strong>描述</strong> ：有一串数字，A 和 B 两人轮流从两端取任意个数（至少取 1 个），直到取完所有的数。A 先取，两个人都采取最优策略，求 A 所取数的和比 B 所取数的和大多少？</p>
 <p><strong>策略</strong> ：动态规划。<span class="math notranslate nohighlight">\(dp[i][j]\)</span> 表示从闭区间 <span class="math notranslate nohighlight">\([i,j]\)</span> 取完所有数字之后，先取的那个人所取数的和与后取的那个人所取数的和的差值。
 假设第一个人先从区间 <span class="math notranslate nohighlight">\([i,j]\)</span> 取 <span class="math notranslate nohighlight">\(k\ (1 \leqslant k \leqslant j-i+1)\)</span> 个数，可以从左端取，也可以从右端取。
@@ -234,19 +235,19 @@ A 先取，取走最后一枚硬币的一方获胜。当双方都采取最优策
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="04_treeTraversal.html" class="btn btn-neutral float-left" title="4. 二叉树遍历" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="06_randomSample.html" class="btn btn-neutral float-right" title="6. 蓄水池抽样" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="04_treeTraversal.html" class="btn btn-neutral float-left" title="4. 二叉树遍历" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="06_randomSample.html" class="btn btn-neutral float-right" title="6. 蓄水池抽样" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018-2022, fong.</p>
+    <p>&#169; 版权所有 2018-2022, fong.</p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
    
 
 </footer>

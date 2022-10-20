@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="zh-CN" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>27. 单例模式 &mdash; fong alpha documentation</title>
+  <title>27. 单例模式 &mdash; fong alpha 文档</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,9 +19,10 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="28. 可变参数函数" href="28_vaFunc.html" />
     <link rel="prev" title="26. lambda 表达式" href="26_lambda.html" /> 
 </head>
@@ -39,7 +40,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="在文档中搜索" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -127,7 +128,7 @@
           <li><a href="index.html">C/C++</a> &raquo;</li>
       <li><span class="section-number">27. </span>单例模式</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/cpp/27_singleton.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/cpp/27_singleton.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
   </ul>
   <hr/>
@@ -136,10 +137,10 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">27. </span>单例模式<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">27. </span>单例模式<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
 <p>单例是一种创建型设计模式，保证一个类只有一个实例（对象），并提供一个访问该实例的全局节点。</p>
 <section id="id2">
-<h2><span class="section-number">27.1. </span>基础单例<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">27.1. </span>基础单例<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">// from the header file</span>
 <span class="linenos"> 2</span><span class="k">class</span><span class="w"> </span><span class="nc">Singleton</span><span class="w"></span>
 <span class="linenos"> 3</span><span class="p">{</span><span class="w"></span>
@@ -166,7 +167,7 @@
 <p>这种实现方法不是线程安全的（Thread-safe)，多个线程同时调用 <code class="docutils literal notranslate"><span class="pre">instance()</span></code> 可能会构造出多个对象。</p>
 </section>
 <section id="id3">
-<h2><span class="section-number">27.2. </span>全加锁<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">27.2. </span>全加锁<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">Singleton</span><span class="o">*</span><span class="w"> </span><span class="nf">Singleton::instance</span><span class="p">()</span><span class="w"></span>
 <span class="linenos">2</span><span class="p">{</span><span class="w"></span>
 <span class="linenos">3</span><span class="w">  </span><span class="n">Lock</span><span class="w"> </span><span class="n">lock</span><span class="p">;</span><span class="w"> </span><span class="c1">// acquire lock (params omitted for simplicity)</span>
@@ -182,7 +183,7 @@
 <p>缺点是：每一次调用 <code class="docutils literal notranslate"><span class="pre">instance()</span></code> 都需要加锁，开销很大，尽管实际上只有在第一次调用的时候有加锁的必要。</p>
 </section>
 <section id="dclp">
-<h2><span class="section-number">27.3. </span>DCLP<a class="headerlink" href="#dclp" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">27.3. </span>DCLP<a class="headerlink" href="#dclp" title="此标题的永久链接"></a></h2>
 <p>DCLP（Double-Checked Locking Pattern）避免了重复加锁，只需要在第一次调用的时候加锁。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">Singleton</span><span class="o">*</span><span class="w"> </span><span class="nf">Singleton::instance</span><span class="p">()</span><span class="w"></span>
 <span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
@@ -199,7 +200,7 @@
 </pre></div>
 </div>
 <section id="id4">
-<h3>执行顺序<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<h3>执行顺序<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">pInstance</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">Singleton</span></code> 需要完成三件事情：</p>
 <ul class="simple">
 <li><p>step-1：分配内存给即将构造的实例。</p></li>
@@ -210,7 +211,7 @@
 这就导致指针 pInstance 在 <strong>实例构造之前</strong> 已经是非空指针了，另一个线程判断非空之后，可能会去解引用/访问该实例，会导致出错。因此，这不是线程安全的。</p>
 </section>
 <section id="volatile">
-<h3>volatile<a class="headerlink" href="#volatile" title="Permalink to this heading"></a></h3>
+<h3>volatile<a class="headerlink" href="#volatile" title="此标题的永久链接"></a></h3>
 <p>可以尝试使用关键字 <code class="docutils literal notranslate"><span class="pre">volatile</span></code></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">static</span> <span class="n">volatile</span> <span class="n">Singleton</span><span class="o">*</span> <span class="n">volatile</span> <span class="n">instance</span><span class="p">();</span>
 <span class="n">static</span> <span class="n">Singleton</span><span class="o">*</span> <span class="n">volatile</span> <span class="n">pInstance</span><span class="p">;</span>
@@ -228,12 +229,12 @@
 </ul>
 </section>
 <section id="id5">
-<h3>缓存一致性<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<h3>缓存一致性<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h3>
 <p>在多处理器的机器上，DCLP 还面临缓存一致性问题（Cache Coherency Problem）：一个处理器上的线程正在创建实例，而另一个处理器上的线程可能会访问到未初始化的实例。</p>
 <p>如果一个 CPU 缓存了某块内存，那么在其他 CPU 修改这块内存的时候，希望得到通知。拥有多组缓存的时候，需要它们保持同步，但是，系统的内存在各个 CPU 之间无法做到与生俱来的同步。</p>
 </section>
 <section id="id6">
-<h3>结论<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<h3>结论<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h3>
 <p>推荐使用全加锁方式。为了避免多线程重复加锁，可以缓存指向该实例的指针，即用:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Singleton</span><span class="o">*</span> <span class="n">const</span> <span class="n">instance</span> <span class="o">=</span> <span class="n">Singleton</span><span class="p">::</span><span class="n">instance</span><span class="p">();</span> <span class="o">//</span> <span class="n">cache</span> <span class="n">instance</span> <span class="n">pointer</span>
 <span class="n">instance</span><span class="o">-&gt;</span><span class="n">transmogrify</span><span class="p">();</span>
@@ -250,7 +251,7 @@
 </section>
 </section>
 <section id="id7">
-<h2><span class="section-number">27.4. </span>另一种实现<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">27.4. </span>另一种实现<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span><span class="w"> </span><span class="nc">S</span><span class="w"></span>
 <span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
 <span class="linenos"> 3</span><span class="k">public</span><span class="o">:</span><span class="w"></span>
@@ -312,12 +313,12 @@
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">备注</p>
 <p>拷贝构造函数和拷贝赋值运算符需要声明为不可调用；无参构造函数、有参构造函数应该声明为 private。</p>
 </div>
 </section>
 <section id="id8">
-<h2><span class="section-number">27.5. </span>饿汉与懒汉模式<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">27.5. </span>饿汉与懒汉模式<a class="headerlink" href="#id8" title="此标题的永久链接"></a></h2>
 <p>第一节和第四节都是“懒汉”模式（Lazy Mode）的例子：第一次使用到类实例的时候才创建。</p>
 <p>“饿汉”模式（Hungry Mode）：在使用之前已经创建好了实例，取之即用。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span><span class="w"> </span><span class="nc">Singleton</span><span class="w"></span>
@@ -337,12 +338,12 @@
 </div>
 <p>“饿汉”模式是线程安全的，因为在进入 main 函数之前就由单线程方式进行了实例化。</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">备注</p>
 <p>上面例子中，静态成员指针初始化调用了私有构造函数。创建普通实例是不能直接调用私有构造函数的。</p>
 </div>
 </section>
 <section id="id9">
-<h2><span class="section-number">27.6. </span>参考资料<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">27.6. </span>参考资料<a class="headerlink" href="#id9" title="此标题的永久链接"></a></h2>
 <ol class="arabic simple">
 <li><p>C++ and the Perils of Double-Checked Locking</p></li>
 </ol>
@@ -368,19 +369,19 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="26_lambda.html" class="btn btn-neutral float-left" title="26. lambda 表达式" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="28_vaFunc.html" class="btn btn-neutral float-right" title="28. 可变参数函数" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="26_lambda.html" class="btn btn-neutral float-left" title="26. lambda 表达式" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="28_vaFunc.html" class="btn btn-neutral float-right" title="28. 可变参数函数" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018-2022, fong.</p>
+    <p>&#169; 版权所有 2018-2022, fong.</p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
    
 
 </footer>

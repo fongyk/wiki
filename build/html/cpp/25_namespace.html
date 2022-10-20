@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="zh-CN" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>25. 命名空间 &mdash; fong alpha documentation</title>
+  <title>25. 命名空间 &mdash; fong alpha 文档</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,9 +19,10 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="26. lambda 表达式" href="26_lambda.html" />
     <link rel="prev" title="24. 异常" href="24_exception.html" /> 
 </head>
@@ -39,7 +40,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="在文档中搜索" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -130,7 +131,7 @@
           <li><a href="index.html">C/C++</a> &raquo;</li>
       <li><span class="section-number">25. </span>命名空间</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/cpp/25_namespace.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/cpp/25_namespace.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
   </ul>
   <hr/>
@@ -139,10 +140,10 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">25. </span>命名空间<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">25. </span>命名空间<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
 <p>命名空间（namespace）为防止名字冲突提供了更加可控的机制。命名空间分割了全局命名空间，每个命名空间是一个作用域。通过在某个命名空间中定义库的名字，可以避免全局名字固有的限制。</p>
 <section id="id2">
-<h2><span class="section-number">25.1. </span>命名空间的定义<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">25.1. </span>命名空间的定义<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
 <p>只要能出现在全局作用域中的声明都能置于命名空间内。</p>
 <blockquote>
 <div><ul class="simple">
@@ -163,7 +164,7 @@
 </div>
 <p>命名空间可以定义在全局作用域，也可以定义在其他命名空间中（嵌套命名空间，内层命名空间声明的名字将隐藏外层命名空间的名字），但是不能定义在函数或类的内部。</p>
 <section id="id3">
-<h3>作用域<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<h3>作用域<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h3>
 <p>不同命名空间的作用域不同，因此不同命名空间内可以有相同名字的成员。</p>
 <blockquote>
 <div><ul>
@@ -177,7 +178,7 @@
 </div></blockquote>
 </section>
 <section id="id4">
-<h3>不连续性<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<h3>不连续性<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h3>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">namespace</span><span class="w"> </span><span class="nn">cpp</span><span class="w"></span>
 <span class="linenos">2</span><span class="p">{</span><span class="w"></span>
 <span class="linenos">3</span><span class="w">  </span><span class="cm">/* ... */</span><span class="w"></span>
@@ -194,7 +195,7 @@
 </dl>
 </section>
 <section id="id5">
-<h3>全局命名空间<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<h3>全局命名空间<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h3>
 <p>全局作用域（即在所有类、函数、命名空间之外）中定义的名字就是定义在全局命名空间中。全局命名空间以隐式的方式声明，并在所有的程序中存在。</p>
 <p>作用域运算符 <code class="docutils literal notranslate"><span class="pre">::</span></code> 可以用于全局作用域的成员。由于全局作用域是隐式的，所以它并没有名字，</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="o">::</span><span class="n">global_var</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
@@ -202,7 +203,7 @@
 </div>
 </section>
 <section id="id6">
-<h3>内联命名空间<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<h3>内联命名空间<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h3>
 <p>内联命名空间中的名字可以被外层命名空间直接使用而无需添加命名空间的前缀（ <code class="docutils literal notranslate"><span class="pre">::</span></code> ）。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">// FifthEd.h</span>
 <span class="linenos"> 2</span><span class="kr">inline</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">FifthEd</span><span class="w"></span>
@@ -228,29 +229,29 @@
 </div>
 </section>
 <section id="id7">
-<h3>未命名的命名空间<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
+<h3>未命名的命名空间<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h3>
 <p>未命名的命名空间是由关键字 <code class="docutils literal notranslate"><span class="pre">namespace</span></code> 紧跟花括号括起来的一系列声明语句。</p>
 <p>未命名的命名空间中定义的变量将拥有静态声明周期：它们在第一次使用前创建，并且直到程序结束时才销毁。</p>
 <p>未命名的命名空间可以在某个给定的文件内不连续，但是不能跨越多个文件。每个文件定义自己的未命名的命名空间，如果两个文件都含有未命名的命名空间，则这两个空间互相无关。在这两个未命名的命名空间中可以定义相同的名字，并且这些定义表示不同的实体。</p>
 <p>定义在未命名空间中的名字可以直接使用，不能对未命名空间的成员使用作用域运算符。</p>
 <p>未命名的命名空间中定义的名字的作用域与该命名空间所在的作用域相同。如果未命名的命名空间定义在文件的最外层作用域中，则该命名空间中的名字一定要与全局作用域的名字有所区别，否则将会引起命名冲突。</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">备注</p>
 <p>在标准 C++ 引入命名空间的概念之前，程序需要将名字声明成 static 以使得其在整个文件有效，在文件之外不可见。
 在文件中进行静态声明的做法已经被 C++ 标准取消了，现在的做法是使用未命名的命名空间。</p>
 </div>
 </section>
 </section>
 <section id="id8">
-<h2><span class="section-number">25.2. </span>使用命名空间<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">25.2. </span>使用命名空间<a class="headerlink" href="#id8" title="此标题的永久链接"></a></h2>
 <section id="id9">
-<h3>使用别名<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>
+<h3>使用别名<a class="headerlink" href="#id9" title="此标题的永久链接"></a></h3>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">primer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">cplusplus_primer</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="using">
-<h3>using 声明<a class="headerlink" href="#using" title="Permalink to this heading"></a></h3>
+<h3>using 声明<a class="headerlink" href="#using" title="此标题的永久链接"></a></h3>
 <p>一条 using 声明（declaration）语句一次只引入命名空间的一个成员；</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">;</span><span class="c1">// cout 的调用不再需要作用域运算符，其他 std 命名空间中的名字仍然需要作用域运算符</span>
 </pre></div>
@@ -258,7 +259,7 @@
 <p>using 声明可以出现在全局作用域、局部作用域、命名空间作用域、类的作用域中（只能指向基类成员）。</p>
 </section>
 <section id="id10">
-<h3>using 指示<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h3>
+<h3>using 指示<a class="headerlink" href="#id10" title="此标题的永久链接"></a></h3>
 <p>using 指示（directive）语句使得该命名空间内的所有名字都可见。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w"></span>
 </pre></div>
@@ -287,7 +288,7 @@
 </section>
 </section>
 <section id="id11">
-<h2><span class="section-number">25.3. </span>参考资料<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">25.3. </span>参考资料<a class="headerlink" href="#id11" title="此标题的永久链接"></a></h2>
 <p>1.《C++ Primer 第5版 中文版》 Page 695 – 710。</p>
 <ol class="arabic simple" start="2">
 <li><p>命名空间</p></li>
@@ -302,19 +303,19 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="24_exception.html" class="btn btn-neutral float-left" title="24. 异常" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="26_lambda.html" class="btn btn-neutral float-right" title="26. lambda 表达式" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="24_exception.html" class="btn btn-neutral float-left" title="24. 异常" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="26_lambda.html" class="btn btn-neutral float-right" title="26. lambda 表达式" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018-2022, fong.</p>
+    <p>&#169; 版权所有 2018-2022, fong.</p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
    
 
 </footer>

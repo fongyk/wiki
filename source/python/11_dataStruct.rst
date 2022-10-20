@@ -10,11 +10,11 @@
 队列
 --------
 
-.. note::
+.. attention::
     
     Python 2 的队列模块为 ``Queue`` ，Python 3 的队列模块为 ``queue`` 。
 
-Queue
+queue
 ^^^^^^^
 
 ::
@@ -103,13 +103,14 @@ queue 模块实现了多生产者、多消费者队列，适用于消息必须�
   :linenos:
 
   from queue import PriorityQueue
-  que = PriorityQueue()
-  que.put((1,'apple'))
-  que.put((10,'app'))
-  que.put((5,'banana'))
+  
+  q = PriorityQueue()
+  q.put((1,'apple'))
+  q.put((10,'app'))
+  q.put((5,'banana'))
 
-  while not que.empty():
-      print(que.get(), que.qsize())
+  while not q.empty():
+      print(q.get(), q.qsize())
 
 ::
 

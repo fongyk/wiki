@@ -146,38 +146,40 @@ Python 的 `json <https://docs.python.org/3/library/json.html>`_ 模块提供了
 Python 到 JSON 转换表
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-``dump`` ``dumps`` ``JSONEncoder`` 使用的转换表：
+.. table:: dump、dumps 以及 JSONEncoder 使用的转换表
+    :align: center
 
-=========================================== =======================
-Python                                       JSON
-=========================================== =======================
-dict                                          object
-list, tuple                                   array
-str                                            string
-int, float, int 和 float 派生的枚举              number
-True                                           true
-False                                          false
-None                                           null
-=========================================== =======================
+    =========================================== =======================
+    Python                                       JSON
+    =========================================== =======================
+    dict                                          object
+    list, tuple                                   array
+    str                                            string
+    int, float, int 和 float 派生的枚举              number
+    True                                           true
+    False                                          false
+    None                                           null
+    =========================================== =======================
 
 
 JSON 到 Python 转换表
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-``load`` ``loads`` ``JSONDecoder`` 使用的转换表：
+.. table:: load、loads 以及 JSONDecoder 使用的转换表
+    :align: center
 
-=========================================== =======================
-JSON                                          Python
-=========================================== =======================
-object                                          dict
-array                                          list
-string                                          str
-number (int)                                   int
-number (real)                                   float
-true                                           True
-false                                          False
-null                                           None
-=========================================== =======================
+    =========================================== =======================
+    JSON                                          Python
+    =========================================== =======================
+    object                                          dict
+    array                                          list
+    string                                          str
+    number (int)                                   int
+    number (real)                                   float
+    true                                           True
+    false                                          False
+    null                                           None
+    =========================================== =======================
 
 
 参考资料

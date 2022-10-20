@@ -22,7 +22,7 @@ curl（Client URL）是常用的命令行工具，用来请求 Web 服务器以�
 -H
 -------------
 
-即 ``(--header)`` ，添加 HTTP 请求的标头。
+即 ``--header`` ，添加 HTTP 请求的标头。
 
 添加两个 HTTP 标头::
 

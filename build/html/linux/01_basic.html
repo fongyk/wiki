@@ -133,65 +133,78 @@
 </section>
 <section id="id3">
 <h2><span class="section-number">1.2. </span>文件和目录<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ..
-<span class="nb">pwd</span>
-ls -a -F -R -l
-
-cp <span class="o">[</span>-i<span class="o">]</span> src dst
-cp -R
-
-mv src des
-rm -i -r -f folder
-
-touch new <span class="c1">## 创建新文件或修改文件时间属性</span>
-
-mkdir new
-rmdir new
-
-file my_file <span class="c1">## 查看文件类型</span>
-
-cat -n log.txt
-tail log.txt
-tail -f log.txt <span class="c1">## 追踪、动态打印</span>
-head -5 log.txt
-
-wc file -c -w -l
-
-ls -l <span class="p">|</span> grep <span class="s2">&quot;^-&quot;</span> <span class="p">|</span> wc -l <span class="c1">## 统计当前目录下的文件个数（不包括子目录中的文件）</span>
-ls -lR <span class="p">|</span> grep <span class="s2">&quot;^-&quot;</span> <span class="p">|</span> wc -l <span class="c1">## 统计当前目录下的文件个数（包括子目录中的文件）</span>
-ls -lR b*/ <span class="p">|</span> grep <span class="s2">&quot;^-&quot;</span> <span class="p">|</span> wc -l <span class="c1">## 统计以 b 开头的目录下的全部文件个数（包括子目录中的文件）</span>
-ls -l <span class="p">|</span> grep <span class="s2">&quot;^d&quot;</span> <span class="p">|</span> wc -l <span class="c1">## 统计当前目录下的目录/文件夹个数（不包括子目录中的文件）</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="nb">cd</span> ..
+<span class="linenos"> 2</span><span class="nb">pwd</span>
+<span class="linenos"> 3</span>ls -a -F -R -l
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span>cp <span class="o">[</span>-i<span class="o">]</span> src dst
+<span class="linenos"> 6</span>cp -R
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>mv src des
+<span class="linenos"> 9</span>rm -i -r -f folder
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="c1">## 创建新文件或修改文件时间属性</span>
+<span class="linenos">12</span>touch new
+<span class="linenos">13</span>
+<span class="linenos">14</span>mkdir new
+<span class="linenos">15</span>rmdir new
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="c1">## 查看文件类型</span>
+<span class="linenos">18</span>file my_file
+<span class="linenos">19</span>
+<span class="linenos">20</span>cat -n log.txt
+<span class="linenos">21</span>tail log.txt
+<span class="linenos">22</span><span class="c1">## 追踪、动态打印</span>
+<span class="linenos">23</span>tail -f log.txt
+<span class="linenos">24</span>head -5 log.txt
+<span class="linenos">25</span>
+<span class="linenos">26</span>wc file -c -w -l
+<span class="linenos">27</span>
+<span class="linenos">28</span><span class="c1">## 统计当前目录下的文件个数（不包括子目录中的文件）</span>
+<span class="linenos">29</span>ls -l <span class="p">|</span> grep <span class="s2">&quot;^-&quot;</span> <span class="p">|</span> wc -l
+<span class="linenos">30</span><span class="c1">## 统计当前目录下的文件个数（包括子目录中的文件）</span>
+<span class="linenos">31</span>ls -lR <span class="p">|</span> grep <span class="s2">&quot;^-&quot;</span> <span class="p">|</span> wc -l
+<span class="linenos">32</span><span class="c1">## 统计以 b 开头的目录下的全部文件个数（包括子目录中的文件）</span>
+<span class="linenos">33</span>ls -lR b*/ <span class="p">|</span> grep <span class="s2">&quot;^-&quot;</span> <span class="p">|</span> wc -l
+<span class="linenos">34</span><span class="c1">## 统计当前目录下的目录/文件夹个数（不包括子目录中的文件）</span>
+<span class="linenos">35</span>ls -l <span class="p">|</span> grep <span class="s2">&quot;^d&quot;</span> <span class="p">|</span> wc -l
 </pre></div>
 </div>
 </section>
 <section id="id4">
 <h2><span class="section-number">1.3. </span>磁盘空间<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>df -h
-du <span class="o">[</span>-s<span class="o">]</span> -h
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>df -h
+<span class="linenos">2</span>du <span class="o">[</span>-s<span class="o">]</span> -h
 </pre></div>
 </div>
 </section>
 <section id="id5">
 <h2><span class="section-number">1.4. </span>处理数据文件<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sort <span class="o">[</span>-n<span class="o">]</span> log.txt <span class="c1">## -n : 行号</span>
-
-grep <span class="o">[</span>-n<span class="o">]</span> <span class="o">[</span>-c<span class="o">]</span> t file <span class="c1">## find *t* in file</span>
-
-gzip my*
-gunzip myfile.gz
-
-tar -cvf test.tar test/
-tar -xvf test.tar
-tar -xzvf test.tgz
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">## -n : 行号</span>
+<span class="linenos"> 2</span>sort <span class="o">[</span>-n<span class="o">]</span> log.txt
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="c1">## find *t* in file</span>
+<span class="linenos"> 5</span>grep <span class="o">[</span>-n<span class="o">]</span> <span class="o">[</span>-c<span class="o">]</span> t file
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>gzip my*
+<span class="linenos"> 8</span>gunzip myfile.gz
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>tar -cvf test.tar test/
+<span class="linenos">11</span>tar -xvf test.tar
+<span class="linenos">12</span>tar -xzvf test.tgz
 </pre></div>
 </div>
 </section>
 <section id="id6">
 <h2><span class="section-number">1.5. </span>系统信息<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uname -a <span class="c1">## 内核版本、硬件架构、处理器</span>
-cat /etc/issue <span class="c1">## 操作系统版本</span>
-cat /proc/cpuinfo <span class="c1">## cpu 信息</span>
-cat /proc/meminfo <span class="c1">## 内存信息</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">## 内核版本、硬件架构、处理器</span>
+<span class="linenos">2</span>uname -a
+<span class="linenos">3</span><span class="c1">## 操作系统版本</span>
+<span class="linenos">4</span>cat /etc/issue
+<span class="linenos">5</span><span class="c1">## cpu 信息</span>
+<span class="linenos">6</span>cat /proc/cpuinfo
+<span class="linenos">7</span><span class="c1">## 内存信息</span>
+<span class="linenos">8</span>cat /proc/meminfo
 </pre></div>
 </div>
 </section>

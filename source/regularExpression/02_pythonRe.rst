@@ -1,6 +1,10 @@
 Python 正则
 =======================
 
+::
+
+    import re
+
 Python 的 **re** 模块提供了与 Perl 语言类似的正则表达式匹配操作。
 
 模式（Pattern）和被搜索的字符串既可以是 Unicode 字符串（ ``str`` ），也可以是 8 位字节串（ ``bytes`` ），但是两者不能混用。
@@ -36,19 +40,33 @@ re.compile
 
 正则表达式对象 Pattern 支持以下方法和属性：
 
-- ``Pattern.search(string[, pos[, endpos]])`` ：扫描整个 string 寻找第一个匹配的位置，并返回一个相应的匹配对象；如果没有匹配，就返回 ``None`` 。
+.. py:function:: Pattern.search(string[, pos[, endpos]])
+    
+    扫描整个 string 寻找第一个匹配的位置，并返回一个相应的匹配对象；如果没有匹配，就返回 ``None`` 。
 
-- ``Pattern.match(string[, pos[, endpos]])`` ：如果 string 的开始位置能够找到这个正则样式的任意个匹配，就返回一个相应的匹配对象；如果不匹配，就返回 ``None`` 。
+.. py:function:: Pattern.match(string[, pos[, endpos]])
+    
+    如果 string 的开始位置能够找到这个正则样式的任意个匹配，就返回一个相应的匹配对象；如果不匹配，就返回 ``None`` 。
 
-- ``Pattern.fullmatch(string[, pos[, endpos]])`` ：如果整个 string 匹配这个正则表达式，就返回一个相应的匹配对象，否则就返回 ``None`` 。
+.. py:function:: Pattern.fullmatch(string[, pos[, endpos]])
+    
+    如果整个 string 匹配这个正则表达式，就返回一个相应的匹配对象，否则就返回 ``None`` 。
 
-- ``Pattern.split(string, maxsplit=0)`` ：等价于 ``re.split`` 。
+.. py:function:: Pattern.split(string, maxsplit=0)
+    
+    等价于 ``re.split`` 。
 
-- ``Pattern.findall(string[, pos[, endpos]])`` ：类似于 ``re.findall`` ，也可以接收可选参数 pos 和 endpos ，限制搜索范围。
+.. py:function:: Pattern.findall(string[, pos[, endpos]])
+    
+    类似于 ``re.findall`` ，也可以接收可选参数 pos 和 endpos ，限制搜索范围。
 
-- ``Pattern.sub(repl, string, count=0)`` ： 等价于 ``re.sub`` 。
+.. py:function:: Pattern.sub(repl, string, count=0)
+    
+    等价于 ``re.sub`` 。
 
-- ``Pattern.groups`` ：捕获到的模式串中组的数量。
+.. py:function:: Pattern.groups
+    
+    捕获到的模式串中组的数量。
 
 re.search
 -----------------
@@ -85,11 +103,11 @@ re.match
 
 匹配对象 Match 常用成员方法如下：
 
-- ``Match.groups(default=None)`` 
+.. py:function:: Match.groups(default=None)
     
     - 返回一个元组，包含所有匹配的子组。
 
-- ``Match.groupdict(default=None)``
+.. py:function:: Match.groupdict(default=None)
 
     - 返回匹配子组的字典形式，需要配合 ``?P<first_name>`` 使用。
 
@@ -102,7 +120,7 @@ re.match
         >>> m.group('first_name')
         'Malcolm'
 
-- ``Match.group([group1, ...])`` 
+.. py:function:: Match.group([group1, ...])
 
     - 返回一个或者多个匹配的子组。如果只有一个参数，结果就是一个字符串；如果有多个参数，结果就是一个元组（每个参数对应一个项）；如果没有参数，或者参数是 0，返回所有的匹配。
 
@@ -119,11 +137,15 @@ re.match
         >>> m.group(1, 2)    # Multiple arguments give us a tuple.
         ('Isaac', 'Newton')
 
-- ``Match.start([group])`` ``Match.end([group])``
+.. py:function:: Match.start([group])
 
-    - 返回 group 匹配到的字串的开始和结束位置（前开后闭）。group 默认为 0（意思是整个匹配的子串）。
+    - 返回 group 匹配到的字串的开始位置。group 默认为 0（意思是整个匹配的子串）。
+    
+.. py:function:: Match.end([group])
 
-- ``Match.span([group])``
+    - 返回 group 匹配到的字串的结束位置（前闭后开）。group 默认为 0（意思是整个匹配的子串）。
+
+.. py:function:: Match.span([group])
 
     - 对于一个匹配 m ， 返回一个二元组 ``(m.start(group), m.end(group))`` 。 注意如果 group 没有在这个匹配中，就返回 ``(-1, -1)`` 。group 默认为0，就是整个匹配。
 

@@ -60,8 +60,9 @@ ARGIND	          循环处理数据时，当前被处理的 ARGV 的索引
 PROCINFO	      包含进程信息的关联数组，例如UID、进程ID等
 ===============  ================================================
 
-::
-
+.. code-block:: bash
+    :linenos:
+    
     % awk 'BEGIN {print ENVIRON["USER"]}'
     fong
     % awk 'END {print FILENAME}' test.txt
@@ -75,7 +76,8 @@ PROCINFO	      包含进程信息的关联数组，例如UID、进程ID等
     ARGV[1] = first
     ARGV[2] = second
 
-::
+.. code-block:: bash
+    :linenos:
 
     % echo "a b c\n1\t2\t3" > test.txt
     % cat test.txt 
@@ -155,7 +157,8 @@ PROCINFO	      包含进程信息的关联数组，例如UID、进程ID等
 
 awk 支持普通数组和关联数组，也就是说，不仅可以使用数字索引（从 1 开始）的数组，还可以使用字符串作为索引。
 
-::
+.. code-block:: bash
+    :linenos:
 
     % awk 'BEGIN {arr["a"] = 1; arr["b"] = 2; for (i in arr) printf "arr[%s] = %d\n", i, arr[i]}'
     arr[a] = 1
@@ -180,7 +183,8 @@ awk 支持普通数组和关联数组，也就是说，不仅可以使用数字�
 
 - ``toupper(str)`` ：转大写。
 
-::
+.. code-block:: bash
+    :linenos:
 
     % awk 'BEGIN { str1 = "hello"; str2 = "world"; str3 = str1" "str2; print str3, length(str3); if(match(str3, "h.*w")) print RSTART, RLENGTH}' 
     hello world 11
@@ -191,7 +195,8 @@ awk 支持普通数组和关联数组，也就是说，不仅可以使用数字�
 
 awk 支持正则表达式，需要放在斜杠中： ``/regexp/`` 。另外，awk 还有两个匹配符： ``~`` 和 ``!~`` 分别代表匹配和不匹配，搭配正则表达式使用。
 
-::
+.. code-block:: bash
+    :linenos:
 
     % echo "tom man 20\njerry man 18\nalice woman 25" > test.txt
     % cat test.txt 
@@ -217,7 +222,8 @@ awk 支持正则表达式，需要放在斜杠中： ``/regexp/`` 。另外，aw
 
 脚本以 ``.awk`` 为后缀，执行： ``awk -f commands.awk test.txt`` 。
 
-::
+.. code-block:: bash
+    :linenos:
 
     % cat a.awk 
     BEGIN{

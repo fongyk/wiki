@@ -46,35 +46,43 @@
 --------------------
 
 .. code-block:: bash
+    :linenos:
 
-  cd ..
-  pwd
-  ls -a -F -R -l
+    cd ..
+    pwd
+    ls -a -F -R -l
 
-  cp [-i] src dst
-  cp -R
+    cp [-i] src dst
+    cp -R
 
-  mv src des
-  rm -i -r -f folder
+    mv src des
+    rm -i -r -f folder
 
-  touch new ## 创建新文件或修改文件时间属性
+    ## 创建新文件或修改文件时间属性
+    touch new 
 
-  mkdir new
-  rmdir new
+    mkdir new
+    rmdir new
 
-  file my_file ## 查看文件类型
+    ## 查看文件类型
+    file my_file 
 
-  cat -n log.txt
-  tail log.txt
-  tail -f log.txt ## 追踪、动态打印
-  head -5 log.txt
+    cat -n log.txt
+    tail log.txt
+    ## 追踪、动态打印
+    tail -f log.txt 
+    head -5 log.txt
 
-  wc file -c -w -l
+    wc file -c -w -l
 
-  ls -l | grep "^-" | wc -l ## 统计当前目录下的文件个数（不包括子目录中的文件）
-  ls -lR | grep "^-" | wc -l ## 统计当前目录下的文件个数（包括子目录中的文件）
-  ls -lR b*/ | grep "^-" | wc -l ## 统计以 b 开头的目录下的全部文件个数（包括子目录中的文件）
-  ls -l | grep "^d" | wc -l ## 统计当前目录下的目录/文件夹个数（不包括子目录中的文件）
+    ## 统计当前目录下的文件个数（不包括子目录中的文件）
+    ls -l | grep "^-" | wc -l 
+    ## 统计当前目录下的文件个数（包括子目录中的文件）
+    ls -lR | grep "^-" | wc -l 
+    ## 统计以 b 开头的目录下的全部文件个数（包括子目录中的文件）
+    ls -lR b*/ | grep "^-" | wc -l 
+    ## 统计当前目录下的目录/文件夹个数（不包括子目录中的文件）
+    ls -l | grep "^d" | wc -l 
 
 
 
@@ -82,35 +90,44 @@
 ------------
 
 .. code-block:: bash
+    :linenos:
 
-  df -h
-  du [-s] -h
+    df -h
+    du [-s] -h
 
 处理数据文件
 ----------------
 
 .. code-block:: bash
+    :linenos:
 
-  sort [-n] log.txt ## -n : 行号
+    ## -n : 行号
+    sort [-n] log.txt 
 
-  grep [-n] [-c] t file ## find *t* in file
+    ## find *t* in file
+    grep [-n] [-c] t file 
 
-  gzip my*
-  gunzip myfile.gz
+    gzip my*
+    gunzip myfile.gz
 
-  tar -cvf test.tar test/
-  tar -xvf test.tar
-  tar -xzvf test.tgz
+    tar -cvf test.tar test/
+    tar -xvf test.tar
+    tar -xzvf test.tgz
 
 系统信息
 ----------------
 
 .. code-block:: bash
+    :linenos:
 
-  uname -a ## 内核版本、硬件架构、处理器
-  cat /etc/issue ## 操作系统版本
-  cat /proc/cpuinfo ## cpu 信息
-  cat /proc/meminfo ## 内存信息
+    ## 内核版本、硬件架构、处理器
+    uname -a 
+    ## 操作系统版本
+    cat /etc/issue 
+    ## cpu 信息
+    cat /proc/cpuinfo
+    ## 内存信息 
+    cat /proc/meminfo 
 
 参考资料
 -----------

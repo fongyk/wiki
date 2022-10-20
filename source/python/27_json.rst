@@ -19,16 +19,17 @@ JSON（JavaScript Object Notation）是一种轻量级的数据交换格式。
 
 Python 的 `json <https://docs.python.org/3/library/json.html>`_ 模块提供了与标准库 `marshal <https://docs.python.org/3/library/marshal.html#module-marshal>`_ 和 `pickle <https://docs.python.org/3/library/pickle.html#module-pickle>`_ 相似的API接口。
 
-基本用法
---------------
-
 ::
 
     import json
 
+基本用法
+--------------
+
+
 .. py:function:: json.dump(obj, fp, *, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, cls=None, indent=None, separators=None, default=None, sort_keys=False, **kw)
 
-   将 ``obj`` 序列化为 JSON 格式化流形式的 ``fp`` (支持 ``.write()`` 的 file-like object)。json 模块始终产生 ``str`` 对象而非 ``bytes`` 对象。因此，``fp.write()`` 必须支持 ``str`` 输入。
+   将 obj 序列化为 JSON 格式化流形式的 fp (支持 ``.write()`` 的 file-like object)。json 模块始终产生 ``str`` 对象而非 ``bytes`` 对象。因此，``fp.write()`` 必须支持 ``str`` 输入。
 
    :param bool skipkeys: 默认为 False ，如果为 True ，那么那些不是基本对象（包括 ``str`` ``int`` ``float`` ``bool`` ``None`` ）的字典的键会被跳过，否则引发 ``TypeError`` 异常。
    :param bool ensure_ascii: 默认为 True ，输出保证将所有输入的非 ASCII 字符转义，否则这些字符会原样输出。
@@ -40,11 +41,11 @@ Python 的 `json <https://docs.python.org/3/library/json.html>`_ 模块提供了
 
 .. py:function:: json.dumps(obj, *, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, cls=None, indent=None, separators=None, default=None, sort_keys=False, **kw)
 
-    将 ``obj`` 序列化为 JSON 格式的 ``str`` 。其他参数的含义与 ``json.dump`` 相同。
+    将 obj 序列化为 JSON 格式的 ``str`` 。其他参数的含义与 ``json.dump`` 相同。
 
 .. py:function:: json.load(fp, *, cls=None, object_hook=None, parse_float=None, parse_int=None, parse_constant=None, object_pairs_hook=None, **kw)
 
-    将 ``fp`` (一个支持 ``.read()`` 并包含一个 JSON 文档的 text file 或者 binary file) 反序列化为一个 Python 对象。
+    将 fp (一个支持 ``.read()`` 并包含一个 JSON 文档的 text file 或者 binary file) 反序列化为一个 Python 对象。
 
     :param parse_float: 从字符串解析浮点数的方法，默认情况下相当于 ``float(num_str)`` 。
     :param parse_int: 从字符串解析整数的方法，默认情况下相当于 ``int(num_str)`` 。
@@ -52,7 +53,7 @@ Python 的 `json <https://docs.python.org/3/library/json.html>`_ 模块提供了
 
 .. py:function:: json.loads(s, *, cls=None, object_hook=None, parse_float=None, parse_int=None, parse_constant=None, object_pairs_hook=None, **kw)
 
-    将 ``s`` (一个包含 JSON 文档的 ``str`` ， ``bytes`` 或 ``bytearray`` 实例) 反序列化为 Python 对象。其他参数的含义与 ``json.load`` 中的相同。
+    将 s (一个包含 JSON 文档的 ``str`` ， ``bytes`` 或 ``bytearray`` 实例) 反序列化为 Python 对象。其他参数的含义与 ``json.load`` 中的相同。
 
 ::
 
@@ -67,7 +68,8 @@ Python 的 `json <https://docs.python.org/3/library/json.html>`_ 模块提供了
 美化输出
 ^^^^^^^^^^^^
 
-:: 
+.. code-block:: python 
+    :linenos:
 
     >>> json.dumps([1, 2, 3, {4: 5, 6: 7}], separators=(',', ':'))
     '[1,2,3,{"4":5,"6":7}]'
@@ -79,7 +81,10 @@ Python 的 `json <https://docs.python.org/3/library/json.html>`_ 模块提供了
         "6": 7
     }
 
-命令行使用 json.tool 来验证并美化输出::
+命令行使用 json.tool 来验证并美化输出：
+
+.. code-block:: bash
+    :linenos:
 
     $ echo '{"json":"obj"}' | python -m json.tool
     {
@@ -103,7 +108,7 @@ Python 的 `json <https://docs.python.org/3/library/json.html>`_ 模块提供了
 
     .. py:method:: encode(o)
 
-        返回 Python ``o`` 数据类型的 JSON 字符串表达方式。
+        返回 Python o 数据对象的 JSON 字符串表达方式。
 
         ::
 
@@ -118,7 +123,7 @@ Python 的 `json <https://docs.python.org/3/library/json.html>`_ 模块提供了
 
     .. py:method:: decode(s)
 
-        返回 ``s`` （包含一个 JSON 文档的 ``str`` 实例）的 Python 表示形式。
+        返回 s（包含一个 JSON 文档的 ``str`` 实例）的 Python 表示形式。
 
         ::
 
@@ -127,7 +132,7 @@ Python 的 `json <https://docs.python.org/3/library/json.html>`_ 模块提供了
 
     .. py:method:: raw_decode(s)
 
-        从 ``s`` （以 JSON 文档 **开头** 的一个 ``str`` 对象，该字符串的末尾可能有无关的数据）中解码出 JSON 文档并返回一个 Python 表示形式：一个二元组，包含了解析出来的 Python 对象以及该 JSON 文档在 ``s`` 中的结束位置。
+        从 s（以 JSON 文档 **开头** 的一个 ``str`` 对象，该字符串的末尾可能有无关的数据）中解码出 JSON 文档并返回一个 Python 表示形式：一个二元组，包含了解析出来的 Python 对象以及该 JSON 文档在 s 中的结束位置。
 
         ::
 
@@ -141,7 +146,7 @@ Python 的 `json <https://docs.python.org/3/library/json.html>`_ 模块提供了
 Python 到 JSON 转换表
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-``dump`` 、 ``dumps`` 、 ``JSONEncoder`` 转换表。
+``dump`` ``dumps`` ``JSONEncoder`` 使用的转换表：
 
 =========================================== =======================
 Python                                       JSON
@@ -159,7 +164,7 @@ None                                           null
 JSON 到 Python 转换表
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-``load`` 、 ``loads`` 、 ``JSONDecoder`` 转换表。
+``load`` ``loads`` ``JSONDecoder`` 使用的转换表：
 
 =========================================== =======================
 JSON                                          Python

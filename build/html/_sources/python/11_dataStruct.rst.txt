@@ -103,7 +103,7 @@ queue 模块实现了多生产者、多消费者队列，适用于消息必须�
   :linenos:
 
   from queue import PriorityQueue
-  
+
   q = PriorityQueue()
   q.put((1,'apple'))
   q.put((10,'app'))
@@ -168,7 +168,7 @@ queue 模块实现了多生产者、多消费者队列，适用于消息必须�
     while True:
         try:
             ## ...
-            q.get(block=False)
+            item = q.get(block=False)
             ## ...
         except queue.Empty:
             break

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="zh-CN" >
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>18. 常用函数 &mdash; fong alpha 文档</title>
+  <title>18. 常用函数 &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,11 +19,10 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/translations.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="19. 常用 STL 容器" href="19_stl.html" />
     <link rel="prev" title="17. 枚举类型与共用体" href="17_enumUnion.html" /> 
 </head>
@@ -41,7 +40,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -129,7 +128,7 @@
           <li><a href="index.html">C/C++</a> &raquo;</li>
       <li><span class="section-number">18. </span>常用函数</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/cpp/18_commonFunc.rst.txt" rel="nofollow"> 查看页面源码</a>
+            <a href="../_sources/cpp/18_commonFunc.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -138,10 +137,10 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">18. </span>常用函数<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<h1><span class="section-number">18. </span>常用函数<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <p>以下函数基于 C++11 标准。</p>
 <section id="lower-bound-upper-bound">
-<h2><span class="section-number">18.1. </span>lower_bound，upper_bound<a class="headerlink" href="#lower-bound-upper-bound" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">18.1. </span>lower_bound，upper_bound<a class="headerlink" href="#lower-bound-upper-bound" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
@@ -193,7 +192,7 @@
 </div>
 </div>
 <div class="admonition note">
-<p class="admonition-title">备注</p>
+<p class="admonition-title">Note</p>
 <p>map、multimap、set、multiset 是基于红黑树实现的、有序的，其中 map、multimap 默认按照 key 排序。
 这四种模板都自带 lower_bound 和 upper_bound 成员函数。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m</span><span class="p">;</span><span class="w"></span>
@@ -213,7 +212,7 @@
 </div>
 </section>
 <section id="fill-fill-n-for-each">
-<h2><span class="section-number">18.2. </span>fill，fill_n，for_each<a class="headerlink" href="#fill-fill-n-for-each" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">18.2. </span>fill，fill_n，for_each<a class="headerlink" href="#fill-fill-n-for-each" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
@@ -242,7 +241,7 @@
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">fn</span></code> 是一个一元谓词（unary predicate），接受一个参数，其返回值被忽略。<code class="docutils literal notranslate"><span class="pre">fn</span></code> 可以是一个函数指针或函数对象。</p>
 <div class="admonition note">
-<p class="admonition-title">备注</p>
+<p class="admonition-title">Note</p>
 <dl class="simple">
 <dt>函数对象</dt><dd><p>如果一个类将 <code class="docutils literal notranslate"><span class="pre">()</span></code> 运算符重载为成员函数，这个类就称为函数对象类，这个类的对象就是函数对象。
 函数对象是一个对象，但是使用的形式看起来像函数调用，实际上也执行了函数调用。</p>
@@ -316,7 +315,7 @@
 </div>
 </section>
 <section id="sort">
-<h2><span class="section-number">18.3. </span>sort<a class="headerlink" href="#sort" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">18.3. </span>sort<a class="headerlink" href="#sort" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
 
 <span class="c1">// default</span>
@@ -393,12 +392,12 @@
 </pre></div>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">警告</p>
+<p class="admonition-title">Warning</p>
 <p>如果把自定义的 <code class="docutils literal notranslate"><span class="pre">comparator</span></code> 函数封装为类的成员函数，应该定义为 <strong>静态成员函数（static）</strong> 。</p>
 </div>
 </section>
 <section id="reverse">
-<h2><span class="section-number">18.4. </span>reverse<a class="headerlink" href="#reverse" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">18.4. </span>reverse<a class="headerlink" href="#reverse" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
 
 <span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">BidirectionalIterator</span><span class="o">&gt;</span><span class="w"></span>
@@ -438,7 +437,7 @@
 </div>
 </section>
 <section id="min-element-max-element-minmax-element">
-<h2><span class="section-number">18.5. </span>min_element，max_element，minmax_element<a class="headerlink" href="#min-element-max-element-minmax-element" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">18.5. </span>min_element，max_element，minmax_element<a class="headerlink" href="#min-element-max-element-minmax-element" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
@@ -486,7 +485,7 @@
 </div>
 </section>
 <section id="accumulate">
-<h2><span class="section-number">18.6. </span>accumulate<a class="headerlink" href="#accumulate" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">18.6. </span>accumulate<a class="headerlink" href="#accumulate" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;numeric&gt;</span><span class="cp"></span>
 
 <span class="c1">// sum</span>
@@ -542,7 +541,7 @@
 </div>
 </section>
 <section id="partial-sum">
-<h2><span class="section-number">18.7. </span>partial_sum<a class="headerlink" href="#partial-sum" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">18.7. </span>partial_sum<a class="headerlink" href="#partial-sum" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;numeric&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
@@ -605,7 +604,7 @@
 </div>
 </section>
 <section id="iota">
-<h2><span class="section-number">18.8. </span>iota<a class="headerlink" href="#iota" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">18.8. </span>iota<a class="headerlink" href="#iota" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;numeric&gt;</span><span class="cp"></span>
 
 <span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">ForwardIterator</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
@@ -636,7 +635,7 @@
 </div>
 </section>
 <section id="inner-product">
-<h2><span class="section-number">18.9. </span>inner_product<a class="headerlink" href="#inner-product" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">18.9. </span>inner_product<a class="headerlink" href="#inner-product" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;numeric&gt;</span><span class="cp"></span>
 
 <span class="c1">// sum/multiply</span>
@@ -700,7 +699,7 @@
 </div>
 </section>
 <section id="memset">
-<h2><span class="section-number">18.10. </span>memset<a class="headerlink" href="#memset" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">18.10. </span>memset<a class="headerlink" href="#memset" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstring&gt;</span><span class="cp"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">memset</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ptr</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
@@ -736,7 +735,7 @@
 </div>
 </section>
 <section id="id2">
-<h2><span class="section-number">18.11. </span>附：头文件<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">18.11. </span>附：头文件<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">cmath</span></code></p>
 <ul>
@@ -789,7 +788,7 @@
 </ul>
 </section>
 <section id="id3">
-<h2><span class="section-number">18.12. </span>参考资料<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">18.12. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>C++ reference</p></li>
 </ol>
@@ -832,19 +831,19 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="17_enumUnion.html" class="btn btn-neutral float-left" title="17. 枚举类型与共用体" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="19_stl.html" class="btn btn-neutral float-right" title="19. 常用 STL 容器" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="17_enumUnion.html" class="btn btn-neutral float-left" title="17. 枚举类型与共用体" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="19_stl.html" class="btn btn-neutral float-right" title="19. 常用 STL 容器" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; 版权所有 2018-2022, fong.</p>
+    <p>&#169; Copyright 2018-2022, fong.</p>
   </div>
 
-  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
-    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
    
 
 </footer>

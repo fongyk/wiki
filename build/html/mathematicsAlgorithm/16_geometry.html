@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="zh-CN" >
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>16. 几何 &mdash; fong alpha 文档</title>
+  <title>16. 几何 &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,11 +19,10 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/translations.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="17. 图环" href="17_graphCycle.html" />
     <link rel="prev" title="15. 概率基础" href="15_probability.html" /> 
 </head>
@@ -41,7 +40,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -122,7 +121,7 @@
           <li><a href="index.html">数理与算法</a> &raquo;</li>
       <li><span class="section-number">16. </span>几何</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/mathematicsAlgorithm/16_geometry.rst.txt" rel="nofollow"> 查看页面源码</a>
+            <a href="../_sources/mathematicsAlgorithm/16_geometry.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -131,9 +130,9 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">16. </span>几何<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<h1><span class="section-number">16. </span>几何<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <section id="id2">
-<h2><span class="section-number">16.1. </span>仿射变换<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">16.1. </span>仿射变换<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <p>仿射变换（Affine Transformation）是一个向量空间到另一个向量空间的变换（平移 + 线性变换），变换前后保持以下属性：</p>
 <ul class="simple">
 <li><p>collinearity ：共线的点仍然共线。</p></li>
@@ -164,7 +163,7 @@ T =
   0 &amp; 0 &amp; 1
 \end{bmatrix}
 $$</div><section id="translation">
-<h3>平移（translation）<a class="headerlink" href="#translation" title="此标题的永久链接"></a></h3>
+<h3>平移（translation）<a class="headerlink" href="#translation" title="Permalink to this heading"></a></h3>
 <div class="math notranslate nohighlight">
 $$
 T =
@@ -175,7 +174,7 @@ T =
 \end{bmatrix}
 $$</div></section>
 <section id="scaling">
-<h3>缩放（scaling）<a class="headerlink" href="#scaling" title="此标题的永久链接"></a></h3>
+<h3>缩放（scaling）<a class="headerlink" href="#scaling" title="Permalink to this heading"></a></h3>
 <div class="math notranslate nohighlight">
 $$
 T =
@@ -187,7 +186,7 @@ T =
 $$</div><p>当 <span class="math notranslate nohighlight">\(s_x=-1\)</span> 或 <span class="math notranslate nohighlight">\(s_y=-1\)</span> 表示翻转（镜像）。</p>
 </section>
 <section id="rotation">
-<h3>逆时针旋转（rotation）<a class="headerlink" href="#rotation" title="此标题的永久链接"></a></h3>
+<h3>逆时针旋转（rotation）<a class="headerlink" href="#rotation" title="Permalink to this heading"></a></h3>
 <div class="math notranslate nohighlight">
 $$
 T =
@@ -198,7 +197,7 @@ T =
 \end{bmatrix}
 $$</div></section>
 <section id="shear">
-<h3>错切（shear）<a class="headerlink" href="#shear" title="此标题的永久链接"></a></h3>
+<h3>错切（shear）<a class="headerlink" href="#shear" title="Permalink to this heading"></a></h3>
 <div class="math notranslate nohighlight">
 $$
 T =
@@ -210,11 +209,11 @@ T =
 $$</div></section>
 </section>
 <section id="id3">
-<h2><span class="section-number">16.2. </span>线段相交<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">16.2. </span>线段相交<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <p><strong>问题</strong> ：给定两条线段四个端点的坐标，判断两条线段是否相交。</p>
 <a class="reference internal image-reference" href="../_images/16_lineSegment.jpg"><img alt="../_images/16_lineSegment.jpg" class="align-center" src="../_images/16_lineSegment.jpg" style="width: 600px;" /></a>
 <section id="id4">
-<h3>方法一：跨立实验<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h3>
+<h3>方法一：跨立实验<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
 <p><strong>快速排斥</strong></p>
 <p>分别以两条线段为对角线作矩形，如果两个矩形没有重合部分（IoU = 0），则两条线段一定不相交。反之不然。</p>
 <a class="reference internal image-reference" href="../_images/16_iou.jpg"><img alt="../_images/16_iou.jpg" class="align-center" src="../_images/16_iou.jpg" style="width: 500px;" /></a>
@@ -310,7 +309,7 @@ $$</div></div></blockquote>
 </ul>
 </section>
 <section id="id5">
-<h3>方法二：直线交点方程<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h3>
+<h3>方法二：直线交点方程<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
 <p><span class="math notranslate nohighlight">\(AB\)</span> 的直线方程：<span class="math notranslate nohighlight">\(\overrightarrow{OA} + \lambda \overrightarrow{AB}\)</span> ，
 <span class="math notranslate nohighlight">\(CD\)</span> 的直线方程：<span class="math notranslate nohighlight">\(\overrightarrow{OC} + \mu \overrightarrow{CD}\)</span> ，</p>
 <p>即：</p>
@@ -376,13 +375,13 @@ $$</div><p>只有当 <span class="math notranslate nohighlight">\(0 \leqslant \l
 </section>
 </section>
 <section id="id6">
-<h2><span class="section-number">16.3. </span>凸多边形<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">16.3. </span>凸多边形<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
 <p><strong>问题</strong> ：按逆时针顺序给定多边形 <span class="math notranslate nohighlight">\(n\)</span> 个顶点的坐标，判断该多边形是否是凸多边形。</p>
 <p><strong>方案</strong> ：凸多边形的特点是：对于任意一条边，其他的边都在它的同一侧；按逆时针顺序，下一条边 <span class="math notranslate nohighlight">\(\overrightarrow{l}_{i+1}\)</span> 一定在当前边 <span class="math notranslate nohighlight">\(\overrightarrow{l}_i\)</span> 的逆时针方向。
 判断方法：如果 <span class="math notranslate nohighlight">\(\overrightarrow{l}_i \times \overrightarrow{l}_{i+1}\)</span> 符号为正，则在逆时针方向；符号为负，则在顺时针方向；大小为 0，表示平行/共线。</p>
 </section>
 <section id="id7">
-<h2><span class="section-number">16.4. </span>参考资料<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">16.4. </span>参考资料<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>计算几何-判断线段是否相交</p></li>
 </ol>
@@ -414,19 +413,19 @@ $$</div><p>只有当 <span class="math notranslate nohighlight">\(0 \leqslant \l
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="15_probability.html" class="btn btn-neutral float-left" title="15. 概率基础" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="17_graphCycle.html" class="btn btn-neutral float-right" title="17. 图环" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="15_probability.html" class="btn btn-neutral float-left" title="15. 概率基础" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="17_graphCycle.html" class="btn btn-neutral float-right" title="17. 图环" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; 版权所有 2018-2022, fong.</p>
+    <p>&#169; Copyright 2018-2022, fong.</p>
   </div>
 
-  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
-    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
    
 
 </footer>

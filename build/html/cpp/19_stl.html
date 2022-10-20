@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="zh-CN" >
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>19. 常用 STL 容器 &mdash; fong alpha 文档</title>
+  <title>19. 常用 STL 容器 &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,11 +19,10 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/translations.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="20. #define" href="20_define.html" />
     <link rel="prev" title="18. 常用函数" href="18_commonFunc.html" /> 
 </head>
@@ -41,7 +40,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -141,7 +140,7 @@
           <li><a href="index.html">C/C++</a> &raquo;</li>
       <li><span class="section-number">19. </span>常用 STL 容器</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/cpp/19_stl.rst.txt" rel="nofollow"> 查看页面源码</a>
+            <a href="../_sources/cpp/19_stl.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -150,7 +149,7 @@
            <div itemprop="articleBody">
              
   <section id="stl">
-<h1><span class="section-number">19. </span>常用 STL 容器<a class="headerlink" href="#stl" title="此标题的永久链接"></a></h1>
+<h1><span class="section-number">19. </span>常用 STL 容器<a class="headerlink" href="#stl" title="Permalink to this heading"></a></h1>
 <p><strong>STL: Standard Template Library</strong> ，标准模板库。</p>
 <dl class="simple">
 <dt>容器</dt><dd><p>A container is a holder object that stores a collection of other objects (its elements).
@@ -187,10 +186,10 @@ They are implemented as class templates, which allows a great flexibility in the
 </dl>
 <p>一个容器适配器接受一种已有的容器类型，使其行为看起来像一种不同的类型。默认情况下，stack 和 queue 基于 deque 实现，priority_queue 基于 vector 实现。</p>
 <section id="id1">
-<h2><span class="section-number">19.1. </span>迭代器<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">19.1. </span>迭代器<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>迭代器和 C++ 的指针非常类似，它可以是需要的任意类型，通过迭代器可以指向容器中的某个元素，还可以对该元素进行读/写操作。</p>
 <section id="id2">
-<h3>功能分类<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h3>
+<h3>功能分类<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <p>常用的迭代器按功能强弱分为五种：输入迭代器（input iterator）、输出迭代器（output iterator）、前向迭代器（forward iterator）、双向迭代器（bidirectional iterator）、随机访问迭代器（random access iterator）。</p>
 <p>随机访问迭代器支持的运算符（a、b表示迭代器）：</p>
 <ul class="simple">
@@ -229,7 +228,7 @@ They are implemented as class templates, which allows a great flexibility in the
 </ul>
 </section>
 <section id="id3">
-<h3>定义方式<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h3>
+<h3>定义方式<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
 <p>迭代器按照定义方式分成以下四种：</p>
 <ul class="simple">
 <li><p>正向迭代器 <code class="docutils literal notranslate"><span class="pre">容器类名::iterator</span>&#160; <span class="pre">迭代器名;</span></code></p></li>
@@ -239,7 +238,7 @@ They are implemented as class templates, which allows a great flexibility in the
 </ul>
 </section>
 <section id="id4">
-<h3>辅助函数<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h3>
+<h3>辅助函数<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
@@ -250,7 +249,7 @@ They are implemented as class templates, which allows a great flexibility in the
 <li><p>iter_swap(p, q)：用于交换两个迭代器指向的值，两个迭代器必须是非常量迭代器。</p></li>
 </ul>
 <div class="admonition note">
-<p class="admonition-title">备注</p>
+<p class="admonition-title">Note</p>
 <dl class="simple">
 <dt>迭代器</dt><dd><p>不能通过 <code class="docutils literal notranslate"><span class="pre">const_iterator</span></code> 修改容器元素，但是 <code class="docutils literal notranslate"><span class="pre">const_iterator</span></code> 本身可以进行自增（++）操作，类似于指向常量的指针；
 如果 <code class="docutils literal notranslate"><span class="pre">const_iterator</span></code> 本身被设置为常量： <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">const_iterator</span></code> ，则不能进行自增操作。 <code class="docutils literal notranslate"><span class="pre">const_iterator</span></code> 一般用于访问常量容器。</p>
@@ -260,7 +259,7 @@ They are implemented as class templates, which allows a great flexibility in the
 </section>
 </section>
 <section id="vector">
-<h2><span class="section-number">19.2. </span>vector<a class="headerlink" href="#vector" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">19.2. </span>vector<a class="headerlink" href="#vector" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
@@ -332,7 +331,7 @@ They are implemented as class templates, which allows a great flexibility in the
 </li>
 </ul>
 <div class="admonition note">
-<p class="admonition-title">备注</p>
+<p class="admonition-title">Note</p>
 <p>类模板用于产生类，比如</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
 <span class="k">class</span><span class="w"> </span><span class="nc">Vector</span><span class="w"></span>
@@ -345,7 +344,7 @@ They are implemented as class templates, which allows a great flexibility in the
 </div>
 </section>
 <section id="list">
-<h2><span class="section-number">19.3. </span>list<a class="headerlink" href="#list" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">19.3. </span>list<a class="headerlink" href="#list" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;list&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
@@ -364,7 +363,7 @@ They are implemented as class templates, which allows a great flexibility in the
 </ul>
 </section>
 <section id="deque">
-<h2><span class="section-number">19.4. </span>deque<a class="headerlink" href="#deque" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">19.4. </span>deque<a class="headerlink" href="#deque" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;deque&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
@@ -386,7 +385,7 @@ They are implemented as class templates, which allows a great flexibility in the
 </li>
 </ul>
 <div class="admonition note">
-<p class="admonition-title">备注</p>
+<p class="admonition-title">Note</p>
 <p>顺序容器构造函数</p>
 <blockquote>
 <div><ul class="simple">
@@ -399,7 +398,7 @@ They are implemented as class templates, which allows a great flexibility in the
 </div>
 </section>
 <section id="set">
-<h2><span class="section-number">19.5. </span>set<a class="headerlink" href="#set" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">19.5. </span>set<a class="headerlink" href="#set" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;set&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
@@ -454,7 +453,7 @@ They are implemented as class templates, which allows a great flexibility in the
 </ul>
 </section>
 <section id="pair">
-<h2><span class="section-number">19.6. </span>pair<a class="headerlink" href="#pair" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">19.6. </span>pair<a class="headerlink" href="#pair" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;utility&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
@@ -481,7 +480,7 @@ They are implemented as class templates, which allows a great flexibility in the
 </ul>
 </section>
 <section id="map">
-<h2><span class="section-number">19.7. </span>map<a class="headerlink" href="#map" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">19.7. </span>map<a class="headerlink" href="#map" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;map&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
@@ -555,7 +554,7 @@ They are implemented as class templates, which allows a great flexibility in the
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="admonition-title">备注</p>
+<p class="admonition-title">Note</p>
 <p><code class="docutils literal notranslate"><span class="pre">std::map::opeartor[]</span></code> 不是 const 成员函数（操作符），对于不在 map 中的关键字，使用下标操作符会创建新的条目从而改变了 map，因此 const map 不能使用 <code class="docutils literal notranslate"><span class="pre">[]</span></code> ，可以使用 <code class="docutils literal notranslate"><span class="pre">at()</span></code> 。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">mapped_type</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">[]</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">key_type</span><span class="o">&amp;</span><span class="w"> </span><span class="n">k</span><span class="p">);</span><span class="w"></span>
 
@@ -565,7 +564,7 @@ They are implemented as class templates, which allows a great flexibility in the
 </div>
 </div>
 <div class="admonition note">
-<p class="admonition-title">备注</p>
+<p class="admonition-title">Note</p>
 <dl>
 <dt>无序容器</dt><dd><p>维护元素有序代价较高，map 和 set 都对应了无序版本：unordered_map 和 unordered_set。无序版本能使用有序版本的操作（find、insert 等）。
 当使用 key 来访问元素时，无序版本的速度更快。</p>
@@ -575,7 +574,7 @@ They are implemented as class templates, which allows a great flexibility in the
 </dl>
 </div>
 <div class="admonition note">
-<p class="admonition-title">备注</p>
+<p class="admonition-title">Note</p>
 <dl>
 <dt>重复关键字</dt><dd><p>map 和 set 都对应了可以包含重复关键字的版本：multimap 和 multiset。元素是有序的，定义时可以指定二元谓词 <code class="docutils literal notranslate"><span class="pre">Compare</span></code> ，默认是 <code class="docutils literal notranslate"><span class="pre">less&lt;T&gt;</span></code> ，即元素从小到大排序， <code class="docutils literal notranslate"><span class="pre">multiset&lt;T,</span> <span class="pre">greater&lt;T&gt;&gt;</span></code> 可以当做大顶堆使用。</p>
 <p>相应地，insert 插入相同的关键字时，按插入时间顺序排序。也就是说，越晚插入的排在越后。<code class="docutils literal notranslate"><span class="pre">erase(val)</span></code> 会删除所有重复的 val。</p>
@@ -584,12 +583,12 @@ They are implemented as class templates, which allows a great flexibility in the
 </dl>
 </div>
 <div class="admonition note">
-<p class="admonition-title">备注</p>
+<p class="admonition-title">Note</p>
 <p>map、multimap、set、multiset 是基于红黑树实现的、有序的，查找操作的平均时间复杂度是 O(log N)。unordered_map、unordered_multimap、unordered_set、unordered_multiset 是基于哈希表实现的，查找操作的平均时间复杂度是 O(1)。哈希方法为了减小冲突概率，需要消耗更多的空间。</p>
 </div>
 </section>
 <section id="stack">
-<h2><span class="section-number">19.8. </span>stack<a class="headerlink" href="#stack" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">19.8. </span>stack<a class="headerlink" href="#stack" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;stack&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
@@ -605,7 +604,7 @@ They are implemented as class templates, which allows a great flexibility in the
 </ul>
 </section>
 <section id="queue">
-<h2><span class="section-number">19.9. </span>queue<a class="headerlink" href="#queue" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">19.9. </span>queue<a class="headerlink" href="#queue" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;queue&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
@@ -622,7 +621,7 @@ They are implemented as class templates, which allows a great flexibility in the
 </ul>
 </section>
 <section id="priority-queue">
-<h2><span class="section-number">19.10. </span>priority_queue<a class="headerlink" href="#priority-queue" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">19.10. </span>priority_queue<a class="headerlink" href="#priority-queue" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;queue&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
@@ -675,14 +674,14 @@ They are implemented as class templates, which allows a great flexibility in the
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="admonition-title">备注</p>
+<p class="admonition-title">Note</p>
 <p>C++11 标准引入了 <strong>emplace_front</strong> ，<strong>emplace</strong> ，<strong>emplace_back</strong> 这些操作构造而不是拷贝元素，分别对应 <strong>push_front</strong> ，<strong>insert/push</strong> ，<strong>push_back</strong> 。</p>
 <p>调用 push 或 insert 时，先创建一个元素类型的 <strong>临时对象</strong> ，这个对象被 <strong>拷贝</strong> 到容器中。</p>
 <p>调用 emplace 时，将 <strong>参数</strong> 传递给元素类型的 <strong>构造函数</strong> ，在容器管理的内存空间中使用这些参数直接构造元素。传递给 emplace 的参数必须与构造函数匹配。</p>
 <p>相应地，<strong>pop</strong> 操作会调用析构函数。</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">备注</p>
+<p class="admonition-title">Note</p>
 <p>当 STL 容器使用默认的空间配置器 <code class="docutils literal notranslate"><span class="pre">std::allocator&lt;T&gt;</span></code> 时，容器中存储的 <strong>数据项</strong> 都是位于堆内存（new 出来的），容器对象析构时这些空间会被释放。
 而容器的 metadata （比如 vector 的头指针、数据尾指针、空间尾指针）所在的空间受对象创建方式的影响而有所差异。
 比如， <code class="docutils literal notranslate"><span class="pre">vector&lt;T&gt;</span> <span class="pre">vec</span></code> 如果被定义为全局/静态变量，则 vec 位于全局/静态存储区；如果被定义为局部变量，则 vec 位于栈空间。
@@ -691,7 +690,7 @@ They are implemented as class templates, which allows a great flexibility in the
 </div>
 </section>
 <section id="string">
-<h2><span class="section-number">19.11. </span>附：string<a class="headerlink" href="#string" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">19.11. </span>附：string<a class="headerlink" href="#string" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
@@ -816,12 +815,12 @@ They are implemented as class templates, which allows a great flexibility in the
 </div>
 </div>
 <div class="admonition note">
-<p class="admonition-title">备注</p>
+<p class="admonition-title">Note</p>
 <p><code class="docutils literal notranslate"><span class="pre">char*</span> <span class="pre">data</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">char[10]</span></code> 将数组的所有元素都初始化为 <code class="docutils literal notranslate"><span class="pre">\0</span></code> 。</p>
 </div>
 </section>
 <section id="to-string">
-<h2><span class="section-number">19.12. </span>to_string函数<a class="headerlink" href="#to-string" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">19.12. </span>to_string函数<a class="headerlink" href="#to-string" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
@@ -839,7 +838,7 @@ They are implemented as class templates, which allows a great flexibility in the
 </div>
 </section>
 <section id="atoi-atof-atol">
-<h2><span class="section-number">19.13. </span>atoi，atof，atol<a class="headerlink" href="#atoi-atof-atol" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">19.13. </span>atoi，atof，atol<a class="headerlink" href="#atoi-atof-atol" title="Permalink to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdlib&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
@@ -851,9 +850,9 @@ They are implemented as class templates, which allows a great flexibility in the
 </div>
 </section>
 <section id="size-tsize-type">
-<h2><span class="section-number">19.14. </span>size_t和size_type<a class="headerlink" href="#size-tsize-type" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">19.14. </span>size_t和size_type<a class="headerlink" href="#size-tsize-type" title="Permalink to this heading"></a></h2>
 <section id="size-t">
-<h3>size_t<a class="headerlink" href="#size-t" title="此标题的永久链接"></a></h3>
+<h3>size_t<a class="headerlink" href="#size-t" title="Permalink to this heading"></a></h3>
 <p>size_t 提供了一种可移植（不同平台下）的方法声明与系统可寻址的内存区域一致的长度。
 size_t 是通过 typedef 定义的一些 <strong>无符号整型</strong> 的别名，通常是 unsigned int，unsigned long 甚至是 unsigned long long。</p>
 <p>常用于循环计数器、数组索引，或指针的算术运算。</p>
@@ -871,7 +870,7 @@ size_t 是通过 typedef 定义的一些 <strong>无符号整型</strong> 的别
 </dl>
 </section>
 <section id="size-type">
-<h3>size_type<a class="headerlink" href="#size-type" title="此标题的永久链接"></a></h3>
+<h3>size_type<a class="headerlink" href="#size-type" title="Permalink to this heading"></a></h3>
 <p>size_type 是 STL 定义的类型属性，足够保持对应容器最大可能的容器大小，也是 <strong>无符号整型</strong> 。</p>
 <p>size() 的返回类型就是 size_type。把 size() 赋值给一个 int 变量，会有 warning。</p>
 <dl class="simple">
@@ -889,7 +888,7 @@ size_t 是通过 typedef 定义的一些 <strong>无符号整型</strong> 的别
 </dd>
 </dl>
 <div class="admonition warning">
-<p class="admonition-title">警告</p>
+<p class="admonition-title">Warning</p>
 <blockquote>
 <div><p><strong>无符号整型</strong> 尤其是要注意下标为 0 时的边界情况。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vec</span><span class="p">;</span><span class="w"> </span><span class="c1">// vec = {}</span>
@@ -937,7 +936,7 @@ size_t 是通过 typedef 定义的一些 <strong>无符号整型</strong> 的别
 </section>
 </section>
 <section id="id5">
-<h2><span class="section-number">19.15. </span>参考资料<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">19.15. </span>参考资料<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>C++ reference</p></li>
 </ol>
@@ -1006,19 +1005,19 @@ size_t 是通过 typedef 定义的一些 <strong>无符号整型</strong> 的别
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="18_commonFunc.html" class="btn btn-neutral float-left" title="18. 常用函数" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="20_define.html" class="btn btn-neutral float-right" title="20. #define" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="18_commonFunc.html" class="btn btn-neutral float-left" title="18. 常用函数" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="20_define.html" class="btn btn-neutral float-right" title="20. #define" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; 版权所有 2018-2022, fong.</p>
+    <p>&#169; Copyright 2018-2022, fong.</p>
   </div>
 
-  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
-    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
    
 
 </footer>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="zh-CN" >
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>19. multiprocessing &mdash; fong alpha 文档</title>
+  <title>19. multiprocessing &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,10 +19,9 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/translations.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="20. logging" href="20_logging.html" />
     <link rel="prev" title="18. 异常" href="18_exception.html" /> 
 </head>
@@ -40,7 +39,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -134,7 +133,7 @@
           <li><a href="index.html">Python</a> &raquo;</li>
       <li><span class="section-number">19. </span>multiprocessing</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/python/19_multiprocessing.rst.txt" rel="nofollow"> 查看页面源码</a>
+            <a href="../_sources/python/19_multiprocessing.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -143,16 +142,16 @@
            <div itemprop="articleBody">
              
   <section id="multiprocessing">
-<h1><span class="section-number">19. </span>multiprocessing<a class="headerlink" href="#multiprocessing" title="此标题的永久链接"></a></h1>
+<h1><span class="section-number">19. </span>multiprocessing<a class="headerlink" href="#multiprocessing" title="Permalink to this heading"></a></h1>
 <p>multiprocessing，基于进程的并行。</p>
 <section id="process">
-<h2><span class="section-number">19.1. </span>Process 类<a class="headerlink" href="#process" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">19.1. </span>Process 类<a class="headerlink" href="#process" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="multiprocessing.Process">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">multiprocessing.</span></span><span class="sig-name descname"><span class="pre">Process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">daemon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Process" title="永久链接至目标"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">multiprocessing.</span></span><span class="sig-name descname"><span class="pre">Process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">daemon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Process" title="Permalink to this definition"></a></dt>
 <dd><p>进程对象表示在单独进程中运行的活动。</p>
 <dl class="field-list simple">
-<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>group</strong> – 应该始终是 <code class="docutils literal notranslate"><span class="pre">None</span></code> ，它仅用于兼容 <code class="docutils literal notranslate"><span class="pre">threading.Thread</span></code> 。 <code class="docutils literal notranslate"><span class="pre">target</span></code> 是由 <code class="docutils literal notranslate"><span class="pre">run()</span></code> 方法调用的可调用对象；默认为 <code class="docutils literal notranslate"><span class="pre">None</span></code> ，意味着什么都没有被调用。</p></li>
 <li><p><strong>name</strong> – 是进程名称。</p></li>
@@ -163,37 +162,37 @@
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.Process.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Process.run" title="永久链接至目标"></a></dt>
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Process.run" title="Permalink to this definition"></a></dt>
 <dd><p>表示进程活动的方法，可以在子类中重载此方法。标准 <code class="docutils literal notranslate"><span class="pre">run()</span></code> 方法调用传递给对象构造函数的可调用对象（ <code class="docutils literal notranslate"><span class="pre">target</span></code> ）。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.Process.start">
-<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Process.start" title="永久链接至目标"></a></dt>
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Process.start" title="Permalink to this definition"></a></dt>
 <dd><p>启动进程活动，每个进程对象最多只能调用一次；它会将对象的 <code class="docutils literal notranslate"><span class="pre">run()</span></code> 方法安排在一个单独的进程中调用。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.Process.join">
-<span class="sig-name descname"><span class="pre">join</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Process.join" title="永久链接至目标"></a></dt>
+<span class="sig-name descname"><span class="pre">join</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Process.join" title="Permalink to this definition"></a></dt>
 <dd><p>使主调进程（包含 <code class="docutils literal notranslate"><span class="pre">p.join()</span></code> 语句的进程）阻塞，直至被调用进程 <code class="docutils literal notranslate"><span class="pre">p</span></code> 运行结束或超时（指定 <code class="docutils literal notranslate"><span class="pre">timeout</span></code> ）。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.Process.is_alive">
-<span class="sig-name descname"><span class="pre">is_alive</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Process.is_alive" title="永久链接至目标"></a></dt>
+<span class="sig-name descname"><span class="pre">is_alive</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Process.is_alive" title="Permalink to this definition"></a></dt>
 <dd><p>返回进程是否处于活动状态。粗略地说，从 <code class="docutils literal notranslate"><span class="pre">start()</span></code> 方法返回到子进程终止之前，进程对象仍处于活动状态。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.Process.name">
-<span class="sig-name descname"><span class="pre">name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Process.name" title="永久链接至目标"></a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Process.name" title="Permalink to this definition"></a></dt>
 <dd><p>进程的名称，是一个字符串，仅用于识别目的；可以为多个进程指定相同的名称。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.Process.pid">
-<span class="sig-name descname"><span class="pre">pid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Process.pid" title="永久链接至目标"></a></dt>
+<span class="sig-name descname"><span class="pre">pid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Process.pid" title="Permalink to this definition"></a></dt>
 <dd><p>进程ID，在生成该进程之前为 <code class="docutils literal notranslate"><span class="pre">None</span></code> 。</p>
 </dd></dl>
 
@@ -201,13 +200,13 @@
 
 </section>
 <section id="id1">
-<h2><span class="section-number">19.2. </span>进程池<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">19.2. </span>进程池<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">Pool</span></code> 类表示一个工作进程池，它具有允许以几种不同方式将任务分配到工作进程的方法。</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="multiprocessing.pool.Pool">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">multiprocessing.pool.</span></span><span class="sig-name descname"><span class="pre">Pool</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">processes</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">initializer</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">initargs</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">maxtasksperchild</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">context</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.pool.Pool" title="永久链接至目标"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">multiprocessing.pool.</span></span><span class="sig-name descname"><span class="pre">Pool</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">processes</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">initializer</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">initargs</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">maxtasksperchild</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">context</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.pool.Pool" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>processes</strong> – 是要使用的工作进程数目。如果 <code class="docutils literal notranslate"><span class="pre">processes</span></code> 为 <code class="docutils literal notranslate"><span class="pre">None</span></code> ，则使用 <code class="docutils literal notranslate"><span class="pre">os.cpu_count()</span></code> 返回的值。</p></li>
 <li><p><strong>context</strong> – 是用于指定启动工作进程的上下文。通常一个进程池是使用函数 <code class="docutils literal notranslate"><span class="pre">multiprocessing.Pool()</span></code> 或者一个上下文对象的 <code class="docutils literal notranslate"><span class="pre">Pool()</span></code> 方法创建的。</p></li>
@@ -216,161 +215,161 @@
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.pool.Pool.apply">
-<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">kwds</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.pool.Pool.apply" title="永久链接至目标"></a></dt>
+<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">kwds</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.pool.Pool.apply" title="Permalink to this definition"></a></dt>
 <dd><p>对应的子进程是排队执行的，实际非并行（阻塞的，即上一个子进程完成了才能进行下一个子进程；注意是单个子进程执行的，而不是按批执行的）。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.pool.Pool.apply_async">
-<span class="sig-name descname"><span class="pre">apply_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">kwds</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">error_callback</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.pool.Pool.apply_async" title="永久链接至目标"></a></dt>
+<span class="sig-name descname"><span class="pre">apply_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">kwds</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">error_callback</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.pool.Pool.apply_async" title="Permalink to this definition"></a></dt>
 <dd><p>对应的每个子进程是异步执行的；异步执行指的是一批子进程并行执行，且子进程完成一个，就新开始一个，而不必等待同一批其他进程完成（进程数 &lt; 任务数，后面的任务只能等前面的进程结束才能开始执行）。如果指定了 <code class="docutils literal notranslate"><span class="pre">callback</span></code> , 它必须是一个接受单个参数的可调用对象。当执行成功时， <code class="docutils literal notranslate"><span class="pre">callback</span></code> 会被用于处理执行后的返回结果，否则，调用 <code class="docutils literal notranslate"><span class="pre">error_callback</span></code> 。如果指定了 <code class="docutils literal notranslate"><span class="pre">error_callback</span></code> , 它必须是一个接受单个参数的可调用对象。当目标函数执行失败时，会将抛出的异常对象作为参数传递给 <code class="docutils literal notranslate"><span class="pre">error_callback</span></code> 执行。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.pool.Pool.map">
-<span class="sig-name descname"><span class="pre">map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">chunksize</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.pool.Pool.map" title="永久链接至目标"></a></dt>
+<span class="sig-name descname"><span class="pre">map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">chunksize</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.pool.Pool.map" title="Permalink to this definition"></a></dt>
 <dd><p>内置 <code class="docutils literal notranslate"><span class="pre">map()</span></code> 函数的并行版本（但它只支持一个 <code class="docutils literal notranslate"><span class="pre">iterable</span></code> 参数，对于多个可迭代对象请参阅 <code class="docutils literal notranslate"><span class="pre">starmap()</span></code> ）。 它会保持阻塞直到所有进程都获得结果。这个方法会将可迭代对象分割为许多块，然后提交给进程池。可以将 <code class="docutils literal notranslate"><span class="pre">chunksize</span></code> 设置为一个正整数从而（近似）指定每个块的大小。注意对于很长的迭代对象，可能消耗很多内存。可以考虑使用 <code class="docutils literal notranslate"><span class="pre">imap()</span></code> 或 <code class="docutils literal notranslate"><span class="pre">imap_unordered()</span></code> 并且显示指定 <code class="docutils literal notranslate"><span class="pre">chunksize</span></code> 以提升效率。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.pool.Pool.map_async">
-<span class="sig-name descname"><span class="pre">map_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">chunksize</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">error_callback</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.pool.Pool.map_async" title="永久链接至目标"></a></dt>
+<span class="sig-name descname"><span class="pre">map_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">chunksize</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">error_callback</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.pool.Pool.map_async" title="Permalink to this definition"></a></dt>
 <dd><p><code class="docutils literal notranslate"><span class="pre">map()</span></code> 的异步（非阻塞）版本，返回 MapResult 实例（其具有 <code class="docutils literal notranslate"><span class="pre">get()</span></code> 方法，获取结果组成的 list）。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.pool.Pool.imap">
-<span class="sig-name descname"><span class="pre">imap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">chunksize</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.pool.Pool.imap" title="永久链接至目标"></a></dt>
+<span class="sig-name descname"><span class="pre">imap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">chunksize</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.pool.Pool.imap" title="Permalink to this definition"></a></dt>
 <dd><p><code class="docutils literal notranslate"><span class="pre">map()</span></code> 的迭代器版本，返回迭代器实例。 <code class="docutils literal notranslate"><span class="pre">imap()</span></code> 速度远慢于 <code class="docutils literal notranslate"><span class="pre">map()</span></code> ，但是对内存需求非常小。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.pool.Pool.starmap">
-<span class="sig-name descname"><span class="pre">starmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">chunksize</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.pool.Pool.starmap" title="永久链接至目标"></a></dt>
+<span class="sig-name descname"><span class="pre">starmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">chunksize</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.pool.Pool.starmap" title="Permalink to this definition"></a></dt>
 <dd><p>子进程活动 <code class="docutils literal notranslate"><span class="pre">func</span></code> 允许包含多个参数，也即 <code class="docutils literal notranslate"><span class="pre">iterable</span></code> 的每个元素也是 <code class="docutils literal notranslate"><span class="pre">iterable</span></code> （其每个元素作为 <code class="docutils literal notranslate"><span class="pre">func</span></code> 的参数），返回结果组成 list。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.pool.Pool.starmap_async">
-<span class="sig-name descname"><span class="pre">starmap_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">chunksize</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">error_callback</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.pool.Pool.starmap_async" title="永久链接至目标"></a></dt>
+<span class="sig-name descname"><span class="pre">starmap_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">chunksize</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">error_callback</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.pool.Pool.starmap_async" title="Permalink to this definition"></a></dt>
 <dd><p><code class="docutils literal notranslate"><span class="pre">starmap()</span></code> 的异步（并行）版本，返回 MapResult 实例（其具有 <code class="docutils literal notranslate"><span class="pre">get()</span></code> 方法，获取结果组成的 list）。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.pool.Pool.close">
-<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.pool.Pool.close" title="永久链接至目标"></a></dt>
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.pool.Pool.close" title="Permalink to this definition"></a></dt>
 <dd><p>关闭进程池，关闭后不能往池中增加新的子进程，然后可以调用 <code class="docutils literal notranslate"><span class="pre">join()</span></code> 函数等待已有子进程执行完毕。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.pool.Pool.terminate">
-<span class="sig-name descname"><span class="pre">terminate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.pool.Pool.terminate" title="永久链接至目标"></a></dt>
+<span class="sig-name descname"><span class="pre">terminate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.pool.Pool.terminate" title="Permalink to this definition"></a></dt>
 <dd><p>不必等待未完成的任务，立即停止工作进程。当进程池对象被垃圾回收时，会立即调用 <code class="docutils literal notranslate"><span class="pre">terminate()</span></code> 。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.pool.Pool.join">
-<span class="sig-name descname"><span class="pre">join</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.pool.Pool.join" title="永久链接至目标"></a></dt>
+<span class="sig-name descname"><span class="pre">join</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.pool.Pool.join" title="Permalink to this definition"></a></dt>
 <dd><p>等待进程池中的子进程执行完毕，需在 <code class="docutils literal notranslate"><span class="pre">close()</span></code> 函数后调用。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.pool.Pool.get">
-<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.pool.Pool.get" title="永久链接至目标"></a></dt>
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.pool.Pool.get" title="Permalink to this definition"></a></dt>
 <dd><p>用于获取执行结果。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.pool.Pool.wait">
-<span class="sig-name descname"><span class="pre">wait</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.pool.Pool.wait" title="永久链接至目标"></a></dt>
+<span class="sig-name descname"><span class="pre">wait</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.pool.Pool.wait" title="Permalink to this definition"></a></dt>
 <dd><p>阻塞，直到返回结果或超时。</p>
 </dd></dl>
 
 </dd></dl>
 
 <div class="admonition note">
-<p class="admonition-title">备注</p>
+<p class="admonition-title">Note</p>
 <p>多进程并行执行，它们结束的顺序是不定的，但是最终返回的结果列表顺序是与参数args的顺序一一对应的。</p>
 </div>
 </section>
 <section id="id2">
-<h2><span class="section-number">19.3. </span>进程通信<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">19.3. </span>进程通信<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <section id="manager">
-<h3><span class="section-number">19.3.1. </span>数据共享：Manager<a class="headerlink" href="#manager" title="此标题的永久链接"></a></h3>
+<h3><span class="section-number">19.3.1. </span>数据共享：Manager<a class="headerlink" href="#manager" title="Permalink to this heading"></a></h3>
 <p>由 <code class="docutils literal notranslate"><span class="pre">Manager()</span></code> 返回的管理器对象控制一个服务进程，该进程保存 Python 对象并允许其他进程使用代理操作它们。支持类型： list 、 dict 、 Namespace 、 Lock 、 RLock 、 Semaphore 、 BoundedSemaphore 、 Condition 、 Event 、 Barrier 、 Queue 、 Value 和 Array 。</p>
 <p>注意：在操作共享对象的元素（子对象）时，除了赋值操作，其他的方法都作用在共享对象的拷贝上，并不会对共享对象生效。</p>
 </section>
 <section id="queue">
-<h3><span class="section-number">19.3.2. </span>数据传递：Queue<a class="headerlink" href="#queue" title="此标题的永久链接"></a></h3>
+<h3><span class="section-number">19.3.2. </span>数据传递：Queue<a class="headerlink" href="#queue" title="Permalink to this heading"></a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="multiprocessing.Queue">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">multiprocessing.</span></span><span class="sig-name descname"><span class="pre">Queue</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">maxsize</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Queue" title="永久链接至目标"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">multiprocessing.</span></span><span class="sig-name descname"><span class="pre">Queue</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">maxsize</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Queue" title="Permalink to this definition"></a></dt>
 <dd><p>共享队列，允许多个进程放入、多个进程从队列取出对象。</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.Queue.qsize">
-<span class="sig-name descname"><span class="pre">qsize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Queue.qsize" title="永久链接至目标"></a></dt>
+<span class="sig-name descname"><span class="pre">qsize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Queue.qsize" title="Permalink to this definition"></a></dt>
 <dd><p>返回队列的大致长度。由于多线程或者多进程的上下文，这个数字是不可靠的。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.Queue.empty">
-<span class="sig-name descname"><span class="pre">empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Queue.empty" title="永久链接至目标"></a></dt>
+<span class="sig-name descname"><span class="pre">empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Queue.empty" title="Permalink to this definition"></a></dt>
 <dd><p>如果队列是空的，返回 True。 由于多线程或多进程的环境，该状态是不可靠的。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.Queue.full">
-<span class="sig-name descname"><span class="pre">full</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Queue.full" title="永久链接至目标"></a></dt>
+<span class="sig-name descname"><span class="pre">full</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Queue.full" title="Permalink to this definition"></a></dt>
 <dd><p>如果队列是满的，返回 True ，反之返回 False 。 由于多线程或多进程的环境，该状态是不可靠的。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.Queue.put">
-<span class="sig-name descname"><span class="pre">put</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">block</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Queue.put" title="永久链接至目标"></a></dt>
+<span class="sig-name descname"><span class="pre">put</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">block</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Queue.put" title="Permalink to this definition"></a></dt>
 <dd><p>将 <code class="docutils literal notranslate"><span class="pre">obj</span></code> 放入队列。如果可选参数 <code class="docutils literal notranslate"><span class="pre">block</span></code> 是 True（默认值）且 <code class="docutils literal notranslate"><span class="pre">timeout</span></code> 是 None（默认值）, 将会阻塞当前进程，直到有空的缓冲槽。如果 <code class="docutils literal notranslate"><span class="pre">timeout</span></code> 是正数，将会在阻塞了最多 <code class="docutils literal notranslate"><span class="pre">timeout</span></code> 秒之后还是没有可用的缓冲槽时抛出 <code class="docutils literal notranslate"><span class="pre">queue.Full</span></code>  异常。反之（ <code class="docutils literal notranslate"><span class="pre">block</span></code> 是 False 时），仅当有可用缓冲槽时才放入对象，否则抛出 <code class="docutils literal notranslate"><span class="pre">queue.Full</span></code> 异常（在这种情形下 <code class="docutils literal notranslate"><span class="pre">timeout</span></code> 参数会被忽略）。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.Queue.get">
-<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">block</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Queue.get" title="永久链接至目标"></a></dt>
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">block</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Queue.get" title="Permalink to this definition"></a></dt>
 <dd><p>从队列中取出并返回对象。如果可选参数 <code class="docutils literal notranslate"><span class="pre">block</span></code> 是 True（默认值）且 <code class="docutils literal notranslate"><span class="pre">timeout</span></code> 是 None（默认值）， 将会阻塞当前进程，直到队列中出现可用的对象。如果 <code class="docutils literal notranslate"><span class="pre">timeout</span></code> 是正数，将会在阻塞了最多 <code class="docutils literal notranslate"><span class="pre">timeout</span></code> 秒之后还是没有可用的对象时抛出 <code class="docutils literal notranslate"><span class="pre">queue.Empty</span></code> 异常。反之（ <code class="docutils literal notranslate"><span class="pre">block</span></code> 是 False 时），仅当有可用对象能够取出时返回，否则抛出 <code class="docutils literal notranslate"><span class="pre">queue.Empty</span></code> 异常（在这种情形下 <code class="docutils literal notranslate"><span class="pre">timeout</span></code> 参数会被忽略）。总而言之，在默认参数下，即使队列已经为空也不会抛出异常，会一直阻塞。</p>
 </dd></dl>
 
 </dd></dl>
 
 <div class="admonition note">
-<p class="admonition-title">备注</p>
+<p class="admonition-title">Note</p>
 <p>使用 <code class="docutils literal notranslate"><span class="pre">multiprocessing.Queue</span></code> 可能会因为队列中的数据未flush而造成死锁、进程无法退出，建议使用 <code class="docutils literal notranslate"><span class="pre">multiprocessing.Manager().Queue</span></code> 。</p>
 </div>
 </section>
 <section id="pipe">
-<h3><span class="section-number">19.3.3. </span>数据传递：Pipe<a class="headerlink" href="#pipe" title="此标题的永久链接"></a></h3>
+<h3><span class="section-number">19.3.3. </span>数据传递：Pipe<a class="headerlink" href="#pipe" title="Permalink to this heading"></a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="multiprocessing.Pipe">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">multiprocessing.</span></span><span class="sig-name descname"><span class="pre">Pipe</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">duplex</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Pipe" title="永久链接至目标"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">multiprocessing.</span></span><span class="sig-name descname"><span class="pre">Pipe</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">duplex</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Pipe" title="Permalink to this definition"></a></dt>
 <dd><p>返回一对 Connection 对象  <code class="docutils literal notranslate"><span class="pre">(conn1,</span> <span class="pre">conn2)</span></code> ， 分别表示管道的两端。</p>
 <p>如果 <code class="docutils literal notranslate"><span class="pre">duplex</span></code> 被置为 True（默认值），那么该管道是双向的。如果 <code class="docutils literal notranslate"><span class="pre">duplex</span></code> 被置为 False ，那么该管道是单向的，即 <code class="docutils literal notranslate"><span class="pre">conn1</span></code> 只能用于接收消息，而 <code class="docutils literal notranslate"><span class="pre">conn2</span></code> 仅能用于发送消息。</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.Pipe.send">
-<span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Pipe.send" title="永久链接至目标"></a></dt>
+<span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Pipe.send" title="Permalink to this definition"></a></dt>
 <dd><p>发送数据。只能发送可 pickle 的数据。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.Pipe.recv">
-<span class="sig-name descname"><span class="pre">recv</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Pipe.recv" title="永久链接至目标"></a></dt>
+<span class="sig-name descname"><span class="pre">recv</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Pipe.recv" title="Permalink to this definition"></a></dt>
 <dd><p>读取管道中接收到的数据。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.Pipe.close">
-<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Pipe.close" title="永久链接至目标"></a></dt>
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Pipe.close" title="Permalink to this definition"></a></dt>
 <dd><p>关闭连接对象。当连接对象被垃圾回收时会自动调用。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="multiprocessing.Pipe.poll">
-<span class="sig-name descname"><span class="pre">poll</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Pipe.poll" title="永久链接至目标"></a></dt>
+<span class="sig-name descname"><span class="pre">poll</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#multiprocessing.Pipe.poll" title="Permalink to this definition"></a></dt>
 <dd><p>判断管道对象是否有收到数据待读取。</p>
 </dd></dl>
 
@@ -379,9 +378,9 @@
 </section>
 </section>
 <section id="id3">
-<h2><span class="section-number">19.4. </span>示例<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">19.4. </span>示例<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <section id="id4">
-<h3><span class="section-number">19.4.1. </span>创建进程<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h3>
+<h3><span class="section-number">19.4.1. </span>创建进程<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">os</span>
 <span class="linenos"> 3</span>
@@ -406,7 +405,7 @@
 </div>
 </section>
 <section id="id5">
-<h3><span class="section-number">19.4.2. </span>锁<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h3>
+<h3><span class="section-number">19.4.2. </span>锁<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
 <p>使用 Lock 同步，在一个任务输出完成之后，再允许另一个任务输出，可以避免多个任务同时向终端输出。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">Lock</span>
 <span class="linenos"> 2</span>
@@ -426,7 +425,7 @@
 </div>
 </section>
 <section id="pool">
-<h3><span class="section-number">19.4.3. </span>Pool<a class="headerlink" href="#pool" title="此标题的永久链接"></a></h3>
+<h3><span class="section-number">19.4.3. </span>Pool<a class="headerlink" href="#pool" title="Permalink to this heading"></a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">a</span><span class="p">):</span> <span class="c1">## map方法只允许1个参数</span>
 <span class="linenos"> 2</span>    <span class="k">return</span> <span class="n">a</span>
 <span class="linenos"> 3</span>
@@ -496,7 +495,7 @@
 <p>可以看出： <code class="docutils literal notranslate"><span class="pre">map</span></code> 是阻塞的，直到所有任务都结束； <code class="docutils literal notranslate"><span class="pre">map_async</span></code> 是非阻塞的，中间可以插入其他结果。</p>
 </section>
 <section id="id6">
-<h3><span class="section-number">19.4.4. </span>Manager<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h3>
+<h3><span class="section-number">19.4.4. </span>Manager<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">Manager</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">os</span>
 <span class="linenos"> 3</span>
@@ -531,7 +530,7 @@
 </div>
 </section>
 <section id="id7">
-<h3><span class="section-number">19.4.5. </span>Pipe<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h3>
+<h3><span class="section-number">19.4.5. </span>Pipe<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">random</span>
 <span class="linenos"> 2</span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">Pipe</span><span class="p">,</span> <span class="n">current_process</span>
 <span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">multiprocessing.connection</span> <span class="kn">import</span> <span class="n">wait</span>
@@ -582,7 +581,7 @@
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="admonition-title">备注</p>
+<p class="admonition-title">Note</p>
 <p>在多进程任务中，如果每个进程都要从一个共享队列中读数据，而这个队列需要存储的列表很长，
 把数据完整地填充（put）到队列中需要花费很长时间，在这种情况下，不要等到队列中填充完了所有的数据才启动进程，
 而是先启动（start）进程任务，再填充队列，直到进程结束（join）:</p>
@@ -613,7 +612,7 @@
 </section>
 </section>
 <section id="id8">
-<h2><span class="section-number">19.5. </span>参考资料<a class="headerlink" href="#id8" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">19.5. </span>参考资料<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>multiprocessing — Process-based parallelism</p></li>
 </ol>
@@ -634,19 +633,19 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="18_exception.html" class="btn btn-neutral float-left" title="18. 异常" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="20_logging.html" class="btn btn-neutral float-right" title="20. logging" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="18_exception.html" class="btn btn-neutral float-left" title="18. 异常" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="20_logging.html" class="btn btn-neutral float-right" title="20. logging" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; 版权所有 2018-2022, fong.</p>
+    <p>&#169; Copyright 2018-2022, fong.</p>
   </div>
 
-  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
-    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
    
 
 </footer>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="zh-CN" >
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2. 支持向量机 &mdash; fong alpha 文档</title>
+  <title>2. 支持向量机 &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,11 +19,10 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/translations.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3. 主成分分析" href="03_pca.html" />
     <link rel="prev" title="1. Logistic Regression" href="01_lr.html" /> 
 </head>
@@ -41,7 +40,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -101,7 +100,7 @@
           <li><a href="index.html">机器学习</a> &raquo;</li>
       <li><span class="section-number">2. </span>支持向量机</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/machineLearning/02_svm.rst.txt" rel="nofollow"> 查看页面源码</a>
+            <a href="../_sources/machineLearning/02_svm.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -110,9 +109,9 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">2. </span>支持向量机<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<h1><span class="section-number">2. </span>支持向量机<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <section id="id2">
-<h2><span class="section-number">2.1. </span>最大间隔划分超平面<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">2.1. </span>最大间隔划分超平面<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <a class="reference internal image-reference" href="../_images/02_margin.png"><img alt="../_images/02_margin.png" class="align-center" src="../_images/02_margin.png" style="width: 360px;" /></a>
 <p>样本空间中任意点到超平面的距离（几何间隔，Geometric margin）为：</p>
 <div class="math notranslate nohighlight">
@@ -149,7 +148,7 @@ s.t.  &amp; \  \sum_{i=1}^m \alpha_i y_i = 0,\\
 \alpha_i (1 - y_i(w^{\top} x_i + b)) = 0.\end{split}\]</div>
 </section>
 <section id="id3">
-<h2><span class="section-number">2.2. </span>软间隔<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">2.2. </span>软间隔<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <p>引入松弛变量 <span class="math notranslate nohighlight">\(\xi_i \geqslant 0\)</span> ，用以表征样本不满足约束的程度。</p>
 <p>原始问题：</p>
 <div class="math notranslate nohighlight">
@@ -185,7 +184,7 @@ s.t.  &amp; \  \sum_{i=1}^m \alpha_i y_i = 0,\\
 </dl>
 </section>
 <section id="id4">
-<h2><span class="section-number">2.3. </span>核函数<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">2.3. </span>核函数<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <p>核矩阵 <span class="math notranslate nohighlight">\(\mathcal{K} = \{ \kappa(x_i, x_j) \} \in \mathbb{R}^{m \times m}\)</span> 。</p>
 <blockquote>
 <div><ul>
@@ -216,7 +215,7 @@ s.t.  &amp; \  \sum_{i=1}^m \alpha_i y_i = 0,\\
 </div></blockquote>
 </section>
 <section id="id5">
-<h2><span class="section-number">2.4. </span>多分类<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">2.4. </span>多分类<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>一对一（ <span class="math notranslate nohighlight">\(O(N^2)\)</span> ）</p></li>
 <li><p>一对多（ <span class="math notranslate nohighlight">\(O(N)\)</span> ）</p></li>
@@ -224,11 +223,11 @@ s.t.  &amp; \  \sum_{i=1}^m \alpha_i y_i = 0,\\
 </ol>
 </section>
 <section id="svm">
-<h2><span class="section-number">2.5. </span>SVM库<a class="headerlink" href="#svm" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">2.5. </span>SVM库<a class="headerlink" href="#svm" title="Permalink to this heading"></a></h2>
 <p>sklearn, libsvm</p>
 </section>
 <section id="id6">
-<h2><span class="section-number">2.6. </span>优缺点<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">2.6. </span>优缺点<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>优点</dt><dd><ul class="simple">
 <li><p>基于结构风险最小化，泛化能力强（自带正则化， <span class="math notranslate nohighlight">\(\left \| w \right \|^2\)</span> ）。</p></li>
@@ -246,7 +245,7 @@ s.t.  &amp; \  \sum_{i=1}^m \alpha_i y_i = 0,\\
 </dl>
 </section>
 <section id="id7">
-<h2><span class="section-number">2.7. </span>解析<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">2.7. </span>解析<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>为什么要间隔最大化？</p></li>
 </ol>
@@ -264,7 +263,7 @@ s.t.  &amp; \  \sum_{i=1}^m \alpha_i y_i = 0,\\
 </div></blockquote>
 </section>
 <section id="svmlr">
-<h2><span class="section-number">2.8. </span>SVM与LR的异同<a class="headerlink" href="#svmlr" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">2.8. </span>SVM与LR的异同<a class="headerlink" href="#svmlr" title="Permalink to this heading"></a></h2>
 <p>相同点：</p>
 <blockquote>
 <div><ul class="simple">
@@ -286,7 +285,7 @@ s.t.  &amp; \  \sum_{i=1}^m \alpha_i y_i = 0,\\
 </div></blockquote>
 </section>
 <section id="id8">
-<h2><span class="section-number">2.9. </span>参考资料<a class="headerlink" href="#id8" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">2.9. </span>参考资料<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>LR与SVM的异同</p></li>
 </ol>
@@ -331,19 +330,19 @@ s.t.  &amp; \  \sum_{i=1}^m \alpha_i y_i = 0,\\
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="01_lr.html" class="btn btn-neutral float-left" title="1. Logistic Regression" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="03_pca.html" class="btn btn-neutral float-right" title="3. 主成分分析" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="01_lr.html" class="btn btn-neutral float-left" title="1. Logistic Regression" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="03_pca.html" class="btn btn-neutral float-right" title="3. 主成分分析" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; 版权所有 2018-2022, fong.</p>
+    <p>&#169; Copyright 2018-2022, fong.</p>
   </div>
 
-  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
-    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
    
 
 </footer>

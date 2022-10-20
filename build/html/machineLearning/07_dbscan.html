@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="zh-CN" >
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>7. DBSCAN &mdash; fong alpha 文档</title>
+  <title>7. DBSCAN &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,11 +19,10 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/translations.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="深度学习" href="../deepLearning/index.html" />
     <link rel="prev" title="6. ROC 曲线" href="06_roc.html" /> 
 </head>
@@ -41,7 +40,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -96,7 +95,7 @@
           <li><a href="index.html">机器学习</a> &raquo;</li>
       <li><span class="section-number">7. </span>DBSCAN</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/machineLearning/07_dbscan.rst.txt" rel="nofollow"> 查看页面源码</a>
+            <a href="../_sources/machineLearning/07_dbscan.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -105,11 +104,11 @@
            <div itemprop="articleBody">
              
   <section id="dbscan">
-<h1><span class="section-number">7. </span>DBSCAN<a class="headerlink" href="#dbscan" title="此标题的永久链接"></a></h1>
+<h1><span class="section-number">7. </span>DBSCAN<a class="headerlink" href="#dbscan" title="Permalink to this heading"></a></h1>
 <p>DBSCAN（Density-Based Spatial Clustering of Applications with Noise）是一种基于密度的聚类算法。基于密度的聚类算法一般假定类别可以通过样本分布的紧密程度决定，同一类别的样本是紧密相连的，也就是说，在该类别任意样本周围不远处一定有同类别的样本存在。</p>
 <p>将紧密相连的样本划为一类，这样就得到了一个聚类类别；通过将各组紧密相连的样本划为多个不同的类别，就得到了最终的聚类结果。</p>
 <section id="id1">
-<h2><span class="section-number">7.1. </span>概念<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">7.1. </span>概念<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>参数对 ( <span class="math notranslate nohighlight">\(\epsilon\)</span> , <span class="math notranslate nohighlight">\(MinPts\)</span> ) 用来描述邻域的样本分布紧密程度，<span class="math notranslate nohighlight">\(\epsilon\)</span> 是样本的邻域距离阈值，<span class="math notranslate nohighlight">\(MinPts\)</span> 是邻域中样本个数的阈值。</p>
 <p>假设有样本集 <span class="math notranslate nohighlight">\(\mathcal{D} = \{ x_1, x_2, \cdots, x_n \}\)</span> ，定义几个概念如下：</p>
 <ul class="simple">
@@ -122,7 +121,7 @@
 <a class="reference internal image-reference" href="../_images/07_dbscan.png"><img alt="../_images/07_dbscan.png" class="align-center" src="../_images/07_dbscan.png" style="width: 600px;" /></a>
 </section>
 <section id="id2">
-<h2><span class="section-number">7.2. </span>聚类思想<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">7.2. </span>聚类思想<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <p>DBSCAN 的聚类思想很简单：由密度可达关系导出的最大密度相连的样本集合，即为最终聚类的一个类别/簇。</p>
 <p>一个簇里面可以有一个或者多个核心点。如果只有一个核心点，则簇里其他的非核心点都在这个核心点的 <span class="math notranslate nohighlight">\(\epsilon\)</span> 邻域里；如果有多个核心点，则簇里的任意一个核心点的 <span class="math notranslate nohighlight">\(\epsilon\)</span> 邻域中一定有一个其他的核心点，否则这两个核心点无法密度可达。这些核心点的 <span class="math notranslate nohighlight">\(\epsilon\)</span> 邻域里的样本的集合组成一个簇。</p>
 <p>DBSCAN 首先选择一个核心点作为种子，然后找到所有这个核心点能够密度可达的样本集合，即为一个聚类簇；接着继续选择另一个尚未访问过的核心点去寻找密度可达的样本集合，这样就得到另一个聚类簇。一直执行直到所有核心点都访问过为止。</p>
@@ -146,12 +145,12 @@
 <li><p>需要对距离阈值 <span class="math notranslate nohighlight">\(\epsilon\)</span> 和邻域样本数阈值 <span class="math notranslate nohighlight">\(MinPts\)</span> 联合调参，不同的参数组合对最后的聚类效果有较大影响。</p></li>
 </ul>
 <div class="admonition note">
-<p class="admonition-title">备注</p>
+<p class="admonition-title">Note</p>
 <p>Python 的 scikit-learn 包实现了 DBSCAN 算法，0.14 版本之前的实现需要计算样本间的距离矩阵，效率较低，新版本则使用了 K-D 树和球树进行了优化。</p>
 </div>
 </section>
 <section id="id3">
-<h2><span class="section-number">7.3. </span>算法流程<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">7.3. </span>算法流程<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <p><strong>输入</strong>：样本集 <span class="math notranslate nohighlight">\(\mathcal{D} = \{ x_1, x_2, \cdots, x_n \}\)</span> ；参数对 ( <span class="math notranslate nohighlight">\(\epsilon\)</span> , <span class="math notranslate nohighlight">\(MinPts\)</span> )</p>
 <p><strong>输出</strong>：簇划分 <span class="math notranslate nohighlight">\(\{ \mathcal{C}_1, \mathcal{C}_2, \cdots \}\)</span></p>
 <p><strong>算法流程</strong></p>
@@ -176,7 +175,7 @@
 </ul>
 </section>
 <section id="id4">
-<h2><span class="section-number">7.4. </span>参考资料<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">7.4. </span>参考资料<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Clustering</p></li>
 </ol>
@@ -208,19 +207,19 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="06_roc.html" class="btn btn-neutral float-left" title="6. ROC 曲线" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="../deepLearning/index.html" class="btn btn-neutral float-right" title="深度学习" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="06_roc.html" class="btn btn-neutral float-left" title="6. ROC 曲线" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../deepLearning/index.html" class="btn btn-neutral float-right" title="深度学习" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; 版权所有 2018-2022, fong.</p>
+    <p>&#169; Copyright 2018-2022, fong.</p>
   </div>
 
-  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
-    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
    
 
 </footer>

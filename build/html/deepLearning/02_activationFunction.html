@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="zh-CN" >
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2. 激活函数 &mdash; fong alpha 文档</title>
+  <title>2. 激活函数 &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,11 +19,10 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/translations.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3. Batch Normalization" href="03_batchnorm.html" />
     <link rel="prev" title="1. pytorch：多GPU模式" href="01_dataParallel.html" /> 
 </head>
@@ -41,7 +40,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -103,7 +102,7 @@
           <li><a href="index.html">深度学习</a> &raquo;</li>
       <li><span class="section-number">2. </span>激活函数</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/deepLearning/02_activationFunction.rst.txt" rel="nofollow"> 查看页面源码</a>
+            <a href="../_sources/deepLearning/02_activationFunction.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -112,7 +111,7 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">2. </span>激活函数<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<h1><span class="section-number">2. </span>激活函数<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <p>神经网络引入激活函数（Activation Function）主要是为了增强网络的非线性，提升网络的拟合能力和学习能力。激活函数有以下几个性质：</p>
 <blockquote>
 <div><ul class="simple">
@@ -123,7 +122,7 @@
 </div></blockquote>
 <p>下面介绍 <strong>sigmoid</strong> 、<strong>tanh</strong> 以及 <strong>ReLU</strong> 。</p>
 <section id="sigmoid">
-<h2><span class="section-number">2.1. </span>sigmoid<a class="headerlink" href="#sigmoid" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">2.1. </span>sigmoid<a class="headerlink" href="#sigmoid" title="Permalink to this heading"></a></h2>
 <p><strong>sigmoid</strong> 函数的数学表达式如下：</p>
 <div class="math notranslate nohighlight">
 \[\sigma(z) = \frac{1}{1 + e^{-z}}.\]</div>
@@ -150,7 +149,7 @@
 </div></blockquote>
 </section>
 <section id="tanh">
-<h2><span class="section-number">2.2. </span>tanh<a class="headerlink" href="#tanh" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">2.2. </span>tanh<a class="headerlink" href="#tanh" title="Permalink to this heading"></a></h2>
 <p><strong>tanh</strong> 函数的数学表达式如下：</p>
 <div class="math notranslate nohighlight">
 \[tanh(z) = \frac{e^z-e^{-z}}{e^z+e^{-z}} = 2\sigma(2z)-1.\]</div>
@@ -159,7 +158,7 @@
 <p>与 <strong>sigmoid</strong> 一样， <strong>tanh</strong> 也会产生饱和现象，但是 <strong>tanh</strong> 的输出是零均值的（zero-centered）。</p>
 </section>
 <section id="relu">
-<h2><span class="section-number">2.3. </span>ReLU<a class="headerlink" href="#relu" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">2.3. </span>ReLU<a class="headerlink" href="#relu" title="Permalink to this heading"></a></h2>
 <p><strong>ReLU</strong> 函数的数学表达式如下：</p>
 <div class="math notranslate nohighlight">
 \[relu(z) = max(0,z).\]</div>
@@ -188,14 +187,14 @@
 <p><strong>LeakyReLU</strong> 可以有效应对上述缺点。</p>
 </section>
 <section id="softmax">
-<h2><span class="section-number">2.4. </span>softmax 与最大化对数似然<a class="headerlink" href="#softmax" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">2.4. </span>softmax 与最大化对数似然<a class="headerlink" href="#softmax" title="Permalink to this heading"></a></h2>
 <p>对数似然之外的许多目标函数对 softmax 单元不起作用。本质原因：若目标函数中不使用对数抵消 softmax 中的指数，当指数函数的变量取非常小的负值时，
 会造成梯度消失，从而无法学习。</p>
 <p>当 softmax 单元的输入值之间差异变得极端时，softmax 的输出会饱和，因此许多基于 softmax 的代价函数也会饱和，除非它们能够转换饱和的激活函数（例如，取对数）。
 特别是平方误差，对 softmax 单元来说，它是一个很差的损失函数。</p>
 </section>
 <section id="id2">
-<h2><span class="section-number">2.5. </span>梯度消失与梯度爆炸<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">2.5. </span>梯度消失与梯度爆炸<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <p>梯度消失（gradient vanishing）：梯度太小，难以确定参数更新方向。解决策略：</p>
 <blockquote>
 <div><ul class="simple">
@@ -216,7 +215,7 @@
 </div></blockquote>
 </section>
 <section id="id3">
-<h2><span class="section-number">2.6. </span>参考资料<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">2.6. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>CS231n</p></li>
 </ol>
@@ -248,19 +247,19 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="01_dataParallel.html" class="btn btn-neutral float-left" title="1. pytorch：多GPU模式" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="03_batchnorm.html" class="btn btn-neutral float-right" title="3. Batch Normalization" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="01_dataParallel.html" class="btn btn-neutral float-left" title="1. pytorch：多GPU模式" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="03_batchnorm.html" class="btn btn-neutral float-right" title="3. Batch Normalization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; 版权所有 2018-2022, fong.</p>
+    <p>&#169; Copyright 2018-2022, fong.</p>
   </div>
 
-  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
-    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
    
 
 </footer>

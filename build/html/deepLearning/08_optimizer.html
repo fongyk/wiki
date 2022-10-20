@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="zh-CN" >
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>8. 优化算法 &mdash; fong alpha 文档</title>
+  <title>8. 优化算法 &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,11 +19,10 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/translations.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="9. pytorch：Module" href="09_addModule.html" />
     <link rel="prev" title="7. 反向传播" href="07_backprop.html" /> 
 </head>
@@ -41,7 +40,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -105,7 +104,7 @@
           <li><a href="index.html">深度学习</a> &raquo;</li>
       <li><span class="section-number">8. </span>优化算法</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/deepLearning/08_optimizer.rst.txt" rel="nofollow"> 查看页面源码</a>
+            <a href="../_sources/deepLearning/08_optimizer.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -114,9 +113,9 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">8. </span>优化算法<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<h1><span class="section-number">8. </span>优化算法<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <section id="id2">
-<h2><span class="section-number">8.1. </span>可视化<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">8.1. </span>可视化<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <p><strong>等高线</strong></p>
 <a class="reference internal image-reference" href="../_images/08_contours_evaluation_optimizers.gif"><img alt="../_images/08_contours_evaluation_optimizers.gif" class="align-center" src="../_images/08_contours_evaluation_optimizers.gif" style="width: 500px;" /></a>
 <p><strong>鞍点</strong></p>
@@ -130,7 +129,7 @@
 <a class="reference internal image-reference" href="../_images/08_saddle_point_evaluation_optimizers.gif"><img alt="../_images/08_saddle_point_evaluation_optimizers.gif" class="align-center" src="../_images/08_saddle_point_evaluation_optimizers.gif" style="width: 600px;" /></a>
 </section>
 <section id="sgd">
-<h2><span class="section-number">8.2. </span>SGD<a class="headerlink" href="#sgd" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">8.2. </span>SGD<a class="headerlink" href="#sgd" title="Permalink to this heading"></a></h2>
 <p>这里 <strong>SGD</strong> 指小批量梯度下降算法。</p>
 <p>小批量损失：<span class="math notranslate nohighlight">\(\mathcal{L}\)</span> ，学习率：<span class="math notranslate nohighlight">\(\eta\)</span> ，Hadamard积：<span class="math notranslate nohighlight">\(\odot\)</span> 。</p>
 <div class="math notranslate nohighlight">
@@ -146,7 +145,7 @@
 </dl>
 </section>
 <section id="momentum">
-<h2><span class="section-number">8.3. </span>Momentum<a class="headerlink" href="#momentum" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">8.3. </span>Momentum<a class="headerlink" href="#momentum" title="Permalink to this heading"></a></h2>
 <div class="math notranslate nohighlight">
 \[\begin{split}v &amp; \leftarrow  \gamma v - \eta \nabla_{\theta} \mathcal{L}(\theta) &amp;\  [\text{速度更新}] \\
 \theta &amp; \leftarrow  \theta + v &amp;\ [\text{参数更新}]\end{split}\]</div>
@@ -162,7 +161,7 @@
 </dl>
 </section>
 <section id="adagrad">
-<h2><span class="section-number">8.4. </span>Adagrad<a class="headerlink" href="#adagrad" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">8.4. </span>Adagrad<a class="headerlink" href="#adagrad" title="Permalink to this heading"></a></h2>
 <div class="math notranslate nohighlight">
 \[\begin{split}g &amp; \leftarrow \nabla_{\theta} \mathcal{L}(\theta) &amp;\  [\text{计算梯度}] \\
 r &amp; \leftarrow r + g \odot g &amp;\  [\text{累计平方梯度}] \\
@@ -178,7 +177,7 @@ r &amp; \leftarrow r + g \odot g &amp;\  [\text{累计平方梯度}] \\
 </dl>
 </section>
 <section id="adadelta">
-<h2><span class="section-number">8.5. </span>Adadelta<a class="headerlink" href="#adadelta" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">8.5. </span>Adadelta<a class="headerlink" href="#adadelta" title="Permalink to this heading"></a></h2>
 <div class="math notranslate nohighlight">
 \[\begin{split}g &amp; \leftarrow \nabla_{\theta} \mathcal{L}(\theta) &amp;\  [\text{计算梯度}] \\
 E[g^2] &amp; \leftarrow \gamma E[g^2] + (1 - \gamma) g \odot g  &amp;\  [\text{累计平方梯度：指数衰减平均}] \\
@@ -198,7 +197,7 @@ RMS[\Delta \theta] &amp; \leftarrow \sqrt{E[\Delta \theta^2] + \epsilon} &amp;\ 
 </dl>
 </section>
 <section id="rmsprop">
-<h2><span class="section-number">8.6. </span>RMSprop<a class="headerlink" href="#rmsprop" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">8.6. </span>RMSprop<a class="headerlink" href="#rmsprop" title="Permalink to this heading"></a></h2>
 <div class="math notranslate nohighlight">
 \[\begin{split}g &amp; \leftarrow \nabla_{\theta} \mathcal{L}(\theta) &amp;\  [\text{计算梯度}] \\
 r &amp; \leftarrow \gamma r + (1 - \gamma) g \odot g &amp;\  [\text{累计平方梯度：指数衰减平均}] \\
@@ -214,7 +213,7 @@ r &amp; \leftarrow \gamma r + (1 - \gamma) g \odot g &amp;\  [\text{累计平方
 </dl>
 </section>
 <section id="adam">
-<h2><span class="section-number">8.7. </span>Adam<a class="headerlink" href="#adam" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">8.7. </span>Adam<a class="headerlink" href="#adam" title="Permalink to this heading"></a></h2>
 <div class="math notranslate nohighlight">
 \[\begin{split}g &amp; \leftarrow \nabla_{\theta} \mathcal{L}(\theta) &amp;\  [\text{计算梯度}] \\
 t &amp; \leftarrow t + 1 &amp;\  [\text{迭代次数}] \\
@@ -234,7 +233,7 @@ n &amp; \leftarrow \beta_1 n + (1 - \beta_2) g \odot g &amp;\  [\text{有偏二�
 </dl>
 </section>
 <section id="id3">
-<h2><span class="section-number">8.8. </span>参考资料<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">8.8. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>An overview of gradient descent optimization algorithms</p></li>
 </ol>
@@ -272,19 +271,19 @@ n &amp; \leftarrow \beta_1 n + (1 - \beta_2) g \odot g &amp;\  [\text{有偏二�
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="07_backprop.html" class="btn btn-neutral float-left" title="7. 反向传播" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="09_addModule.html" class="btn btn-neutral float-right" title="9. pytorch：Module" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="07_backprop.html" class="btn btn-neutral float-left" title="7. 反向传播" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="09_addModule.html" class="btn btn-neutral float-right" title="9. pytorch：Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; 版权所有 2018-2022, fong.</p>
+    <p>&#169; Copyright 2018-2022, fong.</p>
   </div>
 
-  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
-    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
    
 
 </footer>

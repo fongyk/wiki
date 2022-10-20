@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="zh-CN" >
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>8. 重载、覆盖、隐藏 &mdash; fong alpha 文档</title>
+  <title>8. 重载、覆盖、隐藏 &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,10 +19,9 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/translations.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="9. strcpy函数" href="09_strcpy.html" />
     <link rel="prev" title="7. 指针与引用" href="07_pointerReference.html" /> 
 </head>
@@ -40,7 +39,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -126,7 +125,7 @@
           <li><a href="index.html">C/C++</a> &raquo;</li>
       <li><span class="section-number">8. </span>重载、覆盖、隐藏</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/cpp/08_overload.rst.txt" rel="nofollow"> 查看页面源码</a>
+            <a href="../_sources/cpp/08_overload.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -135,12 +134,12 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">8. </span>重载、覆盖、隐藏<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<h1><span class="section-number">8. </span>重载、覆盖、隐藏<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <section id="overloading">
-<h2><span class="section-number">8.1. </span>重载（Overloading）<a class="headerlink" href="#overloading" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">8.1. </span>重载（Overloading）<a class="headerlink" href="#overloading" title="Permalink to this heading"></a></h2>
 <p>同一可访问区内被声明的几个具有不同参数列表（参数个数，参数类型，参数顺序）的同名函数。不关心函数返回类型。</p>
 <div class="admonition note">
-<p class="admonition-title">备注</p>
+<p class="admonition-title">Note</p>
 <p>函数参数可以有默认值。有默认值的参数必须放在形参表列中的最右端（类似于 python 的键值对参数）。默认值可以是全局变量、全局常量，甚至是函数调用。</p>
 <p>在使用带有默认参数的函数时有两点要注意：</p>
 <ul class="simple">
@@ -150,7 +149,7 @@
 </div>
 </section>
 <section id="overriding">
-<h2><span class="section-number">8.2. </span>覆盖（Overriding）<a class="headerlink" href="#overriding" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">8.2. </span>覆盖（Overriding）<a class="headerlink" href="#overriding" title="Permalink to this heading"></a></h2>
 <p>基类中被重写的函数，用 <code class="docutils literal notranslate"><span class="pre">virtual</span></code> 修饰。派生类重写的函数与被重写的函数保持同样的 <strong>函数名、参数列表、返回类型</strong> 。</p>
 <p>使用 <code class="docutils literal notranslate"><span class="pre">virtual</span></code> 的同时，配合使用 <code class="docutils literal notranslate"><span class="pre">override</span></code> 关键字来说明派生类中的虚函数。这么做的好处是使得程序员的意图更加清晰（即：希望覆盖基类中的虚函数），同时让编译器发现错误。
 因为只有虚函数才能被覆盖。编译器会检查两个对应函数的声明是否匹配。</p>
@@ -221,12 +220,12 @@
 </dd>
 </dl>
 <div class="admonition note">
-<p class="admonition-title">备注</p>
+<p class="admonition-title">Note</p>
 <p>基类中的虚函数在派生类中隐含地也是一个虚函数。当派生类覆盖了某个虚函数时，该函数在基类中的形参必须与派生类中的形参严格匹配。</p>
 <p>我们可以将 <strong>基类的指针或引用</strong> 绑定到派生类的对象上。因此，当我们使用基类指针或引用时，实际上并不清楚该指针或引用所绑定的对象的真实类型。</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">备注</p>
+<p class="admonition-title">Note</p>
 <p>构造函数 <strong>不能声明</strong> 为虚函数：一方面，创建一个对象时总要明确指定对象的类型。另一方面，虚函数对应一个指向虚函数表的指针（vptr），在创建对象之前，
 vptr不存在，不可能完成动态绑定。</p>
 <p>析构函数 <strong>可以声明</strong> 为虚函数：当基类指针指向派生类，使用基类指针删除对象时，如果析构函数不定义成虚函数，派生类中派生的部分无法完成析构。</p>
@@ -237,13 +236,13 @@ vptr不存在，不可能完成动态绑定。</p>
 <p>总而言之：在运行构造函数或者析构函数时，对象都是不完整的，这种情况下的虚函数调用不会调用到外层派生类的虚函数。</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">警告</p>
+<p class="admonition-title">Warning</p>
 <p>error C2243: ‘type cast’ : conversion from ‘Derived *’ to ‘Base *’ exists, but is inaccessible.</p>
 <p>基类的指针和引用不能指向继承方式为 <code class="docutils literal notranslate"><span class="pre">protected</span></code> 与 <code class="docutils literal notranslate"><span class="pre">private</span></code> 的派生类对象，只能通过 <code class="docutils literal notranslate"><span class="pre">public</span></code> 继承。</p>
 </div>
 </section>
 <section id="hiding">
-<h2><span class="section-number">8.3. </span>隐藏（Hiding）<a class="headerlink" href="#hiding" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">8.3. </span>隐藏（Hiding）<a class="headerlink" href="#hiding" title="Permalink to this heading"></a></h2>
 <p>派生类中的函数屏蔽了基类中的同名函数。
 当参数列表不同时，无论基类中的函数是否被 <code class="docutils literal notranslate"><span class="pre">virtual</span></code> 修饰，基类函数都是被隐藏，而不是被覆盖；
 当参数列表相同，而基类中的函数没有被 <code class="docutils literal notranslate"><span class="pre">virtual</span></code> 修饰，则基类函数也被隐藏。</p>
@@ -252,7 +251,7 @@ vptr不存在，不可能完成动态绑定。</p>
 因此，调用非虚函数只与指针类型有关。
 如果基类/派生类调用的非虚函数内部又调用了虚函数，则该虚函数的调用会发生动态绑定。</p>
 <div class="admonition note">
-<p class="admonition-title">备注</p>
+<p class="admonition-title">Note</p>
 <dl class="simple">
 <dt>C++ 三大特性：</dt><dd><ul class="simple">
 <li><p><strong>封装（Encapsulation）</strong> ：类是支持数据封装的工具，对象是数据封装的实现。在封装中，还提供一种对数据访问的控制机制，使得一些数据被隐藏在封装体内，因此具有隐藏性；封装体与外界进行信息交换是通过操作接口进行的。这种访问控制机制体现在类的成员可以有公有成员（public），私有成员（private），保护成员（protected）。</p></li>
@@ -264,9 +263,9 @@ vptr不存在，不可能完成动态绑定。</p>
 </div>
 </section>
 <section id="id2">
-<h2><span class="section-number">8.4. </span>例子<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">8.4. </span>例子<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <section id="id3">
-<h3>虚析构函数<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h3>
+<h3>虚析构函数<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
 <p>删除一个指向派生类对象的基类指针时，需要虚析构函数。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="linenos"> 2</span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w"></span>
@@ -315,7 +314,7 @@ vptr不存在，不可能完成动态绑定。</p>
 </div>
 </section>
 <section id="id4">
-<h3>析构顺序<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h3>
+<h3>析构顺序<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="linenos"> 2</span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w"></span>
 <span class="linenos"> 3</span>
@@ -422,7 +421,7 @@ vptr不存在，不可能完成动态绑定。</p>
 </div>
 </section>
 <section id="id5">
-<h3>对象数组的析构<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h3>
+<h3>对象数组的析构<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
 <p>数组的多态会导致未定义的行为，不管析构函数是否声明为虚函数。所以在对数组元素执行析构时，还是要用 <strong>派生类的指针</strong> 来 delete 。</p>
 <p>参考：<a class="reference external" href="https://www.nowcoder.com/profile/3704231/myFollowings/detail/8528425">https://www.nowcoder.com/profile/3704231/myFollowings/detail/8528425</a>。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
@@ -456,13 +455,13 @@ vptr不存在，不可能完成动态绑定。</p>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="admonition-title">备注</p>
+<p class="admonition-title">Note</p>
 <p>直接定义类的指针（不使用 new）和引用并不会调用构造函数。</p>
 </div>
 </section>
 </section>
 <section id="id6">
-<h2><span class="section-number">8.5. </span>参考资料<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">8.5. </span>参考资料<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>C++中重载、重写（覆盖）和隐藏的区别</p></li>
 </ol>
@@ -479,19 +478,19 @@ vptr不存在，不可能完成动态绑定。</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="07_pointerReference.html" class="btn btn-neutral float-left" title="7. 指针与引用" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="09_strcpy.html" class="btn btn-neutral float-right" title="9. strcpy函数" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="07_pointerReference.html" class="btn btn-neutral float-left" title="7. 指针与引用" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="09_strcpy.html" class="btn btn-neutral float-right" title="9. strcpy函数" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; 版权所有 2018-2022, fong.</p>
+    <p>&#169; Copyright 2018-2022, fong.</p>
   </div>
 
-  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
-    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
    
 
 </footer>

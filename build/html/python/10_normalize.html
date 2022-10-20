@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="zh-CN" >
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>10. 归一化 &mdash; fong alpha 文档</title>
+  <title>10. 归一化 &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,10 +19,9 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/translations.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="11. 常用数据结构" href="11_dataStruct.html" />
     <link rel="prev" title="9. random" href="09_random.html" /> 
 </head>
@@ -40,7 +39,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -116,7 +115,7 @@
           <li><a href="index.html">Python</a> &raquo;</li>
       <li><span class="section-number">10. </span>归一化</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/python/10_normalize.rst.txt" rel="nofollow"> 查看页面源码</a>
+            <a href="../_sources/python/10_normalize.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -125,21 +124,21 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">10. </span>归一化<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<h1><span class="section-number">10. </span>归一化<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <section id="numpy-linalg-norm">
-<h2><span class="section-number">10.1. </span>numpy.linalg.norm<a class="headerlink" href="#numpy-linalg-norm" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">10.1. </span>numpy.linalg.norm<a class="headerlink" href="#numpy-linalg-norm" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="sklearn-preprocessing-normalize">
-<h2><span class="section-number">10.2. </span>sklearn.preprocessing.normalize<a class="headerlink" href="#sklearn-preprocessing-normalize" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">10.2. </span>sklearn.preprocessing.normalize<a class="headerlink" href="#sklearn-preprocessing-normalize" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sklearn.preprocessing.normalize(X, norm=’l2’, axis=1, copy=True, return_norm=False)
 </pre></div>
 </div>
 </section>
 <section id="torch-nn-functional-normalize">
-<h2><span class="section-number">10.3. </span>torch.nn.functional.normalize<a class="headerlink" href="#torch-nn-functional-normalize" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">10.3. </span>torch.nn.functional.normalize<a class="headerlink" href="#torch-nn-functional-normalize" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -170,7 +169,7 @@
 </div>
 </section>
 <section id="k-means">
-<h2><span class="section-number">10.4. </span>k-means 实现<a class="headerlink" href="#k-means" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">10.4. </span>k-means 实现<a class="headerlink" href="#k-means" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="c1">## feature initialization</span>
@@ -209,7 +208,7 @@
 </div>
 </section>
 <section id="id2">
-<h2><span class="section-number">10.5. </span>参考资料<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">10.5. </span>参考资料<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>numpy.linalg.norm</p></li>
 </ol>
@@ -235,19 +234,19 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="09_random.html" class="btn btn-neutral float-left" title="9. random" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="11_dataStruct.html" class="btn btn-neutral float-right" title="11. 常用数据结构" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="09_random.html" class="btn btn-neutral float-left" title="9. random" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="11_dataStruct.html" class="btn btn-neutral float-right" title="11. 常用数据结构" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; 版权所有 2018-2022, fong.</p>
+    <p>&#169; Copyright 2018-2022, fong.</p>
   </div>
 
-  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
-    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
    
 
 </footer>

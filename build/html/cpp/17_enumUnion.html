@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="zh-CN" >
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>17. 枚举类型与共用体 &mdash; fong alpha 文档</title>
+  <title>17. 枚举类型与共用体 &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,10 +19,9 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/translations.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="18. 常用函数" href="18_commonFunc.html" />
     <link rel="prev" title="16. 类的static const成员" href="16_staticconst.html" /> 
 </head>
@@ -40,7 +39,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -123,7 +122,7 @@
           <li><a href="index.html">C/C++</a> &raquo;</li>
       <li><span class="section-number">17. </span>枚举类型与共用体</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/cpp/17_enumUnion.rst.txt" rel="nofollow"> 查看页面源码</a>
+            <a href="../_sources/cpp/17_enumUnion.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -132,16 +131,16 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">17. </span>枚举类型与共用体<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<h1><span class="section-number">17. </span>枚举类型与共用体<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <section id="id2">
-<h2><span class="section-number">17.1. </span>枚举类型<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">17.1. </span>枚举类型<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <p>枚举类型（enumeration）使我们可以将一组 <strong>整型常量</strong> 组织在一起。格式</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">enum</span> <span class="o">&lt;</span><span class="n">类型名</span><span class="o">&gt;</span> <span class="p">{</span><span class="o">&lt;</span><span class="n">枚举成员</span><span class="o">&gt;</span><span class="p">};</span>
 </pre></div>
 </div>
 <p>枚举成员不能是数值，即不能是类似于{1,2,3}。可以定义 <strong>无类型名</strong> 的枚举类型。</p>
 <section id="id3">
-<h3>初始化<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h3>
+<h3>初始化<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
 <p>默认情况下，每个枚举变量的值就是其序号，从0开始，依次加1。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">enum</span><span class="w"> </span><span class="nc">Week</span><span class="w"> </span><span class="p">{</span><span class="n">Sun</span><span class="p">,</span><span class="w"> </span><span class="n">Mon</span><span class="p">,</span><span class="w"> </span><span class="n">Tue</span><span class="p">,</span><span class="w"> </span><span class="n">Wed</span><span class="p">,</span><span class="w"> </span><span class="n">Thu</span><span class="p">,</span><span class="w"> </span><span class="n">Fri</span><span class="p">,</span><span class="w"> </span><span class="n">Sat</span><span class="p">};</span><span class="w"></span>
 <span class="c1">//Sun=0, Mon=1, Tue=2, Wed=3, Thu=4, Fri=5, Sat=6</span>
@@ -154,7 +153,7 @@
 </div>
 </section>
 <section id="id4">
-<h3>枚举变量<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h3>
+<h3>枚举变量<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
 <p>定义枚举类型之后，就可以定义该枚举类型的变量，或者与枚举类型同时定义。枚举变量的值只能取枚举常量表中所列的值。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">enum</span><span class="w"> </span><span class="nc">Week</span><span class="w"> </span><span class="p">{</span><span class="n">Sun</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">Mon</span><span class="p">,</span><span class="w"> </span><span class="n">Tue</span><span class="p">,</span><span class="w"> </span><span class="n">Wed</span><span class="p">,</span><span class="w"> </span><span class="n">Thu</span><span class="p">,</span><span class="w"> </span><span class="n">Fri</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="n">Sat</span><span class="p">}</span><span class="w"> </span><span class="n">day_1</span><span class="p">;</span><span class="w"></span>
 <span class="linenos"> 2</span><span class="c1">// 全局变量 day_1 默认初始化为 0。</span>
@@ -193,7 +192,7 @@
 </section>
 </section>
 <section id="id5">
-<h2><span class="section-number">17.2. </span>共用体<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">17.2. </span>共用体<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
 <p>共用体（union）及其变量的定义形式与结构体类似。共用体成员访问方式也是使用运算符 <code class="docutils literal notranslate"><span class="pre">.</span></code> 或 <code class="docutils literal notranslate"><span class="pre">-&gt;</span></code>。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">union</span><span class="w"> </span><span class="nc">ifcd</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
@@ -241,7 +240,7 @@
 </div></blockquote>
 </section>
 <section id="id6">
-<h2><span class="section-number">17.3. </span>参考资料<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">17.3. </span>参考资料<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
 <p>1.《C++ Primer 第5版 中文版》 Page 736 – 739。</p>
 <ol class="arabic simple" start="2">
 <li><p>C++ 枚举类型详解</p></li>
@@ -262,19 +261,19 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="16_staticconst.html" class="btn btn-neutral float-left" title="16. 类的static const成员" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="18_commonFunc.html" class="btn btn-neutral float-right" title="18. 常用函数" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="16_staticconst.html" class="btn btn-neutral float-left" title="16. 类的static const成员" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="18_commonFunc.html" class="btn btn-neutral float-right" title="18. 常用函数" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; 版权所有 2018-2022, fong.</p>
+    <p>&#169; Copyright 2018-2022, fong.</p>
   </div>
 
-  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
-    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
    
 
 </footer>

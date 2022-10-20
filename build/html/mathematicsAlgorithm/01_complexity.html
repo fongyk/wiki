@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="zh-CN" >
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1. 算法复杂度与主定理 &mdash; fong alpha 文档</title>
+  <title>1. 算法复杂度与主定理 &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,11 +19,10 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/translations.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="2. 红黑树" href="02_redblackTree.html" />
     <link rel="prev" title="数理与算法" href="index.html" /> 
 </head>
@@ -41,7 +40,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -110,7 +109,7 @@
           <li><a href="index.html">数理与算法</a> &raquo;</li>
       <li><span class="section-number">1. </span>算法复杂度与主定理</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/mathematicsAlgorithm/01_complexity.rst.txt" rel="nofollow"> 查看页面源码</a>
+            <a href="../_sources/mathematicsAlgorithm/01_complexity.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -119,14 +118,14 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">1. </span>算法复杂度与主定理<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<h1><span class="section-number">1. </span>算法复杂度与主定理<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <p>递归算法的复杂性分析方法：代入法、递归树、主定理。这里只讨论主定理方法。</p>
 <p>主定理方法应用于如下的递归形式：</p>
 <div class="math notranslate nohighlight">
 \[T(n) = aT(\frac{n}{b}) + f(n).\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(a \geqslant 1,\ b\geqslant 1\)</span> ，<span class="math notranslate nohighlight">\(f\)</span> 是渐进正的。</p>
 <section id="id2">
-<h2><span class="section-number">1.1. </span>渐进分析<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">1.1. </span>渐进分析<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <p>假设对于所有 <span class="math notranslate nohighlight">\(n\)</span> ，满足 <span class="math notranslate nohighlight">\(f(n) \geqslant 0,\ g(n) \geqslant 0\)</span> 。</p>
 <ul>
 <li><p>渐进上界 <span class="math notranslate nohighlight">\(\mathcal{O}\)</span></p>
@@ -147,7 +146,7 @@
 \[\Theta(g(n)) = \mathcal{O}(g(n)) \cap \Omega(g(n))\]</div>
 </section>
 <section id="id3">
-<h2><span class="section-number">1.2. </span>主定理<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">1.2. </span>主定理<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <p>需要比较 <span class="math notranslate nohighlight">\(f(n)\)</span> 和 <span class="math notranslate nohighlight">\(n^{\log_b a}\)</span> 。</p>
 <ul>
 <li><p><span class="math notranslate nohighlight">\(f(n) = \mathcal{O}(n^{\log_b a - \epsilon})\)</span> ： <span class="math notranslate nohighlight">\(f(n)\)</span> 的增长速度比 <span class="math notranslate nohighlight">\(n^{\log_b a}\)</span> 慢一个 <span class="math notranslate nohighlight">\(n^{\epsilon}\)</span> 因子。</p>
@@ -175,19 +174,19 @@ T(n) = 4T(\frac{n}{2}) + n^3 &amp; \rightarrow &amp;\ \epsilon = 1,\ c=\frac{1}{
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="数理与算法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="02_redblackTree.html" class="btn btn-neutral float-right" title="2. 红黑树" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="数理与算法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="02_redblackTree.html" class="btn btn-neutral float-right" title="2. 红黑树" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; 版权所有 2018-2022, fong.</p>
+    <p>&#169; Copyright 2018-2022, fong.</p>
   </div>
 
-  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
-    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
    
 
 </footer>

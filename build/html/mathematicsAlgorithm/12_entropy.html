@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="zh-CN" >
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>12. 信息熵 &mdash; fong alpha 文档</title>
+  <title>12. 信息熵 &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -19,11 +19,10 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/translations.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="13. 大数定律和中心极限定理" href="13_cltLLN.html" />
     <link rel="prev" title="11. 卡特兰数" href="11_catalan.html" /> 
 </head>
@@ -41,7 +40,7 @@
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -114,7 +113,7 @@
           <li><a href="index.html">数理与算法</a> &raquo;</li>
       <li><span class="section-number">12. </span>信息熵</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/mathematicsAlgorithm/12_entropy.rst.txt" rel="nofollow"> 查看页面源码</a>
+            <a href="../_sources/mathematicsAlgorithm/12_entropy.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -123,9 +122,9 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">12. </span>信息熵<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<h1><span class="section-number">12. </span>信息熵<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <section id="id2">
-<h2><span class="section-number">12.1. </span>信息熵<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">12.1. </span>信息熵<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <p>信息熵：</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}H(X) &amp;=\ E[I(X)] = E[-\log (P(X))] \\
@@ -141,7 +140,7 @@
 <p>其中 <span class="math notranslate nohighlight">\(f(x)\)</span> 是概率密度函数（probability density function）。</p>
 </section>
 <section id="id3">
-<h2><span class="section-number">12.2. </span>互信息<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">12.2. </span>互信息<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <a class="reference internal image-reference" href="../_images/12_mutulInfo.png"><img alt="../_images/12_mutulInfo.png" class="align-center" src="../_images/12_mutulInfo.png" style="width: 500px;" /></a>
 <div class="math notranslate nohighlight">
 \[\begin{split}I(X, Y) &amp;=\ \sum_i \sum_j p(x_i, y_j) \log \frac{p(x_i|y_j)}{p(x_i)} \\
@@ -155,7 +154,7 @@
 <p>对于连续变量，将 <span class="math notranslate nohighlight">\(H(X)\)</span> 替换为 <span class="math notranslate nohighlight">\(h(f)\)</span> 。</p>
 </section>
 <section id="kl">
-<h2><span class="section-number">12.3. </span>KL 散度<a class="headerlink" href="#kl" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">12.3. </span>KL 散度<a class="headerlink" href="#kl" title="Permalink to this heading"></a></h2>
 <p>KL 散度（Kullback–Leibler divergence 或 relative entropy），衡量了两种概率分布的差异性，KL 散度为 0 表示同分布。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}D_{KL}(P \| Q) &amp;=\ - \sum_x P(x) \log \frac{Q(x)}{P(x)}  &amp; &amp; \text{[离散]} \\
@@ -165,7 +164,7 @@
 \[I(X, Y)  =\ D_{KL} ( p(X, Y)\ \| \ p(X)p(Y) )\]</div>
 </section>
 <section id="id4">
-<h2><span class="section-number">12.4. </span>交叉熵<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">12.4. </span>交叉熵<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <p>交叉熵（Cross entropy）在信息论中的含义：基于相同事件测度的两个概率分布 <span class="math notranslate nohighlight">\(p\)</span> （“真实”分布）和 <span class="math notranslate nohighlight">\(q\)</span> （“估测”分布），当基于概率分布 <span class="math notranslate nohighlight">\(q\)</span> 进行编码时，在事件集合中唯一标识一个事件所需要的平均比特数。</p>
 <p>定义：</p>
 <div class="math notranslate nohighlight">
@@ -179,7 +178,7 @@
 <p>最小化 KL 散度就是最小化分布之间的交叉熵。</p>
 </section>
 <section id="jensen-s-inequality">
-<h2><span class="section-number">12.5. </span>Jensen’s inequality<a class="headerlink" href="#jensen-s-inequality" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">12.5. </span>Jensen’s inequality<a class="headerlink" href="#jensen-s-inequality" title="Permalink to this heading"></a></h2>
 <a class="reference internal image-reference" href="../_images/12_jensen.png"><img alt="../_images/12_jensen.png" class="align-center" src="../_images/12_jensen.png" style="width: 500px;" /></a>
 <dl>
 <dt>凸函数</dt><dd><p>实数域函数 <span class="math notranslate nohighlight">\(f\)</span> 是凸函数，满足 <span class="math notranslate nohighlight">\(f^{\prime\prime} \geqslant 0\)</span> （高维对应 hessian matrix <span class="math notranslate nohighlight">\(H \geqslant 0\)</span> ）。</p>
@@ -210,7 +209,7 @@
 </dl>
 </section>
 <section id="id5">
-<h2><span class="section-number">12.6. </span>参考资料<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<h2><span class="section-number">12.6. </span>参考资料<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Entropy</p></li>
 </ol>
@@ -249,19 +248,19 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="11_catalan.html" class="btn btn-neutral float-left" title="11. 卡特兰数" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="13_cltLLN.html" class="btn btn-neutral float-right" title="13. 大数定律和中心极限定理" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="11_catalan.html" class="btn btn-neutral float-left" title="11. 卡特兰数" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="13_cltLLN.html" class="btn btn-neutral float-right" title="13. 大数定律和中心极限定理" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; 版权所有 2018-2022, fong.</p>
+    <p>&#169; Copyright 2018-2022, fong.</p>
   </div>
 
-  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
-    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
    
 
 </footer>

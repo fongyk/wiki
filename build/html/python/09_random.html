@@ -59,8 +59,26 @@
 <li class="toctree-l2"><a class="reference internal" href="07_arg.html">7. *args和**kwargs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="08_basicType.html">8. 基本数据类型</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">9. random</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">9.1. random</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#numpy-random">9.2. numpy.random</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">9.1. random</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#random.random"><code class="docutils literal notranslate"><span class="pre">random.random()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#random.uniform"><code class="docutils literal notranslate"><span class="pre">random.uniform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#random.randint"><code class="docutils literal notranslate"><span class="pre">random.randint()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#random.randrange"><code class="docutils literal notranslate"><span class="pre">random.randrange()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#random.choice"><code class="docutils literal notranslate"><span class="pre">random.choice()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#random.shuffle"><code class="docutils literal notranslate"><span class="pre">random.shuffle()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#numpy-random">9.2. numpy.random</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#numpy.random.random"><code class="docutils literal notranslate"><span class="pre">numpy.random.random()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#numpy.random.rand"><code class="docutils literal notranslate"><span class="pre">numpy.random.rand()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#numpy.random.randn"><code class="docutils literal notranslate"><span class="pre">numpy.random.randn()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#numpy.random.randint"><code class="docutils literal notranslate"><span class="pre">numpy.random.randint()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#numpy.random.choice"><code class="docutils literal notranslate"><span class="pre">numpy.random.choice()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#numpy.random.shuffle"><code class="docutils literal notranslate"><span class="pre">numpy.random.shuffle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#numpy.random.permutation"><code class="docutils literal notranslate"><span class="pre">numpy.random.permutation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#numpy.random.seed"><code class="docutils literal notranslate"><span class="pre">numpy.random.seed()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">9.3. 参考资料</a></li>
 </ul>
 </li>
@@ -126,90 +144,100 @@
 <h1><span class="section-number">9. </span>random<a class="headerlink" href="#random" title="Permalink to this heading"></a></h1>
 <section id="id1">
 <h2><span class="section-number">9.1. </span>random<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
-<p>python自带的random库。</p>
+<p>Python 自带的 random 库。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p><strong>random.random()</strong></p>
-<ul>
-<li><p>生成0~1的随机浮点数。</p></li>
-</ul>
-</li>
-<li><p><strong>random.uniform(a,b)</strong></p>
-<ul>
-<li><p>生成指定范围[a, b]内的随机浮点数。</p></li>
-</ul>
-</li>
-<li><p><strong>random.randint(a,b)</strong></p>
-<ul>
-<li><p>生成指定范围[a, b]内的随机整数。</p></li>
-</ul>
-</li>
-<li><p><strong>random.randrange(start,stop,step)</strong></p>
-<ul>
-<li><p>指定范围内，按step递增的集合中的随机数。</p></li>
-</ul>
-</li>
-<li><p><strong>random.choice(lst)</strong></p>
-<ul>
-<li><p>给定的集合中选择一个元素。</p></li>
-</ul>
-</li>
-<li><p><strong>random.shuffle(lst)</strong></p>
-<ul>
-<li><p>对一个序列或者元组随机打乱。</p></li>
-</ul>
-</li>
-</ul>
+<dl class="py function">
+<dt class="sig sig-object py" id="random.random">
+<span class="sig-prename descclassname"><span class="pre">random.</span></span><span class="sig-name descname"><span class="pre">random</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#random.random" title="Permalink to this definition"></a></dt>
+<dd><p>生成0~1的随机浮点数。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="random.uniform">
+<span class="sig-prename descclassname"><span class="pre">random.</span></span><span class="sig-name descname"><span class="pre">uniform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#random.uniform" title="Permalink to this definition"></a></dt>
+<dd><p>生成指定范围[a, b]内的随机浮点数。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="random.randint">
+<span class="sig-prename descclassname"><span class="pre">random.</span></span><span class="sig-name descname"><span class="pre">randint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#random.randint" title="Permalink to this definition"></a></dt>
+<dd><p>生成指定范围[a, b]内的随机整数。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="random.randrange">
+<span class="sig-prename descclassname"><span class="pre">random.</span></span><span class="sig-name descname"><span class="pre">randrange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#random.randrange" title="Permalink to this definition"></a></dt>
+<dd><p>指定范围内，按step递增的集合中的随机数。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="random.choice">
+<span class="sig-prename descclassname"><span class="pre">random.</span></span><span class="sig-name descname"><span class="pre">choice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lst</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#random.choice" title="Permalink to this definition"></a></dt>
+<dd><p>给定的集合中选择一个元素。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="random.shuffle">
+<span class="sig-prename descclassname"><span class="pre">random.</span></span><span class="sig-name descname"><span class="pre">shuffle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lst</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#random.shuffle" title="Permalink to this definition"></a></dt>
+<dd><p>对一个序列或者元组随机打乱。</p>
+</dd></dl>
+
 </section>
 <section id="numpy-random">
 <h2><span class="section-number">9.2. </span>numpy.random<a class="headerlink" href="#numpy-random" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p><strong>numpy.random.random([</strong> <span class="math notranslate nohighlight">\(d_0, d_1, ... ,d_n\)</span> <strong>])</strong></p>
-<ul>
-<li><p>生成0~1的随机浮点数，维度为 <span class="math notranslate nohighlight">\(d_0 \times d_1 \times ... \times d_n\)</span> （缺省为1）。</p></li>
-</ul>
-</li>
-<li><p><strong>numpy.random.rand(</strong> <span class="math notranslate nohighlight">\(d_0, d_1, ... ,d_n\)</span> <strong>)</strong></p>
-<ul>
-<li><p>生成0~1的随机浮点数，维度为 <span class="math notranslate nohighlight">\(d_0 \times d_1 \times ... \times d_n\)</span> （缺省为1）。</p></li>
-</ul>
-</li>
-<li><p><strong>numpy.random.randn(</strong> <span class="math notranslate nohighlight">\(d_0, d_1, ... ,d_n\)</span> <strong>)</strong></p>
-<ul>
-<li><p>标准正态分布。</p></li>
-</ul>
-</li>
-<li><p><strong>numpy.random.randint(low, high=None, size=None, dtype=’l’)</strong></p>
-<ul>
-<li><p>返回随机的整数，位于半开区间 [low, high)。如果high=None，区间为[0, low)。</p></li>
-</ul>
-</li>
-<li><p><strong>numpy.random.choice(arr, size=None, replace=True, p=None)</strong></p>
-<ul>
-<li><p>从一个给定的一维数组，按概率p抽样一定数量的元素，replace=True表示允许重复元素。</p></li>
-</ul>
-</li>
-<li><p><strong>numpy.random.shuffle(arr)</strong></p>
-<ul>
-<li><p>随机打乱arr。</p></li>
-</ul>
-</li>
-<li><p><strong>numpy.random.permutation(arr)</strong></p>
-<ul>
-<li><p>返回一个随机排列。</p></li>
-</ul>
-</li>
-<li><p><strong>numpy.random.seed(n)</strong></p>
-<ul>
-<li><p>改变随机数生成器的种子。设置相同的seed，每次生成的随机数相同；如果不设置seed，则每次会生成不同的随机数。</p></li>
-</ul>
-</li>
-</ul>
+<dl class="py function">
+<dt class="sig sig-object py" id="numpy.random.random">
+<span class="sig-prename descclassname"><span class="pre">numpy.random.</span></span><span class="sig-name descname"><span class="pre">random</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">d0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dn</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#numpy.random.random" title="Permalink to this definition"></a></dt>
+<dd><p>生成 0 ~ 1 的随机浮点数，维度为 <span class="math notranslate nohighlight">\(d_0 \times d_1 \times ... \times d_n\)</span> （缺省为1）。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="numpy.random.rand">
+<span class="sig-prename descclassname"><span class="pre">numpy.random.</span></span><span class="sig-name descname"><span class="pre">rand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dn</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#numpy.random.rand" title="Permalink to this definition"></a></dt>
+<dd><p>生成 0 ~ 1 的随机浮点数，维度为 <span class="math notranslate nohighlight">\(d_0 \times d_1 \times ... \times d_n\)</span> （缺省为1）。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="numpy.random.randn">
+<span class="sig-prename descclassname"><span class="pre">numpy.random.</span></span><span class="sig-name descname"><span class="pre">randn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dn</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#numpy.random.randn" title="Permalink to this definition"></a></dt>
+<dd><p>标准正态分布。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="numpy.random.randint">
+<span class="sig-prename descclassname"><span class="pre">numpy.random.</span></span><span class="sig-name descname"><span class="pre">randint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'l'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#numpy.random.randint" title="Permalink to this definition"></a></dt>
+<dd><p>返回随机的整数，位于半开区间 <code class="docutils literal notranslate"><span class="pre">[low,</span> <span class="pre">high)</span></code> 。如果 <code class="docutils literal notranslate"><span class="pre">high=None</span></code> ，区间为 <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">low)</span></code> 。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="numpy.random.choice">
+<span class="sig-prename descclassname"><span class="pre">numpy.random.</span></span><span class="sig-name descname"><span class="pre">choice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#numpy.random.choice" title="Permalink to this definition"></a></dt>
+<dd><p>从一个给定的一维数组，按概率 p 抽样一定数量的元素， <code class="docutils literal notranslate"><span class="pre">replace=True</span></code> 表示允许重复元素。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="numpy.random.shuffle">
+<span class="sig-prename descclassname"><span class="pre">numpy.random.</span></span><span class="sig-name descname"><span class="pre">shuffle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#numpy.random.shuffle" title="Permalink to this definition"></a></dt>
+<dd><p>随机打乱 arr。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="numpy.random.permutation">
+<span class="sig-prename descclassname"><span class="pre">numpy.random.</span></span><span class="sig-name descname"><span class="pre">permutation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#numpy.random.permutation" title="Permalink to this definition"></a></dt>
+<dd><p>返回一个随机排列。</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="numpy.random.seed">
+<span class="sig-prename descclassname"><span class="pre">numpy.random.</span></span><span class="sig-name descname"><span class="pre">seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#numpy.random.seed" title="Permalink to this definition"></a></dt>
+<dd><p>改变随机数生成器的种子。设置相同的 seed，每次生成的随机数相同；如果不设置 seed，则每次会生成不同的随机数。</p>
+</dd></dl>
+
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">## 注：生成的数组都是 numpy array 类型</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="o">&gt;&gt;&gt;</span> <span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span>
@@ -257,12 +285,24 @@
 <section id="id2">
 <h2><span class="section-number">9.3. </span>参考资料<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
+<li><p>random — Generate pseudo-random numbers</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://docs.python.org/3/library/random.html">https://docs.python.org/3/library/random.html</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>Random sampling (numpy.random)</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://numpy.org/doc/1.16/reference/routines.random.html#module-numpy.random">https://numpy.org/doc/1.16/reference/routines.random.html#module-numpy.random</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="3">
 <li><p>random与numpy.random</p></li>
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://www.jianshu.com/p/36a4bbb5536e">https://www.jianshu.com/p/36a4bbb5536e</a></p>
 </div></blockquote>
-<ol class="arabic simple" start="2">
+<ol class="arabic simple" start="4">
 <li><p>numpy的random模块详细解析</p></li>
 </ol>
 <blockquote>

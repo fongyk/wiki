@@ -3,33 +3,34 @@ random
 
 random
 -------------
-python自带的random库。 ::
+
+Python 自带的 random 库。 ::
 
   import random
 
-- **random.random()**
+.. py:function:: random.random()
+  
+  生成0~1的随机浮点数。
 
-  - 生成0~1的随机浮点数。
+.. py:function:: random.uniform(a,b)
 
-- **random.uniform(a,b)**
+  生成指定范围[a, b]内的随机浮点数。
 
-  - 生成指定范围[a, b]内的随机浮点数。
+.. py:function:: random.randint(a,b)
 
-- **random.randint(a,b)**
+  生成指定范围[a, b]内的随机整数。
 
-  - 生成指定范围[a, b]内的随机整数。
+.. py:function:: random.randrange(start,stop,step)
 
-- **random.randrange(start,stop,step)**
+  指定范围内，按step递增的集合中的随机数。
 
-  - 指定范围内，按step递增的集合中的随机数。
+.. py:function:: random.choice(lst)
 
-- **random.choice(lst)**
+  给定的集合中选择一个元素。
 
-  - 给定的集合中选择一个元素。
+.. py:function:: random.shuffle(lst)
 
-- **random.shuffle(lst)**
-
-  - 对一个序列或者元组随机打乱。
+  对一个序列或者元组随机打乱。
 
 
 numpy.random
@@ -39,37 +40,37 @@ numpy.random
 
   import numpy as np
 
-- **numpy.random.random([** :math:`d_0, d_1, ... ,d_n` **])**
+.. py:function:: numpy.random.random([d0, d1, ... ,dn])
 
-  - 生成0~1的随机浮点数，维度为 :math:`d_0 \times d_1 \times ... \times d_n` （缺省为1）。
+  生成 0 ~ 1 的随机浮点数，维度为 :math:`d_0 \times d_1 \times ... \times d_n` （缺省为1）。
 
-- **numpy.random.rand(** :math:`d_0, d_1, ... ,d_n` **)**
+.. py:function:: numpy.random.rand(d0, d1, ... ,dn)
 
-  - 生成0~1的随机浮点数，维度为 :math:`d_0 \times d_1 \times ... \times d_n` （缺省为1）。
+  生成 0 ~ 1 的随机浮点数，维度为 :math:`d_0 \times d_1 \times ... \times d_n` （缺省为1）。
 
-- **numpy.random.randn(** :math:`d_0, d_1, ... ,d_n` **)**
+.. py:function:: numpy.random.randn(d0, d1, ... ,dn)
 
-  - 标准正态分布。
+  标准正态分布。
 
-- **numpy.random.randint(low, high=None, size=None, dtype='l')**
+.. py:function:: numpy.random.randint(low, high=None, size=None, dtype='l')
 
-  - 返回随机的整数，位于半开区间 [low, high)。如果high=None，区间为[0, low)。
+  返回随机的整数，位于半开区间 ``[low, high)`` 。如果 ``high=None`` ，区间为 ``[0, low)`` 。
 
-- **numpy.random.choice(arr, size=None, replace=True, p=None)**
+.. py:function:: numpy.random.choice(arr, size=None, replace=True, p=None)
 
-  - 从一个给定的一维数组，按概率p抽样一定数量的元素，replace=True表示允许重复元素。
+  从一个给定的一维数组，按概率 p 抽样一定数量的元素， ``replace=True`` 表示允许重复元素。
 
-- **numpy.random.shuffle(arr)**
+.. py:function:: numpy.random.shuffle(arr)
 
-  - 随机打乱arr。
+  随机打乱 arr。
 
-- **numpy.random.permutation(arr)**
+.. py:function:: numpy.random.permutation(arr)
 
-  - 返回一个随机排列。
+  返回一个随机排列。
 
-- **numpy.random.seed(n)**
+.. py:function:: numpy.random.seed(n)
 
-  - 改变随机数生成器的种子。设置相同的seed，每次生成的随机数相同；如果不设置seed，则每次会生成不同的随机数。
+  改变随机数生成器的种子。设置相同的 seed，每次生成的随机数相同；如果不设置 seed，则每次会生成不同的随机数。
 
 .. code-block:: python
   :linenos:
@@ -119,10 +120,18 @@ numpy.random
 参考资料
 -----------
 
-1. random与numpy.random
+1. random — Generate pseudo-random numbers
+
+  https://docs.python.org/3/library/random.html
+
+2. Random sampling (numpy.random)
+
+  https://numpy.org/doc/1.16/reference/routines.random.html#module-numpy.random
+
+3. random与numpy.random
 
   https://www.jianshu.com/p/36a4bbb5536e
 
-2. numpy的random模块详细解析
+4. numpy的random模块详细解析
 
   https://www.cnblogs.com/zuoshoushizi/p/8727773.html

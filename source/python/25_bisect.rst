@@ -13,17 +13,29 @@ bisect 模块用于维护有序列表，核心思想是采用二分法来进行�
     >>> dir(bisect)
     ['__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'bisect', 'bisect_left', 'bisect_right', 'insort', 'insort_left', 'insort_right']
 
-- ``bisect_left(a, x, lo=0, hi=len(a))`` 返回 ``x`` 的插入位置，如果 ``a`` 中已经存在 ``x`` ，则返回最左侧 ``x`` 的位置。设该位置为 ``i`` ，则 ``all(val < x for val in a[lo:i]), all(val >= x for val in a[i:hi])`` 。
+.. py:function:: bisect_left(a, x, lo=0, hi=len(a))
+    
+    返回 x 的插入位置，如果 a 中已经存在 x ，则返回最左侧 x 的位置。设该位置为 i ，则 ``all(val < x for val in a[lo:i]), all(val >= x for val in a[i:hi])`` 。
 
-- ``bisect_right(a, x, lo=0, hi=len(a))`` 返回 ``x`` 的插入位置，如果 ``a`` 中已经存在 ``x`` ，则返回最右侧 ``x`` 的下一个位置。设该位置为 ``i`` ，则 ``all(val <= x for val in a[lo:i]), all(val > x for val in a[i:hi])`` 。
+.. py:function:: bisect_right(a, x, lo=0, hi=len(a))
+    
+    返回 x 的插入位置，如果 a 中已经存在 x ，则返回最右侧 x 的下一个位置。设该位置为 i ，则 ``all(val <= x for val in a[lo:i]), all(val > x for val in a[i:hi])`` 。
 
-- ``bisect(a, x, lo=0, hi=len(a))`` 同 ``bisect_right`` 。
+.. py:function:: bisect(a, x, lo=0, hi=len(a))
+    
+    同 ``bisect_right`` 。
 
-- ``insort_left(a, x, lo=0, hi=len(a))`` 等效于 ``a.insert(bisect.bisect_left(a, x, lo, hi), x)`` 。
+.. py:function:: insort_left(a, x, lo=0, hi=len(a))
+    
+    等效于 ``a.insert(bisect.bisect_left(a, x, lo, hi), x)`` 。
 
-- ``insort_right(a, x, lo=0, hi=len(a))`` 等效于 ``a.insert(bisect.bisect_right(a, x, lo, hi), x)`` 。
+.. py:function:: insort_right(a, x, lo=0, hi=len(a))
+    
+    等效于 ``a.insert(bisect.bisect_right(a, x, lo, hi), x)`` 。
 
-- ``insort(a, x, lo=0, hi=len(a))`` 同 ``insort_right`` 。
+.. py:function:: insort(a, x, lo=0, hi=len(a))
+    
+    同 ``insort_right`` 。
 
 
 搜索有序表

@@ -223,6 +223,8 @@ command
 
   https://www.sphinx-doc.org/zh_CN/master/usage/restructuredtext/index.html
 
+  https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html
+
 2. reStructuredText 域
 
   https://www.sphinx-doc.org/zh_CN/master/usage/restructuredtext/domains.html

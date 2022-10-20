@@ -105,11 +105,11 @@ re.match
 
 .. py:function:: Match.groups(default=None)
     
-    - 返回一个元组，包含所有匹配的子组。
+    返回一个元组，包含所有匹配的子组。
 
 .. py:function:: Match.groupdict(default=None)
 
-    - 返回匹配子组的字典形式，需要配合 ``?P<first_name>`` 使用。
+    返回匹配子组的字典形式，需要配合 ``?P<first_name>`` 使用。
 
     .. code-block:: python 
         :linenos:
@@ -122,7 +122,7 @@ re.match
 
 .. py:function:: Match.group([group1, ...])
 
-    - 返回一个或者多个匹配的子组。如果只有一个参数，结果就是一个字符串；如果有多个参数，结果就是一个元组（每个参数对应一个项）；如果没有参数，或者参数是 0，返回所有的匹配。
+    返回一个或者多个匹配的子组。如果只有一个参数，结果就是一个字符串；如果有多个参数，结果就是一个元组（每个参数对应一个项）；如果没有参数，或者参数是 0，返回所有的匹配。
 
     .. code-block:: python 
         :linenos:
@@ -139,15 +139,15 @@ re.match
 
 .. py:function:: Match.start([group])
 
-    - 返回 group 匹配到的字串的开始位置。group 默认为 0（意思是整个匹配的子串）。
+    返回 group 匹配到的字串的开始位置。group 默认为 0（意思是整个匹配的子串）。
     
 .. py:function:: Match.end([group])
 
-    - 返回 group 匹配到的字串的结束位置（前闭后开）。group 默认为 0（意思是整个匹配的子串）。
+    返回 group 匹配到的字串的结束位置（前闭后开）。group 默认为 0（意思是整个匹配的子串）。
 
 .. py:function:: Match.span([group])
 
-    - 对于一个匹配 m ， 返回一个二元组 ``(m.start(group), m.end(group))`` 。 注意如果 group 没有在这个匹配中，就返回 ``(-1, -1)`` 。group 默认为0，就是整个匹配。
+    对于一个匹配 m ， 返回一个二元组 ``(m.start(group), m.end(group))`` 。 注意如果 group 没有在这个匹配中，就返回 ``(-1, -1)`` 。group 默认为 0，就是整个匹配。
 
 
 re.findall

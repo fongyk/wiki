@@ -221,17 +221,13 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="Match.groups">
 <span class="sig-prename descclassname"><span class="pre">Match.</span></span><span class="sig-name descname"><span class="pre">groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Match.groups" title="Permalink to this definition"></a></dt>
-<dd><ul class="simple">
-<li><p>返回一个元组，包含所有匹配的子组。</p></li>
-</ul>
+<dd><p>返回一个元组，包含所有匹配的子组。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="Match.groupdict">
 <span class="sig-prename descclassname"><span class="pre">Match.</span></span><span class="sig-name descname"><span class="pre">groupdict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Match.groupdict" title="Permalink to this definition"></a></dt>
-<dd><ul class="simple">
-<li><p>返回匹配子组的字典形式，需要配合 <code class="docutils literal notranslate"><span class="pre">?P&lt;first_name&gt;</span></code> 使用。</p></li>
-</ul>
+<dd><p>返回匹配子组的字典形式，需要配合 <code class="docutils literal notranslate"><span class="pre">?P&lt;first_name&gt;</span></code> 使用。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?P&lt;first_name&gt;\w+) (?P&lt;last_name&gt;\w+)&quot;</span><span class="p">,</span> <span class="s2">&quot;Malcolm Reynolds&quot;</span><span class="p">)</span>
 <span class="linenos">2</span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
 <span class="linenos">3</span><span class="go">{&#39;first_name&#39;: &#39;Malcolm&#39;, &#39;last_name&#39;: &#39;Reynolds&#39;}</span>
@@ -244,9 +240,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="Match.group">
 <span class="sig-prename descclassname"><span class="pre">Match.</span></span><span class="sig-name descname"><span class="pre">group</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">group1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">...</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Match.group" title="Permalink to this definition"></a></dt>
-<dd><ul class="simple">
-<li><p>返回一个或者多个匹配的子组。如果只有一个参数，结果就是一个字符串；如果有多个参数，结果就是一个元组（每个参数对应一个项）；如果没有参数，或者参数是 0，返回所有的匹配。</p></li>
-</ul>
+<dd><p>返回一个或者多个匹配的子组。如果只有一个参数，结果就是一个字符串；如果有多个参数，结果就是一个元组（每个参数对应一个项）；如果没有参数，或者参数是 0，返回所有的匹配。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(\w+) (\w+)&quot;</span><span class="p">,</span> <span class="s2">&quot;Isaac Newton, physicist&quot;</span><span class="p">)</span>
 <span class="linenos">2</span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>       <span class="c1"># The entire match</span>
 <span class="linenos">3</span><span class="go">&#39;Isaac Newton&#39;</span>
@@ -263,25 +257,19 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="Match.start">
 <span class="sig-prename descclassname"><span class="pre">Match.</span></span><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Match.start" title="Permalink to this definition"></a></dt>
-<dd><ul class="simple">
-<li><p>返回 group 匹配到的字串的开始位置。group 默认为 0（意思是整个匹配的子串）。</p></li>
-</ul>
+<dd><p>返回 group 匹配到的字串的开始位置。group 默认为 0（意思是整个匹配的子串）。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="Match.end">
 <span class="sig-prename descclassname"><span class="pre">Match.</span></span><span class="sig-name descname"><span class="pre">end</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Match.end" title="Permalink to this definition"></a></dt>
-<dd><ul class="simple">
-<li><p>返回 group 匹配到的字串的结束位置（前闭后开）。group 默认为 0（意思是整个匹配的子串）。</p></li>
-</ul>
+<dd><p>返回 group 匹配到的字串的结束位置（前闭后开）。group 默认为 0（意思是整个匹配的子串）。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="Match.span">
 <span class="sig-prename descclassname"><span class="pre">Match.</span></span><span class="sig-name descname"><span class="pre">span</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Match.span" title="Permalink to this definition"></a></dt>
-<dd><ul class="simple">
-<li><p>对于一个匹配 m ， 返回一个二元组 <code class="docutils literal notranslate"><span class="pre">(m.start(group),</span> <span class="pre">m.end(group))</span></code> 。 注意如果 group 没有在这个匹配中，就返回 <code class="docutils literal notranslate"><span class="pre">(-1,</span> <span class="pre">-1)</span></code> 。group 默认为0，就是整个匹配。</p></li>
-</ul>
+<dd><p>对于一个匹配 m ， 返回一个二元组 <code class="docutils literal notranslate"><span class="pre">(m.start(group),</span> <span class="pre">m.end(group))</span></code> 。 注意如果 group 没有在这个匹配中，就返回 <code class="docutils literal notranslate"><span class="pre">(-1,</span> <span class="pre">-1)</span></code> 。group 默认为 0，就是整个匹配。</p>
 </dd></dl>
 
 </section>

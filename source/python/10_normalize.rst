@@ -1,25 +1,17 @@
 归一化
 ============
 
-numpy.linalg.norm
------------------------
-::
-
-  numpy.linalg.norm(x, ord=None, axis=None, keepdims=False)
+归一化
+-----------
 
 
-sklearn.preprocessing.normalize
--------------------------------------
+.. py:function:: numpy.linalg.norm(x, ord=None, axis=None, keepdims=False)
 
-::
 
-  sklearn.preprocessing.normalize(X, norm=’l2’, axis=1, copy=True, return_norm=False)
+.. py:function:: sklearn.preprocessing.normalize(X, norm=’l2’, axis=1, copy=True, return_norm=False)
 
-torch.nn.functional.normalize
---------------------------------------
-::
 
-  torch.nn.functional.normalize(input, p=2, dim=1, eps=1e-12)
+.. py:function:: torch.nn.functional.normalize(input, p=2, dim=1, eps=1e-12)
 
 .. code-block:: python
   :linenos:

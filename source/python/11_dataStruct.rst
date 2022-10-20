@@ -152,10 +152,9 @@ queue 模块实现了多生产者、多消费者队列，适用于消息必须�
     Working on 2
     Finished 2
     Working on 3
-    BFinished 3
-    loWorking on 4
+    Finished 3
+    Working on 4
     Finished 4
-    ck until all tasks are done.
     All work completed
 
 .. tip::

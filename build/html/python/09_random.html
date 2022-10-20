@@ -151,25 +151,25 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="random.random">
 <span class="sig-prename descclassname"><span class="pre">random.</span></span><span class="sig-name descname"><span class="pre">random</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#random.random" title="Permalink to this definition"></a></dt>
-<dd><p>生成0~1的随机浮点数。</p>
+<dd><p>生成 [0.0, 1.0) 区间的随机浮点数。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="random.uniform">
 <span class="sig-prename descclassname"><span class="pre">random.</span></span><span class="sig-name descname"><span class="pre">uniform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#random.uniform" title="Permalink to this definition"></a></dt>
-<dd><p>生成指定范围[a, b]内的随机浮点数。</p>
+<dd><p>生成指定范围 [a, b] 区间的随机浮点数。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="random.randint">
 <span class="sig-prename descclassname"><span class="pre">random.</span></span><span class="sig-name descname"><span class="pre">randint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#random.randint" title="Permalink to this definition"></a></dt>
-<dd><p>生成指定范围[a, b]内的随机整数。</p>
+<dd><p>生成指定范围 [a, b] 区间的随机整数。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="random.randrange">
 <span class="sig-prename descclassname"><span class="pre">random.</span></span><span class="sig-name descname"><span class="pre">randrange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#random.randrange" title="Permalink to this definition"></a></dt>
-<dd><p>指定范围内，按step递增的集合中的随机数。</p>
+<dd><p>指定范围内，按 step 递增的集合中的随机数。</p>
 </dd></dl>
 
 <dl class="py function">
@@ -192,26 +192,26 @@
 </div>
 <dl class="py function">
 <dt class="sig sig-object py" id="numpy.random.random">
-<span class="sig-prename descclassname"><span class="pre">numpy.random.</span></span><span class="sig-name descname"><span class="pre">random</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">d0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dn</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#numpy.random.random" title="Permalink to this definition"></a></dt>
-<dd><p>生成 0 ~ 1 的随机浮点数，维度为 <span class="math notranslate nohighlight">\(d_0 \times d_1 \times ... \times d_n\)</span> （缺省为1）。</p>
+<span class="sig-prename descclassname"><span class="pre">numpy.random.</span></span><span class="sig-name descname"><span class="pre">random</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#numpy.random.random" title="Permalink to this definition"></a></dt>
+<dd><p>生成 [0.0, 1.0) 区间的随机浮点数，size 可以是整数、元组、列表（缺省为1）。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="numpy.random.rand">
 <span class="sig-prename descclassname"><span class="pre">numpy.random.</span></span><span class="sig-name descname"><span class="pre">rand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dn</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#numpy.random.rand" title="Permalink to this definition"></a></dt>
-<dd><p>生成 0 ~ 1 的随机浮点数，维度为 <span class="math notranslate nohighlight">\(d_0 \times d_1 \times ... \times d_n\)</span> （缺省为1）。</p>
+<dd><p>生成 [0.0, 1.0) 区间的随机浮点数，维度为 <span class="math notranslate nohighlight">\(d_0 \times d_1 \times ... \times d_n\)</span> （缺省为1）。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="numpy.random.randn">
 <span class="sig-prename descclassname"><span class="pre">numpy.random.</span></span><span class="sig-name descname"><span class="pre">randn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dn</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#numpy.random.randn" title="Permalink to this definition"></a></dt>
-<dd><p>标准正态分布。</p>
+<dd><p>生成标准正态分布。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="numpy.random.randint">
 <span class="sig-prename descclassname"><span class="pre">numpy.random.</span></span><span class="sig-name descname"><span class="pre">randint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'l'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#numpy.random.randint" title="Permalink to this definition"></a></dt>
-<dd><p>返回随机的整数，位于半开区间 <code class="docutils literal notranslate"><span class="pre">[low,</span> <span class="pre">high)</span></code> 。如果 <code class="docutils literal notranslate"><span class="pre">high=None</span></code> ，区间为 <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">low)</span></code> 。</p>
+<dd><p>返回随机的整数，位于半开区间 [low, high) 。如果 <code class="docutils literal notranslate"><span class="pre">high=None</span></code> ，区间为 [0, low) 。</p>
 </dd></dl>
 
 <dl class="py function">

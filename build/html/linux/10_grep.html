@@ -223,6 +223,10 @@
 <li><p>在基本正则表达式中，如果 <code class="docutils literal notranslate"><span class="pre">$</span></code> 不是出现在 pattern 结尾，也不是紧靠 <code class="docutils literal notranslate"><span class="pre">\)</span></code> 或 <code class="docutils literal notranslate"><span class="pre">\|</span></code> 之前，那么它只表示一个普通字符。</p></li>
 <li><p>在基本正则表达式中，如果 <code class="docutils literal notranslate"><span class="pre">*</span></code> 出现在 pattern 开头，或者紧接 <code class="docutils literal notranslate"><span class="pre">\(</span></code> 、 <code class="docutils literal notranslate"><span class="pre">^</span></code> 或 <code class="docutils literal notranslate"><span class="pre">\|</span></code> 之后，那么它只表示一个普通字符。</p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">[[:lower:]ABC]</span></code> 可以匹配所有的小写字母以及大写字母A、B、C。</p>
+</div>
 </section>
 <section id="id3">
 <h2><span class="section-number">7.3. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>

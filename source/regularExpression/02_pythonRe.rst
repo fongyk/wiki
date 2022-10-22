@@ -97,51 +97,51 @@ re.match
 
 匹配对象 Match 常用成员方法如下：
 
-    .. py:function:: Match.groups(default=None)
-        
-        返回一个元组，包含所有匹配的子组。
+.. py:function:: Match.groups(default=None)
+    
+    返回一个元组，包含所有匹配的子组。
 
-    .. py:function:: Match.groupdict(default=None)
+.. py:function:: Match.groupdict(default=None)
 
-        返回匹配子组的字典形式，需要配合 ``?P<first_name>`` 使用。
+    返回匹配子组的字典形式，需要配合 ``?P<first_name>`` 使用。
 
-        .. code-block:: python 
-            :linenos:
+    .. code-block:: python 
+        :linenos:
 
-            >>> m = re.match(r"(?P<first_name>\w+) (?P<last_name>\w+)", "Malcolm Reynolds")
-            >>> m.groupdict()
-            {'first_name': 'Malcolm', 'last_name': 'Reynolds'}
-            >>> m.group('first_name')
-            'Malcolm'
+        >>> m = re.match(r"(?P<first_name>\w+) (?P<last_name>\w+)", "Malcolm Reynolds")
+        >>> m.groupdict()
+        {'first_name': 'Malcolm', 'last_name': 'Reynolds'}
+        >>> m.group('first_name')
+        'Malcolm'
 
-    .. py:function:: Match.group([group1, ...])
+.. py:function:: Match.group([group1, ...])
 
-        返回一个或者多个匹配的子组。如果只有一个参数，结果就是一个字符串；如果有多个参数，结果就是一个元组（每个参数对应一个项）；如果没有参数，或者参数是 0，返回所有的匹配。
+    返回一个或者多个匹配的子组。如果只有一个参数，结果就是一个字符串；如果有多个参数，结果就是一个元组（每个参数对应一个项）；如果没有参数，或者参数是 0，返回所有的匹配。
 
-        .. code-block:: python 
-            :linenos:
+    .. code-block:: python 
+        :linenos:
 
-            >>> m = re.match(r"(\w+) (\w+)", "Isaac Newton, physicist")
-            >>> m.group(0)       # The entire match
-            'Isaac Newton'
-            >>> m.group(1)       # The first parenthesized subgroup.
-            'Isaac'
-            >>> m.group(2)       # The second parenthesized subgroup.
-            'Newton'
-            >>> m.group(1, 2)    # Multiple arguments give us a tuple.
-            ('Isaac', 'Newton')
+        >>> m = re.match(r"(\w+) (\w+)", "Isaac Newton, physicist")
+        >>> m.group(0)       # The entire match
+        'Isaac Newton'
+        >>> m.group(1)       # The first parenthesized subgroup.
+        'Isaac'
+        >>> m.group(2)       # The second parenthesized subgroup.
+        'Newton'
+        >>> m.group(1, 2)    # Multiple arguments give us a tuple.
+        ('Isaac', 'Newton')
 
-    .. py:function:: Match.start([group])
+.. py:function:: Match.start([group])
 
-        返回 group 匹配到的字串的开始位置。group 默认为 0（意思是整个匹配的子串）。
-        
-    .. py:function:: Match.end([group])
+    返回 group 匹配到的字串的开始位置。group 默认为 0（意思是整个匹配的子串）。
+    
+.. py:function:: Match.end([group])
 
-        返回 group 匹配到的字串的结束位置（前闭后开）。group 默认为 0（意思是整个匹配的子串）。
+    返回 group 匹配到的字串的结束位置（前闭后开）。group 默认为 0（意思是整个匹配的子串）。
 
-    .. py:function:: Match.span([group])
+.. py:function:: Match.span([group])
 
-        对于一个匹配 m ， 返回一个二元组 ``(m.start(group), m.end(group))`` 。 注意如果 group 没有在这个匹配中，就返回 ``(-1, -1)`` 。group 默认为 0，就是整个匹配。
+    对于一个匹配 m ， 返回一个二元组 ``(m.start(group), m.end(group))`` 。 注意如果 group 没有在这个匹配中，就返回 ``(-1, -1)`` 。group 默认为 0，就是整个匹配。
 
 
 re.findall

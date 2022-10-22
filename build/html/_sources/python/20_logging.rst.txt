@@ -33,60 +33,78 @@ logging 模块是 Python 内置的标准模块，主要用于输出运行日志�
 Logger
 ------------
 
-::
+.. py:class:: logging.Logger
 
-    class logging.Logger
+    不要直接实例化 ``Logger`` ，应当通过模块级别的函数 ``logging.getLogger(name)`` 来得到对象。多次使用相同的 ``name`` 调用会一直返回相同的 ``Logger`` 对象的引用。
+    如果 ``name`` 不给定默认为 ``root`` 。
 
-不要直接实例化 ``Logger`` ，应当通过模块级别的函数 ``logging.getLogger(name)`` 来得到对象。多次使用相同的 ``name`` 调用会一直返回相同的 ``Logger`` 对象的引用。
-如果 ``name`` 不给定默认为 ``root`` 。
+    ``name`` 是以点号分割的命名方式命名的（a.b.c）。这种命名方式里面，后面的 loggers 是前面 logger 的子 logger，自动继承父 logger 的 logging 设置。正因为此，没有必要把一个应用的所有 logger 都配置一遍，只要把顶层的 logger 配置好了，然后子 logger 根据需要继承就行了。
 
-``name`` 是以点号分割的命名方式命名的（a.b.c）。这种命名方式里面，后面的 loggers 是前面 logger 的子 logger，自动继承父 logger 的 logging 设置。正因为此，没有必要把一个应用的所有 logger 都配置一遍，只要把顶层的 logger 配置好了，然后子 logger 根据需要继承就行了。
 
-方法：
+    .. py:method:: setLevel(level)
+        
+        等级低于 level 的日志将不会输出。
 
-- ``setLevel(level)`` ：等级低于 ``level`` 的日志将不会输出。
+    .. py:method:: addHandler(hdlr)
+        
+        添加 handler。
 
-- ``addHandler(hdlr)`` ，``removeHandler(hdlr)`` ：添加、删除 handler。
+    .. py:method:: removeHandler(hdlr)
 
-- ``addFilter(filter)`` ，``removeFilter(filter)`` ：添加、删除 filter。
+        删除 handler。
 
-- ``debug/info/warning/exception/error/critial(msg, *args, **kwargs)`` ：输出相应等级的信息。其中 ``exception`` 和 ``error`` 同级。
+    .. py:method:: addFilter(filter)
+
+        添加 filter。
+        
+    .. py:method:: removeFilter(filter)
+        
+        删除 filter。
+
+    .. py:method:: debug(msg, *args, **kwargs)
+        
+        输出 debug 等级的信息， ``info`` ``warning`` ``exception`` ``error`` ``critial`` 同理，其中 ``exception`` 和 ``error`` 同级。
 
 
 Handler
 -----------
 
-``Handler`` 通常也不直接实例化。以下是几个常用的 handler ：
+.. py:class:: logging.Handler
 
-- ``logging.StreamHandler(stream=None)``
+``Handler`` 类也不直接实例化，而是作为其他常用 handler 的抽象基类。以下是几个常用的 handler。
 
-    可以像类似于 ``sys.stdout`` 或者 ``sys.stderr`` 的任何文件对象（file object）输出信息。``stream`` 默认是 ``sys.stderr`` ，输出到控制台。
+.. py:class:: logging.StreamHandler(stream=None)
 
-- ``logging.FileHandler(filename, mode='a', encoding=None, delay=False)``
+    可以像类似于 ``sys.stdout`` 或者 ``sys.stderr`` 的任何文件对象（file object）输出信息。stream 默认是 ``sys.stderr`` ，输出到控制台。
+
+.. py:class:: logging.FileHandler(filename, mode='a', encoding=None, delay=False)
 
     向一个文件输出日志信息。``mode='a'`` 表示追加到文件末尾，``'w'`` 表示写入。
 
-- ``logging.handlers.RotatingFileHandler(filename, mode='a', maxBytes=0, backupCount=0, encoding=None, delay=False)``
+.. py:class:: logging.handlers.RotatingFileHandler(filename, mode='a', maxBytes=0, backupCount=0, encoding=None, delay=False)
 
     类似于上面的 ``FileHandler`` ，但是它可以管理文件大小。当文件达到一定大小之后，它会自动将当前日志文件改名，然后创建一个新的同名日志文件继续输出。
 
-- ``logging.handlers.TimedRotatingFileHandler(filename, when='h', interval=1, backupCount=0, encoding=None, delay=False, utc=False, atTime=None)`` 
+.. py:class:: logging.handlers.TimedRotatingFileHandler(filename, when='h', interval=1, backupCount=0, encoding=None, delay=False, utc=False, atTime=None) 
 
     间隔一定时间就自动创建新的日志文件。
 
-Handler 方法：
+成员方法：
 
-- ``setLevel(level)`` ：该 handler 对等级低于 ``level`` 的日志无效。
+    .. py:method:: setLevel(level)
+        :noindex:
+        
+        该 handler 对等级低于 ``level`` 的日志无效。
 
-- ``setFormatter(fmt)`` ：设置输出格式。
+    .. py:method:: setFormatter(fmt)
+        
+        设置输出格式。
 
 
 Formatter
 ------------
 
-::
-
-    class logging.Formatter(fmt=None, datefmt=None, style='%')
+.. py:class:: logging.Formatter(fmt=None, datefmt=None, style='%')
 
 ``Formatter`` 定义了最终 log 信息的内容格式，可以直接实例化 ``Foamatter`` 类。信息格式字符串用 ``%(<dictionary key>)s`` 风格的字符串做替换。
 
@@ -180,7 +198,7 @@ Formatter
 
   .. container:: header
 
-    :math:`\color{darkgreen}{Show/Hide\ Code}`
+    :math:`\color{darkgreen}{log.yaml}`
 
   .. code-block:: yaml
     :linenos:
@@ -278,21 +296,19 @@ Formatter
 附录：print 函数
 ---------------------
 
-::
+.. py:function:: print(*objects, sep=' ', end='\n', file=sys.stdout, flush=False)
 
-    print(*objects, sep=' ', end='\n', file=sys.stdout, flush=False)
-
-- ``objects`` ：复数，表示可以一次输出多个对象。输出多个对象时，需要用 ``,`` 分隔。
-- ``sep`` ：用来间隔多个对象，默认值是一个空格。
-- ``end`` ：用来设定以什么结尾，默认值是换行符 ``\n`` 。
-- ``file`` ：要写入的文件对象，默认为 ``sys.stdout`` 。 ``input()`` 对应 ``sys.stdin`` ， ``exception`` 写入 ``sys.stderr`` 。
-- ``flush`` ：输出是否被缓存通常决定于 ``file`` ，但如果 ``flush`` 关键字参数为 True，流会被强制刷新，立即输出。
+    :param objects: 复数，表示可以一次输出多个对象。输出多个对象时，用 ``,`` 分隔。
+    :param sep: 用来间隔多个对象，默认值是一个空格。
+    :param end: 用来设定以什么结尾，默认值是换行符 ``\n`` 。
+    :param file: 要写入的文件对象，默认为 ``sys.stdout`` 。 ``input()`` 对应 ``sys.stdin`` ， ``exception`` 写入 ``sys.stderr`` 。
+    :param bool flush: 输出是否被缓存通常决定于 file ，但如果参数 flush 为 True，流会被强制刷新，立即输出。
 
 例子：
 
 - 控制台 loading 效果
 
-    设置 ``flush=True`` ，每隔0.5秒屏幕会打印一个点号。否则会在5秒之后输出10个点号。
+    设置 ``flush=True`` ，每隔 0.5 秒屏幕会打印一个点号。否则会在 5 秒之后输出 10 个点号。
 
     .. code-block:: python
         :linenos:
@@ -312,19 +328,28 @@ Formatter
         >>> fw = open('a.txt', 'w')
         >>> print('hello', file=fw, flush=True)
         ## 在关闭文件之前，此时打开文件已经可以看到输出了
+        ## 等效于 fw.write('hello') + fw.flush()
         >>> fw.close()
 
 参考资料
 -------------
 
-1. Python logger模块
+1. logging — Logging facility for Python
+
+  https://docs.python.org/3/library/logging.html
+
+  https://docs.python.org/3/library/logging.handlers.html#module-logging.handlers
+
+  https://docs.python.org/3/library/logging.html#logging.Formatter
+
+2. Python logger模块
 
   https://www.cnblogs.com/qianyuliang/p/7234217.html
 
-2. python3 logging模块
+3. python3 logging模块
 
   https://www.cnblogs.com/wenwei-blog/p/7196658.html
 
-3. logging — Logging facility for Python
+4. print 
 
-  https://docs.python.org/3/library/logging.html
+  https://docs.python.org/3/library/functions.html#print

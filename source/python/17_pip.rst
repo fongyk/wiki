@@ -6,9 +6,9 @@ pip
 基本指令
 ------------
 
-::
+.. code-block:: text
+  :linenos:
 
-  Commands:
   install                     Install packages.
   download                    Download packages.
   uninstall                   Uninstall packages.
@@ -30,7 +30,10 @@ pip
     pip install <包名>
     pip install -r requirements.txt
 
-  requirements.txt 使用 ``== >= <= > <`` 来指定版本，不写则默认为最新版本，格式如::
+  requirements.txt 使用 ``== >= <= > <`` 来指定版本，不写则默认为最新版本，格式如：
+
+  .. code-block:: text
+    :linenos:
 
     APScheduler==2.1.2
     Django==1.5.4

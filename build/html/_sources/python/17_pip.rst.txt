@@ -90,9 +90,16 @@ pip
 
     python -m pip <pip arguments>
     
-  使用清华源加速安装::
+  使用清华源/科大源加速安装::
 
     pip install <包名> -i https://pypi.tuna.tsinghua.edu.cn/simple
+    pip install <包名> -i https://mirrors.ustc.edu.cn/pypi/web/simple
+
+  设为默认源::
+
+    # 使用本镜像站来升级 pip
+    pip install -i https://mirrors.ustc.edu.cn/pypi/web/simple pip -U
+    pip config set global.index-url https://mirrors.ustc.edu.cn/pypi/web/simple
 
 
 

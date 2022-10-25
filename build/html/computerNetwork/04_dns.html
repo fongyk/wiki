@@ -66,8 +66,13 @@
 <li class="toctree-l4"><a class="reference internal" href="#id5">4.2.2. 顶级域</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id6">4.3. 根域名服务器</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id7">4.4. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">4.3. 根域名服务器</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id7">4.3.1. 域名解析的工作流程</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#dig">4.4. dig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ip">4.5. 查询本机 IP 地址</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">4.6. 参考资料</a></li>
 </ul>
 </li>
 </ul>
@@ -132,12 +137,12 @@
 </li>
 <li><p>通用顶级域（gTLD）</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">.com</span></code> 商业机构</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.com</span></code> 商业机构（现无限制）</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">.edu</span></code> 教育机构</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">.gov</span></code> 政府机构</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">.mil</span></code> 军事机构</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">.net</span></code> 网络服务供应商使用</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">.org</span></code> 不属于其他通用顶级域类别的组织</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.net</span></code> 网络服务供应商使用（现无限制）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.org</span></code> 不属于其他通用顶级域类别的组织（现无限制）</p></li>
 <li><p>…</p></li>
 </ul>
 </li>
@@ -161,15 +166,202 @@
 </section>
 <section id="id6">
 <h2><span class="section-number">4.3. </span>根域名服务器<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
-<p>根域名服务器（Root Name Server）是域名系统（DNS）中最高级别的域名服务器，负责返回顶级域的权威域名服务器 IP 地址。它们是互联网基础设施中的重要部分，因为所有域名解析操作均离不开它们。由于 DNS 和某些协议的共同限制，根域名服务器地址的数量被限制为13个。幸运的是，采用任播（Anycast）技术架设镜像服务器可解决该问题，使得实际运行的根域名服务器数量大大增加。</p>
-<p>全球 13 组根域名服务器以英文字母 <code class="docutils literal notranslate"><span class="pre">A</span></code> 到 <code class="docutils literal notranslate"><span class="pre">M</span></code> 依序命名，域名格式为 <code class="docutils literal notranslate"><span class="pre">[A-M].root-servers.net</span></code> 。</p>
-<p>理论上，所有域名查询都必须先查询根域名，因为只有根域名才能告诉你，某个顶级域名由哪台服务器管理。事实上也确实如此，ICANN 维护着一张列表，里面记载着顶级域名和对应的托管商。</p>
-<p>比如，我要访问 <code class="docutils literal notranslate"><span class="pre">www.example.com</span></code> ，就必须先询问 ICANN 的根域名列表（即 Root Zone File），它会告诉我 <code class="docutils literal notranslate"><span class="pre">.com</span></code> 域名由 Verisign 托管，我必须去找 Verisign，它会告诉我 <code class="docutils literal notranslate"><span class="pre">example.com</span></code> 服务器在哪里。</p>
-<p>所有根域名服务器都是以同一份根域文件 <a class="reference external" href="https://www.internic.net/domain/root.zone">Root Zone File</a> 返回顶级域名权威服务器，这个文件大约 2 MB。</p>
-<p>根域名服务器的信息配置在 <a class="reference external" href="https://www.internic.net/domain/named.root">Root Hints File</a> 。</p>
-</section>
+<p>根域名服务器（Root Name Server）是域名系统（DNS）中最高级别的域名服务器，负责维护 DNS 根区文件 <a class="reference external" href="https://www.internic.net/domain/root.zone">Root Zone File</a> ，该文件保存了所有顶级域名（TLD）的托管信息，文件大小约 2 MB。对于收到的顶级域解析请求，它会返回顶级域的域名服务器 IP 地址。它们是互联网基础设施中的重要部分，因为所有域名解析操作均离不开它们。</p>
+<p>由于 DNS 和某些协议的共同限制，根域名服务器地址的数量被限制为 13 个。根域名服务器会部署多个节点，共用 IP。此外，采用任播（Anycast）技术架设镜像服务器可解决该问题，使得实际运行的根域名服务器数量大大增加。
+全球 13 组根域名服务器以英文字母 <code class="docutils literal notranslate"><span class="pre">a</span></code> 到 <code class="docutils literal notranslate"><span class="pre">m</span></code> 依序命名，域名格式为 <code class="docutils literal notranslate"><span class="pre">[a-m].root-servers.net</span></code> 。</p>
 <section id="id7">
-<h2><span class="section-number">4.4. </span>参考资料<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<h3><span class="section-number">4.3.1. </span>域名解析的工作流程<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
+<p>域名系统的每一级只知道直接下级的位置，而无法获得跨级的位置，因此在域名解析的时候，需要自上而下、逐级查询。这种机制虽然看似低效，却能够提供分布式、高容错的服务，避免让域名系统成为一个集中式的单点系统。</p>
+<p>假如我要访问 <code class="docutils literal notranslate"><span class="pre">www.example.com</span></code> ：</p>
+<ul>
+<li><ol class="arabic simple">
+<li><p>客户端首先会发出一个 DNS 请求，查询 <code class="docutils literal notranslate"><span class="pre">www.example.com</span></code> 的 IP ，并发给本地 DNS 服务器。本地 DNS 服务器，属于递归解析器（DNS Recursive Resolver）。一般是网络运营商提供的 DNS，也可手动修改为公共 DNS。</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="2">
+<li><p>本地 DNS 服务器收到客户端的请求后，如果缓存里中能找到 <code class="docutils literal notranslate"><span class="pre">www.example.com</span></code> ，则直接返回 IP 地址；如果没有，本地 DNS 会去向根域名服务器查询。</p></li>
+</ol>
+<ul class="simple">
+<li><p>本地 DNS 服务器至少需要知道一台根域名服务器的 IP 地址，否则就会陷入循环查询。一般来说，DNS 递归解析器都会保存一份根域名服务器的 IP 地址（IPv4 + IPv6）的配置文件 <a class="reference external" href="https://www.internic.net/domain/named.root">Root Hints File</a> 。</p></li>
+</ul>
+</li>
+<li><ol class="arabic simple" start="3">
+<li><p>根域名服务器收到来自本地 DNS 的请求后，发现后置是 <code class="docutils literal notranslate"><span class="pre">.com</span></code> ，即返回 <code class="docutils literal notranslate"><span class="pre">.com</span></code> 顶级域名服务器地址。根区文件中，顶级域名 <code class="docutils literal notranslate"><span class="pre">.com</span></code> 可以查到 13 个域名服务器：</p></li>
+</ol>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>com.                        172800  IN      NS      a.gtld-servers.net.
+<span class="linenos"> 2</span>com.                        172800  IN      NS      b.gtld-servers.net.
+<span class="linenos"> 3</span>com.                        172800  IN      NS      c.gtld-servers.net.
+<span class="linenos"> 4</span>com.                        172800  IN      NS      d.gtld-servers.net.
+<span class="linenos"> 5</span>com.                        172800  IN      NS      e.gtld-servers.net.
+<span class="linenos"> 6</span>com.                        172800  IN      NS      f.gtld-servers.net.
+<span class="linenos"> 7</span>com.                        172800  IN      NS      g.gtld-servers.net.
+<span class="linenos"> 8</span>com.                        172800  IN      NS      h.gtld-servers.net.
+<span class="linenos"> 9</span>com.                        172800  IN      NS      i.gtld-servers.net.
+<span class="linenos">10</span>com.                        172800  IN      NS      j.gtld-servers.net.
+<span class="linenos">11</span>com.                        172800  IN      NS      k.gtld-servers.net.
+<span class="linenos">12</span>com.                        172800  IN      NS      l.gtld-servers.net.
+<span class="linenos">13</span>com.                        172800  IN      NS      m.gtld-servers.net.
+</pre></div>
+</div>
+<p>同时指明了这些域名服务器的 IP 地址，如：</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>a.gtld-servers.net. 172800  IN      A       192.5.6.30
+<span class="linenos">2</span>a.gtld-servers.net. 172800  IN      AAAA    2001:503:a83e:0:0:0:2:30
+<span class="linenos">3</span>b.gtld-servers.net. 172800  IN      A       192.33.14.30
+<span class="linenos">4</span>b.gtld-servers.net. 172800  IN      AAAA    2001:503:231d:0:0:0:2:30
+<span class="linenos">5</span>c.gtld-servers.net. 172800  IN      A       192.26.92.30
+<span class="linenos">6</span>c.gtld-servers.net. 172800  IN      AAAA    2001:503:83eb:0:0:0:0:30
+<span class="linenos">7</span>d.gtld-servers.net. 172800  IN      A       192.31.80.30
+<span class="linenos">8</span>d.gtld-servers.net. 172800  IN      AAAA    2001:500:856e:0:0:0:0:30
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">.com</span></code> 域名的解析结果，可以到这 13 个服务器的任一台查询。</p>
+</li>
+<li><ol class="arabic simple" start="4">
+<li><p>本地 DNS 服务器收到顶级域名服务器的地址后，向顶级域名服务器发起查询。</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="5">
+<li><p>顶级域名服务器返回 <code class="docutils literal notranslate"><span class="pre">server.com</span></code> 的权威域名服务器的地址。</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="6">
+<li><p>本地 DNS 转向问权威域名服务器查询 <code class="docutils literal notranslate"><span class="pre">www.server.com</span></code> 对应的 IP。</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="7">
+<li><p>权威域名服务器查询后将对应的 IP 地址告诉本地 DNS 服务器。</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="8">
+<li><p>本地 DNS 服务器再将 IP 地址返回客户端，客户端和目标建立连接。</p></li>
+</ol>
+</li>
+</ul>
+</section>
+</section>
+<section id="dig">
+<h2><span class="section-number">4.4. </span>dig<a class="headerlink" href="#dig" title="Permalink to this heading"></a></h2>
+<p>dig 命令是查询 DNS 域名服务器的工具，它执行 DNS 搜索并打印收到请求的域名服务器的响应信息，是常用的 DNS 故障诊断工具。</p>
+<p><code class="docutils literal notranslate"><span class="pre">dig</span> <span class="pre">www.baidu.com</span></code> 结果如下：</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>; &lt;&lt;&gt;&gt; DiG 9.10.6 &lt;&lt;&gt;&gt; www.baidu.com
+<span class="linenos"> 2</span>;; global options: +cmd
+<span class="linenos"> 3</span>;; Got answer:
+<span class="linenos"> 4</span>;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 56798
+<span class="linenos"> 5</span>;; flags: qr rd ra; QUERY: 1, ANSWER: 3, AUTHORITY: 0, ADDITIONAL: 0
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>;; QUESTION SECTION:
+<span class="linenos"> 8</span>;www.baidu.com.                       IN      A
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>;; ANSWER SECTION:
+<span class="linenos">11</span>www.baidu.com.                900     IN      CNAME   www.a.shifen.com.
+<span class="linenos">12</span>www.a.shifen.com.     600     IN      A       180.101.49.13
+<span class="linenos">13</span>www.a.shifen.com.     600     IN      A       180.101.49.14
+<span class="linenos">14</span>
+<span class="linenos">15</span>;; Query time: 9 msec
+<span class="linenos">16</span>;; SERVER: 192.168.1.1#53(192.168.1.1)
+<span class="linenos">17</span>;; WHEN: Wed Oct 26 00:34:12 CST 2022
+<span class="linenos">18</span>;; MSG SIZE  rcvd: 90
+</pre></div>
+</div>
+<p><strong>ANSWER SECTION</strong> 部分返回了解析的 IP 地址，在浏览器地址栏输入 <code class="docutils literal notranslate"><span class="pre">180.101.49.13</span></code> 或 <code class="docutils literal notranslate"><span class="pre">180.101.49.14</span></code> 即会跳转到百度首页。</p>
+<p>使用命令 <code class="docutils literal notranslate"><span class="pre">dig</span> <span class="pre">&#64;8.8.8.8</span> <span class="pre">+trace</span> <span class="pre">www.baidu.com</span></code> 可以看到完整的解析过程。 <code class="docutils literal notranslate"><span class="pre">&#64;8.8.8.8</span></code> 表示使用公共域名服务器，而不是依次使用 <code class="docutils literal notranslate"><span class="pre">/etc/resolv.conf</span></code> 里配置的本地域名服务器进行查询。</p>
+<blockquote>
+<div><div class="toggle docutils container">
+<div class="header docutils container">
+<p><em>dig &#64;8.8.8.8 +trace www.baidu.com</em></p>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>; &lt;&lt;&gt;&gt; DiG 9.10.6 &lt;&lt;&gt;&gt; @8.8.8.8 +trace www.baidu.com
+<span class="linenos"> 2</span>; (1 server found)
+<span class="linenos"> 3</span>;; global options: +cmd
+<span class="linenos"> 4</span>.                     68139   IN      NS      e.root-servers.net.
+<span class="linenos"> 5</span>.                     68139   IN      NS      a.root-servers.net.
+<span class="linenos"> 6</span>.                     68139   IN      NS      l.root-servers.net.
+<span class="linenos"> 7</span>.                     68139   IN      NS      b.root-servers.net.
+<span class="linenos"> 8</span>.                     68139   IN      NS      d.root-servers.net.
+<span class="linenos"> 9</span>.                     68139   IN      NS      m.root-servers.net.
+<span class="linenos">10</span>.                     68139   IN      NS      h.root-servers.net.
+<span class="linenos">11</span>.                     68139   IN      NS      k.root-servers.net.
+<span class="linenos">12</span>.                     68139   IN      NS      j.root-servers.net.
+<span class="linenos">13</span>.                     68139   IN      NS      f.root-servers.net.
+<span class="linenos">14</span>.                     68139   IN      NS      g.root-servers.net.
+<span class="linenos">15</span>.                     68139   IN      NS      i.root-servers.net.
+<span class="linenos">16</span>.                     68139   IN      NS      c.root-servers.net.
+<span class="linenos">17</span>.                     68139   IN      RRSIG   NS 8 0 518400 20221107050000 20221025040000 18733 . jjPuMT1Y8vXX82riF3UJ+hKsYgtYZuuTJYLaLJm/8n0A3oj5q4lEpxC1 JvhIylz3wAKa3jqhMKNtT7WE6+rD3726+IUCso4QzGIl7xXhKK6nOXef Y5ITJ8CSuRWEEg98hUI89PmYf26M0Sb5/dDYjqBFR1TZSROiE+OrwTbt OSv5SLzteSmH9GQZWRgrXCGhrqja4BqLu9gDuGXUdD4yEi9XKWoQTYX4 x7FqCrE+YDymQhQ6nq3TZ5qN+wN5iQrF6g3FDbM2SETyUzyfePKPeuS1 CSgcVqdbjIuA8W3/ItI2M89Puukes8toBZBgv1rYzU41veOzGoP5yE4J 948vdA==
+<span class="linenos">18</span>;; Received 525 bytes from 8.8.8.8#53(8.8.8.8) in 78 ms
+<span class="linenos">19</span>
+<span class="linenos">20</span>com.                  172800  IN      NS      e.gtld-servers.net.
+<span class="linenos">21</span>com.                  172800  IN      NS      b.gtld-servers.net.
+<span class="linenos">22</span>com.                  172800  IN      NS      j.gtld-servers.net.
+<span class="linenos">23</span>com.                  172800  IN      NS      m.gtld-servers.net.
+<span class="linenos">24</span>com.                  172800  IN      NS      i.gtld-servers.net.
+<span class="linenos">25</span>com.                  172800  IN      NS      f.gtld-servers.net.
+<span class="linenos">26</span>com.                  172800  IN      NS      a.gtld-servers.net.
+<span class="linenos">27</span>com.                  172800  IN      NS      g.gtld-servers.net.
+<span class="linenos">28</span>com.                  172800  IN      NS      h.gtld-servers.net.
+<span class="linenos">29</span>com.                  172800  IN      NS      l.gtld-servers.net.
+<span class="linenos">30</span>com.                  172800  IN      NS      k.gtld-servers.net.
+<span class="linenos">31</span>com.                  172800  IN      NS      c.gtld-servers.net.
+<span class="linenos">32</span>com.                  172800  IN      NS      d.gtld-servers.net.
+<span class="linenos">33</span>com.                  86400   IN      DS      30909 8 2 E2D3C916F6DEEAC73294E8268FB5885044A833FC5459588F4A9184CF C41A5766
+<span class="linenos">34</span>com.                  86400   IN      RRSIG   DS 8 1 86400 20221107050000 20221025040000 18733 . 2eKdbL4avnkLVFcFThwzZnPLYLecGO15wajb8QNcPVmfygXvTCyrnQW+ WQ77FejfdSaf8oz0mdcbyMTo1GXrIutCXqitKpu4mHZemZVhDuTXqkeV P4n/KtkPUldtmvI/Sa46Ah/jkqdFVFh62lMdkenYp+nNaEiqjheIeWtW diEwqPRIUKwA+FozM5Xl9i2OX0CsYw7b0JQmOaBglYVoYabFrcsLOqS5 nUkLOje1gzOqeNQHLMocXfo9MwD2h+1UfVbUHVt2BCjTbMj7eyUEOCq7 Clb0G9I5a3MloflVFTMRjmPz7fVd3ti5X1l0YRfKhbfISxQnkSriCmLp w90i8g==
+<span class="linenos">35</span>;; Received 1173 bytes from 192.58.128.30#53(j.root-servers.net) in 183 ms
+<span class="linenos">36</span>
+<span class="linenos">37</span>baidu.com.            172800  IN      NS      ns2.baidu.com.
+<span class="linenos">38</span>baidu.com.            172800  IN      NS      ns3.baidu.com.
+<span class="linenos">39</span>baidu.com.            172800  IN      NS      ns4.baidu.com.
+<span class="linenos">40</span>baidu.com.            172800  IN      NS      ns1.baidu.com.
+<span class="linenos">41</span>baidu.com.            172800  IN      NS      ns7.baidu.com.
+<span class="linenos">42</span>CK0POJMG874LJREF7EFN8430QVIT8BSM.com. 86400 IN NSEC3 1 1 0 - CK0Q2D6NI4I7EQH8NA30NS61O48UL8G5  NS SOA RRSIG DNSKEY NSEC3PARAM
+<span class="linenos">43</span>CK0POJMG874LJREF7EFN8430QVIT8BSM.com. 86400 IN RRSIG NSEC3 8 2 86400 20221030042404 20221023031404 53929 com. rZituN5sci3BirVdxM4h2GBR4G1bkLTMrniYA9FAFGfxOMcDl4Fuh97f NCZDlbS1GO/PQ0FDpdwVFZ/T+tJnRyHOJxnhHFj72PuFrfGe42FGYO04 FUzo+w9D3p4nke7owPPa+NDdWnO2L1KHScU3YdsRiPCVFi+6uKhPSdpG QXG98ERm759Vkg3EYum4ML3wXBfYPpTc4L1eCRon28iiOg==
+<span class="linenos">44</span>HPVUVSGH5TFIA7CM6SS6SMPOS87OE0CE.com. 86400 IN NSEC3 1 1 0 - HPVV8SARM2LDLRBTVC5EP1CUB1EF7LOP  NS DS RRSIG
+<span class="linenos">45</span>HPVUVSGH5TFIA7CM6SS6SMPOS87OE0CE.com. 86400 IN RRSIG NSEC3 8 2 86400 20221030053622 20221023042622 53929 com. nDYPQZggx91aaAJR5UNDvY5DbmZAEDw9W9o+ja0RdDKoTd674kecZqag S7NYdh05TUdKAVp6YNv/SjDtTFoJtzhAYlCay21VzoxVFO9/04/sQcWJ xfT+uRyF/RU359h9PEHx08fk/CXGLFUGasK/Y82u1m2OLESicewMAc8h zCYrXWOkQKqacKtSSXEBX2qb1rygJDieMTDRovWd94uFmg==
+<span class="linenos">46</span>;; Received 849 bytes from 192.42.93.30#53(g.gtld-servers.net) in 170 ms
+<span class="linenos">47</span>
+<span class="linenos">48</span>www.baidu.com.                1200    IN      CNAME   www.a.shifen.com.
+<span class="linenos">49</span>;; Received 72 bytes from 220.181.33.31#53(ns2.baidu.com) in 36 ms
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+<p>查询网站 IP 地址还可以通过如下方式：</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">nslookup</span> <span class="pre">www.baidu.com</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ping</span> <span class="pre">www.baidu.com</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">host</span> <span class="pre">www.baidu.com</span></code></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>www.baidu.com has address 180.101.49.14
+<span class="linenos">2</span>www.baidu.com has address 180.101.49.13
+<span class="linenos">3</span>www.baidu.com is an alias for www.a.shifen.com.
+<span class="linenos">4</span>www.baidu.com is an alias for www.a.shifen.com.
+</pre></div>
+</div>
+</li>
+</ul>
+<p>同一个网站查询得到的 IP 地址并不是固定唯一的，网站服务器可能有很多。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>查询百度 IP 的时候可以发现， <code class="docutils literal notranslate"><span class="pre">www.baidu.com</span></code> 是 <code class="docutils literal notranslate"><span class="pre">www.a.shifen.com</span></code> 的一个别名。</p>
+</div>
+</section>
+<section id="ip">
+<h2><span class="section-number">4.5. </span>查询本机 IP 地址<a class="headerlink" href="#ip" title="Permalink to this heading"></a></h2>
+<p>使用指令 <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">addr</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">inet</span></code> 或 <code class="docutils literal notranslate"><span class="pre">ifconfig</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">inet</span></code> （Windows 使用 <code class="docutils literal notranslate"><span class="pre">ipconfig</span></code> ）查询得到的是本机的局域网/内网/私有 IP 地址。这类 IP 地址形式如：</p>
+<ul class="simple">
+<li><p>10.x.x.x</p></li>
+<li><p>172.16.x.x - 172.31.x.x</p></li>
+<li><p>192.168.x.x</p></li>
+<li><p>…</p></li>
+</ul>
+<p>多个内部主机可以使用同一个公网 IP 地址上网（NAT网络地址转换），以达到节省 IP 地址的作用。</p>
+<p>要想得到公网/外网/公有 IP 地址，可使用 curl 命令：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">ifconfig.me</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">www.cip.cc</span></code></p></li>
+<li><p>…</p></li>
+</ul>
+<p>运营商可能有多个出口，因此在不同网站上看到的公网 IP 地址可能不同。</p>
+</section>
+<section id="id8">
+<h2><span class="section-number">4.6. </span>参考资料<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>域名</p></li>
 </ol>
@@ -199,6 +391,12 @@
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://www.iana.org/domains/root/files">https://www.iana.org/domains/root/files</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="6">
+<li><p>应用层 DNS 协议、相关命令总结</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://qidawu.github.io/">https://qidawu.github.io/</a></p>
 </div></blockquote>
 </section>
 </section>

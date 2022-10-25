@@ -51,14 +51,14 @@ EmEditor
     https://zh-cn.emeditor.com/text-editor-features/history/emeditor-free/
 
 
-cmder
+Cmder
 ----------
 
 .. note::
 
     Windows下终端神器
 
-    https://cmder.net/
+    https://cmder.app/
 
 
 Free Download Manager
@@ -90,3 +90,15 @@ Postman
     API 设计、构建、测试平台
 
     https://www.postman.com/
+
+
+Obsidian
+----------------
+
+.. note::
+
+    Markdown 编辑器
+
+    https://obsidian.md/
+
+    https://help.obsidian.md/Obsidian/Index

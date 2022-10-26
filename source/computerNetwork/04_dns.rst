@@ -3,7 +3,7 @@
 
 域名（Domain Name）是由一串用点 ``.`` 分隔的字符组成的互联网上某一台计算机或计算机组的名称，用于在数据传输时标识计算机的电子方位。域名可以说是一个 IP 地址的代称，目的是为了便于记忆后者。例如， ``wikipedia.org`` 是一个域名，人们可以直接访问 ``wikipedia.org`` 来代替 IP 地址，然后域名系统（Domain Name System，DNS）就会将它映射成便于机器识别的 IP 地址。
 
-在域名系统的层次结构中，各种域名都隶属于域名系统根域的下级。域名的第一级是顶级域，它包括通用顶级域（例如 ``.com`` ``.net`` ``.org`` ）以及国家和地区顶级域（例如 ``.us`` ``.cn``  ）等。顶级域名下一层是二级域名，一级一级地往下。
+在域名系统的层次结构中，各种域名都隶属于域名系统 **根域** 的下级。域名的第一级是顶级域，它包括通用顶级域（例如 ``.com`` ``.net`` ``.org`` ）以及国家和地区顶级域（例如 ``.us`` ``.cn``  ）等。顶级域名下一层是二级域名，一级一级地往下。
 
 .. image:: ./04_dns.png
     :width: 500px
@@ -71,7 +71,7 @@
 
 根域名服务器（Root Name Server）是域名系统（DNS）中最高级别的域名服务器，负责维护 DNS 根区文件 `Root Zone File <https://www.internic.net/domain/root.zone>`_ ，该文件保存了所有顶级域名（TLD）的托管信息，文件大小约 2 MB。对于收到的顶级域解析请求，它会返回顶级域的域名服务器 IP 地址。它们是互联网基础设施中的重要部分，因为所有域名解析操作均离不开它们。
 
-由于 DNS 和某些协议的共同限制，根域名服务器地址的数量被限制为 13 个。根域名服务器会部署多个节点，共用 IP。此外，采用任播（Anycast）技术架设镜像服务器可解决该问题，使得实际运行的根域名服务器数量大大增加。
+由于 DNS 和某些协议的共同限制，根域名服务器地址的数量被限制为 13 个。根域名服务器会部署多个节点，共用 IP。此外，采用任播（Anycast）技术架设镜像服务器可解决数量限制，使得实际运行的根域名服务器数量大大增加。
 全球 13 组根域名服务器以英文字母 ``a`` 到 ``m`` 依序命名，域名格式为 ``[a-m].root-servers.net`` 。
 
 
@@ -82,13 +82,13 @@
 
 假如我要访问 ``www.example.com`` ：
 
-- 1. 客户端首先会发出一个 DNS 请求，查询 ``www.example.com`` 的 IP ，并发给本地 DNS 服务器。本地 DNS 服务器，属于递归解析器（DNS Recursive Resolver）。一般是网络运营商提供的 DNS，也可手动修改为公共 DNS。
+- 1. 客户端首先会发出一个 DNS 请求给本地 DNS 服务器，请求查询 ``www.example.com`` 的 IP 。本地 DNS 服务器，属于递归解析器（DNS Recursive Resolver），一般是网络运营商提供的 DNS，也可手动修改为公共 DNS。
 
 - 2. 本地 DNS 服务器收到客户端的请求后，如果缓存里中能找到 ``www.example.com`` ，则直接返回 IP 地址；如果没有，本地 DNS 会去向根域名服务器查询。
 
-  - 本地 DNS 服务器至少需要知道一台根域名服务器的 IP 地址，否则就会陷入循环查询。一般来说，DNS 递归解析器都会保存一份根域名服务器的 IP 地址（IPv4 + IPv6）的配置文件 `Root Hints File <https://www.internic.net/domain/named.root>`_ 。
+  - 本地 DNS 服务器至少需要知道一台根域名服务器的 IP 地址，否则就会陷入循环查询。一般来说，DNS 递归解析器都会保存一份根域名服务器的 IP 地址（IPv4 + IPv6）的配置 `Root Hints File <https://www.internic.net/domain/named.root>`_ 。
 
-- 3. 根域名服务器收到来自本地 DNS 的请求后，发现后置是 ``.com`` ，即返回 ``.com`` 顶级域名服务器地址。根区文件中，顶级域名 ``.com`` 可以查到 13 个域名服务器：
+- 3. 根域名服务器收到来自本地 DNS 的请求后，发现顶级域是 ``.com`` ，即返回 ``.com`` 顶级域名服务器地址。根区文件中，顶级域名 ``.com`` 可以查到 13 个域名服务器：
 
   .. code-block:: text
     :linenos:
@@ -107,7 +107,7 @@
     com.			172800	IN	NS	l.gtld-servers.net.
     com.			172800	IN	NS	m.gtld-servers.net.
 
-  同时指明了这些域名服务器的 IP 地址，如：
+  根区文件同时指明了这些域名服务器的 IP 地址，如：
 
   .. code-block:: text
     :linenos:
@@ -120,6 +120,7 @@
     c.gtld-servers.net.	172800	IN	AAAA	2001:503:83eb:0:0:0:0:30
     d.gtld-servers.net.	172800	IN	A	192.31.80.30
     d.gtld-servers.net.	172800	IN	AAAA	2001:500:856e:0:0:0:0:30
+    ...
 
 
   ``.com`` 域名的解析结果，可以到这 13 个服务器的任一台查询。
@@ -132,10 +133,10 @@
 
 - 7. 权威域名服务器查询后将对应的 IP 地址告诉本地 DNS 服务器。
 
-- 8. 本地 DNS 服务器再将 IP 地址返回客户端，客户端和目标建立连接。
+- 8. 本地 DNS 服务器再将 IP 地址返回给客户端，客户端和目标建立连接。
 
-dig
---------
+dig 命令
+-----------
 
 dig 命令是查询 DNS 域名服务器的工具，它执行 DNS 搜索并打印收到请求的域名服务器的响应信息，是常用的 DNS 故障诊断工具。
 
@@ -175,6 +176,7 @@ dig 命令是查询 DNS 域名服务器的工具，它执行 DNS 搜索并打印
 
       .. code-block:: text
           :linenos:
+          :emphasize-lines: 18,35,46,49
 
           ; <<>> DiG 9.10.6 <<>> @8.8.8.8 +trace www.baidu.com
           ; (1 server found)
@@ -231,48 +233,75 @@ dig 命令是查询 DNS 域名服务器的工具，它执行 DNS 搜索并打印
 
 - ``nslookup www.baidu.com``
 
-- ``ping www.baidu.com``
+  .. code-block:: text
+    :linenos:
+
+    Server:		192.168.1.1
+    Address:	192.168.1.1#53
+
+    Non-authoritative answer:
+    www.baidu.com	canonical name = www.a.shifen.com.
+    Name:	www.a.shifen.com
+    Address: 180.101.49.14
+    Name:	www.a.shifen.com
+    Address: 180.101.49.13
+
+- ``ping -c 5 www.baidu.com``
+
+  .. code-block:: text
+    :linenos:
+
+    PING www.baidu.com (180.101.49.14): 56 data bytes
+    64 bytes from 180.101.49.14: icmp_seq=0 ttl=53 time=20.753 ms
+    64 bytes from 180.101.49.14: icmp_seq=1 ttl=53 time=20.324 ms
+    64 bytes from 180.101.49.14: icmp_seq=2 ttl=53 time=20.617 ms
+    64 bytes from 180.101.49.14: icmp_seq=3 ttl=53 time=20.687 ms
+    64 bytes from 180.101.49.14: icmp_seq=4 ttl=53 time=12.662 ms
+
+    --- www.baidu.com ping statistics ---
+    5 packets transmitted, 5 packets received, 0.0% packet loss
+    round-trip min/avg/max/stddev = 12.662/19.009/20.753/3.177 ms
 
 - ``host www.baidu.com``
 
   .. code-block:: text
     :linenos:
 
-    www.baidu.com has address 180.101.49.14
-    www.baidu.com has address 180.101.49.13
     www.baidu.com is an alias for www.a.shifen.com.
-    www.baidu.com is an alias for www.a.shifen.com.
+    www.a.shifen.com has address 180.101.49.13
+    www.a.shifen.com has address 180.101.49.14
 
-同一个网站查询得到的 IP 地址并不是固定唯一的，网站服务器可能有很多。
+对同一个网站查询得到的 IP 地址并不是固定唯一的，网站服务器可能有很多（负载均衡）。
 
 .. note::
 
-    查询百度 IP 的时候可以发现， ``www.baidu.com`` 是 ``www.a.shifen.com`` 的一个别名。
+    查询百度 IP 的时候可以发现， ``www.baidu.com`` 是 ``www.a.shifen.com.`` 的一个别名。
 
-查询本机 IP 地址
-----------------------
+.. tip::
 
-使用指令 ``ip addr | grep inet`` 或 ``ifconfig | grep inet`` （Windows 使用 ``ipconfig`` ）查询得到的是本机的局域网/内网/私有 IP 地址。这类 IP 地址形式如：
+  查询本机 IP 地址：
 
-- 10.x.x.x
+    使用指令 ``ip addr | grep inet`` 或 ``ifconfig | grep inet`` （Windows 使用 ``ipconfig`` ）查询得到的是本机的局域网/内网/私有 IP 地址。这类 IP 地址形式如：
 
-- 172.16.x.x - 172.31.x.x
+    - 10.x.x.x
 
-- 192.168.x.x
+    - 172.16.x.x - 172.31.x.x
 
-- ...
+    - 192.168.x.x
 
-多个内部主机可以使用同一个公网 IP 地址上网（NAT网络地址转换），以达到节省 IP 地址的作用。
+    - ...
 
-要想得到公网/外网/公有 IP 地址，可使用 curl 命令：
+    多个内部主机可以使用同一个公网 IP 地址上网（NAT网络地址转换），以达到节省 IP 地址的作用。
 
-- ``curl ifconfig.me``
+    要想得到公网/外网/公有 IP 地址，可使用 curl 命令：
 
-- ``curl www.cip.cc``
+    - ``curl ifconfig.me``
 
-- ...
+    - ``curl www.cip.cc``
 
-运营商可能有多个出口，因此在不同网站上看到的公网 IP 地址可能不同。
+    - ...
+
+    运营商可能有多个出口，因此在不同网站上看到的公网 IP 地址可能不同。
 
 参考资料
 -------------

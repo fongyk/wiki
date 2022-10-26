@@ -109,6 +109,8 @@ html_theme = 'sphinx_rtd_theme'
 
 html_logo = "logo.jpg"
 
+html_favicon = "favicon.ico"
+
 html_show_sourcelink = True
 
 # html_context = {

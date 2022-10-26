@@ -9,6 +9,7 @@
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -221,11 +222,11 @@
 </ol>
 </li>
 <li><ol class="arabic simple" start="5">
-<li><p>顶级域名服务器返回 <code class="docutils literal notranslate"><span class="pre">server.com</span></code> 的权威域名服务器的地址。</p></li>
+<li><p>顶级域名服务器返回 <code class="docutils literal notranslate"><span class="pre">example.com</span></code> 的权威域名服务器的地址。</p></li>
 </ol>
 </li>
 <li><ol class="arabic simple" start="6">
-<li><p>本地 DNS 转向问权威域名服务器查询 <code class="docutils literal notranslate"><span class="pre">www.server.com</span></code> 对应的 IP。</p></li>
+<li><p>本地 DNS 转向问权威域名服务器查询 <code class="docutils literal notranslate"><span class="pre">www.example.com</span></code> 对应的 IP。</p></li>
 </ol>
 </li>
 <li><ol class="arabic simple" start="7">
@@ -264,6 +265,13 @@
 </pre></div>
 </div>
 <p><strong>ANSWER SECTION</strong> 部分返回了解析的 IP 地址，在浏览器地址栏输入 <code class="docutils literal notranslate"><span class="pre">180.101.49.13</span></code> 或 <code class="docutils literal notranslate"><span class="pre">180.101.49.14</span></code> 即会跳转到百度首页。</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<dl class="simple">
+<dt>直接使用 IP 地址可能无法访问网站</dt><dd><p>IP 地址实际上标识了一个服务器，而不是网站，同一个服务器可能挂载了多个网站。单独依靠 IP 地址不能确定匹配到哪个网站。有些服务器会定义默认的网站，当收到 IP 地址的请求时，就返回默认的网站给客户端。</p>
+</dd>
+</dl>
+</div>
 <p>使用命令 <code class="docutils literal notranslate"><span class="pre">dig</span> <span class="pre">&#64;8.8.8.8</span> <span class="pre">+trace</span> <span class="pre">www.baidu.com</span></code> 可以看到完整的解析过程。 <code class="docutils literal notranslate"><span class="pre">&#64;8.8.8.8</span></code> 表示使用公共域名服务器，而不是依次使用 <code class="docutils literal notranslate"><span class="pre">/etc/resolv.conf</span></code> 里配置的本地域名服务器进行查询。</p>
 <blockquote>
 <div><div class="toggle docutils container">
@@ -326,8 +334,8 @@
 <p>查询网站 IP 地址还可以通过如下方式：</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">nslookup</span> <span class="pre">www.baidu.com</span></code></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>Server:             192.168.1.1
-<span class="linenos">2</span>Address:    192.168.1.1#53
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>Server:   192.168.1.1
+<span class="linenos">2</span>Address:  192.168.1.1#53
 <span class="linenos">3</span>
 <span class="linenos">4</span>Non-authoritative answer:
 <span class="linenos">5</span>www.baidu.com       canonical name = www.a.shifen.com.

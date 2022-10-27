@@ -274,6 +274,16 @@ command
     编译之后，本地查看 html 结果显示正常，但是 push 到 Github 发布之后，发现代码行号几乎紧贴代码本身，视觉效果很差。
     没找到好的解决方法，只能手动降级 sphinx ： ``/opt/homebrew/Cellar/python@3.10/3.10.6_2/bin/python3.10 -m pip install sphinx==4.5`` 。
 
+.. warning::
+
+    编译的时候提示：
+
+      WARNING: html_static_path 入口 '_static' 不存在
+
+    需要修改配置文件 conf.py::
+
+      html_static_path = []
+
 .. important::
 
     当前版本是::

@@ -123,3 +123,9 @@ https://curl.se/
 https://curl.se/docs/manpage.html
 
 https://everything.curl.dev/
+
+
+graphviz
+-------------
+
+http://graphviz.org/

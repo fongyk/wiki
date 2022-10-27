@@ -59,9 +59,15 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
-	'sphinx.ext.githubpages',
+    'sphinx.ext.githubpages',
+    'sphinx.ext.todo',
+    'sphinx.ext.graphviz',
     # 'sphinxcontrib.contentui',
 ]
+
+todo_include_todos = True
+
+graphviz_output_format = 'svg'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -118,6 +124,8 @@ html_show_sourcelink = True
 # "last_updated": True,
 # "commit": False,
 # }
+
+html_search_language = "en"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

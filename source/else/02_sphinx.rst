@@ -22,14 +22,34 @@ sphinx
 
 .. note::
 
-    在 mac 上安装 sphinx 5.2.3 的时候： ``brew install sphinx-doc`` ，发现自动安装了依赖 python@3.10 ，而不是用
+    在 mac 上安装 sphinx 5.2.3：
+
+    .. code:: bash
+
+       brew install sphinx-doc 
+
+    发现自动安装了依赖 python@3.10 ，而不是用
     系统已经安装好的 /usr/bin/python ，这就导致 ``sphinx-build`` 一直找不到 /usr/bin/pip 安装的 sphinx-rtd-theme ，
-    因此需要使用 ``/opt/homebrew/Cellar/python@3.10/3.10.6_2/bin/python3.10 -m pip install sphinx-rtd-theme`` 来重新安装。
+    因此需要使用：
+
+    .. code:: bash
+      
+      /opt/homebrew/Cellar/python@3.10/3.10.6_2/bin/python3.10 -m pip install sphinx-rtd-theme
     
-    另外，添加环境变量 ``echo 'export PATH="/opt/homebrew/opt/sphinx-doc/bin:$PATH"' >> ~/.zshrc`` 。
+    来重新安装。
+    
+    另外，添加环境变量：
+
+    .. code:: bash
+      
+      echo 'export PATH="/opt/homebrew/opt/sphinx-doc/bin:$PATH"' >> ~/.zshrc
 
     编译之后，本地查看 html 结果显示正常，但是 push 到 Github 发布之后，发现代码行号几乎紧贴代码本身，视觉效果很差。
-    没找到好的解决方法，只能手动降级 sphinx ： ``/opt/homebrew/Cellar/python@3.10/3.10.6_2/bin/python3.10 -m pip install sphinx==4.5`` 。
+    没找到好的解决方法，只能手动降级 sphinx：
+
+    .. code:: bash
+      
+      /opt/homebrew/Cellar/python@3.10/3.10.6_2/bin/python3.10 -m pip install sphinx==4.5
 
 
 rst 语法测试
@@ -193,14 +213,6 @@ command
   :linenos:
 
   class Solution(object):
-      def jump_from_i(self, nums, i):
-          if i == len(nums) - 1:
-              return True
-          max_step = min(len(nums), i + nums[i] + 1)
-          for t in range(i+1, max_step):
-              if self.jump_from_i(nums, t):
-                  return True
-          return False
       def canJump(self, nums):
           """
           https://leetcode.com/problems/jump-game/
@@ -217,7 +229,7 @@ command
               return False
           if len(nums) == 1:
               return True
-          return self.jump_from_i(nums, 0)
+          return None
 
 代码显示与隐藏：
 
@@ -227,12 +239,14 @@ command
 
     :math:`\color{darkgreen}{Show/Hide\ Code}`
 
-  .. code-block:: xml
-   :linenos:
+  .. code-block:: python
+    
+    :linenos:
 
-   from plone import api
-   ...
-
+    # 测试注释
+    def foo():
+        print "Love Python, Love FreeDome"
+        print "E文标点,.0123456789,中文标点,. "
 
 插入空行使用 ``|`` 。
 

@@ -6,7 +6,7 @@ sphinx
 
 .. important::
 
-    当前版本是：
+    当前使用的版本是：
 
     .. code-block:: text
       :linenos:
@@ -36,9 +36,7 @@ sphinx
       
       /opt/homebrew/Cellar/python@3.10/3.10.6_2/bin/python3.10 -m pip install sphinx-rtd-theme
     
-    来重新安装。
-    
-    另外，添加环境变量：
+    来重新安装。添加环境变量：
 
     .. code:: bash
       
@@ -231,7 +229,7 @@ command
               return True
           return None
 
-代码显示与隐藏：
+代码折叠功能需要自定义 _templates 。
 
 .. container:: toggle
 
@@ -240,7 +238,6 @@ command
     :math:`\color{darkgreen}{Show/Hide\ Code}`
 
   .. code-block:: python
-    
     :linenos:
 
     # 测试注释
@@ -291,6 +288,10 @@ command
 .. todo::
 
   补充更多的语法测试内容。
+
+.. tip::
+
+    VS Code 推荐使用插件 RST Preview（@Thomas Haakon Townsend）和 reStructuredText（@LeXtudio Inc.）。
 
 .. hint::
 

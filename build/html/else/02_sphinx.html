@@ -105,7 +105,7 @@
 <h2><span class="section-number">2.1. </span>sphinx<a class="headerlink" href="#sphinx" title="Permalink to this headline"></a></h2>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>当前版本是：</p>
+<p>当前使用的版本是：</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>Sphinx                        4.5.0
 <span class="linenos">2</span>sphinx-rtd-theme              1.0.0
 <span class="linenos">3</span>sphinxcontrib-applehelp       1.0.2
@@ -129,8 +129,7 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/opt/homebrew/Cellar/python@3.10/3.10.6_2/bin/python3.10 -m pip install sphinx-rtd-theme
 </pre></div>
 </div>
-<p>来重新安装。</p>
-<p>另外，添加环境变量：</p>
+<p>来重新安装。添加环境变量：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;/opt/homebrew/opt/sphinx-doc/bin:$PATH&quot;&#39;</span> &gt;&gt; ~/.zshrc
 </pre></div>
 </div>
@@ -270,17 +269,15 @@
 <span class="linenos">18</span>        <span class="k">return</span> <span class="kc">None</span>
 </pre></div>
 </div>
-<p>代码显示与隐藏：</p>
+<p>代码折叠功能需要自定义 _templates 。</p>
 <div class="toggle docutils container">
 <div class="header docutils container">
 <p><span class="math notranslate nohighlight">\(\color{darkgreen}{Show/Hide\ Code}\)</span></p>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="p">:</span><span class="n">linenos</span><span class="p">:</span>
-<span class="linenos">2</span>
-<span class="linenos">3</span><span class="c1"># 测试注释</span>
-<span class="linenos">4</span><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
-<span class="linenos">5</span>    <span class="nb">print</span> <span class="s2">&quot;Love Python, Love FreeDome&quot;</span>
-<span class="linenos">6</span>    <span class="nb">print</span> <span class="s2">&quot;E文标点,.0123456789,中文标点,. &quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1"># 测试注释</span>
+<span class="linenos">2</span><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+<span class="linenos">3</span>    <span class="nb">print</span> <span class="s2">&quot;Love Python, Love FreeDome&quot;</span>
+<span class="linenos">4</span>    <span class="nb">print</span> <span class="s2">&quot;E文标点,.0123456789,中文标点,. &quot;</span>
 </pre></div>
 </div>
 </div>
@@ -326,6 +323,10 @@ execute -&gt; compare;
 <div class="admonition-todo admonition" id="id1">
 <p class="admonition-title">Todo</p>
 <p>补充更多的语法测试内容。</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>VS Code 推荐使用插件 RST Preview（&#64;Thomas Haakon Townsend）和 reStructuredText（&#64;LeXtudio Inc.）。</p>
 </div>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>

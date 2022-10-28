@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>11. 堆和栈 &mdash; fong alpha documentation</title>
@@ -18,9 +18,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -142,7 +140,7 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">11. </span>堆和栈<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">11. </span>堆和栈<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
 <p>堆（Heap）与栈（Stack）有两层含义：</p>
 <ul class="simple">
 <li><p>程序内存布局场景下，堆与栈表示两种内存管理方式</p></li>
@@ -151,40 +149,40 @@
 <p>栈由操作系统自动分配释放 ，用于存放函数的参数值、局部变量等，其操作方式类似于数据结构中的栈。</p>
 <p>堆由程序员分配释放，若程序员不释放，程序结束时由系统回收。</p>
 <section id="id2">
-<h2><span class="section-number">11.1. </span>区别<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">11.1. </span>区别<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <section id="id3">
-<h3>管理方式<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<h3>管理方式<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
 <p>栈由操作系统自动分配释放，无需我们手动控制；</p>
 <p>堆的申请和释放工作由程序员控制，容易产生内存泄漏。</p>
 </section>
 <section id="id4">
-<h3>空间大小<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<h3>空间大小<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
 <p>每个进程拥有的栈的大小要远远小于堆的大小。
 理论上，程序员可申请的堆大小为虚拟内存的大小，进程栈的大小 64-bit 的 Windows 默认 1MB，64-bit 的 Linux 默认 10MB。</p>
 </section>
 <section id="id5">
-<h3>分配方式<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<h3>分配方式<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
 <p>堆都是动态分配的，没有静态分配的堆。栈有 2 种分配方式：静态分配和动态分配。静态分配是由操作系统完成的，比如局部变量的分配。</p>
 <p>动态分配由 <code class="docutils literal notranslate"><span class="pre">alloc</span></code> 函数进行分配，但是栈的动态分配和堆是不同的，其动态分配是由操作系统进行释放，无需我们手工实现。</p>
 </section>
 <section id="id6">
-<h3>生长方式<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<h3>生长方式<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h3>
 <p>堆的生长方向向上，内存地址由低到高。</p>
 <p>栈的生长方向向下，内存地址由高到低。</p>
 </section>
 <section id="id7">
-<h3>分配效率<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
+<h3>分配效率<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h3>
 <p>栈由操作系统自动分配，会在硬件层级对栈提供支持：分配专门的寄存器存放栈的地址，压栈出栈都有专门的指令执行，这就决定了栈的效率比较高。</p>
 <p>堆则是由 C/C++ 提供的库函数或运算符来完成申请与管理，实现机制较为复杂，频繁的内存申请容易产生内存碎片。显然，<strong>堆的效率比栈要低得多</strong> 。</p>
 </section>
 <section id="id8">
-<h3>存放内容<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
+<h3>存放内容<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h3>
 <p>栈存放函数返回地址、相关参数、局部变量和寄存器内容等。</p>
 <p>堆：一般是在堆的头部用一个字节存放堆的大小；堆中的具体内容由程序员安排。</p>
 </section>
 </section>
 <section id="id9">
-<h2><span class="section-number">11.2. </span>内存分区<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">11.2. </span>内存分区<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h2>
 <p>在 C++ 中，内存主要分为堆、栈、全局/静态存储区和常量存储区。</p>
 <ul class="simple">
 <li><p><strong>栈</strong> ：就是那些由编译器在需要的时候分配，在不需要的时候自动清除的变量的存储区。里面的变量通常是局部变量、函数参数等。</p></li>
@@ -194,7 +192,7 @@
 </ul>
 </section>
 <section id="id10">
-<h2><span class="section-number">11.3. </span>构造函数的空间分配<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">11.3. </span>构造函数的空间分配<a class="headerlink" href="#id10" title="Permalink to this headline"></a></h2>
 <p><strong>静态构造</strong> ：编译器为对象在栈空间中分配内存（直接移动栈顶指针，挪出适当的空间），然后在这片内存空间上调用构造函数构造一个栈对象。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="n">a</span><span class="p">;</span>
 </pre></div>
@@ -204,7 +202,7 @@
 </pre></div>
 </div>
 <section id="id11">
-<h3>限制在堆上构造对象<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h3>
+<h3>限制在堆上构造对象<a class="headerlink" href="#id11" title="Permalink to this headline"></a></h3>
 <p>要求不能在栈空间构造类对象，直接将构造函数声明为 private 是不行的。因为 new 表达式实际上也调用了构造函数，会报错 <code class="docutils literal notranslate"><span class="pre">error:</span> <span class="pre">'A::A()'</span> <span class="pre">is</span> <span class="pre">private</span></code> 。</p>
 <p>在栈空间构造对象，是由编译器分配内存空间的。当对象被使用完之后，编译器会调用析构函数来释放栈对象所占的空间。编译器管理了对象的整个生命周期。如果编译器无法调用类的析构函数（比如，类的析构函数是 private），则编译器无法释放内存。所以，编译器在为类对象分配栈空间时，会先检查类的析构函数的访问性（其实不光是析构函数，只要是非静态的函数，编译器都会进行检查）。 <strong>如果类的析构函数是私有的，则编译器不会在栈空间上为类对象分配内存</strong> 。</p>
 <p>另一方面，考虑到类的继承，应将构造函数和析构函数声明为 <strong>protected</strong> ，然后提供一个静态函数来完成对象的构造。</p>
@@ -232,7 +230,7 @@
 </div>
 </section>
 <section id="id12">
-<h3>限制在栈上构造对象<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h3>
+<h3>限制在栈上构造对象<a class="headerlink" href="#id12" title="Permalink to this headline"></a></h3>
 <p>将 new 和 delete 运算符重载，并声明为 private。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="w"></span>
 <span class="linenos">2</span><span class="p">{</span><span class="w"></span>
@@ -248,7 +246,7 @@
 </section>
 </section>
 <section id="id13">
-<h2><span class="section-number">11.4. </span>参考资料<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">11.4. </span>参考资料<a class="headerlink" href="#id13" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>堆与栈的区别</p></li>
 </ol>

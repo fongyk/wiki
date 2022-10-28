@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>15. 内存管理 &mdash; fong alpha documentation</title>
@@ -18,9 +18,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -138,9 +136,9 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">15. </span>内存管理<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">15. </span>内存管理<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
 <section id="id2">
-<h2><span class="section-number">15.1. </span>变量与对象<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">15.1. </span>变量与对象<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <a class="reference internal image-reference" href="../_images/15_varRef.png"><img alt="../_images/15_varRef.png" class="align-center" src="../_images/15_varRef.png" style="width: 500px;" /></a>
 <p>（图片来源：<a class="reference external" href="https://www.cnblogs.com/geaozhang/p/7111961.html">https://www.cnblogs.com/geaozhang/p/7111961.html</a>）</p>
 <dl class="simple">
@@ -186,7 +184,7 @@
 <p>Python没有缓存长字符串、列表及其他对象，可以有多个相同的对象，赋值语句创建出新的对象。</p>
 </div>
 <section id="id3">
-<h3><span class="section-number">15.1.1. </span>变量的改变<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">15.1.1. </span>变量的改变<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
 <dl class="simple">
 <dt>不可变对象</dt><dd><p>赋值、加减乘除这些操作实际上导致变量指向的对象发生了改变（已经不是指向原来的那个对象了），并不是通过这个变量来改变它指向的对象的值。</p>
 </dd>
@@ -217,7 +215,7 @@
 </section>
 </section>
 <section id="id4">
-<h2><span class="section-number">15.2. </span>引用计数<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">15.2. </span>引用计数<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">getrefcount</span>
 </pre></div>
 </div>
@@ -225,7 +223,7 @@
 需要注意的是，当使用某个引用作为参数，传递给 <code class="docutils literal notranslate"><span class="pre">getrefcount()</span></code> 时，参数实际上创建了一个临时的引用。
 因此， <code class="docutils literal notranslate"><span class="pre">getrefcount()</span></code> 所得到的结果，会比期望的多 1。</p>
 <section id="id5">
-<h3><span class="section-number">15.2.1. </span>普通引用<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">15.2.1. </span>普通引用<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
 <span class="linenos"> 2</span><span class="gp">&gt;&gt;&gt; </span><span class="n">getrefcount</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 <span class="linenos"> 3</span><span class="go">2</span>
@@ -260,7 +258,7 @@
 </div>
 </section>
 <section id="id6">
-<h3><span class="section-number">15.2.2. </span>容器对象<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">15.2.2. </span>容器对象<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h3>
 <p>Python的容器对象(container)，比如列表、元组、字典等，可以包含多个对象。<strong>容器对象中包含的并不是元素对象本身，是指向各个元素对象的引用。</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
 <span class="linenos">2</span><span class="gp">&gt;&gt;&gt; </span><span class="n">getrefcount</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
@@ -272,7 +270,7 @@
 </div>
 </section>
 <section id="id7">
-<h3><span class="section-number">15.2.3. </span>循环引用<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">15.2.3. </span>循环引用<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h3>
 <p>只有容器对象才会产生循环引用的情况，比如列表、字典、用户自定义类的对象、元组等。而像数字、字符串这类简单类型不会出现循环引用。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="linenos">2</span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="p">]</span>
@@ -286,7 +284,7 @@
 </section>
 </section>
 <section id="id8">
-<h2><span class="section-number">15.3. </span>垃圾回收<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">15.3. </span>垃圾回收<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">gc</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">gc</span><span class="o">.</span><span class="n">get_threshold</span><span class="p">()</span>
 <span class="go">(700, 10, 10)</span>
@@ -299,7 +297,7 @@
 <p>当Python运行时，会记录其中分配对象（object allocation）和取消分配对象（object deallocation）的次数。
 当两者的差值高于某个阈值时，垃圾回收才会启动，清除那些引用计数为0的对象。</p>
 <section id="id9">
-<h3><span class="section-number">15.3.1. </span>垃圾检查<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">15.3.1. </span>垃圾检查<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">gc.get_count()</span></code> 获取一个三元组，如 <code class="docutils literal notranslate"><span class="pre">(488,</span> <span class="pre">3,</span> <span class="pre">0)</span></code> 。</p>
 <blockquote>
 <div><ul class="simple">
@@ -310,14 +308,14 @@
 </div></blockquote>
 </section>
 <section id="id10">
-<h3><span class="section-number">15.3.2. </span>分代回收<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">15.3.2. </span>分代回收<a class="headerlink" href="#id10" title="Permalink to this headline"></a></h3>
 <p>Python将所有的对象分为0，1，2三代。所有的新建对象都是0代对象。当某一代对象经历过垃圾回收，依然存活，那么它就被归入下一代对象。
 垃圾回收启动时，一定会扫描所有的0代对象。如果0代经过一定次数垃圾回收，那么就启动对0代和1代的扫描清理。
 当1代也经历了一定次数的垃圾回收后，那么会启动对0，1，2，即对所有对象进行扫描。</p>
 <p><code class="docutils literal notranslate"><span class="pre">(700,</span> <span class="pre">10,</span> <span class="pre">10)</span></code> 表明：每10次0代垃圾回收，会配合1次1代的垃圾回收；每10次1代的垃圾回收，才会有1次的2代垃圾回收。</p>
 </section>
 <section id="id11">
-<h3><span class="section-number">15.3.3. </span>标记-清除<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">15.3.3. </span>标记-清除<a class="headerlink" href="#id11" title="Permalink to this headline"></a></h3>
 <p>Python采用了“标记-清除”(Mark and Sweep)算法，解决容器对象可能产生的循环引用问题。</p>
 <ul class="simple">
 <li><p>标记阶段：遍历所有的对象，如果是可达的（reachable），也就是还有对象引用它，那么就标记该对象为可达；</p></li>
@@ -326,7 +324,7 @@
 </section>
 </section>
 <section id="id12">
-<h2><span class="section-number">15.4. </span>参考资料<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">15.4. </span>参考资料<a class="headerlink" href="#id12" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>Python内存管理机制</p></li>
 </ol>

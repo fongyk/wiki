@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>28. 可变参数函数 &mdash; fong alpha documentation</title>
@@ -18,9 +18,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -129,10 +127,10 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">28. </span>可变参数函数<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">28. </span>可变参数函数<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
 <p>可变参数函数：参数数量可变，参数类型可变。比如 C 语言中的 <code class="docutils literal notranslate"><span class="pre">printf</span></code> ，参数数量是可变的，类型也是可变的。</p>
 <section id="c">
-<h2><span class="section-number">28.1. </span>C 语言的方式<a class="headerlink" href="#c" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">28.1. </span>C 语言的方式<a class="headerlink" href="#c" title="Permalink to this headline"></a></h2>
 <p>C 语言是通过一个类型（va_list）和三个宏（va_start、va_arg、va_end）来实现可变参数的。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="linenos"> 2</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdarg&gt;</span><span class="cp"></span>
@@ -156,7 +154,7 @@
 <p>上例中 <code class="docutils literal notranslate"><span class="pre">va_arg(args,</span> <span class="pre">int)</span></code> 限定了解析的参数类型必须是整型，因而没有实现参数类型可变。 <code class="docutils literal notranslate"><span class="pre">printf</span></code> 是通过 <code class="docutils literal notranslate"><span class="pre">%</span></code> 来确定参数个数和类型的。</p>
 </section>
 <section id="id2">
-<h2><span class="section-number">28.2. </span>C++ 的方式<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">28.2. </span>C++ 的方式<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <p>C++ 的可变参数模板得益于：</p>
 <ul class="simple">
 <li><p>函数重载，依靠参数的 pattern 去匹配对应的函数；</p></li>
@@ -194,7 +192,7 @@
 </div>
 </section>
 <section id="id3">
-<h2><span class="section-number">28.3. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">28.3. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>两种变长参数函数比较</p></li>
 </ol>

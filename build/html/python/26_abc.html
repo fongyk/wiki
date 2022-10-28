@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>26. abc &mdash; fong alpha documentation</title>
@@ -18,9 +18,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -125,10 +123,10 @@
            <div itemprop="articleBody">
              
   <section id="abc">
-<h1><span class="section-number">26. </span>abc<a class="headerlink" href="#abc" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">26. </span>abc<a class="headerlink" href="#abc" title="Permalink to this headline"></a></h1>
 <p><strong>abc</strong> 模块提供了在 Python 中定义抽象基类（abstract base classes）的组件。</p>
 <section id="id1">
-<h2><span class="section-number">26.1. </span>抽象基类<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">26.1. </span>抽象基类<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
 <p>抽象基类可以通过从 <code class="docutils literal notranslate"><span class="pre">ABC</span></code> 派生来简单地创建，</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span>
 <span class="linenos">2</span>
@@ -145,7 +143,7 @@
 </div>
 </section>
 <section id="id2">
-<h2><span class="section-number">26.2. </span>抽象方法<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">26.2. </span>抽象方法<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">&#64;abc.abstractmethod</span></code> 是用于声明抽象方法的装饰器。</p>
 <p>抽象方法与继承：</p>
 <blockquote>
@@ -189,7 +187,7 @@
 </div>
 </section>
 <section id="id3">
-<h2><span class="section-number">26.3. </span>虚子类<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">26.3. </span>虚子类<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">register(subclass)</span></code> 将子类注册为该抽象基类的虚子类（virtual subclass）。 <code class="docutils literal notranslate"><span class="pre">issubclass</span></code> 和 <code class="docutils literal notranslate"><span class="pre">isinstance</span></code> 等函数都能识别，但是该抽象基类不会出现在其 MRO（Method Resolution Order，方法解析顺序）中，虚子类并不会从抽象基类中继承任何方法，也无需重写抽象方法。虚子类是为类型检测准备的，由于不需要重写抽象方法，因此第三方接口的可扩展性和灵活性更高。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span>
 <span class="linenos">2</span>
@@ -230,7 +228,7 @@
 </div>
 </section>
 <section id="id4">
-<h2><span class="section-number">26.4. </span>参考资料<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">26.4. </span>参考资料<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>abc — Abstract Base Classes</p></li>
 </ol>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>10. 拓扑排序 &mdash; fong alpha documentation</title>
@@ -18,9 +18,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -121,20 +119,20 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">10. </span>拓扑排序<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">10. </span>拓扑排序<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
 <section id="aov">
-<h2><span class="section-number">10.1. </span>AOV 网<a class="headerlink" href="#aov" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">10.1. </span>AOV 网<a class="headerlink" href="#aov" title="Permalink to this headline"></a></h2>
 <p>AOV 网（Activity On Vertex Network）：一个有向图，顶点表示活动，有向边表示活动之间的优先关系。</p>
 <p>若顶点 <span class="math notranslate nohighlight">\(u\)</span> 与顶点 <span class="math notranslate nohighlight">\(v\)</span> 之间存在一条弧 <span class="math notranslate nohighlight">\(&lt;u, v&gt;\)</span> ，则表示活动 <span class="math notranslate nohighlight">\(u\)</span> 必须优先于活动 <span class="math notranslate nohighlight">\(v\)</span> 完成，称 <span class="math notranslate nohighlight">\(u\)</span> 为 <span class="math notranslate nohighlight">\(v\)</span> 的直接前驱，<span class="math notranslate nohighlight">\(v\)</span> 为 <span class="math notranslate nohighlight">\(u\)</span> 的直接后继。</p>
 </section>
 <section id="id2">
-<h2><span class="section-number">10.2. </span>拓扑序列<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">10.2. </span>拓扑序列<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <p>设 <span class="math notranslate nohighlight">\(G=(V, E)\)</span> 是一个 <span class="math notranslate nohighlight">\(n\)</span> 个顶点的有向图，<span class="math notranslate nohighlight">\(V\)</span> 中的顶点序列 <span class="math notranslate nohighlight">\([v_1,v_2,...,v_n]\)</span> 称为一个拓扑序列当且仅当满足下列条件：若从顶点 <span class="math notranslate nohighlight">\(v_i\)</span> 到 <span class="math notranslate nohighlight">\(v_j\)</span> 有路径，则在该顶点
 序列中顶点 <span class="math notranslate nohighlight">\(v_i\)</span> 必在 <span class="math notranslate nohighlight">\(v_j\)</span> 之前。</p>
 <p>一个 AOV 网的拓扑序列可能不唯一。</p>
 </section>
 <section id="id3">
-<h2><span class="section-number">10.3. </span>拓扑排序<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">10.3. </span>拓扑排序<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <p>算法：</p>
 <blockquote>
 <div><ul class="simple">

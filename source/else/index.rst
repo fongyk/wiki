@@ -7,4 +7,5 @@
 
     01_interview.rst
     03_leetcode.rst
-    02_test_code.rst
+    02_sphinx.rst
+    04_download.rst

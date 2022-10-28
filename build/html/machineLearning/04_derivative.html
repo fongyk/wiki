@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>4. 常用矩阵求导公式 &mdash; fong alpha documentation</title>
@@ -18,9 +18,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -106,13 +104,13 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">4. </span>常用矩阵求导公式<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">4. </span>常用矩阵求导公式<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
 <p>导数有两种不同的表示形式：</p>
 <a class="reference internal image-reference" href="../_images/04_matrix.jpg"><img alt="../_images/04_matrix.jpg" class="align-center" src="../_images/04_matrix.jpg" style="width: 500px;" /></a>
 <p>这里使用 <strong>denominator layout</strong> 。</p>
 <p><span class="math notranslate nohighlight">\(\mathbf{x},\mathbf{a},\mathbf{b}\)</span> 均为 <strong>列向量</strong> 。</p>
 <section id="id2">
-<h2><span class="section-number">4.1. </span>一阶<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.1. </span>一阶<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <div class="math notranslate nohighlight">
 \[\begin{split}\frac{\partial{(\mathbf{x}^{\top} \mathbf{a})}}{\partial{\mathbf{x}}} &amp;= \  \frac{\partial{(\mathbf{a}^{\top} \mathbf{x})}}{\partial{\mathbf{x}}} = \ \mathbf{a} \\
 \frac{\partial{(\mathbf{a}^{\top} \mathbf{X} \mathbf{b})}}{\partial{\mathbf{X}}} &amp;= \  \mathbf{a} \mathbf{b}^{\top} \\
@@ -120,14 +118,14 @@
 \frac{\partial{(\mathbf{a}^{\top} \mathbf{X} \mathbf{a})}}{\partial{\mathbf{X}}} &amp;= \  \mathbf{a} \mathbf{a}^{\top} \\\end{split}\]</div>
 </section>
 <section id="id3">
-<h2><span class="section-number">4.2. </span>二阶<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.2. </span>二阶<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <div class="math notranslate nohighlight">
 \[\begin{split}\frac{\partial{(\mathbf{x}^{\top} \mathbf{x})}}{\partial{\mathbf{x}}} &amp;= \ 2 \mathbf{x} \\
 \frac{\partial{(\mathbf{x}^{\top} \mathbf{B} \mathbf{x})}}{\partial{\mathbf{x}}} &amp;= \ (\mathbf{B} + \mathbf{B}^{\top}) \mathbf{x} \\
 \frac{\partial{(\mathbf{a}^{\top} \mathbf{X}^{\top} \mathbf{X} \mathbf{b})}}{\partial{\mathbf{X}}} &amp;= \  \mathbf{X} (\mathbf{a}\mathbf{b}^{\top} + \mathbf{b}\mathbf{a}^{\top}) \\\end{split}\]</div>
 </section>
 <section id="id4">
-<h2><span class="section-number">4.3. </span>迹<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.3. </span>迹<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
 <p><span class="math notranslate nohighlight">\(Tr(\mathbf{A}^{\top}\mathbf{B}) = Tr(\mathbf{B}^{\top}\mathbf{A})\)</span></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\frac{\partial{(Tr(\mathbf{X}))}}{\partial{\mathbf{X}}} &amp;= \ \mathbf{I} \\
@@ -141,7 +139,7 @@
 \frac{\partial{(Tr(\mathbf{X}^{\top} \mathbf{B} \mathbf{X}))}}{\partial{\mathbf{X}}} &amp;= \ \mathbf{B}\mathbf{X} + \mathbf{B}^{\top}\mathbf{X} \\\end{split}\]</div>
 </section>
 <section id="id5">
-<h2><span class="section-number">4.4. </span>参考资料<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.4. </span>参考资料<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>The Matrix Cookbook</p></li>
 </ol>

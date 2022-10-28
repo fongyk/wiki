@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3. 主成分分析 &mdash; fong alpha documentation</title>
@@ -18,9 +18,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -108,13 +106,13 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">3. </span>主成分分析<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">3. </span>主成分分析<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
 <p><strong>PCA</strong> : Principal Component Analysis.</p>
 <p><strong>最大可分性</strong> ：所有样本点到超平面的投影能尽可能分开（投影后样本点方差最大化）。</p>
 <p>PCA 是一种正交线性变换，把数据变换到一个新的坐标系统中，把相关变量变换为不相关变量。</p>
 <a class="reference internal image-reference" href="../_images/03_pca.png"><img alt="../_images/03_pca.png" class="align-center" src="../_images/03_pca.png" style="width: 500px;" /></a>
 <section id="id2">
-<h2><span class="section-number">3.1. </span>优化目标<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.1. </span>优化目标<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <p>样本点到超平面的投影为 <span class="math notranslate nohighlight">\(W^{\top}X\)</span> ，假设 <span class="math notranslate nohighlight">\(X\)</span> 已经中心化。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\underset{W}{max} &amp; \ Tr(W^{\top}XX^{\top}W) \\
@@ -124,7 +122,7 @@ s.t. &amp; \ W^{\top}W=I. \\
 &amp; \ d^\prime &lt; d.\end{split}\]</div>
 </section>
 <section id="id3">
-<h2><span class="section-number">3.2. </span>推导<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2. </span>推导<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <p>利用拉格朗日乘子法，</p>
 <div class="math notranslate nohighlight">
 \[L = - Tr(W^{\top}XX^{\top}W) + \lambda (W^{\top}W - I),\quad \lambda \neq 0.\]</div>
@@ -141,7 +139,7 @@ W^{\top}W &amp;=\ I.\end{split}\]</div>
 </dl>
 </section>
 <section id="id4">
-<h2><span class="section-number">3.3. </span>求解<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.3. </span>求解<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
 <ol class="arabic">
 <li><p>样本中心化： <span class="math notranslate nohighlight">\(X\)</span> 减均值。</p></li>
 <li><p>计算样本的协方差矩阵 <span class="math notranslate nohighlight">\(C = XX^{\top}\)</span> ；</p></li>
@@ -155,7 +153,7 @@ W^{\top}W &amp;=\ I.\end{split}\]</div>
 </ol>
 </section>
 <section id="pca-whitening">
-<h2><span class="section-number">3.4. </span>PCA-Whitening<a class="headerlink" href="#pca-whitening" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.4. </span>PCA-Whitening<a class="headerlink" href="#pca-whitening" title="Permalink to this headline"></a></h2>
 <p>白化（Whitening）的目的是降低输入的冗余性：</p>
 <ul class="simple">
 <li><p>特征之间相关性降低</p></li>
@@ -166,7 +164,7 @@ W^{\top}W &amp;=\ I.\end{split}\]</div>
 x_{pca\ white, i} &amp;=\  \frac{x_{rot, i}}{\sqrt{\lambda_i}}\end{split}\]</div>
 </section>
 <section id="svd">
-<h2><span class="section-number">3.5. </span>SVD分解<a class="headerlink" href="#svd" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.5. </span>SVD分解<a class="headerlink" href="#svd" title="Permalink to this headline"></a></h2>
 <div class="math notranslate nohighlight">
 \[\begin{split}A &amp;=\ U \Sigma V^{\top},\\
 A &amp; \in \mathbb{R}^{m \times n}, \\
@@ -179,7 +177,7 @@ V &amp; \in \mathbb{R}^{n \times r}.\end{split}\]</div>
 协方差矩阵 <span class="math notranslate nohighlight">\(C\)</span> 的特征向量。</p>
 </section>
 <section id="id5">
-<h2><span class="section-number">3.6. </span>参考资料<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.6. </span>参考资料<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>周志华《机器学习》Page 229 – 232。</p></li>
 <li><p>ufldl</p></li>

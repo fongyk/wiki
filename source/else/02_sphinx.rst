@@ -1,7 +1,38 @@
-rst语法
-=========
+sphinx 与 rst
+=====================
 
-语法测试
+sphinx 
+----------------
+
+.. important::
+
+    当前版本是：
+
+    .. code-block:: text
+      :linenos:
+
+      Sphinx                        4.5.0
+      sphinx-rtd-theme              1.0.0
+      sphinxcontrib-applehelp       1.0.2
+      sphinxcontrib-devhelp         1.0.2
+      sphinxcontrib-htmlhelp        2.0.0
+      sphinxcontrib-jsmath          1.0.1
+      sphinxcontrib-qthelp          1.0.3
+      sphinxcontrib-serializinghtml 1.1.5
+
+.. note::
+
+    在 mac 上安装 sphinx 5.2.3 的时候： ``brew install sphinx-doc`` ，发现自动安装了依赖 python@3.10 ，而不是用
+    系统已经安装好的 /usr/bin/python ，这就导致 ``sphinx-build`` 一直找不到 /usr/bin/pip 安装的 sphinx-rtd-theme ，
+    因此需要使用 ``/opt/homebrew/Cellar/python@3.10/3.10.6_2/bin/python3.10 -m pip install sphinx-rtd-theme`` 来重新安装。
+    
+    另外，添加环境变量 ``echo 'export PATH="/opt/homebrew/opt/sphinx-doc/bin:$PATH"' >> ~/.zshrc`` 。
+
+    编译之后，本地查看 html 结果显示正常，但是 push 到 Github 发布之后，发现代码行号几乎紧贴代码本身，视觉效果很差。
+    没找到好的解决方法，只能手动降级 sphinx ： ``/opt/homebrew/Cellar/python@3.10/3.10.6_2/bin/python3.10 -m pip install sphinx==4.5`` 。
+
+
+rst 语法测试
 --------------
 
 ``makefile`` 规则：
@@ -210,6 +241,8 @@ command
 
 上面是两个空行。
 
+这里有一个下载链接：:download:`arch <../computerNetwork/01_arch.png>`
+
 使用 ``sphinx.ext.graphviz`` 扩展，下面是一个无向图：
 
 .. graph:: foo
@@ -247,7 +280,7 @@ command
 
 .. hint::
 
-    使用 ``sphinx.ext.graphviz`` 扩展需要安装 graphviz ：
+    使用 ``sphinx.ext.graphviz`` 扩展需要安装 graphviz（brew 安装不要使用代理）：
     
     .. code:: bash
 
@@ -263,17 +296,6 @@ command
 
       graphviz_output_format = 'svg'
 
-.. note::
-
-    在 mac 上安装 sphinx 5.2.3 的时候： ``brew install sphinx-doc`` ，发现自动安装了依赖 python@3.10 ，而不是用
-    系统已经安装好的 /usr/bin/python ，这就导致 ``sphinx-build`` 一直找不到 /usr/bin/pip 安装的 sphinx-rtd-theme ，
-    因此需要使用 ``/opt/homebrew/Cellar/python@3.10/3.10.6_2/bin/python3.10 -m pip install sphinx-rtd-theme`` 来重新安装。
-    
-    另外，添加环境变量 ``echo 'export PATH="/opt/homebrew/opt/sphinx-doc/bin:$PATH"' >> ~/.zshrc`` 。
-
-    编译之后，本地查看 html 结果显示正常，但是 push 到 Github 发布之后，发现代码行号几乎紧贴代码本身，视觉效果很差。
-    没找到好的解决方法，只能手动降级 sphinx ： ``/opt/homebrew/Cellar/python@3.10/3.10.6_2/bin/python3.10 -m pip install sphinx==4.5`` 。
-
 .. warning::
 
     编译的时候提示：
@@ -284,18 +306,6 @@ command
 
       html_static_path = []
 
-.. important::
-
-    当前版本是::
-
-      Sphinx                        4.5.0
-      sphinx-rtd-theme              1.0.0
-      sphinxcontrib-applehelp       1.0.2
-      sphinxcontrib-devhelp         1.0.2
-      sphinxcontrib-htmlhelp        2.0.0
-      sphinxcontrib-jsmath          1.0.1
-      sphinxcontrib-qthelp          1.0.3
-      sphinxcontrib-serializinghtml 1.1.5
 
 参考资料
 -----------------

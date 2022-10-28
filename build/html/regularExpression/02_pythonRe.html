@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>2. Python 正则 &mdash; fong alpha documentation</title>
@@ -18,9 +18,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -60,46 +58,13 @@
 <li class="toctree-l2"><a class="reference internal" href="01_character.html">1. 字符</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">2. Python 正则</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">2.1. 正则标志</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#re-compile">2.2. re.compile</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#re.compile"><code class="docutils literal notranslate"><span class="pre">re.compile()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#re.Pattern.search"><code class="docutils literal notranslate"><span class="pre">re.Pattern.search()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Pattern.match"><code class="docutils literal notranslate"><span class="pre">Pattern.match()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Pattern.fullmatch"><code class="docutils literal notranslate"><span class="pre">Pattern.fullmatch()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Pattern.split"><code class="docutils literal notranslate"><span class="pre">Pattern.split()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Pattern.findall"><code class="docutils literal notranslate"><span class="pre">Pattern.findall()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Pattern.sub"><code class="docutils literal notranslate"><span class="pre">Pattern.sub()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Pattern.groups"><code class="docutils literal notranslate"><span class="pre">Pattern.groups()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#re-search">2.3. re.search</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#re.search"><code class="docutils literal notranslate"><span class="pre">re.search()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#re-match">2.4. re.match</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#re.match"><code class="docutils literal notranslate"><span class="pre">re.match()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">2.5. 匹配对象</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Match.groups"><code class="docutils literal notranslate"><span class="pre">Match.groups()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Match.groupdict"><code class="docutils literal notranslate"><span class="pre">Match.groupdict()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Match.group"><code class="docutils literal notranslate"><span class="pre">Match.group()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Match.start"><code class="docutils literal notranslate"><span class="pre">Match.start()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Match.end"><code class="docutils literal notranslate"><span class="pre">Match.end()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Match.span"><code class="docutils literal notranslate"><span class="pre">Match.span()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#re-findall">2.6. re.findall</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#re.findall"><code class="docutils literal notranslate"><span class="pre">re.findall()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#re-split">2.7. re.split</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#re.split"><code class="docutils literal notranslate"><span class="pre">re.split()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#re-sub">2.8. re.sub</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#re.sub"><code class="docutils literal notranslate"><span class="pre">re.sub()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#re-compile">2.2. re.compile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#re-search">2.3. re.search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#re-match">2.4. re.match</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2.5. 匹配对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#re-findall">2.6. re.findall</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#re-split">2.7. re.split</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#re-sub">2.8. re.sub</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">2.9. 参考资料</a></li>
 </ul>
 </li>
@@ -138,7 +103,7 @@
            <div itemprop="articleBody">
              
   <section id="python">
-<h1><span class="section-number">2. </span>Python 正则<a class="headerlink" href="#python" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">2. </span>Python 正则<a class="headerlink" href="#python" title="Permalink to this headline"></a></h1>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
 </pre></div>
 </div>
@@ -146,7 +111,7 @@
 <p>模式（Pattern）和被搜索的字符串既可以是 Unicode 字符串（ <code class="docutils literal notranslate"><span class="pre">str</span></code> ），也可以是 8 位字节串（ <code class="docutils literal notranslate"><span class="pre">bytes</span></code> ），但是两者不能混用。</p>
 <p>模式通常都使用原始字符串表示法：在带有 <code class="docutils literal notranslate"><span class="pre">r</span></code> 前缀的字符串字面值中，反斜杠不必做任何特殊处理。</p>
 <section id="id1">
-<h2><span class="section-number">2.1. </span>正则标志<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.1. </span>正则标志<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">re.I</span></code> ：忽略大小写。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">re.M</span></code> ：多行模式， <code class="docutils literal notranslate"><span class="pre">^</span></code> 匹配字符串的开始，以及每一行的开始（换行符后面紧跟的符号）； <code class="docutils literal notranslate"><span class="pre">$</span></code> 匹配字符串尾，以及每一行的结尾（换行符前面那个符号）。</p></li>
@@ -162,7 +127,7 @@
 </ul>
 </section>
 <section id="re-compile">
-<h2><span class="section-number">2.2. </span>re.compile<a class="headerlink" href="#re-compile" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.2. </span>re.compile<a class="headerlink" href="#re-compile" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="re.compile">
 <span class="sig-prename descclassname"><span class="pre">re.</span></span><span class="sig-name descname"><span class="pre">compile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#re.compile" title="Permalink to this definition"></a></dt>
@@ -214,7 +179,7 @@
 
 </section>
 <section id="re-search">
-<h2><span class="section-number">2.3. </span>re.search<a class="headerlink" href="#re-search" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.3. </span>re.search<a class="headerlink" href="#re-search" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="re.search">
 <span class="sig-prename descclassname"><span class="pre">re.</span></span><span class="sig-name descname"><span class="pre">search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#re.search" title="Permalink to this definition"></a></dt>
@@ -223,7 +188,7 @@
 
 </section>
 <section id="re-match">
-<h2><span class="section-number">2.4. </span>re.match<a class="headerlink" href="#re-match" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.4. </span>re.match<a class="headerlink" href="#re-match" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="re.match">
 <span class="sig-prename descclassname"><span class="pre">re.</span></span><span class="sig-name descname"><span class="pre">match</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#re.match" title="Permalink to this definition"></a></dt>
@@ -240,7 +205,7 @@
 
 </section>
 <section id="id2">
-<h2><span class="section-number">2.5. </span>匹配对象<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.5. </span>匹配对象<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <p>匹配对象 Match 常用成员方法如下：</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="Match.groups">
@@ -298,7 +263,7 @@
 
 </section>
 <section id="re-findall">
-<h2><span class="section-number">2.6. </span>re.findall<a class="headerlink" href="#re-findall" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.6. </span>re.findall<a class="headerlink" href="#re-findall" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="re.findall">
 <span class="sig-prename descclassname"><span class="pre">re.</span></span><span class="sig-name descname"><span class="pre">findall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#re.findall" title="Permalink to this definition"></a></dt>
@@ -316,7 +281,7 @@
 
 </section>
 <section id="re-split">
-<h2><span class="section-number">2.7. </span>re.split<a class="headerlink" href="#re-split" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.7. </span>re.split<a class="headerlink" href="#re-split" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="re.split">
 <span class="sig-prename descclassname"><span class="pre">re.</span></span><span class="sig-name descname"><span class="pre">split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxsplit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#re.split" title="Permalink to this definition"></a></dt>
@@ -333,7 +298,7 @@
 
 </section>
 <section id="re-sub">
-<h2><span class="section-number">2.8. </span>re.sub<a class="headerlink" href="#re-sub" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.8. </span>re.sub<a class="headerlink" href="#re-sub" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="re.sub">
 <span class="sig-prename descclassname"><span class="pre">re.</span></span><span class="sig-name descname"><span class="pre">sub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#re.sub" title="Permalink to this definition"></a></dt>
@@ -349,7 +314,7 @@
 
 </section>
 <section id="id3">
-<h2><span class="section-number">2.9. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">2.9. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>Python 正则表达式</p></li>
 </ol>

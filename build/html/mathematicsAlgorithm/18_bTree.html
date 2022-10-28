@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>18. B 树 &mdash; fong alpha documentation</title>
@@ -18,9 +18,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -122,9 +120,9 @@
            <div itemprop="articleBody">
              
   <section id="b">
-<h1><span class="section-number">18. </span>B 树<a class="headerlink" href="#b" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">18. </span>B 树<a class="headerlink" href="#b" title="Permalink to this headline"></a></h1>
 <section id="id1">
-<h2><span class="section-number">18.1. </span>B 树<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">18.1. </span>B 树<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
 <p>B 树是为磁盘或其他直接存取的辅助存储设备而设计的一种平衡搜索树。 B 树是一个一般化的二叉查找树，一个节点可以拥有 2 个以上的子节点。</p>
 <p>B 树的查找、插入、删除操作的平均和最坏时间复杂度是 <span class="math notranslate nohighlight">\(\mathcal{O}(\log n)\)</span> 。</p>
 <p>一个 <span class="math notranslate nohighlight">\(m\)</span> 阶的 B 树是一个有以下属性的树：</p>
@@ -144,7 +142,7 @@
 <a class="reference internal image-reference" href="../_images/18_btree.png"><img alt="../_images/18_btree.png" class="align-center" src="../_images/18_btree.png" style="width: 300px;" /></a>
 </section>
 <section id="id2">
-<h2><span class="section-number">18.2. </span>B+ 树<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">18.2. </span>B+ 树<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <p>B+ 树是 B 树的变体，也是一种多路搜索树，其定义基本与B-树同，额外属性：</p>
 <blockquote>
 <div><ul class="simple">
@@ -167,12 +165,12 @@
 <p>B 树相对于 B+ 树的优点是：如果经常访问的数据离根节点很近，而 B 树的非叶子节点本身存有数据，所以会要比 B+ 树快。</p>
 </section>
 <section id="id3">
-<h2><span class="section-number">18.3. </span>B* 树<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">18.3. </span>B* 树<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <p>B* 树是 B+ 树的变体，在 B+ 树的非根和非叶子节点再增加指向兄弟的指针，将节点的最低利用率从 <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> 提升到 <span class="math notranslate nohighlight">\(\frac{2}{3}\)</span> 。</p>
 <a class="reference internal image-reference" href="../_images/18_bstree.jpg"><img alt="../_images/18_bstree.jpg" class="align-center" src="../_images/18_bstree.jpg" style="width: 600px;" /></a>
 </section>
 <section id="id4">
-<h2><span class="section-number">18.4. </span>参考资料<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">18.4. </span>参考资料<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>平衡二叉树、B树、B+树、B*树</p></li>
 </ol>

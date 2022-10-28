@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>30. 模板特化 &mdash; fong alpha documentation</title>
@@ -18,9 +18,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -129,11 +127,11 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">30. </span>模板特化<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">30. </span>模板特化<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
 <p>模板特化（Template Specialization）是指模板参数在某种特定类型下的具体实现。模板特化有时也称为模板的具体化，分为函数模板特化和类模板特化。</p>
 <p>模板偏特化（Template Partitial Specialization）主要分为两种：一种是对部分模板参数进行全特化；另一种是对模板参数特性进行特化，包括将模板参数特化为指针、引用或是另外一个模板类。</p>
 <section id="id2">
-<h2><span class="section-number">30.1. </span>函数模板特化<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">30.1. </span>函数模板特化<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <p>使用普通函数重载和模板特化可以实现相同的函数功能，他们的不同之处在于：</p>
 <ul class="simple">
 <li><p>如果使用普通重载函数，那么不管是否发生实际的函数调用，编译过程中都会在目标文件中生成该函数的二进制代码。而如果使用模板的特化版本，除非发生函数调用，否则不会在目标文件中包含特化模板函数的二进制代码。这符合函数模板的“惰性实例化”准则。</p></li>
@@ -169,7 +167,7 @@
 </div>
 </section>
 <section id="id3">
-<h2><span class="section-number">30.2. </span>类模板特化<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">30.2. </span>类模板特化<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <p>类模板特化类似于函数模板的特化，即类模板参数在某种特定类型下的具体实现。</p>
 <p>对主版本模板类、全特化类、偏特化类的调用优先级从高到低排序是：全特化类 &gt; 偏特化类 &gt; 主版本模板类。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T1</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">T2</span><span class="o">&gt;</span><span class="w"></span>
@@ -230,7 +228,7 @@
 </div>
 </section>
 <section id="id4">
-<h2><span class="section-number">30.3. </span>参考资料<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">30.3. </span>参考资料<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>C++学习之模板特例化</p></li>
 </ol>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>25. 命名空间 &mdash; fong alpha documentation</title>
@@ -18,9 +18,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -141,10 +139,10 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">25. </span>命名空间<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">25. </span>命名空间<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
 <p>命名空间（namespace）为防止名字冲突提供了更加可控的机制。命名空间分割了全局命名空间，每个命名空间是一个作用域。通过在某个命名空间中定义库的名字，可以避免全局名字固有的限制。</p>
 <section id="id2">
-<h2><span class="section-number">25.1. </span>命名空间的定义<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">25.1. </span>命名空间的定义<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <p>只要能出现在全局作用域中的声明都能置于命名空间内。</p>
 <blockquote>
 <div><ul class="simple">
@@ -165,7 +163,7 @@
 </div>
 <p>命名空间可以定义在全局作用域，也可以定义在其他命名空间中（嵌套命名空间，内层命名空间声明的名字将隐藏外层命名空间的名字），但是不能定义在函数或类的内部。</p>
 <section id="id3">
-<h3>作用域<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<h3>作用域<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
 <p>不同命名空间的作用域不同，因此不同命名空间内可以有相同名字的成员。</p>
 <blockquote>
 <div><ul>
@@ -179,7 +177,7 @@
 </div></blockquote>
 </section>
 <section id="id4">
-<h3>不连续性<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<h3>不连续性<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">namespace</span><span class="w"> </span><span class="nn">cpp</span><span class="w"></span>
 <span class="linenos">2</span><span class="p">{</span><span class="w"></span>
 <span class="linenos">3</span><span class="w">  </span><span class="cm">/* ... */</span><span class="w"></span>
@@ -196,7 +194,7 @@
 </dl>
 </section>
 <section id="id5">
-<h3>全局命名空间<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<h3>全局命名空间<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
 <p>全局作用域（即在所有类、函数、命名空间之外）中定义的名字就是定义在全局命名空间中。全局命名空间以隐式的方式声明，并在所有的程序中存在。</p>
 <p>作用域运算符 <code class="docutils literal notranslate"><span class="pre">::</span></code> 可以用于全局作用域的成员。由于全局作用域是隐式的，所以它并没有名字，</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="o">::</span><span class="n">global_var</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
@@ -204,7 +202,7 @@
 </div>
 </section>
 <section id="id6">
-<h3>内联命名空间<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<h3>内联命名空间<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h3>
 <p>内联命名空间中的名字可以被外层命名空间直接使用而无需添加命名空间的前缀（ <code class="docutils literal notranslate"><span class="pre">::</span></code> ）。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">// FifthEd.h</span>
 <span class="linenos"> 2</span><span class="kr">inline</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">FifthEd</span><span class="w"></span>
@@ -230,7 +228,7 @@
 </div>
 </section>
 <section id="id7">
-<h3>未命名的命名空间<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
+<h3>未命名的命名空间<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h3>
 <p>未命名的命名空间是由关键字 <code class="docutils literal notranslate"><span class="pre">namespace</span></code> 紧跟花括号括起来的一系列声明语句。</p>
 <p>未命名的命名空间中定义的变量将拥有静态声明周期：它们在第一次使用前创建，并且直到程序结束时才销毁。</p>
 <p>未命名的命名空间可以在某个给定的文件内不连续，但是不能跨越多个文件。每个文件定义自己的未命名的命名空间，如果两个文件都含有未命名的命名空间，则这两个空间互相无关。在这两个未命名的命名空间中可以定义相同的名字，并且这些定义表示不同的实体。</p>
@@ -244,15 +242,15 @@
 </section>
 </section>
 <section id="id8">
-<h2><span class="section-number">25.2. </span>使用命名空间<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">25.2. </span>使用命名空间<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h2>
 <section id="id9">
-<h3>使用别名<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>
+<h3>使用别名<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h3>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">primer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">cplusplus_primer</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="using">
-<h3>using 声明<a class="headerlink" href="#using" title="Permalink to this heading"></a></h3>
+<h3>using 声明<a class="headerlink" href="#using" title="Permalink to this headline"></a></h3>
 <p>一条 using 声明（declaration）语句一次只引入命名空间的一个成员；</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">;</span><span class="c1">// cout 的调用不再需要作用域运算符，其他 std 命名空间中的名字仍然需要作用域运算符</span>
 </pre></div>
@@ -260,7 +258,7 @@
 <p>using 声明可以出现在全局作用域、局部作用域、命名空间作用域、类的作用域中（只能指向基类成员）。</p>
 </section>
 <section id="id10">
-<h3>using 指示<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h3>
+<h3>using 指示<a class="headerlink" href="#id10" title="Permalink to this headline"></a></h3>
 <p>using 指示（directive）语句使得该命名空间内的所有名字都可见。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w"></span>
 </pre></div>
@@ -289,7 +287,7 @@
 </section>
 </section>
 <section id="id11">
-<h2><span class="section-number">25.3. </span>参考资料<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">25.3. </span>参考资料<a class="headerlink" href="#id11" title="Permalink to this headline"></a></h2>
 <p>1.《C++ Primer 第5版 中文版》 Page 695 – 710。</p>
 <ol class="arabic simple" start="2">
 <li><p>命名空间</p></li>

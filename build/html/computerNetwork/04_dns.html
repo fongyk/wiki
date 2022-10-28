@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>4. 域名 &mdash; fong alpha documentation</title>
@@ -18,9 +18,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -110,24 +108,24 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">4. </span>域名<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">4. </span>域名<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
 <p>域名（Domain Name）是由一串用点 <code class="docutils literal notranslate"><span class="pre">.</span></code> 分隔的字符组成的互联网上某一台计算机或计算机组的名称，用于在数据传输时标识计算机的电子方位。域名可以说是一个 IP 地址的代称，目的是为了便于记忆后者。例如， <code class="docutils literal notranslate"><span class="pre">wikipedia.org</span></code> 是一个域名，人们可以直接访问 <code class="docutils literal notranslate"><span class="pre">wikipedia.org</span></code> 来代替 IP 地址，然后域名系统（Domain Name System，DNS）就会将它映射成便于机器识别的 IP 地址。</p>
 <p>在域名系统的层次结构中，各种域名都隶属于域名系统 <strong>根域</strong> 的下级。域名的第一级是顶级域，它包括通用顶级域（例如 <code class="docutils literal notranslate"><span class="pre">.com</span></code> <code class="docutils literal notranslate"><span class="pre">.net</span></code> <code class="docutils literal notranslate"><span class="pre">.org</span></code> ）以及国家和地区顶级域（例如 <code class="docutils literal notranslate"><span class="pre">.us</span></code> <code class="docutils literal notranslate"><span class="pre">.cn</span></code>  ）等。顶级域名下一层是二级域名，一级一级地往下。</p>
 <a class="reference internal image-reference" href="../_images/04_dns.png"><img alt="../_images/04_dns.png" class="align-center" src="../_images/04_dns.png" style="width: 500px;" /></a>
 <section id="id2">
-<h2><span class="section-number">4.1. </span>域名管理<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.1. </span>域名管理<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <p>美国的互联网名称与数字地址分配机构（ICANN）负责互联网域名空间的开发和架构，只有经过它授权的域名注册管理机构和域名注册商，才能对外界提供顶级域名管理和注册服务。另外，互联网号码分配局（IANA）负责运营域名系统根区域（Root Zone）、委派顶级域名的管理，并负责 <code class="docutils literal notranslate"><span class="pre">.int</span></code> 和 <code class="docutils literal notranslate"><span class="pre">.arpa</span></code> 两个域名的管理。</p>
 </section>
 <section id="id3">
-<h2><span class="section-number">4.2. </span>域名层次<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.2. </span>域名层次<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <section id="id4">
-<h3><span class="section-number">4.2.1. </span>域名语法<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.2.1. </span>域名语法<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
 <p>域名通过点号 <code class="docutils literal notranslate"><span class="pre">.</span></code> 将多个标签连接在一起。一个域名的层次结构，从右侧到左侧隔一个点依次下降一层，每个标签可以包含 1 到 63 个 ASCII 字符（八字节）。完整域名的所有字符加起来不得超过 253 个 ASCII 字符，因此当每一级都使用单个字符时，总共有 127 个层次（127 个字符加上 126 个点的总长度为 253）。</p>
 <p>域名的结尾有时候还有一点，这是保留给 <strong>根节点（根域）</strong> 的，书写时通常省略，在查询时由软件内部补上。</p>
 <p>域名里的英文字母不区分大小写，一般都以小写形式拼写。</p>
 </section>
 <section id="id5">
-<h3><span class="section-number">4.2.2. </span>顶级域<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.2.2. </span>顶级域<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
 <p>顶级域（Top-Level Domains，TLD）是域名中最高的一级，每个域名都以顶级域结尾。</p>
 <p>顶级域名主要分成以下几类：</p>
 <ul class="simple">
@@ -166,12 +164,12 @@
 </section>
 </section>
 <section id="id6">
-<h2><span class="section-number">4.3. </span>根域名服务器<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.3. </span>根域名服务器<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
 <p>根域名服务器（Root Name Server）是域名系统（DNS）中最高级别的域名服务器，负责维护 DNS 根区文件 <a class="reference external" href="https://www.internic.net/domain/root.zone">Root Zone File</a> ，该文件保存了所有顶级域名（TLD）的托管信息，文件大小约 2 MB。对于收到的顶级域解析请求，它会返回顶级域的域名服务器 IP 地址。它们是互联网基础设施中的重要部分，因为所有域名解析操作均离不开它们。</p>
 <p>由于 DNS 和某些协议的共同限制，根域名服务器地址的数量被限制为 13 个。根域名服务器会部署多个节点，共用 IP。此外，采用任播（Anycast）技术架设镜像服务器可解决数量限制，使得实际运行的根域名服务器数量大大增加。
 全球 13 组根域名服务器以英文字母 <code class="docutils literal notranslate"><span class="pre">a</span></code> 到 <code class="docutils literal notranslate"><span class="pre">m</span></code> 依序命名，域名格式为 <code class="docutils literal notranslate"><span class="pre">[a-m].root-servers.net</span></code> 。</p>
 <section id="id7">
-<h3><span class="section-number">4.3.1. </span>域名解析的工作流程<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.3.1. </span>域名解析的工作流程<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h3>
 <p>域名系统的每一级只知道直接下级的位置，而无法获得跨级的位置，因此在域名解析的时候，需要自上而下、逐级查询。这种机制虽然看似低效，却能够提供分布式、高容错的服务，避免让域名系统成为一个集中式的单点系统。</p>
 <p>假如我要访问 <code class="docutils literal notranslate"><span class="pre">www.example.com</span></code> ：</p>
 <ul>
@@ -242,7 +240,7 @@
 </section>
 </section>
 <section id="dig">
-<h2><span class="section-number">4.4. </span>dig 命令<a class="headerlink" href="#dig" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.4. </span>dig 命令<a class="headerlink" href="#dig" title="Permalink to this headline"></a></h2>
 <p>dig 命令是查询 DNS 域名服务器的工具，它执行 DNS 搜索并打印收到请求的域名服务器的响应信息，是常用的 DNS 故障诊断工具。</p>
 <p><code class="docutils literal notranslate"><span class="pre">dig</span> <span class="pre">www.baidu.com</span></code> 结果如下：</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>; &lt;&lt;&gt;&gt; DiG 9.10.6 &lt;&lt;&gt;&gt; www.baidu.com
@@ -397,7 +395,7 @@
 </div>
 </section>
 <section id="id8">
-<h2><span class="section-number">4.5. </span>参考资料<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.5. </span>参考资料<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>域名</p></li>
 </ol>

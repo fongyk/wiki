@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>16. __new__ 和 __init__ &mdash; fong alpha documentation</title>
@@ -18,9 +18,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -131,9 +129,9 @@
            <div itemprop="articleBody">
              
   <section id="new-init">
-<h1><span class="section-number">16. </span>__new__ 和 __init__<a class="headerlink" href="#new-init" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">16. </span>__new__ 和 __init__<a class="headerlink" href="#new-init" title="Permalink to this headline"></a></h1>
 <section id="id1">
-<h2><span class="section-number">16.1. </span>老式类与新式类<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">16.1. </span>老式类与新式类<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
 <p>Python 2.x 中类的定义分为新式定义和老式定义两种。
 老式类定义时默认是继承自 <code class="docutils literal notranslate"><span class="pre">type</span></code> ，而新式类在定义时显示地继承 <code class="docutils literal notranslate"><span class="pre">object</span></code> 类。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">class</span> <span class="nc">A</span><span class="p">:</span> <span class="c1">## 老式类</span>
@@ -159,14 +157,14 @@
 <p>Python 3.x中没有新式类和老式类之分，它们都继承自 <code class="docutils literal notranslate"><span class="pre">object</span></code> 类，因此可以不用显示地指定其基类。</p>
 </section>
 <section id="id2">
-<h2><span class="section-number">16.2. </span>老式类<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">16.2. </span>老式类<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <p>老式类中其实并没有 <code class="docutils literal notranslate"><span class="pre">__new__</span></code> 方法，因为 <code class="docutils literal notranslate"><span class="pre">__init__</span></code> 就是它的构造方法（函数）。即使重写 <code class="docutils literal notranslate"><span class="pre">__new__</span></code> 方法，也永远不会执行。</p>
 <p><code class="docutils literal notranslate"><span class="pre">__init__</span></code> 只能返回 <code class="docutils literal notranslate"><span class="pre">None</span></code>。</p>
 </section>
 <section id="id3">
-<h2><span class="section-number">16.3. </span>新式类<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">16.3. </span>新式类<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <section id="id4">
-<h3><span class="section-number">16.3.1. </span>功能<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">16.3.1. </span>功能<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
 <p>新式类中，<code class="docutils literal notranslate"><span class="pre">__new__</span></code> （构造函数）单独地 <strong>创建</strong> 一个对象，而 <code class="docutils literal notranslate"><span class="pre">__init__</span></code> （初始化函数）负责 <strong>初始化</strong> 这个对象。</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">__new__</span></code> 至少要有一个参数 <code class="docutils literal notranslate"><span class="pre">cls</span></code>，代表要实例化的类，此参数在实例化时由Python解释器自动提供。</p></li>
@@ -174,7 +172,7 @@
 </ul>
 </section>
 <section id="id5">
-<h3><span class="section-number">16.3.2. </span>返回值<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">16.3.2. </span>返回值<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">__init__</span></code> 只能返回  <code class="docutils literal notranslate"><span class="pre">None</span></code>。</p>
 <p><code class="docutils literal notranslate"><span class="pre">__new__</span></code> 返回创建的实例对象并传递给 <code class="docutils literal notranslate"><span class="pre">__init__</span></code> 的 <code class="docutils literal notranslate"><span class="pre">self</span></code> 参数。如果 <code class="docutils literal notranslate"><span class="pre">__new__</span></code> 没有返回值，或者没有正确返回 <strong>当前类</strong> <code class="docutils literal notranslate"><span class="pre">cls</span></code> 的实例，则 <code class="docutils literal notranslate"><span class="pre">__init__</span></code> 不会被调用。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -220,7 +218,7 @@
 </div>
 </section>
 <section id="new">
-<h3><span class="section-number">16.3.3. </span>__new__ 实现单例<a class="headerlink" href="#new" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">16.3.3. </span>__new__ 实现单例<a class="headerlink" href="#new" title="Permalink to this headline"></a></h3>
 <p>单例（singleton）：类只有一个对象。<code class="docutils literal notranslate"><span class="pre">None</span></code> 就是一个单例，所有的变量只要是 <code class="docutils literal notranslate"><span class="pre">None</span></code> ，它一定和 <code class="docutils literal notranslate"><span class="pre">None</span></code> 指向同一个内存地址。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">Singleton</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="linenos"> 2</span>    <span class="n">_instance</span> <span class="o">=</span> <span class="kc">None</span>
@@ -268,7 +266,7 @@
 </section>
 </section>
 <section id="repr-str">
-<h2><span class="section-number">16.4. </span>附：__repr__ 和 __str__<a class="headerlink" href="#repr-str" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">16.4. </span>附：__repr__ 和 __str__<a class="headerlink" href="#repr-str" title="Permalink to this headline"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">Base</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="linenos"> 2</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;fong&quot;</span><span class="p">):</span>
 <span class="linenos"> 3</span>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
@@ -297,7 +295,7 @@
 </div>
 </section>
 <section id="id6">
-<h2><span class="section-number">16.5. </span>参考资料<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">16.5. </span>参考资料<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>深入理解Python中的 __new__ 和 __init__</p></li>
 </ol>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>24. Python 执行 linux 命令 &mdash; fong alpha documentation</title>
@@ -18,9 +18,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -131,9 +129,9 @@
            <div itemprop="articleBody">
              
   <section id="python-linux">
-<h1><span class="section-number">24. </span>Python 执行 linux 命令<a class="headerlink" href="#python-linux" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">24. </span>Python 执行 linux 命令<a class="headerlink" href="#python-linux" title="Permalink to this headline"></a></h1>
 <section id="os-system">
-<h2><span class="section-number">24.1. </span>os.system<a class="headerlink" href="#os-system" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">24.1. </span>os.system<a class="headerlink" href="#os-system" title="Permalink to this headline"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&quot;cmd&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -150,7 +148,7 @@
 </div>
 </section>
 <section id="os-popen">
-<h2><span class="section-number">24.2. </span>os.popen<a class="headerlink" href="#os-popen" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">24.2. </span>os.popen<a class="headerlink" href="#os-popen" title="Permalink to this headline"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s2">&quot;cmd&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -173,10 +171,10 @@
 </div>
 </section>
 <section id="subprocess">
-<h2><span class="section-number">24.3. </span>subprocess<a class="headerlink" href="#subprocess" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">24.3. </span>subprocess<a class="headerlink" href="#subprocess" title="Permalink to this headline"></a></h2>
 <p>subprocess 模块允许我们启动一个新进程，并连接到它们的 stdin/stdout/stderr 管道，从而获取返回值。</p>
 <section id="run">
-<h3><span class="section-number">24.3.1. </span>run<a class="headerlink" href="#run" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">24.3.1. </span>run<a class="headerlink" href="#run" title="Permalink to this headline"></a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">stdin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cwd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">universal_newlines</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -206,7 +204,7 @@
 </div>
 </section>
 <section id="popen">
-<h3><span class="section-number">24.3.2. </span>Popen<a class="headerlink" href="#popen" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">24.3.2. </span>Popen<a class="headerlink" href="#popen" title="Permalink to this headline"></a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">bufsize</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">executable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stdin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">preexec_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">close_fds</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cwd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">universal_newlines</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">startupinfo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">creationflags</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">restore_signals</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">start_new_session</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">pass_fds</span><span class="o">=</span><span class="p">(),</span> <span class="o">*</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -224,7 +222,7 @@
 </section>
 </section>
 <section id="pbs">
-<h2><span class="section-number">24.4. </span>pbs<a class="headerlink" href="#pbs" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">24.4. </span>pbs<a class="headerlink" href="#pbs" title="Permalink to this headline"></a></h2>
 <p>需要安装 pbs 包（更新后为 sh 包）。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">sh</span> <span class="k">as</span> <span class="nn">pbs</span>
 <span class="linenos">2</span><span class="gp">&gt;&gt;&gt; </span><span class="n">pbs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
@@ -238,7 +236,7 @@
 </div>
 </section>
 <section id="os">
-<h2><span class="section-number">24.5. </span>附录：os 常用命令<a class="headerlink" href="#os" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">24.5. </span>附录：os 常用命令<a class="headerlink" href="#os" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">os.remove</span></code> 删除文件</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">os.rename</span></code> 重命名文件</p></li>
@@ -260,7 +258,7 @@
 </ul>
 </section>
 <section id="id1">
-<h2><span class="section-number">24.6. </span>参考资料<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">24.6. </span>参考资料<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>python调用linux命令的方法</p></li>
 </ol>

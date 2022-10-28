@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>31. 类型推导 &mdash; fong alpha documentation</title>
@@ -18,9 +18,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -130,10 +128,10 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">31. </span>类型推导<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">31. </span>类型推导<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
 <p>C++ 11 引入了 <strong>auto</strong> 和 <strong>decltype</strong> 关键字，使用它们可以在编译期就推导出变量或者表达式的类型，方便开发者编码也简化了代码。</p>
 <section id="auto">
-<h2><span class="section-number">31.1. </span>auto<a class="headerlink" href="#auto" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">31.1. </span>auto<a class="headerlink" href="#auto" title="Permalink to this headline"></a></h2>
 <p>auto 让编译器通过初始值来进行类型推演，从而获得定义变量的类型，所以 auto 定义的变量必须有初始值。</p>
 <p>auto 会忽略引用。当引用被用作初始值的时候，真正参与初始化的其实是引用对象的值，此时编译器以引用对象的类型作为 auto 的类型。</p>
 <p>auto 一般会忽略掉顶层 const，但底层 const 会被保留下来。如果希望推断出的 auto 类型是一个顶层 const，需要显式声明。</p>
@@ -147,7 +145,7 @@
 </div>
 </section>
 <section id="decltype">
-<h2><span class="section-number">31.2. </span>decltype<a class="headerlink" href="#decltype" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">31.2. </span>decltype<a class="headerlink" href="#decltype" title="Permalink to this headline"></a></h2>
 <p>有的时候我们希望从表达式中推断出要定义变量的类型，但却不想用表达式的值去初始化变量。decltype 的作用是选择并返回操作数的数据类型，在此过程中，编译器只是分析表达式并得到它的类型，却 <strong>不实际计算表达式的值</strong> 。</p>
 <p>decltype 处理顶层 const 、引用的方式与 auto 有些许不同，如果 decltype 使用的表达式是一个变量，则 decltype 返回该变量的类型（包括顶层 const 和引用在内）。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ci</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
@@ -195,7 +193,7 @@
 </div>
 </section>
 <section id="id2">
-<h2><span class="section-number">31.3. </span>后置返回类型<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">31.3. </span>后置返回类型<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <p>在C++ 11中，函数声明 <code class="docutils literal notranslate"><span class="pre">double</span> <span class="pre">foo(int</span> <span class="pre">i);</span></code> 可以写成 <code class="docutils literal notranslate"><span class="pre">auto</span> <span class="pre">foo(int</span> <span class="pre">i)</span> <span class="pre">-&gt;</span> <span class="pre">double;</span></code> 。</p>
 <p>泛型编程场景中，返回值类型后置语法结合 decltype 用于自动推导返回值类型。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span><span class="w"></span>
@@ -207,7 +205,7 @@
 </div>
 </section>
 <section id="id3">
-<h2><span class="section-number">31.4. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">31.4. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>《C++ Primer 第5版 中文版》 Page 61 – 63。</p></li>
 <li><p>C++11：后置返回类型</p></li>

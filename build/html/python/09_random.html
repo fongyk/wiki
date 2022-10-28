@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>9. random &mdash; fong alpha documentation</title>
@@ -18,9 +18,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -61,26 +59,8 @@
 <li class="toctree-l2"><a class="reference internal" href="07_arg.html">7. *args和**kwargs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="08_basicType.html">8. 基本数据类型</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">9. random</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">9.1. random</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#random.random"><code class="docutils literal notranslate"><span class="pre">random.random()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#random.uniform"><code class="docutils literal notranslate"><span class="pre">random.uniform()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#random.randint"><code class="docutils literal notranslate"><span class="pre">random.randint()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#random.randrange"><code class="docutils literal notranslate"><span class="pre">random.randrange()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#random.choice"><code class="docutils literal notranslate"><span class="pre">random.choice()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#random.shuffle"><code class="docutils literal notranslate"><span class="pre">random.shuffle()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#numpy-random">9.2. numpy.random</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#numpy.random.random"><code class="docutils literal notranslate"><span class="pre">numpy.random.random()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#numpy.random.rand"><code class="docutils literal notranslate"><span class="pre">numpy.random.rand()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#numpy.random.randn"><code class="docutils literal notranslate"><span class="pre">numpy.random.randn()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#numpy.random.randint"><code class="docutils literal notranslate"><span class="pre">numpy.random.randint()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#numpy.random.choice"><code class="docutils literal notranslate"><span class="pre">numpy.random.choice()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#numpy.random.shuffle"><code class="docutils literal notranslate"><span class="pre">numpy.random.shuffle()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#numpy.random.permutation"><code class="docutils literal notranslate"><span class="pre">numpy.random.permutation()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#numpy.random.seed"><code class="docutils literal notranslate"><span class="pre">numpy.random.seed()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">9.1. random</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#numpy-random">9.2. numpy.random</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">9.3. 参考资料</a></li>
 </ul>
 </li>
@@ -143,9 +123,9 @@
            <div itemprop="articleBody">
              
   <section id="random">
-<h1><span class="section-number">9. </span>random<a class="headerlink" href="#random" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">9. </span>random<a class="headerlink" href="#random" title="Permalink to this headline"></a></h1>
 <section id="id1">
-<h2><span class="section-number">9.1. </span>random<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">9.1. </span>random<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
 <p>Python 自带的 random 库。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
 </pre></div>
@@ -188,7 +168,7 @@
 
 </section>
 <section id="numpy-random">
-<h2><span class="section-number">9.2. </span>numpy.random<a class="headerlink" href="#numpy-random" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">9.2. </span>numpy.random<a class="headerlink" href="#numpy-random" title="Permalink to this headline"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
@@ -285,7 +265,7 @@
 </div>
 </section>
 <section id="id2">
-<h2><span class="section-number">9.3. </span>参考资料<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">9.3. </span>参考资料<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>random — Generate pseudo-random numbers</p></li>
 </ol>

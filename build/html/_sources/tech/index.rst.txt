@@ -1,4 +1,4 @@
-Tech
+技巧
 ===========
 
 
@@ -23,19 +23,6 @@ Tech
 
     https://codingstandards.iteye.com/blog/810900
 
-- Linux配置shadowsocks及使用proxychains
-
-    https://portal.shadowsocks.nl/knowledgebase/40/Shadowsocks-%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B---Linux.html
-
-    https://blog.huihut.com/2017/08/25/LinuxInstallConfigShadowsocksClient/
-
-    https://mritd.me/2016/07/22/Linux-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8B%E4%BD%BF%E7%94%A8-Shadowsocks-%E4%BB%A3%E7%90%86/
-
-- 加速git clone。首先使用 ``nslookup`` 指令查询域名对用的公网ip。
-
-    https://blog.51cto.com/11887934/2051323
-
-    https://blog.lizebang.top/2018/02/git-clone-slow/
 
 - 在windows下安装Jupyter Notebook的安装和使用
 
@@ -73,8 +60,27 @@ Tech
 
     https://nvidia.github.io/apex/amp.html
 
+- mac下镜像飞速安装Homebrew教程
 
-问题
+    https://zhuanlan.zhihu.com/p/90508170
+
+- 开启 https & ssh 代理,让 git clone 快到飞起
+
+    https://juejin.cn/post/6847902220420120589
+
+- 如何为 Git 设置代理
+
+    https://www.cnblogs.com/cscshi/p/15705045.html
+
+- Linux实现socks终端代理、全局代理
+
+    https://cloud.tencent.com/developer/article/1852590?ivk_sa=1024320u
+
+- IntelliJ IDEA 2022.2.3激活破解图文教程
+
+    https://www.exception.site/essay/idea-reset-eval
+
+问题解答
 -----------
 
 - Unable to locate package python-pip
@@ -90,3 +96,12 @@ Tech
 - python 四舍五入
 
     https://zhuanlan.zhihu.com/p/60952919
+
+- vim中文乱码解决
+
+    https://www.jianshu.com/p/459f82b0c4b9
+
+- How can I Remove .DS_Store files from a Git repository?
+
+    https://stackoverflow.com/questions/107701/how-can-i-remove-ds-store-files-from-a-git-repository
+

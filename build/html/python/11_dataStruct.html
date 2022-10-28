@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>11. 常用数据结构 &mdash; fong alpha documentation</title>
@@ -18,9 +18,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -137,25 +135,25 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">11. </span>常用数据结构<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">11. </span>常用数据结构<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
 <section id="id2">
-<h2><span class="section-number">11.1. </span>栈<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">11.1. </span>栈<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <p><strong>list</strong> 的 <code class="docutils literal notranslate"><span class="pre">append()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">pop()</span></code> 方法使得 list 类型可以作为简单的栈使用。</p>
 </section>
 <section id="id3">
-<h2><span class="section-number">11.2. </span>队列<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">11.2. </span>队列<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
 <p>Python 2 的队列模块为 <code class="docutils literal notranslate"><span class="pre">Queue</span></code> ，Python 3 的队列模块为 <code class="docutils literal notranslate"><span class="pre">queue</span></code> 。</p>
 </div>
 <section id="queue">
-<h3><span class="section-number">11.2.1. </span>queue<a class="headerlink" href="#queue" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">11.2.1. </span>queue<a class="headerlink" href="#queue" title="Permalink to this headline"></a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">queue</span>
 </pre></div>
 </div>
 <p>queue 模块实现了多生产者、多消费者队列，适用于消息必须安全地在多线程间交换的线程编程。</p>
 <section id="id4">
-<h4>类<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h4>
+<h4>类<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h4>
 <dl class="py class">
 <dt class="sig sig-object py" id="queue.Queue">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">queue.</span></span><span class="sig-name descname"><span class="pre">Queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maxsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#queue.Queue" title="Permalink to this definition"></a></dt>
@@ -181,7 +179,7 @@
 
 </section>
 <section id="id5">
-<h4>异常<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h4>
+<h4>异常<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h4>
 <dl class="py exception">
 <dt class="sig sig-object py" id="queue.Empty">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">queue.</span></span><span class="sig-name descname"><span class="pre">Empty</span></span><a class="headerlink" href="#queue.Empty" title="Permalink to this definition"></a></dt>
@@ -196,7 +194,7 @@
 
 </section>
 <section id="id6">
-<h4>方法<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h4>
+<h4>方法<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h4>
 <p>队列（ <code class="docutils literal notranslate"><span class="pre">Queue</span></code> <code class="docutils literal notranslate"><span class="pre">LifoQueue</span></code> <code class="docutils literal notranslate"><span class="pre">PriorityQueue</span></code> ）具有以下公共方法。</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="qsize">
@@ -325,7 +323,7 @@
 </section>
 </section>
 <section id="deque">
-<h3><span class="section-number">11.2.2. </span>deque<a class="headerlink" href="#deque" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">11.2.2. </span>deque<a class="headerlink" href="#deque" title="Permalink to this headline"></a></h3>
 <p>double-ended queue，双端队列。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
 </pre></div>
@@ -361,13 +359,13 @@
 </section>
 </section>
 <section id="id7">
-<h2><span class="section-number">11.3. </span>堆<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">11.3. </span>堆<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">heapq</span>
 </pre></div>
 </div>
 <p>heapq 创建的是 <strong>小顶堆</strong> ，堆顶元素是堆的最小元素。</p>
 <section id="id8">
-<h3><span class="section-number">11.3.1. </span>创建堆<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">11.3.1. </span>创建堆<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h3>
 <ul>
 <li><p><strong>heappush()</strong></p>
 <p>基于空列表[]，使用 <code class="docutils literal notranslate"><span class="pre">heappush()</span></code> 把元素逐个插入堆中。 <code class="docutils literal notranslate"><span class="pre">heappop(h)</span></code> 弹出并返回堆顶元素。h[0] 是最小值。</p>
@@ -419,7 +417,7 @@
 </ul>
 </section>
 <section id="id9">
-<h3><span class="section-number">11.3.2. </span>获取最值<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">11.3.2. </span>获取最值<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">heapq</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">iterable</span><span class="p">[,</span> <span class="n">key</span><span class="p">])</span>
 <span class="n">heapq</span><span class="o">.</span><span class="n">nsmallest</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">iterable</span><span class="p">[,</span> <span class="n">key</span><span class="p">])</span>
 </pre></div>
@@ -449,7 +447,7 @@
 </div>
 </section>
 <section id="id10">
-<h3><span class="section-number">11.3.3. </span>大顶堆<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">11.3.3. </span>大顶堆<a class="headerlink" href="#id10" title="Permalink to this headline"></a></h3>
 <p>heapq 默认创建小顶堆，为了创建大顶堆，有以下 trick:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span> <span class="c1">## 插入 x</span>
 <span class="n">x</span> <span class="o">=</span> <span class="o">-</span> <span class="n">heapq</span><span class="o">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="c1">## 弹出堆顶元素</span>
@@ -457,7 +455,7 @@
 </div>
 </section>
 <section id="k">
-<h3><span class="section-number">11.3.4. </span>数列前 K 大的数<a class="headerlink" href="#k" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">11.3.4. </span>数列前 K 大的数<a class="headerlink" href="#k" title="Permalink to this headline"></a></h3>
 <p>Hint：建立大小为 <span class="math notranslate nohighlight">\(K\)</span> 的小顶堆，对后续所有数进行遍历：如果大于堆顶元素，则有可能是前 <span class="math notranslate nohighlight">\(K\)</span> 大的数，堆顶元素弹出，插入该数。
 时间复杂度 <span class="math notranslate nohighlight">\(\mathcal{O}(NlogK)\)</span>。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">heapq</span> <span class="k">as</span> <span class="nn">hq</span>
@@ -492,7 +490,7 @@
 </section>
 </section>
 <section id="id11">
-<h2><span class="section-number">11.4. </span>计数器<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">11.4. </span>计数器<a class="headerlink" href="#id11" title="Permalink to this headline"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
 </pre></div>
 </div>
@@ -526,7 +524,7 @@
 </div>
 </section>
 <section id="id12">
-<h2><span class="section-number">11.5. </span>参考资料<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">11.5. </span>参考资料<a class="headerlink" href="#id12" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>queue — A synchronized queue class</p></li>
 </ol>

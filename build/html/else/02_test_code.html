@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3. rst语法 &mdash; fong alpha documentation</title>
+  <title>3. sphinx 与 rst &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -18,9 +18,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -64,9 +62,10 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">其他</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="01_interview.html">1. 复习</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_leetcode.html">2. 编程算法</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">3. rst语法</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">3.1. 语法测试</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">3.2. 参考资料</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. sphinx 与 rst</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx">3.1. sphinx</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rst">3.2. rst 语法测试</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">3.3. 参考资料</a></li>
 </ul>
 </li>
 </ul>
@@ -88,7 +87,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">其他</a> &raquo;</li>
-      <li><span class="section-number">3. </span>rst语法</li>
+      <li><span class="section-number">3. </span>sphinx 与 rst</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/else/02_test_code.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -98,10 +97,36 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="rst">
-<h1><span class="section-number">3. </span>rst语法<a class="headerlink" href="#rst" title="Permalink to this heading"></a></h1>
-<section id="id1">
-<h2><span class="section-number">3.1. </span>语法测试<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+  <section id="sphinx-rst">
+<h1><span class="section-number">3. </span>sphinx 与 rst<a class="headerlink" href="#sphinx-rst" title="Permalink to this headline"></a></h1>
+<section id="sphinx">
+<h2><span class="section-number">3.1. </span>sphinx<a class="headerlink" href="#sphinx" title="Permalink to this headline"></a></h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>当前版本是：</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>Sphinx                        4.5.0
+<span class="linenos">2</span>sphinx-rtd-theme              1.0.0
+<span class="linenos">3</span>sphinxcontrib-applehelp       1.0.2
+<span class="linenos">4</span>sphinxcontrib-devhelp         1.0.2
+<span class="linenos">5</span>sphinxcontrib-htmlhelp        2.0.0
+<span class="linenos">6</span>sphinxcontrib-jsmath          1.0.1
+<span class="linenos">7</span>sphinxcontrib-qthelp          1.0.3
+<span class="linenos">8</span>sphinxcontrib-serializinghtml 1.1.5
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>在 mac 上安装 sphinx 5.2.3 的时候： <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">sphinx-doc</span></code> ，发现自动安装了依赖 <a class="reference external" href="mailto:python&#37;&#52;&#48;3&#46;10">python<span>&#64;</span>3<span>&#46;</span>10</a> ，而不是用
+系统已经安装好的 /usr/bin/python ，这就导致 <code class="docutils literal notranslate"><span class="pre">sphinx-build</span></code> 一直找不到 /usr/bin/pip 安装的 sphinx-rtd-theme ，
+因此需要使用 <code class="docutils literal notranslate"><span class="pre">/opt/homebrew/Cellar/python&#64;3.10/3.10.6_2/bin/python3.10</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">sphinx-rtd-theme</span></code> 来重新安装。</p>
+<p>另外，添加环境变量 <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">'export</span> <span class="pre">PATH=&quot;/opt/homebrew/opt/sphinx-doc/bin:$PATH&quot;'</span> <span class="pre">&gt;&gt;</span> <span class="pre">~/.zshrc</span></code> 。</p>
+<p>编译之后，本地查看 html 结果显示正常，但是 push 到 Github 发布之后，发现代码行号几乎紧贴代码本身，视觉效果很差。
+没找到好的解决方法，只能手动降级 sphinx ： <code class="docutils literal notranslate"><span class="pre">/opt/homebrew/Cellar/python&#64;3.10/3.10.6_2/bin/python3.10</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">sphinx==4.5</span></code> 。</p>
+</div>
+</section>
+<section id="rst">
+<h2><span class="section-number">3.2. </span>rst 语法测试<a class="headerlink" href="#rst" title="Permalink to this headline"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">makefile</span></code> 规则：</p>
 <div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">target ... </span><span class="o">:</span> <span class="n">prerequisites</span> ...
     <span class="nb">command</span>
@@ -253,6 +278,7 @@
 <div class="line"><br /></div>
 </div>
 <p>上面是两个空行。</p>
+<p>这里有一个下载链接：<a class="reference download internal" download="" href="../_downloads/c52e28e9a6faf3f97a63a6cc0c19d06e/bookmarks_2022_10_28.html"><code class="xref download docutils literal notranslate"><span class="pre">arch</span></code></a></p>
 <p>使用 <code class="docutils literal notranslate"><span class="pre">sphinx.ext.graphviz</span></code> 扩展，下面是一个无向图：</p>
 <figure class="align-center" id="foo">
 <div class="graphviz"><object data="../_images/graphviz-2103f36663ddf89405b78318bcd09bf18686df3c.svg" type="image/svg+xml" class="graphviz">
@@ -285,7 +311,7 @@ execute -&gt; compare;
 <p><span class="caption-text">有向图</span><a class="headerlink" href="#bar" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
-<div class="admonition-todo admonition" id="id2">
+<div class="admonition-todo admonition" id="id1">
 <p class="admonition-title">Todo</p>
 <p>补充更多的语法测试内容。</p>
 </div>
@@ -304,15 +330,6 @@ execute -&gt; compare;
 </pre></div>
 </div>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>在 mac 上安装 sphinx 5.2.3 的时候： <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">sphinx-doc</span></code> ，发现自动安装了依赖 <a class="reference external" href="mailto:python&#37;&#52;&#48;3&#46;10">python<span>&#64;</span>3<span>&#46;</span>10</a> ，而不是用
-系统已经安装好的 /usr/bin/python ，这就导致 <code class="docutils literal notranslate"><span class="pre">sphinx-build</span></code> 一直找不到 /usr/bin/pip 安装的 sphinx-rtd-theme ，
-因此需要使用 <code class="docutils literal notranslate"><span class="pre">/opt/homebrew/Cellar/python&#64;3.10/3.10.6_2/bin/python3.10</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">sphinx-rtd-theme</span></code> 来重新安装。</p>
-<p>另外，添加环境变量 <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">'export</span> <span class="pre">PATH=&quot;/opt/homebrew/opt/sphinx-doc/bin:$PATH&quot;'</span> <span class="pre">&gt;&gt;</span> <span class="pre">~/.zshrc</span></code> 。</p>
-<p>编译之后，本地查看 html 结果显示正常，但是 push 到 Github 发布之后，发现代码行号几乎紧贴代码本身，视觉效果很差。
-没找到好的解决方法，只能手动降级 sphinx ： <code class="docutils literal notranslate"><span class="pre">/opt/homebrew/Cellar/python&#64;3.10/3.10.6_2/bin/python3.10</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">sphinx==4.5</span></code> 。</p>
-</div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>编译的时候提示：</p>
@@ -324,23 +341,9 @@ execute -&gt; compare;
 </pre></div>
 </div>
 </div>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>当前版本是:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">Sphinx</span>                        <span class="mf">4.5.0</span>
-<span class="linenos">2</span><span class="n">sphinx</span><span class="o">-</span><span class="n">rtd</span><span class="o">-</span><span class="n">theme</span>              <span class="mf">1.0.0</span>
-<span class="linenos">3</span><span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">applehelp</span>       <span class="mf">1.0.2</span>
-<span class="linenos">4</span><span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">devhelp</span>         <span class="mf">1.0.2</span>
-<span class="linenos">5</span><span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">htmlhelp</span>        <span class="mf">2.0.0</span>
-<span class="linenos">6</span><span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">jsmath</span>          <span class="mf">1.0.1</span>
-<span class="linenos">7</span><span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">qthelp</span>          <span class="mf">1.0.3</span>
-<span class="linenos">8</span><span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">serializinghtml</span> <span class="mf">1.1.5</span>
-</pre></div>
-</div>
-</div>
 </section>
-<section id="id3">
-<h2><span class="section-number">3.2. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<section id="id2">
+<h2><span class="section-number">3.3. </span>参考资料<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>sphinx_rtd_theme 配置</p></li>
 </ol>

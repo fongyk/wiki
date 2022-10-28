@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>20. logging &mdash; fong alpha documentation</title>
@@ -18,9 +18,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -72,29 +70,12 @@
 <li class="toctree-l2"><a class="reference internal" href="18_exception.html">18. 异常</a></li>
 <li class="toctree-l2"><a class="reference internal" href="19_multiprocessing.html">19. multiprocessing</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">20. logging</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#logger">20.1. Logger</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#logging.Logger"><code class="docutils literal notranslate"><span class="pre">logging.Logger</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#handler">20.2. Handler</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#logging.Handler"><code class="docutils literal notranslate"><span class="pre">logging.Handler</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#logging.StreamHandler"><code class="docutils literal notranslate"><span class="pre">logging.StreamHandler</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#logging.FileHandler"><code class="docutils literal notranslate"><span class="pre">logging.FileHandler</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#logging.handlers.RotatingFileHandler"><code class="docutils literal notranslate"><span class="pre">logging.handlers.RotatingFileHandler</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#logging.handlers.TimedRotatingFileHandler"><code class="docutils literal notranslate"><span class="pre">logging.handlers.TimedRotatingFileHandler</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#setFormatter"><code class="docutils literal notranslate"><span class="pre">setFormatter()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#formatter">20.3. Formatter</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#logging.Formatter"><code class="docutils literal notranslate"><span class="pre">logging.Formatter</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#logger">20.1. Logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#handler">20.2. Handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#formatter">20.3. Formatter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id1">20.4. 示例</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">20.5. 配置文件</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#print">20.6. 附录：print 函数</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">print()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#print">20.6. 附录：print 函数</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">20.7. 参考资料</a></li>
 </ul>
 </li>
@@ -146,7 +127,7 @@
            <div itemprop="articleBody">
              
   <section id="logging">
-<h1><span class="section-number">20. </span>logging<a class="headerlink" href="#logging" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">20. </span>logging<a class="headerlink" href="#logging" title="Permalink to this headline"></a></h1>
 <p>logging 模块是 Python 内置的标准模块，主要用于输出运行日志。</p>
 <p>日志等级（从高到低）：</p>
 <ul class="simple">
@@ -166,7 +147,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">Formatter</span></code> 决定日志记录的最终输出格式。</p></li>
 </ul>
 <section id="logger">
-<h2><span class="section-number">20.1. </span>Logger<a class="headerlink" href="#logger" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">20.1. </span>Logger<a class="headerlink" href="#logger" title="Permalink to this headline"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="logging.Logger">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">logging.</span></span><span class="sig-name descname"><span class="pre">Logger</span></span><a class="headerlink" href="#logging.Logger" title="Permalink to this definition"></a></dt>
@@ -213,7 +194,7 @@
 
 </section>
 <section id="handler">
-<h2><span class="section-number">20.2. </span>Handler<a class="headerlink" href="#handler" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">20.2. </span>Handler<a class="headerlink" href="#handler" title="Permalink to this headline"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="logging.Handler">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">logging.</span></span><span class="sig-name descname"><span class="pre">Handler</span></span><a class="headerlink" href="#logging.Handler" title="Permalink to this definition"></a></dt>
@@ -261,7 +242,7 @@
 </div></blockquote>
 </section>
 <section id="formatter">
-<h2><span class="section-number">20.3. </span>Formatter<a class="headerlink" href="#formatter" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">20.3. </span>Formatter<a class="headerlink" href="#formatter" title="Permalink to this headline"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="logging.Formatter">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">logging.</span></span><span class="sig-name descname"><span class="pre">Formatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datefmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'%'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#logging.Formatter" title="Permalink to this definition"></a></dt>
@@ -288,7 +269,7 @@
 </ul>
 </section>
 <section id="id1">
-<h2><span class="section-number">20.4. </span>示例<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">20.4. </span>示例<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>logging 基本设置</p></li>
 </ul>
@@ -346,7 +327,7 @@
 </div>
 </section>
 <section id="id2">
-<h2><span class="section-number">20.5. </span>配置文件<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">20.5. </span>配置文件<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <p>可以从字典中加载 logging 配置，这也就意味着可以通过 JSON 或者 YAML 文件加载日志的配置。</p>
 <p>以 YAML 为例，新建 log.yaml：</p>
 <div class="toggle docutils container">
@@ -443,12 +424,12 @@
 </div>
 </section>
 <section id="print">
-<h2><span class="section-number">20.6. </span>附录：print 函数<a class="headerlink" href="#print" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">20.6. </span>附录：print 函数<a class="headerlink" href="#print" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="id0">
 <span class="sig-name descname"><span class="pre">print</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">objects</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span> <span class="pre">'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'\n'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">sys.stdout</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flush</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>objects</strong> – 复数，表示可以一次输出多个对象。输出多个对象时，用 <code class="docutils literal notranslate"><span class="pre">,</span></code> 分隔。</p></li>
 <li><p><strong>sep</strong> – 用来间隔多个对象，默认值是一个空格。</p></li>
@@ -489,7 +470,7 @@
 </ul>
 </section>
 <section id="id3">
-<h2><span class="section-number">20.7. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">20.7. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>logging — Logging facility for Python</p></li>
 </ol>

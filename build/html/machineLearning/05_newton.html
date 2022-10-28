@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>5. 牛顿方法 &mdash; fong alpha documentation</title>
@@ -18,9 +18,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -107,16 +105,16 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">5. </span>牛顿方法<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">5. </span>牛顿方法<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
 <p>牛顿方法（Newton’s method, Newton-Raphson method）可以有效地近似实值函数的根。</p>
 <section id="id2">
-<h2><span class="section-number">5.1. </span>一维<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.1. </span>一维<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <div class="math notranslate nohighlight">
 \[x_{n+1} = \  x_n - \frac{f(x_n)}{f^{\prime}(x_n)}\]</div>
 <a class="reference internal image-reference" href="../_images/05_newton.gif"><img alt="../_images/05_newton.gif" class="align-center" src="../_images/05_newton.gif" style="width: 420px;" /></a>
 </section>
 <section id="id3">
-<h2><span class="section-number">5.2. </span>高维<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.2. </span>高维<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <div class="math notranslate nohighlight">
 \[\begin{split}x_{n+1} &amp;= \  x_n - J^{-1} F(x_n). \\
 x &amp; \in \ \mathbb{R}^k,\\
@@ -128,7 +126,7 @@ J_{ij} &amp;= \ \frac{\partial F_i}{\partial x_j}.  \\\end{split}\]</div>
 \[J \cdot (x_{n+1} - x_n) = -F(x_n).\]</div>
 </section>
 <section id="id4">
-<h2><span class="section-number">5.3. </span>收敛问题<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.3. </span>收敛问题<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
 <ul>
 <li><p>初始点问题</p>
 <ul>
@@ -151,7 +149,7 @@ x_1 &amp;=\  1, x_2 = 0, x_3 = 1, ... .\end{split}\]</div>
 </ul>
 </section>
 <section id="id5">
-<h2><span class="section-number">5.4. </span>应用<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.4. </span>应用<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
 <ul>
 <li><p>最大/最小化问题</p>
 <ul>
@@ -206,7 +204,7 @@ x_{n+1} &amp;=\ x_n - \frac{f(x_n)}{f^{\prime}(x_n)} \\
 </ul>
 </section>
 <section id="id6">
-<h2><span class="section-number">5.5. </span>参考资料<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.5. </span>参考资料<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>Wikipedia: Newton’s method</p></li>
 </ol>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>10. 归一化 &mdash; fong alpha documentation</title>
@@ -18,9 +18,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -61,12 +59,7 @@
 <li class="toctree-l2"><a class="reference internal" href="08_basicType.html">8. 基本数据类型</a></li>
 <li class="toctree-l2"><a class="reference internal" href="09_random.html">9. random</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">10. 归一化</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">10.1. 归一化</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#numpy.linalg.norm"><code class="docutils literal notranslate"><span class="pre">numpy.linalg.norm()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#sklearn.preprocessing.normalize"><code class="docutils literal notranslate"><span class="pre">sklearn.preprocessing.normalize()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#torch.nn.functional.normalize"><code class="docutils literal notranslate"><span class="pre">torch.nn.functional.normalize()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">10.1. 归一化</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#k-means">10.2. k-means 实现</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">10.3. 参考资料</a></li>
 </ul>
@@ -129,9 +122,9 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">10. </span>归一化<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">10. </span>归一化<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
 <section id="id2">
-<h2><span class="section-number">10.1. </span>归一化<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">10.1. </span>归一化<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="numpy.linalg.norm">
 <span class="sig-prename descclassname"><span class="pre">numpy.linalg.</span></span><span class="sig-name descname"><span class="pre">norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ord</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#numpy.linalg.norm" title="Permalink to this definition"></a></dt>
@@ -174,7 +167,7 @@
 </div>
 </section>
 <section id="k-means">
-<h2><span class="section-number">10.2. </span>k-means 实现<a class="headerlink" href="#k-means" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">10.2. </span>k-means 实现<a class="headerlink" href="#k-means" title="Permalink to this headline"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="c1">## feature initialization</span>
@@ -213,7 +206,7 @@
 </div>
 </section>
 <section id="id3">
-<h2><span class="section-number">10.3. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">10.3. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>numpy.linalg.norm</p></li>
 </ol>

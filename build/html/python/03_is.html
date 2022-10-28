@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3. is和== &mdash; fong alpha documentation</title>
@@ -18,9 +18,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -124,9 +122,9 @@
            <div itemprop="articleBody">
              
   <section id="is">
-<h1><span class="section-number">3. </span>is和==<a class="headerlink" href="#is" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">3. </span>is和==<a class="headerlink" href="#is" title="Permalink to this headline"></a></h1>
 <section id="id1">
-<h2><span class="section-number">3.1. </span>is和==<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.1. </span>is和==<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">is</span></code> 的作用是用来检查对象的标示符（object identity）是否一致，也就是比较两个对象在内存中的地址是否一样，而 <code class="docutils literal notranslate"><span class="pre">==</span></code> 是用来检查两个对象是否相等。
 我们在检查 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">is</span> <span class="pre">b</span></code> 的时候，其实相当于检查 <code class="docutils literal notranslate"><span class="pre">id(a)</span> <span class="pre">==</span> <span class="pre">id(b)</span></code>。而检查 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">b</span></code> 的时候，实际是调用了对象a的 <code class="docutils literal notranslate"><span class="pre">__eq__()</span></code> 方法，<code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">b</span></code>
 相当于 <code class="docutils literal notranslate"><span class="pre">a.__eq__(b)</span></code>。
@@ -148,7 +146,7 @@
 </div>
 </section>
 <section id="none">
-<h2><span class="section-number">3.2. </span>None<a class="headerlink" href="#none" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2. </span>None<a class="headerlink" href="#none" title="Permalink to this headline"></a></h2>
 <p>与 <code class="docutils literal notranslate"><span class="pre">None</span></code> 比较是 <code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">None</span></code> 而不是 <code class="docutils literal notranslate"><span class="pre">==</span> <span class="pre">None</span></code> 。
 这是因为 <code class="docutils literal notranslate"><span class="pre">None</span></code> 在Python里是个单例对象（singleton）：一个变量如果是 <code class="docutils literal notranslate"><span class="pre">None</span></code> ，它一定和 <code class="docutils literal notranslate"><span class="pre">None</span></code> 指向同一个内存地址。
 而 <code class="docutils literal notranslate"><span class="pre">==</span> <span class="pre">None</span></code> 背后调用的是 <code class="docutils literal notranslate"><span class="pre">__eq__</span></code> ，而 <code class="docutils literal notranslate"><span class="pre">__eq__</span></code> 可以被重载，下面是一个 <code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">not</span> <span class="pre">None</span></code> 但 <code class="docutils literal notranslate"><span class="pre">==</span> <span class="pre">None</span></code> 的例子。</p>
@@ -163,7 +161,7 @@
 </div>
 </section>
 <section id="id2">
-<h2><span class="section-number">3.3. </span>参考资料<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.3. </span>参考资料<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>经典7大Python面试题</p></li>
 </ol>

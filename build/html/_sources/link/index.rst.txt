@@ -393,3 +393,25 @@ Github Page
     :align: center
 
     fongyq.github.io
+
+友情链接
+-----------------
+
+.. hlist::
+    :columns: 2
+
+    - .. figure:: pictures/xqk.jpeg
+         :target: https://xieqk.com/
+         :width: 160px
+         :height: 120px
+         :align: center
+         
+         Xie qiaokang
+
+    - .. figure:: pictures/lyh.jpeg
+         :target: https://yolomax.com/
+         :width: 160px
+         :height: 120px
+         :align: center
+         
+         Liu yiheng

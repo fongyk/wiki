@@ -64,6 +64,10 @@
 
     https://zhuanlan.zhihu.com/p/90508170
 
+- Homebrew关闭自动更新
+
+    https://segmentfault.com/a/1190000037618113
+
 - 开启 https & ssh 代理,让 git clone 快到飞起
 
     https://juejin.cn/post/6847902220420120589

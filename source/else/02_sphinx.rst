@@ -294,6 +294,24 @@ command
 
 |pic1| <- -> |pic2|
 
+多列列表使用 ``hlist`` ：
+
+.. hlist::
+    :columns: 2
+
+    - item1
+    - item2
+    - item3
+    - item4
+
+field list：
+
+:School:  ustc
+:Year: 1958
+:Addr: hefei, anhui
+:Me: fong
+
+
 .. todo::
 
   补充更多的语法测试内容。

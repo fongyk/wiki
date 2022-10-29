@@ -8,10 +8,11 @@
     ================ ================================================= ============================
     类型                   描述                                                     下载
     ================ ================================================= ============================
+    image              科大校徽                                              :download:`black <resource/ustcblack.jpg>` :download:`blue <resource/ustcblue.jpg>` :download:`red <resource/ustcred.jpg>`
     image              `Lake Wakatipu`_                                     :download:`lake <resource/Lake.jpg>`
     image              `星系`_                                              :download:`galaxy <resource/galaxy.jpg>`
     image              汉字“方”的金文体                                        :download:`fang <resource/fong-bronze.svg.png>`
-    image              `VIM`_ 快捷键                                            :download:`vim <resource/vi-vim-cheat-sheet.gif>`
+    image              `Vim`_ 快捷键                                            :download:`vim <resource/vi-vim-cheat-sheet.gif>`
     chrome             Infinity 插件配置                                      :download:`infinity <resource/infinityBackup-2022-10-28.infinity>`
     pdf                梯度下降算法                                            :download:`gradient <resource/08_gradient_descent_optimization.pdf>`
     pdf                矩阵运算                                               :download:`cookbook <resource/04_matrixcookbook.pdf>` :download:`differentiation <resource/04_matrixdifferentiation.pdf>`
@@ -37,4 +38,4 @@
 
 .. _Monoid: https://larsenwork.com/monoid/
 
-.. _VIM: https://vim.rtorr.com/lang/zh_cn
+.. _Vim: https://vim.rtorr.com/lang/zh_cn

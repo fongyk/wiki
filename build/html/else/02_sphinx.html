@@ -142,7 +142,7 @@
 </section>
 <section id="rst">
 <h2><span class="section-number">2.2. </span>rst 语法测试<a class="headerlink" href="#rst" title="Permalink to this headline"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">makefile</span></code> 规则：</p>
+<p><code class="docutils literal notranslate"><span class="pre">makefile</span></code> 语法高亮：</p>
 <div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">target ... </span><span class="o">:</span> <span class="n">prerequisites</span> ...
     <span class="nb">command</span>
     ...
@@ -159,18 +159,11 @@
 <dt>command</dt><dd><p>该target要执行的命令（任意的shell命令）</p>
 </dd>
 </dl>
-<p>这是一个文件的依赖关系，也就是说，target这一个或多个的目标文件依赖于prerequisites中的文件，
-其生成规则定义在command中。说白一点就是说:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>prerequisites中如果有一个以上的文件比target文件要新的话，command所定义的命令就会被执行。
-</pre></div>
-</div>
-<p>这就是 <code class="docutils literal notranslate"><span class="pre">makefile</span></code> 的规则，也就是 <code class="docutils literal notranslate"><span class="pre">makefile</span></code> 中最核心的内容。</p>
-<p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Hello</span> <span class="pre">World!&quot;;</span></code></p>
-<p>行内公式使用 <code class="docutils literal notranslate"><span class="pre">math</span></code> 这个 <code class="docutils literal notranslate"><span class="pre">role</span></code>: <span class="math notranslate nohighlight">\(a^2 + b^2 = c^2\)</span>.</p>
+<p>行内公式使用 <code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">role</span></code> ： <span class="math notranslate nohighlight">\(a^2 + b^2 = c^2\)</span> 。</p>
+<p>行间公式：</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}(a + b)^2  &amp;=  (a + b)(a + b) \\
            &amp;=  a^2 + 2ab + b^2\end{split}\]</div>
-<p><code class="docutils literal notranslate"><span class="pre">latex</span></code> math测试:</p>
 <div class="math notranslate nohighlight">
 \[X_k =  \sum_{n=0}^{N-1} x_n e^{-{i 2\pi k \frac{n}{N}}} \qquad k = 0,\dots,N-1.\]</div>
 <p>将高亮语言设置为 <code class="docutils literal notranslate"><span class="pre">C</span></code> ：</p>
@@ -178,7 +171,7 @@
     <span class="p">:</span><span class="n">linenothreshold</span><span class="p">:</span> <span class="mi">1</span>
 </pre></div>
 </div>
-<p>测试 <code class="docutils literal notranslate"><span class="pre">C</span></code> ：</p>
+<p>测试 <code class="docutils literal notranslate"><span class="pre">C</span></code>:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 <span class="linenos">2</span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;c&#39;</span><span class="p">;</span><span class="w"></span>
 <span class="linenos">3</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%c</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">);</span><span class="w"></span>
@@ -202,13 +195,13 @@
 <span class="linenos">2</span><span class="w">    </span><span class="o">:</span><span class="n">linenothreshold</span><span class="o">:</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
 </pre></div>
 </div>
-<p>测试 <code class="docutils literal notranslate"><span class="pre">python</span></code> ：</p>
+<p>测试 <code class="docutils literal notranslate"><span class="pre">python</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="linenos">2</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos">3</span><span class="nb">print</span> <span class="s2">&quot;hello world&quot;</span>
 </pre></div>
 </div>
-<p>这里也是 <code class="docutils literal notranslate"><span class="pre">python</span></code> (code):</p>
+<p>这里也是 <code class="docutils literal notranslate"><span class="pre">python</span></code> （code）:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
 <span class="linenos">2</span>    <span class="nb">print</span> <span class="s2">&quot;Love Python, Love FreeDome&quot;</span>
 <span class="linenos">3</span>    <span class="nb">print</span> <span class="s2">&quot;E文标点,.0123456789,中文标点,. &quot;</span>
@@ -248,7 +241,11 @@
 <span class="linenos">6</span><span class="nb">cd</span> ..
 </pre></div>
 </div>
-<p>下面是 <code class="docutils literal notranslate"><span class="pre">python</span></code> (code-block):</p>
+<p>代码折叠功能需要自定义 _templates 。</p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Show/Hide\ Code}\)</span></p>
+</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="linenos"> 2</span>    <span class="k">def</span> <span class="nf">canJump</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">):</span>
 <span class="linenos"> 3</span>        <span class="sd">&quot;&quot;&quot;</span>
@@ -269,25 +266,13 @@
 <span class="linenos">18</span>        <span class="k">return</span> <span class="kc">None</span>
 </pre></div>
 </div>
-<p>代码折叠功能需要自定义 _templates 。</p>
-<div class="toggle docutils container">
-<div class="header docutils container">
-<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Show/Hide\ Code}\)</span></p>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1"># 测试注释</span>
-<span class="linenos">2</span><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
-<span class="linenos">3</span>    <span class="nb">print</span> <span class="s2">&quot;Love Python, Love FreeDome&quot;</span>
-<span class="linenos">4</span>    <span class="nb">print</span> <span class="s2">&quot;E文标点,.0123456789,中文标点,. &quot;</span>
-</pre></div>
-</div>
-</div>
-<p>插入空行使用 <code class="docutils literal notranslate"><span class="pre">|</span></code> 。</p>
+<p>插入空行使用 <code class="docutils literal notranslate"><span class="pre">|</span></code> ，下面是两个空行。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
-<p>上面是两个空行。</p>
-<p>这里有一个下载链接：<a class="reference download internal" download="" href="../_downloads/11e7a91550c858b4a4ee4f0c9a9b1a2c/01_arch.png"><code class="xref download docutils literal notranslate"><span class="pre">arch</span></code></a></p>
+<p>这里有一个下载链接：<a class="reference download internal" download="" href="../_downloads/262b1c000e36c5a12f6c0ab0abdd77a1/Lake.jpg"><code class="xref download docutils literal notranslate"><span class="pre">lake</span></code></a></p>
 <p>使用 <code class="docutils literal notranslate"><span class="pre">sphinx.ext.graphviz</span></code> 扩展，下面是一个无向图：</p>
 <figure class="align-center" id="foo">
 <div class="graphviz"><object data="../_images/graphviz-8368b71a996540679d2fe3859f2f047d671fd4d5.svg" type="image/svg+xml" class="graphviz">
@@ -353,7 +338,14 @@ execute -&gt; compare;
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>VS Code 推荐使用插件 RST Preview（&#64;Thomas Haakon Townsend）和 reStructuredText（&#64;LeXtudio Inc.）。</p>
+<p>VS Code 推荐使用插件：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>reStructuredText Syntax highlighting（&#64;Trond Snekvik）</p></li>
+<li><p>RST Preview（&#64;Thomas Haakon Townsend）</p></li>
+<li><p>reStructuredText（&#64;LeXtudio Inc.）</p></li>
+</ul>
+</div></blockquote>
 </div>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>

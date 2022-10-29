@@ -53,7 +53,7 @@ sphinx
 rst 语法测试
 --------------
 
-``makefile`` 规则：
+``makefile`` 语法高亮：
 
 .. code-block:: makefile
 
@@ -72,23 +72,15 @@ prerequisites
 command
     该target要执行的命令（任意的shell命令）
 
-这是一个文件的依赖关系，也就是说，target这一个或多个的目标文件依赖于prerequisites中的文件，
-其生成规则定义在command中。说白一点就是说::
 
-    prerequisites中如果有一个以上的文件比target文件要新的话，command所定义的命令就会被执行。
+行内公式使用 ``math role`` ： :math:`a^2 + b^2 = c^2` 。
 
-这就是 ``makefile`` 的规则，也就是 ``makefile`` 中最核心的内容。
-
-``echo "Hello World!";``
-
-行内公式使用 ``math`` 这个 ``role``: :math:`a^2 + b^2 = c^2`.
+行间公式：
 
 .. math::
 
    (a + b)^2  &=  (a + b)(a + b) \\
               &=  a^2 + 2ab + b^2
-
-``latex`` math测试:
 
 .. math::
 
@@ -105,9 +97,7 @@ command
 .. highlight:: c
     :linenothreshold: 1
 
-测试 ``C`` ：
-
-::
+测试 ``C``::
 
     int a = 0;
     char c = 'c';
@@ -141,15 +131,13 @@ command
 .. highlight:: python
     :linenothreshold: 2
 
-测试 ``python`` ：
-
-::
+测试 ``python``::
 
     import torch
     import numpy as np
     print "hello world"
 
-这里也是 ``python`` (code):
+这里也是 ``python`` （code）:
 
 .. code::
 
@@ -205,30 +193,6 @@ command
     mkdir filefolder
     cd ..
 
-下面是 ``python`` (code-block):
-
-.. code-block:: python
-  :linenos:
-
-  class Solution(object):
-      def canJump(self, nums):
-          """
-          https://leetcode.com/problems/jump-game/
-          Each element in the array represents your maximum jump length at that position.
-
-          Input: [2,3,1,1,4]
-          Output: true
-          Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
-
-          :type nums: List[int]
-          :rtype: bool
-          """
-          if nums == []:
-              return False
-          if len(nums) == 1:
-              return True
-          return None
-
 代码折叠功能需要自定义 _templates 。
 
 .. container:: toggle
@@ -240,19 +204,31 @@ command
   .. code-block:: python
     :linenos:
 
-    # 测试注释
-    def foo():
-        print "Love Python, Love FreeDome"
-        print "E文标点,.0123456789,中文标点,. "
+    class Solution(object):
+        def canJump(self, nums):
+            """
+            https://leetcode.com/problems/jump-game/
+            Each element in the array represents your maximum jump length at that position.
 
-插入空行使用 ``|`` 。
+            Input: [2,3,1,1,4]
+            Output: true
+            Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
+
+            :type nums: List[int]
+            :rtype: bool
+            """
+            if nums == []:
+                return False
+            if len(nums) == 1:
+                return True
+            return None
+
+插入空行使用 ``|`` ，下面是两个空行。
 
 |
 |
 
-上面是两个空行。
-
-这里有一个下载链接：:download:`arch <../computerNetwork/01_arch.png>`
+这里有一个下载链接：:download:`lake <resource/Lake.jpg>`
 
 使用 ``sphinx.ext.graphviz`` 扩展，下面是一个无向图：
 
@@ -318,7 +294,11 @@ field list：
 
 .. tip::
 
-    VS Code 推荐使用插件 RST Preview（@Thomas Haakon Townsend）和 reStructuredText（@LeXtudio Inc.）。
+    VS Code 推荐使用插件：
+    
+      - reStructuredText Syntax highlighting（@Trond Snekvik）
+      - RST Preview（@Thomas Haakon Townsend）
+      - reStructuredText（@LeXtudio Inc.）
 
 .. hint::
 

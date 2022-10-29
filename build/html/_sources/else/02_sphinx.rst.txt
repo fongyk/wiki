@@ -284,6 +284,15 @@ command
     node [shape=box,style=filled,color=".7 .3 1.0"];
     execute -> compare;
 
+一行插入多张图：
+
+.. |pic1| image:: resource/Lake.jpg
+   :width: 45%
+
+.. |pic2| image:: resource/Lake.jpg
+   :width: 45%
+
+|pic1| <- -> |pic2|
 
 .. todo::
 

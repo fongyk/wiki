@@ -193,6 +193,19 @@ C++ Shell
          coliru
 
 
+HTTPIE 在线 API 测试
+--------------------------
+
+.. figure:: pictures/httpie.jpeg
+    :target: https://httpie.io/app
+    :width: 160px
+    :height: 120px
+    :align: center
+    
+    httpie
+
+
+
 Json工具
 ------------
 

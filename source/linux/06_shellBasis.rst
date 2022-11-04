@@ -6,12 +6,20 @@ Shell 是命令行解释器，有众多版本，比如 sh（Bourne Shell）、ba
 以前 bash 是 GNU/Linux 操作系统中的 ``/bin/sh`` 的符号连接，后来有人把 bash 从 NetBSD 移植到 Linux 并更名为 dash，且 ``/bin/sh`` 符号连接到 dash。
 Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。
 
+.. code-block:: bash
+    :linenos:
+
+    $ which sh
+    /usr/bin/sh
+    $ ll /usr/bin/sh 
+    lrwxrwxrwx 1 root root 4 Jul 19  2019 /usr/bin/sh -> dash*
+
 标记为 ``#!/bin/sh`` 的脚本不应使用任何 POSIX 没有规定的特性（如 ``let`` 等命令）， 但 ``#!/bin/bash`` 可以，bash 支持的写法比 dash 多。
 
 想要支持 ``sh xx.sh`` 运行的，必须遵照 POSIX 规范去写；
 想要脚本写法多样化、不需要考虑效率的，可以在文件头注明 ``#!/bin/bash`` ，使用 ``bash xx.sh`` 或 ``chmod +x xx.sh; ./xx.sh`` 来执行。
 
-后文介绍的是 bash。
+后文介绍的是 bash 的一些基本语法。
 
 .. highlight:: bash
 
@@ -336,12 +344,15 @@ for 循环的几种形式：
 
     参数：
 
-        - ``-f`` 输出格式。需要符合 ``printf`` 的浮点型格式，即 ``%f`` 。如果 ``first`` ``increment`` ``last`` 中有浮点数，则默认按照三者中的最高精度输出；如果都是整型，则默认为 ``%g`` 格式；指定 ``%g`` 会强制把浮点型转换成整型；``%03g`` 指定宽度为 3，用 0 补足；``prefix_%g_suffix`` 添加了前后缀。
+        -f    输出格式。需要符合 ``printf`` 的浮点型格式，即 ``%f`` 。如果 ``first`` ``increment`` ``last`` 中有浮点数，则默认按照三者中的最高精度输出；如果都是整型，则默认为 ``%g`` 格式；指定 ``%g`` 会强制把浮点型转换成整型；``%03g`` 指定宽度为 3，用 0 补足；``prefix_%g_suffix`` 添加了前后缀。
 
-        - ``-s`` 分隔符，默认为 ``\n`` 。
+        -s    分隔符，默认为 ``\n`` 。
 
-        - ``-w`` 等宽序列，将序列中最大值的宽度作为序列的宽度。
+        -w    等宽序列，将序列中最大值的宽度作为序列的宽度。
 
+.. attention::
+
+    dash 不支持 ``{1..10}`` 这种列表的写法。
 
 while
 ^^^^^^^^^^^^

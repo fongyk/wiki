@@ -1,7 +1,7 @@
 sed
 ===========
 
-sed（stream editor，流编辑器），利用脚本处理文本文件。
+sed（Stream Editor，流编辑器），利用脚本处理文本文件。
 
 参数：
 
@@ -17,6 +17,8 @@ sed（stream editor，流编辑器），利用脚本处理文本文件。
 
     -V    显示版本信息。
 
+    -E    扩展 sed，可以使用扩展正则表达式
+
 动作：
 
     - ``a`` 追加
@@ -31,15 +33,18 @@ sed（stream editor，流编辑器），利用脚本处理文本文件。
 
     - ``s`` 替换
 
+
 正则表达式基础
 -------------------
+
+sed 支持的正则表达式和 grep 类似，也分为基本正则和扩展正则。下面列举几个基本正则字符：
 
 - ``^`` 表示一行的开头，如：``^#`` 表示以 ``#`` 开头的匹配。
 - ``$`` 表示一行的结尾，如：``}$`` 表示以 ``}`` 结尾的匹配。
 - ``\<`` 表示词首，如：``\<abc`` 表示以 ``abc`` 为首的词。
 - ``\>`` 表示词尾，如：``abc\>`` 表示以 ``abc`` 结尾的词。
 - ``.`` 表示任何单个字符。
-- ``*`` 表示某个字符出现了0次或多次。
+- ``*`` 表示某个字符出现了 0 次或多次。
 - ``[ ]`` 表示字符集合，如：``[abc]`` 表示匹配 ``a`` 或 ``b`` 或 ``c`` ， ``[a-zA-Z]`` 表示匹配所有的26个字母；``^`` 表示取反，如 ``[^a]`` 表示 ``非a`` 的字符。
 
 
@@ -93,14 +98,20 @@ sed（stream editor，流编辑器），利用脚本处理文本文件。
 
 圆括号括起来的正则表达式所匹配的字符串可以当成变量来使用，通过 ``\1``，``\2``……来解引用变量。
 
-foo.txt::
+foo.txt：
+
+.. code-block:: text
+    :linenos:
 
     This is my cat, my cat's name is betty
     This is my dog, my dog's name is frank
     This is my fish, my fish's name is george
     This is my goat, my goat's name is adam
 
-``sed "s/This is my \(.*\),.*is \(.*\)/\1:\2/g" foo.txt`` 得到::
+``sed "s/This is my \(.*\),.*is \(.*\)/\1:\2/g" foo.txt`` 得到：
+
+.. code-block:: text
+    :linenos:
 
     cat:betty
     dog:frank
@@ -111,7 +122,7 @@ foo.txt::
 动作
 -----------------
 
-a和i
+a 和 i
 ^^^^^^^^^^^^^^
 
 - ``sed "1 i This is my monkey, my monkey's name is wukong" foo.txt`` 在第一行之前插入
@@ -154,14 +165,19 @@ p
 参考资料
 -------------
 
-1. Linux sed 命令
+1. sed, a stream editor
+
+  http://www.gnu.org/software/sed/manual/sed.html
+
+2. Linux sed 命令
 
   https://www.runoob.com/linux/linux-comm-sed.html
 
-2. SED 简明教程
+3. SED 简明教程
 
   https://coolshell.cn/articles/9104.html
 
-3. sed, a stream editor
 
-  http://www.gnu.org/software/sed/manual/sed.html
+4. How And When To Use The Dot Command In Bash?
+
+  https://www.shell-tips.com/bash/source-dot-command/#gsc.tab=0

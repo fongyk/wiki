@@ -17,11 +17,12 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。
 标记为 ``#!/bin/sh`` 的脚本不应使用任何 POSIX 没有规定的特性（如 ``let`` 等命令）， 但 ``#!/bin/bash`` 可以，bash 支持的写法比 dash 多。
 
 想要支持 ``sh xx.sh`` 运行的，必须遵照 POSIX 规范去写；
-想要脚本写法多样化、不需要考虑效率的，可以在文件头注明 ``#!/bin/bash`` ，使用 ``bash xx.sh`` 或 ``chmod +x xx.sh; ./xx.sh`` 来执行。
+想要脚本写法多样化、不需要考虑效率的，可以在文件头注明 ``#!/bin/bash`` ，使用 ``bash xx.sh`` 或 ``source xx.sh`` （相当于 ``. xx.sh`` ）来执行。
 
 后文介绍的是 bash 的一些基本语法。
 
 .. highlight:: bash
+    :linenothreshold: 2
 
 变量
 -----------

@@ -9,9 +9,9 @@ Linux/Shell
     02_more.rst
     03_authority.rst
     04_rename.rst
+    10_grep.rst
     05_sed.rst
     08_awk.rst
-    10_grep.rst
     06_shellBasis.rst
     07_loginShell.rst
     09_curl.rst

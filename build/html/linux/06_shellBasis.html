@@ -23,7 +23,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="9. Shell 交互与登录" href="07_loginShell.html" />
-    <link rel="prev" title="7. grep" href="10_grep.html" /> 
+    <link rel="prev" title="7. awk" href="08_awk.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -54,9 +54,9 @@
 <li class="toctree-l2"><a class="reference internal" href="02_more.html">2. 更多指令</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_authority.html">3. 权限管理</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_rename.html">4. 重命名</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_sed.html">5. sed</a></li>
-<li class="toctree-l2"><a class="reference internal" href="08_awk.html">6. awk</a></li>
-<li class="toctree-l2"><a class="reference internal" href="10_grep.html">7. grep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_grep.html">5. grep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_sed.html">6. sed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_awk.html">7. awk</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">8. Shell 基础</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">8.1. 变量</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">8.2. 字符串</a></li>
@@ -140,14 +140,14 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。</p>
 </div>
 <p>标记为 <code class="docutils literal notranslate"><span class="pre">#!/bin/sh</span></code> 的脚本不应使用任何 POSIX 没有规定的特性（如 <code class="docutils literal notranslate"><span class="pre">let</span></code> 等命令）， 但 <code class="docutils literal notranslate"><span class="pre">#!/bin/bash</span></code> 可以，bash 支持的写法比 dash 多。</p>
 <p>想要支持 <code class="docutils literal notranslate"><span class="pre">sh</span> <span class="pre">xx.sh</span></code> 运行的，必须遵照 POSIX 规范去写；
-想要脚本写法多样化、不需要考虑效率的，可以在文件头注明 <code class="docutils literal notranslate"><span class="pre">#!/bin/bash</span></code> ，使用 <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">xx.sh</span></code> 或 <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">xx.sh;</span> <span class="pre">./xx.sh</span></code> 来执行。</p>
+想要脚本写法多样化、不需要考虑效率的，可以在文件头注明 <code class="docutils literal notranslate"><span class="pre">#!/bin/bash</span></code> ，使用 <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">xx.sh</span></code> 或 <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">xx.sh</span></code> （相当于 <code class="docutils literal notranslate"><span class="pre">.</span> <span class="pre">xx.sh</span></code> ）来执行。</p>
 <p>后文介绍的是 bash 的一些基本语法。</p>
 <section id="id1">
 <h2><span class="section-number">8.1. </span>变量<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
 <p>变量定义的时候不需要 <cite>$</cite> 符号，引用取值的时候需要。定义的时候等号两边不允许带空格:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">var</span><span class="o">=</span><span class="s2">&quot;hello world&quot;</span>
-<span class="nb">echo</span> <span class="nv">$var</span>
-<span class="nb">echo</span> <span class="si">${</span><span class="nv">var</span><span class="si">}</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nv">var</span><span class="o">=</span><span class="s2">&quot;hello world&quot;</span>
+<span class="linenos">2</span><span class="nb">echo</span> <span class="nv">$var</span>
+<span class="linenos">3</span><span class="nb">echo</span> <span class="si">${</span><span class="nv">var</span><span class="si">}</span>
 </pre></div>
 </div>
 <p>引用的时候可以使用 <code class="docutils literal notranslate"><span class="pre">{}</span></code> 以明确变量名的边界。</p>
@@ -175,12 +175,12 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。</p>
 </pre></div>
 </div>
 <p>或:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">array</span><span class="o">=(</span>
-value0
-value1
-value2
-value3
-<span class="o">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nv">array</span><span class="o">=(</span>
+<span class="linenos">2</span>value0
+<span class="linenos">3</span>value1
+<span class="linenos">4</span>value2
+<span class="linenos">5</span>value3
+<span class="linenos">6</span><span class="o">)</span>
 </pre></div>
 </div>
 <ul>
@@ -188,15 +188,15 @@ value3
 <li><p>获取全部元素：<code class="docutils literal notranslate"><span class="pre">${arr[*]}</span></code> 或 <code class="docutils literal notranslate"><span class="pre">${arr[&#64;]}</span></code></p></li>
 <li><p>获取长度：<code class="docutils literal notranslate"><span class="pre">${#arr[*]}</span></code> 或 <code class="docutils literal notranslate"><span class="pre">${#arr[&#64;]}</span></code></p></li>
 <li><p>遍历:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> i <span class="k">in</span> <span class="o">{</span><span class="m">0</span>..3<span class="o">}</span>
-<span class="k">do</span>
-    <span class="nb">echo</span> <span class="si">${</span><span class="nv">array</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span><span class="si">}</span>
-<span class="k">done</span>
-
-<span class="k">for</span> v <span class="k">in</span> <span class="si">${</span><span class="nv">array</span><span class="p">[*]</span><span class="si">}</span>
-<span class="k">do</span>
-    <span class="nb">echo</span> <span class="nv">$v</span>
-<span class="k">done</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">for</span> i <span class="k">in</span> <span class="o">{</span><span class="m">0</span>..3<span class="o">}</span>
+<span class="linenos">2</span><span class="k">do</span>
+<span class="linenos">3</span>    <span class="nb">echo</span> <span class="si">${</span><span class="nv">array</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span><span class="si">}</span>
+<span class="linenos">4</span><span class="k">done</span>
+<span class="linenos">5</span>
+<span class="linenos">6</span><span class="k">for</span> v <span class="k">in</span> <span class="si">${</span><span class="nv">array</span><span class="p">[*]</span><span class="si">}</span>
+<span class="linenos">7</span><span class="k">do</span>
+<span class="linenos">8</span>    <span class="nb">echo</span> <span class="nv">$v</span>
+<span class="linenos">9</span><span class="k">done</span>
 </pre></div>
 </div>
 </li>
@@ -207,23 +207,23 @@ value3
 <ul>
 <li><p>单行注释：<code class="docutils literal notranslate"><span class="pre">#</span></code></p></li>
 <li><p>多行注释:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>:<span class="s">&lt;&lt;EOF</span>
-<span class="s">注释内容...</span>
-<span class="s">注释内容...</span>
-<span class="s">注释内容...</span>
-<span class="s">EOF</span>
-
-:&lt;&lt;<span class="s1">&#39;</span>
-<span class="s1">注释内容...</span>
-<span class="s1">注释内容...</span>
-<span class="s1">注释内容...</span>
-<span class="s1">&#39;</span>
-
-:&lt;&lt;!
-注释内容...
-注释内容...
-注释内容...
-!
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>:<span class="s">&lt;&lt;EOF</span>
+<span class="linenos"> 2</span><span class="s">注释内容...</span>
+<span class="linenos"> 3</span><span class="s">注释内容...</span>
+<span class="linenos"> 4</span><span class="s">注释内容...</span>
+<span class="linenos"> 5</span><span class="s">EOF</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>:&lt;&lt;<span class="s1">&#39;</span>
+<span class="linenos"> 8</span><span class="s1">注释内容...</span>
+<span class="linenos"> 9</span><span class="s1">注释内容...</span>
+<span class="linenos">10</span><span class="s1">注释内容...</span>
+<span class="linenos">11</span><span class="s1">&#39;</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span>:&lt;&lt;!
+<span class="linenos">14</span>注释内容...
+<span class="linenos">15</span>注释内容...
+<span class="linenos">16</span>注释内容...
+<span class="linenos">17</span>!
 </pre></div>
 </div>
 </li>
@@ -243,9 +243,9 @@ value3
 <section id="id7">
 <h3>数值运算<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h3>
 <p>数值计算需要借助 <code class="docutils literal notranslate"><span class="pre">expr</span></code> 和反引号 <code class="docutils literal notranslate"><span class="pre">`</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">a</span><span class="o">=</span><span class="m">10</span>
-<span class="nv">b</span><span class="o">=</span><span class="m">20</span>
-<span class="nb">echo</span> <span class="sb">`</span>expr <span class="nv">$a</span> + <span class="nv">$b</span><span class="sb">`</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nv">a</span><span class="o">=</span><span class="m">10</span>
+<span class="linenos">2</span><span class="nv">b</span><span class="o">=</span><span class="m">20</span>
+<span class="linenos">3</span><span class="nb">echo</span> <span class="sb">`</span>expr <span class="nv">$a</span> + <span class="nv">$b</span><span class="sb">`</span>
 </pre></div>
 </div>
 <p>表达式和运算符之间要有空格。</p>
@@ -358,19 +358,19 @@ value3
 <p><code class="docutils literal notranslate"><span class="pre">printf</span></code> 由 POSIX 标准所定义，因此使用 <code class="docutils literal notranslate"><span class="pre">printf</span></code> 的脚本比使用 <code class="docutils literal notranslate"><span class="pre">echo</span></code> 移植性好。</p>
 <p>默认 <code class="docutils literal notranslate"><span class="pre">printf</span></code> 不会像 <code class="docutils literal notranslate"><span class="pre">echo</span></code> 自动添加换行符，需要手动添加 <code class="docutils literal notranslate"><span class="pre">\n</span></code> 。</p>
 <p>例子:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">printf</span> <span class="s2">&quot;Hello, Shell\n&quot;</span>
-<span class="nb">printf</span> <span class="s2">&quot;%-10s %-8s %-4s\n&quot;</span> 姓名 性别 体重kg
-<span class="nb">printf</span> <span class="s2">&quot;%-10s %-8s %-4.2f\n&quot;</span> 郭靖 男 <span class="m">66</span>.1234
-<span class="nb">printf</span> <span class="s2">&quot;%-10s %-8s %-4.2f\n&quot;</span> 杨过 男 <span class="m">48</span>.6543
-<span class="nb">printf</span> <span class="s2">&quot;%-10s %-8s %-4.2f\n&quot;</span> 郭芙 女 <span class="m">47</span>.9876
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nb">printf</span> <span class="s2">&quot;Hello, Shell\n&quot;</span>
+<span class="linenos">2</span><span class="nb">printf</span> <span class="s2">&quot;%-10s %-8s %-4s\n&quot;</span> 姓名 性别 体重kg
+<span class="linenos">3</span><span class="nb">printf</span> <span class="s2">&quot;%-10s %-8s %-4.2f\n&quot;</span> 郭靖 男 <span class="m">66</span>.1234
+<span class="linenos">4</span><span class="nb">printf</span> <span class="s2">&quot;%-10s %-8s %-4.2f\n&quot;</span> 杨过 男 <span class="m">48</span>.6543
+<span class="linenos">5</span><span class="nb">printf</span> <span class="s2">&quot;%-10s %-8s %-4.2f\n&quot;</span> 郭芙 女 <span class="m">47</span>.9876
 </pre></div>
 </div>
 <p>输出:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Hello, Shell
-姓名     性别   体重kg
-郭靖     男      <span class="m">66</span>.12
-杨过     男      <span class="m">48</span>.65
-郭芙     女      <span class="m">47</span>.99
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>Hello, Shell
+<span class="linenos">2</span>姓名     性别   体重kg
+<span class="linenos">3</span>郭靖     男      <span class="m">66</span>.12
+<span class="linenos">4</span>杨过     男      <span class="m">48</span>.65
+<span class="linenos">5</span>郭芙     女      <span class="m">47</span>.99
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">%s</span></code> <code class="docutils literal notranslate"><span class="pre">%c</span></code> <code class="docutils literal notranslate"><span class="pre">%d</span></code> <code class="docutils literal notranslate"><span class="pre">%f</span></code> 都是格式替代符。</p>
@@ -381,27 +381,27 @@ value3
 <h2><span class="section-number">8.7. </span>流程控制<a class="headerlink" href="#id13" title="Permalink to this headline"></a></h2>
 <section id="if-else">
 <h3>if else<a class="headerlink" href="#if-else" title="Permalink to this headline"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> condition1
-<span class="k">then</span>
-    command1
-<span class="k">elif</span> condition2
-<span class="k">then</span>
-    command2
-<span class="k">else</span>
-    commandN
-<span class="k">fi</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">if</span> condition1
+<span class="linenos">2</span><span class="k">then</span>
+<span class="linenos">3</span>    command1
+<span class="linenos">4</span><span class="k">elif</span> condition2
+<span class="linenos">5</span><span class="k">then</span>
+<span class="linenos">6</span>    command2
+<span class="linenos">7</span><span class="k">else</span>
+<span class="linenos">8</span>    commandN
+<span class="linenos">9</span><span class="k">fi</span>
 </pre></div>
 </div>
 </section>
 <section id="for">
 <h3>for<a class="headerlink" href="#for" title="Permalink to this headline"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> var <span class="k">in</span> item1 item2 ... itemN
-<span class="k">do</span>
-    command1
-    command2
-    ...
-    commandN
-<span class="k">done</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">for</span> var <span class="k">in</span> item1 item2 ... itemN
+<span class="linenos">2</span><span class="k">do</span>
+<span class="linenos">3</span>    command1
+<span class="linenos">4</span>    command2
+<span class="linenos">5</span>    ...
+<span class="linenos">6</span>    commandN
+<span class="linenos">7</span><span class="k">done</span>
 </pre></div>
 </div>
 <p>写成单行:</p>
@@ -445,38 +445,38 @@ value3
 </section>
 <section id="while">
 <h3>while<a class="headerlink" href="#while" title="Permalink to this headline"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> condition
-<span class="k">do</span>
-    <span class="nb">command</span>
-<span class="k">done</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">while</span> condition
+<span class="linenos">2</span><span class="k">do</span>
+<span class="linenos">3</span>    <span class="nb">command</span>
+<span class="linenos">4</span><span class="k">done</span>
 </pre></div>
 </div>
 </section>
 <section id="until">
 <h3>until<a class="headerlink" href="#until" title="Permalink to this headline"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">until</span> condition
-<span class="k">do</span>
-    <span class="nb">command</span>
-<span class="k">done</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">until</span> condition
+<span class="linenos">2</span><span class="k">do</span>
+<span class="linenos">3</span>    <span class="nb">command</span>
+<span class="linenos">4</span><span class="k">done</span>
 </pre></div>
 </div>
 </section>
 <section id="case">
 <h3>case<a class="headerlink" href="#case" title="Permalink to this headline"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">case</span> <span class="nv">$var</span> <span class="k">in</span>
-value1<span class="o">)</span>
-    command1
-    command2
-    ...
-    commandN
-    <span class="p">;;</span>
-value2<span class="o">)</span>
-    command1
-    command2
-    ...
-    commandN
-    <span class="p">;;</span>
-<span class="k">esac</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">case</span> <span class="nv">$var</span> <span class="k">in</span>
+<span class="linenos"> 2</span>value1<span class="o">)</span>
+<span class="linenos"> 3</span>    command1
+<span class="linenos"> 4</span>    command2
+<span class="linenos"> 5</span>    ...
+<span class="linenos"> 6</span>    commandN
+<span class="linenos"> 7</span>    <span class="p">;;</span>
+<span class="linenos"> 8</span>value2<span class="o">)</span>
+<span class="linenos"> 9</span>    command1
+<span class="linenos">10</span>    command2
+<span class="linenos">11</span>    ...
+<span class="linenos">12</span>    commandN
+<span class="linenos">13</span>    <span class="p">;;</span>
+<span class="linenos">14</span><span class="k">esac</span>
 </pre></div>
 </div>
 <p>每一个匹配值必须以右括号 <code class="docutils literal notranslate"><span class="pre">)</span></code> 结束；一旦匹配到一个值，则执行完相应命令后不再继续其他匹配。</p>
@@ -492,14 +492,14 @@ value2<span class="o">)</span>
 <section id="id14">
 <h2><span class="section-number">8.8. </span>函数<a class="headerlink" href="#id14" title="Permalink to this headline"></a></h2>
 <p>定义形式如下:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="k">function</span><span class="o">]</span> funname <span class="o">[()]</span>
-<span class="o">{</span>
-
-    action
-
-    <span class="o">[</span><span class="k">return</span> int<span class="o">]</span>
-
-<span class="o">}</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="o">[</span><span class="k">function</span><span class="o">]</span> funname <span class="o">[()]</span>
+<span class="linenos">2</span><span class="o">{</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span>    action
+<span class="linenos">5</span>
+<span class="linenos">6</span>    <span class="o">[</span><span class="k">return</span> int<span class="o">]</span>
+<span class="linenos">7</span>
+<span class="linenos">8</span><span class="o">}</span>
 </pre></div>
 </div>
 <p>上面的中括号表示该部分可以缺省。</p>
@@ -530,10 +530,10 @@ value2<span class="o">)</span>
 </pre></div>
 </div>
 <p>输出:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hello world
-param-1: goodbye
-<span class="m">325</span>
-<span class="m">0</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>hello world
+<span class="linenos">2</span>param-1: goodbye
+<span class="linenos">3</span><span class="m">325</span>
+<span class="linenos">4</span><span class="m">0</span>
 </pre></div>
 </div>
 </section>
@@ -552,7 +552,7 @@ param-1: goodbye
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="10_grep.html" class="btn btn-neutral float-left" title="7. grep" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="08_awk.html" class="btn btn-neutral float-left" title="7. awk" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="07_loginShell.html" class="btn btn-neutral float-right" title="9. Shell 交互与登录" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

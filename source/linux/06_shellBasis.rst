@@ -257,7 +257,7 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。
 
     - 数值：``test $[num1] -eq $[num2]``
 
-    - 字符串：``test $str1 -eq $str2``
+    - 字符串：``test $str1 = $str2``
 
     - 文件：``test -e $file``
 
@@ -470,3 +470,7 @@ break 和 continue
 1. Shell 教程
 
   https://www.runoob.com/linux/linux-shell.html
+
+2. Shell test 命令
+
+  https://www.runoob.com/linux/linux-shell-test.html

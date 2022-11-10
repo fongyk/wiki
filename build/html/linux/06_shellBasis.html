@@ -275,7 +275,7 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。</p>
 <li><p>乘： <code class="docutils literal notranslate"><span class="pre">expr</span> <span class="pre">$a</span> <span class="pre">\*</span> <span class="pre">$b</span></code></p></li>
 <li><p>除： <code class="docutils literal notranslate"><span class="pre">expr</span> <span class="pre">$a</span> <span class="pre">/</span> <span class="pre">$b</span></code></p></li>
 <li><p>求余： <code class="docutils literal notranslate"><span class="pre">expr</span> <span class="pre">$a</span> <span class="pre">%</span> <span class="pre">$b</span></code></p></li>
-<li><p>复合： <code class="docutils literal notranslate"><span class="pre">expr</span> <span class="pre">\(</span> <span class="pre">$c</span> <span class="pre">+</span> <span class="pre">$b</span> <span class="pre">\)</span> <span class="pre">\*</span> <span class="pre">$c</span></code></p></li>
+<li><p>复合： <code class="docutils literal notranslate"><span class="pre">expr</span> <span class="pre">\(</span> <span class="pre">$a</span> <span class="pre">+</span> <span class="pre">$b</span> <span class="pre">\)</span> <span class="pre">\*</span> <span class="pre">$c</span></code></p></li>
 <li><p>赋值： <code class="docutils literal notranslate"><span class="pre">a=$b</span></code></p></li>
 </ul>
 <div class="admonition note">
@@ -347,7 +347,7 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。</p>
 <section id="id11">
 <h4>布尔运算<a class="headerlink" href="#id11" title="Permalink to this headline"></a></h4>
 <ul class="simple">
-<li><p>非： <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">!event</span> <span class="pre">]</span></code> 取反。</p></li>
+<li><p>非： <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">!</span> <span class="pre">event</span> <span class="pre">]</span></code> 取反。</p></li>
 <li><p>与： <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">$a</span> <span class="pre">-lt</span> <span class="pre">20</span> <span class="pre">-a</span> <span class="pre">$b</span> <span class="pre">-gt</span> <span class="pre">100</span> <span class="pre">]</span></code></p></li>
 <li><p>或： <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">$a</span> <span class="pre">-lt</span> <span class="pre">20</span> <span class="pre">-o</span> <span class="pre">$b</span> <span class="pre">-gt</span> <span class="pre">100</span> <span class="pre">]</span></code></p></li>
 </ul>
@@ -416,7 +416,7 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。</p>
 <li><p>可读： <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">-r</span> <span class="pre">$file</span> <span class="pre">]</span></code></p></li>
 <li><p>可写： <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">-w</span> <span class="pre">$file</span> <span class="pre">]</span></code></p></li>
 <li><p>可执行： <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">-x</span> <span class="pre">$file</span> <span class="pre">]</span></code></p></li>
-<li><p>为空（文件大小是否大于0）： <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">-s</span> <span class="pre">$file</span> <span class="pre">]</span></code></p></li>
+<li><p>为空（文件大小是否大于 0）： <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">-s</span> <span class="pre">$file</span> <span class="pre">]</span></code></p></li>
 <li><p>存在： <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">-e</span> <span class="pre">$file</span> <span class="pre">]</span></code></p></li>
 </ul>
 <div class="admonition note">
@@ -582,7 +582,7 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。</p>
 <li><p>参数个数： <code class="docutils literal notranslate"><span class="pre">$#</span></code></p></li>
 <li><p>以单一字符串形式获取全部参数： <code class="docutils literal notranslate"><span class="pre">$*</span></code></p></li>
 <li><p>以列表形式获取全部参数： <code class="docutils literal notranslate"><span class="pre">$&#64;</span></code></p></li>
-<li><p>脚本运行的当前进程ID： <code class="docutils literal notranslate"><span class="pre">$$</span></code></p></li>
+<li><p>脚本运行的当前进程 ID： <code class="docutils literal notranslate"><span class="pre">$$</span></code></p></li>
 <li><p>返回值： <code class="docutils literal notranslate"><span class="pre">$?</span></code> 表示返回值或显示最后命令的退出状态；0 表示没有错误，其他值表明有错误。</p></li>
 </ul>
 <p>示例：</p>

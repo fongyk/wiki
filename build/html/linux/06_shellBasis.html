@@ -141,7 +141,11 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。</p>
 <p>后文介绍的是 bash 的一些基本语法。</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>执行 <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$SHELL</span></code> 可查看当前使用的 Shell 环境。</p>
+<ul class="simple">
+<li><p>执行 <code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">/etc/shells</span></code> 查看系统可使用的 Shell 种类。</p></li>
+<li><p>执行 <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$SHELL</span></code> 查看系统默认的 Shell 环境。</p></li>
+<li><p>执行 <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$0</span></code> 或 <code class="docutils literal notranslate"><span class="pre">ps</span> <span class="pre">-p</span> <span class="pre">$$</span></code> 查看当前所处的 Shell 环境。</p></li>
+</ul>
 </div>
 <section id="id1">
 <h2><span class="section-number">8.1. </span>变量<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
@@ -331,7 +335,15 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。</p>
 </ul>
 </section>
 <section id="id10">
-<h4>逻辑运算<a class="headerlink" href="#id10" title="Permalink to this headline"></a></h4>
+<h4>布尔运算<a class="headerlink" href="#id10" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>非： <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">!</span> <span class="pre">event</span> <span class="pre">]</span></code> 取反。</p></li>
+<li><p>与： <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">$a</span> <span class="pre">-lt</span> <span class="pre">20</span> <span class="pre">-a</span> <span class="pre">$b</span> <span class="pre">-gt</span> <span class="pre">100</span> <span class="pre">]</span></code></p></li>
+<li><p>或： <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">$a</span> <span class="pre">-lt</span> <span class="pre">20</span> <span class="pre">-o</span> <span class="pre">$b</span> <span class="pre">-gt</span> <span class="pre">100</span> <span class="pre">]</span></code></p></li>
+</ul>
+</section>
+<section id="id11">
+<h4>逻辑运算<a class="headerlink" href="#id11" title="Permalink to this headline"></a></h4>
 <ul>
 <li><p>与： <code class="docutils literal notranslate"><span class="pre">[[</span> <span class="pre">$a</span> <span class="pre">-lt</span> <span class="pre">20</span> <span class="pre">&amp;&amp;</span> <span class="pre">$b</span> <span class="pre">-gt</span> <span class="pre">100</span> <span class="pre">]]</span></code></p>
 <blockquote>
@@ -342,14 +354,6 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。</p>
 </div></blockquote>
 </li>
 <li><p>或： <code class="docutils literal notranslate"><span class="pre">[[</span> <span class="pre">$a</span> <span class="pre">-lt</span> <span class="pre">20</span> <span class="pre">||</span> <span class="pre">$b</span> <span class="pre">-gt</span> <span class="pre">100</span> <span class="pre">]]</span></code></p></li>
-</ul>
-</section>
-<section id="id11">
-<h4>布尔运算<a class="headerlink" href="#id11" title="Permalink to this headline"></a></h4>
-<ul class="simple">
-<li><p>非： <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">!</span> <span class="pre">event</span> <span class="pre">]</span></code> 取反。</p></li>
-<li><p>与： <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">$a</span> <span class="pre">-lt</span> <span class="pre">20</span> <span class="pre">-a</span> <span class="pre">$b</span> <span class="pre">-gt</span> <span class="pre">100</span> <span class="pre">]</span></code></p></li>
-<li><p>或： <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">$a</span> <span class="pre">-lt</span> <span class="pre">20</span> <span class="pre">-o</span> <span class="pre">$b</span> <span class="pre">-gt</span> <span class="pre">100</span> <span class="pre">]</span></code></p></li>
 </ul>
 </section>
 </section>

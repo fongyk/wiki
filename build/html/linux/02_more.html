@@ -61,7 +61,13 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#tee">2.2. tee</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">2.3. 查找</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2.3. 查找</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#which">which</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#whereis">whereis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#locate">locate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#find">find</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#alias">2.4. alias</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ln">2.5. ln</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">2.6. 参考资料</a></li>
@@ -69,9 +75,9 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="03_authority.html">3. 权限管理</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_rename.html">4. 重命名</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_sed.html">5. sed</a></li>
-<li class="toctree-l2"><a class="reference internal" href="08_awk.html">6. awk</a></li>
-<li class="toctree-l2"><a class="reference internal" href="10_grep.html">7. grep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_grep.html">5. grep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_sed.html">6. sed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_awk.html">7. awk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="06_shellBasis.html">8. Shell 基础</a></li>
 <li class="toctree-l2"><a class="reference internal" href="07_loginShell.html">9. Shell 交互与登录</a></li>
 <li class="toctree-l2"><a class="reference internal" href="09_curl.html">10. curl</a></li>
@@ -83,9 +89,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../regularExpression/index.html">正则表达式</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">快速访问</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">技巧</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
 </ul>
 
@@ -197,13 +203,21 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tee <span class="o">[</span>-ai<span class="o">]</span> <span class="o">[</span>--help<span class="o">]</span> <span class="o">[</span>--version<span class="o">]</span> <span class="o">[</span>file ...<span class="o">]</span>
 </pre></div>
 </div>
-<dl class="simple">
-<dt>参数</dt><dd><ul class="simple">
-<li><p>-a或- -append：追加到既有文件</p></li>
-<li><p>-i或- -ignore-interrupts：忽略中断信号</p></li>
-<li><p>- -help：帮助</p></li>
-<li><p>- -version：版本信息</p></li>
-</ul>
+<dl>
+<dt>参数</dt><dd><dl class="option-list">
+<dt><kbd><span class="option">-a</span>, <span class="option">--append</span></kbd></dt>
+<dd><p>追加到既有文件</p>
+</dd>
+<dt><kbd><span class="option">-i</span>, <span class="option">--ignore-interrupts</span></kbd></dt>
+<dd><p>忽略中断信号</p>
+</dd>
+<dt><kbd><span class="option">--help</span></kbd></dt>
+<dd><p>帮助</p>
+</dd>
+<dt><kbd><span class="option">--version</span></kbd></dt>
+<dd><p>版本信息</p>
+</dd>
+</dl>
 </dd>
 </dl>
 <div class="toggle docutils container">
@@ -231,57 +245,88 @@
 </pre></div>
 </div>
 </div>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
 </section>
 <section id="id2">
 <h2><span class="section-number">2.3. </span>查找<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
-<p><strong>which</strong></p>
+<section id="which">
+<h3>which<a class="headerlink" href="#which" title="Permalink to this headline"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>which <span class="o">[</span>可执行文件...<span class="o">]</span>
 </pre></div>
 </div>
-<p>在PATH变量指定的路径中，搜索某个系统命令的位置，并且返回第一个搜索结果。</p>
-<p><strong>whereis</strong></p>
+<p>在 <code class="docutils literal notranslate"><span class="pre">PATH</span></code> 变量指定的路径中，搜索某个系统命令的位置，并且返回第一个搜索结果。</p>
+</section>
+<section id="whereis">
+<h3>whereis<a class="headerlink" href="#whereis" title="Permalink to this headline"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>whereis <span class="o">[</span>-bmsu<span class="o">]</span> <span class="o">[</span>-BMS -f 目录...<span class="o">]</span> <span class="o">[</span>文件...<span class="o">]</span>
 </pre></div>
 </div>
 <p>只能用于程序名的搜索，而且只搜索二进制文件（-b）、帮助说明文件（-m）和源代码文件（-s）。如果省略参数，则返回所有信息。
 参数：</p>
 <blockquote>
-<div><ul class="simple">
-<li><p>-b：定位可执行文件。</p></li>
-<li><p>-m：定位帮助文件。</p></li>
-<li><p>-s：定位源代码文件。</p></li>
-<li><p>-u：搜索默认路径下除可执行文件、源代码文件、帮助文件以外的其它文件。</p></li>
-<li><p>-B：指定搜索可执行文件的路径。</p></li>
-<li><p>-M：指定搜索帮助文件的路径。</p></li>
-<li><p>-S：指定搜索源代码文件的路径。</p></li>
-</ul>
+<div><dl class="option-list">
+<dt><kbd><span class="option">-b</span></kbd></dt>
+<dd><p>定位可执行文件。</p>
+</dd>
+<dt><kbd><span class="option">-m</span></kbd></dt>
+<dd><p>定位帮助文件。</p>
+</dd>
+<dt><kbd><span class="option">-s</span></kbd></dt>
+<dd><p>定位源代码文件。</p>
+</dd>
+<dt><kbd><span class="option">-u</span></kbd></dt>
+<dd><p>搜索默认路径下除可执行文件、源代码文件、帮助文件以外的其它文件。</p>
+</dd>
+<dt><kbd><span class="option">-B</span></kbd></dt>
+<dd><p>指定搜索可执行文件的路径。</p>
+</dd>
+<dt><kbd><span class="option">-M</span></kbd></dt>
+<dd><p>指定搜索帮助文件的路径。</p>
+</dd>
+<dt><kbd><span class="option">-S</span></kbd></dt>
+<dd><p>指定搜索源代码文件的路径。</p>
+</dd>
+</dl>
 </div></blockquote>
-<p><strong>locate</strong></p>
+</section>
+<section id="locate">
+<h3>locate<a class="headerlink" href="#locate" title="Permalink to this headline"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>locate <span class="o">[</span>-d<span class="o">]</span> <span class="o">[</span>--help<span class="o">]</span> <span class="o">[</span>--version<span class="o">]</span> <span class="o">[</span>范本样式...<span class="o">]</span>
 </pre></div>
 </div>
 <p>配合数据库查找文件位置。参数：</p>
 <blockquote>
-<div><ul class="simple">
-<li><p>-d：配置locate指令使用的数据库。locate指令预设的数据库位于/var/lib/slocate目录里，文档名为slocate.db。</p></li>
-</ul>
+<div><dl class="option-list">
+<dt><kbd><span class="option">-d</span></kbd></dt>
+<dd><p>配置 locate 指令使用的数据库。locate 指令预设的数据库位于 /var/lib/slocate 目录里，文档名为 slocate.db。</p>
+</dd>
+</dl>
 </div></blockquote>
-<p><strong>find</strong></p>
+</section>
+<section id="find">
+<h3>find<a class="headerlink" href="#find" title="Permalink to this headline"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find pathname -options <span class="o">[</span>-print -exec -ok ...<span class="o">]</span>
 </pre></div>
 </div>
-<p>find是在硬盘文件树查找。参数：</p>
+<p>find 是在硬盘文件树查找。参数：</p>
 <blockquote>
-<div><ul class="simple">
-<li><p>pathname：查找的目录。例如用 . 来表示当前目录，用 / 来表示系统根目录。</p></li>
-<li><p>-name：按照文件名查找文件。</p></li>
-<li><p>-print：将匹配的文件输出到标准输出。也可以使用 <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> 或  <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> （追加）写到文件。</p></li>
-<li><p>-exec：对匹配的文件执行该参数所给出的shell命令。相应命令的形式为 <code class="docutils literal notranslate"><span class="pre">'command'</span> <span class="pre">{}</span> <span class="pre">\;</span></code> ，注意 <code class="docutils literal notranslate"><span class="pre">{}</span></code> 和 <code class="docutils literal notranslate"><span class="pre">\;</span></code> 之间的空格。</p></li>
-<li><p>-ok：和-exec的作用相同，只不过以一种更为安全的模式来执行该参数所给出的shell命令，在执行每一个命令之前，都会给出提示，让用户来确定是否执行。</p></li>
-</ul>
+<div><dl class="simple">
+<dt>pathname</dt><dd><p>查找的目录。例如用 <code class="docutils literal notranslate"><span class="pre">.</span></code> 来表示当前目录，用 <code class="docutils literal notranslate"><span class="pre">/</span></code> 来表示系统根目录。</p>
+</dd>
+</dl>
+<dl class="option-list">
+<dt><kbd><span class="option">-n<var>ame</var></span></kbd></dt>
+<dd><p>按照文件名查找文件。</p>
+</dd>
+<dt><kbd><span class="option">-p<var>rint</var></span></kbd></dt>
+<dd><p>将匹配的文件输出到标准输出。也可以使用 <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> 或  <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> （追加）写到文件。</p>
+</dd>
+<dt><kbd><span class="option">-e<var>xec</var></span></kbd></dt>
+<dd><p>对匹配的文件执行该参数所给出的 Shell 命令。相应命令的形式为 <code class="docutils literal notranslate"><span class="pre">'command'</span> <span class="pre">{}</span> <span class="pre">\;</span></code> ，注意 <code class="docutils literal notranslate"><span class="pre">{}</span></code> 和 <code class="docutils literal notranslate"><span class="pre">\;</span></code> 之间的空格。</p>
+</dd>
+<dt><kbd><span class="option">-o<var>k</var></span></kbd></dt>
+<dd><p>和 -exec 的作用相同，只不过以一种更为安全的模式来执行该参数所给出的 Shell 命令，在执行每一个命令之前，都会给出提示，让用户来确定是否执行。</p>
+</dd>
+</dl>
 </div></blockquote>
 <div class="toggle docutils container">
 <div class="header docutils container">
@@ -305,23 +350,21 @@
 </pre></div>
 </div>
 </div>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
+</section>
 </section>
 <section id="alias">
 <h2><span class="section-number">2.4. </span>alias<a class="headerlink" href="#alias" title="Permalink to this headline"></a></h2>
 <p>alias 命令用来设置指令的别名；我们可以使用该命令可以将一些较长的命令进行简化。
 使用 alias 时，用户必须使用引号将原来的命令引起来，防止特殊字符导致错误。</p>
-<p>alias 命令的作用只局限于该次登入的操作，可以写入 <cite>~/.bashrc</cite> 中。</p>
+<p>alias 命令的作用只局限于该次登入的操作，可以写入 <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> 中。</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">alias</span> <span class="nv">新的命令</span><span class="o">=</span><span class="s1">&#39;原命令 -选项/参数&#39;</span>
 </pre></div>
 </div>
-<p>如：</p>
+<p>如:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">alias</span> <span class="nv">ll</span><span class="o">=</span><span class="s1">&#39;ls -lsh&#39;</span>
 </pre></div>
 </div>
-<p>删除：</p>
+<p>删除:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">unalias</span> ll
 </pre></div>
 </div>
@@ -334,15 +377,29 @@
 </div>
 <p>目标文件或目录就是新建立的链接。使用 <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-F</span></code> 指令查看后缀为 <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> 的文件就是 ln 建立的文件， <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code> 指令可以查看具体的链接路径。</p>
 <p>参数：</p>
-<ul class="simple">
-<li><p>-b：删除，覆盖以前建立的链接。</p></li>
-<li><p>-d：允许超级用户制作目录的硬链接。</p></li>
-<li><p>-f：强制执行。</p></li>
-<li><p>-i：交互模式，文件存在则提示用户是否覆盖。</p></li>
-<li><p>-n：把符号链接视为一般目录。</p></li>
-<li><p>-s：软链接（符号链接 symbolic）。</p></li>
-<li><p>-v：显示详细的处理过程。</p></li>
-</ul>
+<dl class="option-list">
+<dt><kbd><span class="option">-b</span></kbd></dt>
+<dd><p>删除，覆盖以前建立的链接。</p>
+</dd>
+<dt><kbd><span class="option">-d</span></kbd></dt>
+<dd><p>允许超级用户制作目录的硬链接。</p>
+</dd>
+<dt><kbd><span class="option">-f</span></kbd></dt>
+<dd><p>强制执行。</p>
+</dd>
+<dt><kbd><span class="option">-i</span></kbd></dt>
+<dd><p>交互模式，文件存在则提示用户是否覆盖。</p>
+</dd>
+<dt><kbd><span class="option">-n</span></kbd></dt>
+<dd><p>把符号链接视为一般目录。</p>
+</dd>
+<dt><kbd><span class="option">-s</span></kbd></dt>
+<dd><p>软链接（符号链接 symbolic）。</p>
+</dd>
+<dt><kbd><span class="option">-v</span></kbd></dt>
+<dd><p>显示详细的处理过程。</p>
+</dd>
+</dl>
 <p><strong>软链接</strong></p>
 <blockquote>
 <div><ul class="simple">

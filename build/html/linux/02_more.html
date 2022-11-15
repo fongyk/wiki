@@ -248,14 +248,14 @@
 <h2><span class="section-number">2.3. </span>查找<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <section id="which">
 <h3>which<a class="headerlink" href="#which" title="Permalink to this headline"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>which <span class="o">[</span>可执行文件...<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>which <span class="o">[</span>option<span class="o">]</span> <span class="o">[</span>command...<span class="o">]</span>
 </pre></div>
 </div>
 <p>在 <code class="docutils literal notranslate"><span class="pre">PATH</span></code> 变量指定的路径中，搜索某个系统命令的位置，并且返回第一个搜索结果。</p>
 </section>
 <section id="whereis">
 <h3>whereis<a class="headerlink" href="#whereis" title="Permalink to this headline"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>whereis <span class="o">[</span>-bmsu<span class="o">]</span> <span class="o">[</span>-BMS -f 目录...<span class="o">]</span> <span class="o">[</span>文件...<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>whereis <span class="o">[</span>-bmsu<span class="o">]</span> <span class="o">[</span>-BMS directory... -f<span class="o">]</span> name...
 </pre></div>
 </div>
 <p>只能用于程序名的搜索，而且只搜索二进制文件（-b）、帮助说明文件（-m）和源代码文件（-s）。如果省略参数，则返回所有信息。
@@ -272,7 +272,7 @@
 <dd><p>定位源代码文件。</p>
 </dd>
 <dt><kbd><span class="option">-u</span></kbd></dt>
-<dd><p>搜索默认路径下除可执行文件、源代码文件、帮助文件以外的其它文件。</p>
+<dd><p>搜索不寻常命令（比如没有帮助文件或不止一个帮助文件的命令）。</p>
 </dd>
 <dt><kbd><span class="option">-B</span></kbd></dt>
 <dd><p>指定搜索可执行文件的路径。</p>
@@ -283,38 +283,39 @@
 <dt><kbd><span class="option">-S</span></kbd></dt>
 <dd><p>指定搜索源代码文件的路径。</p>
 </dd>
+<dt><kbd><span class="option">-f</span></kbd></dt>
+<dd><p>起分隔作用。</p>
+</dd>
 </dl>
 </div></blockquote>
 </section>
 <section id="locate">
 <h3>locate<a class="headerlink" href="#locate" title="Permalink to this headline"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>locate <span class="o">[</span>-d<span class="o">]</span> <span class="o">[</span>--help<span class="o">]</span> <span class="o">[</span>--version<span class="o">]</span> <span class="o">[</span>范本样式...<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>locate <span class="o">[</span>-d path <span class="p">|</span> --database<span class="o">=</span>path<span class="o">]</span> <span class="o">[</span>-e <span class="p">|</span> -E <span class="p">|</span> --<span class="o">[</span>non-<span class="o">]</span>existing<span class="o">]</span>
+     <span class="o">[</span>-i <span class="p">|</span> --ignore-case<span class="o">]</span> <span class="o">[</span>-0 <span class="p">|</span> --null<span class="o">]</span> <span class="o">[</span>-c <span class="p">|</span> --count<span class="o">]</span> <span class="o">[</span>-w <span class="p">|</span>
+     --wholename<span class="o">]</span> <span class="o">[</span>-b <span class="p">|</span> --basename<span class="o">]</span> <span class="o">[</span>-l N <span class="p">|</span> --limit<span class="o">=</span>N<span class="o">]</span> <span class="o">[</span>-S <span class="p">|</span>
+     --statistics<span class="o">]</span> <span class="o">[</span>-r <span class="p">|</span> --regex <span class="o">]</span> <span class="o">[</span>--regextype R<span class="o">]</span> <span class="o">[</span>--max-database-age
+     D<span class="o">]</span> <span class="o">[</span>-P <span class="p">|</span> -H <span class="p">|</span> --nofollow<span class="o">]</span> <span class="o">[</span>-L <span class="p">|</span> --follow<span class="o">]</span> <span class="o">[</span>--version<span class="o">]</span> <span class="o">[</span>-A <span class="p">|</span>
+     --all<span class="o">]</span> <span class="o">[</span>-p <span class="p">|</span> --print<span class="o">]</span> <span class="o">[</span>--help<span class="o">]</span> pattern...
 </pre></div>
 </div>
 <p>配合数据库查找文件位置。参数：</p>
 <blockquote>
 <div><dl class="option-list">
-<dt><kbd><span class="option">-d</span></kbd></dt>
-<dd><p>配置 locate 指令使用的数据库。locate 指令预设的数据库位于 /var/lib/slocate 目录里，文档名为 slocate.db。</p>
+<dt><kbd><span class="option">-d <var>path</var></span>, <span class="option">--database=<var>path</var></span></kbd></dt>
+<dd><p>配置 locate 指令搜索的数据库。</p>
 </dd>
 </dl>
 </div></blockquote>
 </section>
 <section id="find">
 <h3>find<a class="headerlink" href="#find" title="Permalink to this headline"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find pathname -options <span class="o">[</span>-print -exec -ok ...<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find <span class="o">[</span>-H<span class="o">]</span> <span class="o">[</span>-L<span class="o">]</span> <span class="o">[</span>-P<span class="o">]</span> <span class="o">[</span>-D debugopts<span class="o">]</span> <span class="o">[</span>-Olevel<span class="o">]</span> <span class="o">[</span>starting-point...<span class="o">]</span> <span class="o">[</span>expression<span class="o">]</span>
 </pre></div>
 </div>
-<p>find 是在硬盘文件树查找。参数：</p>
+<p>find 是在硬盘文件树查找。几个动作：</p>
 <blockquote>
-<div><dl class="simple">
-<dt>pathname</dt><dd><p>查找的目录。例如用 <code class="docutils literal notranslate"><span class="pre">.</span></code> 来表示当前目录，用 <code class="docutils literal notranslate"><span class="pre">/</span></code> 来表示系统根目录。</p>
-</dd>
-</dl>
-<dl class="option-list">
-<dt><kbd><span class="option">-n<var>ame</var></span></kbd></dt>
-<dd><p>按照文件名查找文件。</p>
-</dd>
+<div><dl class="option-list">
 <dt><kbd><span class="option">-p<var>rint</var></span></kbd></dt>
 <dd><p>将匹配的文件输出到标准输出。也可以使用 <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> 或  <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> （追加）写到文件。</p>
 </dd>
@@ -448,6 +449,24 @@
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://www.jianshu.com/p/42a1850bdcf6">https://www.jianshu.com/p/42a1850bdcf6</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li><p>whereis</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://man7.org/linux/man-pages/man1/whereis.1.html">https://man7.org/linux/man-pages/man1/whereis.1.html</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="6">
+<li><p>locate</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://man7.org/linux/man-pages/man1/locate.1.html">https://man7.org/linux/man-pages/man1/locate.1.html</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="7">
+<li><p>find</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://man7.org/linux/man-pages/man1/find.1.html">https://man7.org/linux/man-pages/man1/find.1.html</a></p>
 </div></blockquote>
 </section>
 </section>

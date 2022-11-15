@@ -82,9 +82,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../regularExpression/index.html">正则表达式</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">快速访问</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">技巧</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
 </ul>
 
@@ -364,32 +364,150 @@
 </section>
 <section id="module">
 <h2><span class="section-number">9.4. </span>附：Module 部分实例方法<a class="headerlink" href="#module" title="Permalink to this headline"></a></h2>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">add_module(name,</span> <span class="pre">module)</span></code> 向当前模块中加入新的子模块。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">apply(fn)</span></code> 循环地向每个子模块（ <code class="docutils literal notranslate"><span class="pre">.children()</span></code> ）及其自身施加 <code class="docutils literal notranslate"><span class="pre">fn</span></code> 函数，典型的用法包括初始化模型参数。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">buffers(recurse=True)</span></code> 返回模块缓存的迭代器，如 BatchNorm 需要缓存 running_mean 和 running_var。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">named_buffers(prefix='',</span> <span class="pre">recurse=True)</span></code> 返回模块缓存的迭代器，迭代器会同时产生缓存的名字和缓存的数据。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">children()</span></code> 返回直接子模块的迭代器。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">named_children()</span></code> 返回直接子模块的迭代器，迭代器会同时产生模块的名字和模块自身。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">modules()</span></code> 返回所有子模块的迭代器。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">named_modules(memo=None,</span> <span class="pre">prefix='')</span></code> 返回所有子模块的迭代器，迭代器会同时产生模块的名字和模块自身。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cpu()</span></code> 将所有的模型参数和缓冲移到 CPU。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cuda(device=None)</span></code> 将所有的模型参数和缓冲移到 GPU，必须在构造优化器之前调用。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">double()</span></code> 将所有的浮点型参数和缓存强制转换为 double 类型。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">float()</span></code> 将所有的参数和缓存强制转换为浮点类型。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">half()</span></code> 将所有的参数和缓存强制转换为半浮点类型。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">train(mode=True)</span></code> 将模块设置为训练模式。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">eval()</span></code> 与 <code class="docutils literal notranslate"><span class="pre">train(False)</span></code> 等效。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">forward(*input)</span></code> 定义前向传播的计算过程。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">state_dict(destination=None,</span> <span class="pre">prefix='',</span> <span class="pre">keep_vars=False)</span></code> 返回包含模块完整状态的字典，字典中同时包含参数和持续性缓存。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">load_state_dict(state_dict,</span> <span class="pre">strict=True)</span></code> 从状态字典中将参数和缓存复制到该模块及其子模块中；如果 <code class="docutils literal notranslate"><span class="pre">strict=True</span></code> , 那么 <code class="docutils literal notranslate"><span class="pre">state_dict</span></code> 的键必须和该模块的 <code class="docutils literal notranslate"><span class="pre">state_dict()</span></code> 函数返回的键一致。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">parameters(recurse=True)</span></code> 返回模块参数的迭代器，通常传递给优化器。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">named_parameters(prefix='',</span> <span class="pre">recurse=True)</span></code> 返回模块参数的迭代器，迭代器将同时产生参数的名称和参数自身。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">register_parameter(name,</span> <span class="pre">param)</span></code> 向模块中加入参数。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">to(*args,</span> <span class="pre">**kwargs)</span></code> 移动或强制转换参数和缓存。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">type(dst_type)</span></code> 将所有的参数和缓存强制转换为 <code class="docutils literal notranslate"><span class="pre">dst_type</span></code> （python:type or string） 类型。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">zero_grad()</span></code> 将所有模型参数的梯度设置为0。</p></li>
-</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="add_module">
+<span class="sig-name descname"><span class="pre">add_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#add_module" title="Permalink to this definition"></a></dt>
+<dd><p>向当前模块中加入新的子模块。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="apply">
+<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apply" title="Permalink to this definition"></a></dt>
+<dd><p>循环地向每个子模块（ <code class="docutils literal notranslate"><span class="pre">.children()</span></code> ）及其自身施加 fn 函数，典型的用法包括初始化模型参数。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="buffers">
+<span class="sig-name descname"><span class="pre">buffers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">recurse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#buffers" title="Permalink to this definition"></a></dt>
+<dd><p>返回模块缓存的迭代器，如 BatchNorm 需要缓存 running_mean 和 running_var。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="named_buffers">
+<span class="sig-name descname"><span class="pre">named_buffers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recurse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#named_buffers" title="Permalink to this definition"></a></dt>
+<dd><p>返回模块缓存的迭代器，迭代器会同时产生缓存的名字和缓存的数据。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="children">
+<span class="sig-name descname"><span class="pre">children</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#children" title="Permalink to this definition"></a></dt>
+<dd><p>返回直接子模块的迭代器。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="named_children">
+<span class="sig-name descname"><span class="pre">named_children</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#named_children" title="Permalink to this definition"></a></dt>
+<dd><p>返回直接子模块的迭代器，迭代器会同时产生模块的名字和模块自身。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modules">
+<span class="sig-name descname"><span class="pre">modules</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modules" title="Permalink to this definition"></a></dt>
+<dd><p>返回所有子模块的迭代器。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="named_modules">
+<span class="sig-name descname"><span class="pre">named_modules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#named_modules" title="Permalink to this definition"></a></dt>
+<dd><p>返回所有子模块的迭代器，迭代器会同时产生模块的名字和模块自身。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cpu">
+<span class="sig-name descname"><span class="pre">cpu</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cpu" title="Permalink to this definition"></a></dt>
+<dd><p>将所有的模型参数和缓冲移到 CPU。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cuda">
+<span class="sig-name descname"><span class="pre">cuda</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cuda" title="Permalink to this definition"></a></dt>
+<dd><p>将所有的模型参数和缓冲移到 GPU，必须在构造优化器之前调用。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="double">
+<span class="sig-name descname"><span class="pre">double</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#double" title="Permalink to this definition"></a></dt>
+<dd><p>将所有的浮点型参数和缓存强制转换为 double 类型。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="float">
+<span class="sig-name descname"><span class="pre">float</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#float" title="Permalink to this definition"></a></dt>
+<dd><p>将所有的参数和缓存强制转换为浮点类型。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="half">
+<span class="sig-name descname"><span class="pre">half</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#half" title="Permalink to this definition"></a></dt>
+<dd><p>将所有的参数和缓存强制转换为半浮点类型。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="train">
+<span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#train" title="Permalink to this definition"></a></dt>
+<dd><p>将模块设置为训练模式。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#eval" title="Permalink to this definition"></a></dt>
+<dd><p>与 <code class="docutils literal notranslate"><span class="pre">train(False)</span></code> 等效。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#forward" title="Permalink to this definition"></a></dt>
+<dd><p>定义前向传播的计算过程。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="state_dict">
+<span class="sig-name descname"><span class="pre">state_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_vars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state_dict" title="Permalink to this definition"></a></dt>
+<dd><p>返回包含模块完整状态的字典，字典中同时包含参数和持续性缓存。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="load_state_dict">
+<span class="sig-name descname"><span class="pre">load_state_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#load_state_dict" title="Permalink to this definition"></a></dt>
+<dd><p>从状态字典中将参数和缓存复制到该模块及其子模块中；如果 strict=True , 那么 state_dict 的键必须和该模块的 <code class="docutils literal notranslate"><span class="pre">state_dict()</span></code> 函数返回的键一致。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parameters">
+<span class="sig-name descname"><span class="pre">parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">recurse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#parameters" title="Permalink to this definition"></a></dt>
+<dd><p>返回模块参数的迭代器，通常传递给优化器。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="named_parameters">
+<span class="sig-name descname"><span class="pre">named_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recurse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#named_parameters" title="Permalink to this definition"></a></dt>
+<dd><p>返回模块参数的迭代器，迭代器将同时产生参数的名称和参数自身。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="register_parameter">
+<span class="sig-name descname"><span class="pre">register_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#register_parameter" title="Permalink to this definition"></a></dt>
+<dd><p>向模块中加入参数。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="to">
+<span class="sig-name descname"><span class="pre">to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#to" title="Permalink to this definition"></a></dt>
+<dd><p>移动或强制转换参数和缓存。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="type">
+<span class="sig-name descname"><span class="pre">type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dst_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#type" title="Permalink to this definition"></a></dt>
+<dd><p>将所有的参数和缓存强制转换为 dst_type（python:type or string）类型。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="zero_grad">
+<span class="sig-name descname"><span class="pre">zero_grad</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#zero_grad" title="Permalink to this definition"></a></dt>
+<dd><p>将所有模型参数的梯度设置为 0。</p>
+</dd></dl>
+
 </section>
 <section id="id1">
 <h2><span class="section-number">9.5. </span>参考资料<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>

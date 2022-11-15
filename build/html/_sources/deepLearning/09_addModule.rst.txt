@@ -299,53 +299,101 @@ attribute 索引
 附：Module 部分实例方法
 ---------------------------------
 
-- ``add_module(name, module)`` 向当前模块中加入新的子模块。
+.. py:method:: add_module(name, module)
 
-- ``apply(fn)`` 循环地向每个子模块（ ``.children()`` ）及其自身施加 ``fn`` 函数，典型的用法包括初始化模型参数。
+  向当前模块中加入新的子模块。
 
-- ``buffers(recurse=True)`` 返回模块缓存的迭代器，如 BatchNorm 需要缓存 running_mean 和 running_var。
+.. py:method:: apply(fn)
 
-- ``named_buffers(prefix='', recurse=True)`` 返回模块缓存的迭代器，迭代器会同时产生缓存的名字和缓存的数据。
+  循环地向每个子模块（ ``.children()`` ）及其自身施加 fn 函数，典型的用法包括初始化模型参数。
 
-- ``children()`` 返回直接子模块的迭代器。
+.. py:method:: buffers(recurse=True)
 
-- ``named_children()`` 返回直接子模块的迭代器，迭代器会同时产生模块的名字和模块自身。
+  返回模块缓存的迭代器，如 BatchNorm 需要缓存 running_mean 和 running_var。
 
-- ``modules()`` 返回所有子模块的迭代器。
+.. py:method:: named_buffers(prefix='', recurse=True)
 
-- ``named_modules(memo=None, prefix='')`` 返回所有子模块的迭代器，迭代器会同时产生模块的名字和模块自身。
+  返回模块缓存的迭代器，迭代器会同时产生缓存的名字和缓存的数据。
 
-- ``cpu()`` 将所有的模型参数和缓冲移到 CPU。
+.. py:method:: children()
 
-- ``cuda(device=None)`` 将所有的模型参数和缓冲移到 GPU，必须在构造优化器之前调用。
+  返回直接子模块的迭代器。
 
-- ``double()`` 将所有的浮点型参数和缓存强制转换为 double 类型。
+.. py:method:: named_children()
 
-- ``float()`` 将所有的参数和缓存强制转换为浮点类型。
+  返回直接子模块的迭代器，迭代器会同时产生模块的名字和模块自身。
 
-- ``half()`` 将所有的参数和缓存强制转换为半浮点类型。
+.. py:method:: modules()
 
-- ``train(mode=True)`` 将模块设置为训练模式。
+  返回所有子模块的迭代器。
 
-- ``eval()`` 与 ``train(False)`` 等效。
+.. py:method:: named_modules(memo=None, prefix='')
 
-- ``forward(*input)`` 定义前向传播的计算过程。
+  返回所有子模块的迭代器，迭代器会同时产生模块的名字和模块自身。
 
-- ``state_dict(destination=None, prefix='', keep_vars=False)`` 返回包含模块完整状态的字典，字典中同时包含参数和持续性缓存。
+.. py:method:: cpu()
 
-- ``load_state_dict(state_dict, strict=True)`` 从状态字典中将参数和缓存复制到该模块及其子模块中；如果 ``strict=True`` , 那么 ``state_dict`` 的键必须和该模块的 ``state_dict()`` 函数返回的键一致。
+  将所有的模型参数和缓冲移到 CPU。
 
-- ``parameters(recurse=True)`` 返回模块参数的迭代器，通常传递给优化器。
+.. py:method:: cuda(device=None)
 
-- ``named_parameters(prefix='', recurse=True)`` 返回模块参数的迭代器，迭代器将同时产生参数的名称和参数自身。
+  将所有的模型参数和缓冲移到 GPU，必须在构造优化器之前调用。
 
-- ``register_parameter(name, param)`` 向模块中加入参数。
+.. py:method:: double()
 
-- ``to(*args, **kwargs)`` 移动或强制转换参数和缓存。
+  将所有的浮点型参数和缓存强制转换为 double 类型。
 
-- ``type(dst_type)`` 将所有的参数和缓存强制转换为 ``dst_type`` （python:type or string） 类型。
+.. py:method:: float()
 
-- ``zero_grad()`` 将所有模型参数的梯度设置为0。
+  将所有的参数和缓存强制转换为浮点类型。
+
+.. py:method:: half()
+
+  将所有的参数和缓存强制转换为半浮点类型。
+
+.. py:method:: train(mode=True)
+
+  将模块设置为训练模式。
+
+.. py:method:: eval()
+
+  与 ``train(False)`` 等效。
+
+.. py:method:: forward(*input)
+
+  定义前向传播的计算过程。
+
+.. py:method:: state_dict(destination=None, prefix='', keep_vars=False)
+
+  返回包含模块完整状态的字典，字典中同时包含参数和持续性缓存。
+
+.. py:method:: load_state_dict(state_dict, strict=True)
+
+  从状态字典中将参数和缓存复制到该模块及其子模块中；如果 strict=True , 那么 state_dict 的键必须和该模块的 ``state_dict()`` 函数返回的键一致。
+
+.. py:method:: parameters(recurse=True)
+
+  返回模块参数的迭代器，通常传递给优化器。
+
+.. py:method:: named_parameters(prefix='', recurse=True)
+
+  返回模块参数的迭代器，迭代器将同时产生参数的名称和参数自身。
+
+.. py:method:: register_parameter(name, param)
+
+  向模块中加入参数。
+
+.. py:method:: to(*args, **kwargs)
+
+  移动或强制转换参数和缓存。
+
+.. py:method:: type(dst_type)
+
+  将所有的参数和缓存强制转换为 dst_type（python:type or string）类型。
+
+.. py:method:: zero_grad()
+
+  将所有模型参数的梯度设置为 0。
 
 
 参考资料

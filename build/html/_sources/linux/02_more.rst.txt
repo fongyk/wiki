@@ -7,7 +7,7 @@
 Debian系PMS
 ---------------
 
-**PMS** : Package Management System，包管理系统。主要介绍：
+**PMS** : Package Management System，包管理系统。
 
   - **dpkg**
   - **apt-get**
@@ -135,9 +135,11 @@ which
 
 ::
 
-  which [option] [command...]
+  which [options] [--] programename [...]
 
-在 ``PATH`` 变量指定的路径中，搜索某个系统命令的位置，并且返回第一个搜索结果。
+在 ``PATH`` 变量指定的路径中，搜索某个系统命令所在的位置，默认返回第一个匹配的搜索结果。参数：
+
+  -a    返回所有的匹配结果。
 
 whereis
 ^^^^^^^^^^^^^^^^^^

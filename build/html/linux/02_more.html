@@ -124,7 +124,7 @@
 <h1><span class="section-number">2. </span>更多指令<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
 <section id="debianpms">
 <h2><span class="section-number">2.1. </span>Debian系PMS<a class="headerlink" href="#debianpms" title="Permalink to this headline"></a></h2>
-<p><strong>PMS</strong> : Package Management System，包管理系统。主要介绍：</p>
+<p><strong>PMS</strong> : Package Management System，包管理系统。</p>
 <blockquote>
 <div><ul class="simple">
 <li><p><strong>dpkg</strong></p></li>
@@ -248,10 +248,17 @@
 <h2><span class="section-number">2.3. </span>查找<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <section id="which">
 <h3>which<a class="headerlink" href="#which" title="Permalink to this headline"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>which <span class="o">[</span>option<span class="o">]</span> <span class="o">[</span>command...<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>which <span class="o">[</span>options<span class="o">]</span> <span class="o">[</span>--<span class="o">]</span> programename <span class="o">[</span>...<span class="o">]</span>
 </pre></div>
 </div>
-<p>在 <code class="docutils literal notranslate"><span class="pre">PATH</span></code> 变量指定的路径中，搜索某个系统命令的位置，并且返回第一个搜索结果。</p>
+<p>在 <code class="docutils literal notranslate"><span class="pre">PATH</span></code> 变量指定的路径中，搜索某个系统命令所在的位置，默认返回第一个匹配的搜索结果。参数：</p>
+<blockquote>
+<div><dl class="option-list">
+<dt><kbd><span class="option">-a</span></kbd></dt>
+<dd><p>返回所有的匹配结果。</p>
+</dd>
+</dl>
+</div></blockquote>
 </section>
 <section id="whereis">
 <h3>whereis<a class="headerlink" href="#whereis" title="Permalink to this headline"></a></h3>

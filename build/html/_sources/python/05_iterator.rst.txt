@@ -28,7 +28,7 @@
             print x, y
         print "========"
 
-  结果是： ::
+  结果是::
 
     (0, 'a')
     (1, 'b')
@@ -46,18 +46,18 @@
   :linenos:
 
   class Iterator_test(object):
-    def __init__(self, data):
-        self.data = data
-        self.index = len(data)
+      def __init__(self, data):
+          self.data = data
+          self.index = len(data)
 
-    def __iter__(self):
-        return self
+      def __iter__(self):
+          return self
 
-    def next(self):
-        if self.index <= 0:
-            raise StopIteration
-        self.index -= 1
-        return self.data[self.index]
+      def next(self):
+          if self.index <= 0:
+              raise StopIteration
+          self.index -= 1
+          return self.data[self.index]
 
   iterator_winter = Iterator_test('abcde')
   for item in iterator_winter:
@@ -85,25 +85,31 @@
 
 **所有的 Iterable 均可以通过内置函数 iter() 来转变为 Iterator** 。
 
-判断一个对象是否是可迭代对象：
+判断一个对象是否是可迭代对象使用 ``isinstance`` ：
 
 .. code-block:: python
   :linenos:
 
-  from collections import Iterable
-  a = [1,2,3]
-  isinstance(a, Iterable) # True
+  >>> from collections import Iterable
+  >>> a = [1,2,3]
+  >>> isinstance(a, Iterable)
+  True
+  >>> a = iter(a)
+  >>> next(a)
+  1
+  >>> next(a)
+  2
+  >>> next(a)
+  3
+  >>> next(a)
+  Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+  StopIteration
 
-  a = iter(a)
-  next(a) # 或 a.next()，返回 1
-  next(a) # 返回 2
-  next(a) # 返回 3
-  next(a) # 抛出 StopIteration 异常
+一个可迭代对象是不能独立进行迭代的，Python 中迭代是通过 ``for ... in`` 来完成的 。
+for循环会不断调用迭代器对象的 ``__next__()`` 方法（python3  ``__next__()`` ；python2 ``next()`` ），每次循环，都返回迭代器对象的下一个值，直到遇到 ``StopIteration`` 异常。
 
-一个可迭代对象是不能独立进行迭代的，Python中， 迭代是通过 ``for ... in`` 来完成的 。
-for循环会不断调用迭代器对象的 ``__next__()`` 方法（python3  ``__next__()`` ；python2  ``next()`` ），每次循环，都返回迭代器对象的下一个值，直到遇到 ``StopIteration`` 异常。
-
-任何实现了 ``__iter__()`` 和 ``__next__()`` （python2中实现 ``next()`` ）方法的对象都是迭代器， ``__iter__()`` 返回迭代器自身， ``__next__()`` 返回容器中的下一个值 。
+任何实现了 ``__iter__()`` 和 ``__next__()`` （python2 中实现 ``next()`` ）方法的对象都是迭代器， ``__iter__()`` 返回迭代器自身， ``__next__()`` 返回容器中的下一个值 。
 
 
 生成器（generator）
@@ -116,10 +122,10 @@ for循环会不断调用迭代器对象的 ``__next__()`` 方法（python3  ``__
   :linenos:
 
   def generator_winter():
-    i = 1
-    while i <= 3:
-        yield i
-        i += 1
+      i = 1
+      while i <= 3:
+          yield i
+          i += 1
 
   generator_iter = generator_winter() ## 函数体中的代码并不会执行，只有显示或隐示地调用next的时候才会真正执行里面的代码。
   print generator_iter.next() ## 1
@@ -134,14 +140,14 @@ for循环会不断调用迭代器对象的 ``__next__()`` 方法（python3  ``__
 
   gen = (x for x in range(10)) ## <generator object <genexpr> at 0x0000000012BC4990>
   for item in gen:
-    print item
+      print item
 
   ## fibonacci 数列
   def fibonacci(n):
-    a, b = 0, 1
-    while b <= n:
-        yield b
-        a, b = b, a+b
+      a, b = 0, 1
+      while b <= n:
+          yield b
+          a, b = b, a+b
   f = fibonacci(10)
   for item in f:
       print item
@@ -149,7 +155,7 @@ for循环会不断调用迭代器对象的 ``__next__()`` 方法（python3  ``__
 send
 ^^^^^^^
 
-send 方法可带一个参数，参数可以是 None。None参数的 send 方法和 next/__next__ 的功能完全相同：将暂停在 ``yield`` 语句出的程序继续执行；非 None 参数的 send 方法会将参数值作为 ``yield`` 语句返回值赋值给接收者。
+send 方法可带一个参数，参数可以是 None。None 参数的 send 方法和 next/__next__ 的功能完全相同：将暂停在 ``yield`` 语句出的程序继续执行；非 None 参数的 send 方法会将参数值作为 ``yield`` 语句返回值赋值给接收者。
 
 注意：非 None 参数的 send 方法无法启动执行生成器函数。也就是说，程序中第一次使用生成器调用 send 方法时，参数只能是 None（推荐直接使用 next/__next__）。
 

@@ -1,6 +1,10 @@
 Linux/Shell
 =============
 
+.. note::
+
+    文档中使用的 Linux 环境主要是 Ubuntu/Debian。
+
 .. toctree::
     :maxdepth: 2
     :numbered: 2

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2. crontab &mdash; fong alpha documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="计算机网络" href="../computerNetwork/index.html" />
+    <link rel="prev" title="1. cron" href="01_cron.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> fong
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                alpha
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../regularExpression/index.html">正则表达式</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Cron</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_cron.html">1. cron</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2. crontab</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">2.1. 安装与配置</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">安装</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">服务</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">指令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">日志</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">2.2. 表达式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">2.3. 参考资料</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">快速访问</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">技巧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Cron</a> &raquo;</li>
+      <li><span class="section-number">2. </span>crontab</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cron/02_crontab.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="crontab">
+<h1><span class="section-number">2. </span>crontab<a class="headerlink" href="#crontab" title="Permalink to this headline"></a></h1>
+<p>Linux 的 crontab 用于定时任务调度。</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>系统休眠的时候 crontab 定时任务可能不会正确执行。</p>
+</div>
+<section id="id1">
+<h2><span class="section-number">2.1. </span>安装与配置<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<section id="id2">
+<h3>安装<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt-get install cron
+</pre></div>
+</div>
+<p>查看 <code class="docutils literal notranslate"><span class="pre">/etc/crontab</span></code> ：</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span># cat /etc/crontab
+<span class="linenos"> 2</span># /etc/crontab: system-wide crontab
+<span class="linenos"> 3</span># Unlike any other crontab you don&#39;t have to run the `crontab&#39;
+<span class="linenos"> 4</span># command to install the new version when you edit this file
+<span class="linenos"> 5</span># and files in /etc/cron.d. These files also have username fields,
+<span class="linenos"> 6</span># that none of the other crontabs do.
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>SHELL=/bin/bash
+<span class="linenos"> 9</span>PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+<span class="linenos">10</span>
+<span class="linenos">11</span># Example of job definition:
+<span class="linenos">12</span># .---------------- minute (0 - 59)
+<span class="linenos">13</span># |  .------------- hour (0 - 23)
+<span class="linenos">14</span># |  |  .---------- day of month (1 - 31)
+<span class="linenos">15</span># |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+<span class="linenos">16</span># |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
+<span class="linenos">17</span># |  |  |  |  |
+<span class="linenos">18</span># *  *  *  *  * user-name command to be executed
+<span class="linenos">19</span>17 *        * * *   root    cd / &amp;&amp; run-parts --report /etc/cron.hourly
+<span class="linenos">20</span>25 6        * * *   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.daily )
+<span class="linenos">21</span>47 6        * * 7   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.weekly )
+<span class="linenos">22</span>52 6        1 * *   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.monthly )
+</pre></div>
+</div>
+<p>该文件配置了 <strong>系统级</strong> 定时任务所使用的环境变量 <code class="docutils literal notranslate"><span class="pre">SHELL</span></code> 和 <code class="docutils literal notranslate"><span class="pre">PATH</span></code>。
+对于系统级 crontab，在 cron 表达式和命令之间，多了一个 use-name 域。</p>
+</section>
+<section id="id3">
+<h3>服务<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
+<p>定时任务依赖 cron 服务。</p>
+<ul class="simple">
+<li><p>启动服务： <code class="docutils literal notranslate"><span class="pre">service</span> <span class="pre">cron</span> <span class="pre">start</span></code></p></li>
+<li><p>查询服务状态： <code class="docutils literal notranslate"><span class="pre">service</span> <span class="pre">cron</span> <span class="pre">status</span></code></p></li>
+<li><p>停止服务： <code class="docutils literal notranslate"><span class="pre">service</span> <span class="pre">cron</span> <span class="pre">stop</span></code></p></li>
+<li><p>重启服务： <code class="docutils literal notranslate"><span class="pre">service</span> <span class="pre">cron</span> <span class="pre">restart</span></code></p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>指令<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>crontab <span class="o">[</span> -u user <span class="o">]</span> <span class="o">{</span> -l <span class="p">|</span> -r <span class="p">|</span> -e <span class="o">}</span>
+</pre></div>
+</div>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">crontab</span> <span class="pre">-l</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>查看定时任务列表。</p></li>
+<li><p>定时任务保存在文件 <code class="docutils literal notranslate"><span class="pre">/var/spool/cron/crontabs/&lt;user-name&gt;</span></code> 。</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">crontab</span> <span class="pre">–e</span></code></p>
+<blockquote>
+<div><ul>
+<li><p>编辑定时任务：</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>*    *    *    *    *  <span class="nb">command</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>定时任务保存在文件 <code class="docutils literal notranslate"><span class="pre">/var/spool/cron/crontabs/&lt;user-name&gt;</span></code> 。</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">crontab</span> <span class="pre">–r</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>删除定时任务。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">crontab</span> <span class="pre">–r</span> <span class="pre">-i</span></code> 删除前询问。</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>对于用户级的 crontab，如果定时任务未启动，可能是因为所要执行的命令找不到，因为 crontab 读到的 <code class="docutils literal notranslate"><span class="pre">PATH</span></code> 变量不一定与用户的 <code class="docutils literal notranslate"><span class="pre">PATH</span></code> 相同，此时应该使用命令的绝对路径，比如 <code class="docutils literal notranslate"><span class="pre">/usr/local/bin/python</span></code> 。也可以在命令前定义 <code class="docutils literal notranslate"><span class="pre">PATH</span></code> ：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>*    *    *    *    *  <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/bin<span class="p">;</span> <span class="nb">command</span>
+</pre></div>
+</div>
+<p>或者使用系统 <code class="docutils literal notranslate"><span class="pre">PATH</span></code> ：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>*    *    *    *    *  . /etc/profile<span class="p">;</span> <span class="nb">command</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="id5">
+<h3>日志<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
+<p>首先需要安装并启动 rsyslog 服务：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>apt-get install rsyslog
+<span class="linenos">2</span>service rsyslog start
+</pre></div>
+</div>
+<p>crontab 的日志配置保存在 <code class="docutils literal notranslate"><span class="pre">/etc/rsyslog.conf</span></code> 或 <code class="docutils literal notranslate"><span class="pre">/etc/rsyslog.d/50-default.conf</span></code> 。
+在配置文件中将 cron 对应的那行取消注释：</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cron.*                              /var/log/cron.log
+</pre></div>
+</div>
+<p>crontab 的日志保存在 <code class="docutils literal notranslate"><span class="pre">/var/log/cron.log</span></code> 。</p>
+</section>
+</section>
+<section id="id6">
+<h2><span class="section-number">2.2. </span>表达式<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>*    *    *    *    *  command to be executed
+┬    ┬    ┬    ┬    ┬
+│    │    │    │    └─  Day of Week   (0=Sun .. 6=Sat)
+│    │    │    └──────  Month         (1..12)
+│    │    └───────────  Day of Month  (1..31)
+│    └────────────────  Hour          (0..23)
+└─────────────────────  Minute        (0..59)
+</pre></div>
+</div>
+<table class="docutils align-center" id="id8">
+<caption><span class="caption-text">域和取值范围、可用符号</span><a class="headerlink" href="#id8" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 32%" />
+<col style="width: 51%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Range</p></th>
+<th class="head"><p>Special characters</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Minute</p></td>
+<td><p>0 - 59</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">,</span></code> <code class="docutils literal notranslate"><span class="pre">-</span></code> <code class="docutils literal notranslate"><span class="pre">*</span></code> <code class="docutils literal notranslate"><span class="pre">/</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Hour</p></td>
+<td><p>0 - 23</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">,</span></code> <code class="docutils literal notranslate"><span class="pre">-</span></code> <code class="docutils literal notranslate"><span class="pre">*</span></code> <code class="docutils literal notranslate"><span class="pre">/</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Day of Month</p></td>
+<td><p>1 - 31</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">,</span></code> <code class="docutils literal notranslate"><span class="pre">-</span></code> <code class="docutils literal notranslate"><span class="pre">*</span></code> <code class="docutils literal notranslate"><span class="pre">/</span></code> <code class="docutils literal notranslate"><span class="pre">?</span></code> <code class="docutils literal notranslate"><span class="pre">L</span></code> <code class="docutils literal notranslate"><span class="pre">W</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Month</p></td>
+<td><p>1 - 12</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">,</span></code> <code class="docutils literal notranslate"><span class="pre">-</span></code> <code class="docutils literal notranslate"><span class="pre">*</span></code> <code class="docutils literal notranslate"><span class="pre">/</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Day of Week</p></td>
+<td><p>0 - 6</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">,</span></code> <code class="docutils literal notranslate"><span class="pre">-</span></code> <code class="docutils literal notranslate"><span class="pre">*</span></code> <code class="docutils literal notranslate"><span class="pre">/</span></code> <code class="docutils literal notranslate"><span class="pre">?</span></code> <code class="docutils literal notranslate"><span class="pre">L</span></code> <code class="docutils literal notranslate"><span class="pre">#</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id7">
+<h2><span class="section-number">2.3. </span>参考资料<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>Crontab cheatsheet</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://quickref.me/cron">https://quickref.me/cron</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>在线 crontab 表达式</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://crontab.guru/">https://crontab.guru/</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>Why crontab scripts are not working?</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://askubuntu.com/questions/23009/why-crontab-scripts-are-not-working">https://askubuntu.com/questions/23009/why-crontab-scripts-are-not-working</a></p>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="01_cron.html" class="btn btn-neutral float-left" title="1. cron" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../computerNetwork/index.html" class="btn btn-neutral float-right" title="计算机网络" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2022, fong.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

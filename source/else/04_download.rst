@@ -14,7 +14,8 @@
     image              Fala                                                :download:`fala1 <resource/Fala1.jpeg>` :download:`fala2 <resource/Fala2.jpeg>`
     image              汉字“方”的金文体                                        :download:`fang <resource/fong-bronze.svg.png>`
     image              `Vim`_ 快捷键                                            :download:`vim <resource/vi-vim-cheat-sheet.gif>`
-    image              天干地支生肖阴阳                                         :download:`tgdz <resource/tgdz.svg>`
+    image              `Crontab Cheatsheet`_                                :download:`crontab <resource/crontab_cheatsheet.png>`
+    image              天干地支                                            :download:`tgdz <resource/tgdz.svg>`
     chrome             Infinity 插件配置                                      :download:`infinity <resource/infinityBackup.infinity>`
     pdf                梯度下降算法                                            :download:`gradient <resource/08_gradient_descent_optimization.pdf>`
     pdf                矩阵运算                                               :download:`cookbook <resource/04_matrixcookbook.pdf>` :download:`differentiation <resource/04_matrixdifferentiation.pdf>`
@@ -41,3 +42,5 @@
 .. _Monoid: https://larsenwork.com/monoid/
 
 .. _Vim: https://vim.rtorr.com/lang/zh_cn
+
+.. _Crontab Cheatsheet: https://quickref.me/cron

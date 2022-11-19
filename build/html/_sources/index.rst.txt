@@ -23,6 +23,7 @@
    deepLearning/index
    mathematicsAlgorithm/index
    regularExpression/index
+   cron/index
    computerNetwork/index
    link/index
    softwares/index

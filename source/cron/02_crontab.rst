@@ -152,6 +152,16 @@ crontab 的日志保存在 ``/var/log/cron.log`` 。
     Day of Week	      0 - 6	                        ``,`` ``-`` ``*`` ``/`` ``?`` ``L`` ``#``
     ================ ============================= ======================
 
+
+Cheatsheet
+---------------
+
+.. image:: ../else/resource/crontab_cheatsheet.png
+    :width: 700px
+    :target: https://quickref.me/cron
+    :align: center
+
+
 参考资料
 ---------------
 

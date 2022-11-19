@@ -104,6 +104,13 @@ Linux 的 crontab 用于定时任务调度。
 
         *    *    *    *    *  . /etc/profile; command
 
+.. attention::
+
+    ``%`` 是 crontab 的关键字符，因此命令中如果包含 ``%`` 需要转义，比如：
+    
+    .. code:: bash
+
+        *    *    *    *    *  echo $(date +"\%Y-\%m-\%d \%H:\%M:\%S")
 
 日志
 ^^^^^^^^^^^^^

@@ -175,7 +175,7 @@
 <div><ul>
 <li><p>编辑定时任务：</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>*    *    *    *    *  <span class="nb">command</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>* * * * * <span class="nb">command</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -193,24 +193,6 @@
 </div></blockquote>
 </li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>对于用户级的 crontab，如果定时任务未启动，可能是因为所要执行的命令找不到，因为 crontab 读到的 <code class="docutils literal notranslate"><span class="pre">PATH</span></code> 变量不一定与用户的 <code class="docutils literal notranslate"><span class="pre">PATH</span></code> 相同，此时应该使用命令的绝对路径，比如 <code class="docutils literal notranslate"><span class="pre">/usr/local/bin/python</span></code> 。也可以在命令前定义 <code class="docutils literal notranslate"><span class="pre">PATH</span></code> ：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>*    *    *    *    *  <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/bin<span class="p">;</span> <span class="nb">command</span>
-</pre></div>
-</div>
-<p>或者使用系统 <code class="docutils literal notranslate"><span class="pre">PATH</span></code> ：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>*    *    *    *    *  . /etc/profile<span class="p">;</span> <span class="nb">command</span>
-</pre></div>
-</div>
-</div>
-<div class="admonition attention">
-<p class="admonition-title">Attention</p>
-<p><code class="docutils literal notranslate"><span class="pre">%</span></code> 是 crontab 的关键字符，因此命令中如果包含 <code class="docutils literal notranslate"><span class="pre">%</span></code> 需要转义，比如：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>*    *    *    *    *  <span class="nb">echo</span> <span class="k">$(</span>date +<span class="s2">&quot;\%Y-\%m-\%d \%H:\%M:\%S&quot;</span><span class="k">)</span>
-</pre></div>
-</div>
-</div>
 </section>
 <section id="id5">
 <h3>日志<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
@@ -274,6 +256,24 @@
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>对于用户级的 crontab，如果定时任务未启动，可能是因为所要执行的命令找不到，因为 crontab 读到的 <code class="docutils literal notranslate"><span class="pre">PATH</span></code> 变量不一定与用户的 <code class="docutils literal notranslate"><span class="pre">PATH</span></code> 相同，此时应该使用命令的绝对路径，比如 <code class="docutils literal notranslate"><span class="pre">/usr/local/bin/python</span></code> 。也可以在命令前定义 <code class="docutils literal notranslate"><span class="pre">PATH</span></code> ：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>* * * * * <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/bin<span class="p">;</span> <span class="nb">command</span>
+</pre></div>
+</div>
+<p>或者使用系统 <code class="docutils literal notranslate"><span class="pre">PATH</span></code> ：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>* * * * * . /etc/profile<span class="p">;</span> <span class="nb">command</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p><code class="docutils literal notranslate"><span class="pre">%</span></code> 是 crontab 的关键字符，因此命令中如果包含 <code class="docutils literal notranslate"><span class="pre">%</span></code> 需要转义，比如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>* * * * * <span class="nb">echo</span> <span class="k">$(</span>date +<span class="s2">&quot;\%Y-\%m-\%d \%H:\%M:\%S&quot;</span><span class="k">)</span>
+</pre></div>
+</div>
+</div>
 </section>
 <section id="cheatsheet">
 <h2><span class="section-number">2.3. </span>Cheatsheet<a class="headerlink" href="#cheatsheet" title="Permalink to this headline"></a></h2>

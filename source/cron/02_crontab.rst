@@ -81,7 +81,7 @@ Linux 的 crontab 用于定时任务调度。
   
         .. code:: bash
 
-            *    *    *    *    *  command
+            * * * * * command
   
     - 定时任务保存在文件 ``/var/spool/cron/crontabs/<user-name>`` 。
 
@@ -90,27 +90,6 @@ Linux 的 crontab 用于定时任务调度。
     - 删除定时任务。
     - ``crontab –r -i`` 删除前询问。 
 
-.. note::
-
-    对于用户级的 crontab，如果定时任务未启动，可能是因为所要执行的命令找不到，因为 crontab 读到的 ``PATH`` 变量不一定与用户的 ``PATH`` 相同，此时应该使用命令的绝对路径，比如 ``/usr/local/bin/python`` 。也可以在命令前定义 ``PATH`` ：
-
-    .. code:: bash
-
-        *    *    *    *    *  PATH=$PATH:/usr/local/bin; command
-
-    或者使用系统 ``PATH`` ：
-
-    .. code:: bash
-
-        *    *    *    *    *  . /etc/profile; command
-
-.. attention::
-
-    ``%`` 是 crontab 的关键字符，因此命令中如果包含 ``%`` 需要转义，比如：
-    
-    .. code:: bash
-
-        *    *    *    *    *  echo $(date +"\%Y-\%m-\%d \%H:\%M:\%S")
 
 日志
 ^^^^^^^^^^^^^
@@ -158,6 +137,29 @@ crontab 的日志保存在 ``/var/log/cron.log`` 。
     Month	          1 - 12	                    ``,`` ``-`` ``*`` ``/``
     Day of Week	      0 - 6	                        ``,`` ``-`` ``*`` ``/`` ``?`` ``L`` ``#``
     ================ ============================= ======================
+
+
+.. note::
+
+    对于用户级的 crontab，如果定时任务未启动，可能是因为所要执行的命令找不到，因为 crontab 读到的 ``PATH`` 变量不一定与用户的 ``PATH`` 相同，此时应该使用命令的绝对路径，比如 ``/usr/local/bin/python`` 。也可以在命令前定义 ``PATH`` ：
+
+    .. code:: bash
+
+        * * * * * PATH=$PATH:/usr/local/bin; command
+
+    或者使用系统 ``PATH`` ：
+
+    .. code:: bash
+
+        * * * * * . /etc/profile; command
+
+.. attention::
+
+    ``%`` 是 crontab 的关键字符，因此命令中如果包含 ``%`` 需要转义，比如：
+    
+    .. code:: bash
+
+        * * * * * echo $(date +"\%Y-\%m-\%d \%H:\%M:\%S")
 
 
 Cheatsheet

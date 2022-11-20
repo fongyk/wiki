@@ -55,7 +55,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../regularExpression/index.html">正则表达式</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Cron</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Cron 表达式</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="01_cron.html">1. cron</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">2. crontab</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">2.1. 安装与配置</a><ul>
@@ -93,7 +93,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Cron</a> &raquo;</li>
+          <li><a href="index.html">Cron 表达式</a> &raquo;</li>
       <li><span class="section-number">2. </span>crontab</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/cron/02_crontab.rst.txt" rel="nofollow"> View page source</a>
@@ -116,6 +116,15 @@
 <section id="id2">
 <h3>安装<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt-get install cron
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>$ ll /etc <span class="p">|</span> grep cron
+<span class="linenos">2</span>drwxr-xr-x <span class="m">1</span> root root   <span class="m">4</span>.0K <span class="m">2022</span>-11-19 <span class="m">13</span>:19:04 cron.d/
+<span class="linenos">3</span>drwxr-xr-x <span class="m">1</span> root root   <span class="m">4</span>.0K <span class="m">2022</span>-11-19 <span class="m">13</span>:24:23 cron.daily/
+<span class="linenos">4</span>drwxr-xr-x <span class="m">2</span> root root   <span class="m">4</span>.0K <span class="m">2022</span>-11-19 <span class="m">11</span>:45:48 cron.hourly/
+<span class="linenos">5</span>drwxr-xr-x <span class="m">2</span> root root   <span class="m">4</span>.0K <span class="m">2022</span>-11-19 <span class="m">11</span>:45:48 cron.monthly/
+<span class="linenos">6</span>drwxr-xr-x <span class="m">2</span> root root   <span class="m">4</span>.0K <span class="m">2022</span>-11-19 <span class="m">11</span>:45:48 cron.weekly/
+<span class="linenos">7</span>-rw-r--r-- <span class="m">1</span> root root   <span class="m">1</span>.1K <span class="m">2022</span>-11-19 <span class="m">14</span>:38:02 crontab
 </pre></div>
 </div>
 <p>查看 <code class="docutils literal notranslate"><span class="pre">/etc/crontab</span></code> ：</p>
@@ -143,8 +152,9 @@
 <span class="linenos">22</span>52 6        1 * *   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.monthly )
 </pre></div>
 </div>
-<p>该文件配置了 <strong>系统级</strong> 定时任务所使用的环境变量 <code class="docutils literal notranslate"><span class="pre">SHELL</span></code> 和 <code class="docutils literal notranslate"><span class="pre">PATH</span></code>。
-对于系统级 crontab，在 cron 表达式和命令之间，多了一个 use-name 域。</p>
+<p>该文件配置了 <strong>系统级</strong> 定时任务所使用的环境变量 <code class="docutils literal notranslate"><span class="pre">SHELL</span></code> 和 <code class="docutils literal notranslate"><span class="pre">PATH</span></code>。对于系统级 crontab，在 cron 表达式和命令之间，多了一个 <strong>use-name</strong> 域。</p>
+<p><code class="docutils literal notranslate"><span class="pre">/etc/crontab</span></code> 还配置了系统级定时任务的执行时间，这些任务放在 <code class="docutils literal notranslate"><span class="pre">cron.hourly</span></code> <code class="docutils literal notranslate"><span class="pre">cron.daily</span></code> <code class="docutils literal notranslate"><span class="pre">cron.weekly</span></code> <code class="docutils literal notranslate"><span class="pre">cron.monthly</span></code> 等目录下。</p>
+<p><code class="docutils literal notranslate"><span class="pre">/etc/cron.d</span></code> 目录也是用来放系统级定时任务，不同的任务写在不同的文件中，定义的时候和 <code class="docutils literal notranslate"><span class="pre">/etc/crontab</span></code> 一样也要有 user-name 域。</p>
 </section>
 <section id="id3">
 <h3>服务<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
@@ -298,6 +308,12 @@
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://askubuntu.com/questions/23009/why-crontab-scripts-are-not-working">https://askubuntu.com/questions/23009/why-crontab-scripts-are-not-working</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p>crontab(5) — Linux manual page</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://man7.org/linux/man-pages/man5/crontab.5.html">https://man7.org/linux/man-pages/man5/crontab.5.html</a></p>
 </div></blockquote>
 </section>
 </section>

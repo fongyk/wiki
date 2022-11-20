@@ -17,6 +17,17 @@ Linux 的 crontab 用于定时任务调度。
 
     apt-get install cron
 
+.. code-block:: bash
+    :linenos:
+
+    $ ll /etc | grep cron
+    drwxr-xr-x 1 root root   4.0K 2022-11-19 13:19:04 cron.d/
+    drwxr-xr-x 1 root root   4.0K 2022-11-19 13:24:23 cron.daily/
+    drwxr-xr-x 2 root root   4.0K 2022-11-19 11:45:48 cron.hourly/
+    drwxr-xr-x 2 root root   4.0K 2022-11-19 11:45:48 cron.monthly/
+    drwxr-xr-x 2 root root   4.0K 2022-11-19 11:45:48 cron.weekly/
+    -rw-r--r-- 1 root root   1.1K 2022-11-19 14:38:02 crontab
+
 查看 ``/etc/crontab`` ：
 
 .. code-block:: text
@@ -45,8 +56,11 @@ Linux 的 crontab 用于定时任务调度。
     47 6	* * 7	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
     52 6	1 * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
 
-该文件配置了 **系统级** 定时任务所使用的环境变量 ``SHELL`` 和 ``PATH``。
-对于系统级 crontab，在 cron 表达式和命令之间，多了一个 use-name 域。
+该文件配置了 **系统级** 定时任务所使用的环境变量 ``SHELL`` 和 ``PATH``。对于系统级 crontab，在 cron 表达式和命令之间，多了一个 **use-name** 域。
+
+``/etc/crontab`` 还配置了系统级定时任务的执行时间，这些任务放在 ``cron.hourly`` ``cron.daily`` ``cron.weekly`` ``cron.monthly`` 等目录下。
+
+``/etc/cron.d`` 目录也是用来放系统级定时任务，不同的任务写在不同的文件中，定义的时候和 ``/etc/crontab`` 一样也要有 user-name 域。
 
 服务
 ^^^^^^^^^^^
@@ -185,3 +199,7 @@ Cheatsheet
 3. Why crontab scripts are not working?
 
   https://askubuntu.com/questions/23009/why-crontab-scripts-are-not-working
+
+4. crontab(5) — Linux manual page
+
+  https://man7.org/linux/man-pages/man5/crontab.5.html

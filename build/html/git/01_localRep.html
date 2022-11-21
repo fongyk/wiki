@@ -71,10 +71,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../regularExpression/index.html">正则表达式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cron/index.html">Cron 表达式</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">快速访问</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">技巧</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
 </ul>
 
@@ -105,9 +106,11 @@
              
   <section id="id1">
 <h1><span class="section-number">1. </span>本地版本库<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
-<p><strong>Git</strong> 是目前世界上最先进的分布式版本控制系统。</p>
-<a class="reference internal image-reference" href="../_images/01_git-operations.png"><img alt="图片来源：http://blog.podrezo.com/git-introduction-for-cvssvntfs-users/" class="align-center" src="../_images/01_git-operations.png" style="width: 700px;" /></a>
-<p>（图片来源：<a class="reference external" href="http://blog.podrezo.com/git-introduction-for-cvssvntfs-users/">http://blog.podrezo.com/git-introduction-for-cvssvntfs-users/</a>）</p>
+<p><strong>Git</strong> 是先进的分布式版本控制系统。</p>
+<a class="reference external image-reference" href="http://blog.podrezo.com/git-introduction-for-cvssvntfs-users"><img alt="图片来源：http://blog.podrezo.com/git-introduction-for-cvssvntfs-users/" class="align-center" src="../_images/01_git-operations.png" style="width: 700px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ul class="simple">
 <li><p><strong>workspace</strong> ：工作区</p></li>
 <li><p><strong>stage</strong> ：暂存区</p></li>
@@ -118,30 +121,61 @@
 <h2><span class="section-number">1.1. </span>本地版本库<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <section id="id3">
 <h3>创建与修改<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code> 把当前目录变为Git可管理的仓库（目录下多了子目录.git/，自动创建的第一个分支master，以及指向master的一个指针叫 <code class="docutils literal notranslate"><span class="pre">HEAD</span></code> ）。</p></li>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code> 把当前目录变为 Git 可管理的仓库（目录下多了子目录 .git/ ，自动创建的第一个分支 master，以及指向 master 的一个指针叫 <code class="docutils literal notranslate"><span class="pre">HEAD</span></code> ）。</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>$ tree .git
+<span class="linenos"> 2</span>.git
+<span class="linenos"> 3</span>├── HEAD
+<span class="linenos"> 4</span>├── config
+<span class="linenos"> 5</span>├── description
+<span class="linenos"> 6</span>├── hooks
+<span class="linenos"> 7</span>│   ├── applypatch-msg.sample
+<span class="linenos"> 8</span>│   ├── commit-msg.sample
+<span class="linenos"> 9</span>│   ├── fsmonitor-watchman.sample
+<span class="linenos">10</span>│   ├── post-update.sample
+<span class="linenos">11</span>│   ├── pre-applypatch.sample
+<span class="linenos">12</span>│   ├── pre-commit.sample
+<span class="linenos">13</span>│   ├── pre-merge-commit.sample
+<span class="linenos">14</span>│   ├── pre-push.sample
+<span class="linenos">15</span>│   ├── pre-rebase.sample
+<span class="linenos">16</span>│   ├── pre-receive.sample
+<span class="linenos">17</span>│   ├── prepare-commit-msg.sample
+<span class="linenos">18</span>│   ├── push-to-checkout.sample
+<span class="linenos">19</span>│   └── update.sample
+<span class="linenos">20</span>├── info
+<span class="linenos">21</span>│   └── exclude
+<span class="linenos">22</span>├── objects
+<span class="linenos">23</span>│   ├── info
+<span class="linenos">24</span>│   └── pack
+<span class="linenos">25</span>└── refs
+<span class="linenos">26</span>    ├── heads
+<span class="linenos">27</span>    └── tags
+</pre></div>
+</div>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">my_file</span></code> 把文件加入暂存区。</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>git add . ：把工作时的 <strong>所有变化</strong> 提交到暂存区，包括文件内容 <strong>修改（modified）</strong> 以及 <strong>新文件（new）</strong> ，但不包括被删除的文件。</p>
-<p>git add -u ：git add - -update，仅监控已经被 add 的文件（即 <strong>tracked file</strong> ），会将文件的修改和删除提交到暂存区，不会提交新文件（untracked file）。</p>
-<p>git add -A ：git add - -all，是上面两个功能的合集。</p>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code> ：把工作时的 <strong>所有变化</strong> 提交到暂存区，包括文件内容 <strong>修改（modified）</strong> 以及 <strong>新文件（new）</strong> ，但不包括被删除的文件。</p>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">-u</span></code> ： <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">--update</span></code> ，仅监控已经被 add 的文件（即 <strong>tracked file</strong> ），会将文件的修改和删除提交到暂存区，不会提交新文件（untracked file）。</p>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">-A</span></code> ： <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">--all</span></code>，是上面两个功能的合集。</p>
 </div>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;add</span> <span class="pre">my_file&quot;</span></code>  提交到本地版本库，并写log。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> 查看当前仓库的状态（文件是不是被tracked？修改是不是已经commit？… 等）。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code> 查看当前状态和最新的commit之间的不同（修改还没有add），命令可以加具体文件名以查看某个文件的修改。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span> <span class="pre">&lt;版本号，如7ed6b16&gt;</span></code> 查看当前状态和之前某次commit之间的不同。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> 查看commit记录。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reflog</span></code> 查看之前每次commit之后的分支状态。</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>$ git reflog
-<span class="linenos">2</span>41c873a <span class="o">(</span>HEAD -&gt; master<span class="o">)</span> HEAD@<span class="o">{</span><span class="m">0</span><span class="o">}</span>: commit: update b
-<span class="linenos">3</span>3e2b7f2 HEAD@<span class="o">{</span><span class="m">1</span><span class="o">}</span>: reset: moving to HEAD
-<span class="linenos">4</span>3e2b7f2 HEAD@<span class="o">{</span><span class="m">2</span><span class="o">}</span>: commit: update out
-<span class="linenos">5</span>7ed6b16 HEAD@<span class="o">{</span><span class="m">3</span><span class="o">}</span>: reset: moving to HEAD
-<span class="linenos">6</span>7ed6b16 HEAD@<span class="o">{</span><span class="m">4</span><span class="o">}</span>: commit: add a
-<span class="linenos">7</span><span class="m">8337301</span> HEAD@<span class="o">{</span><span class="m">5</span><span class="o">}</span>: commit <span class="o">(</span>initial<span class="o">)</span>: add readme
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;add</span> <span class="pre">my_file&quot;</span></code>  提交到本地版本库，并写 log。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">--amend</span></code> 修改 commit 注释。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> 查看当前仓库的状态（文件是不是被 tracked？修改是不是已经 commit？… 等）。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code> 查看当前状态和最新的 commit 之间的不同（修改还没有 add ），命令可以加具体文件名以查看某个文件的修改。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span> <span class="pre">&lt;版本号</span> <span class="pre">hash</span> <span class="pre">值，如7ed6b16&gt;</span></code> 查看当前状态和之前某次 commit 之间的不同。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> 查看 commit 记录。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reflog</span></code> 查看之前每次 commit 之后的分支状态。</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>$ git reflog
+<span class="linenos">2</span>41c873a (HEAD -&gt; master) HEAD@{0}: commit: update b
+<span class="linenos">3</span>3e2b7f2 HEAD@{1}: reset: moving to HEAD
+<span class="linenos">4</span>3e2b7f2 HEAD@{2}: commit: update out
+<span class="linenos">5</span>7ed6b16 HEAD@{3}: reset: moving to HEAD
+<span class="linenos">6</span>7ed6b16 HEAD@{4}: commit: add a
+<span class="linenos">7</span>8337301 HEAD@{5}: commit (initial): add readme
 </pre></div>
 </div>
 </li>
@@ -162,14 +196,29 @@
 </section>
 <section id="id5">
 <h3>版本管理<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
-<a class="reference internal image-reference" href="../_images/01_head.jpg"><img alt="图片来源：https://www.liaoxuefeng.com/wiki/896043488029600/897271968352576" class="align-center" src="../_images/01_head.jpg" style="width: 500px;" /></a>
-<p>（图片来源：<a class="reference external" href="https://www.liaoxuefeng.com/wiki/896043488029600/897271968352576">https://www.liaoxuefeng.com/wiki/896043488029600/897271968352576</a>）</p>
-<p><strong>HEAD 指针指向当前版本的master分支。</strong></p>
+<a class="reference external image-reference" href="https://www.liaoxuefeng.com/wiki/896043488029600/897271968352576"><img alt="图片来源：https://www.liaoxuefeng.com/wiki/896043488029600/897271968352576" class="align-center" src="../_images/01_head.jpg" style="width: 500px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>HEAD 指针指向当前版本的 master 分支。</strong></p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">--</span> <span class="pre">my_file</span></code> 如果修改或删除了已经commit的内容，这条指令可以丢弃该操作，一键还原。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">--hard</span></code> 撤销修改，回到上一次commit之后的状态。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">--hard</span> <span class="pre">&lt;版本号，如7ed6b16&gt;</span></code> 回到某一次commit之后的状态，同时会删除该次commit之后的commit log。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">--</span> <span class="pre">file</span></code> 取消对暂存区文件 file 的修改。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">[&lt;mode&gt;]</span> <span class="pre">[&lt;commit&gt;]</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">--soft</span></code> 从本地仓库撤销到暂存区（撤销了 git commit，不撤销 git add）。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--mixed</span></code> 默认 mode，撤销 git commit 和 git add，工作区内容保持。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--hard</span></code> 本地仓库回到之前版本，暂存区和工作区的修改都被丢弃。</p></li>
 </ul>
+</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">HEAD^</span></code> <code class="docutils literal notranslate"><span class="pre">HEAD~1</span></code> 表示上一个 commit 之后的版本。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HEAD^^</span></code> <code class="docutils literal notranslate"><span class="pre">HEAD~2</span></code> 表示上上个 commit 之后的版本。</p></li>
+<li><p>…</p></li>
+</ul>
+</div>
 </section>
 </section>
 <section id="id6">
@@ -215,6 +264,18 @@
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://github.com/github/gitignore">https://github.com/github/gitignore</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="8">
+<li><p>图解Git</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://marklodato.github.io/visual-git-guide/index-zh-cn.html">https://marklodato.github.io/visual-git-guide/index-zh-cn.html</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="9">
+<li><p>这才是真正的Git——Git内部原理揭秘！</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/96631135">https://zhuanlan.zhihu.com/p/96631135</a></p>
 </div></blockquote>
 </section>
 </section>

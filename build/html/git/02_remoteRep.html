@@ -66,10 +66,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../regularExpression/index.html">正则表达式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cron/index.html">Cron 表达式</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">快速访问</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">技巧</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
 </ul>
 
@@ -100,8 +101,10 @@
              
   <section id="id1">
 <h1><span class="section-number">2. </span>远程仓库<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
-<a class="reference internal image-reference" href="../_images/01_git-operations.png"><img alt="图片来源：http://blog.podrezo.com/git-introduction-for-cvssvntfs-users/" class="align-center" src="../_images/01_git-operations.png" style="width: 700px;" /></a>
-<p>（图片来源：<a class="reference external" href="http://blog.podrezo.com/git-introduction-for-cvssvntfs-users/">http://blog.podrezo.com/git-introduction-for-cvssvntfs-users/</a>）</p>
+<a class="reference external image-reference" href="http://blog.podrezo.com/git-introduction-for-cvssvntfs-users"><img alt="图片来源：http://blog.podrezo.com/git-introduction-for-cvssvntfs-users/" class="align-center" src="../_images/01_git-operations.png" style="width: 700px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ul class="simple">
 <li><p><strong>workspace</strong> ：工作区</p></li>
 <li><p><strong>stage</strong> ：暂存区</p></li>
@@ -120,47 +123,52 @@
 </pre></div>
 </div>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span> <span class="pre">&lt;远程主机名&gt;</span></code> 将某个远程主机的更新，全部取回本地。默认情况下，git fetch取回所有分支（branch）的更新。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span> <span class="pre">&lt;远程主机名&gt;</span> <span class="pre">&lt;分支名&gt;</span></code> 如果只想取回特定分支的更新，可以指定分支名，比如master。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code> -r：查看远程分支，-a：查看所有分支（包括本地分支）。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span> <span class="pre">&lt;远程主机名&gt;</span></code> 将某个远程主机的更新，全部取回本地。默认情况下，git fetch 取回所有分支的更新。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span> <span class="pre">&lt;远程主机名&gt;</span> <span class="pre">&lt;分支名&gt;</span></code> 如果只想取回特定分支的更新，可以指定分支名，比如 master。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-r</span></code> 查看远程分支</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-a</span></code> 查看所有分支（包括本地分支）</p></li>
+</ul>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span> <span class="pre">origin/master</span></code> 在本地分支上合并远程分支（origin/master）。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">&lt;远程主机名&gt;</span> <span class="pre">&lt;远程分支名&gt;:&lt;本地分支名&gt;</span></code> 取回远程主机某个分支的更新，再与本地的指定分支合并。比如，取回origin主机的next分支，与本地的master分支合并，需要写成 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">origin</span> <span class="pre">next:master</span></code> 。如果远程分支是与当前分支合并，可直接写为 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">origin</span> <span class="pre">next</span></code> 。等效于fetch+merge： <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span> <span class="pre">origin</span></code> ， <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span> <span class="pre">origin/next</span></code> 。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">&lt;远程主机名&gt;</span> <span class="pre">&lt;远程分支名&gt;:&lt;本地分支名&gt;</span></code> 取回远程主机某个分支的更新，再与本地的指定分支合并。比如，取回 origin 主机的 next 分支，与本地的 master 分支合并，需要写成 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">origin</span> <span class="pre">next:master</span></code> 。如果远程分支是与当前分支合并，可直接写为 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">origin</span> <span class="pre">next</span></code> 。等效于 fetch + merge： <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span> <span class="pre">origin</span></code> ， <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span> <span class="pre">origin/next</span></code> 。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">&lt;远程主机名&gt;</span> <span class="pre">&lt;本地分支名&gt;:&lt;远程分支名&gt;</span></code> 将本地分支的更新，推送到远程主机。</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>git clone只能clone远程仓库的master分支，无法clone所有分支。</p>
+<p>git clone 只拉取远程仓库的 master 分支，如果想拉取其他分支：</p>
 <ul>
-<li><p>如果只要clone某个远程分支，使用命令</p>
+<li><p>方法一，指定 clone 的分支:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="o">-</span><span class="n">b</span> <span class="o">&lt;</span><span class="n">分支名</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">仓库地址</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </li>
-<li><p>如果想clone所有分支</p>
+<li><p>方法二，切换分支：</p>
 <ul class="simple">
-<li><p>先clone远程仓库的master分支</p></li>
-<li><p>git branch -a 查看所有分支（包括远程分支）</p></li>
-<li><p>git checkout -b local_dev origin/dev 拉取远程仓库的dev分支并在本地命名为local_dev</p></li>
+<li><p>先 clone 远程仓库的 master 分支</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-a</span></code> 查看所有分支（包括远程分支）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">local_dev</span> <span class="pre">origin/dev</span></code> 拉取远程仓库的 dev 分支并在本地重命名为 local_dev</p></li>
 </ul>
 </li>
 </ul>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
 <p>Git Pull Failed: Your local changes would be overwritten by merge. Commit, stash or revert them.</p>
 <ul class="simple">
-<li><p>保留未push的本地代码，并把git服务器上的代码pull到本地（本地刚才修改的代码将会被暂时封存起来）。</p>
+<li><p>保留未 push 的本地代码，并把 git 服务器上的代码 pull 到本地（本地刚才修改的代码将会被暂时封存起来）。</p>
 <ul>
-<li><p>git stash</p></li>
-<li><p>git pull origin master（其中origin master表示git的主分支）</p></li>
-<li><p>… （一些别的操作，直到结束了对pull到本地的代码的操作。例如，push之后。）</p></li>
-<li><p>git stash pop</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">stash</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">origin</span> <span class="pre">master</span></code></p></li>
+<li><p>… （一些别的操作，直到结束了对 pull 到本地的代码的操作，例如 push 之后。）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">stash</span> <span class="pre">pop</span></code></p></li>
 </ul>
 </li>
-<li><p>完全地覆盖本地的代码，只保留服务器端代码，则直接回退到上一个版本，再进行pull。</p>
+<li><p>完全地覆盖本地的代码，只保留服务器端代码，则直接回退到上一个版本，再进行 pull。</p>
 <ul>
-<li><p>git reset - -hard</p></li>
-<li><p>git pull origin master</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">--hard</span> <span class="pre">HEAD^</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">origin</span> <span class="pre">master</span></code></p></li>
 </ul>
 </li>
 </ul>

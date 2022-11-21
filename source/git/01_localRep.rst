@@ -1,14 +1,15 @@
 本地版本库
 ===========
 
-**Git** 是目前世界上最先进的分布式版本控制系统。
+**Git** 是先进的分布式版本控制系统。
 
 .. image:: ./01_git-operations.png
     :width: 700px
     :alt: 图片来源：http://blog.podrezo.com/git-introduction-for-cvssvntfs-users/
     :align: center
+    :target: http://blog.podrezo.com/git-introduction-for-cvssvntfs-users
 
-（图片来源：http://blog.podrezo.com/git-introduction-for-cvssvntfs-users/）
+|
 
 - **workspace** ：工作区
 
@@ -25,31 +26,64 @@
 创建与修改
 ^^^^^^^^^^^^^^^^
 
-- ``git init`` 把当前目录变为Git可管理的仓库（目录下多了子目录.git/，自动创建的第一个分支master，以及指向master的一个指针叫 ``HEAD`` ）。
+- ``git init`` 把当前目录变为 Git 可管理的仓库（目录下多了子目录 .git/ ，自动创建的第一个分支 master，以及指向 master 的一个指针叫 ``HEAD`` ）。
+
+  .. code-block:: text
+    :linenos:
+
+    $ tree .git
+    .git
+    ├── HEAD
+    ├── config
+    ├── description
+    ├── hooks
+    │   ├── applypatch-msg.sample
+    │   ├── commit-msg.sample
+    │   ├── fsmonitor-watchman.sample
+    │   ├── post-update.sample
+    │   ├── pre-applypatch.sample
+    │   ├── pre-commit.sample
+    │   ├── pre-merge-commit.sample
+    │   ├── pre-push.sample
+    │   ├── pre-rebase.sample
+    │   ├── pre-receive.sample
+    │   ├── prepare-commit-msg.sample
+    │   ├── push-to-checkout.sample
+    │   └── update.sample
+    ├── info
+    │   └── exclude
+    ├── objects
+    │   ├── info
+    │   └── pack
+    └── refs
+        ├── heads
+        └── tags
 
 - ``git add my_file`` 把文件加入暂存区。
 
 .. note::
 
-  git add . ：把工作时的 **所有变化** 提交到暂存区，包括文件内容 **修改（modified）** 以及 **新文件（new）** ，但不包括被删除的文件。
+  ``git add .`` ：把工作时的 **所有变化** 提交到暂存区，包括文件内容 **修改（modified）** 以及 **新文件（new）** ，但不包括被删除的文件。
 
-  git add -u ：git add \- \-update，仅监控已经被 add 的文件（即 **tracked file** ），会将文件的修改和删除提交到暂存区，不会提交新文件（untracked file）。
+  ``git add -u`` ： ``git add --update`` ，仅监控已经被 add 的文件（即 **tracked file** ），会将文件的修改和删除提交到暂存区，不会提交新文件（untracked file）。
 
-  git add -A ：git add \- \-all，是上面两个功能的合集。
+  ``git add -A`` ： ``git add --all``，是上面两个功能的合集。
 
-- ``git commit -m "add my_file"``  提交到本地版本库，并写log。
+- ``git commit -m "add my_file"``  提交到本地版本库，并写 log。
 
-- ``git status`` 查看当前仓库的状态（文件是不是被tracked？修改是不是已经commit？... 等）。
+- ``git commit --amend`` 修改 commit 注释。
 
-- ``git diff`` 查看当前状态和最新的commit之间的不同（修改还没有add），命令可以加具体文件名以查看某个文件的修改。
+- ``git status`` 查看当前仓库的状态（文件是不是被 tracked？修改是不是已经 commit？... 等）。
 
-- ``git diff <版本号，如7ed6b16>`` 查看当前状态和之前某次commit之间的不同。
+- ``git diff`` 查看当前状态和最新的 commit 之间的不同（修改还没有 add ），命令可以加具体文件名以查看某个文件的修改。
 
-- ``git log`` 查看commit记录。
+- ``git diff <版本号 hash 值，如7ed6b16>`` 查看当前状态和之前某次 commit 之间的不同。
 
-- ``git reflog`` 查看之前每次commit之后的分支状态。
+- ``git log`` 查看 commit 记录。
 
-  .. code-block:: bash
+- ``git reflog`` 查看之前每次 commit 之后的分支状态。
+
+  .. code-block:: text
     :linenos:
 
     $ git reflog
@@ -86,18 +120,25 @@
     :width: 500px
     :alt: 图片来源：https://www.liaoxuefeng.com/wiki/896043488029600/897271968352576
     :align: center
+    :target: https://www.liaoxuefeng.com/wiki/896043488029600/897271968352576
 
-（图片来源：https://www.liaoxuefeng.com/wiki/896043488029600/897271968352576）
+|
 
-**HEAD 指针指向当前版本的master分支。**
+**HEAD 指针指向当前版本的 master 分支。**
 
-- ``git checkout -- my_file`` 如果修改或删除了已经commit的内容，这条指令可以丢弃该操作，一键还原。
+- ``git checkout -- file`` 取消对暂存区文件 file 的修改。
 
-- ``git reset --hard`` 撤销修改，回到上一次commit之后的状态。
+- ``git reset [<mode>] [<commit>]``
 
-- ``git reset --hard <版本号，如7ed6b16>`` 回到某一次commit之后的状态，同时会删除该次commit之后的commit log。
+  - ``--soft`` 从本地仓库撤销到暂存区（撤销了 git commit，不撤销 git add）。
+  - ``--mixed`` 默认 mode，撤销 git commit 和 git add，工作区内容保持。
+  - ``--hard`` 本地仓库回到之前版本，暂存区和工作区的修改都被丢弃。
 
+.. tip::
 
+    - ``HEAD^`` ``HEAD~1`` 表示上一个 commit 之后的版本。
+    - ``HEAD^^`` ``HEAD~2`` 表示上上个 commit 之后的版本。
+    - ...
 
 参考资料
 -----------
@@ -129,3 +170,11 @@
 7. gitignore
 
   https://github.com/github/gitignore
+
+8. 图解Git
+
+  https://marklodato.github.io/visual-git-guide/index-zh-cn.html
+
+9. 这才是真正的Git——Git内部原理揭秘！
+
+  https://zhuanlan.zhihu.com/p/96631135

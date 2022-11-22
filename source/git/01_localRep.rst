@@ -59,17 +59,15 @@
         ├── heads
         └── tags
 
-- ``git add my_file`` 把文件加入暂存区。
+- ``git add <file>`` 把文件加入暂存区。
 
-.. note::
+  - ``git add [dir]`` ：把工作区指定目录的 **所有变化** 提交到暂存区，包括文件内容 **修改（modified）** 以及 **新文件（new）** ，但不包括被删除的文件。
 
-  ``git add .`` ：把工作时的 **所有变化** 提交到暂存区，包括文件内容 **修改（modified）** 以及 **新文件（new）** ，但不包括被删除的文件。
+  - ``git add -u`` ： ``git add --update`` ，将已监控文件（即 **tracked file** ）的修改和删除提交到暂存区，不会提交新文件（untracked file）。
 
-  ``git add -u`` ： ``git add --update`` ，仅监控已经被 add 的文件（即 **tracked file** ），会将文件的修改和删除提交到暂存区，不会提交新文件（untracked file）。
+  - ``git add -A`` ： ``git add --all``，是上面两个功能的合集。
 
-  ``git add -A`` ： ``git add --all``，是上面两个功能的合集。
-
-- ``git commit -m "add my_file"``  提交到本地版本库，并写 log。
+- ``git commit -m "add file"``  提交到本地版本库，并写 log。
 
 - ``git commit --amend`` 修改 commit 注释。
 

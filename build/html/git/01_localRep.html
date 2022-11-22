@@ -164,11 +164,16 @@
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;add</span> <span class="pre">my_file&quot;</span></code>  提交到本地版本库，并写 log。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">--amend</span></code> 修改 commit 注释。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> 查看当前仓库的状态（文件是不是被 tracked？修改是不是已经 commit？… 等）。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code> 查看当前状态和最新的 commit 之间的不同（修改还没有 add ），命令可以加具体文件名以查看某个文件的修改。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span> <span class="pre">&lt;版本号</span> <span class="pre">hash</span> <span class="pre">值，如7ed6b16&gt;</span></code> 查看当前状态和之前某次 commit 之间的不同。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> 查看 commit 记录。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reflog</span></code> 查看之前每次 commit 之后的分支状态。</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> 查看本地仓库的状态（文件是不是被 tracked？修改是不是已经 commit？… 等）。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code> 比较暂存区和工作区的差异（修改还没有 add）。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span> <span class="pre">&lt;file&gt;</span></code> 只比较某个文件修改前后的差异。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span> <span class="pre">&lt;commit&gt;</span></code> 比较某次 commit 和当前版本（HEAD）的差异。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span> <span class="pre">&lt;commit1&gt;</span> <span class="pre">&lt;commit2&gt;</span></code> 比较两次 commit 的差异。</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> 查看版本历史记录，包括版本的 hash 值、commit 注释等信息。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reflog</span></code> 查看可引用的历史版本记录，一般是为了找到所需的 commit 索引，从而进行版本回退或恢复操作所使用。</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>$ git reflog
 <span class="linenos">2</span>41c873a (HEAD -&gt; master) HEAD@{0}: commit: update b
 <span class="linenos">3</span>3e2b7f2 HEAD@{1}: reset: moving to HEAD
@@ -202,7 +207,8 @@
 </div>
 <p><strong>HEAD 指针指向当前版本的 master 分支。</strong></p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">--</span> <span class="pre">file</span></code> 取消对暂存区文件 file 的修改。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">--</span> <span class="pre">&lt;file&gt;</span></code> 取消对已经 commit 内容的修改。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">&lt;file&gt;</span></code> 取消对暂存区的修改（to unstage），还原到工作区。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">[&lt;mode&gt;]</span> <span class="pre">[&lt;commit&gt;]</span></code></p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">--soft</span></code> 从本地仓库撤销到暂存区（撤销了 git commit，不撤销 git add）。</p></li>
@@ -214,10 +220,15 @@
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">HEAD</span></code> <code class="docutils literal notranslate"><span class="pre">HEAD~0</span></code> 表示最新 commit 版本。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">HEAD^</span></code> <code class="docutils literal notranslate"><span class="pre">HEAD~1</span></code> 表示上一个 commit 之后的版本。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">HEAD^^</span></code> <code class="docutils literal notranslate"><span class="pre">HEAD~2</span></code> 表示上上个 commit 之后的版本。</p></li>
 <li><p>…</p></li>
 </ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>要引用某次 commit 的版本，可以用 <code class="docutils literal notranslate"><span class="pre">HEAD</span></code> <code class="docutils literal notranslate"><span class="pre">HEAD^</span></code> 等形式表示，也可以用版本号的 hash 值如 7ed6。版本号的 hash 值不需要是完整的，只需要前缀的几位，能够和其他 hash 值区分开就行。</p>
 </div>
 </section>
 </section>

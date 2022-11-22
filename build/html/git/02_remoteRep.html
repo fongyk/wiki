@@ -157,7 +157,7 @@
 <p class="admonition-title">Warning</p>
 <p>Git Pull Failed: Your local changes would be overwritten by merge. Commit, stash or revert them.</p>
 <ul class="simple">
-<li><p>保留未 push 的本地代码，并把 git 服务器上的代码 pull 到本地（本地刚才修改的代码将会被暂时封存起来）。</p>
+<li><p>方案一：保留未 push 的本地代码，并把 git 服务器上的代码 pull 到本地（本地刚才修改的代码将会被暂时封存起来）。</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">stash</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">origin</span> <span class="pre">master</span></code></p></li>
@@ -165,9 +165,9 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">stash</span> <span class="pre">pop</span></code></p></li>
 </ul>
 </li>
-<li><p>完全地覆盖本地的代码，只保留服务器端代码，则直接回退到上一个版本，再进行 pull。</p>
+<li><p>方案二：丢弃工作区和暂存区的更改，再进行 pull，完全覆盖本地的代码、只保留服务器端代码。</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">--hard</span> <span class="pre">HEAD^</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">--hard</span> <span class="pre">HEAD</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">origin</span> <span class="pre">master</span></code></p></li>
 </ul>
 </li>

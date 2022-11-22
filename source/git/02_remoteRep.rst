@@ -69,16 +69,16 @@
 
   Git Pull Failed: Your local changes would be overwritten by merge. Commit, stash or revert them.
 
-  - 保留未 push 的本地代码，并把 git 服务器上的代码 pull 到本地（本地刚才修改的代码将会被暂时封存起来）。
+  - 方案一：保留未 push 的本地代码，并把 git 服务器上的代码 pull 到本地（本地刚才修改的代码将会被暂时封存起来）。
 
     - ``git stash``
     - ``git pull origin master``
     - ... （一些别的操作，直到结束了对 pull 到本地的代码的操作，例如 push 之后。）
     - ``git stash pop``
 
-  - 完全地覆盖本地的代码，只保留服务器端代码，则直接回退到上一个版本，再进行 pull。
+  - 方案二：丢弃工作区和暂存区的更改，再进行 pull，完全覆盖本地的代码、只保留服务器端代码。
 
-    - ``git reset --hard HEAD^``
+    - ``git reset --hard HEAD``
     - ``git pull origin master``
 
 

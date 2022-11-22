@@ -73,15 +73,17 @@
 
 - ``git commit --amend`` 修改 commit 注释。
 
-- ``git status`` 查看当前仓库的状态（文件是不是被 tracked？修改是不是已经 commit？... 等）。
+- ``git status`` 查看本地仓库的状态（文件是不是被 tracked？修改是不是已经 commit？... 等）。
 
-- ``git diff`` 查看当前状态和最新的 commit 之间的不同（修改还没有 add ），命令可以加具体文件名以查看某个文件的修改。
+- ``git diff`` 比较暂存区和工作区的差异（修改还没有 add）。
+  
+  - ``git diff <file>`` 只比较某个文件修改前后的差异。
+  - ``git diff <commit>`` 比较某次 commit 和当前版本（HEAD）的差异。
+  - ``git diff <commit1> <commit2>`` 比较两次 commit 的差异。
 
-- ``git diff <版本号 hash 值，如7ed6b16>`` 查看当前状态和之前某次 commit 之间的不同。
+- ``git log`` 查看版本历史记录，包括版本的 hash 值、commit 注释等信息。
 
-- ``git log`` 查看 commit 记录。
-
-- ``git reflog`` 查看之前每次 commit 之后的分支状态。
+- ``git reflog`` 查看可引用的历史版本记录，一般是为了找到所需的 commit 索引，从而进行版本回退或恢复操作所使用。
 
   .. code-block:: text
     :linenos:
@@ -126,7 +128,9 @@
 
 **HEAD 指针指向当前版本的 master 分支。**
 
-- ``git checkout -- file`` 取消对暂存区文件 file 的修改。
+- ``git checkout -- <file>`` 取消对已经 commit 内容的修改。
+
+- ``git reset <file>`` 取消对暂存区的修改（to unstage），还原到工作区。
 
 - ``git reset [<mode>] [<commit>]``
 
@@ -136,9 +140,14 @@
 
 .. tip::
 
+    - ``HEAD`` ``HEAD~0`` 表示最新 commit 版本。
     - ``HEAD^`` ``HEAD~1`` 表示上一个 commit 之后的版本。
     - ``HEAD^^`` ``HEAD~2`` 表示上上个 commit 之后的版本。
     - ...
+
+.. tip::
+
+    要引用某次 commit 的版本，可以用 ``HEAD`` ``HEAD^`` 等形式表示，也可以用版本号的 hash 值如 7ed6。版本号的 hash 值不需要是完整的，只需要前缀的几位，能够和其他 hash 值区分开就行。
 
 参考资料
 -----------

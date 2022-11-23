@@ -9,7 +9,7 @@ HTTPS 连接
     git config --global http.proxy "http://127.0.0.1:7890"
     git config --global https.proxy "http://127.0.0.1:7890"
 
-使用 SOCKS 协议的代理::
+使用 socks 协议的代理::
 
     git config --global http.proxy 'socks5://127.0.0.1:7890' 
     git config --global https.proxy 'socks5://127.0.0.1:7890'
@@ -34,7 +34,7 @@ SSH 连接
         User git
         ProxyCommand nc -X connect -x 127.0.0.1:7890 %h %p
 
-- 使用 SOCKS 协议的代理::
+- 使用 socks 协议的代理::
 
     Host github.com
         HostName github.com

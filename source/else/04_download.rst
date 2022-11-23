@@ -17,6 +17,9 @@
     image              `Crontab Cheatsheet`_                                :download:`crontab <resource/crontab_cheatsheet.png>`
     image              天干地支                                            :download:`tgdz <resource/tgdz.svg>`
     chrome             Infinity 插件配置                                      :download:`infinity <resource/infinityBackup.infinity>`
+    pdf                Effective C++                                         :download:`effective_c++ <resource/Effective-C++.pdf>`
+    pdf                More Effective C++                                     :download:`more_effective_c++ <resource/More-Effective-C++.pdf>`
+    pdf                Effective STL                                        :download:`effective_stl <resource/Effective-STL.pdf>`
     pdf                梯度下降算法                                            :download:`gradient <resource/08_gradient_descent_optimization.pdf>`
     pdf                矩阵运算                                               :download:`cookbook <resource/04_matrixcookbook.pdf>` :download:`differentiation <resource/04_matrixdifferentiation.pdf>`
     font              `Droid Sans Mono`_                                     :download:`droid-sans-mono <resource/Droid-Sans-Mono.zip>`

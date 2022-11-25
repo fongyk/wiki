@@ -134,7 +134,7 @@
 <li><p>x：可执行</p></li>
 </ul>
 </div></blockquote>
-<p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-F</span></code> 能够在可执行文件的文件名后加一个 *，目录后方加 /。</p>
+<p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-F</span></code> 会在可执行文件的文件名后加一个 <code class="docutils literal notranslate"><span class="pre">*</span></code> ，目录后方加 <code class="docutils literal notranslate"><span class="pre">/</span></code> 。</p>
 <p>3 组权限对应对象的 3 个安全等级：</p>
 <blockquote>
 <div><ul class="simple">
@@ -232,7 +232,7 @@
 </tbody>
 </table>
 <p>umask 值只是 <strong>掩码</strong> ，屏蔽不想授予的权限，即：真正的权限是用 <strong>全权限</strong> 值减去 umask 值（逻辑与运算）。
-文件的默认全权限值是 <strong>666</strong> ，目录的全权限值是 <strong>777</strong> 。当 umask=0022，则新建文件默认权限是 644，新建目录默认权限是 755。</p>
+文件的默认全权限值是 <strong>666</strong> ，目录的全权限值是 <strong>777</strong> 。当 umask=0022，新建文件默认权限是 644，新建目录默认权限是 755。</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>$ which passwd
 <span class="linenos">2</span>/usr/bin/passwd
 <span class="linenos">3</span>$ ll /usr/bin/passwd

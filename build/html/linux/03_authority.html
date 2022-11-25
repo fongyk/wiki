@@ -54,15 +54,16 @@
 <li class="toctree-l2"><a class="reference internal" href="02_more.html">2. 更多指令</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">3. 权限管理</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2">3.1. 文件描述符</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">3.2. 默认文件权限</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">3.3. 改变权限</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">3.4. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">3.2. 粘滞位</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">3.3. 默认文件权限</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">3.4. 改变权限</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">3.5. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="04_rename.html">4. 重命名</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_sed.html">5. sed</a></li>
-<li class="toctree-l2"><a class="reference internal" href="08_awk.html">6. awk</a></li>
-<li class="toctree-l2"><a class="reference internal" href="10_grep.html">7. grep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_grep.html">5. grep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_sed.html">6. sed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_awk.html">7. awk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="06_shellBasis.html">8. Shell 基础</a></li>
 <li class="toctree-l2"><a class="reference internal" href="07_loginShell.html">9. Shell 交互与登录</a></li>
 <li class="toctree-l2"><a class="reference internal" href="09_curl.html">10. curl</a></li>
@@ -73,10 +74,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../regularExpression/index.html">正则表达式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cron/index.html">Cron 表达式</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../link/index.html">资源链接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">快速访问</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">技巧</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
 </ul>
 
@@ -109,22 +111,22 @@
 <h1><span class="section-number">3. </span>权限管理<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
 <section id="id2">
 <h2><span class="section-number">3.1. </span>文件描述符<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code> 命令输出的第一个字段就是描述文件和目录权限的编码。</p>
+<p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code> 命令输出的第 1 个字段就是描述文件和目录权限的编码。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">drwxrwxr</span><span class="o">-</span><span class="n">x</span> <span class="mi">13</span> <span class="n">fong</span> <span class="n">fong</span> <span class="mi">4096</span> <span class="mi">5</span><span class="n">月</span>   <span class="mi">7</span> <span class="mi">10</span><span class="p">:</span><span class="mi">33</span> <span class="n">source</span><span class="o">/</span>
 </pre></div>
 </div>
-<p>该字段的第一个字符代表对象的类型：</p>
+<p>第一个字符代表对象的类型：</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>-：文件</p></li>
+<li><p>-：普通文件</p></li>
 <li><p>d：目录</p></li>
 <li><p>l：链接</p></li>
-<li><p>c：字符型设备</p></li>
-<li><p>b：块设备</p></li>
-<li><p>n：网络设备</p></li>
+<li><p>c：字符型设备文件</p></li>
+<li><p>b：块设备文件</p></li>
+<li><p>n：网络设备文件</p></li>
 </ul>
 </div></blockquote>
-<p>之后是3组三字符的编码，每一组定义了3种访问权限（若没有某种权限，使用 - 代替）：</p>
+<p>之后是 3 组三字符的编码，每一组定义了 3 种访问权限（若没有某种权限，使用 - 代替）：</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>r：可读</p></li>
@@ -133,30 +135,56 @@
 </ul>
 </div></blockquote>
 <p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-F</span></code> 能够在可执行文件的文件名后加一个 *，目录后方加 /。</p>
-<p>3组权限对应对象的3个安全等级：</p>
+<p>3 组权限对应对象的 3 个安全等级：</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>对象的属主（登录名fong）</p></li>
-<li><p>对象的属组（组名fong）</p></li>
+<li><p>对象的属主（登录名 fong）</p></li>
+<li><p>对象的属组（组名 fong）</p></li>
 <li><p>系统其它用户</p></li>
 </ul>
 </div></blockquote>
+<p>第 2 个字段是文件链接数，第 3 个字段是属主，第 4 个字段是属组，第 5 个字段是占用存储大小，第 6 个字段是最后修改时间。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>除了 <code class="docutils literal notranslate"><span class="pre">r</span></code> <code class="docutils literal notranslate"><span class="pre">w</span></code> <code class="docutils literal notranslate"><span class="pre">x</span></code> ，还会见到 <code class="docutils literal notranslate"><span class="pre">s</span></code> <code class="docutils literal notranslate"><span class="pre">t</span></code> ，分别表示 SetUid/SetGid、粘滞位。</p>
+</div>
 </section>
 <section id="id3">
-<h2><span class="section-number">3.2. </span>默认文件权限<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">umask</span></code> 查看默认文件权限，</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>$ <span class="nb">umask</span>
-<span class="linenos">2</span><span class="m">0002</span>
-<span class="linenos">3</span>
-<span class="linenos">4</span><span class="c1">## 临时修改默认权限 （若要长期生效，把 umask 0022 写进 ~/.bashrc 并 source）</span>
-<span class="linenos">5</span>$ <span class="nb">umask</span> <span class="m">0022</span>
-<span class="linenos">6</span>$ <span class="nb">umask</span>
-<span class="linenos">7</span><span class="m">0022</span>
+<h2><span class="section-number">3.2. </span>粘滞位<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>$ ll / <span class="p">|</span> grep tmp
+<span class="linenos">2</span>drwxrwxrwt <span class="m">1</span> root root <span class="m">4</span>.0K <span class="m">2022</span>-11-20 <span class="m">22</span>:16:34 tmp/
+<span class="linenos">3</span>$ ll /var <span class="p">|</span> grep tmp
+<span class="linenos">4</span>drwxrwxrwt <span class="m">2</span> root root <span class="m">4</span>.0K <span class="m">2022</span>-08-27 <span class="m">01</span>:43:44 tmp/
 </pre></div>
 </div>
-<p>第1位代表粘着位（sticky bit），后3位表示文件或目录对应的umask八进制值（对应3组权限）。</p>
-<table class="docutils align-center" id="id6">
-<caption><span class="caption-text">Linux文件权限码</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
+<p>上面两个存放临时文件的系统目录的权限最后一位是 <code class="docutils literal notranslate"><span class="pre">t</span></code> ，这是粘滞位。当目录被设置了粘滞位以后，即使用户对该目录有写权限，也不能删除该目录中其他用户的文件，只有文件的拥有者和 root 用户才可以删除。这就达到了各个用户可以在同一目录中读、写、修改、删除文件，但是不能随意删除其他用户文件的目的。</p>
+<p>设置粘滞位：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod +t &lt;dir&gt;
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>如果权限最后一位是 <code class="docutils literal notranslate"><span class="pre">T</span></code> ，说明该目录没有可执行权限，应执行： <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">&lt;dir&gt;</span></code> 。</p>
+</div>
+</section>
+<section id="id4">
+<h2><span class="section-number">3.3. </span>默认文件权限<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">umask</span></code> 查看默认文件权限， <code class="docutils literal notranslate"><span class="pre">unask</span> <span class="pre">-S</span></code> 打印符号化的权限：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>$ <span class="nb">umask</span>
+<span class="linenos"> 2</span><span class="m">0002</span>
+<span class="linenos"> 3</span>$ <span class="nb">umask</span> -S
+<span class="linenos"> 4</span><span class="nv">u</span><span class="o">=</span>rwx,g<span class="o">=</span>rwx,o<span class="o">=</span>rx
+<span class="linenos"> 5</span><span class="c1">## 临时修改默认权限 （若要长期生效，把 umask 0022 写进 ~/.bashrc）</span>
+<span class="linenos"> 6</span>$ <span class="nb">umask</span> <span class="m">0022</span>
+<span class="linenos"> 7</span>$ <span class="nb">umask</span>
+<span class="linenos"> 8</span><span class="m">0022</span>
+<span class="linenos"> 9</span>$ <span class="nb">umask</span> -S
+<span class="linenos">10</span><span class="nv">u</span><span class="o">=</span>rwx,g<span class="o">=</span>rx,o<span class="o">=</span>rx
+</pre></div>
+</div>
+<p>第 1 位用于 SetUid（对应 4 ）或 SetGid（对应 2 ）或粘着位（Sticky Bit，对应 1），后 3 位表示文件或目录对应的 umask 八进制值，分别对应 3 组权限。</p>
+<table class="docutils align-center" id="id7">
+<caption><span class="caption-text">Linux文件权限码</span><a class="headerlink" href="#id7" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 33%" />
 <col style="width: 33%" />
@@ -203,23 +231,48 @@
 </tr>
 </tbody>
 </table>
-<p>umask值只是 <strong>掩码</strong> ，屏蔽不想授予的权限，即：真正的权限是用 <strong>全权限</strong> 值减去umask值。
-文件的全权限值是 <strong>666</strong> ，目录的全权限值是 <strong>777</strong> 。当umask=0022，文件默认权限是644，目录默认权限是755。</p>
+<p>umask 值只是 <strong>掩码</strong> ，屏蔽不想授予的权限，即：真正的权限是用 <strong>全权限</strong> 值减去 umask 值（逻辑与运算）。
+文件的默认全权限值是 <strong>666</strong> ，目录的全权限值是 <strong>777</strong> 。当 umask=0022，则新建文件默认权限是 644，新建目录默认权限是 755。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>$ which passwd
+<span class="linenos">2</span>/usr/bin/passwd
+<span class="linenos">3</span>$ ll /usr/bin/passwd
+<span class="linenos">4</span>-rwsr-xr-x <span class="m">1</span> root root 63K <span class="m">2022</span>-03-14 <span class="m">16</span>:26:09 /usr/bin/passwd*
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">passwd</span></code> 这个指令的属主权限里面有个 <code class="docutils literal notranslate"><span class="pre">s</span></code> ，说明这个文件设置了 SetUid，作用是：拥有该文件的执行权限的任意用户，在执行该文件的时候，都是以该文件的属主（root）的权限来执行的。因为用户密码需要写入 /etc/shadow ，而普通用户是没有权限直接写这个文件的。</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>基于安全考虑，很多操作系统会忽视对 Shell 脚本进行 SetUid 的操作，执行脚本的时候不会赋予期望的权限。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>修改文件或目录的属主、属组使用命令 <code class="docutils literal notranslate"><span class="pre">chown</span></code> ，需要 root 权限。</p>
+</div>
 </section>
-<section id="id4">
-<h2><span class="section-number">3.3. </span>改变权限<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<section id="id5">
+<h2><span class="section-number">3.4. </span>改变权限<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chmod</span> <span class="p">[</span><span class="o">-</span><span class="n">cfvR</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">help</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">version</span><span class="p">]</span> <span class="p">[</span><span class="n">mode</span><span class="p">]</span> <span class="p">[</span><span class="n">file</span><span class="o">...</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>参数：</p>
-<ul class="simple">
-<li><p>c：若该文件权限确实已经更改，才打印更改动作</p></li>
-<li><p>f：若该文件权限无法被更改，也不打印错误讯息</p></li>
-<li><p>v：打印权限变更的详细动作</p></li>
-<li><p>R：对目前目录下的所有文件与子目录进行相同的权限变更（即以递回的方式逐个变更）</p></li>
-</ul>
+<blockquote>
+<div><dl class="option-list">
+<dt><kbd><span class="option">-c</span></kbd></dt>
+<dd><p>若该文件权限确实已经更改，才打印更改动作</p>
+</dd>
+<dt><kbd><span class="option">-f</span></kbd></dt>
+<dd><p>若该文件权限无法被更改，也不打印错误讯息</p>
+</dd>
+<dt><kbd><span class="option">-v</span></kbd></dt>
+<dd><p>打印权限变更的详细动作</p>
+</dd>
+<dt><kbd><span class="option">-R</span></kbd></dt>
+<dd><p>对目前目录下的所有文件与子目录进行相同的权限变更（即以递回的方式逐个变更）</p>
+</dd>
+</dl>
+</div></blockquote>
 <p>mode:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">ugoa</span><span class="o">...</span><span class="p">]</span> <span class="p">[</span><span class="o">+-=</span><span class="p">]</span> <span class="p">[</span><span class="n">rwxX</span><span class="o">...</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">ugoa</span><span class="p">]</span> <span class="p">[</span><span class="o">+-=</span><span class="p">]</span> <span class="p">[</span><span class="n">rwxXst</span><span class="p">]</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -237,14 +290,37 @@
 </pre></div>
 </div>
 </section>
-<section id="id5">
-<h2><span class="section-number">3.4. </span>参考资料<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
-<p>1.《Linux命令行与shell脚本编程大全》</p>
-<ol class="arabic simple" start="2">
-<li><p>Linux chmod命令</p></li>
+<section id="id6">
+<h2><span class="section-number">3.5. </span>参考资料<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>chmod(1) — Linux manual page</p></li>
 </ol>
 <blockquote>
-<div><p><a class="reference external" href="https://www.runoob.com/linux/linux-comm-chmod.html">https://www.runoob.com/linux/linux-comm-chmod.html</a></p>
+<div><p><a class="reference external" href="https://man7.org/linux/man-pages/man1/chmod.1.html">https://man7.org/linux/man-pages/man1/chmod.1.html</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>chown(2) — Linux manual page</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://man7.org/linux/man-pages/man2/chown.2.html">https://man7.org/linux/man-pages/man2/chown.2.html</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>How Do I Set Up Setuid, Setgid, and Sticky Bits on Linux?</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://www.liquidweb.com/kb/how-do-i-set-up-setuid-setgid-and-sticky-bits-on-linux/">https://www.liquidweb.com/kb/how-do-i-set-up-setuid-setgid-and-sticky-bits-on-linux/</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p>umask leading 0</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://askubuntu.com/questions/741321/umask-leading-0">https://askubuntu.com/questions/741321/umask-leading-0</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li><p>Shell 命令运行原理和权限详解</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://mp.weixin.qq.com/s/Uz50VbCmzpIqcB7aPwu3gw">https://mp.weixin.qq.com/s/Uz50VbCmzpIqcB7aPwu3gw</a></p>
 </div></blockquote>
 </section>
 </section>

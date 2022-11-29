@@ -13,7 +13,7 @@
     image              `星系`_                                              :download:`galaxy <resource/galaxy.jpg>`
     image              Fala                                                :download:`fala1 <resource/Fala1.jpeg>` :download:`fala2 <resource/Fala2.jpeg>`
     image              汉字“方”的金文体                                        :download:`fang <resource/fong-bronze.svg.png>`
-    image              `Vim`_ 快捷键                                            :download:`vim <resource/vi-vim-cheat-sheet.gif>`
+    image              `Vim`_ 键盘图                                            :download:`vim <resource/vi-vim-cheat-sheet.gif>`
     image              `Crontab Cheatsheet`_                                :download:`crontab <resource/crontab_cheatsheet.png>`
     image              天干地支                                            :download:`tgdz <resource/tgdz.svg>`
     chrome             Infinity 插件配置                                      :download:`infinity <resource/infinityBackup.infinity>`
@@ -27,6 +27,7 @@
     font              `Fira Code`_                                         :download:`fira-code <resource/Fira-Code.zip>`
     font              `Source Code Pro`_                                     :download:`source-code-pro <resource/Source-Code-Pro.zip>`
     font              `Monoid`_                                           :download:`monoid <resource/Monoid.zip>`
+    font              `Noto Sans Mono`_                                           :download:`noto-sans-mono <resource/Noto-Sans-Mono.zip>`
     ================ ================================================= ============================
 
 
@@ -43,6 +44,8 @@
 .. _Source Code Pro: https://github.com/adobe-fonts/source-code-pro
 
 .. _Monoid: https://larsenwork.com/monoid/
+
+.. _Noto Sans Mono: https://fonts.google.com/noto/specimen/Noto+Sans+Mono
 
 .. _Vim: https://vim.rtorr.com/lang/zh_cn
 

@@ -314,7 +314,7 @@ field list：
 
       export PATH=$PATH:/opt/homebrew/bin
 
-    在配置文件 conf.py 中设置导出格式 ::
+    在配置文件 conf.py 中设置导出格式::
 
       graphviz_output_format = 'svg'
 

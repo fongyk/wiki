@@ -206,7 +206,7 @@ HTTPIE 在线 API 测试
 
 
 
-Json工具
+Json.cn
 ------------
 
 .. figure:: pictures/json.jpeg
@@ -215,7 +215,7 @@ Json工具
     :height: 120px
     :align: center
     
-    json
+    json.cn
 
 
 在线正则表达式
@@ -309,7 +309,7 @@ Docker
          
          docker hub
 
-curl
+Curl
 ---------
 
 .. hlist::
@@ -396,6 +396,31 @@ Read the Docs
 
     read the docs
 
+
+小林 Coding
+---------------
+
+.. figure:: pictures/xiaolin.jpeg
+    :target: https://xiaolincoding.com
+    :width: 160px
+    :height: 120px
+    :align: center
+
+    xiaolincoding
+
+
+阮一峰的网络日志
+--------------------
+
+.. figure:: pictures/ryf.jpeg
+    :target: https://www.ruanyifeng.com/blog/weekly
+    :width: 160px
+    :height: 120px
+    :align: center
+
+    weekly
+
+
 Github Page
 -------------
 
@@ -406,25 +431,3 @@ Github Page
     :align: center
 
     fongyq.github.io
-
-友情链接
------------------
-
-.. hlist::
-    :columns: 2
-
-    - .. figure:: pictures/xqk.jpeg
-         :target: https://xieqk.com/
-         :width: 160px
-         :height: 120px
-         :align: center
-         
-         Xie qiaokang
-
-    - .. figure:: pictures/lyh.jpeg
-         :target: https://yolomax.com/
-         :width: 160px
-         :height: 120px
-         :align: center
-         
-         Liu yiheng

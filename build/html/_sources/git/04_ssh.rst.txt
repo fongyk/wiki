@@ -96,6 +96,10 @@ Github 添加公钥
 
         git remote set-url origin git@github.com:<Username>/<Project>.git
 
+    查看 URL::
+
+        git remote get-url origin
+
 参考资料
 ---------------
 

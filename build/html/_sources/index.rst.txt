@@ -7,7 +7,7 @@
 ========
 .. note::
 
-    **文中可能存在错误，欢迎 PR。**
+    **文档中可能存在错误，欢迎 PR。**
 
     https://github.com/fongyk/wiki
 
@@ -15,6 +15,7 @@
    :maxdepth: 1
    :caption: 目录
 
+   link/index
    cpp/index
    python/index
    linux/index
@@ -25,7 +26,6 @@
    regularExpression/index
    cron/index
    computerNetwork/index
-   link/index
    softwares/index
    tech/index
    else/index

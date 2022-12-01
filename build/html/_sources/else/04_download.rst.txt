@@ -13,9 +13,10 @@
     image              `星系`_                                              :download:`galaxy <resource/galaxy.jpg>`
     image              Fala                                                :download:`fala1 <resource/Fala1.jpeg>` :download:`fala2 <resource/Fala2.jpeg>`
     image              汉字“方”的金文体                                        :download:`fang <resource/fong-bronze.svg.png>`
-    image              `Vim`_ 键盘图                                            :download:`vim <resource/vi-vim-cheat-sheet.gif>`
+    image              `Vim`_ 键盘图                                           :download:`vim <resource/vi-vim-cheat-sheet.gif>`
     image              `Crontab Cheatsheet`_                                :download:`crontab <resource/crontab_cheatsheet.png>`
     image              天干地支                                            :download:`tgdz <resource/tgdz.svg>`
+    image              `数据结构及复杂度`_                                      :download:`complexity <resource/big-o-complexity.png>`
     chrome             Infinity 插件配置                                      :download:`infinity <resource/infinityBackup.infinity>`
     pdf                Effective C++                                         :download:`effective_c++ <resource/Effective-C++.pdf>`
     pdf                More Effective C++                                     :download:`more_effective_c++ <resource/More-Effective-C++.pdf>`
@@ -27,7 +28,7 @@
     font              `Fira Code`_                                         :download:`fira-code <resource/Fira-Code.zip>`
     font              `Source Code Pro`_                                     :download:`source-code-pro <resource/Source-Code-Pro.zip>`
     font              `Monoid`_                                           :download:`monoid <resource/Monoid.zip>`
-    font              `Noto Sans Mono`_                                           :download:`noto-sans-mono <resource/Noto-Sans-Mono.zip>`
+    font              `Noto Sans Mono`_                                      :download:`noto-sans-mono <resource/Noto-Sans-Mono.zip>`
     ================ ================================================= ============================
 
 
@@ -50,3 +51,5 @@
 .. _Vim: https://vim.rtorr.com/lang/zh_cn
 
 .. _Crontab Cheatsheet: https://quickref.me/cron
+
+.. _数据结构及复杂度: https://www.bigocheatsheet.com/

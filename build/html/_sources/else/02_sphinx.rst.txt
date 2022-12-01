@@ -50,6 +50,15 @@ sphinx
       /opt/homebrew/Cellar/python@3.10/3.10.6_2/bin/python3.10 -m pip install sphinx==4.5
 
 
+.. note::
+
+    如果修改了目录结构（新增、删除、改名、调换顺序等），最好重新 build 一次::
+
+      make clean
+      make html
+
+    否则目录总是会跳到以前的版本去。
+
 rst 语法测试
 --------------
 

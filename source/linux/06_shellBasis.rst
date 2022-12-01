@@ -306,6 +306,17 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。
         $ [[ abcd =~ .*bc.* ]] && echo 'bc in abcd'
         bc in abcd
 
+.. note::
+
+    ``[ $1 = 'target' ]`` 判断第一个参数值是否为 target，如果执行脚本的时候没有输入参数，会报错：
+
+        [: =: unary operator expected
+
+    因为原命令变成了 ``[ = 'target' ]`` 。
+
+    更规范的写法是在变量外部都加双引号，即： ``[ "$1" = 'target' ]`` ，如果执行脚本的时候没有输入参数，原命令变成 ``[ '' = 'target' ]`` 。
+
+
 文件测试
 ^^^^^^^^^^^^
 

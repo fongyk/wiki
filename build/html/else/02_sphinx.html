@@ -48,6 +48,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">目录</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">快速访问</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
@@ -58,7 +59,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../regularExpression/index.html">正则表达式</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cron/index.html">Cron 表达式</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../link/index.html">快速访问</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tech/index.html">技巧</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">其他</a><ul class="current">
@@ -139,6 +139,15 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/opt/homebrew/Cellar/python@3.10/3.10.6_2/bin/python3.10 -m pip install <span class="nv">sphinx</span><span class="o">==</span><span class="m">4</span>.5
 </pre></div>
 </div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>如果修改了目录结构（新增、删除、改名、调换顺序等），最好重新 build 一次:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">clean</span>
+<span class="n">make</span> <span class="n">html</span>
+</pre></div>
+</div>
+<p>否则目录总是会跳到以前的版本去。</p>
 </div>
 </section>
 <section id="rst">

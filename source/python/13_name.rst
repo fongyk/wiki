@@ -4,9 +4,7 @@
 后缀单下划线
 --------------
 
-避免与关键字冲突。
-
-::
+避免与关键字冲突::
 
   class_ = 1
 
@@ -16,7 +14,7 @@
 
 不能被 ``from module_name import *`` 导入。
 
-对于类的成员变量和成员函数
+对于类的成员变量和成员函数：
 
   - ``_var`` ：保护成员（protected），类对象可以在外部访问
 
@@ -28,7 +26,7 @@
 
 不能被 ``from module_name import *`` 导入。
 
-对于类的成员变量和成员函数
+对于类的成员变量和成员函数：
 
   - ``__var`` ：私有成员（private），类对象不可以在外部访问
 
@@ -44,21 +42,21 @@
       print "_func"
 
   class A:
-    var = 100        ## 类变量（类对象共有）
-    def __init__(self):
-        self._a = 0  ## protected
-        self.__b = 1 ## private
-        self.c = 2
+      var = 100        ## 类变量（类对象共有）
+      def __init__(self):
+          self._a = 0  ## protected
+          self.__b = 1 ## private
+          self.c = 2
 
-    def _foo(self):
-        print "_foo"
+      def _foo(self):
+          print "_foo"
 
-    def __foo(self):
-        print "__foo"
+      def __foo(self):
+          print "__foo"
 
-    def foo(self):
-        print "foo"
-        print "__b:", self.__b
+      def foo(self):
+          print "foo"
+          print "__b:", self.__b
 
 .. code-block:: python
   :linenos:

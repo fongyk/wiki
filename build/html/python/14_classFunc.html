@@ -159,33 +159,33 @@
 <li><p>类和实例都可以访问类方法</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
-<span class="linenos"> 2</span>  <span class="n">var</span> <span class="o">=</span> <span class="mi">100</span>        <span class="c1">## 类变量</span>
-<span class="linenos"> 3</span>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="linenos"> 4</span>      <span class="bp">self</span><span class="o">.</span><span class="n">_a</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1">## 实例变量</span>
-<span class="linenos"> 5</span>      <span class="bp">self</span><span class="o">.</span><span class="n">__b</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">## 实例变量</span>
-<span class="linenos"> 6</span>      <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="mi">2</span>   <span class="c1">## 实例变量</span>
+<span class="linenos"> 2</span>    <span class="n">var</span> <span class="o">=</span> <span class="mi">100</span>        <span class="c1">## 类变量</span>
+<span class="linenos"> 3</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos"> 4</span>        <span class="bp">self</span><span class="o">.</span><span class="n">_a</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1">## 实例变量</span>
+<span class="linenos"> 5</span>        <span class="bp">self</span><span class="o">.</span><span class="n">__b</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">## 实例变量</span>
+<span class="linenos"> 6</span>        <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="mi">2</span>   <span class="c1">## 实例变量</span>
 <span class="linenos"> 7</span>
-<span class="linenos"> 8</span>  <span class="k">def</span> <span class="nf">_foo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="linenos"> 9</span>      <span class="nb">print</span> <span class="s2">&quot;_foo&quot;</span>
+<span class="linenos"> 8</span>    <span class="k">def</span> <span class="nf">_foo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos"> 9</span>        <span class="nb">print</span> <span class="s2">&quot;_foo&quot;</span>
 <span class="linenos">10</span>
-<span class="linenos">11</span>  <span class="k">def</span> <span class="nf">__foo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="linenos">12</span>      <span class="nb">print</span> <span class="s2">&quot;__foo&quot;</span>
+<span class="linenos">11</span>    <span class="k">def</span> <span class="nf">__foo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">12</span>        <span class="nb">print</span> <span class="s2">&quot;__foo&quot;</span>
 <span class="linenos">13</span>
-<span class="linenos">14</span>  <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="linenos">15</span>      <span class="bp">self</span><span class="o">.</span><span class="n">__foo</span><span class="p">()</span>
-<span class="linenos">16</span>      <span class="nb">print</span> <span class="s2">&quot;__b:&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__b</span>
-<span class="linenos">17</span>      <span class="nb">print</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_func</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="linenos">14</span>    <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">15</span>        <span class="bp">self</span><span class="o">.</span><span class="n">__foo</span><span class="p">()</span>
+<span class="linenos">16</span>        <span class="nb">print</span> <span class="s2">&quot;__b:&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__b</span>
+<span class="linenos">17</span>        <span class="nb">print</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_func</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="linenos">18</span>
-<span class="linenos">19</span>  <span class="nd">@staticmethod</span>
-<span class="linenos">20</span>  <span class="k">def</span> <span class="nf">static_func</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-<span class="linenos">21</span>      <span class="nb">print</span> <span class="s2">&quot;static_method&quot;</span>
-<span class="linenos">22</span>      <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="linenos">19</span>    <span class="nd">@staticmethod</span>
+<span class="linenos">20</span>    <span class="k">def</span> <span class="nf">static_func</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="linenos">21</span>        <span class="nb">print</span> <span class="s2">&quot;static_method&quot;</span>
+<span class="linenos">22</span>        <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
 <span class="linenos">23</span>
-<span class="linenos">24</span>  <span class="nd">@classmethod</span>
-<span class="linenos">25</span>  <span class="k">def</span> <span class="nf">class_func</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
-<span class="linenos">26</span>      <span class="nb">print</span> <span class="s2">&quot;class_method&quot;</span>
-<span class="linenos">27</span>      <span class="bp">cls</span><span class="o">.</span><span class="n">var</span> <span class="o">=</span> <span class="n">num</span>
-<span class="linenos">28</span>      <span class="nb">print</span> <span class="bp">cls</span><span class="o">.</span><span class="n">static_func</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="linenos">24</span>    <span class="nd">@classmethod</span>
+<span class="linenos">25</span>    <span class="k">def</span> <span class="nf">class_func</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+<span class="linenos">26</span>        <span class="nb">print</span> <span class="s2">&quot;class_method&quot;</span>
+<span class="linenos">27</span>        <span class="bp">cls</span><span class="o">.</span><span class="n">var</span> <span class="o">=</span> <span class="n">num</span>
+<span class="linenos">28</span>        <span class="nb">print</span> <span class="bp">cls</span><span class="o">.</span><span class="n">static_func</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">A</span><span class="p">()</span>

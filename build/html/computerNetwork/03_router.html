@@ -106,15 +106,15 @@
 <section id="bridge">
 <h2><span class="section-number">3.1. </span>网桥（Bridge）<a class="headerlink" href="#bridge" title="Permalink to this headline"></a></h2>
 <p>两个或多个以太网通过 <strong>网桥</strong> 连接起来后，就成为一个覆盖范围更大的以太网，而原来的每个以太网就可称为一个网段。</p>
-<p><strong>网桥工作在数据链路层的MAC子层</strong> ，可以互联不同的物理层、不同的MAC子层以及不同速率的以太网，使以太网各网段成为隔离开的碰撞域。</p>
+<p><strong>网桥工作在数据链路层的 MAC 子层</strong> ，可以互联不同的物理层、不同的 MAC 子层以及不同速率的以太网，使以太网各网段成为隔离开的碰撞域。</p>
 <p><strong>网桥</strong> 具有过滤帧以及存储转发帧的功能，可以隔离冲突域，但不能隔离广播域。</p>
 </section>
 <section id="switch">
 <h2><span class="section-number">3.2. </span>交换机（Switch）<a class="headerlink" href="#switch" title="Permalink to this headline"></a></h2>
 <p><strong>交换机工作在数据链路层</strong> ，相当于一个多端口的网桥，是交换式局域网的核心设备。</p>
-<p><strong>交换机</strong> 内部的CPU会在每个端口成功连接时，通过ARP协议学习它的MAC地址，保存成一张ARP表。
-在今后的通讯中，发往该MAC地址的数据包将仅送往其对应的端口，而不是所有的端口。</p>
-<p>利用 <strong>交换机</strong> 可以实现虚拟局域网(VLAN)，VLAN可以隔离冲突域，也可以隔离广播域。</p>
+<p><strong>交换机</strong> 内部的 CPU 会在每个端口成功连接时，通过 ARP 协议学习它的 MAC 地址，保存成一张ARP表。
+在今后的通讯中，发往该 MAC 地址的数据包将仅送往其对应的端口，而不是所有的端口。</p>
+<p>利用 <strong>交换机</strong> 可以实现虚拟局域网（VLAN），VLAN 可以隔离冲突域，也可以隔离广播域。</p>
 </section>
 <section id="router">
 <h2><span class="section-number">3.3. </span>路由器（Router）<a class="headerlink" href="#router" title="Permalink to this headline"></a></h2>
@@ -123,8 +123,9 @@
 </section>
 <section id="gateway">
 <h2><span class="section-number">3.4. </span>网关（Gateway）<a class="headerlink" href="#gateway" title="Permalink to this headline"></a></h2>
-<p><strong>网关</strong> 能在不同协议间移动数据，而路由器是在不同网络间移动数据。</p>
-<p><strong>网关</strong> 是连接两个网络的设备。语音网关可以连接PSTN网络和以太网，这就相当于VOIP，把不同电话中的模拟信号通过网关而转换成数字信号，并加入协议再进行传输。</p>
+<p><strong>网关</strong> 可以工作在 OSI 的任意一层。</p>
+<p><strong>网关</strong> 能在不同协议间移动数据、连接两个网络，比如连接局域网和互联网。语音网关可以连接 PSTN 网络和以太网，这就相当于 VOIP，把不同电话中的模拟信号通过网关转换成数字信号，并加入协议再进行传输。</p>
+<p>网关可以存在于路由器、交换机、PC中。</p>
 </section>
 <section id="id2">
 <h2><span class="section-number">3.5. </span>参考资料<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
@@ -133,6 +134,12 @@
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://www.nowcoder.com/questionTerminal/497f4570bcfa4399a803f23fb92f7732">https://www.nowcoder.com/questionTerminal/497f4570bcfa4399a803f23fb92f7732</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>Router VS Gateway: What is the Similarity and Difference</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://community.fs.com/blog/router-vs-gateway-what-is-the-similarity-and-difference.html">https://community.fs.com/blog/router-vs-gateway-what-is-the-similarity-and-difference.html</a></p>
 </div></blockquote>
 </section>
 </section>

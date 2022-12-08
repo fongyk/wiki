@@ -42,33 +42,33 @@
   :linenos:
 
   class A:
-    var = 100        ## 类变量
-    def __init__(self):
-        self._a = 0  ## 实例变量
-        self.__b = 1 ## 实例变量
-        self.c = 2   ## 实例变量
+      var = 100        ## 类变量
+      def __init__(self):
+          self._a = 0  ## 实例变量
+          self.__b = 1 ## 实例变量
+          self.c = 2   ## 实例变量
 
-    def _foo(self):
-        print "_foo"
+      def _foo(self):
+          print "_foo"
 
-    def __foo(self):
-        print "__foo"
+      def __foo(self):
+          print "__foo"
 
-    def foo(self):
-        self.__foo()
-        print "__b:", self.__b
-        print self.static_func(1, 5)
+      def foo(self):
+          self.__foo()
+          print "__b:", self.__b
+          print self.static_func(1, 5)
 
-    @staticmethod
-    def static_func(a, b):
-        print "static_method"
-        return a + b
+      @staticmethod
+      def static_func(a, b):
+          print "static_method"
+          return a + b
 
-    @classmethod
-    def class_func(cls, num):
-        print "class_method"
-        cls.var = num
-        print cls.static_func(-1, 1)
+      @classmethod
+      def class_func(cls, num):
+          print "class_method"
+          cls.var = num
+          print cls.static_func(-1, 1)
 
 .. code-block:: python
   :linenos:

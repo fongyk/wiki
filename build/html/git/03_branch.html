@@ -108,7 +108,7 @@
 <p>Github 已经将 master 分支改名为 main。</p>
 </div>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">dev</span></code> 创建分支dev，并切换到dev分支（此时可以正常add，commit等）。相当于下面两条指令：</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">dev</span></code> 创建分支 dev，并切换到 dev 分支（此时可以正常 add、commit 等）。相当于下面两条指令：</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">dev</span></code> 创建分支</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">dev</span></code> 切换分支</p></li>
@@ -117,12 +117,12 @@
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>dev分支的仓库已经包含了master分支的内容，但是在master分支下，无法看到dev分支新增或修改的内容。</p>
+<p>dev 分支的仓库已经包含了 master 分支的内容，但是在 master 分支下，无法看到 dev 分支新增或修改的内容。</p>
 </div>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code> -r：查看远程分支，-a：查看所有分支（包括本地分支）。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span> <span class="pre">dev</span></code> 把dev分支的内容合并到当前分支（如，master分支）。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-d</span> <span class="pre">dev</span></code> （合并之后）删除dev分支。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span> <span class="pre">dev</span></code> 把 dev 分支的内容合并到当前分支（如 master 分支）。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-d</span> <span class="pre">dev</span></code> （合并之后）删除 dev 分支。</p></li>
 </ul>
 <p>流程如下（图片来源于 <a class="reference external" href="https://www.liaoxuefeng.com/wiki/896043488029600/900003767775424">Git教程 - 廖雪峰的官方网站</a> ）：</p>
 <p><strong>1.</strong> 初始状态： <strong>master</strong> 分支。</p>
@@ -135,6 +135,10 @@
 <a class="reference internal image-reference" href="../_images/03_merge_branch.png"><img alt="../_images/03_merge_branch.png" class="align-center" src="../_images/03_merge_branch.png" style="width: 300px;" /></a>
 <p><strong>5.</strong> 删除 <strong>dev</strong> 分支。</p>
 <a class="reference internal image-reference" href="../_images/03_delete_branch.png"><img alt="../_images/03_delete_branch.png" class="align-center" src="../_images/03_delete_branch.png" style="width: 300px;" /></a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>协同开发场景下，在开发自己的分支时，要注意合并 master 分支的最新更新： <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">origin</span> <span class="pre">master</span></code> ，手动解决冲突。</p>
+</div>
 </section>
 <section id="id3">
 <h2><span class="section-number">3.2. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>

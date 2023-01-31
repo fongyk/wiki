@@ -17,7 +17,7 @@ Bellman-Ford 算法
   int V, E; // 顶点数，边数
 
   // 从顶点 s 出发的最短距离（假设不存在负圈）
-  void shortest_path(int s)
+  void shortestPath(int s)
   {
     fill(d, d+V, INF);
     d[s] = 0;
@@ -43,7 +43,7 @@ Bellman-Ford 算法
 .. code-block:: cpp
   :linenos:
 
-  bool find_negative_loop()
+  bool findNegativeLoop()
   {
     fill(d, d+V, 0); // 初始化为 0，防止因为是 d[e.from] == INF 而停止更新
     for(int i = 0; i < V; ++i)

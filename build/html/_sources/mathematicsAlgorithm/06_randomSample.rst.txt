@@ -33,13 +33,13 @@
   typedef VecInt::const_iterator CItr;
 
   // 等概率产生区间 [a, b] 之间的随机数
-  int RandInt(int a, int b)
+  int randInt(int a, int b)
   {
     if (a > b) swap(a, b);
     return a + rand() % (b - a + 1);
   }
 
-  bool Sample(const VecInt data, int &result)
+  bool sample(const VecInt data, int &result)
   {
     if (data.size() <= 0) return false;
 
@@ -50,7 +50,7 @@
     int m;
     for (m = 1, it = data.begin() + 1; it != data.end(); ++m, ++it)
     {
-      int ri = RandInt(0, m); // ri < 1 的概率为 1/(m+1)
+      int ri = randInt(0, m); // ri < 1 的概率为 1/(m+1)
       if (ri < 1) result = *it;
     }
     return true;
@@ -94,13 +94,13 @@
   int result[k];
 
   // 等概率产生区间 [a, b] 之间的随机数
-  int RandInt(int a, int b)
+  int randInt(int a, int b)
   {
     if (a > b) swap(a, b);
     return a + rand() % (b - a + 1);
   }
 
-  bool Sample(const VecInt data)
+  bool sample(const VecInt data)
   {
     if (data.size() < k) return false;
 
@@ -111,7 +111,7 @@
 
     for (int m = k; it != data.end(); ++m, ++it)
     {
-      int ri = RandInt(0, m);
+      int ri = randInt(0, m);
       if (ri < k) result[ri] = *it; // ri < k 的概率为 k/(m+1)
     }
     return true;

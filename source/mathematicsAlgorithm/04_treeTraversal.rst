@@ -469,17 +469,12 @@
           int rob(TreeNode* root, int& inclu_root, int& exclu_root)
           {
               if(!root) return 0;
-
-              int inclu_left = 0;
-              int exclu_left = 0;
+              int inclu_left = 0, exclu_left = 0;
               rob(root -> left, inclu_left, exclu_left);
-              int inclu_right = 0;
-              int exclu_right = 0;
+              int inclu_right = 0, exclu_right = 0;
               rob(root -> right, inclu_right, exclu_right);
-
               inclu_root = root -> val + exclu_left + exclu_right;
-              exclu_root = max(inclu_left + inclu_right, max(inclu_left + exclu_right, max(exclu_left + inclu_right, exclu_left + exclu_right)));
-
+              exclu_root = max(inclu_left, exclu_left) + max(inclu_right, exclu_right);
               return max(inclu_root, exclu_root);
           }
       };

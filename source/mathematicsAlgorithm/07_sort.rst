@@ -35,6 +35,8 @@
     :width: 800px
     :align: center
 
+|
+
 .. container:: toggle
 
   .. container:: header
@@ -47,19 +49,18 @@
     template<class T>
     void insertionSort(T* arr, int len)
     {
-      if(!arr) return;
       for(int i = 1; i < len; ++i)
       {
         int j = i;
-        while(j > 0 && arr[j] < arr[j-1])
+        int tmp = arr[i];
+        while (j > 0 && arr[j-1] > tmp)
         {
-          swap(arr[j], arr[j-1]);
-          -- j;
+          arr[j] = arr[j-1];
+          --j;
         }
+        arr[j] = tmp;
       }
     }
-
-|
 
 选择排序
 -----------
@@ -67,6 +68,8 @@
 .. image:: ./07_selection.gif
     :width: 800px
     :align: center
+
+|
 
 .. container:: toggle
 
@@ -92,7 +95,6 @@
       }
     }
 
-|
 
 冒泡排序
 ----------
@@ -100,6 +102,8 @@
 .. image:: ./07_bubble.gif
     :width: 800px
     :align: center
+
+|
 
 .. container:: toggle
 
@@ -141,8 +145,6 @@
       }
     }
 
-|
-
 
 快速排序
 ----------
@@ -150,6 +152,8 @@
 .. image:: ./07_quick.gif
     :width: 800px
     :align: center
+
+|
 
 .. container:: toggle
 
@@ -187,7 +191,6 @@
       if(p < end - 1) quickSort(arr, p+1, end);
     }
 
-|
 
 快速排序的空间复杂度是 :math:`\mathcal{O}(\log n)` ，用于保存递归的函数栈，最差情况下为 :math:`\mathcal{O}(n)` 。
 
@@ -200,6 +203,7 @@
     :align: center
 
 建堆，从 **最后一个非叶子节点** 开始调整，使其成为大顶堆；将堆顶元素放到数组末尾；最后一个叶子节点放到堆顶，重新调整堆；...。
+
 
 .. container:: toggle
 
@@ -238,7 +242,6 @@
       }
     }
 
-|
 
 初始建立大顶堆的时间复杂度为 :math:`\mathcal{O}(n \log n)` ；每次取出堆的最大元素并重新调整堆也要用 :math:`\mathcal{O}(\log n)` 时间。
 
@@ -248,6 +251,8 @@
 .. image:: ./07_merge.gif
     :width: 800px
     :align: center
+
+|
 
 .. container:: toggle
 
@@ -331,9 +336,6 @@
     }
 
 
-
-|
-
 希尔排序
 -----------
 
@@ -342,6 +344,7 @@
     :align: center
 
 缩小增量排序法：对于每一个增量（步长），利用插入排序方法进行排序。如果序列是基本有序的，使用直接插入排序效率非常高。
+
 
 .. container:: toggle
 
@@ -376,7 +379,6 @@
       }
     }
 
-|
 
 计数排序
 -----------
@@ -384,6 +386,8 @@
 .. image:: ./07_counting.gif
     :width: 800px
     :align: center
+
+|
 
 .. container:: toggle
 
@@ -432,7 +436,6 @@
       }
     }
 
-|
 
 桶排序
 ------------
@@ -442,6 +445,7 @@
     :align: center
 
 参考：https://blog.csdn.net/developer1024/article/details/79770240
+
 
 .. container:: toggle
 
@@ -532,7 +536,6 @@
         }
     }
 
-|
 
 时间复杂度
    对于 :math:`n` 个待排数据， :math:`k` 个桶，平均每个桶 :math:`\frac{n}{k}` 个数据，桶内排序复杂度为 :math:`\mathcal{O}(\frac{n}{k} \log \frac{n}{k})` ，总体平均时间复杂度为：
@@ -551,6 +554,7 @@
     :width: 800px
     :align: center
 
+|
 
 .. container:: toggle
 
@@ -588,7 +592,6 @@
       }
     }
 
-|
 
 总结
 -------------

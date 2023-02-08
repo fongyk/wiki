@@ -459,21 +459,23 @@
     #include<iterator>
     #include<iostream>
     #include<vector>
+    #include<algorithm>
+    #include<cmath>
     using namespace std;
     const int BUCKET_NUM = 10;
 
     struct ListNode
     {
-        explicit ListNode(int i=0):mData(i),mNext(NULL){}
+        explicit ListNode(int i=0): mNext(NULL), mData(i){}
         ListNode* mNext;
         int mData;
     };
 
-    ListNode* insert(ListNode* head,int val)
+    ListNode* insert(ListNode* head, int val)
     {
         ListNode dummyNode;
         ListNode *newNode = new ListNode(val);
-        ListNode *pre,*curr;
+        ListNode *pre, *curr;
         dummyNode.mNext = head;
         pre = &dummyNode;
         curr = head;
@@ -486,7 +488,7 @@
         pre->mNext = newNode;
         return dummyNode.mNext;
     }
-    ListNode* merge(ListNode *head1,ListNode *head2)
+    ListNode* merge(ListNode *head1, ListNode *head2)
     {
         ListNode dummyNode;
         ListNode *dummy = &dummyNode;
@@ -509,27 +511,31 @@
 
         return dummyNode.mNext;
     }
-    void bucketSort(int n,int arr[])
+    void bucketSort(int n, int arr[])
     {
         vector<ListNode*> buckets(BUCKET_NUM,(ListNode*)(0));
+        auto p = minmax_element(arr, arr + n);
+        int min_ele = *p.first;
+        int max_ele = *p.second;
+        int num_per_bucket = ceil((float)(max_ele - min_ele + 1) / BUCKET_NUM);
 
         // 插入桶中
-        for(int i=0;i<n;++i)
+        for(int i=0; i<n; ++i)
         {
-            int index = arr[i]/BUCKET_NUM;
+            int index = (arr[i] - min_ele) / num_per_bucket;
             ListNode *head = buckets.at(index);
             buckets.at(index) = insert(head,arr[i]);
         }
 
         // 合并各个桶中的排序结果
         ListNode *head = buckets.at(0);
-        for(int i=1;i<BUCKET_NUM;++i)
+        for(int i=1; i<BUCKET_NUM; ++i)
         {
             head = merge(head,buckets.at(i));
         }
 
         // 结果输出到 arr
-        for(int i=0;i<n;++i)
+        for(int i=0; i<n; ++i)
         {
             arr[i] = head->mData;
             head = head->mNext;

@@ -173,20 +173,15 @@ $$</div><div class="toggle docutils container">
 </pre></div>
 </div>
 </div>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
 </section>
 <section id="id3">
 <h2><span class="section-number">8.2. </span>最长公共子序列<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <p>用 <span class="math notranslate nohighlight">\(c[i][j]\)</span> 记录序列 <span class="math notranslate nohighlight">\(X[0:i-1]\)</span> （前 <span class="math notranslate nohighlight">\(i\)</span> 个字符）和 <span class="math notranslate nohighlight">\(Y[0:j-1]\)</span> （前 <span class="math notranslate nohighlight">\(j\)</span> 个字符）的最长公共子序列的长度。</p>
 <p>递推关系：</p>
 <div class="math notranslate nohighlight">
-$$
-c[0][j] = 0,\ 0 \leqslant j \leqslant n \\
-c[i][0] = 0,\ 0 \leqslant i \leqslant m
-$$
-
+\[\begin{split}c[0][j] &amp; =  0,\ 0 \leqslant j \leqslant n \\
+c[i][0] &amp; =  0,\ 0 \leqslant i \leqslant m\end{split}\]</div>
+<div class="math notranslate nohighlight">
 $$
 c[i][j] =
 \begin{cases}
@@ -281,16 +276,11 @@ $$</div><div class="toggle docutils container">
 </pre></div>
 </div>
 </div>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
 <p>相关题：最短编辑距离。</p>
 <div class="math notranslate nohighlight">
-$$
-d[0][j] = j,\ 0 \leqslant j \leqslant n \\
-d[i][0] = i,\ 0 \leqslant i \leqslant m
-$$
-
+\[\begin{split}d[0][j] &amp; = j,\ 0 \leqslant j \leqslant n \\
+d[i][0] &amp; = i,\ 0 \leqslant i \leqslant m\end{split}\]</div>
+<div class="math notranslate nohighlight">
 $$
 d[i][j] =
 \begin{cases}
@@ -365,9 +355,6 @@ $$</div></section>
 </pre></div>
 </div>
 </div>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
 </section>
 <section id="id5">
 <h2><span class="section-number">8.4. </span>最大子段和<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
@@ -392,9 +379,6 @@ $$</div></section>
 <span class="linenos">11</span><span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="line-block">
-<div class="line"><br /></div>
 </div>
 </section>
 <section id="id6">
@@ -450,17 +434,14 @@ $$</div><div class="toggle docutils container">
 </pre></div>
 </div>
 </div>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
 </section>
 <section id="id7">
 <h2><span class="section-number">8.6. </span>状态压缩动态规划<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h2>
-<p>动态规划的状态有时候容易表示出来，需要用一些编码技术，把状态用简单的方式表示出来（压缩）。
+<p>动态规划的状态有时候不容易表示出来，需要用一些编码技术，把状态用简单的方式表示出来（压缩）。
 典型方式：当需要表示一个集合有哪些元素时，往往用一个整数表示，整数的二进制表示中的1表示对应位置的元素存在于集合中，0表示不存在。</p>
 <section id="poj-3254-corn-fields">
 <h3>[Poj 3254] Corn Fields<a class="headerlink" href="#poj-3254-corn-fields" title="Permalink to this headline"></a></h3>
-<p>问题描述：一个 <span class="math notranslate nohighlight">\(N \times N\)</span> 的矩阵牧场，每个方格单元有两种状态：可放牧（1）和不可放牧（0）；在这块牧场放牛，要求两个相邻的方格不能同时放牛（不包括斜着的），即牛与牛不能挨着；问有多少种放牛方案（一头牛都不放也是一种方案）。</p>
+<p>问题描述：一个 <span class="math notranslate nohighlight">\(N \times N\)</span> 的矩阵牧场，每个方格单元有两种状态：可放牧（1）和不可放牧（0）；在这块牧场放牛，要求两个相邻的方格不能同时放牛（不包括斜着的），即牛与牛不能挨着；问有多少种放牛方案（一头牛都不放也是一种方案）？</p>
 <p>策略：用一个集合（状态压缩）维护所有不相邻的情况，在此基础上再去考虑哪些方格可放牧。
 设 <span class="math notranslate nohighlight">\(dp[i][j]\)</span> 表示：在第 <span class="math notranslate nohighlight">\(i\)</span> 行状态为 <span class="math notranslate nohighlight">\(j\ (0 \leq j \leq 2^m-1)\)</span> 时，
 前 <span class="math notranslate nohighlight">\(i+1\)</span> 行牧场方格总共的放牛方案数量。</p>
@@ -538,9 +519,6 @@ $$</div><div class="toggle docutils container">
 </pre></div>
 </div>
 </div>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
 </section>
 <section id="poj-3311-hie-with-the-pie">
 <h3>[Poj 3311] Hie With The Pie<a class="headerlink" href="#poj-3311-hie-with-the-pie" title="Permalink to this headline"></a></h3>
@@ -600,9 +578,6 @@ dp[S][v] &amp;=  min\{ dp[S \cup u][u] + d[v][u] \},\ u \notin S\end{split}\]</d
 <span class="linenos">19</span><span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="line-block">
-<div class="line"><br /></div>
 </div>
 <p>相反地，参考资料1将 <span class="math notranslate nohighlight">\(dp[S][v]\)</span> 定义为：走完集合 <span class="math notranslate nohighlight">\(S\)</span> 后最后停留在顶点 <span class="math notranslate nohighlight">\(v\)</span> 的最小代价。</p>
 </section>

@@ -121,7 +121,7 @@
 
 - 全排列（含重复元素）。Hint：在交换第 :math:`i` 个元素与第 :math:`j` 个元素之前，要求数组的 :math:`[i, j)` 区间中的元素没有与第 :math:`j` 个元素重复。
 
-    https://blog.csdn.net/so_geili/article/details/71078945
+  https://blog.csdn.net/so_geili/article/details/71078945
 
   .. container:: toggle
 
@@ -168,7 +168,7 @@
 
 - Next Permutation 下一个排列。Hint：从后往前先找到第一个开始下降的数字 :math:`x` （下标 :math:`i` ），再从后往前找到第一个比 :math:`x` 大的数 :math:`y` （下标 :math:`j` ）；交换 :math:`x` 和 :math:`y` ；翻转区间 :math:`[i+1, end]` 。
 
-    https://www.cnblogs.com/grandyang/p/4428207.html
+  https://www.cnblogs.com/grandyang/p/4428207.html
 
   .. container:: toggle
 
@@ -236,7 +236,7 @@
 - [LeetCode] Permutation Sequence 输出序列 :math:`1,2,...,n` 的第 :math:`k` 个排列（字典序）。Hint：方法一，按字典序深度优先遍历；方法二，逐步缩小搜索范围，如：
   :math:`perm [ 1,2,3 ] = \{1 + perm [ 2,3 ] \} + \{2 + perm [ 1,3 ] \} + \{3 + perm [ 1,2 ] \}` 。
 
-    https://leetcode.com/problems/permutation-sequence/
+  https://leetcode.com/problems/permutation-sequence/
 
   .. container:: toggle
 
@@ -373,7 +373,7 @@
 
 - 输出整数集合的所有组合（包含重复元素）。Hint：统计每个元素的频率 :math:`f` ，在组合过程中，该元素可取的个数最少为零个，最多为 :math:`f` 个；回溯。
 
-    https://leetcode.com/problems/subsets-ii/
+  https://leetcode.com/problems/subsets-ii/
 
   .. container:: toggle
 
@@ -410,7 +410,7 @@
   方法二，回溯：设当前子序列集合最后一个元素的下标为 :math:`i` ，在把当前字符（设下标为 :math:`t` ）加入子序列集合时，
   需要考虑区间 :math:`(i, t)` （如果当前子序列集合为空，区间为 :math:`[0, t)` ）内是否有 :math:`S[t]` 的重复元素，如果有，则不能把 :math:`S[t]` 插入当前子序列中，否则就造成重复；回溯方法严重超时。
 
-    https://leetcode.com/problems/distinct-subsequences-ii/submissions/
+  https://leetcode.com/problems/distinct-subsequences-ii
 
   .. container:: toggle
 
@@ -453,8 +453,8 @@
 
       // 方法一改进型
 
-      // 设 dp[k] 是以 S[k] 结尾的不重复子序列个数（定义与上面的方法一相同），
-      // 设 end[i] 是以字符 'a' + i 结尾的子序列个数，0 <= i < 26，
+      // 设 dp[l] 是以 S[l] 结尾的不重复子序列个数（定义与上面的方法一相同），
+      // 设 end[i] 是以字符 'a' + i 结尾的子序列个数，0 <= i < 26，S[l] = 'a' + i，
       // 如果该字符出现在多个位置，如 {j，k，l}，则 end[i] = dp[j] + dp[k] + dp[l]，
       // 由方法一可知：dp[l] = \sum_{m=0}^{l-1} dp[m] + 1 - dp[j] - dp[k]，
       // 因此 end[i] = \sum_{m=0}^{l-1} dp[m] + 1 = \sum_{n=0}^25 end[n] + 1
@@ -528,7 +528,7 @@
 
 - Word search 查找字符串路径。
 
-    https://leetcode.com/problems/word-search/
+  https://leetcode.com/problems/word-search/
 
   .. container:: toggle
 

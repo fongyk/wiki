@@ -224,9 +224,7 @@
 <h2><span class="section-number">9.5. </span>实例<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
 <ul>
 <li><p>全排列（含重复元素）。Hint：在交换第 <span class="math notranslate nohighlight">\(i\)</span> 个元素与第 <span class="math notranslate nohighlight">\(j\)</span> 个元素之前，要求数组的 <span class="math notranslate nohighlight">\([i, j)\)</span> 区间中的元素没有与第 <span class="math notranslate nohighlight">\(j\)</span> 个元素重复。</p>
-<blockquote>
-<div><p><a class="reference external" href="https://blog.csdn.net/so_geili/article/details/71078945">https://blog.csdn.net/so_geili/article/details/71078945</a></p>
-</div></blockquote>
+<p><a class="reference external" href="https://blog.csdn.net/so_geili/article/details/71078945">https://blog.csdn.net/so_geili/article/details/71078945</a></p>
 <div class="toggle docutils container">
 <div class="header docutils container">
 <p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
@@ -268,9 +266,7 @@
 </div>
 </li>
 <li><p>Next Permutation 下一个排列。Hint：从后往前先找到第一个开始下降的数字 <span class="math notranslate nohighlight">\(x\)</span> （下标 <span class="math notranslate nohighlight">\(i\)</span> ），再从后往前找到第一个比 <span class="math notranslate nohighlight">\(x\)</span> 大的数 <span class="math notranslate nohighlight">\(y\)</span> （下标 <span class="math notranslate nohighlight">\(j\)</span> ）；交换 <span class="math notranslate nohighlight">\(x\)</span> 和 <span class="math notranslate nohighlight">\(y\)</span> ；翻转区间 <span class="math notranslate nohighlight">\([i+1, end]\)</span> 。</p>
-<blockquote>
-<div><p><a class="reference external" href="https://www.cnblogs.com/grandyang/p/4428207.html">https://www.cnblogs.com/grandyang/p/4428207.html</a></p>
-</div></blockquote>
+<p><a class="reference external" href="https://www.cnblogs.com/grandyang/p/4428207.html">https://www.cnblogs.com/grandyang/p/4428207.html</a></p>
 <div class="toggle docutils container">
 <div class="header docutils container">
 <p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
@@ -331,9 +327,7 @@
 </li>
 <li><p>[LeetCode] Permutation Sequence 输出序列 <span class="math notranslate nohighlight">\(1,2,...,n\)</span> 的第 <span class="math notranslate nohighlight">\(k\)</span> 个排列（字典序）。Hint：方法一，按字典序深度优先遍历；方法二，逐步缩小搜索范围，如：
 <span class="math notranslate nohighlight">\(perm [ 1,2,3 ] = \{1 + perm [ 2,3 ] \} + \{2 + perm [ 1,3 ] \} + \{3 + perm [ 1,2 ] \}\)</span> 。</p>
-<blockquote>
-<div><p><a class="reference external" href="https://leetcode.com/problems/permutation-sequence/">https://leetcode.com/problems/permutation-sequence/</a></p>
-</div></blockquote>
+<p><a class="reference external" href="https://leetcode.com/problems/permutation-sequence/">https://leetcode.com/problems/permutation-sequence/</a></p>
 <div class="toggle docutils container">
 <div class="header docutils container">
 <p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
@@ -459,9 +453,7 @@
 </div>
 </li>
 <li><p>输出整数集合的所有组合（包含重复元素）。Hint：统计每个元素的频率 <span class="math notranslate nohighlight">\(f\)</span> ，在组合过程中，该元素可取的个数最少为零个，最多为 <span class="math notranslate nohighlight">\(f\)</span> 个；回溯。</p>
-<blockquote>
-<div><p><a class="reference external" href="https://leetcode.com/problems/subsets-ii/">https://leetcode.com/problems/subsets-ii/</a></p>
-</div></blockquote>
+<p><a class="reference external" href="https://leetcode.com/problems/subsets-ii/">https://leetcode.com/problems/subsets-ii/</a></p>
 <div class="toggle docutils container">
 <div class="header docutils container">
 <p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
@@ -493,9 +485,7 @@
 然而要减掉以 <span class="math notranslate nohighlight">\(S[k]\)</span> 结尾的重复子序列： <span class="math notranslate nohighlight">\(dp[k]\ -= dp[r],\ 0 \leqslant r &lt; k \ \&amp;\&amp; \ S[k]=S[r]\)</span> ；
 方法二，回溯：设当前子序列集合最后一个元素的下标为 <span class="math notranslate nohighlight">\(i\)</span> ，在把当前字符（设下标为 <span class="math notranslate nohighlight">\(t\)</span> ）加入子序列集合时，
 需要考虑区间 <span class="math notranslate nohighlight">\((i, t)\)</span> （如果当前子序列集合为空，区间为 <span class="math notranslate nohighlight">\([0, t)\)</span> ）内是否有 <span class="math notranslate nohighlight">\(S[t]\)</span> 的重复元素，如果有，则不能把 <span class="math notranslate nohighlight">\(S[t]\)</span> 插入当前子序列中，否则就造成重复；回溯方法严重超时。</p>
-<blockquote>
-<div><p><a class="reference external" href="https://leetcode.com/problems/distinct-subsequences-ii/submissions/">https://leetcode.com/problems/distinct-subsequences-ii/submissions/</a></p>
-</div></blockquote>
+<p><a class="reference external" href="https://leetcode.com/problems/distinct-subsequences-ii">https://leetcode.com/problems/distinct-subsequences-ii</a></p>
 <div class="toggle docutils container">
 <div class="header docutils container">
 <p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
@@ -530,8 +520,8 @@
 </div>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">// 方法一改进型</span>
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span><span class="c1">// 设 dp[k] 是以 S[k] 结尾的不重复子序列个数（定义与上面的方法一相同），</span>
-<span class="linenos"> 4</span><span class="c1">// 设 end[i] 是以字符 &#39;a&#39; + i 结尾的子序列个数，0 &lt;= i &lt; 26，</span>
+<span class="linenos"> 3</span><span class="c1">// 设 dp[l] 是以 S[l] 结尾的不重复子序列个数（定义与上面的方法一相同），</span>
+<span class="linenos"> 4</span><span class="c1">// 设 end[i] 是以字符 &#39;a&#39; + i 结尾的子序列个数，0 &lt;= i &lt; 26，S[l] = &#39;a&#39; + i，</span>
 <span class="linenos"> 5</span><span class="c1">// 如果该字符出现在多个位置，如 {j，k，l}，则 end[i] = dp[j] + dp[k] + dp[l]，</span>
 <span class="linenos"> 6</span><span class="c1">// 由方法一可知：dp[l] = \sum_{m=0}^{l-1} dp[m] + 1 - dp[j] - dp[k]，</span>
 <span class="linenos"> 7</span><span class="c1">// 因此 end[i] = \sum_{m=0}^{l-1} dp[m] + 1 = \sum_{n=0}^25 end[n] + 1</span>
@@ -603,9 +593,7 @@
 </div>
 </li>
 <li><p>Word search 查找字符串路径。</p>
-<blockquote>
-<div><p><a class="reference external" href="https://leetcode.com/problems/word-search/">https://leetcode.com/problems/word-search/</a></p>
-</div></blockquote>
+<p><a class="reference external" href="https://leetcode.com/problems/word-search/">https://leetcode.com/problems/word-search/</a></p>
 <div class="toggle docutils container">
 <div class="header docutils container">
 <p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>

@@ -246,7 +246,7 @@
 </pre></div>
 </div>
 <p>虽然上面代码中还有一个 while 循环，但是该过程的摊还代价是 <span class="math notranslate nohighlight">\(\mathcal{O}(1)\)</span> ，当前面的 while 循环执行得比较长时，后续的 while 循环会更短。</p>
-<p>这是一个 <strong>在线</strong> 算法，即当数据到达时处理它。举例来说，可以一个字符一个字符的读取字符串，立即处理它们以计算出每个字符的前缀函数值。该算法仍然需要存储字符串本身以及先前计算过的前缀函数值，但如果我们已经预先知道该字符串前缀函数的最大可能取值 <span class="math notranslate nohighlight">\(M\)</span> ，那么我们仅需要存储该字符串的前 <span class="math notranslate nohighlight">\(M+1\)</span> 个字符以及对应的前缀函数值（ <span class="math notranslate nohighlight">\(+1\)</span> 表示存储前一个位置的前缀函数值 <span class="math notranslate nohighlight">\(\pi[i - 1] = 0\)</span> ；while 循环中 <span class="math notranslate nohighlight">\(\pi[j - 1] &lt; M\)</span> ）。</p>
+<p>这是一个 <strong>在线</strong> 算法，即当数据到达时处理它。举例来说，可以一个字符一个字符的读取字符串，立即处理它们以计算出每个字符的前缀函数值。该算法仍然需要存储字符串本身以及先前计算过的前缀函数值，但如果我们已经预先知道该字符串前缀函数的最大可能取值 <span class="math notranslate nohighlight">\(M\)</span> ，那么我们仅需要存储该字符串的前 <span class="math notranslate nohighlight">\(M+1\)</span> 个字符以及对应的前缀函数值（ <span class="math notranslate nohighlight">\(+1\)</span> 表示存储前一个位置的前缀函数值 <span class="math notranslate nohighlight">\(\pi[i - 1]\)</span> ；while 循环中 <span class="math notranslate nohighlight">\(\pi[j - 1] &lt; M\)</span> ）。</p>
 </section>
 </section>
 <section id="id12">

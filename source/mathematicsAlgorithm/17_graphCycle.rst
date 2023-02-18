@@ -1,7 +1,7 @@
 图环
 ===========
 
-图分为有向图（directed graph，digraph）和无向图（undirected graph），区别在于节点之间的边是否有方向。
+图分为有向图（Directed Graph，Digraph）和无向图（Undirected Graph），区别在于节点之间的边是否有方向。
 
 **问题** ：检测连通图中是否有环。
 
@@ -9,7 +9,7 @@
 无向图
 -----------
 
-- **深度优先遍历** （depth first search traversal）
+- **深度优先遍历** （Depth-First Search Traversal）
 
   标记法，使用 visited 数组对图中的所有顶点定义三种状态：
 
@@ -61,7 +61,7 @@
     }
 
 
-- **广度优先遍历** （breadth first search traversal）
+- **广度优先遍历** （Breadth-First Search Traversal）
 
   与 DFS 类似，需要使用 father 数组记录 BFS 过程中所有顶点的父节点。
 
@@ -71,11 +71,11 @@
 有向图
 -----------
 
-- **拓扑排序** （topological sorting）
+- **拓扑排序** （Topological Sorting）
 
   见本章第 10 节。
 
-- **深度优先遍历** （depth first search traversal）
+- **深度优先遍历** （Depth-First Search Traversal）
 
   与无向图的 DFS 相同。
 

@@ -18,14 +18,14 @@
 
     H(X|Y) = - \sum_{i,j} p(x_i, y_j) \log \frac{p(x_i, y_j)}{p(y_j)}
 
-Differential entropy（连续状态下的熵）：
+Differential Entropy（连续状态下的熵）：
 
 .. math::
 
     h(f) &=\ E[- \log f(x)] \\
          &=\ - \int f(x) \log f(x) dx
 
-其中 :math:`f(x)` 是概率密度函数（probability density function）。
+其中 :math:`f(x)` 是概率密度函数（Probability Density Function）。
 
 
 互信息
@@ -45,7 +45,7 @@ Differential entropy（连续状态下的熵）：
             &=\ I(Y, X) \\
             & \geqslant 0
 
-互信息（mutual information，MI） :math:`I(X, Y)` 总体上表示每传递一个符号所传递的平均信息量，衡量了两个随机变量的独立性。
+互信息（Mutual Information，MI） :math:`I(X, Y)` 总体上表示每传递一个符号所传递的平均信息量，衡量了两个随机变量的独立性。
 
 对于连续变量，将 :math:`H(X)` 替换为 :math:`h(f)` 。
 
@@ -53,7 +53,7 @@ Differential entropy（连续状态下的熵）：
 KL 散度
 --------------
 
-KL 散度（Kullback–Leibler divergence 或 relative entropy），衡量了两种概率分布的差异性，KL 散度为 0 表示同分布。
+KL 散度（Kullback–Leibler Divergence 或 Relative Entropy），衡量了两种概率分布的差异性，KL 散度为 0 表示同分布。
 
 .. math::
 
@@ -68,7 +68,7 @@ KL 散度（Kullback–Leibler divergence 或 relative entropy），衡量了两
 交叉熵
 -------------
 
-交叉熵（Cross entropy）在信息论中的含义：基于相同事件测度的两个概率分布 :math:`p` （“真实”分布）和 :math:`q` （“估测”分布），当基于概率分布 :math:`q` 进行编码时，在事件集合中唯一标识一个事件所需要的平均比特数。
+交叉熵（Cross Entropy）在信息论中的含义：基于相同事件测度的两个概率分布 :math:`p` （“真实”分布）和 :math:`q` （“估测”分布），当基于概率分布 :math:`q` 进行编码时，在事件集合中唯一标识一个事件所需要的平均比特数。
 
 定义：
 
@@ -98,7 +98,7 @@ Jensen's inequality
   :width: 500 px
 
 凸函数
-  实数域函数 :math:`f` 是凸函数，满足 :math:`f^{\prime\prime} \geqslant 0` （高维对应 hessian matrix :math:`H \geqslant 0` ）。
+  实数域函数 :math:`f` 是凸函数，满足 :math:`f^{\prime\prime} \geqslant 0` （高维对应 Hessian Matrix :math:`H \geqslant 0` ）。
 
 Jensen 不等式
   凸函数 :math:`f` ，随机变量 :math:`X` ，则 :math:`E[f(X)] \geqslant f(E[X])` ； :math:`E[f(X)] = f(E[X])` 当且仅当 :math:`X \equiv E[X]` （常数）。

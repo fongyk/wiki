@@ -120,12 +120,12 @@
              
   <section id="id1">
 <h1><span class="section-number">17. </span>图环<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
-<p>图分为有向图（directed graph，digraph）和无向图（undirected graph），区别在于节点之间的边是否有方向。</p>
+<p>图分为有向图（Directed Graph，Digraph）和无向图（Undirected Graph），区别在于节点之间的边是否有方向。</p>
 <p><strong>问题</strong> ：检测连通图中是否有环。</p>
 <section id="id2">
 <h2><span class="section-number">17.1. </span>无向图<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <ul>
-<li><p><strong>深度优先遍历</strong> （depth first search traversal）</p>
+<li><p><strong>深度优先遍历</strong> （Depth-First Search Traversal）</p>
 <p>标记法，使用 visited 数组对图中的所有顶点定义三种状态：</p>
 <blockquote>
 <div><ul class="simple">
@@ -172,7 +172,7 @@
 </pre></div>
 </div>
 </li>
-<li><p><strong>广度优先遍历</strong> （breadth first search traversal）</p>
+<li><p><strong>广度优先遍历</strong> （Breadth-First Search Traversal）</p>
 <p>与 DFS 类似，需要使用 father 数组记录 BFS 过程中所有顶点的父节点。</p>
 <p>visited 数组只需要记录两种状态：未访问和已访问。</p>
 </li>
@@ -181,10 +181,10 @@
 <section id="id3">
 <h2><span class="section-number">17.2. </span>有向图<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <ul>
-<li><p><strong>拓扑排序</strong> （topological sorting）</p>
+<li><p><strong>拓扑排序</strong> （Topological Sorting）</p>
 <p>见本章第 10 节。</p>
 </li>
-<li><p><strong>深度优先遍历</strong> （depth first search traversal）</p>
+<li><p><strong>深度优先遍历</strong> （Depth-First Search Traversal）</p>
 <p>与无向图的 DFS 相同。</p>
 </li>
 </ul>

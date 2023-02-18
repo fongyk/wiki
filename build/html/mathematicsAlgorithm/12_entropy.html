@@ -134,11 +134,11 @@
 <p>条件熵（给定随机变量 <span class="math notranslate nohighlight">\(Y\)</span> ，对随机变量 <span class="math notranslate nohighlight">\(X\)</span> 仍存在的平均不确定性）：</p>
 <div class="math notranslate nohighlight">
 \[H(X|Y) = - \sum_{i,j} p(x_i, y_j) \log \frac{p(x_i, y_j)}{p(y_j)}\]</div>
-<p>Differential entropy（连续状态下的熵）：</p>
+<p>Differential Entropy（连续状态下的熵）：</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}h(f) &amp;=\ E[- \log f(x)] \\
      &amp;=\ - \int f(x) \log f(x) dx\end{split}\]</div>
-<p>其中 <span class="math notranslate nohighlight">\(f(x)\)</span> 是概率密度函数（probability density function）。</p>
+<p>其中 <span class="math notranslate nohighlight">\(f(x)\)</span> 是概率密度函数（Probability Density Function）。</p>
 </section>
 <section id="id3">
 <h2><span class="section-number">12.2. </span>互信息<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
@@ -151,12 +151,12 @@
         &amp;=\ H(X, Y) - H(X|Y) - H(Y|X) \\
         &amp;=\ I(Y, X) \\
         &amp; \geqslant 0\end{split}\]</div>
-<p>互信息（mutual information，MI） <span class="math notranslate nohighlight">\(I(X, Y)\)</span> 总体上表示每传递一个符号所传递的平均信息量，衡量了两个随机变量的独立性。</p>
+<p>互信息（Mutual Information，MI） <span class="math notranslate nohighlight">\(I(X, Y)\)</span> 总体上表示每传递一个符号所传递的平均信息量，衡量了两个随机变量的独立性。</p>
 <p>对于连续变量，将 <span class="math notranslate nohighlight">\(H(X)\)</span> 替换为 <span class="math notranslate nohighlight">\(h(f)\)</span> 。</p>
 </section>
 <section id="kl">
 <h2><span class="section-number">12.3. </span>KL 散度<a class="headerlink" href="#kl" title="Permalink to this headline"></a></h2>
-<p>KL 散度（Kullback–Leibler divergence 或 relative entropy），衡量了两种概率分布的差异性，KL 散度为 0 表示同分布。</p>
+<p>KL 散度（Kullback–Leibler Divergence 或 Relative Entropy），衡量了两种概率分布的差异性，KL 散度为 0 表示同分布。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}D_{KL}(P \| Q) &amp;=\ - \sum_x P(x) \log \frac{Q(x)}{P(x)}  &amp; &amp; \text{[离散]} \\
                &amp;=\ - \int p(x) \log \frac{q(x)}{p(x)} dx  &amp; &amp; \text{[连续]} \\
@@ -166,7 +166,7 @@
 </section>
 <section id="id4">
 <h2><span class="section-number">12.4. </span>交叉熵<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
-<p>交叉熵（Cross entropy）在信息论中的含义：基于相同事件测度的两个概率分布 <span class="math notranslate nohighlight">\(p\)</span> （“真实”分布）和 <span class="math notranslate nohighlight">\(q\)</span> （“估测”分布），当基于概率分布 <span class="math notranslate nohighlight">\(q\)</span> 进行编码时，在事件集合中唯一标识一个事件所需要的平均比特数。</p>
+<p>交叉熵（Cross Entropy）在信息论中的含义：基于相同事件测度的两个概率分布 <span class="math notranslate nohighlight">\(p\)</span> （“真实”分布）和 <span class="math notranslate nohighlight">\(q\)</span> （“估测”分布），当基于概率分布 <span class="math notranslate nohighlight">\(q\)</span> 进行编码时，在事件集合中唯一标识一个事件所需要的平均比特数。</p>
 <p>定义：</p>
 <div class="math notranslate nohighlight">
 \[H(p, q) = E_p [- \log q] = H(p) + D_{KL}(p \| q)\]</div>
@@ -182,7 +182,7 @@
 <h2><span class="section-number">12.5. </span>Jensen’s inequality<a class="headerlink" href="#jensen-s-inequality" title="Permalink to this headline"></a></h2>
 <a class="reference internal image-reference" href="../_images/12_jensen.png"><img alt="../_images/12_jensen.png" class="align-center" src="../_images/12_jensen.png" style="width: 500px;" /></a>
 <dl>
-<dt>凸函数</dt><dd><p>实数域函数 <span class="math notranslate nohighlight">\(f\)</span> 是凸函数，满足 <span class="math notranslate nohighlight">\(f^{\prime\prime} \geqslant 0\)</span> （高维对应 hessian matrix <span class="math notranslate nohighlight">\(H \geqslant 0\)</span> ）。</p>
+<dt>凸函数</dt><dd><p>实数域函数 <span class="math notranslate nohighlight">\(f\)</span> 是凸函数，满足 <span class="math notranslate nohighlight">\(f^{\prime\prime} \geqslant 0\)</span> （高维对应 Hessian Matrix <span class="math notranslate nohighlight">\(H \geqslant 0\)</span> ）。</p>
 </dd>
 <dt>Jensen 不等式</dt><dd><p>凸函数 <span class="math notranslate nohighlight">\(f\)</span> ，随机变量 <span class="math notranslate nohighlight">\(X\)</span> ，则 <span class="math notranslate nohighlight">\(E[f(X)] \geqslant f(E[X])\)</span> ； <span class="math notranslate nohighlight">\(E[f(X)] = f(E[X])\)</span> 当且仅当 <span class="math notranslate nohighlight">\(X \equiv E[X]\)</span> （常数）。</p>
 </dd>

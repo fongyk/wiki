@@ -8,19 +8,19 @@
 
 - 2 个数字出现奇数次，其余数字出现偶数次。Hint：先做异或运算，得到的是这两个数的异或结果；找到该结果的二进制表示中为 1 的某一位，根据该位为 0/1 将数组分为两组，分别做异或运算。
 
-   https://www.jianshu.com/p/e1331664c8cf
+  https://www.jianshu.com/p/e1331664c8cf
 
 - 1 个数字出现 :math:`1` 次，其余数字出现 :math:`k` 次。Hint：利用大小为 32 的数组，统计二进制各位出现 1 的次数，对 :math:`k` 取模；最终 32 位数组的值就是 Single Number 的二进制表示。
 
-   https://cloud.tencent.com/developer/article/1131946
+  https://cloud.tencent.com/developer/article/1131946
 
 - 一般情形：1 个数字出现 :math:`p` 次，其余数字出现 :math:`k` 次。
 
-   https://blog.csdn.net/wlwh90/article/details/89712795
+  https://blog.csdn.net/wlwh90/article/details/89712795
 
-   https://cloud.tencent.com/developer/article/1131945
+  https://cloud.tencent.com/developer/article/1131945
 
-   https://leetcode.com/problems/single-number-ii/discuss/43295/Detailed-explanation-and-generalization-of-the-bitwise-operation-method-for-single-numbers
+  https://leetcode.com/problems/single-number-ii/discuss/43295/Detailed-explanation-and-generalization-of-the-bitwise-operation-method-for-single-numbers
 
 
 均匀分布生成其他分布的方法
@@ -82,17 +82,17 @@ Hint：哈希方法，把大文件划分成小文件，读进内存依次处理�
 
 - 面试题集锦
 
-    https://blog.csdn.net/v_july_v/article/details/6685962
+  https://blog.csdn.net/v_july_v/article/details/6685962
 
 - 大文件中返回频数最高的100个词
 
-    https://blog.csdn.net/tiankong\_/article/details/77240283
+  https://blog.csdn.net/tiankong\_/article/details/77240283
 
 
 链表
 -----------------------------------------------------------------
 
-对每一个节点操作之前，应先考虑该节点是否为空。
+**对每一个节点操作之前，应先考虑该节点是否为空。**
 
 - 反转链表。Hint：方法一，逐个反转；方法二，递归；方法三，使用栈保存节点的值，反向赋给所有节点。
 
@@ -173,8 +173,9 @@ Hint：哈希方法，把大文件划分成小文件，读进内存依次处理�
           return head;
       }
 
-- [LeetCode] Reverse Nodes in k-Group 从头节点开始，每 :math:`k` 个节点为一组进行反转。Hint：对每一组节点调用反转函数。
-    延伸：从尾节点开始，每 :math:`k` 个节点为一组进行反转。Hint：先反转整个链表；按上述方法反转每一组；再反转整个链表。
+- [LeetCode] Reverse Nodes in k-Group 从头节点开始，每 :math:`k` 个节点为一组进行反转。Hint：对每一组节点调用反转函数。延伸：从尾节点开始，每 :math:`k` 个节点为一组进行反转。Hint：先反转整个链表；按上述方法反转每一组；再反转整个链表。
+
+  https://leetcode.com/problems/reverse-nodes-in-k-group/
 
   .. container:: toggle
 
@@ -235,7 +236,7 @@ Hint：哈希方法，把大文件划分成小文件，读进内存依次处理�
 
 - 求有环单链表中的环长、环起点、链表长。Hint：快慢指针。
 
-      https://www.cnblogs.com/xudong-bupt/p/3667729.html
+  https://www.cnblogs.com/xudong-bupt/p/3667729.html
 
   .. container:: toggle
 
@@ -268,11 +269,11 @@ Hint：哈希方法，把大文件划分成小文件，读进内存依次处理�
 
 - 判断两个链表是否相交并找出交点。Hint：方法一，先求两个链表的长度差，双指针法；方法二，分别用栈保存两个链表的节点的地址（指针），从后往前比较。如果只需要判断两个链表是否相交，只需判断两个链表最后一个节点是否相同。
 
-      https://blog.csdn.net/jiary5201314/article/details/50990349
+  https://blog.csdn.net/jiary5201314/article/details/50990349
 
 - 单链表 :math:`\mathcal{O}(1)` 时间删除给定节点。Hint：交换当前节点与下一个节点的值，删除下一个节点。
 
-      https://blog.csdn.net/qq_35546040/article/details/80341136
+  https://blog.csdn.net/qq_35546040/article/details/80341136
 
   .. container:: toggle
 
@@ -365,7 +366,9 @@ Hint：哈希方法，把大文件划分成小文件，读进内存依次处理�
       }
 
 
-  - 链表排序。Hint：方法一，快速排序或归并排序；方法二，遍历链表把值存入数组，使用数组的排序方法，再把值赋回链表。
+- 链表排序。Hint：方法一，快速排序或归并排序；方法二，遍历链表把值存入数组，使用数组的排序方法，再把值赋回链表。
+
+  https://leetcode.com/problems/sort-list/
 
   .. container:: toggle
 
@@ -375,8 +378,6 @@ Hint：哈希方法，把大文件划分成小文件，读进内存依次处理�
 
     .. code-block:: cpp
       :linenos:
-
-      // https://leetcode.com/problems/sort-list/
 
       // 快速排序
 
@@ -537,7 +538,7 @@ Hint：哈希方法，把大文件划分成小文件，读进内存依次处理�
           }
       };
 
-  - 删除链表中的重复节点。Hint：可能会删除头节点；注意尾节点处是否有重复元素。
+- 删除链表中的重复节点。Hint：可能会删除头节点；注意尾节点处是否有重复元素。
 
   .. container:: toggle
 
@@ -637,6 +638,8 @@ Hint：哈希方法，把大文件划分成小文件，读进内存依次处理�
       };
 
 - [LeetCode] Partition List 分割链表，小于 :math:`x` 的排前面，不小于 :math:`x` 的排后面。Hint：建立两个新的链表，一个链表连接小于 :math:`x` 的节点，另一个链表连接其他节点，最后把这两个链表串起来。
+
+  https://leetcode.com/problems/partition-list/
 
   .. container:: toggle
 
@@ -805,7 +808,7 @@ https://leetcode.com/problems/kth-largest-element-in-an-array/
   
 - 最多一次交易
 
-    http://www.cnblogs.com/grandyang/p/4280131.html
+  http://www.cnblogs.com/grandyang/p/4280131.html
 
   .. container:: toggle
 
@@ -835,7 +838,7 @@ https://leetcode.com/problems/kth-largest-element-in-an-array/
 
 - 无限次交易
 
-    http://www.cnblogs.com/grandyang/p/4280803.html
+  http://www.cnblogs.com/grandyang/p/4280803.html
 
   .. container:: toggle
 
@@ -860,17 +863,17 @@ https://leetcode.com/problems/kth-largest-element-in-an-array/
 
 - 最多两次交易
 
-    http://www.cnblogs.com/grandyang/p/4281975.html
+  http://www.cnblogs.com/grandyang/p/4281975.html
 
 - 最多k次交易
 
-    http://www.cnblogs.com/grandyang/p/4295761.html
+  http://www.cnblogs.com/grandyang/p/4295761.html
 
-    https://blog.csdn.net/linhuanmars/article/details/23236995
+  https://blog.csdn.net/linhuanmars/article/details/23236995
 
 - 交易冷却
 
-    https://www.cnblogs.com/grandyang/p/4997417.html
+  https://www.cnblogs.com/grandyang/p/4997417.html
 
   .. container:: toggle
 
@@ -997,9 +1000,9 @@ https://leetcode.com/problems/find-all-anagrams-in-a-string/
 
 - [LeetCode] Find the Duplicate Number 找到一个重复数字（共有 :math:`n+1` 个数）。
 
-    https://leetcode.com/problems/find-the-duplicate-number/
+  https://leetcode.com/problems/find-the-duplicate-number/
 
-    http://www.cnblogs.com/grandyang/p/4843654.html
+  http://www.cnblogs.com/grandyang/p/4843654.html
 
   .. container:: toggle
 
@@ -1064,9 +1067,9 @@ https://leetcode.com/problems/find-all-anagrams-in-a-string/
 
 - [LeetCode] Find All Duplicates in an Array 找到所有重复数字（共有 :math:`n` 个数）。
 
-    https://leetcode.com/problems/find-all-duplicates-in-an-array/
+  https://leetcode.com/problems/find-all-duplicates-in-an-array/
 
-    http://www.cnblogs.com/grandyang/p/6209746.html
+  http://www.cnblogs.com/grandyang/p/6209746.html
 
   .. container:: toggle
 
@@ -1118,7 +1121,7 @@ https://leetcode.com/problems/find-all-anagrams-in-a-string/
 
 - [LeetCode] First Missing Positive 找到第一个消失的正整数。Hint：假设数组长度为 :math:`n` ，则第一个消失的正整数所在区间是 :math:`[1, n+1]` ，注意：输入数组中可能存在负数和0。延伸：找到第一个大于 :math:`K` 的正整数。Hint：可知目标数所在区间是 :math:`[K+1, K+n+1]` ；先删除数组中不在该区间的整数；其余数都减 :math:`K` ，范围变成 :math:`[1, n+1]` ，后续解法同上。
 
-    https://leetcode.com/problems/first-missing-positive/
+  https://leetcode.com/problems/first-missing-positive/
 
   .. container:: toggle
 
@@ -1608,7 +1611,7 @@ https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-charac
 
 - [LeetCode] Two Sum 两数之和为目标值。Hint：哈希，时间复杂度 :math:`\mathcal{O}(N)` 。
 
-    https://leetcode.com/problems/two-sum/
+  https://leetcode.com/problems/two-sum/
 
   .. container:: toggle
 
@@ -1644,7 +1647,7 @@ https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-charac
 
 - [LeetCode] 3Sum 3 个数之和为 0。Hint：先排序；双指针；时间复杂度 :math:`\mathcal{O}(N^2)` 。
 
-    https://leetcode.com/problems/3sum/
+  https://leetcode.com/problems/3sum/
 
   .. container:: toggle
 
@@ -1697,7 +1700,7 @@ https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-charac
 
 - [LeetCode] 4Sum 4 个数之和为目标值。Hint：先排序；双指针；时间复杂度 :math:`\mathcal{O}(N^3)` 。
 
-    https://leetcode.com/problems/4sum/
+  https://leetcode.com/problems/4sum/
 
   .. container:: toggle
 
@@ -1772,7 +1775,7 @@ https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-charac
 
 - [LeetCode] 4Sum II 4 个数和为 0 的组合数。Hint：两两之和存入哈希表，时间复杂度和空间复杂度 :math:`\mathcal{O}(N^2)` 。
 
-    https://leetcode.com/problems/4sum-ii/
+  https://leetcode.com/problems/4sum-ii/
 
   .. container:: toggle
 
@@ -2119,7 +2122,7 @@ https://leetcode.com/problems/fraction-to-recurring-decimal/
 
 - 查找旋转数组最小值（含重复元素）
 
-    https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/
+  https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/
 
   .. container:: toggle
 
@@ -2185,7 +2188,7 @@ https://leetcode.com/problems/fraction-to-recurring-decimal/
 
 - 在旋转数组查找目标值（无重复元素）
 
-    https://leetcode.com/problems/search-in-rotated-sorted-array/
+  https://leetcode.com/problems/search-in-rotated-sorted-array/
 
   .. container:: toggle
 
@@ -2228,7 +2231,7 @@ https://leetcode.com/problems/fraction-to-recurring-decimal/
 
 - 在旋转数组查找目标值（含重复元素）
 
-    https://leetcode.com/problems/search-in-rotated-sorted-array-ii/
+  https://leetcode.com/problems/search-in-rotated-sorted-array-ii/
 
   .. container:: toggle
 
@@ -2542,22 +2545,22 @@ https://leetcode.com/problems/number-of-islands/
 
 - [LeetCode] Longest Palindromic Substring 最长回文子串（子串连续）。Hint：方法一，中心扩展法，回文中心的两侧互为镜像，将每一个位置作为中心进行扩展，回文分偶数和奇数；方法二，动态规划，类似于矩阵连乘问题，逐渐增大步长。
 
-    https://leetcode.com/problems/longest-palindromic-substring/
+  https://leetcode.com/problems/longest-palindromic-substring/
 
-    .. math::
-       :nowrap:
+  .. math::
+      :nowrap:
 
-       $$
-       dp[i][i] = true
-       $$
+      $$
+      dp[i][i] = true
+      $$
 
-       $$
-       dp[i][j] =
-       \begin{cases}
-       true & &\ s[i] = s[j]\ \&\&\ (i \leqslant j \leqslant i+1\ ||\ dp[i+1][j-1] = true) \\
-       false & &\ else
-       \end{cases}
-       $$
+      $$
+      dp[i][j] =
+      \begin{cases}
+      true & &\ s[i] = s[j]\ \&\&\ (i \leqslant j \leqslant i+1\ ||\ dp[i+1][j-1] = true) \\
+      false & &\ else
+      \end{cases}
+      $$
 
 
   .. container:: toggle
@@ -2642,7 +2645,7 @@ https://leetcode.com/problems/number-of-islands/
 
 - [LeetCode] Longest Palindromic Subsequence 最长回文子序列（子序列可以不连续）。Hint：寻找原字符串与翻转字符串的最长公共子序列，动态规划。
 
-    https://leetcode.com/problems/longest-palindromic-subsequence/
+  https://leetcode.com/problems/longest-palindromic-subsequence/
 
   .. container:: toggle
 
@@ -2683,11 +2686,11 @@ https://leetcode.com/problems/number-of-islands/
 
 - [LeetCode] Count Different Palindromic Subsequences 统计不同回文子序列的个数（子序列可以不连续）。
 
-    https://leetcode.com/problems/count-different-palindromic-subsequences/
+  https://leetcode.com/problems/count-different-palindromic-subsequences/
 
-    https://leetcode.com/problems/count-different-palindromic-subsequences/discuss/272297/DP-C%2B%2B-Clear-solution-explained
+  https://leetcode.com/problems/count-different-palindromic-subsequences/discuss/272297/DP-C%2B%2B-Clear-solution-explained
 
-    https://blog.csdn.net/lili0710432/article/details/78659583
+  https://blog.csdn.net/lili0710432/article/details/78659583
 
   .. container:: toggle
 
@@ -2788,7 +2791,7 @@ https://leetcode.com/problems/number-of-islands/
 
 - [LeetCode] Palindrome Partitioning 分割字符串使所有的子串都是回文子串。Hint：回溯，从字符串起始位置往后判断回文，如果满足回文，加入子串集合，并从回文结束位置往后遍历。
 
-    https://leetcode.com/problems/palindrome-partitioning/
+  https://leetcode.com/problems/palindrome-partitioning/
 
   .. container:: toggle
 
@@ -2853,7 +2856,7 @@ https://leetcode.com/problems/number-of-islands/
 
 - [LeetCode] Palindrome Partitioning II 找出最短回文分割。Hint：如果采用上题方法，会超时；使用动态规划，类似于最长上升子序列的解法。
 
-    https://leetcode.com/problems/palindrome-partitioning-ii/
+  https://leetcode.com/problems/palindrome-partitioning-ii/
 
   .. container:: toggle
 
@@ -4311,7 +4314,7 @@ https://windliang.cc/2018/07/18/leetCode-4-Median-of-Two-Sorted-Arrays/
 - [LeetCode] Sliding Window Maximum 滑动窗口最大值。Hint：使用双端队列；新加入元素如果比队尾元素小，则直接入队，否则删除队尾元素直到队空或队尾元素比新加入元素大；
   如果队首元素在滑动窗口之外，则删除之；队首元素就是当前窗口的最大值。
 
-    https://leetcode.com/problems/sliding-window-maximum/
+  https://leetcode.com/problems/sliding-window-maximum/
 
   .. container:: toggle
 
@@ -4347,9 +4350,9 @@ https://windliang.cc/2018/07/18/leetCode-4-Median-of-Two-Sorted-Arrays/
           }
       };
 
-  - [LeetCode] Sliding Window Median 滑动窗口中位数。Hint：使用 multiset（包含重复元素、默认排序），加入/删除元素时调整 mid 的位置。
+- [LeetCode] Sliding Window Median 滑动窗口中位数。Hint：使用 multiset（包含重复元素、默认排序），加入/删除元素时调整 mid 的位置。
 
-      https://leetcode.com/problems/sliding-window-median/
+  https://leetcode.com/problems/sliding-window-median/
 
   .. container:: toggle
 
@@ -4391,7 +4394,7 @@ https://windliang.cc/2018/07/18/leetCode-4-Median-of-Two-Sorted-Arrays/
 
 - [LeetCode] Find Median from Data Stream 数据流中的中位数。Hint：使用一个最大堆和一个最小堆；保证数据平均分配到两个堆中，两个堆的数据个数之差不超过1；当两个堆的数据个数是偶数（各占一半），新数据插入最小堆，否则插入最大堆（这样最小堆的数据个数总是比最大堆多1或相等）；保证最大堆中的数都不大于最小堆中的数。
 
-    https://leetcode.com/problems/find-median-from-data-stream/
+  https://leetcode.com/problems/find-median-from-data-stream/
 
   .. container:: toggle
 

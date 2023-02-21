@@ -136,10 +136,10 @@
 <p>Python 2.x 中类的定义分为新式定义和老式定义两种。
 老式类定义时默认是继承自 <code class="docutils literal notranslate"><span class="pre">type</span></code> ，而新式类在定义时显示地继承 <code class="docutils literal notranslate"><span class="pre">object</span></code> 类。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">class</span> <span class="nc">A</span><span class="p">:</span> <span class="c1">## 老式类</span>
-<span class="linenos">2</span>  <span class="k">pass</span>
+<span class="linenos">2</span>    <span class="k">pass</span>
 <span class="linenos">3</span>
 <span class="linenos">4</span><span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span> <span class="c1">## 新式类</span>
-<span class="linenos">5</span>  <span class="k">pass</span>
+<span class="linenos">5</span>    <span class="k">pass</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">A</span><span class="o">.</span><span class="vm">__bases__</span>
@@ -155,7 +155,7 @@
 <span class="linenos">11</span><span class="go">&lt;type &#39;type&#39;&gt;</span>
 </pre></div>
 </div>
-<p>Python 3.x中没有新式类和老式类之分，它们都继承自 <code class="docutils literal notranslate"><span class="pre">object</span></code> 类，因此可以不用显示地指定其基类。</p>
+<p>Python 3.x 中没有新式类和老式类之分，它们都继承自 <code class="docutils literal notranslate"><span class="pre">object</span></code> 类，因此可以不用显示地指定其基类。</p>
 </section>
 <section id="id2">
 <h2><span class="section-number">16.2. </span>老式类<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
@@ -178,13 +178,13 @@
 <p><code class="docutils literal notranslate"><span class="pre">__new__</span></code> 返回创建的实例对象并传递给 <code class="docutils literal notranslate"><span class="pre">__init__</span></code> 的 <code class="docutils literal notranslate"><span class="pre">self</span></code> 参数。如果 <code class="docutils literal notranslate"><span class="pre">__new__</span></code> 没有返回值，或者没有正确返回 <strong>当前类</strong> <code class="docutils literal notranslate"><span class="pre">cls</span></code> 的实例，则 <code class="docutils literal notranslate"><span class="pre">__init__</span></code> 不会被调用。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="linenos">2</span>
-<span class="linenos">3</span>  <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-<span class="linenos">4</span>      <span class="nb">print</span> <span class="s2">&quot;A.__new__ called&quot;</span>
-<span class="linenos">5</span>      <span class="nb">print</span> <span class="bp">cls</span>
-<span class="linenos">6</span>      <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+<span class="linenos">3</span>    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+<span class="linenos">4</span>        <span class="nb">print</span> <span class="s2">&quot;A.__new__ called&quot;</span>
+<span class="linenos">5</span>        <span class="nb">print</span> <span class="bp">cls</span>
+<span class="linenos">6</span>        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
 <span class="linenos">7</span>
-<span class="linenos">8</span>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="linenos">9</span>      <span class="nb">print</span> <span class="s2">&quot;A.__init__ called&quot;</span>
+<span class="linenos">8</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">9</span>        <span class="nb">print</span> <span class="s2">&quot;A.__init__ called&quot;</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">A</span><span class="p">()</span>
@@ -200,15 +200,15 @@
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">__new__</span></code> 返回父类的对象：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<span class="linenos"> 2</span>  <span class="k">pass</span>
+<span class="linenos"> 2</span>    <span class="k">pass</span>
 <span class="linenos"> 3</span>
 <span class="linenos"> 4</span><span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
-<span class="linenos"> 5</span>  <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-<span class="linenos"> 6</span>    <span class="nb">print</span> <span class="s2">&quot;B.__new__ called&quot;</span>
-<span class="linenos"> 7</span>    <span class="k">return</span> <span class="n">A</span><span class="p">()</span> <span class="c1">## 或者写为： return super(B,cls).__new__(A)</span>
+<span class="linenos"> 5</span>    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+<span class="linenos"> 6</span>        <span class="nb">print</span> <span class="s2">&quot;B.__new__ called&quot;</span>
+<span class="linenos"> 7</span>        <span class="k">return</span> <span class="n">A</span><span class="p">()</span> <span class="c1">## 或者写为： return super(B,cls).__new__(A)</span>
 <span class="linenos"> 8</span>
-<span class="linenos"> 9</span>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1">## 不会被调用</span>
-<span class="linenos">10</span>    <span class="nb">print</span> <span class="s2">&quot;B.__init__ called&quot;</span>
+<span class="linenos"> 9</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1">## 不会被调用</span>
+<span class="linenos">10</span>        <span class="nb">print</span> <span class="s2">&quot;B.__init__ called&quot;</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">B</span><span class="p">()</span>
@@ -220,7 +220,7 @@
 </section>
 <section id="new">
 <h3><span class="section-number">16.3.3. </span>__new__ 实现单例<a class="headerlink" href="#new" title="Permalink to this headline"></a></h3>
-<p>单例（singleton）：类只有一个对象。<code class="docutils literal notranslate"><span class="pre">None</span></code> 就是一个单例，所有的变量只要是 <code class="docutils literal notranslate"><span class="pre">None</span></code> ，它一定和 <code class="docutils literal notranslate"><span class="pre">None</span></code> 指向同一个内存地址。</p>
+<p>单例（Singleton）：类只有一个对象。<code class="docutils literal notranslate"><span class="pre">None</span></code> 就是一个单例，所有的变量只要是 <code class="docutils literal notranslate"><span class="pre">None</span></code> ，它一定和 <code class="docutils literal notranslate"><span class="pre">None</span></code> 指向同一个内存地址。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">Singleton</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="linenos"> 2</span>    <span class="n">_instance</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="linenos"> 3</span>    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>

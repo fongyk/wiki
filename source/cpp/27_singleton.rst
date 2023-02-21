@@ -3,6 +3,8 @@
 
 单例是一种创建型设计模式，保证一个类只有一个实例（对象），并提供一个访问该实例的全局节点。
 
+.. highlight:: cpp
+
 基础单例
 ----------
 
@@ -13,10 +15,10 @@
   class Singleton
   {
   public:
-    static Singleton* instance();
-    // something else ...
+      static Singleton* instance();
+      // something else ...
   private:
-    static Singleton* pInstance;
+      static Singleton* pInstance;
   };
   
   // from the implementation file
@@ -24,11 +26,11 @@
   
   Singleton* Singleton::instance()
   {
-    if(pInstance == 0)
-    {
-      pInstance = new Singleton;
-    }
-    return pInstance;
+      if(pInstance == 0)
+      {
+          pInstance = new Singleton;
+      }
+      return pInstance;
   }
 
 这种实现方法不是线程安全的（Thread-safe)，多个线程同时调用 ``instance()`` 可能会构造出多个对象。
@@ -42,12 +44,12 @@
 
   Singleton* Singleton::instance()
   {
-    Lock lock; // acquire lock (params omitted for simplicity)
-    if(pInstance == 0)
-    {
-      pInstance = new Singleton;
-    }
-    return pInstance;
+      Lock lock; // acquire lock (params omitted for simplicity)
+      if(pInstance == 0)
+      {
+          pInstance = new Singleton;
+      }
+      return pInstance;
   } // release lock (via Lock destructor)
 
 所有线程调用 ``instance()`` 都会先加锁，如果加锁不成功，则该线程会阻塞直到加锁成功。因此，可以保证只有一个实例。
@@ -65,15 +67,15 @@ DCLP（Double-Checked Locking Pattern）避免了重复加锁，只需要在第�
 
   Singleton* Singleton::instance()
   {
-    if(pInstance == 0)  // 1st test
-    {
-      Lock lock;
-      if(pInstance == 0)  // 2nd test
+      if(pInstance == 0)  // 1st test
       {
-        pInstance = new Singleton;
+          Lock lock;
+          if(pInstance == 0)  // 2nd test
+          {
+              pInstance = new Singleton;
+          }
       }
-    }
-    return pInstance;
+      return pInstance;
   }
 
 执行顺序
@@ -93,16 +95,17 @@ DCLP（Double-Checked Locking Pattern）避免了重复加锁，只需要在第�
 volatile
 ^^^^^^^^^^^^^^
 
-可以尝试使用关键字 ``volatile`` ::
+可以尝试使用关键字 ``volatile``::
 
   static volatile Singleton* volatile instance();
   static Singleton* volatile pInstance;
 
 C/C++中的 volatile 和 const 对应，用来修饰变量，通常用于建立语言级别的 memory barrier。
 
-::
+.. code-block:: text
 
-  The C++ Programming Language: A volatile specifier is a hint to a compiler that an object may change its value in ways not specified by the language so that aggressive optimizations must be avoided.
+  The C++ Programming Language: 
+  A volatile specifier is a hint to a compiler that an object may change its value in ways not specified by the language so that aggressive optimizations must be avoided.
 
 ``volatile`` 提醒编译器它后面所定义的变量随时都有可能改变，因此编译后的程序每次需要存储或读取这个变量的时候，都会直接从变量地址中读取数据，从而可以提供对特殊地址的稳定访问。如果没有 ``volatile`` 关键字，则编译器可能优化读取和存储，可能暂时使用寄存器中的值，如果这个变量由别的程序更新了的话，将出现不一致的现象。 ``volatile`` 可以保证指令执行的顺序。
 
@@ -138,6 +141,8 @@ C/C++中的 volatile 和 const 对应，用来修饰变量，通常用于建立�
 另一种实现
 ------------
 
+下面这种实现是线程安全的。
+
 .. code-block:: cpp
   :linenos:
 
@@ -146,7 +151,7 @@ C/C++中的 volatile 和 const 对应，用来修饰变量，通常用于建立�
   public:
       static S& getInstance()
       {
-          static S    instance; // Guaranteed to be destroyed.
+          static S instance;    // Guaranteed to be destroyed.
                                 // Instantiated on first use.
           return instance;
       }
@@ -159,14 +164,14 @@ C/C++中的 volatile 和 const 对应，用来修饰变量，通常用于建立�
       // are inaccessible(especially from outside), otherwise, you may accidentally get copies of
       // your singleton appearing.
       S(S const&);              // Don't Implement
-      S& operator=(S const&); // Don't implement
+      S& operator=(S const&);   // Don't implement
 
       // C++ 11
       // =======
       // We can use the better technique of deleting the methods
       // we don't want.
   public:
-      S(S const&)               = delete;
+      S(S const&)             = delete;
       S& operator=(S const&)  = delete;
 
       // Note: Scott Meyers mentions in his Effective Modern

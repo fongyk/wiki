@@ -11,10 +11,10 @@ Python 2.x 中类的定义分为新式定义和老式定义两种。
   :linenos:
 
   class A: ## 老式类
-    pass
+      pass
 
   class B(object): ## 新式类
-    pass
+      pass
 
 .. code-block:: python
   :linenos:
@@ -31,7 +31,7 @@ Python 2.x 中类的定义分为新式定义和老式定义两种。
   >>> print B.__class__
   <type 'type'>
 
-Python 3.x中没有新式类和老式类之分，它们都继承自 ``object`` 类，因此可以不用显示地指定其基类。
+Python 3.x 中没有新式类和老式类之分，它们都继承自 ``object`` 类，因此可以不用显示地指定其基类。
 
 
 老式类
@@ -67,13 +67,13 @@ Python 3.x中没有新式类和老式类之分，它们都继承自 ``object`` �
 
   class A(object):
 
-    def __new__(cls):
-        print "A.__new__ called"
-        print cls
-        return super(A, cls).__new__(cls)
+      def __new__(cls):
+          print "A.__new__ called"
+          print cls
+          return super(A, cls).__new__(cls)
 
-    def __init__(self):
-        print "A.__init__ called"
+      def __init__(self):
+          print "A.__init__ called"
 
 .. code-block:: python
   :linenos:
@@ -95,15 +95,15 @@ Python 3.x中没有新式类和老式类之分，它们都继承自 ``object`` �
   :linenos:
 
   class A(object):
-    pass
+      pass
 
   class B(A):
-    def __new__(cls):
-      print "B.__new__ called"
-      return A() ## 或者写为： return super(B,cls).__new__(A)
+      def __new__(cls):
+          print "B.__new__ called"
+          return A() ## 或者写为： return super(B,cls).__new__(A)
 
-    def __init__(self):  ## 不会被调用
-      print "B.__init__ called"
+      def __init__(self):  ## 不会被调用
+          print "B.__init__ called"
 
 .. code-block:: python
   :linenos:
@@ -118,7 +118,7 @@ Python 3.x中没有新式类和老式类之分，它们都继承自 ``object`` �
 __new__ 实现单例
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-单例（singleton）：类只有一个对象。``None`` 就是一个单例，所有的变量只要是 ``None`` ，它一定和 ``None`` 指向同一个内存地址。
+单例（Singleton）：类只有一个对象。``None`` 就是一个单例，所有的变量只要是 ``None`` ，它一定和 ``None`` 指向同一个内存地址。
 
 .. code-block:: python
   :linenos:

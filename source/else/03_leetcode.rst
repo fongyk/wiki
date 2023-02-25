@@ -1835,6 +1835,8 @@ https://leetcode.com/problems/maximum-product-subarray/
 
 给定一个十进制整数 :math:`N` ，统计从 :math:`1` 到 :math:`N` 所有的整数各位出现的 :math:`1` 的数目。Hint： :math:`1` 的数目 = 个位出现 :math:`1` 的数目 + 十位出现 :math:`1` 的数目 + 百位出现 :math:`1` 的数目  + ......。以百位为例：如果百位数字为0，则百位出现1的次数只由更高位决定，如12013，次数为12 * 100；如果百位数字为1，则百位出现1的次数由更高位和更低位同时决定，如12113，次数为12 * 100 + (13 + 1)；如果百位数字大于1，则百位出现1的次数只由更高位决定，如12213，次数为(12 + 1) * 100。时间复杂度 :math:`\mathcal{O}(\log_{10}(N))` 。
 
+https://leetcode.com/problems/number-of-digit-one
+
 http://www.cnblogs.com/jy02414216/archive/2011/03/09/1977724.html
 
   .. container:: toggle
@@ -1846,35 +1848,36 @@ http://www.cnblogs.com/jy02414216/archive/2011/03/09/1977724.html
     .. code-block:: cpp
       :linenos:
 
-      typedef unsigned long long ULL;
-      ULL number_of_1(ULL N)
+      typedef unsigned long long Ull;
+      class Solution
       {
-        ULL cnt = 0;
-        ULL factor = 1;
-        ULL lowerNum = 0;
-        ULL currNum = 0;
-        ULL higherNum = 0;
-        while(N / factor)
-        {
-          lowerNum = N - (N / factor) * factor;
-          currNum = (N / factor) % 10;
-          higherNum = N / (factor * 10);
-          switch(currNum)
+      public:
+          int countDigitOne(int n)
           {
-            case 0:
-              cnt += higherNum * factor;
-              break;
-            case 1:
-              cnt += higherNum * factor + (lowerNum + 1);
-              break;
-            default:
-              cnt += (higherNum + 1) * factor;
-              break;
+              Ull factor = 1;
+              Ull low, curr, high;
+              Ull res = 0;
+              while(n / factor)
+              {
+                  low = n % factor;
+                  curr = (n / factor) % 10;
+                  high = n / (factor * 10);
+                  switch(curr)
+                  {
+                      case 0:
+                          res += high * factor;
+                          break;
+                      case 1:
+                          res += high * factor + low + 1;
+                          break;
+                      default:
+                          res += (high + 1) * factor;
+                  }
+                  factor *= 10;
+              }
+              return res;
           }
-          factor *= 10;
-        }
-        return cnt;
-      }
+      };
 
 
 数组循环移位

@@ -1896,15 +1896,15 @@ http://www.cnblogs.com/jy02414216/archive/2011/03/09/1977724.html
 
       void reverse(int *arr, int begin, int end)
       {
-        for(; begin < end; begin++, end--) swap(arr[begin], arr[end]);
+          for(; begin < end; begin++, end--) swap(arr[begin], arr[end]);
       }
 
       void right_shift(int *arr, int N, int K)
       {
-        K %= N;
-        reverse(arr, 0, N-K-1);
-        reverse(arr, N-K, N-1);
-        reverse(arr, 0, N-1);
+          K %= N;
+          reverse(arr, 0, N-K-1);
+          reverse(arr, N-K, N-1);
+          reverse(arr, 0, N-1);
       }
 
 
@@ -2069,17 +2069,17 @@ https://leetcode.com/problems/fraction-to-recurring-decimal/
       template<class T>
       int binarySearch(T* arr, int n, const T& target)
       {
-        if (arr == nullptr || n <= 0) return -1;
-        int low = 0;
-        int high = n - 1; // 查找区间： [0, n)
-        while (low <= high)
-        {
-          int mid = low + (high - low) / 2; // mid = (low + high)/2 可能导致溢出
-          if (arr[mid] == target) return mid;
-          if (arr[mid] < target) low = mid + 1;
-          else high = mid - 1;
-        }
-        return -1;
+          if(arr == nullptr || n <= 0) return -1;
+          int low = 0;
+          int high = n - 1; // 查找区间： [0, n)
+          while(low <= high)
+          {
+              int mid = low + (high - low) / 2; // mid = (low + high)/2 可能导致溢出
+              if(arr[mid] == target) return mid;
+              if(arr[mid] < target) low = mid + 1;
+              else high = mid - 1;
+          }
+          return -1;
       }
 
     .. code-block:: cpp
@@ -2093,18 +2093,18 @@ https://leetcode.com/problems/fraction-to-recurring-decimal/
 
       bool judge(double mid, double x)
       {
-        return mid >= x / mid;
+          return mid >= x / mid;
       }
 
       double search(double low, double high, double x)
       {
-        while (high - low > eps)
-        {
-          double mid = low + (high - low) / 2;
-          if (judge(mid, x)) high = mid;
-          else low = mid;
-        }
-        return low + (high - low) / 2; // 此时 low 和 high 比较接近，取它们的均值作为最终结果
+          while(high - low > eps)
+          {
+              double mid = low + (high - low) / 2;
+              if(judge(mid, x)) high = mid;
+              else low = mid;
+          }
+          return low + (high - low) / 2; // 此时 low 和 high 比较接近，取它们的均值作为最终结果
       }
 
     .. code-block:: python
@@ -2121,7 +2121,8 @@ https://leetcode.com/problems/fraction-to-recurring-decimal/
                   first = mid + 1
               else:
                   last = mid
-          return first  ## 返回 last 也行，因为 [first, last) 为空的时候它们相等
+          return first  
+          ## 返回 last 也行，因为 [first, last) 为空的时候它们相等
 
 - 查找旋转数组最小值（含重复元素）
 
@@ -2143,23 +2144,23 @@ https://leetcode.com/problems/fraction-to-recurring-decimal/
       template<class T>
       int findRotateMin(T* arr, int n)
       {
-        if (arr == nullptr || n <= 0) return -1;
-        int low = 0;
-        int high = n - 1;
-        while (arr[low] >= arr[high])
-        {
-          if (high - 1 == low) return high;
+          if(arr == nullptr || n <= 0) return -1;
+          int low = 0;
+          int high = n - 1;
+          while(arr[low] >= arr[high])
+          {
+              if(high - 1 == low) return high;
 
-          int mid = low + (high - low) / 2;
+              int mid = low + (high - low) / 2;
 
-          // 如果这三个元素相等，则在区间 [low, high] 内顺序查找
-          if (arr[low] == arr[mid] && arr[mid] == arr[high]) return (min_element(arr + low, arr + high + 1) - arr);
+              // 如果这三个元素相等，则在区间 [low, high] 内顺序查找
+              if(arr[low] == arr[mid] && arr[mid] == arr[high]) return (min_element(arr + low, arr + high + 1) - arr);
 
-          if (arr[mid] <= arr[high]) high = mid;
-          else low = mid;
-        }
-        // 如果数组本身是有序的，即 arr[0] < arr[n-1]，则第一个元素就是最小值
-        return 0;
+              if(arr[mid] <= arr[high]) high = mid;
+              else low = mid;
+          }
+          // 如果数组本身是有序的，即 arr[0] < arr[n-1]，则第一个元素就是最小值
+          return 0;
       }
 
 
@@ -2167,27 +2168,22 @@ https://leetcode.com/problems/fraction-to-recurring-decimal/
       :linenos:
 
       // 方法二
-      // 如果 arr[mid] < arr[mid-1]，则 arr[mid] 是最小值
       // 每次比较 nums[mid] 与 nums[high]，如果两者相等，则 --high
-      template<class T>
-      int findRotateMin(T* arr, int n)
-      {
-        if (arr == nullptr || n <= 0) return -1;
-        int low = 0;
-        int high = n - 1;
-        while (low <= high)
-        {
-          int mid = low + (high - low) / 2;
-          if (mid > 0 && arr[mid] < arr[mid-1]) return mid;
-
-          if (arr[mid] == arr[high]) --high;
-
-          else if (arr[mid] < arr[high]) high = mid - 1;
-
-          else low = mid + 1;
-        }
-        return 0;
-      }
+      class Solution:
+          def findMin(self, nums: List[int]) -> int:
+              n = len(nums)
+              low = 0
+              high = n - 1
+              while low < high:
+                  mid = low + (high - low) // 2
+                  if nums[mid] == nums[high]:
+                      high -= 1
+                  else:
+                      if nums[mid] > nums[high]:
+                          low = mid + 1
+                      else:
+                          high = mid
+              return nums[low]
 
 - 在旋转数组查找目标值（无重复元素）
 

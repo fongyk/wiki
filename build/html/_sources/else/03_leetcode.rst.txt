@@ -2952,22 +2952,22 @@ https://leetcode.com/problems/validate-binary-search-tree/
       class Solution
       {
       public:
-        bool isValidBST(TreeNode* root)
-        {
-          // 节点的值 val 是 int 型
-          long long pre = (long long)(INT_MIN) - 1;
-          return checkBST(root, pre);
-        }
+          bool isValidBST(TreeNode* root)
+          {
+              // 节点的值 val 是 int 型
+              long long pre = (long long)(INT_MIN) - 1;
+              return checkBST(root, pre);
+          }
       private:
-        // 中序遍历，检查上一个遍历的数是否小于当前数, O(1) 空间复杂度
-        bool checkBST(TreeNode* root, long long& pre)
-        {
-          if(!root) return true;
-          if(!checkBST(root -> left, pre)) return false;
-          if(pre >= (long long)(root -> val)) return false;
-          pre = (long long)(root -> val);
-          return checkBST(root -> right, pre);
-        }
+          // 中序遍历，检查上一个遍历的数是否小于当前数, O(1) 空间复杂度
+          bool checkBST(TreeNode* root, long long& pre)
+          {
+              if(!root) return true;
+              if(!checkBST(root -> left, pre)) return false;
+              if(pre >= (long long)(root -> val)) return false;
+              pre = (long long)(root -> val);
+              return checkBST(root -> right, pre);
+          }
       };
 
 判断一个数是否是奇数
@@ -2987,17 +2987,17 @@ Hint：考虑负数的情形；方法一，判断模 2 结果不为 0；方法�
 
       bool isOdd1(int x)
       {
-        return (x % 2) != 0;
+          return (x % 2) != 0;
       }
 
       bool isOdd2(int x)
       {
-        return (x & 1) == 1;
+          return (x & 1) == 1;
       }
 
       bool isEqual(double x, double y)
       {
-        return fabs(x - y) < 1e-6;
+          return fabs(x - y) < 1e-6;
       }
 
 
@@ -3148,23 +3148,23 @@ https://leetcode.com/problems/valid-number/
       class A
       {
       public:
-        A()
-        {
-          id++;
-          sum += id;
-        }
-        static void reset()
-        {
-          id = 0;
-          sum = 0;
-        }
-        static unsigned int getSum()
-        {
-          return sum;
-        }
+          A()
+          {
+              id++;
+              sum += id;
+          }
+          static void reset()
+          {
+              id = 0;
+              sum = 0;
+          }
+          static unsigned int getSum()
+          {
+              return sum;
+          }
       private:
-        static unsigned int id;
-        static unsigned int sum;
+          static unsigned int id;
+          static unsigned int sum;
       };
 
       unsigned int A::id = 0;
@@ -3172,12 +3172,12 @@ https://leetcode.com/problems/valid-number/
 
       unsigned int sumFrom1ToN(unsigned int N)
       {
-        A::reset();
+          A::reset();
 
-        A* arr = new A[N];
-        delete[] arr;
+          A* arr = new A[N];
+          delete[] arr;
 
-        return A::getSum();
+          return A::getSum();
       }
 
     .. code-block:: cpp
@@ -3191,28 +3191,28 @@ https://leetcode.com/problems/valid-number/
       class A
       {
       public:
-        virtual unsigned int getSum(unsigned int n)
-        {
-          return 0;
-        }
+          virtual unsigned int getSum(unsigned int n)
+          {
+              return 0;
+          }
       };
 
       class B: public A
       {
       public:
-        unsigned int getSum(unsigned int n) override
-        {
-          return n + arr[!!n] -> getSum(n - 1); // !!n：当 n>0，arr[1] 调用 B::getSum(n)；当 n=0，arr[0] 调用 A::getSum(n)
-        }
+          unsigned int getSum(unsigned int n) override
+          {
+              return n + arr[!!n] -> getSum(n - 1); // !!n：当 n>0，arr[1] 调用 B::getSum(n)；当 n=0，arr[0] 调用 A::getSum(n)
+          }
       };
 
       unsigned int sumFrom1ToN(unsigned int N)
       {
-        A a;
-        B b;
-        arr[0] = &a;
-        arr[1] = &b;
-        return arr[1] -> getSum(N);
+          A a;
+          B b;
+          arr[0] = &a;
+          arr[1] = &b;
+          return arr[1] -> getSum(N);
       }
 
 [LeetCode] Lexicographical Numbers 按字典序排列 :math:`1 \sim n` 
@@ -4487,7 +4487,7 @@ https://leetcode.com/problems/evaluate-reverse-polish-notation/
               {
                   if('0' <= e && e <= '9') rpn.push_back(e);
                   else if(e == '(') op.push(e);
-                  else if(e == '>') // 这里用 > 代替 )，否则 rst 一直编译报错
+                  else if(e == ')')
                   {
                       while(!op.empty() && op.top()!='(')
                       {

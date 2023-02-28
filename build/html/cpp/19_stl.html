@@ -645,29 +645,29 @@ They are implemented as class templates, which allows a great flexibility in the
 <span class="linenos"> 6</span><span class="k">class</span><span class="w"> </span><span class="nc">comparator</span><span class="w"></span>
 <span class="linenos"> 7</span><span class="p">{</span><span class="w"></span>
 <span class="linenos"> 8</span><span class="k">public</span><span class="o">:</span><span class="w">           </span><span class="c1">// 必须是 public</span>
-<span class="linenos"> 9</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="n">T</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"></span>
-<span class="linenos">10</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
-<span class="linenos">11</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="c1">// 相当于 greater&lt;T&gt;，小顶堆</span>
-<span class="linenos">12</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="n">T</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">10</span><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">11</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="c1">// 相当于 greater&lt;T&gt;，小顶堆</span>
+<span class="linenos">12</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="linenos">13</span><span class="p">};</span><span class="w"></span>
 <span class="linenos">14</span>
 <span class="linenos">15</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span><span class="w"></span>
 <span class="linenos">16</span><span class="p">{</span><span class="w"></span>
-<span class="linenos">17</span><span class="w">  </span><span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">comparator</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">mypq</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">17</span><span class="w">    </span><span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">comparator</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">mypq</span><span class="p">;</span><span class="w"></span>
 <span class="linenos">18</span>
-<span class="linenos">19</span><span class="w">  </span><span class="n">mypq</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="s">&quot;orange&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">20</span><span class="w">  </span><span class="n">mypq</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="s">&quot;strawberry&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">21</span><span class="w">  </span><span class="n">mypq</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="s">&quot;apple&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">22</span><span class="w">  </span><span class="n">mypq</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="s">&quot;pear&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">19</span><span class="w">    </span><span class="n">mypq</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="s">&quot;orange&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">20</span><span class="w">    </span><span class="n">mypq</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="s">&quot;strawberry&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">21</span><span class="w">    </span><span class="n">mypq</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="s">&quot;apple&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">22</span><span class="w">    </span><span class="n">mypq</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="s">&quot;pear&quot;</span><span class="p">);</span><span class="w"></span>
 <span class="linenos">23</span>
-<span class="linenos">24</span><span class="w">  </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Popping out elements...&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">25</span><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">mypq</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"></span>
-<span class="linenos">26</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
-<span class="linenos">27</span><span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mypq</span><span class="p">.</span><span class="n">top</span><span class="p">();</span><span class="w"></span>
-<span class="linenos">28</span><span class="w">    </span><span class="n">mypq</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span><span class="w"></span>
-<span class="linenos">29</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="linenos">30</span><span class="w">  </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">31</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">24</span><span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Popping out elements...&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">25</span><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">mypq</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"></span>
+<span class="linenos">26</span><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">27</span><span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mypq</span><span class="p">.</span><span class="n">top</span><span class="p">();</span><span class="w"></span>
+<span class="linenos">28</span><span class="w">        </span><span class="n">mypq</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span><span class="w"></span>
+<span class="linenos">29</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">30</span><span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">31</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 <span class="linenos">32</span><span class="p">}</span><span class="w"></span>
 <span class="linenos">33</span>
 <span class="linenos">34</span><span class="c1">// 输出结果</span>
@@ -676,7 +676,7 @@ They are implemented as class templates, which allows a great flexibility in the
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>C++11 标准引入了 <strong>emplace_front</strong> ，<strong>emplace</strong> ，<strong>emplace_back</strong> 这些操作构造而不是拷贝元素，分别对应 <strong>push_front</strong> ，<strong>insert/push</strong> ，<strong>push_back</strong> 。</p>
+<p>C++11 标准引入了 <strong>emplace_front</strong> ， <strong>emplace</strong> ， <strong>emplace_back</strong> 这些操作构造而不是拷贝元素，分别对应 <strong>push_front</strong> ，<strong>insert/push</strong> ，<strong>push_back</strong> 。</p>
 <p>调用 push 或 insert 时，先创建一个元素类型的 <strong>临时对象</strong> ，这个对象被 <strong>拷贝</strong> 到容器中。</p>
 <p>调用 emplace 时，将 <strong>参数</strong> 传递给元素类型的 <strong>构造函数</strong> ，在容器管理的内存空间中使用这些参数直接构造元素。传递给 emplace 的参数必须与构造函数匹配。</p>
 <p>相应地，<strong>pop</strong> 操作会调用析构函数。</p>
@@ -703,7 +703,7 @@ They are implemented as class templates, which allows a great flexibility in the
 <li><p>长度：length()，size()，empty()</p></li>
 <li><p>随机访问：[pos]，at(pos)。at()返回位置 pos 处元素的引用，越界则抛出 <code class="docutils literal notranslate"><span class="pre">out_of_range</span></code> 异常。</p></li>
 <li><p>字典序比较：==，!=，&lt;，&lt;=，&gt;，&gt;=</p></li>
-<li><p>串接：+</p></li>
+<li><p>串接：+，+=，append</p></li>
 <li><p>c_str()：返回指向 C 类型字符串的指针。如果需要使用 C 的字符串函数如 strcmp、strcpy 等，需要使用 c_str()。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="nf">c_str</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">noexcept</span><span class="p">;</span><span class="w"></span>
 </pre></div>
@@ -818,6 +818,13 @@ They are implemented as class templates, which allows a great flexibility in the
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><code class="docutils literal notranslate"><span class="pre">char*</span> <span class="pre">data</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">char[10]</span></code> 将数组的所有元素都初始化为 <code class="docutils literal notranslate"><span class="pre">\0</span></code> 。</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<dl class="simple">
+<dt>串接运算</dt><dd><p><code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">=</span> <span class="pre">s</span> <span class="pre">+</span> <span class="pre">a</span></code> 的效率低于 <code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">+=</span> <span class="pre">a</span></code> 和 <code class="docutils literal notranslate"><span class="pre">s.append(a)</span></code> ，因为前者需要新构造一个临时对象， <code class="docutils literal notranslate"><span class="pre">+=</span></code> 实际上是调用了 <code class="docutils literal notranslate"><span class="pre">append</span></code> 。</p>
+</dd>
+</dl>
 </div>
 </section>
 <section id="to-string">

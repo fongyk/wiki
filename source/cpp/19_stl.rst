@@ -541,29 +541,29 @@ priority\_queue
   class comparator
   {
   public:           // 必须是 public
-    bool operator()(T a, T b)
-    {
-      return a > b; // 相当于 greater<T>，小顶堆
-    }
+      bool operator()(T a, T b)
+      {
+          return a > b; // 相当于 greater<T>，小顶堆
+      }
   };
 
   int main(int argc, char ** argv)
   {
-    priority_queue<string, vector<string>, comparator<string> > mypq;
+      priority_queue<string, vector<string>, comparator<string> > mypq;
 
-    mypq.emplace("orange");
-    mypq.emplace("strawberry");
-    mypq.emplace("apple");
-    mypq.emplace("pear");
+      mypq.emplace("orange");
+      mypq.emplace("strawberry");
+      mypq.emplace("apple");
+      mypq.emplace("pear");
 
-    cout << "Popping out elements...";
-    while (!mypq.empty())
-    {
-      cout << ' ' << mypq.top();
-      mypq.pop();
-    }
-    cout << '\n';
-    return 0;
+      cout << "Popping out elements...";
+      while (!mypq.empty())
+      {
+          cout << ' ' << mypq.top();
+          mypq.pop();
+      }
+      cout << '\n';
+      return 0;
   }
 
   // 输出结果
@@ -573,7 +573,7 @@ priority\_queue
 
 .. note::
 
-  C++11 标准引入了 **emplace_front** ，**emplace** ，**emplace_back** 这些操作构造而不是拷贝元素，分别对应 **push_front** ，**insert/push** ，**push_back** 。
+  C++11 标准引入了 **emplace_front** ， **emplace** ， **emplace_back** 这些操作构造而不是拷贝元素，分别对应 **push_front** ，**insert/push** ，**push_back** 。
 
   调用 push 或 insert 时，先创建一个元素类型的 **临时对象** ，这个对象被 **拷贝** 到容器中。
 
@@ -605,7 +605,7 @@ string 是 ``basic_string<char, std::char_traits<char>, std::allocator<char>>`` 
 - 长度：length()，size()，empty()
 - 随机访问：[pos]，at(pos)。at()返回位置 pos 处元素的引用，越界则抛出 ``out_of_range`` 异常。
 - 字典序比较：==，!=，<，<=，>，>=
-- 串接：+
+- 串接：+，+=，append
 - c_str()：返回指向 C 类型字符串的指针。如果需要使用 C 的字符串函数如 strcmp、strcpy 等，需要使用 c_str()。
   ::
 
@@ -725,6 +725,10 @@ string 类的一个简明实现：
 
   ``char* data = new char[10]`` 将数组的所有元素都初始化为 ``\0`` 。
 
+.. tip::
+
+  串接运算
+    ``s = s + a`` 的效率低于 ``s += a`` 和 ``s.append(a)`` ，因为前者需要新构造一个临时对象， ``+=`` 实际上是调用了 ``append`` 。
 
 to\_string函数
 --------------------

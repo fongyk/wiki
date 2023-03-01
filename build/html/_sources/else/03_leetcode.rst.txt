@@ -4236,76 +4236,34 @@ https://windliang.cc/2018/07/18/leetCode-4-Median-of-Two-Sorted-Arrays/
           }
       };
 
-    .. code-block:: cpp
-      :linenos:
+    .. code-block:: python
+        :linenos:
 
-      // 方法二
+        // 方法二
 
-      class Solution
-      {
-      public:
-          double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2)
-          {
-              if(nums1.empty() && nums2.empty()) return 0.0;
-              int m = nums1.size();
-              int n = nums2.size();
-              if((m+n)%2) return getKthSmall(nums1, 0, m, nums2, 0, n, (m+n)/2+1);
-              return (getKthSmall(nums1, 0, m, nums2, 0, n, (m+n)/2+1) + getKthSmall(nums1, 0, m, nums2, 0, n, (m+n)/2)) / 2.0;
-          }
+        class Solution:
+            def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+                n1, n2 = len(nums1), len(nums2)
+                n = n1 + n2
+                if n & 1:
+                    return self.findKth(nums1, 0, n1, nums2, 0, n2, (n+1)//2)
+                else: 
+                    return (self.findKth(nums1, 0, n1, nums2, 0, n2, n//2) + 
+                        self.findKth(nums1, 0, n1, nums2, 0, n2, n//2+1)) / 2.0
 
-      private:
-          // 找到第 k 小的数
-          double getKthSmall(vector<int>& nums1, int i, int m, vector<int>nums2, int j, int n, int k)
-          {
-              while(true)
-              {
-                  if(i == m) return nums2[j+k-1]; // 区间为空
-                  if(j == n) return nums1[i+k-1]; // 区间为空
-                  if(k == 1) return min(nums1[i], nums2[j]);
-
-                  int mid = k / 2;
-                  if(mid >= m-i) // 区间 [i, m) 大小小于 mid，则比较最后一个数
-                  {
-                      if(nums1[m-1] <= nums2[j+mid-1])
-                      {
-                          k -= m - i;
-                          i = m;
-                      }
-                      else
-                      {
-                          k -= mid;
-                          j += mid;
-                      }
-                  }
-                  else if(mid >= n-j) // 区间 [j, n) 大小小于 mid，则比较最后一个数
-                  {
-                      if(nums2[n-1] <= nums1[i+mid-1])
-                      {
-                          k -= n - j;
-                          j = n;
-                      }
-                      else
-                      {
-                          k -= mid;
-                          i += mid;
-                      }
-                  }
-                  else
-                  {
-                      if(nums1[i+mid-1] <= nums2[j+mid-1])
-                      {
-                          k -= mid;
-                          i += mid;
-                      }
-                      else
-                      {
-                          k -= mid;
-                          j += mid;
-                      }
-                  }
-              }
-          }
-      };
+            def findKth(self, l1, i1, n1, l2, i2, n2, k):
+                while True:
+                    if i1 == n1: return l2[i2+k-1] # 区间为空
+                    if i2 == n2: return l1[i1+k-1] # 区间为空
+                    if k == 1: return min(l1[i1], l2[i2])
+                    half = k // 2
+                    j1, j2 = min(i1+half-1, n1-1), min(i2+half-1, n2-1)
+                    if l1[j1] > l2[j2]:
+                        k -= j2 - i2 + 1
+                        i2 = j2 + 1
+                    else:
+                        k -= j1 - i1 + 1
+                        i1 = j1 + 1
 
 滑动窗口。
 --------------------------------------------------------------------------------------------

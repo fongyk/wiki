@@ -4507,12 +4507,8 @@ https://leetcode.com/problems/evaluate-reverse-polish-notation/
                   {
                       int right_operand = stk.top();
                       stk.pop();
-                      int left_operand = 0;
-                      if(!stk.empty())
-                      {
-                          left_operand = stk.top();
-                          stk.pop();
-                      }
+                      int left_operand = stk.top();
+                      stk.pop();
                       switch(tokens[k][0])
                       {
                           case '+': res = left_operand + right_operand; break;
@@ -4772,6 +4768,8 @@ https://leetcode-cn.com/problems/house-robber-ii/
 
 https://leetcode-cn.com/problems/h54YBf/
 
+https://leetcode.com/problems/serialize-and-deserialize-binary-tree/
+
   .. container:: toggle
 
     .. container:: header
@@ -4805,6 +4803,7 @@ https://leetcode-cn.com/problems/h54YBf/
           {
               if(data[i] == '#')
               {
+                  // 注意这里 i 一定要自增
                   ++i;
                   return nullptr;
               }

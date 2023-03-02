@@ -35,16 +35,16 @@ static: 静态局部变量
 
   void func()
   {
-    static int a = 1; // 初次调用func()时才会执行初始化
-    cout << a << endl;
-    a ++;
+      static int a = 1; // 初次调用func()时才会执行初始化
+      cout << a << endl;
+      a ++;
   }
 
   int main()
   {
-    func(); // 1
-    func(); // 2
-    return 0;
+      func(); // 1
+      func(); // 2
+      return 0;
   }
 
 static: 静态成员变量

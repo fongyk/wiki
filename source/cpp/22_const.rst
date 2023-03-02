@@ -67,7 +67,7 @@ const成员函数
 
   class Sale
   {
-    double avg_price() const;
+      double avg_price() const;
   };
 
 

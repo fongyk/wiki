@@ -141,59 +141,59 @@
 <section id="id2">
 <h2><span class="section-number">32.1. </span>通用引用<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <p>通用引用在两种语境出现。最常见的就是模板函数参数，第二个语境是 auto 声明。这两种语境有个共同点，就是出现了类型推断。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>int lvalue = 3;
-const auto&amp;&amp; r = lvalue; // 错误：r 是右值引用，不能通过左值初始化
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">int</span><span class="w"> </span><span class="n">lvalue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">2</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lvalue</span><span class="p">;</span><span class="w"> </span><span class="c1">// 错误：r 是右值引用，不能通过左值初始化</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>template&lt;typename T&gt;
-void func(const T&amp;&amp; p);
-
-func(lvalue);            // 错误：p 是右值引用，不能通过左值初始化
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
+<span class="linenos">2</span><span class="kt">void</span><span class="w"> </span><span class="n">func</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">p</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="n">func</span><span class="p">(</span><span class="n">lvalue</span><span class="p">);</span><span class="w">            </span><span class="c1">// 错误：p 是右值引用，不能通过左值初始化</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>template &lt;class T, class Allocator = allocator&lt;T&gt;&gt;
-class vector
-{
-public:
-    void push_back(T&amp;&amp; x); // 右值引用，类模板实例化的时候类型参数已经确定，不存在类型推导。
-};
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Allocator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">allocator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span><span class="w"></span>
+<span class="linenos">2</span><span class="k">class</span><span class="w"> </span><span class="nc">vector</span><span class="w"></span>
+<span class="linenos">3</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">4</span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="linenos">5</span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">push_back</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w"> </span><span class="c1">// 右值引用，类模板实例化的时候类型参数已经确定，不存在类型推导。</span>
+<span class="linenos">6</span><span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>template&lt;typename S&gt;
-void func(std::vector&lt;S&gt;&amp;&amp; p); // p 不是通用引用。虽然存在类型推导，但推导的是 std::vector 的类型参数，而不是 T&amp;&amp; 中的T。
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">S</span><span class="o">&gt;</span><span class="w"></span>
+<span class="linenos">2</span><span class="kt">void</span><span class="w"> </span><span class="n">func</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">S</span><span class="o">&gt;&amp;&amp;</span><span class="w"> </span><span class="n">p</span><span class="p">);</span><span class="w"> </span><span class="c1">// p 不是通用引用。虽然存在类型推导，但推导的是 std::vector 的类型参数，而不是 T&amp;&amp; 中的T。</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="k">class</span> <span class="nc">Allocator</span> <span class="o">=</span> <span class="n">allocator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&gt;</span>
-<span class="k">class</span> <span class="nc">vector</span>
-<span class="p">{</span>
-<span class="n">public</span><span class="p">:</span>
-    <span class="n">template</span> <span class="o">&lt;</span><span class="n">class</span><span class="o">...</span> <span class="n">Args</span><span class="o">&gt;</span>
-    <span class="n">void</span> <span class="n">emplace_back</span><span class="p">(</span><span class="n">Args</span><span class="o">&amp;&amp;...</span> <span class="n">args</span><span class="p">);</span>  <span class="o">//</span> <span class="n">args</span> <span class="n">中的每一个参数都是是通用引用</span>
-<span class="p">};</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Allocator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">allocator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"></span>
+<span class="linenos">2</span><span class="k">class</span><span class="w"> </span><span class="nc">vector</span><span class="w"></span>
+<span class="linenos">3</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">4</span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="linenos">5</span><span class="w">    </span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="p">...</span><span class="w"> </span><span class="n">Args</span><span class="o">&gt;</span><span class="w"></span>
+<span class="linenos">6</span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">emplace_back</span><span class="p">(</span><span class="n">Args</span><span class="o">&amp;&amp;</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">);</span><span class="w">  </span><span class="c1">// args 中的每一个参数都是是通用引用</span>
+<span class="linenos">7</span><span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>int i = 10;
-auto&amp;&amp; ai = i; // 通用引用，int&amp;
-
-const int ci = 10;
-auto&amp;&amp; ac = ci; // 通用引用，const int&amp;
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">2</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">ai</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="c1">// 通用引用，int&amp;</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ci</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">5</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">ac</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ci</span><span class="p">;</span><span class="w"> </span><span class="c1">// 通用引用，const int&amp;</span>
 </pre></div>
 </div>
 </section>
 <section id="id3">
 <h2><span class="section-number">32.2. </span>右值引用变量<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Foo</span><span class="o">&amp;&amp;</span> <span class="n">foo</span> <span class="o">=</span> <span class="n">Foo</span><span class="p">{</span><span class="mi">10</span><span class="p">};</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Foo</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Foo</span><span class="p">{</span><span class="mi">10</span><span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>
 <p>一个类型为右值引用的变量，一旦被初始化之后，临时对象的生命将被扩展，会在其被创建的 scope 内始终有效。</p>
 <p>因而，看似 foo 被定义的类型为右值引用，但这仅仅约束它的 <em>初始化</em> ：只能从一个右值进行初始化。一旦初始化完成，它就和一个左值引用再也没有任何差别：都是一个已存在对象的 <em>标识</em> 。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>void stupid(Foo&amp;&amp; foo)
-{
-   foo.a += 10;   // 在函数体内，foo的性质与一个左值引用毫无差别
-   // blah ...
-}
-
-stupid(Foo{10});  // 在执行函数体之前，进行参数初始化: Foo&amp;&amp; foo = Foo{10}
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">void</span><span class="w"> </span><span class="nf">stupid</span><span class="p">(</span><span class="n">Foo</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">foo</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">2</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">3</span><span class="w">    </span><span class="n">foo</span><span class="p">.</span><span class="n">a</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">   </span><span class="c1">// 在函数体内，foo的性质与一个左值引用毫无差别</span>
+<span class="linenos">4</span><span class="w">    </span><span class="c1">// blah ...</span>
+<span class="linenos">5</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">6</span>
+<span class="linenos">7</span><span class="n">stupid</span><span class="p">(</span><span class="n">Foo</span><span class="p">{</span><span class="mi">10</span><span class="p">});</span><span class="w">  </span><span class="c1">// 在执行函数体之前，进行参数初始化: Foo&amp;&amp; foo = Foo{10}</span>
 </pre></div>
 </div>
 <p>而临时对象 Foo{10} 的生命周期，会比参数变量 foo 更长。所以将 foo 看作左值引用随意访问，是没有任何风险的。</p>

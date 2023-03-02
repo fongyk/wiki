@@ -1,6 +1,9 @@
 运算符重载
 =================
 
+.. highlight:: cpp
+    :linenothreshold: 2
+
 重载规则
 ---------------
 
@@ -234,7 +237,7 @@ delete 表达式完成了两件事：
       return 0;
   }
 
-输出 ::
+输出::
 
   A::new 40 bytes
   +A

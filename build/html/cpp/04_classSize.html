@@ -333,31 +333,32 @@
 通过偏移地址，这样就找到了虚基类成员，而虚继承也不用像普通多继承那样维持着公共基类（虚基类）的两份同样的拷贝，节省了存储空间。</p>
 <p>当虚继承的子类被当做父类继承时，虚基类指针也会被继承。上图中，C 继承了B1，B2，也就继承了2个虚基类指针。</p>
 <p>总体需要考虑：数据成员的大小、虚基类指针的大小 、虚函数指针的大小。</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="linenos"> 2</span><span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"></span>
-<span class="linenos"> 3</span><span class="p">};</span><span class="w"></span>
-<span class="linenos"> 4</span><span class="c1">// sizeof(A) = 4</span>
-<span class="linenos"> 5</span>
-<span class="linenos"> 6</span><span class="k">class</span><span class="w"> </span><span class="nc">B</span><span class="w"> </span><span class="o">:</span><span class="k">virtual</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">A</span><span class="w"></span>
-<span class="linenos"> 7</span><span class="p">{</span><span class="w"></span>
-<span class="linenos"> 8</span><span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"></span>
-<span class="linenos"> 9</span><span class="w">      </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">myfunB</span><span class="p">();</span><span class="w"></span>
-<span class="linenos">10</span><span class="p">};</span><span class="w"></span>
-<span class="linenos">11</span><span class="c1">// sizeof(B) = 16</span>
-<span class="linenos">12</span>
-<span class="linenos">13</span><span class="k">class</span><span class="w"> </span><span class="nc">C</span><span class="w"> </span><span class="o">:</span><span class="k">virtual</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">A</span><span class="w"></span>
-<span class="linenos">14</span><span class="p">{</span><span class="w"></span>
-<span class="linenos">15</span><span class="w">      </span><span class="kt">double</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">16</span><span class="w">      </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">myfunC</span><span class="p">();</span><span class="w"></span>
-<span class="linenos">17</span><span class="p">};</span><span class="w"></span>
-<span class="linenos">18</span><span class="c1">// sizeof(C) = 28</span>
-<span class="linenos">19</span>
-<span class="linenos">20</span><span class="k">class</span><span class="w"> </span><span class="nc">D</span><span class="w"> </span><span class="o">:</span><span class="k">public</span><span class="w"> </span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">C</span><span class="w"></span>
-<span class="linenos">21</span><span class="p">{</span><span class="w"></span>
-<span class="linenos">22</span><span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">d</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">23</span><span class="w">      </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">myfunD</span><span class="p">();</span><span class="w"></span>
-<span class="linenos">24</span><span class="p">};</span><span class="w"></span>
-<span class="linenos">25</span><span class="c1">// sizeof(D) = 52</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="p">};</span><span class="w"></span>
+<span class="linenos"> 5</span><span class="c1">// sizeof(A) = 4</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="k">class</span><span class="w"> </span><span class="nc">B</span><span class="w"> </span><span class="o">:</span><span class="k">virtual</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">A</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">10</span><span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">myfunB</span><span class="p">();</span><span class="w"></span>
+<span class="linenos">11</span><span class="p">};</span><span class="w"></span>
+<span class="linenos">12</span><span class="c1">// sizeof(B) = 16</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="k">class</span><span class="w"> </span><span class="nc">C</span><span class="w"> </span><span class="o">:</span><span class="k">virtual</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">A</span><span class="w"></span>
+<span class="linenos">15</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">16</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">17</span><span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">myfunC</span><span class="p">();</span><span class="w"></span>
+<span class="linenos">18</span><span class="p">};</span><span class="w"></span>
+<span class="linenos">19</span><span class="c1">// sizeof(C) = 28</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span><span class="k">class</span><span class="w"> </span><span class="nc">D</span><span class="w"> </span><span class="o">:</span><span class="k">public</span><span class="w"> </span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">C</span><span class="w"></span>
+<span class="linenos">22</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">23</span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">d</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">24</span><span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">myfunD</span><span class="p">();</span><span class="w"></span>
+<span class="linenos">25</span><span class="p">};</span><span class="w"></span>
+<span class="linenos">26</span><span class="c1">// sizeof(D) = 52</span>
 </pre></div>
 </div>
 </section>
@@ -398,15 +399,15 @@
 <span class="linenos">17</span>
 <span class="linenos">18</span><span class="k">class</span><span class="w"> </span><span class="nc">BigData</span><span class="w"></span>
 <span class="linenos">19</span><span class="p">{</span><span class="w"></span>
-<span class="linenos">20</span><span class="w">      </span><span class="kt">char</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="mi">33</span><span class="p">];</span><span class="w"></span>
+<span class="linenos">20</span><span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="mi">33</span><span class="p">];</span><span class="w"></span>
 <span class="linenos">21</span><span class="p">};</span><span class="w"></span>
 <span class="linenos">22</span><span class="c1">// sizeof(BigData) = 33</span>
 <span class="linenos">23</span>
 <span class="linenos">24</span><span class="k">class</span><span class="w"> </span><span class="nc">Data</span><span class="w"></span>
 <span class="linenos">25</span><span class="p">{</span><span class="w"></span>
-<span class="linenos">26</span><span class="w">      </span><span class="n">BigData</span><span class="w"> </span><span class="n">bd</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">27</span><span class="w">      </span><span class="c1">//int integer; // 不管有没有注释这一行，sizeof(Data)结果一样</span>
-<span class="linenos">28</span><span class="w">      </span><span class="kt">double</span><span class="w"> </span><span class="n">d</span><span class="p">;</span><span class="w"> </span><span class="c1">// d的起始偏移量必须为 8 的倍数，且大于 33，则其偏移量为 40</span>
+<span class="linenos">26</span><span class="w">    </span><span class="n">BigData</span><span class="w"> </span><span class="n">bd</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">27</span><span class="w">    </span><span class="c1">//int integer; // 不管有没有注释这一行，sizeof(Data)结果一样</span>
+<span class="linenos">28</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">d</span><span class="p">;</span><span class="w"> </span><span class="c1">// d的起始偏移量必须为 8 的倍数，且大于 33，则其偏移量为 40</span>
 <span class="linenos">29</span><span class="p">};</span><span class="w"></span>
 <span class="linenos">30</span><span class="c1">// sizeof(Data) = 48</span>
 </pre></div>
@@ -422,13 +423,13 @@
 <blockquote>
 <div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">struct</span><span class="w"> </span><span class="nc">BitField</span><span class="w"></span>
 <span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
-<span class="linenos"> 3</span><span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="o">:</span><span class="mi">4</span><span class="p">;</span><span class="w">  </span><span class="c1">//占用4个二进制位</span>
-<span class="linenos"> 4</span><span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w">  </span><span class="o">:</span><span class="mi">0</span><span class="p">;</span><span class="w">  </span><span class="c1">//空位域，自动置0，此时占满 1 个int存储单元，即 4 字节</span>
-<span class="linenos"> 5</span><span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="o">:</span><span class="mi">4</span><span class="p">;</span><span class="w">  </span><span class="c1">//占用4个二进制位，从第二个字节存储单元开始存放</span>
-<span class="linenos"> 6</span><span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="o">:</span><span class="mi">4</span><span class="p">;</span><span class="w">  </span><span class="c1">//占用4个二进制位</span>
-<span class="linenos"> 7</span><span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">d</span><span class="o">:</span><span class="mi">5</span><span class="p">;</span><span class="w">  </span><span class="c1">//占用5个二进制位，剩余的3个bit不够存储4个bit的数据，从下一个存储单元开始存放</span>
-<span class="linenos"> 8</span><span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w">  </span><span class="o">:</span><span class="mi">0</span><span class="p">;</span><span class="w">  </span><span class="c1">//空位域，自动置0，此时占满 2 个int存储单元，即 8 字节</span>
-<span class="linenos"> 9</span><span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">e</span><span class="o">:</span><span class="mi">4</span><span class="p">;</span><span class="w">  </span><span class="c1">//占用4个二进制位，从第三个int存储单元开始存放</span>
+<span class="linenos"> 3</span><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="o">:</span><span class="mi">4</span><span class="p">;</span><span class="w">  </span><span class="c1">//占用4个二进制位</span>
+<span class="linenos"> 4</span><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w">  </span><span class="o">:</span><span class="mi">0</span><span class="p">;</span><span class="w">  </span><span class="c1">//空位域，自动置0，此时占满 1 个int存储单元，即 4 字节</span>
+<span class="linenos"> 5</span><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="o">:</span><span class="mi">4</span><span class="p">;</span><span class="w">  </span><span class="c1">//占用4个二进制位，从第二个字节存储单元开始存放</span>
+<span class="linenos"> 6</span><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="o">:</span><span class="mi">4</span><span class="p">;</span><span class="w">  </span><span class="c1">//占用4个二进制位</span>
+<span class="linenos"> 7</span><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">d</span><span class="o">:</span><span class="mi">5</span><span class="p">;</span><span class="w">  </span><span class="c1">//占用5个二进制位，剩余的3个bit不够存储4个bit的数据，从下一个存储单元开始存放</span>
+<span class="linenos"> 8</span><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w">  </span><span class="o">:</span><span class="mi">0</span><span class="p">;</span><span class="w">  </span><span class="c1">//空位域，自动置0，此时占满 2 个int存储单元，即 8 字节</span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">e</span><span class="o">:</span><span class="mi">4</span><span class="p">;</span><span class="w">  </span><span class="c1">//占用4个二进制位，从第三个int存储单元开始存放</span>
 <span class="linenos">10</span><span class="p">};</span><span class="w"></span>
 <span class="linenos">11</span><span class="c1">// sizeof(BitField) = 3 * 4 = 12</span>
 </pre></div>

@@ -75,33 +75,33 @@ default 和 delete
   class ClassTest
   {
   public:
-    ClassTest()
-    {
-      c[0] = '\0';
-      cout << "ClassTest()" << endl;
-    }
+      ClassTest()
+      {
+          c[0] = '\0';
+          cout << "ClassTest()" << endl;
+      }
 
-    ClassTest& operator=(const ClassTest &ct)
-    {
-      strcpy(c, ct.c);
-      cout << "ClassTest& operator=(const ClassTest &ct)" << endl;
-      return *this;
-    }
+      ClassTest& operator=(const ClassTest &ct)
+      {
+          strcpy(c, ct.c);
+          cout << "ClassTest& operator=(const ClassTest &ct)" << endl;
+          return *this;
+      }
 
-    ClassTest(const char *pc)
-    {
-      strcpy(c, pc);
-      cout << "ClassTest (const char *pc)" << endl;
-    }
+      ClassTest(const char *pc)
+      {
+          strcpy(c, pc);
+          cout << "ClassTest (const char *pc)" << endl;
+      }
 
-  // private:
-    ClassTest(const ClassTest& ct)
-    {
-      strcpy(c, ct.c);
-      cout << "ClassTest(const ClassTest& ct)" << endl;
-    }
+      // private:
+      ClassTest(const ClassTest& ct)
+      {
+          strcpy(c, ct.c);
+          cout << "ClassTest(const ClassTest& ct)" << endl;
+      }
   private:
-    char c[256];
+      char c[256];
   };
 
 
@@ -357,7 +357,6 @@ push 和 emplace
       return 0;
     }
 
-|
 
 .. note::
 

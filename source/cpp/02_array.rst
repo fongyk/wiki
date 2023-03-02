@@ -12,31 +12,31 @@
 
   struct TreeNode
   {
-    int val;
-    TreeNode* left;
-    TreeNode* right;
-    TreeNode(int x) :val(x), left(nullptr), right(nullptr){} /* 唯一的构造函数，必须给定参数x */
+      int val;
+      TreeNode* left;
+      TreeNode* right;
+      TreeNode(int x) :val(x), left(nullptr), right(nullptr){} /* 唯一的构造函数，必须给定参数x */
   };
 
   int main(int argc, char ** argv)
   {
-    //int* p = new int(1); /* 这两行与下面三行等效 */
-    //cout << *p << endl;
-    int* p = new int;
-    *p = 1;                /* p已经申请了内存空间，可以直接赋值 */
-    cout << *p << endl;
+      //int* p = new int(1); /* 这两行与下面三行等效 */
+      //cout << *p << endl;
+      int* p = new int;
+      *p = 1;                /* p已经申请了内存空间，可以直接赋值 */
+      cout << *p << endl;
 
-    TreeNode* q = new TreeNode(10);
-    cout << q->val << endl;
+      TreeNode* q = new TreeNode(10);
+      cout << q->val << endl;
 
-    TreeNode node(100);
-    TreeNode* r = &node;   /* r 不能delete */
-    cout << r->val << endl;
+      TreeNode node(100);
+      TreeNode* r = &node;   /* r 不能delete */
+      cout << r->val << endl;
 
-    delete p;
-    delete q;
+      delete p;
+      delete q;
 
-    return 0;
+      return 0;
   }
 
 .. note::
@@ -61,17 +61,17 @@
 
   double square(double x)
   {
-    return x * x;
+      return x * x;
   }
 
   int main()
   {
-    double (*p)(double x);
-    p = square; // 用函数名square初始化指针
-    cout << square(1.6) << endl;
-    cout << p(1.6) << endl;
-    cout << (*p)(1.6) << endl; // 三者等效
-    return 0;
+      double (*p)(double x);
+      p = square; // 用函数名square初始化指针
+      cout << square(1.6) << endl;
+      cout << p(1.6) << endl;
+      cout << (*p)(1.6) << endl; // 三者等效
+      return 0;
   }
 
 还可以定义指针数组，

@@ -187,8 +187,8 @@
 <section id="id3">
 <h2><span class="section-number">29.2. </span>下标运算符 []<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <p>为了适应 const 对象，需要重载下面两种函数</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">返回值类型</span><span class="o">&amp;</span> <span class="n">operator</span><span class="p">[]</span> <span class="p">(</span><span class="n">参数</span><span class="p">);</span> <span class="o">//</span> <span class="n">参数一般为无符号整型</span>
-<span class="n">const</span> <span class="n">返回值类型</span><span class="o">&amp;</span> <span class="n">operator</span><span class="p">[]</span> <span class="p">(</span><span class="n">参数</span><span class="p">)</span> <span class="n">const</span><span class="p">;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">返回值类型</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">[]</span><span class="w"> </span><span class="p">(</span><span class="n">参数</span><span class="p">);</span><span class="w"> </span><span class="c1">// 参数一般为无符号整型</span>
+<span class="linenos">2</span><span class="k">const</span><span class="w"> </span><span class="n">返回值类型</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">[]</span><span class="w"> </span><span class="p">(</span><span class="n">参数</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 <p>因为 const 对象只能调用 const 成员函数。</p>
@@ -196,15 +196,15 @@
 </section>
 <section id="id4">
 <h2><span class="section-number">29.3. </span>自增和自减<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ClassName&amp; operator++(); // 前缀++，返回的是引用
-const ClassName operator++(int); // 后缀++，返回的是临时变量
-ClassName&amp; operator--(); // 前缀--
-const ClassName operator--(int); // 后缀--
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">ClassName</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">++</span><span class="p">();</span><span class="w"> </span><span class="c1">// 前缀++，返回的是引用</span>
+<span class="linenos">2</span><span class="k">const</span><span class="w"> </span><span class="n">ClassName</span><span class="w"> </span><span class="k">operator</span><span class="o">++</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span><span class="w"> </span><span class="c1">// 后缀++，返回的是临时变量</span>
+<span class="linenos">3</span><span class="n">ClassName</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">--</span><span class="p">();</span><span class="w"> </span><span class="c1">// 前缀--</span>
+<span class="linenos">4</span><span class="k">const</span><span class="w"> </span><span class="n">ClassName</span><span class="w"> </span><span class="k">operator</span><span class="o">--</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span><span class="w"> </span><span class="c1">// 后缀--</span>
 </pre></div>
 </div>
 <p>后缀形式有一个 int 类型参数，当函数被调用时，编译器传递一个 0 作为 int 参数的值给该函数，实际上后缀操作符并没有使用它的参数，只是用来区分前缀与后缀函数调用。</p>
 <p>后缀操作符最好返回一个 const 对象，用于杜绝产生以下形式的代码</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">i</span><span class="o">++++</span><span class="p">;</span> <span class="o">//</span> <span class="n">same</span> <span class="k">as</span> <span class="n">i</span><span class="o">.</span><span class="n">operator</span><span class="o">++</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">operator</span><span class="o">++</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">i</span><span class="o">++++</span><span class="p">;</span><span class="w"> </span><span class="c1">// same as i.operator++(0).operator++(0);</span>
 </pre></div>
 </div>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="w"></span>
@@ -339,19 +339,19 @@ const ClassName operator--(int); // 后缀--
 <span class="linenos">43</span><span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<p>输出</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">::</span><span class="n">new</span> <span class="mi">40</span> <span class="nb">bytes</span>
-<span class="o">+</span><span class="n">A</span>
-<span class="o">~</span><span class="n">A</span>
-<span class="n">A</span><span class="p">::</span><span class="n">delete</span>
-<span class="n">A</span><span class="p">::</span><span class="n">new</span><span class="p">[]</span> <span class="mi">128</span> <span class="nb">bytes</span>
-<span class="o">+</span><span class="n">A</span>
-<span class="o">+</span><span class="n">A</span>
-<span class="o">+</span><span class="n">A</span>
-<span class="o">~</span><span class="n">A</span>
-<span class="o">~</span><span class="n">A</span>
-<span class="o">~</span><span class="n">A</span>
-<span class="n">A</span><span class="p">::</span><span class="n">delete</span><span class="p">[]</span>
+<p>输出:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">A</span><span class="o">::</span><span class="k">new</span><span class="w"> </span><span class="mi">40</span><span class="w"> </span><span class="n">bytes</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="o">+</span><span class="n">A</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="o">~</span><span class="n">A</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="n">A</span><span class="o">::</span><span class="k">delete</span><span class="w"></span>
+<span class="linenos"> 5</span><span class="n">A</span><span class="o">::</span><span class="k">new</span><span class="p">[]</span><span class="w"> </span><span class="mi">128</span><span class="w"> </span><span class="n">bytes</span><span class="w"></span>
+<span class="linenos"> 6</span><span class="o">+</span><span class="n">A</span><span class="w"></span>
+<span class="linenos"> 7</span><span class="o">+</span><span class="n">A</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="o">+</span><span class="n">A</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="o">~</span><span class="n">A</span><span class="w"></span>
+<span class="linenos">10</span><span class="o">~</span><span class="n">A</span><span class="w"></span>
+<span class="linenos">11</span><span class="o">~</span><span class="n">A</span><span class="w"></span>
+<span class="linenos">12</span><span class="n">A</span><span class="o">::</span><span class="k">delete</span><span class="p">[]</span><span class="w"></span>
 </pre></div>
 </div>
 <section id="new">
@@ -361,21 +361,21 @@ const ClassName operator--(int); // 后缀--
 <h4>new operator<a class="headerlink" href="#new-operator" title="Permalink to this headline"></a></h4>
 <p>new operator 就是上文提到的 new 表达式，它完成三件事：申请内存、构造对象、令指针指向该块内存。这个过程中调用了 operator new() 和 placement new()。</p>
 <p><code class="docutils literal notranslate"><span class="pre">string*</span> <span class="pre">p</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">string(&quot;hello</span> <span class="pre">world&quot;);</span></code> 等价于：</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span><span class="o">*</span> <span class="n">m</span> <span class="o">=</span> <span class="n">operator</span> <span class="n">new</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">));</span> <span class="o">//</span> <span class="n">operator</span> <span class="n">new</span><span class="p">()</span>
-<span class="n">new</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="n">string</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">);</span> <span class="o">//</span> <span class="n">placement</span> <span class="n">new</span><span class="p">()</span>
-<span class="n">string</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="n">static_cast</span><span class="o">&lt;</span><span class="n">string</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">operator</span><span class="w"> </span><span class="k">new</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="s">&quot;hello world&quot;</span><span class="p">));</span><span class="w"> </span><span class="c1">// operator new()</span>
+<span class="linenos">2</span><span class="k">new</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="n">string</span><span class="p">(</span><span class="s">&quot;hello world&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// placement new()</span>
+<span class="linenos">3</span><span class="n">string</span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">string</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">m</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">delete</span> <span class="pre">p;</span></code> 等价于：</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="o">-&gt;~</span><span class="n">string</span><span class="p">();</span>
-<span class="n">operator</span> <span class="n">delete</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">p</span><span class="o">-&gt;~</span><span class="n">string</span><span class="p">();</span><span class="w"></span>
+<span class="linenos">2</span><span class="k">operator</span><span class="w"> </span><span class="k">delete</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="operator-new">
 <h4>operator new()<a class="headerlink" href="#operator-new" title="Permalink to this headline"></a></h4>
 <p>operator new() 用于申请堆空间，功能类似于 C 语言的库函数 malloc() 。如果申请成功则直接返回，如果失败则抛出一个 bad_alloc 异常。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span><span class="o">*</span> <span class="n">operator</span> <span class="n">new</span><span class="p">(</span><span class="n">std</span><span class="p">::</span><span class="n">size_t</span> <span class="n">size</span><span class="p">)</span> <span class="n">throw</span> <span class="p">(</span><span class="n">std</span><span class="p">::</span><span class="n">bad_alloc</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="k">operator</span><span class="w"> </span><span class="k">new</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">)</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">bad_alloc</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <p>正如 new 与 delete 相互对应，operator new() 与 operator delete() 也是一一对应，如果重载了 operator new()，那么理应重载 operator delete()。</p>
@@ -384,28 +384,28 @@ const ClassName operator--(int); // 后缀--
 <h4>placement new()<a class="headerlink" href="#placement-new" title="Permalink to this headline"></a></h4>
 <p>使用 new 申请空间时，是从系统的堆中分配空间，申请所得空间的 <strong>位置</strong> 是根据当时内存实际使用情况决定。但是，在某些特殊情况下，可能需要在指定的内存位置去创建对象。</p>
 <p>placement new() 的作用是在已经获得的堆空间上调用构造函数来初始化对象，也就是定位构造对象。placement new() 是 C++ 标准库的一部分，被申明在头文件 <code class="docutils literal notranslate"><span class="pre">&lt;new&gt;</span></code> 中，其函数原型是：</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span><span class="o">*</span> <span class="n">operator</span> <span class="n">new</span><span class="p">(</span><span class="n">std</span><span class="p">::</span><span class="n">size_t</span><span class="p">,</span> <span class="n">void</span><span class="o">*</span> <span class="n">__p</span><span class="p">)</span> <span class="n">throw</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="k">return</span> <span class="n">__p</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="k">operator</span><span class="w"> </span><span class="k">new</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">__p</span><span class="p">)</span><span class="w"> </span><span class="k">throw</span><span class="p">()</span><span class="w"></span>
+<span class="linenos">2</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">3</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">__p</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">4</span><span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>placement new() 只是 operator new() 的一个重载，多了一个已经申请好的空间，由 <code class="docutils literal notranslate"><span class="pre">void*</span> <span class="pre">__p</span></code> 指定。用法是 <code class="docutils literal notranslate"><span class="pre">new(addr)</span> <span class="pre">constructor()</span></code> ，在 addr 指向的内存空间调用构造函数进行初始化。</p>
 <p>placement new() 既可以在栈上构造对象，也可以在堆上构造对象，取决于参数 <code class="docutils literal notranslate"><span class="pre">__p</span></code> 所指的空间位置。</p>
 <p>正如 new 与 delete 相互对应，operator new() 需要对应一个析构函数来清理所在内存中的内容（不是直接释放内存）。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">string</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="n">new</span> <span class="n">string</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">);</span> <span class="o">//</span> <span class="n">堆</span>
-<span class="n">new</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="n">string</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">);</span>
-<span class="n">p</span><span class="o">-&gt;~</span><span class="n">string</span><span class="p">();</span>
-<span class="n">string</span><span class="o">*</span> <span class="n">q</span> <span class="o">=</span> <span class="n">new</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="n">string</span><span class="p">(</span><span class="s2">&quot;goodbye&quot;</span><span class="p">);</span>
-<span class="k">assert</span><span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="n">q</span><span class="p">);</span>
-<span class="n">q</span><span class="o">-&gt;~</span><span class="n">string</span><span class="p">();</span>
-<span class="n">operator</span> <span class="n">delete</span><span class="p">(</span><span class="n">q</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">string</span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">string</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// 堆</span>
+<span class="linenos">2</span><span class="k">new</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="n">string</span><span class="p">(</span><span class="s">&quot;hello world&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">3</span><span class="n">p</span><span class="o">-&gt;~</span><span class="n">string</span><span class="p">();</span><span class="w"></span>
+<span class="linenos">4</span><span class="n">string</span><span class="o">*</span><span class="w"> </span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="n">string</span><span class="p">(</span><span class="s">&quot;goodbye&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">5</span><span class="n">assert</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">q</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">6</span><span class="n">q</span><span class="o">-&gt;~</span><span class="n">string</span><span class="p">();</span><span class="w"></span>
+<span class="linenos">7</span><span class="k">operator</span><span class="w"> </span><span class="k">delete</span><span class="p">(</span><span class="n">q</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">string</span> <span class="n">mem</span> <span class="o">=</span> <span class="s2">&quot;abcd&quot;</span><span class="p">;</span> <span class="o">//</span> <span class="n">栈</span>
-<span class="n">string</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="n">new</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mem</span><span class="p">)</span> <span class="n">string</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">);</span>
-<span class="k">assert</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mem</span> <span class="o">==</span> <span class="n">p</span><span class="p">);</span>
-<span class="n">p</span><span class="o">-&gt;~</span><span class="n">string</span><span class="p">();</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">string</span><span class="w"> </span><span class="n">mem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;abcd&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// 栈</span>
+<span class="linenos">2</span><span class="n">string</span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mem</span><span class="p">)</span><span class="w"> </span><span class="n">string</span><span class="p">(</span><span class="s">&quot;hello world&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">3</span><span class="n">assert</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mem</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">p</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">4</span><span class="n">p</span><span class="o">-&gt;~</span><span class="n">string</span><span class="p">();</span><span class="w"></span>
 </pre></div>
 </div>
 </section>

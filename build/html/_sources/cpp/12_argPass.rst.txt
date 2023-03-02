@@ -20,8 +20,8 @@
 
   void reset(int* p)
   {
-     *p = 0; // 改变了指针p所指对象的值
-     p = 0; // 只改变了p的局部拷贝，实参未被改变
+      *p = 0; // 改变了指针p所指对象的值
+      p = 0; // 只改变了p的局部拷贝，实参未被改变
   }
 
   templtate<class T>
@@ -78,16 +78,16 @@
 
     void delPtr(int* p)
     {
-      delete p;
+        delete p;
     }
 
     int main()
     {
-      int* p = new int(6);
-      cout << p << ends << *p << endl; // 00746AE0 6
-      delPtr(p);
-      cout << p << ends << *p << endl; // 00746AE0 -572662307
-      return 0;
+        int* p = new int(6);
+        cout << p << ends << *p << endl; // 00746AE0 6
+        delPtr(p);
+        cout << p << ends << *p << endl; // 00746AE0 -572662307
+        return 0;
     }
 
 
@@ -98,17 +98,17 @@
 
     void delPtr(int* &p)
     {
-      delete p;
+        delete p;
     }
 
     int main()
     {
-      int* p = new int(6);
-      cout << p << ends << *p << endl; // 006F6AE0 6
-      delPtr(p);
-      cout << p << endl; // 00008123
-      cout << *p << endl; // runtime error
-      return 0;
+        int* p = new int(6);
+        cout << p << ends << *p << endl; // 006F6AE0 6
+        delPtr(p);
+        cout << p << endl; // 00008123
+        cout << *p << endl; // runtime error
+        return 0;
     }
 
 参考资料

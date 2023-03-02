@@ -14,21 +14,21 @@
 
   int main(int argc, char ** argv)
   {
-    int k = 1;
-    int* pk = &k;
-    int& rk = k;
+      int k = 1;
+      int* pk = &k;
+      int& rk = k;
 
-    cout << "&k:" << &k << endl;   // 0029FC44
-    cout << "k:" << k << endl;     // 1
+      cout << "&k:" << &k << endl;   // 0029FC44
+      cout << "k:" << k << endl;     // 1
 
-    cout << "&pk:" << &pk << endl; // 0029FC68
-    cout << "pk:" << pk << endl;   // 0029FC44 (pk = &k)
-    cout << "*pk" << *pk << endl;  // 1
+      cout << "&pk:" << &pk << endl; // 0029FC68
+      cout << "pk:" << pk << endl;   // 0029FC44 (pk = &k)
+      cout << "*pk" << *pk << endl;  // 1
 
-    cout << "&rk:" << &rk << endl; // 0029FC44 (&rk = &k)
-    cout << "rk:" << rk << endl;   // 1
+      cout << "&rk:" << &rk << endl; // 0029FC44 (&rk = &k)
+      cout << "rk:" << rk << endl;   // 1
 
-    return 0;
+      return 0;
   }
 
 
@@ -77,14 +77,14 @@
   // const Rational& operator*(const Rational& lhs, const Rational& rhs);
 
   public:
-    Rational(int _n = 0, int _d = 0): n(_n), d(_d){}
+      Rational(int _n = 0, int _d = 0): n(_n), d(_d){}
   private:
-    int n, d;
+      int n, d;
   };
 
   inline const Rational operator*(const Rational& lhs, const Rational& rhs)
   {
-    return Rational(lhs.n * rhs.n, lhs.d * rhs.d);
+      return Rational(lhs.n * rhs.n, lhs.d * rhs.d);
   }
   // 这样做需要承担返回值的构造成本和析构成本
   // 但行为是正确的
@@ -97,8 +97,8 @@
 
     const Rational& operator*(const Rational& lhs, const Rational& rhs)
     {
-      Rational result(lhs.n * rhs.n, lhs.d * rhs.d); // result 是 local 对象
-      return result;
+        Rational result(lhs.n * rhs.n, lhs.d * rhs.d); // result 是 local 对象
+        return result;
     }
 
 - **绝对不要返回指向一个 heap-allocated 对象（new）的 reference。** 虽然不存在局部变量的被动销毁问题，但是面临其它局面：被函数返回的引用只是作为一个临时变量出现，而没有被赋给一个实际的变量，那么无法获取该引用背后的指针，则该引用所指向的空间（由new分配）就无法释放，造成 memory leak。
@@ -108,15 +108,15 @@
 
     const Rational& operator*(const Rational& lhs, const Rational& rhs)
     {
-      Rational* result = new Rational(lhs.n * rhs.n, lhs.d * rhs.d); // result 是 heap-allocated 对象
-      return *result;
+        Rational* result = new Rational(lhs.n * rhs.n, lhs.d * rhs.d); // result 是 heap-allocated 对象
+        return *result;
     }
 
     int main()
     {
-      Rational w, x, y, z;
-      w = x * y * z; // 这里使用了两次 new
-      return 0;
+        Rational w, x, y, z;
+        w = x * y * z; // 这里使用了两次 new
+        return 0;
     }
     // 主函数结束时，已经执行了4 + 2次构造函数，4 次析构函数
 

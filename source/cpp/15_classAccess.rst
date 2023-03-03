@@ -50,12 +50,12 @@ public、protected、private
   ============   =========================   ======================   ======================
 
 
-class与struct
+class 与 struct
 -------------------
 
-class不写权限修饰符，成员默认是 ``private`` ，而struct的成员默认是 ``public`` 。
+class 不写权限修饰符，成员默认是 ``private`` ；struct 的成员默认是 ``public`` 。
 
-class的继承默认是 ``private`` 的，而struct默认是 ``public`` 的。
+class 的继承默认是 ``private`` ，struct 的继承默认是 ``public`` 。
 
 
 参考资料

@@ -3,7 +3,7 @@
 
 const 成员
 -------------------
-const数据成员的初始化只能在类的构造函数的初始化列表中进行。声明const变量时不能初始化。
+const 数据成员的初始化只能在类的构造函数的初始化列表中进行。声明 const 变量时不能初始化。
 
 .. note::
 
@@ -22,7 +22,7 @@ const数据成员的初始化只能在类的构造函数的初始化列表中进
 static 成员
 ----------------
 不能在定义对象时对静态变量进行 **定义和初始化** ，即不能用构造函数进行初始化。
-初始化在类体外进行，前面不加static修饰符。
+初始化在类体外进行，前面不加 static 修饰。
 
 static const 成员
 --------------------
@@ -51,10 +51,10 @@ static const 成员
                                                       {'3', {'d', 'e', 'f'}},
                                                       {'4', {'g', 'h', 'i'}}}; // mapping 的定义
 
-  // 注：const map只能通过迭代器 const_iterator 访问元素（it->first, it->second），不能通过下标[]的方式访问。
+  // 注：const map 只能通过成员函数 at 或迭代器 const_iterator 访问元素（it->first, it->second），不能通过下标[]的方式访问。
 
   // 对应类的 static const int/char/bool 成员常量，如果不取他们的地址，则可以直接声明并使用，而无需提供以下的定义式。
-  const int Solution:: var; // var 的定义。由于 常量var 在类内声明时已经获得了初始值，因此定义时不可以再设初始值。
+  const int Solution:: var; // var 的定义。由于常量 var 在类内声明时已经获得了初始值，因此定义时不可以再设初始值。
 
 
 .. note::
@@ -77,8 +77,8 @@ static const 成员
   头文件中应该写什么？
     - 变量和函数的声明，而不是定义。如：``extern int a; void f();`` 是允许的，而 ``int a; void f() {};`` 是不允许的。
 
-    - const全局变量可以定义在头文件中，不会因为头文件重复包含而导致变量重复定义的编译错误。
-      但是在定义指针时要注意， ``const char* p = "name"`` 定义的指针不是const，可能导致错误；而 ``char* const p = "name"`` 不会。
+    - const 全局变量可以定义在头文件中，不会因为头文件重复包含而导致变量重复定义的编译错误。
+      但是在定义指针时要注意， ``const char* p = "name"`` 定义的指针不是 const，可能导致错误；而 ``char* const p = "name"`` 不会。
 
     - 内联函数。
 

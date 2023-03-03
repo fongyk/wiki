@@ -59,7 +59,8 @@ default 和 delete
 
 直接初始化直接调用与实参匹配的构造函数，拷贝初始化总是调用拷贝构造函数。
 
-::
+.. code-block:: cpp
+  :linenos:
 
   string dots(10, '.');         // 直接初始化
   string s(dots);               // 直接初始化
@@ -105,7 +106,10 @@ default 和 delete
   };
 
 
-调用::
+调用：
+
+.. code-block:: cpp
+  :linenos:
 
   ClassTest ct1("ab");          // 直接初始化
   // 输出： ClassTest (const char *pc)
@@ -137,8 +141,9 @@ explicit
 ------------
 
 ::
-
-	 This keyword is a declaration specifier that can only be applied to in-class constructor declaration. An explicit constructor cannot take part in implicit conversions. It can only be used to explicitly construct an object.
+  
+    This keyword is a declaration specifier that can only be applied to in-class constructor declaration. 
+    An explicit constructor cannot take part in implicit conversions. It can only be used to explicitly construct an object.
 
 单个参数的构造函数（或者除了第一个参数外其余参数都有缺省值的多参构造函数）承担了两个角色：
 
@@ -275,7 +280,7 @@ initializer_list 可由一对指针（分别指向列表首、尾）或指针+�
 push 和 emplace
 ---------------------------
 
-在 19 章提到了 push 和 emplace 的区别，这里用一个例子解释。
+在 19 章提到了 push 和 emplace 的区别，这里用一个例子说明。
 
 .. container:: toggle
 

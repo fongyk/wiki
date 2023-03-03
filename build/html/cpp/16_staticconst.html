@@ -132,7 +132,7 @@
 <h1><span class="section-number">16. </span>类的static const成员<a class="headerlink" href="#static-const" title="Permalink to this headline"></a></h1>
 <section id="const">
 <h2><span class="section-number">16.1. </span>const 成员<a class="headerlink" href="#const" title="Permalink to this headline"></a></h2>
-<p>const数据成员的初始化只能在类的构造函数的初始化列表中进行。声明const变量时不能初始化。</p>
+<p>const 数据成员的初始化只能在类的构造函数的初始化列表中进行。声明 const 变量时不能初始化。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>必须使用初始化列表的情形</p>
@@ -150,7 +150,7 @@
 <section id="static">
 <h2><span class="section-number">16.2. </span>static 成员<a class="headerlink" href="#static" title="Permalink to this headline"></a></h2>
 <p>不能在定义对象时对静态变量进行 <strong>定义和初始化</strong> ，即不能用构造函数进行初始化。
-初始化在类体外进行，前面不加static修饰符。</p>
+初始化在类体外进行，前面不加 static 修饰。</p>
 </section>
 <section id="id1">
 <h2><span class="section-number">16.3. </span>static const 成员<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
@@ -175,10 +175,10 @@
 <span class="linenos">18</span><span class="w">                                                    </span><span class="p">{</span><span class="sc">&#39;3&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;d&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;e&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;f&#39;</span><span class="p">}},</span><span class="w"></span>
 <span class="linenos">19</span><span class="w">                                                    </span><span class="p">{</span><span class="sc">&#39;4&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;g&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;h&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;i&#39;</span><span class="p">}}};</span><span class="w"> </span><span class="c1">// mapping 的定义</span>
 <span class="linenos">20</span>
-<span class="linenos">21</span><span class="c1">// 注：const map只能通过迭代器 const_iterator 访问元素（it-&gt;first, it-&gt;second），不能通过下标[]的方式访问。</span>
+<span class="linenos">21</span><span class="c1">// 注：const map 只能通过成员函数 at 或迭代器 const_iterator 访问元素（it-&gt;first, it-&gt;second），不能通过下标[]的方式访问。</span>
 <span class="linenos">22</span>
 <span class="linenos">23</span><span class="c1">// 对应类的 static const int/char/bool 成员常量，如果不取他们的地址，则可以直接声明并使用，而无需提供以下的定义式。</span>
-<span class="linenos">24</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Solution</span><span class="o">::</span><span class="w"> </span><span class="n">var</span><span class="p">;</span><span class="w"> </span><span class="c1">// var 的定义。由于 常量var 在类内声明时已经获得了初始值，因此定义时不可以再设初始值。</span>
+<span class="linenos">24</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Solution</span><span class="o">::</span><span class="w"> </span><span class="n">var</span><span class="p">;</span><span class="w"> </span><span class="c1">// var 的定义。由于常量 var 在类内声明时已经获得了初始值，因此定义时不可以再设初始值。</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -198,8 +198,8 @@
 <dl class="simple">
 <dt>头文件中应该写什么？</dt><dd><ul class="simple">
 <li><p>变量和函数的声明，而不是定义。如：<code class="docutils literal notranslate"><span class="pre">extern</span> <span class="pre">int</span> <span class="pre">a;</span> <span class="pre">void</span> <span class="pre">f();</span></code> 是允许的，而 <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">a;</span> <span class="pre">void</span> <span class="pre">f()</span> <span class="pre">{};</span></code> 是不允许的。</p></li>
-<li><p>const全局变量可以定义在头文件中，不会因为头文件重复包含而导致变量重复定义的编译错误。
-但是在定义指针时要注意， <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">char*</span> <span class="pre">p</span> <span class="pre">=</span> <span class="pre">&quot;name&quot;</span></code> 定义的指针不是const，可能导致错误；而 <code class="docutils literal notranslate"><span class="pre">char*</span> <span class="pre">const</span> <span class="pre">p</span> <span class="pre">=</span> <span class="pre">&quot;name&quot;</span></code> 不会。</p></li>
+<li><p>const 全局变量可以定义在头文件中，不会因为头文件重复包含而导致变量重复定义的编译错误。
+但是在定义指针时要注意， <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">char*</span> <span class="pre">p</span> <span class="pre">=</span> <span class="pre">&quot;name&quot;</span></code> 定义的指针不是 const，可能导致错误；而 <code class="docutils literal notranslate"><span class="pre">char*</span> <span class="pre">const</span> <span class="pre">p</span> <span class="pre">=</span> <span class="pre">&quot;name&quot;</span></code> 不会。</p></li>
 <li><p>内联函数。</p></li>
 <li><p>类的定义。成员函数定义在类的定义体内，编译器会视其为内联函数；如果定义在类的头文件内，而没有写进类定义体内，是不合法的，需要定义
 在别的源文件（.cpp）文件内。</p></li>

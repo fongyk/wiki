@@ -181,12 +181,12 @@
 <section id="id3">
 <h2><span class="section-number">23.3. </span>直接初始化和拷贝初始化<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <p>直接初始化直接调用与实参匹配的构造函数，拷贝初始化总是调用拷贝构造函数。</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">string</span><span class="w"> </span><span class="n">dots</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;.&#39;</span><span class="p">);</span><span class="w">         </span><span class="c1">// 直接初始化</span>
-<span class="n">string</span><span class="w"> </span><span class="nf">s</span><span class="p">(</span><span class="n">dots</span><span class="p">);</span><span class="w">               </span><span class="c1">// 直接初始化</span>
-
-<span class="n">string</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dots</span><span class="p">;</span><span class="w">             </span><span class="c1">// 拷贝初始化</span>
-<span class="n">string</span><span class="w"> </span><span class="n">s3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;999-9999&quot;</span><span class="p">;</span><span class="w">       </span><span class="c1">// 拷贝初始化</span>
-<span class="n">string</span><span class="w"> </span><span class="n">s4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">string</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;9&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// 拷贝初始化</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">string</span><span class="w"> </span><span class="n">dots</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;.&#39;</span><span class="p">);</span><span class="w">         </span><span class="c1">// 直接初始化</span>
+<span class="linenos">2</span><span class="n">string</span><span class="w"> </span><span class="nf">s</span><span class="p">(</span><span class="n">dots</span><span class="p">);</span><span class="w">               </span><span class="c1">// 直接初始化</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="n">string</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dots</span><span class="p">;</span><span class="w">             </span><span class="c1">// 拷贝初始化</span>
+<span class="linenos">5</span><span class="n">string</span><span class="w"> </span><span class="n">s3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;999-9999&quot;</span><span class="p">;</span><span class="w">       </span><span class="c1">// 拷贝初始化</span>
+<span class="linenos">6</span><span class="n">string</span><span class="w"> </span><span class="n">s4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">string</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;9&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// 拷贝初始化</span>
 </pre></div>
 </div>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span><span class="w"> </span><span class="nc">ClassTest</span><span class="w"></span>
@@ -222,36 +222,37 @@
 <span class="linenos">31</span><span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>
-<p>调用:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">ClassTest</span><span class="w"> </span><span class="n">ct1</span><span class="p">(</span><span class="s">&quot;ab&quot;</span><span class="p">);</span><span class="w">          </span><span class="c1">// 直接初始化</span>
-<span class="c1">// 输出： ClassTest (const char *pc)</span>
-
-<span class="n">ClassTest</span><span class="w"> </span><span class="n">ct2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ab&quot;</span><span class="p">;</span><span class="w">         </span><span class="c1">// 拷贝初始化</span>
-<span class="c1">// 输出： ClassTest (const char *pc)</span>
-<span class="c1">// 首先调用构造函数 ClassTest(const char *pc) 函数创建一个临时对象；然后调用拷贝构造函数，把这个临时对象作为参数，构造对象ct2</span>
-<span class="c1">// 然而结果并没有输出 ClassTest(const ClassTest&amp; ct)。有说法是编译器优化之后，直接匹配了 ClassTest(const char *pc)，不再调用拷贝构造函数</span>
-
-<span class="n">ClassTest</span><span class="w"> </span><span class="n">ct3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ct1</span><span class="p">;</span><span class="w">          </span><span class="c1">// 拷贝初始化</span>
-<span class="c1">// 输出： ClassTest(const ClassTest&amp; ct)</span>
-<span class="c1">// ct1 已经存在，直接调用拷贝构造函数</span>
-
-<span class="n">ClassTest</span><span class="w"> </span><span class="nf">ct4</span><span class="p">(</span><span class="n">ct1</span><span class="p">);</span><span class="w">           </span><span class="c1">// 直接初始化</span>
-<span class="c1">// 输出： ClassTest(const ClassTest&amp; ct)</span>
-<span class="c1">// ct1 已经存在，直接调用拷贝构造函数</span>
-
-<span class="n">ClassTest</span><span class="w"> </span><span class="n">ct5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ClassTest</span><span class="p">();</span><span class="w">  </span><span class="c1">// 拷贝初始化</span>
-<span class="c1">// 输出： ClassTest()</span>
-<span class="c1">// 首先调用默认构造函数产生一个临时对象；然后调用拷贝构造函数，把这个临时对象作为参数，构造对象ct5</span>
-
-<span class="n">ct3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ct2</span><span class="p">;</span><span class="w">                    </span><span class="c1">// 赋值</span>
-<span class="c1">// 输出： ClassTest&amp; operator=(const ClassTest &amp;ct)</span>
+<p>调用：</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">ClassTest</span><span class="w"> </span><span class="n">ct1</span><span class="p">(</span><span class="s">&quot;ab&quot;</span><span class="p">);</span><span class="w">          </span><span class="c1">// 直接初始化</span>
+<span class="linenos"> 2</span><span class="c1">// 输出： ClassTest (const char *pc)</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="n">ClassTest</span><span class="w"> </span><span class="n">ct2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ab&quot;</span><span class="p">;</span><span class="w">         </span><span class="c1">// 拷贝初始化</span>
+<span class="linenos"> 5</span><span class="c1">// 输出： ClassTest (const char *pc)</span>
+<span class="linenos"> 6</span><span class="c1">// 首先调用构造函数 ClassTest(const char *pc) 函数创建一个临时对象；然后调用拷贝构造函数，把这个临时对象作为参数，构造对象ct2</span>
+<span class="linenos"> 7</span><span class="c1">// 然而结果并没有输出 ClassTest(const ClassTest&amp; ct)。有说法是编译器优化之后，直接匹配了 ClassTest(const char *pc)，不再调用拷贝构造函数</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="n">ClassTest</span><span class="w"> </span><span class="n">ct3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ct1</span><span class="p">;</span><span class="w">          </span><span class="c1">// 拷贝初始化</span>
+<span class="linenos">10</span><span class="c1">// 输出： ClassTest(const ClassTest&amp; ct)</span>
+<span class="linenos">11</span><span class="c1">// ct1 已经存在，直接调用拷贝构造函数</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="n">ClassTest</span><span class="w"> </span><span class="nf">ct4</span><span class="p">(</span><span class="n">ct1</span><span class="p">);</span><span class="w">           </span><span class="c1">// 直接初始化</span>
+<span class="linenos">14</span><span class="c1">// 输出： ClassTest(const ClassTest&amp; ct)</span>
+<span class="linenos">15</span><span class="c1">// ct1 已经存在，直接调用拷贝构造函数</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="n">ClassTest</span><span class="w"> </span><span class="n">ct5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ClassTest</span><span class="p">();</span><span class="w">  </span><span class="c1">// 拷贝初始化</span>
+<span class="linenos">18</span><span class="c1">// 输出： ClassTest()</span>
+<span class="linenos">19</span><span class="c1">// 首先调用默认构造函数产生一个临时对象；然后调用拷贝构造函数，把这个临时对象作为参数，构造对象ct5</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span><span class="n">ct3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ct2</span><span class="p">;</span><span class="w">                    </span><span class="c1">// 赋值</span>
+<span class="linenos">22</span><span class="c1">// 输出： ClassTest&amp; operator=(const ClassTest &amp;ct)</span>
 </pre></div>
 </div>
 <p>当把拷贝构造函数设置为 <code class="docutils literal notranslate"><span class="pre">private</span></code> ，ct3、ct4、ct5的初始化都无法完成。</p>
 </section>
 <section id="explicit">
 <h2><span class="section-number">23.4. </span>explicit<a class="headerlink" href="#explicit" title="Permalink to this headline"></a></h2>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">This</span><span class="w"> </span><span class="n">keyword</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">declaration</span><span class="w"> </span><span class="n">specifier</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">only</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">applied</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">in</span><span class="o">-</span><span class="k">class</span><span class="w"> </span><span class="nc">constructor</span><span class="w"> </span><span class="n">declaration</span><span class="p">.</span><span class="w"> </span><span class="n">An</span><span class="w"> </span><span class="k">explicit</span><span class="w"> </span><span class="n">constructor</span><span class="w"> </span><span class="n">cannot</span><span class="w"> </span><span class="n">take</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">implicit</span><span class="w"> </span><span class="n">conversions</span><span class="p">.</span><span class="w"> </span><span class="n">It</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">only</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">explicitly</span><span class="w"> </span><span class="n">construct</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">object</span><span class="p">.</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">This</span><span class="w"> </span><span class="n">keyword</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">declaration</span><span class="w"> </span><span class="n">specifier</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">only</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">applied</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">in</span><span class="o">-</span><span class="k">class</span><span class="w"> </span><span class="nc">constructor</span><span class="w"> </span><span class="n">declaration</span><span class="p">.</span><span class="w"></span>
+<span class="n">An</span><span class="w"> </span><span class="k">explicit</span><span class="w"> </span><span class="n">constructor</span><span class="w"> </span><span class="n">cannot</span><span class="w"> </span><span class="n">take</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">implicit</span><span class="w"> </span><span class="n">conversions</span><span class="p">.</span><span class="w"> </span><span class="n">It</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">only</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">explicitly</span><span class="w"> </span><span class="n">construct</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">object</span><span class="p">.</span><span class="w"></span>
 </pre></div>
 </div>
 <p>单个参数的构造函数（或者除了第一个参数外其余参数都有缺省值的多参构造函数）承担了两个角色：</p>
@@ -374,7 +375,7 @@
 </section>
 <section id="push-emplace">
 <h2><span class="section-number">23.6. </span>push 和 emplace<a class="headerlink" href="#push-emplace" title="Permalink to this headline"></a></h2>
-<p>在 19 章提到了 push 和 emplace 的区别，这里用一个例子解释。</p>
+<p>在 19 章提到了 push 和 emplace 的区别，这里用一个例子说明。</p>
 <div class="toggle docutils container">
 <div class="header docutils container">
 <p><span class="math notranslate nohighlight">\(\color{darkgreen}{Example}\)</span></p>

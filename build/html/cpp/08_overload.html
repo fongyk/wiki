@@ -367,8 +367,8 @@ vptr不存在，不可能完成动态绑定。</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>先是父类的构造函数；（create A）</p></li>
-<li><p>然后如果类成员变量中有某类（可能是父类，也可能不是）的对象，调用其相应的构造函数；（create A）</p></li>
-<li><p>最后调用派生类自身的构造函数。（copy-construct A, create B）</p></li>
+<li><p>然后如果类成员变量中有某类（可能是父类，也可能不是）的对象，调用其相应的构造函数；（copy-construct A）</p></li>
+<li><p>最后调用派生类自身的构造函数。（create B）</p></li>
 </ul>
 </div></blockquote>
 <p>析构函数的调用顺序正好相反。</p>
@@ -392,7 +392,7 @@ vptr不存在，不可能完成动态绑定。</p>
 <span class="linenos">18</span>
 <span class="linenos">19</span><span class="w">  </span><span class="o">~</span><span class="n">C</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;~C&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span><span class="w">   </span><span class="p">}</span><span class="w"></span>
 <span class="linenos">20</span><span class="p">};</span><span class="w"></span>
-<span class="linenos">21</span><span class="k">class</span><span class="w"> </span><span class="nc">B</span><span class="o">:</span><span class="k">public</span><span class="w"> </span><span class="n">A</span><span class="w"></span>
+<span class="linenos">21</span><span class="k">class</span><span class="w"> </span><span class="nc">B</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">A</span><span class="w"></span>
 <span class="linenos">22</span><span class="p">{</span><span class="w"></span>
 <span class="linenos">23</span><span class="k">public</span><span class="o">:</span><span class="w"></span>
 <span class="linenos">24</span><span class="w">  </span><span class="n">B</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;create B&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span><span class="w">  </span><span class="p">}</span><span class="w"></span>

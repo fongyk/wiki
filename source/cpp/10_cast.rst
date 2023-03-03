@@ -4,7 +4,7 @@
 static_cast<type> (expr)
 ---------------------------------
 
-**1**. ``static_cast`` 作用和C语言风格强制转换的效果基本一样，由于没有运行时类型检查来保证转换的安全性，所以这类型的强制转换和C语言风格的强制转换都有安全隐患。
+**1**. ``static_cast`` 作用和 C 语言风格强制转换的效果基本一样，由于没有运行时类型检查来保证转换的安全性，所以这类型的强制转换和 C 语言风格的强制转换都有安全隐患。
 
 **2**. 用于基本数据类型之间的转换，如把 ``int`` 转换成 ``char`` ，把 ``int`` 转换成 ``enum`` 。这种转换的安全性需要开发者来维护。
 
@@ -44,9 +44,9 @@ type 可以是指针、引用、右值引用。
   {
     try
     {
-      Base * pba = new Derived;
-      Base * pbb = new Base;
-      Derived * pd;
+      Base* pba = new Derived;
+      Base* pbb = new Base;
+      Derived* pd;
 
       pd = dynamic_cast<Derived*>(pba);
       if (pd==0) cout << "Null pointer on first type-cast.\n";
@@ -64,14 +64,14 @@ type 可以是指针、引用、右值引用。
 const_cast<type> (expr)
 --------------------------------
 
-**1**. 去掉或加上类型的 ``const``、``volitale`` 属性;
+**1**. 去掉类型的 ``const`` 、 ``volitale`` 属性（对象本身的属性没有改变）;
 
 **2**. 常量指针被转化成非常量的指针，并且仍然指向原来的对象；
 
 **3**. 常量引用被转换成非常量的引用，并且仍然指向原来的对象；
 
-**4**. ``const_cast`` 一般用于修改指针。如 ``const char *p`` 形式。
-如果有一个函数，它的形参是 ``non-const`` 类型变量，而且函数不会对实参的值进行改动，这时我们可以使用类型为 ``const`` 的变量来调用函数，此时 ``const_cast`` 就派上用场了。
+**4**. ``const_cast`` 一般用于修改指针。如 ``const char* p`` 形式。
+如果有一个函数，它的形参是 non-const 类型变量，而且函数不会对实参的值进行改动，这时我们可以使用类型为 ``const`` 的变量来调用函数，此时 const_cast 就派上用场了。
 
 .. code-block:: cpp
   :linenos:
@@ -80,14 +80,14 @@ const_cast<type> (expr)
   #include <iostream>
   using namespace std;
 
-  void print (char * str)
+  void print (char* str)
   {
     cout << str << '\n';
   }
 
   int main ()
   {
-    const char * c = "sample text";
+    const char* c = "sample text";
     print ( const_cast<char *> (c) );
     return 0;
   }
@@ -118,13 +118,14 @@ reinterpret_cast<type> (expr)
 
 **stringstream** 的一些操作：
 
-  - ``stringstream strm`` ; // strm是一个未绑定的stringstream类型
+  - ``stringstream strm`` ：strm 是一个未绑定的 stringstream 对象
 
-  - ``stringstream strm(s)`` ; // strm是一个stringstream对象，保存 string s 的一个拷贝
+  - ``stringstream strm(s)`` ：strm 是一个 stringstream 对象，保存字符串 s 的一个拷贝
 
-  - ``strm.str()`` ; // 返回strm保存的拷贝
+  - ``s = strm.str()`` ：返回 strm 保存的内容的拷贝
+  
+  - ``strm.str(s)`` ：把 strm 保存的内容修改为 s，丢弃之前的内容。
 
-  - ``strm(s)`` ; // 将 string s 拷贝到 strm 中，返回void
 
 强制类型转换
 ^^^^^^^^^^^^^^^^^

@@ -137,7 +137,7 @@
 <h1><span class="section-number">10. </span>强制类型转换<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
 <section id="static-cast-type-expr">
 <h2><span class="section-number">10.1. </span>static_cast&lt;type&gt; (expr)<a class="headerlink" href="#static-cast-type-expr" title="Permalink to this headline"></a></h2>
-<p><strong>1</strong>. <code class="docutils literal notranslate"><span class="pre">static_cast</span></code> 作用和C语言风格强制转换的效果基本一样，由于没有运行时类型检查来保证转换的安全性，所以这类型的强制转换和C语言风格的强制转换都有安全隐患。</p>
+<p><strong>1</strong>. <code class="docutils literal notranslate"><span class="pre">static_cast</span></code> 作用和 C 语言风格强制转换的效果基本一样，由于没有运行时类型检查来保证转换的安全性，所以这类型的强制转换和 C 语言风格的强制转换都有安全隐患。</p>
 <p><strong>2</strong>. 用于基本数据类型之间的转换，如把 <code class="docutils literal notranslate"><span class="pre">int</span></code> 转换成 <code class="docutils literal notranslate"><span class="pre">char</span></code> ，把 <code class="docutils literal notranslate"><span class="pre">int</span></code> 转换成 <code class="docutils literal notranslate"><span class="pre">enum</span></code> 。这种转换的安全性需要开发者来维护。</p>
 <p><strong>3</strong>. C++ 的任何的隐式转换都是使用 <code class="docutils literal notranslate"><span class="pre">static_cast</span></code> 来实现。</p>
 <p><strong>4</strong>. 基类和子类之间转换：其中子类指针转换成父类指针是安全的；但父类指针转换成子类指针是不安全的。（基类和子类之间的动态类型转换建议用 <code class="docutils literal notranslate"><span class="pre">dynamic_cast</span></code> ）</p>
@@ -163,9 +163,9 @@
 <span class="linenos">10</span><span class="p">{</span><span class="w"></span>
 <span class="linenos">11</span><span class="w">  </span><span class="k">try</span><span class="w"></span>
 <span class="linenos">12</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
-<span class="linenos">13</span><span class="w">    </span><span class="n">Base</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pba</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Derived</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">14</span><span class="w">    </span><span class="n">Base</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pbb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Base</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">15</span><span class="w">    </span><span class="n">Derived</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pd</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">13</span><span class="w">    </span><span class="n">Base</span><span class="o">*</span><span class="w"> </span><span class="n">pba</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Derived</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">14</span><span class="w">    </span><span class="n">Base</span><span class="o">*</span><span class="w"> </span><span class="n">pbb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Base</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">15</span><span class="w">    </span><span class="n">Derived</span><span class="o">*</span><span class="w"> </span><span class="n">pd</span><span class="p">;</span><span class="w"></span>
 <span class="linenos">16</span>
 <span class="linenos">17</span><span class="w">    </span><span class="n">pd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">Derived</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">pba</span><span class="p">);</span><span class="w"></span>
 <span class="linenos">18</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pd</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Null pointer on first type-cast.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w"></span>
@@ -183,23 +183,23 @@
 </section>
 <section id="const-cast-type-expr">
 <h2><span class="section-number">10.3. </span>const_cast&lt;type&gt; (expr)<a class="headerlink" href="#const-cast-type-expr" title="Permalink to this headline"></a></h2>
-<p><strong>1</strong>. 去掉或加上类型的 <code class="docutils literal notranslate"><span class="pre">const</span></code>、<code class="docutils literal notranslate"><span class="pre">volitale</span></code> 属性;</p>
+<p><strong>1</strong>. 去掉类型的 <code class="docutils literal notranslate"><span class="pre">const</span></code> 、 <code class="docutils literal notranslate"><span class="pre">volitale</span></code> 属性（对象本身的属性没有改变）;</p>
 <p><strong>2</strong>. 常量指针被转化成非常量的指针，并且仍然指向原来的对象；</p>
 <p><strong>3</strong>. 常量引用被转换成非常量的引用，并且仍然指向原来的对象；</p>
-<p><strong>4</strong>. <code class="docutils literal notranslate"><span class="pre">const_cast</span></code> 一般用于修改指针。如 <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">char</span> <span class="pre">*p</span></code> 形式。
-如果有一个函数，它的形参是 <code class="docutils literal notranslate"><span class="pre">non-const</span></code> 类型变量，而且函数不会对实参的值进行改动，这时我们可以使用类型为 <code class="docutils literal notranslate"><span class="pre">const</span></code> 的变量来调用函数，此时 <code class="docutils literal notranslate"><span class="pre">const_cast</span></code> 就派上用场了。</p>
+<p><strong>4</strong>. <code class="docutils literal notranslate"><span class="pre">const_cast</span></code> 一般用于修改指针。如 <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">char*</span> <span class="pre">p</span></code> 形式。
+如果有一个函数，它的形参是 non-const 类型变量，而且函数不会对实参的值进行改动，这时我们可以使用类型为 <code class="docutils literal notranslate"><span class="pre">const</span></code> 的变量来调用函数，此时 const_cast 就派上用场了。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">// const_cast</span>
 <span class="linenos"> 2</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="linenos"> 3</span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w"></span>
 <span class="linenos"> 4</span>
-<span class="linenos"> 5</span><span class="kt">void</span><span class="w"> </span><span class="nf">print</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">str</span><span class="p">)</span><span class="w"></span>
+<span class="linenos"> 5</span><span class="kt">void</span><span class="w"> </span><span class="nf">print</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">str</span><span class="p">)</span><span class="w"></span>
 <span class="linenos"> 6</span><span class="p">{</span><span class="w"></span>
 <span class="linenos"> 7</span><span class="w">  </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">;</span><span class="w"></span>
 <span class="linenos"> 8</span><span class="p">}</span><span class="w"></span>
 <span class="linenos"> 9</span>
 <span class="linenos">10</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">()</span><span class="w"></span>
 <span class="linenos">11</span><span class="p">{</span><span class="w"></span>
-<span class="linenos">12</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;sample text&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">12</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;sample text&quot;</span><span class="p">;</span><span class="w"></span>
 <span class="linenos">13</span><span class="w">  </span><span class="n">print</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">const_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
 <span class="linenos">14</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 <span class="linenos">15</span><span class="p">}</span><span class="w"></span>
@@ -223,10 +223,10 @@
 <p><strong>stringstream</strong> 的一些操作：</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">stringstream</span> <span class="pre">strm</span></code> ; // strm是一个未绑定的stringstream类型</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">stringstream</span> <span class="pre">strm(s)</span></code> ; // strm是一个stringstream对象，保存 string s 的一个拷贝</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">strm.str()</span></code> ; // 返回strm保存的拷贝</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">strm(s)</span></code> ; // 将 string s 拷贝到 strm 中，返回void</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stringstream</span> <span class="pre">strm</span></code> ：strm 是一个未绑定的 stringstream 对象</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stringstream</span> <span class="pre">strm(s)</span></code> ：strm 是一个 stringstream 对象，保存字符串 s 的一个拷贝</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">=</span> <span class="pre">strm.str()</span></code> ：返回 strm 保存的内容的拷贝</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">strm.str(s)</span></code> ：把 strm 保存的内容修改为 s，丢弃之前的内容。</p></li>
 </ul>
 </div></blockquote>
 <section id="id2">

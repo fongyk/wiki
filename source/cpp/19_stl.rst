@@ -69,7 +69,7 @@
   
   - 自减 ``--a`` ``a--`` ``*a--``
 
-- 算术运算 ``a + n`` ``n + a`` ``a - n`` ``n - a``
+- 算术运算 ``a + n`` ``n + a`` ``a - n`` ``a - b``
 
 - 比较 ``a > b`` ``a < b`` ``a >= b`` ``a <= b``
 
@@ -260,7 +260,6 @@ deque
 .. note::
 
   顺序容器构造函数
-
     - ``C c;`` // 默认构造函数，空容器
     - ``C c1(c2);`` // 拷贝构造函数
     - ``C c(it_begin, it_end);`` // 迭代器指定的范围 [it_begin, it_end) 内的元素赋值给c（array不支持）
@@ -368,11 +367,11 @@ map
 
 ``map<K，T>`` 容器，保存的是 ``pair<const K，T>`` 类型的元素。
 
-``map<K，T>::key_type`` ：键类型
+  - ``map<K，T>::key_type`` ：键类型
 
-``map<K，T>::mapped_type`` ：值类型
+  - ``map<K，T>::mapped_type`` ：值类型
 
-``map<K，T>::value_type`` ：pair类型， ``<map<K，T>::key_type, map<K，T>::mapped_type>``
+  - ``map<K，T>::value_type`` ：pair类型， ``<map<K，T>::key_type, map<K，T>::mapped_type>``
 
 - 访问：[key]，at(key)
 
@@ -419,7 +418,7 @@ map
   ``it = myMap.erase(it)`` 等效为 ``myMap.erase(it++)`` 。
 
 
-例子
+例子：
 
 .. code-block:: cpp
   :linenos:

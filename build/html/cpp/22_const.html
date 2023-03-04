@@ -133,7 +133,7 @@
 <h1><span class="section-number">22. </span>const和constexpr<a class="headerlink" href="#constconstexpr" title="Permalink to this headline"></a></h1>
 <section id="constconst">
 <h2><span class="section-number">22.1. </span>顶层const与底层const<a class="headerlink" href="#constconst" title="Permalink to this headline"></a></h2>
-<p>由于指针本身是一个对象，它有可以指向另一个对象，因此，指针本身是不是常量以及指针所指对象是不是常量就是两个相互独立的问题。</p>
+<p>由于指针本身是一个对象，它又可以指向另一个对象，因此，指针本身是不是常量以及指针所指对象是不是常量就是两个相互独立的问题。</p>
 <p><strong>顶层const</strong> （top-level const）表示 <strong>对象本身</strong> 是常量，<strong>底层const</strong> （low-level const）与指针或引用等复合类型的 <strong>基本类型</strong> 部分有关。
 对指针而言，既可以是顶层const，也可以是底层const。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
@@ -174,7 +174,7 @@
 </section>
 <section id="id1">
 <h2><span class="section-number">22.3. </span>const成员函数<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
-<p>默认情况下，<code class="docutils literal notranslate"><span class="pre">this</span></code> 指针的类型是指向 <strong>类类型非常量版本的常量指针</strong> ，即 <code class="docutils literal notranslate"><span class="pre">ClassName</span> <span class="pre">*const</span></code> 。尽管 <code class="docutils literal notranslate"><span class="pre">this</span></code> 是隐式的，但它仍然需要遵守初始化规则。
+<p>默认情况下，<code class="docutils literal notranslate"><span class="pre">this</span></code> 指针的类型是指向 <strong>类类型非常量版本的常量指针</strong> ，即 <code class="docutils literal notranslate"><span class="pre">ClassName</span> <span class="pre">*const</span></code> 。尽管 <code class="docutils literal notranslate"><span class="pre">this</span></code> 是隐式的，但它仍然需要遵守初始化规则，
 意味着在默认情况下，我们不能把 <code class="docutils literal notranslate"><span class="pre">this</span></code> 绑定到一个常量对象上。这一情况也使得我们不能在一个常量对象上调用普通的成员函数。通过把关键字 const 放在成员函数参数列表后面，
 定义该成员函数为 <strong>常量成员函数</strong> 。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Sale</span><span class="w"></span>

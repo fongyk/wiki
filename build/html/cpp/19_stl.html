@@ -216,7 +216,7 @@ They are implemented as class templates, which allows a great flexibility in the
 <li><p>自减 <code class="docutils literal notranslate"><span class="pre">--a</span></code> <code class="docutils literal notranslate"><span class="pre">a--</span></code> <code class="docutils literal notranslate"><span class="pre">*a--</span></code></p></li>
 </ul>
 </li>
-<li><p>算术运算 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+</span> <span class="pre">n</span></code> <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">+</span> <span class="pre">a</span></code> <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">-</span> <span class="pre">n</span></code> <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">-</span> <span class="pre">a</span></code></p></li>
+<li><p>算术运算 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+</span> <span class="pre">n</span></code> <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">+</span> <span class="pre">a</span></code> <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">-</span> <span class="pre">n</span></code> <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">-</span> <span class="pre">b</span></code></p></li>
 <li><p>比较 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&gt;</span> <span class="pre">b</span></code> <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&lt;</span> <span class="pre">b</span></code> <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&gt;=</span> <span class="pre">b</span></code> <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&lt;=</span> <span class="pre">b</span></code></p></li>
 <li><p>复合赋值 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+=</span> <span class="pre">n</span></code> <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">-=</span> <span class="pre">n</span></code></p></li>
 <li><p>下标解引用 <code class="docutils literal notranslate"><span class="pre">a[n]</span></code></p></li>
@@ -387,15 +387,15 @@ They are implemented as class templates, which allows a great flexibility in the
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>顺序容器构造函数</p>
-<blockquote>
-<div><ul class="simple">
+<dl class="simple">
+<dt>顺序容器构造函数</dt><dd><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">c;</span></code> // 默认构造函数，空容器</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">c1(c2);</span></code> // 拷贝构造函数</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">c(it_begin,</span> <span class="pre">it_end);</span></code> // 迭代器指定的范围 [it_begin, it_end) 内的元素赋值给c（array不支持）</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">c{a,</span> <span class="pre">b,</span> <span class="pre">c,...};</span></code> // 列表初始化</p></li>
 </ul>
-</div></blockquote>
+</dd>
+</dl>
 </div>
 </section>
 <section id="set">
@@ -487,9 +487,13 @@ They are implemented as class templates, which allows a great flexibility in the
 </div>
 <p><strong>底层实现：红黑树。</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">map&lt;K，T&gt;</span></code> 容器，保存的是 <code class="docutils literal notranslate"><span class="pre">pair&lt;const</span> <span class="pre">K，T&gt;</span></code> 类型的元素。</p>
-<p><code class="docutils literal notranslate"><span class="pre">map&lt;K，T&gt;::key_type</span></code> ：键类型</p>
-<p><code class="docutils literal notranslate"><span class="pre">map&lt;K，T&gt;::mapped_type</span></code> ：值类型</p>
-<p><code class="docutils literal notranslate"><span class="pre">map&lt;K，T&gt;::value_type</span></code> ：pair类型， <code class="docutils literal notranslate"><span class="pre">&lt;map&lt;K，T&gt;::key_type,</span> <span class="pre">map&lt;K，T&gt;::mapped_type&gt;</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">map&lt;K，T&gt;::key_type</span></code> ：键类型</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">map&lt;K，T&gt;::mapped_type</span></code> ：值类型</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">map&lt;K，T&gt;::value_type</span></code> ：pair类型， <code class="docutils literal notranslate"><span class="pre">&lt;map&lt;K，T&gt;::key_type,</span> <span class="pre">map&lt;K，T&gt;::mapped_type&gt;</span></code></p></li>
+</ul>
+</div></blockquote>
 <ul>
 <li><p>访问：[key]，at(key)</p>
 <ul class="simple">
@@ -530,7 +534,7 @@ They are implemented as class templates, which allows a great flexibility in the
 <p><code class="docutils literal notranslate"><span class="pre">it</span> <span class="pre">=</span> <span class="pre">myMap.erase(it)</span></code> 等效为 <code class="docutils literal notranslate"><span class="pre">myMap.erase(it++)</span></code> 。</p>
 </li>
 </ul>
-<p>例子</p>
+<p>例子：</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="linenos"> 2</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;map&gt;</span><span class="cp"></span>
 <span class="linenos"> 3</span>

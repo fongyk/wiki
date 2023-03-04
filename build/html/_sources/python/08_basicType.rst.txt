@@ -6,11 +6,11 @@
 
 - **str**
 
-  - 索引、切片：[ind]，[first:last]获取区间 [first, last) 内的元素。
+  - 索引、切片：[ind]；[first:last]获取区间 [first, last) 内的元素。
 
-  - 长度：len()
+  - 长度：len
 
-  - 查找：若字符/序列不在字符串内，index()报错 ValueError，find()返回-1。
+  - 查找：若字符/序列不在字符串内，index 抛出异常 ``ValueError`` ；find 返回-1。
 
   - 判断字符串内容：字母，isalpha()；数字，isdigit()；数字或字母，isalnum()；大小写，isupper()，islower()。
 
@@ -20,15 +20,15 @@
 
   - 根据 ASCII 码转换为字符：chr(n)，ASCII 码在 0 到 255 之间。
 
-  - 判断开头结尾：startswith()、endswith()。
+  - 判断开头结尾：startswith、endswith。
 
-  - 连接：join()，将字符串、元组、列表中的元素以指定的字符(分隔符)连接生成一个新的字符串。
+  - 连接：join，将字符串、元组、列表中的元素以指定的字符（分隔符）连接生成一个新的字符串。
 
-  - 分割：split()、partition()。 **如果想把字符串分割成独立的字符，用 list(string)。**
+  - 分割：split、partition。 **如果想把字符串分割成独立的字符，用 list(string)。**
 
-  - 替代：replace()
+  - 替代：replace
 
-  - 清除空白: strip()、lstrip()、rstrip()
+  - 清除空白: strip、lstrip、rstrip
 
   .. code-block:: python
     :linenos:
@@ -56,7 +56,7 @@
 
 - **tuple**
 
-  - 索引、切片：[ind]，[first:last]获取区间 [first, last) 内的元素。
+  - 索引、切片：[ind]；[first:last]获取区间 [first, last) 内的元素。
   
   - 元组的元素不可改变，类似于常量类型。
 
@@ -96,21 +96,21 @@
 
 - **list**
 
-  - 索引、切片：[ind]，[first:last]获取区间 [first, last) 内的元素。
+  - 索引、切片：[ind]；[first:last]获取区间 [first, last) 内的元素。
 
-  - 统计元素出现的次数：count()
+  - 统计元素出现的次数：count
 
-  - 追加：append()
+  - 追加：append
 
-  - 拓展：extend()
+  - 拓展：extend
 
-  - 插入：insert()
+  - 插入：insert
 
-  - 弹出元素：pop()，默认弹出列表末尾的元素
+  - 弹出元素：pop，默认弹出列表末尾的元素
 
-  - 移除/删除元素：remove()，del （del可删除切片）
+  - 移除/删除元素：remove，del （del可删除切片）
 
-  - 排序：sort()
+  - 排序：sort
 
   .. code-block:: python
     :linenos:
@@ -207,11 +207,11 @@
 
   - 特征：无重复，无须，每个元素为不可变类型
 
-  - 增加元素：单个元素，add()；多个元素，update()
+  - 增加元素：单个元素，add；多个元素，update
 
-  - 删除：删除元素不存在，remove()报错，discard()无反应。
+  - 删除：删除元素不存在，remove 报错，discard 无反应。
 
-  - 集合操作：\&，\|，\-，\^（交差补集，去除交集后剩下元素的并集），issubset() 、isupperset()。
+  - 集合操作：\&，\|，\-，\^（交差补集，去除交集后剩下元素的并集），issubset 、isupperset。
 
   .. code-block:: python
     :linenos:

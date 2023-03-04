@@ -331,13 +331,13 @@
 </div>
 <dl class="simple">
 <dt>方法：</dt><dd><ul class="simple">
-<li><p>append(), appendleft()</p></li>
-<li><p>pop(), popleft()</p></li>
-<li><p>extend(), extendleft()</p></li>
-<li><p>reverse()</p></li>
-<li><p>rotate()</p></li>
-<li><p>count()</p></li>
-<li><p>clear()</p></li>
+<li><p>append, appendleft</p></li>
+<li><p>pop, popleft</p></li>
+<li><p>extend, extendleft</p></li>
+<li><p>reverse</p></li>
+<li><p>rotate</p></li>
+<li><p>count</p></li>
+<li><p>clear</p></li>
 </ul>
 </dd>
 </dl>
@@ -368,8 +368,8 @@
 <section id="id8">
 <h3><span class="section-number">11.3.1. </span>创建堆<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h3>
 <ul>
-<li><p><strong>heappush()</strong></p>
-<p>基于空列表[]，使用 <code class="docutils literal notranslate"><span class="pre">heappush()</span></code> 把元素逐个插入堆中。 <code class="docutils literal notranslate"><span class="pre">heappop(h)</span></code> 弹出并返回堆顶元素。h[0] 是最小值。</p>
+<li><p><strong>heappush</strong></p>
+<p>基于空列表[]，使用 <code class="docutils literal notranslate"><span class="pre">heappush</span></code> 把元素逐个插入堆中。 <code class="docutils literal notranslate"><span class="pre">heappop(h)</span></code> 弹出并返回堆顶元素。h[0] 是最小值。</p>
 <p>如果插入元素是元组（tuple），则元组的第一项自动成为优先级，值越小，优先级越高。堆顶元素优先级最高，值最小。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">heapsort</span><span class="p">(</span><span class="n">iterable</span><span class="p">):</span>
 <span class="linenos">2</span><span class="gp">... </span>    <span class="n">h</span> <span class="o">=</span> <span class="p">[]</span>

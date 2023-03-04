@@ -234,7 +234,7 @@ what 负责返回一个 const char* 指针，指向一个字符数组，包含�
 <p>当执行 <code class="docutils literal notranslate"><span class="pre">throw</span></code> 之后，跟在 <code class="docutils literal notranslate"><span class="pre">throw</span></code> 后面的语句不再执行（类似于 <code class="docutils literal notranslate"><span class="pre">return</span></code> 的作用），程序的控制权从 <code class="docutils literal notranslate"><span class="pre">throw</span></code> 转移到与之匹配的 <code class="docutils literal notranslate"><span class="pre">catch</span></code> 模块。</p>
 <section id="id4">
 <h3>栈展开<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
-<p>栈展开（stack unwinding）过程演着嵌套函数的调用链不断查找，直到找到了与异常匹配的 <code class="docutils literal notranslate"><span class="pre">catch</span></code> 子句为止。</p>
+<p>栈展开（stack unwinding）过程沿着嵌套函数的调用链不断查找，直到找到了与异常匹配的 <code class="docutils literal notranslate"><span class="pre">catch</span></code> 子句为止。</p>
 <p>当 <code class="docutils literal notranslate"><span class="pre">throw</span></code> 出现在一个 <code class="docutils literal notranslate"><span class="pre">try</span></code> 语句块，检测与该块关联的 <code class="docutils literal notranslate"><span class="pre">catch</span></code> 子句。如果找到匹配的 <code class="docutils literal notranslate"><span class="pre">catch</span></code> ，就是用该 <code class="docutils literal notranslate"><span class="pre">catch</span></code> 处理异常。
 如果没找到且该 <code class="docutils literal notranslate"><span class="pre">try</span></code> 语句嵌套在其他 <code class="docutils literal notranslate"><span class="pre">try</span></code> 块中，则继续检查与外层 <code class="docutils literal notranslate"><span class="pre">try</span></code> 匹配的 <code class="docutils literal notranslate"><span class="pre">catch</span></code> 子句。如果还是找不到，则退出当前函数，在调用当前函数的外层函数中继续寻找。</p>
 <p>当找不到匹配的 <code class="docutils literal notranslate"><span class="pre">catch</span></code> ，程序将调用标准库函数 <code class="docutils literal notranslate"><span class="pre">terminate</span></code> 以中止程序的执行过程。</p>
@@ -296,8 +296,8 @@ what 负责返回一个 const char* 指针，指向一个字符数组，包含�
 <p>用 throw 抛出一个异常到 catch 子句中与通过函数调用传递一个参数有一些相同点，但是他们也存在着巨大的差异。</p>
 <p>传递函数参数与异常的途径可以是传值、传引用或传指针，这是相同的。但是当你传递参数和异常时，系统所要完成的操作过程则是完全不同的。
 产生这个差异的原因是：你调用函数时，程序的控制权最终还会返回到函数的调用处，但是当你抛出一个异常时，控制权永远不会回到抛出异常的地方。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Widget</span> <span class="n">localW</span><span class="p">;</span> <span class="o">//</span> <span class="n">局部异常对象</span>
-<span class="n">throw</span> <span class="n">localW</span><span class="p">;</span> <span class="o">//</span> <span class="n">抛出异常</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">Widget</span><span class="w"> </span><span class="n">localW</span><span class="p">;</span><span class="w"> </span><span class="c1">// 局部异常对象</span>
+<span class="linenos">2</span><span class="k">throw</span><span class="w"> </span><span class="n">localW</span><span class="p">;</span><span class="w"> </span><span class="c1">// 抛出异常</span>
 </pre></div>
 </div>
 <p>在上例中，不论通过传值捕获异常还是通过引用捕获（不能通过指针捕获这个异常，因为类型不匹配）都将进行 localW 的拷贝操作，也就说传递到 catch 子句中的是 localW 的拷贝。
@@ -306,9 +306,9 @@ what 负责返回一个 const char* 指针，指向一个字符数组，包含�
 <p>对异常对象进行强制复制拷贝，这个限制有助于我们理解参数传递与抛出异常的第二个差异：抛出异常运行速度比参数传递要慢。</p>
 <p>当异常对象被拷贝时，拷贝操作是由对象的拷贝构造函数完成的。该拷贝构造函数是对象的静态类型（Static Type）所对应类的拷贝构造函数，而不是对象的动态类型（Dynamic Type）对应类的拷贝构造函数。
 也就是说，抛出对象的类型与定义引用或指针的类型相同，而与引用或指针所绑定的对象的类型无关。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>DerivedWidget localW; // 派生类对象
-Widget&amp; rw = localW; // 静态类型是 Widget，动态类型是 DerivedWidget
-throw rw; // 抛出对象类型是 Widget
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">DerivedWidget</span><span class="w"> </span><span class="n">localW</span><span class="p">;</span><span class="w"> </span><span class="c1">// 派生类对象</span>
+<span class="linenos">2</span><span class="n">Widget</span><span class="o">&amp;</span><span class="w"> </span><span class="n">rw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">localW</span><span class="p">;</span><span class="w"> </span><span class="c1">// 静态类型是 Widget，动态类型是 DerivedWidget</span>
+<span class="linenos">3</span><span class="k">throw</span><span class="w"> </span><span class="n">rw</span><span class="p">;</span><span class="w"> </span><span class="c1">// 抛出对象类型是 Widget</span>
 </pre></div>
 </div>
 </section>
@@ -316,15 +316,15 @@ throw rw; // 抛出对象类型是 Widget
 <h3>捕获异常<a class="headerlink" href="#id13" title="Permalink to this headline"></a></h3>
 <p>捕获异常的方法可以是传值、传引用或传指针。</p>
 <p>先说说通过传值捕获：</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">catch</span><span class="p">(</span><span class="n">Widget</span> <span class="n">w</span><span class="p">)</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">catch</span><span class="p">(</span><span class="n">Widget</span><span class="w"> </span><span class="n">w</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 <p>它会建立两个被抛出对象的拷贝，一个是所有异常都必须建立的临时对象，第二个是把临时对象拷贝进 w 中（重要：是两个！）。
 而且它会产生 Slicing Problem，即派生类的异常对象被做为基类异常对象捕获时，那它的派生类行为就被切掉了（Sliced Off）。
 这样的 sliced 对象实际上是一个基类对象：它们没有派生类的数据成员，而且当本准备调用它们的虚函数时，系统解析后调用的是基类版本。</p>
 <p>如果是传引用捕获：</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">catch</span><span class="p">(</span><span class="n">Widget</span><span class="o">&amp;</span> <span class="n">w</span><span class="p">)</span>
-<span class="n">catch</span><span class="p">(</span><span class="n">const</span> <span class="n">Widget</span><span class="o">&amp;</span> <span class="n">w</span><span class="p">)</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">catch</span><span class="p">(</span><span class="n">Widget</span><span class="o">&amp;</span><span class="w"> </span><span class="n">w</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">2</span><span class="k">catch</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Widget</span><span class="o">&amp;</span><span class="w"> </span><span class="n">w</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 <p>这仍旧会建立一个被抛出对象的拷贝：拷贝同样是一个临时对象。相反当我们通过引用传递函数参数时，没有进行对象拷贝。
@@ -340,17 +340,17 @@ throw rw; // 抛出对象类型是 Widget
 <p>异常是其它对象的拷贝，这个事实影响到你如何在 catch 块中再抛出一个异常。
 下面两个 catch 块的差别在于第一个 catch 块中重新抛出的是当前捕获的异常，而第二个catch 块中重新抛出的是当前捕获异常的一个新的拷贝。
 如果忽略生成额外拷贝的系统开销，这两种方法还有差异么？</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">catch</span><span class="p">(</span><span class="n">Widget</span><span class="o">&amp;</span> <span class="n">w</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="o">...</span>
-    <span class="n">throw</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="n">catch</span><span class="p">(</span><span class="n">Widget</span><span class="o">&amp;</span> <span class="n">w</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="o">...</span>
-    <span class="n">throw</span> <span class="n">w</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">catch</span><span class="p">(</span><span class="n">Widget</span><span class="o">&amp;</span><span class="w"> </span><span class="n">w</span><span class="p">)</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="w">    </span><span class="k">throw</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 5</span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="k">catch</span><span class="p">(</span><span class="n">Widget</span><span class="o">&amp;</span><span class="w"> </span><span class="n">w</span><span class="p">)</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="linenos">10</span><span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="n">w</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">11</span><span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>当然有。第一个块中重新抛出的是当前异常（current exception），无论它是什么类型。特别是如果 w 绑定的是派生类对象，那么第一个块中传递出去的还是派生类异常，即使 w 的静态类型是 Widget。这是因为重新抛出异常时没有进行拷贝操作。
@@ -362,7 +362,7 @@ throw rw; // 抛出对象类型是 Widget
 <p>第一种是派生类与基类间的转换。一个用来捕获基类的 catch 子句也可以处理派生类类型的异常。catch 子句匹配顺序总是取决于它们在程序中出现的顺序，因此一个派生类异常可能被处理其基类异常的 catch 子句捕获，即使同时存在能直接处理该派生类异常的 catch 子句与相同的 try 块相对应。
 因此，不要把处理基类异常的 catch 子句放在处理派生类异常的 catch 子句的前面。</p>
 <p>第二种是允许从一个类型化指针（Typed Pointer）转变成无类型指针（Untyped Pointer），带有 <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">void*</span></code> 指针的 catch 子句能捕获任何类型的指针类型异常：</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">catch</span> <span class="p">(</span><span class="n">const</span> <span class="n">void</span><span class="o">*</span><span class="p">)</span> <span class="o">//</span> <span class="n">捕获任何指针类型异常</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="c1">// 捕获任何指针类型异常</span>
 </pre></div>
 </div>
 </section>

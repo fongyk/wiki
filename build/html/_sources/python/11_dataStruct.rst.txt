@@ -195,13 +195,13 @@ double-ended queue，双端队列。
   from collections import deque
 
 方法：
-  - append(), appendleft()
-  - pop(), popleft()
-  - extend(), extendleft()
-  - reverse()
-  - rotate()
-  - count()
-  - clear()
+  - append, appendleft
+  - pop, popleft
+  - extend, extendleft
+  - reverse
+  - rotate
+  - count
+  - clear
 
 .. code-block:: python
   :linenos:
@@ -234,9 +234,9 @@ heapq 创建的是 **小顶堆** ，堆顶元素是堆的最小元素。
 创建堆
 ^^^^^^^^^
 
-- **heappush()**
+- **heappush**
 
-  基于空列表[]，使用 ``heappush()`` 把元素逐个插入堆中。 ``heappop(h)`` 弹出并返回堆顶元素。h[0] 是最小值。
+  基于空列表[]，使用 ``heappush`` 把元素逐个插入堆中。 ``heappop(h)`` 弹出并返回堆顶元素。h[0] 是最小值。
 
   如果插入元素是元组（tuple），则元组的第一项自动成为优先级，值越小，优先级越高。堆顶元素优先级最高，值最小。
 

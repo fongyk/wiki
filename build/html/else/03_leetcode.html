@@ -122,6 +122,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-house-robber-ii">4.55. [LeetCode] House Robber II 环形房屋偷盗</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-serialize-and-deserialize-binary-tree">4.56. [LeetCode] Serialize And Deserialize Binary Tree 序列化与反序列化二叉树。</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#leetcode">4.57. [LeetCode] 生存人数：统计生存人数最多的年份</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">4.58. [LeetCode] 验证栈的压入、弹出序列</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#leetcode-s">4.59. [LeetCode] 和为 s 的连续正数序列</a></li>
 </ul>
 </li>
 </ul>
@@ -1378,7 +1380,8 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 <h2><span class="section-number">4.16. </span>求一个整数的二进制表示中 <span class="math notranslate nohighlight">\(1\)</span> 的个数<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h2>
 <p>Hint：移位操作；负数可能造成死循环。</p>
 <p><strong>C++中，指定移位次数大于或等于对象类型的比特数（如int型的32位），或者对负数进行左移操作，结果都是未定义的</strong> 。
-例如：<code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&gt;&gt;</span> <span class="pre">32</span></code> 是未定义的，但是允许 <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&gt;&gt;=</span> <span class="pre">1</span></code> 执行无限次，这是安全的。延伸：检查一个数是否是 2 的整次幂，Hint：二进制表示只有一个 1；检查一个数是否是 4 的整次幂，Hint：4 的整次幂的二进制表示中，
+例如：<code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&gt;&gt;</span> <span class="pre">32</span></code> 是未定义的，但是允许 <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&gt;&gt;=</span> <span class="pre">1</span></code> 执行无限次，这是安全的。</p>
+<p>延伸：检查一个数是否是 2 的整次幂，Hint：二进制表示只有一个 1；检查一个数是否是 4 的整次幂，Hint：4 的整次幂的二进制表示中，
 1 都在奇数位；检查一个数是否是 3 的整次幂，Hint：质数的整次幂的质因子只有该质数本身。</p>
 <blockquote>
 <div><div class="toggle docutils container">
@@ -2334,7 +2337,8 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </section>
 <section id="leetcode-number-of-islands">
 <h2><span class="section-number">4.30. </span>[LeetCode] Number of Islands 孤岛个数<a class="headerlink" href="#leetcode-number-of-islands" title="Permalink to this headline"></a></h2>
-<p>Hint：使用队列，广度优先遍历（BFS）。延伸：从坐标 <span class="math notranslate nohighlight">\((0, 0)\)</span> 到 <span class="math notranslate nohighlight">\((n-1, m-1)\)</span> 的最短时间，只能走四邻域，<span class="math notranslate nohighlight">\(map[i][j] = 1\)</span> 表示有障碍。Hint：BFS，第一个到达的就是时间最短的。</p>
+<p>Hint：使用队列，广度优先遍历（BFS）。</p>
+<p>延伸：从坐标 <span class="math notranslate nohighlight">\((0, 0)\)</span> 到 <span class="math notranslate nohighlight">\((n-1, m-1)\)</span> 的最短时间，只能走四邻域，<span class="math notranslate nohighlight">\(map[i][j] = 1\)</span> 表示有障碍。Hint：BFS，第一个到达的就是时间最短的。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/number-of-islands/">https://leetcode.com/problems/number-of-islands/</a></p>
 <blockquote>
 <div><div class="toggle docutils container">
@@ -2861,7 +2865,8 @@ $$</div><div class="toggle docutils container">
 </section>
 <section id="id15">
 <h2><span class="section-number">4.34. </span>判断一个数是否是奇数<a class="headerlink" href="#id15" title="Permalink to this headline"></a></h2>
-<p>Hint：考虑负数的情形；方法一，判断模 2 结果不为 0；方法二，位运算判断最低位为 1。延伸：判断两个数是否相等（或判断某个数是否为 0），
+<p>Hint：考虑负数的情形；方法一，判断模 2 结果不为 0；方法二，位运算判断最低位为 1。</p>
+<p>延伸：判断两个数是否相等（或判断某个数是否为 0），
 如果是浮点数，应该判断两者差的绝对值是否小于一个阈值，而不是直接使用 ==。</p>
 <blockquote>
 <div><div class="toggle docutils container">
@@ -3094,7 +3099,8 @@ $$</div><div class="toggle docutils container">
 </section>
 <section id="leetcode-lexicographical-numbers-1-sim-n">
 <h2><span class="section-number">4.37. </span>[LeetCode] Lexicographical Numbers 按字典序排列 <span class="math notranslate nohighlight">\(1 \sim n\)</span><a class="headerlink" href="#leetcode-lexicographical-numbers-1-sim-n" title="Permalink to this headline"></a></h2>
-<p>Hint：方法一，定义排序规则，按字符串的字典序排序；方法二，回溯，递归深度只与 <span class="math notranslate nohighlight">\(n\)</span> 的位数有关。延伸：找到字典序排列的第 <span class="math notranslate nohighlight">\(k\)</span> 个数。</p>
+<p>Hint：方法一，定义排序规则，按字符串的字典序排序；方法二，回溯，递归深度只与 <span class="math notranslate nohighlight">\(n\)</span> 的位数有关。</p>
+<p>延伸：找到字典序排列的第 <span class="math notranslate nohighlight">\(k\)</span> 个数。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/lexicographical-numbers/">https://leetcode.com/problems/lexicographical-numbers/</a></p>
 <blockquote>
 <div><div class="toggle docutils container">
@@ -3413,7 +3419,8 @@ $$</div><div class="toggle docutils container">
 </section>
 <section id="leetcode-gas-station">
 <h2><span class="section-number">4.41. </span>[LeetCode] Gas Station 加油站回路<a class="headerlink" href="#leetcode-gas-station" title="Permalink to this headline"></a></h2>
-<p>Hint：只要 gas 总和不小于 cost 总和，一定存在可以完成回路的出发点。延伸：从起点到终点的最少加油次数。Hint：贪心算法，把路过的每个加油站的油量存入优先队列，当需要加油时，
+<p>Hint：只要 gas 总和不小于 cost 总和，一定存在可以完成回路的出发点。</p>
+<p>延伸：从起点到终点的最少加油次数。Hint：贪心算法，把路过的每个加油站的油量存入优先队列，当需要加油时，
 弹出队列中的最大油量。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/gas-station/">https://leetcode.com/problems/gas-station/</a></p>
 <p><a class="reference external" href="https://leetcode.com/problems/gas-station/discuss/191463/topic">https://leetcode.com/problems/gas-station/discuss/191463/topic</a></p>
@@ -3508,8 +3515,8 @@ $$</div><div class="toggle docutils container">
 </section>
 <section id="leetcode-minimum-window-substring-s-t">
 <h2><span class="section-number">4.43. </span>[LeetCode] Minimum Window Substring 字符串 S 中包含字符串 T 中所有字符（可能会重复）的最短子串<a class="headerlink" href="#leetcode-minimum-window-substring-s-t" title="Permalink to this headline"></a></h2>
-<p>Hint：用两个指针表示滑动窗口的起始和结尾；当窗口满足要求，则计算当前窗口的长度，然后两个指针都往后移动一步；终止条件是尾指针移动到了字符串 S 的结尾（’\0’）。
-延伸：不考虑字符串 T 中重复的字符，求字符串 S 中包含字符串 T 中出现的字符的最短子串。</p>
+<p>Hint：用两个指针表示滑动窗口的起始和结尾；当窗口满足要求，则计算当前窗口的长度，然后两个指针都往后移动一步；终止条件是尾指针移动到了字符串 S 的结尾（’\0’）。</p>
+<p>延伸：不考虑字符串 T 中重复的字符，求字符串 S 中包含字符串 T 中出现的字符的最短子串。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/minimum-window-substring/">https://leetcode.com/problems/minimum-window-substring/</a></p>
 <blockquote>
 <div><div class="toggle docutils container">
@@ -4646,6 +4653,90 @@ $$</div><div class="toggle docutils container">
 <span class="linenos">26</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">year</span><span class="p">;</span><span class="w"></span>
 <span class="linenos">27</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="linenos">28</span><span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</section>
+<section id="id21">
+<h2><span class="section-number">4.58. </span>[LeetCode] 验证栈的压入、弹出序列<a class="headerlink" href="#id21" title="Permalink to this headline"></a></h2>
+<p>Hint：如果下一个弹出的数字正好是栈顶数字，那么直接弹出；如果下一个弹出的数字不在栈顶，就把压栈序列中还没入栈的数字
+压入辅助栈，直到把下一个需要弹出的数字压入栈为止。如果所有的数字都压入栈了，仍然没找到下一个弹出的数字，那么该序列
+不可能是一个弹出序列。</p>
+<p><a class="reference external" href="https://leetcode.com/problems/validate-stack-sequences">https://leetcode.com/problems/validate-stack-sequences</a></p>
+<blockquote>
+<div><div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<span class="linenos"> 2</span>    <span class="k">def</span> <span class="nf">validateStackSequences</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pushed</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">popped</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="linenos"> 3</span>        <span class="n">stk</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos"> 4</span>        <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+<span class="linenos"> 5</span>        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pushed</span><span class="p">)</span>
+<span class="linenos"> 6</span>        <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+<span class="linenos"> 7</span>            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">stk</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">stk</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">popped</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+<span class="linenos"> 8</span>                <span class="n">stk</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="linenos"> 9</span>                <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos">10</span>            <span class="k">else</span><span class="p">:</span>
+<span class="linenos">11</span>                <span class="n">stk</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pushed</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="linenos">12</span>                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos">13</span>        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>
+<span class="linenos">14</span>            <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">stk</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">stk</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">popped</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+<span class="linenos">15</span>                <span class="n">stk</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="linenos">16</span>                <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos">17</span>            <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span> <span class="k">return</span> <span class="kc">True</span>
+<span class="linenos">18</span>        <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</section>
+<section id="leetcode-s">
+<h2><span class="section-number">4.59. </span>[LeetCode] 和为 s 的连续正数序列<a class="headerlink" href="#leetcode-s" title="Permalink to this headline"></a></h2>
+<p>Hint：双指针。</p>
+<p><a class="reference external" href="https://leetcode.cn/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/">https://leetcode.cn/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/</a></p>
+<p>延伸：统计序列的个数。</p>
+<p><a class="reference external" href="https://leetcode.com/problems/consecutive-numbers-sum">https://leetcode.com/problems/consecutive-numbers-sum</a></p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}x + (x+1) + \cdots + (x+k-1) &amp; = \frac{k(2x+k-1)}{2},\ x &gt; 0,\ k &gt; 0 \\
+                            &amp; = kx + \frac{k(k-1)}{2} \\
+                            &amp; \geq  \frac{k(k+1)}{2}\end{split}\]</div>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<span class="linenos"> 2</span>    <span class="k">def</span> <span class="nf">findContinuousSequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+<span class="linenos"> 3</span>        <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos"> 4</span>        <span class="n">begin</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
+<span class="linenos"> 5</span>        <span class="n">s</span> <span class="o">=</span> <span class="n">begin</span> <span class="o">+</span> <span class="n">end</span>
+<span class="linenos"> 6</span>        <span class="k">while</span> <span class="n">begin</span> <span class="o">&lt;</span> <span class="n">end</span><span class="p">:</span>
+<span class="linenos"> 7</span>            <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+<span class="linenos"> 8</span>                <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span>
+<span class="linenos"> 9</span>                <span class="n">s</span> <span class="o">-=</span> <span class="n">begin</span>
+<span class="linenos">10</span>                <span class="n">begin</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos">11</span>                <span class="n">end</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos">12</span>                <span class="n">s</span> <span class="o">+=</span> <span class="n">end</span>
+<span class="linenos">13</span>            <span class="k">elif</span> <span class="n">s</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
+<span class="linenos">14</span>                <span class="n">end</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos">15</span>                <span class="n">s</span> <span class="o">+=</span> <span class="n">end</span>
+<span class="linenos">16</span>            <span class="k">else</span><span class="p">:</span>
+<span class="linenos">17</span>                <span class="n">s</span> <span class="o">-=</span> <span class="n">begin</span>
+<span class="linenos">18</span>                <span class="n">begin</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos">19</span>        <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">math</span>
+<span class="linenos">2</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<span class="linenos">3</span>    <span class="k">def</span> <span class="nf">consecutiveNumbersSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="linenos">4</span>        <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">5</span>        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">))</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+<span class="linenos">6</span>            <span class="n">s</span> <span class="o">=</span> <span class="n">k</span><span class="o">*</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
+<span class="linenos">7</span>            <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">s</span><span class="p">)</span> <span class="o">%</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos">8</span>                <span class="n">ans</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos">9</span>        <span class="k">return</span> <span class="n">ans</span>
 </pre></div>
 </div>
 </div>

@@ -98,10 +98,10 @@
     :linenos:
 
     def Sqrt(a):
-      x = a
-      while abs(x*x - a) > 1e-3:
-          x = x - (x*x - a) / float(2 * x)
-      return x
+        x = a
+        while abs(x*x - a) > 1e-3:
+            x = x - (x*x - a) / float(2 * x)
+        return x
 
 
   .. code-block:: cpp

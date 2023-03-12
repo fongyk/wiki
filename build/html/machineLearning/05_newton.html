@@ -177,10 +177,10 @@ x_{n+1} &amp;=\ x_n - \frac{f(x_n)}{f^{\prime}(x_n)} \\
 x_{n+1} &amp;=\ x_n - \frac{f(x_n)}{f^{\prime}(x_n)} \\
 &amp;=\ x_n - \frac{x_n^2 - a}{2x_n}.\end{split}\]</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">def</span> <span class="nf">Sqrt</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-<span class="linenos">2</span>  <span class="n">x</span> <span class="o">=</span> <span class="n">a</span>
-<span class="linenos">3</span>  <span class="k">while</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-3</span><span class="p">:</span>
-<span class="linenos">4</span>      <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
-<span class="linenos">5</span>  <span class="k">return</span> <span class="n">x</span>
+<span class="linenos">2</span>    <span class="n">x</span> <span class="o">=</span> <span class="n">a</span>
+<span class="linenos">3</span>    <span class="k">while</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-3</span><span class="p">:</span>
+<span class="linenos">4</span>        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+<span class="linenos">5</span>    <span class="k">return</span> <span class="n">x</span>
 </pre></div>
 </div>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">// 向下取整，求整数根：二分法</span>

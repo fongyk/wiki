@@ -134,21 +134,24 @@ ROC 空间里的单点，是给定分类模型且给定得分阈值后得出的�
   print auc(FPR, TPR)
   ## auc 与 roc_auc_score 计算结果相同
 
+.. code-block:: python
+  :linenos:
+
   ## 方法二
 
   def AUC(scores, labels):
-    pos = [i for i in range(len(labels)) if labels[i] == 1]
-    neg = [j for j in range(len(labels)) if labels[j] == 0]
+      pos = [i for i in range(len(labels)) if labels[i] == 1]
+      neg = [j for j in range(len(labels)) if labels[j] == 0]
 
-    area = 0.0
-    for i in pos:
-        for j in neg:
-            if scores[i] > scores[j] + 1e-6:
-                area += 1.0
-            elif abs(scores[i] - scores[j]) < 1e-6:
-                area += 0.5
+      area = 0.0
+      for i in pos:
+          for j in neg:
+              if scores[i] > scores[j] + 1e-6:
+                  area += 1.0
+              elif abs(scores[i] - scores[j]) < 1e-6:
+                  area += 0.5
 
-    return area / (len(pos) * len(neg))
+      return area / (len(pos) * len(neg))
 
 
 参考资料

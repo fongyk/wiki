@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>28. 命名空间和作用域 &mdash; fong alpha documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Linux/Shell" href="../linux/index.html" />
+    <link rel="prev" title="27. json" href="27_json.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> fong
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                alpha
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">快速访问</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_inplace.html">1. in-place 运算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_all.html">2. __all__ 的使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_is.html">3. is和==</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_decorator.html">4. 装饰器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_iterator.html">5. 迭代器和生成器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_lambda.html">6. lambda用法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_arg.html">7. *args和**kwargs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_basicType.html">8. 基本数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_random.html">9. random</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_normalize.html">10. 归一化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_dataStruct.html">11. 常用数据结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_bool.html">12. 逻辑运算与布尔测试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_name.html">13. 命名规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_classFunc.html">14. 类变量与类方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_memManage.html">15. 内存管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_newInit.html">16. __new__ 和 __init__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_pip.html">17. pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18_exception.html">18. 异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19_multiprocessing.html">19. multiprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20_logging.html">20. logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21_pyM.html">21. python -m</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_buildIn.html">22. 内建属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_glob.html">23. glob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_pyLinux.html">24. Python 执行 linux 命令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25_bisect.html">25. bisect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26_abc.html">26. abc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="27_json.html">27. json</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">28. 命名空间和作用域</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#legb">28.1. LEGB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#global-nonlocal">28.2. global 和 nonlocal 关键字</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">28.3. 参考资料</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../regularExpression/index.html">正则表达式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cron/index.html">Cron 表达式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">技巧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Python</a> &raquo;</li>
+      <li><span class="section-number">28. </span>命名空间和作用域</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python/28_legb.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">28. </span>命名空间和作用域<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<p>命名空间是名称到对象的映射，作用域是命名空间可直接访问的 Python 程序的文本区域（Textual Region）。 “可直接访问” 的意思是：对名称的非限定引用会在命名空间中查找名称。</p>
+<section id="legb">
+<h2><span class="section-number">28.1. </span>LEGB<a class="headerlink" href="#legb" title="Permalink to this headline"></a></h2>
+<p>Python 有四类作用域：</p>
+<ul class="simple">
+<li><p>局部（Local）作用域：函数内</p></li>
+<li><p>封闭（Enclosing）作用域：嵌套函数中的外函数</p></li>
+<li><p>全局（Global）作用域：函数定义所在模块</p></li>
+<li><p>内置（Built-in）作用域：Python 内置模块</p></li>
+</ul>
+<p>在作用域中按名称去寻找对象时（Python 中一切皆对象），会按照 LEGB 规则去查找，作用域查找顺序为:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Local</span> <span class="o">-&gt;</span> <span class="n">Enclosing</span> <span class="o">-&gt;</span> <span class="n">Global</span> <span class="o">-&gt;</span> <span class="n">Built</span><span class="o">-</span><span class="ow">in</span>
+</pre></div>
+</div>
+<p>如果发生重名，那么谁先被找到就用谁。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nb">len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">([])</span>       <span class="c1"># Global</span>
+<span class="linenos">2</span><span class="k">def</span> <span class="nf">a</span><span class="p">():</span>
+<span class="linenos">3</span>    <span class="nb">len</span> <span class="o">=</span> <span class="mi">1</span>         <span class="c1"># Enclosing</span>
+<span class="linenos">4</span>    <span class="k">def</span> <span class="nf">b</span><span class="p">():</span>
+<span class="linenos">5</span>        <span class="nb">len</span> <span class="o">=</span> <span class="mi">2</span>     <span class="c1"># Local</span>
+<span class="linenos">6</span>        <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">)</span>
+<span class="linenos">7</span>    <span class="n">b</span><span class="p">()</span>
+<span class="linenos">8</span><span class="n">a</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="gp">&gt;&gt;&gt; </span><span class="nb">dir</span><span class="p">(</span><span class="n">__builtins__</span><span class="p">)</span>
+<span class="linenos">2</span><span class="go">[&#39;ArithmeticError&#39;, &#39;AssertionError&#39;, &#39;AttributeError&#39;, &#39;BaseException&#39;, &#39;BlockingIOError&#39;, &#39;BrokenPipeError&#39;, &#39;BufferError&#39;, &#39;BytesWarning&#39;, &#39;ChildProcessError&#39;, &#39;ConnectionAbortedError&#39;, &#39;ConnectionError&#39;, &#39;ConnectionRefusedError&#39;, &#39;ConnectionResetError&#39;, &#39;DeprecationWarning&#39;, &#39;EOFError&#39;, &#39;Ellipsis&#39;, &#39;EnvironmentError&#39;, &#39;Exception&#39;, &#39;False&#39;, &#39;FileExistsError&#39;, &#39;FileNotFoundError&#39;, &#39;FloatingPointError&#39;, &#39;FutureWarning&#39;, &#39;GeneratorExit&#39;, &#39;IOError&#39;, &#39;ImportError&#39;, &#39;ImportWarning&#39;, &#39;IndentationError&#39;, &#39;IndexError&#39;, &#39;InterruptedError&#39;, &#39;IsADirectoryError&#39;, &#39;KeyError&#39;, &#39;KeyboardInterrupt&#39;, &#39;LookupError&#39;, &#39;MemoryError&#39;, &#39;ModuleNotFoundError&#39;, &#39;NameError&#39;, &#39;None&#39;, &#39;NotADirectoryError&#39;, &#39;NotImplemented&#39;, &#39;NotImplementedError&#39;, &#39;OSError&#39;, &#39;OverflowError&#39;, &#39;PendingDeprecationWarning&#39;, &#39;PermissionError&#39;, &#39;ProcessLookupError&#39;, &#39;RecursionError&#39;, &#39;ReferenceError&#39;, &#39;ResourceWarning&#39;, &#39;RuntimeError&#39;, &#39;RuntimeWarning&#39;, &#39;StopAsyncIteration&#39;, &#39;StopIteration&#39;, &#39;SyntaxError&#39;, &#39;SyntaxWarning&#39;, &#39;SystemError&#39;, &#39;SystemExit&#39;, &#39;TabError&#39;, &#39;TimeoutError&#39;, &#39;True&#39;, &#39;TypeError&#39;, &#39;UnboundLocalError&#39;, &#39;UnicodeDecodeError&#39;, &#39;UnicodeEncodeError&#39;, &#39;UnicodeError&#39;, &#39;UnicodeTranslateError&#39;, &#39;UnicodeWarning&#39;, &#39;UserWarning&#39;, &#39;ValueError&#39;, &#39;Warning&#39;, &#39;ZeroDivisionError&#39;, &#39;__build_class__&#39;, &#39;__debug__&#39;, &#39;__doc__&#39;, &#39;__import__&#39;, &#39;__loader__&#39;, &#39;__name__&#39;, &#39;__package__&#39;, &#39;__spec__&#39;, &#39;abs&#39;, &#39;all&#39;, &#39;any&#39;, &#39;ascii&#39;, &#39;bin&#39;, &#39;bool&#39;, &#39;breakpoint&#39;, &#39;bytearray&#39;, &#39;bytes&#39;, &#39;callable&#39;, &#39;chr&#39;, &#39;classmethod&#39;, &#39;compile&#39;, &#39;complex&#39;, &#39;copyright&#39;, &#39;credits&#39;, &#39;delattr&#39;, &#39;dict&#39;, &#39;dir&#39;, &#39;divmod&#39;, &#39;enumerate&#39;, &#39;eval&#39;, &#39;exec&#39;, &#39;exit&#39;, &#39;filter&#39;, &#39;float&#39;, &#39;format&#39;, &#39;frozenset&#39;, &#39;getattr&#39;, &#39;globals&#39;, &#39;hasattr&#39;, &#39;hash&#39;, &#39;help&#39;, &#39;hex&#39;, &#39;id&#39;, &#39;input&#39;, &#39;int&#39;, &#39;isinstance&#39;, &#39;issubclass&#39;, &#39;iter&#39;, &#39;len&#39;, &#39;license&#39;, &#39;list&#39;, &#39;locals&#39;, &#39;map&#39;, &#39;max&#39;, &#39;memoryview&#39;, &#39;min&#39;, &#39;next&#39;, &#39;object&#39;, &#39;oct&#39;, &#39;open&#39;, &#39;ord&#39;, &#39;pow&#39;, &#39;print&#39;, &#39;property&#39;, &#39;quit&#39;, &#39;range&#39;, &#39;repr&#39;, &#39;reversed&#39;, &#39;round&#39;, &#39;set&#39;, &#39;setattr&#39;, &#39;slice&#39;, &#39;sorted&#39;, &#39;staticmethod&#39;, &#39;str&#39;, &#39;sum&#39;, &#39;super&#39;, &#39;tuple&#39;, &#39;type&#39;, &#39;vars&#39;, &#39;zip&#39;]</span>
+</pre></div>
+</div>
+</section>
+<section id="global-nonlocal">
+<h2><span class="section-number">28.2. </span>global 和 nonlocal 关键字<a class="headerlink" href="#global-nonlocal" title="Permalink to this headline"></a></h2>
+<p>如果要 <strong>写</strong> Global/Enclosing 变量，需要使用 <code class="docutils literal notranslate"><span class="pre">global</span></code> / <code class="docutils literal notranslate"><span class="pre">nonlocal</span></code> 关键字，否则只能 <strong>读</strong> 。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">scope_test</span><span class="p">():</span>
+<span class="linenos"> 2</span>    <span class="k">def</span> <span class="nf">do_local</span><span class="p">():</span>
+<span class="linenos"> 3</span>        <span class="n">spam</span> <span class="o">=</span> <span class="s2">&quot;local spam&quot;</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span>    <span class="k">def</span> <span class="nf">do_nonlocal</span><span class="p">():</span>
+<span class="linenos"> 6</span>        <span class="k">nonlocal</span> <span class="n">spam</span>
+<span class="linenos"> 7</span>        <span class="n">spam</span> <span class="o">=</span> <span class="s2">&quot;nonlocal spam&quot;</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span>    <span class="k">def</span> <span class="nf">do_global</span><span class="p">():</span>
+<span class="linenos">10</span>        <span class="k">global</span> <span class="n">spam</span>
+<span class="linenos">11</span>        <span class="n">spam</span> <span class="o">=</span> <span class="s2">&quot;global spam&quot;</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span>    <span class="n">spam</span> <span class="o">=</span> <span class="s2">&quot;test spam&quot;</span>
+<span class="linenos">14</span>    <span class="n">do_local</span><span class="p">()</span>
+<span class="linenos">15</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After local assignment:&quot;</span><span class="p">,</span> <span class="n">spam</span><span class="p">)</span>
+<span class="linenos">16</span>    <span class="n">do_nonlocal</span><span class="p">()</span>
+<span class="linenos">17</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After nonlocal assignment:&quot;</span><span class="p">,</span> <span class="n">spam</span><span class="p">)</span>
+<span class="linenos">18</span>    <span class="n">do_global</span><span class="p">()</span>
+<span class="linenos">19</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After global assignment:&quot;</span><span class="p">,</span> <span class="n">spam</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span><span class="n">scope_test</span><span class="p">()</span>
+<span class="linenos">22</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;In global scope:&quot;</span><span class="p">,</span> <span class="n">spam</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">After</span> <span class="n">local</span> <span class="n">assignment</span><span class="p">:</span> <span class="n">test</span> <span class="n">spam</span>
+<span class="n">After</span> <span class="k">nonlocal</span> <span class="n">assignment</span><span class="p">:</span> <span class="k">nonlocal</span> <span class="n">spam</span>
+<span class="n">After</span> <span class="k">global</span> <span class="n">assignment</span><span class="p">:</span> <span class="k">nonlocal</span> <span class="n">spam</span>
+<span class="n">In</span> <span class="k">global</span> <span class="n">scope</span><span class="p">:</span> <span class="k">global</span> <span class="n">spam</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2><span class="section-number">28.3. </span>参考资料<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>Python 中的作用域、global 与 nonlocal</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://www.gairuo.com/m/python-legb">https://www.gairuo.com/m/python-legb</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>Scopes and Namespaces Example</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://docs.python.org/3.11/tutorial/classes.html#python-scopes-and-namespaces">https://docs.python.org/3.11/tutorial/classes.html#python-scopes-and-namespaces</a></p>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="27_json.html" class="btn btn-neutral float-left" title="27. json" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../linux/index.html" class="btn btn-neutral float-right" title="Linux/Shell" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2022, fong.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

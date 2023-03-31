@@ -949,7 +949,7 @@ https://leetcode.com/problems/partition-equal-subset-sum/
               return self.backtrack(nums, sum_nums, 0, 0) ## self
 
 
-[LeetCode] Find All Anagrams in a String 统计变位词出现的位置。
+[LeetCode] Find All Anagrams in a String 统计变位词出现的位置
 -------------------------------------------------------------------------------
 
 Hint：采用滑动窗口和 **计数器** 进行比较。
@@ -1608,7 +1608,7 @@ https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-charac
       };
 
 
-几个数的和。
+几个数的和
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 - [LeetCode] Two Sum 两数之和为目标值。Hint：哈希，时间复杂度 :math:`\mathcal{O}(N)` 。
@@ -2029,7 +2029,7 @@ https://leetcode.com/problems/fraction-to-recurring-decimal/
       };
 
 
-正整数质因数分解。
+正整数质因数分解
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
   .. container:: toggle
@@ -2053,8 +2053,10 @@ https://leetcode.com/problems/fraction-to-recurring-decimal/
                   prime += 1
 
 
-旋转数组查找。Hint：采用二分查找的思路。
+旋转数组查找
 ---------------------------------------------------------------------------------------------------------------------------------------------
+
+Hint：采用二分查找的思路。
 
 - 二分查找
 
@@ -3453,9 +3455,11 @@ https://leetcode.com/problems/max-points-on-a-line/
 [LeetCode] Word Break 字符串按字典切分
 --------------------------------------------------------------------------------------------
 
-Hint：回溯；动态规划。
+Hint：回溯；动态规划；字典树。延伸：返回所有的切分方式。
 
-https://leetcode.com/problems/word-break/
+https://leetcode.com/problems/word-break
+
+https://leetcode.com/problems/word-break-ii
 
   .. container:: toggle
 
@@ -3564,6 +3568,68 @@ https://leetcode.com/problems/word-break/
               return dp[n];
           }
       };
+
+    .. code-block:: python
+        :linenos:
+
+        ## 返回所有的切分方式
+        ## 使用字典树 Trie
+
+        from collections import defaultdict
+
+        class TrieNode(object):
+            def __init__(self):
+                self.dict = defaultdict(TrieNode)
+                self.word = False
+
+        class Trie(object):
+            def __init__(self):
+                self.root = TrieNode()
+
+            def insert(self, word):
+                child = self.root
+                for letter in word:
+                    child = child.dict[letter]
+                child.word = True
+
+            def search(self, word):
+                child = self.root
+                for letter in word:
+                    child = child.dict.get(letter)
+                    if child is None:
+                        return False
+                return child.word
+
+
+        class Solution:
+            def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
+                n = len(s)
+                trie = Trie()
+                ## 构建字典树
+                for word in wordDict:
+                    trie.insert(word)
+                ## 前一个切分点的下标
+                pre = [[] for i in range(n+1)]
+                pre[0].append(-1)
+                ## 前 i 个字符的切分
+                for i in range(1, n+1):
+                    for j in range(i):
+                        if pre[j] != []:
+                            ## 当前子串：s[j:i]
+                            if trie.search(s[j:i]):
+                                pre[i].append(j)
+                res = []
+                seg = ""
+                ## 递归获取所有切分方式
+                self.combineWords(s, pre, n, seg, res)
+                return res
+            
+            def combineWords(self, s, pre, t, seg, res):
+                if t == 0:
+                    res.append(seg[:-1])
+                    return
+                for j in pre[t]:
+                    self.combineWords(s, pre, j, s[j:t] + " " + seg, res)
 
 
 [LeetCode] Gas Station 加油站回路
@@ -4109,7 +4175,7 @@ https://leetcode.com/problems/trapping-rain-water/
           }
       };
 
-[LeetCode] Sudoku Solver 数独。
+[LeetCode] Sudoku Solver 数独
 --------------------------------------------------------------------------------------------
 
 https://leetcode.com/problems/sudoku-solver/
@@ -4276,7 +4342,7 @@ https://windliang.cc/2018/07/18/leetCode-4-Median-of-Two-Sorted-Arrays/
                         k -= j1 - i1 + 1
                         i1 = j1 + 1
 
-滑动窗口。
+滑动窗口
 --------------------------------------------------------------------------------------------
 
 - [LeetCode] Sliding Window Maximum 滑动窗口最大值。Hint：使用双端队列；新加入元素如果比队尾元素小，则直接入队，否则删除队尾元素直到队空或队尾元素比新加入元素大；
@@ -4415,7 +4481,7 @@ https://windliang.cc/2018/07/18/leetCode-4-Median-of-Two-Sorted-Arrays/
       };
 
 
-逆波兰式：转换与求值。
+逆波兰式：转换与求值
 --------------------------------------------------------------------------------------------
 
 https://leetcode.com/problems/evaluate-reverse-polish-notation/
@@ -4540,10 +4606,14 @@ https://leetcode.com/problems/evaluate-reverse-polish-notation/
           }
       };
 
-字典树/前缀树（ `Trie <https://oi-wiki.org/string/trie/>`_ ）。
+字典树/前缀树（ `Trie <https://oi-wiki.org/string/trie/>`_ ）
 --------------------------------------------------------------------------------------------
 
+字典树/前缀树的查找时间复杂度是 :math:`\mathcal{O}(l)` ，创建一棵树的时间复杂度是 :math:`\mathcal{O}(nl)` ，
+其中 :math:`l` 是单词长度， :math:`n` 是字典大小。
+
 https://leetcode.com/problems/implement-trie-prefix-tree
+
 
   .. container:: toggle
 
@@ -4774,7 +4844,7 @@ https://leetcode-cn.com/problems/house-robber-ii/
           }
       };
 
-[LeetCode] Serialize And Deserialize Binary Tree 序列化与反序列化二叉树。
+[LeetCode] Serialize And Deserialize Binary Tree 序列化与反序列化二叉树
 --------------------------------------------------------------------------------------------
 
 https://leetcode-cn.com/problems/h54YBf/

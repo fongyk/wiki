@@ -43,7 +43,43 @@ queue 模块实现了多生产者、多消费者队列，适用于消息必须�
     优先队列。
 
     一般使用 tuple（优先级 + 数据）作为队列元素，优先级为 tuple 的第一项。
-    默认 tuple 第一项越小，优先级越高，越先出队列。
+    默认 tuple 第一项越小，优先级越高，越先出队列。优先级相同则会比较数据项，如果数据类型没有定义 ``__lt__`` 或 ``__gt__`` 成员，就会报错。
+
+    .. container:: toggle
+
+      .. container:: header
+
+        :math:`\color{darkgreen}{Code}`
+
+      .. code-block:: python
+        :linenos: 
+        :emphasize-lines: 14
+
+        ## Merge k Sorted Lists
+        ## https://leetcode.com/problems/merge-k-sorted-lists
+
+        # Definition for singly-linked list.
+        # class ListNode:
+        #     def __init__(self, val=0, next=None):
+        #         self.val = val
+        #         self.next = next
+
+        from queue import PriorityQueue
+
+        class Solution:
+            def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+                setattr(ListNode, "__lt__", lambda self, other: self.val < other.val)
+                pq = PriorityQueue()
+                dummy = ListNode(None, None)
+                curr = dummy
+                for l in lists:
+                    if l: pq.put(l)
+                while not pq.empty():
+                    p = pq.get()
+                    curr.next = p
+                    curr = p
+                    if p.next: pq.put(p.next)
+                return dummy.next
 
 异常
 """"""""

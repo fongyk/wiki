@@ -2168,11 +2168,11 @@ Hint：采用二分查找的思路。
       }
 
 
-    .. code-block:: cpp
+    .. code-block:: python
       :linenos:
 
-      // 方法二
-      // 每次比较 nums[mid] 与 nums[high]，如果两者相等，则 --high
+      # 方法二
+      # 每次比较 nums[mid] 与 nums[high]，如果两者相等，则 --high
       class Solution:
           def findMin(self, nums: List[int]) -> int:
               n = len(nums)
@@ -4316,7 +4316,7 @@ https://windliang.cc/2018/07/18/leetCode-4-Median-of-Two-Sorted-Arrays/
     .. code-block:: python
         :linenos:
 
-        // 方法二
+        # 方法二
 
         class Solution:
             def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:

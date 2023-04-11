@@ -3,9 +3,9 @@
 
 .. highlight:: bash
 
-**场景假设** ：需要把某个目录下的文件进行重命名。
+**场景** ：需要把某个目录下的文件进行重命名。
 
-首先生成一批jpg文件::
+首先生成一批后缀为 jpg 的文件::
 
     touch ustc-{1..6}.jpg
 
@@ -17,8 +17,8 @@ mv
 
     for f in /data6/fong/shell/*.jpg
     do
-            echo $f
-            mv $f ${f}-new
+        echo $f
+        mv $f ${f}-new
     done
 
 或者写成一行::
@@ -51,7 +51,7 @@ awk
 rename
 ------------
 
-``man rename`` 可以查看使用手册，这里使用perl版本的正则表达式。
+``man rename`` 可以查看使用手册，这里使用 perl 版本的正则表达式。
 
 ::
 
@@ -59,11 +59,11 @@ rename
 
 参数：
 
-    - v：显示修改成功的文件名；
+    -v    显示修改成功的文件名；
 
-    - n：不执行任何操作，用来测试rename过程，并不直接运行，可以查看测试效果后，然后再运行；
+    -n    不执行任何操作，用来测试 rename 过程，并不直接运行，可以查看测试效果后，然后再运行；
 
-    - f：强制修改，会覆盖存在的文件。
+    -f    强制修改，会覆盖存在的文件。
 
 小写转换成大写::
 
@@ -75,7 +75,7 @@ rename
     rename(ustc-5.jpg, USTC-5.JPG)
     rename(ustc-6.jpg, USTC-6.JPG)
 
-后缀从.jpg改成.JPG::
+后缀从 .jpg 改成 .JPG::
 
     fong@GK40:/data6/fong/shell$ rename -n 's/\.jpg/\.JPG/g' *.jpg
     rename(ustc-1.jpg, ustc-1.JPG)

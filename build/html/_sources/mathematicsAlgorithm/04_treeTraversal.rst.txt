@@ -31,9 +31,9 @@
     if(!T) return;
     else
     {
-      visit(T -> val);
-      preOrderRecur(T -> left);
-      preOrderRecur(T -> right);
+      visit(T->val);
+      preOrderRecur(T->left);
+      preOrderRecur(T->right);
     }
   }
 
@@ -49,15 +49,15 @@
     {
       while(T)
       {
-        visit(T -> val);
+        visit(T->val);
         stk.push(T);
-        T = T -> left;
+        T = T->left;
       }
       if(!stk.empty())
       {
         T = stk.top();
         stk.pop();
-        T = T -> right;
+        T = T->right;
       }
     }
   }
@@ -75,9 +75,9 @@
       if(!T) return;
       else
       {
-        inOrderRecur(T -> left);
-        visit(T -> val);
-        inOrderRecur(T -> right);
+        inOrderRecur(T->left);
+        visit(T->val);
+        inOrderRecur(T->right);
       }
     }
 
@@ -94,14 +94,14 @@
       while(T)
       {
         stk.push(T);
-        T = T -> left;
+        T = T->left;
       }
       if(!stk.empty())
       {
         T = stk.top();
         stk.pop();
-        visit(T -> val);
-        T = T -> right;
+        visit(T->val);
+        T = T->right;
       }
     }
   }
@@ -120,9 +120,9 @@
     if(!T) return;
     else
     {
-      postOrderRecur(T -> left);
-      postOrderRecur(T -> right);
-      visit(T -> val);
+      postOrderRecur(T->left);
+      postOrderRecur(T->right);
+      visit(T->val);
     }
   }
 
@@ -138,14 +138,14 @@
       vector<int> res;
       stack<TreeNode*> nodePtr;
       if(T) nodePtr.push(T);
-      while(! nodePtr.empty())
+      while(!nodePtr.empty())
       {
         T = nodePtr.top();
         nodePtr.pop();
 
-        res.push_back(T -> val);
-        if(T -> left) nodePtr.push(T -> left);
-        if(T -> right) nodePtr.push(T -> right);
+        res.push_back(T->val);
+        if(T->left) nodePtr.push(T->left);
+        if(T->right) nodePtr.push(T->right);
       }
       reverse(res.begin(), res.end());
       return res;
@@ -161,28 +161,28 @@
         vector<int> res;
         stack<TreeNode*> nodePtr;
         stack<TreeNode*> inNode;
-        while(T || ! nodePtr.empty())
+        while(T || !nodePtr.empty())
         {
             while(T)
             {
                 nodePtr.push(T);
-                T = T -> left;
+                T = T->left;
             }
             T = nodePtr.top();
             nodePtr.pop();
 
-            if(T -> right)
+            if(T->right)
             {
                 inNode.push(T);
-                T = T -> right;
+                T = T->right;
             }
             else
             {
-                res.push_back(T -> val);
-                while(!inNode.empty() && T == inNode.top() -> right)
+                res.push_back(T->val);
+                while(!inNode.empty() && T == inNode.top()->right)
                 // 访问完节点的右子树之后，就从栈弹出该节点进行访问
                 {
-                    res.push_back(inNode.top() -> val);
+                    res.push_back(inNode.top()->val);
                     T = inNode.top();
                     inNode.pop();
                 }
@@ -209,9 +209,9 @@
     {
       T = Q.front();
       Q.pop();
-      visit(T -> val);
-      if(T -> left) Q.push(T -> left);
-      if(T -> right) Q.push(T -> right);
+      visit(T->val);
+      if(T->left) Q.push(T->left);
+      if(T->right) Q.push(T->right);
     }
   }
 
@@ -301,7 +301,7 @@
                   }
                   else
                   {
-                      head -> next = p;
+                      head->next = p;
                       head = p;
                   }
                   if(p)
@@ -313,6 +313,78 @@
               return root;
           }
       };
+
+- [LeetCode] Binary Tree Right Side View 二叉树右视图。Hint：层次遍历保存每层的最后一个节点。
+
+  https://leetcode.com/problems/binary-tree-right-side-view
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: python
+      :linenos:
+
+      ## 方法一：双端队列
+      # Definition for a binary tree node.
+      # class TreeNode:
+      #     def __init__(self, val=0, left=None, right=None):
+      #         self.val = val
+      #         self.left = left
+      #         self.right = right
+      from collections import deque
+      class Solution:
+          def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+              if not root: return []
+              dq = deque([root])
+              view = []
+              while len(dq):
+                  n = len(dq)
+                  view.append(dq[-1].val)
+                  ## 遍历每一层的节点
+                  for i in range(n):
+                      node = dq.popleft()
+                      if node.left: dq.append(node.left)
+                      if node.right: dq.append(node.right)
+              return view
+    
+    .. code-block:: python
+      :linenos:
+
+      ## 方法二：普通队列，使用一个空节点作为每层结束的标记（更耗时）
+      # Definition for a binary tree node.
+      # class TreeNode:
+      #     def __init__(self, val=0, left=None, right=None):
+      #         self.val = val
+      #         self.left = left
+      #         self.right = right
+      class Solution:
+          def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+              if not root: return []
+              from queue import Queue
+              que = Queue()
+              view = []
+              pre = root
+              que.put(root)
+              que.put(None)
+              while not que.empty():
+                  node = que.get()
+                  if node is None:
+                      view.append(pre.val)
+                      ## 遍历完整棵树
+                      if que.empty(): break
+                      ## 遍历完一层，插入新的标记
+                      else: 
+                          que.put(None)
+                          continue
+                  pre = node
+                  if node.left:
+                      que.put(node.left)
+                  if node.right:
+                      que.put(node.right)
+              return view
 
 - [LeetCode] Invert Binary Tree 翻转二叉树。Hint：方法一，递归；方法二，深度优先遍历；方法三，广度优先遍历。
 
@@ -336,9 +408,9 @@
           {
               if(root)
               {
-                  swap(root -> left, root -> right);
-                  invertTree(root -> left);
-                  invertTree(root -> right);
+                  swap(root->left, root->right);
+                  invertTree(root->left);
+                  invertTree(root->right);
               }
               return root;
           }
@@ -361,14 +433,14 @@
                   while(node)
                   {
                       stk.push(node);
-                      node = node -> left;
+                      node = node->left;
                   }
                   if(!stk.empty())
                   {
                       node = stk.top();
                       stk.pop();
-                      swap(node -> left, node -> right);
-                      node = node -> left; // 翻转之后的左子树是原来的右子树
+                      swap(node->left, node->right);
+                      node = node->left; // 翻转之后的左子树是原来的右子树
                   }
               }
               return root;
@@ -391,9 +463,9 @@
               {
                   TreeNode* node = qe.front();
                   qe.pop();
-                  swap(node -> left, node -> right);
-                  if(node -> left) qe.push(node -> left);
-                  if(node -> right) qe.push(node -> right);
+                  swap(node->left, node->right);
+                  if(node->left) qe.push(node->left);
+                  if(node->right) qe.push(node->right);
               }
               return root;
           }
@@ -470,10 +542,10 @@
           {
               if(!root) return 0;
               int inclu_left = 0, exclu_left = 0;
-              rob(root -> left, inclu_left, exclu_left);
+              rob(root->left, inclu_left, exclu_left);
               int inclu_right = 0, exclu_right = 0;
-              rob(root -> right, inclu_right, exclu_right);
-              inclu_root = root -> val + exclu_left + exclu_right;
+              rob(root->right, inclu_right, exclu_right);
+              inclu_root = root->val + exclu_left + exclu_right;
               exclu_root = max(inclu_left, exclu_left) + max(inclu_right, exclu_right);
               return max(inclu_root, exclu_root);
           }

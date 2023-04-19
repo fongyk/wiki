@@ -684,7 +684,7 @@ Hint：哈希方法，把大文件划分成小文件，读进内存依次处理�
           }
       };
 
-[LeetCode] Sort Colors（三颜色排序 → K 颜色排序）
+[LeetCode] Sort Colors 三颜色排序
 -----------------------------------------------------------------
 
 https://blog.csdn.net/princexiexiaofeng/article/details/79645511
@@ -5056,3 +5056,50 @@ https://leetcode.com/problems/consecutive-numbers-sum
                     if (n - s) % k == 0:
                         ans += 1
                 return ans
+
+[LeetCode] Rotting Oranges 腐败的橙子
+--------------------------------------------
+
+Hint：多源 BFS，同时从各个源推进一步；双端队列。
+
+https://leetcode.com/problems/rotting-oranges
+
+
+  .. container:: toggle
+
+    .. container:: header
+
+        :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: python
+        :linenos:
+
+        class Solution:
+            def orangesRotting(self, grid: List[List[int]]) -> int:
+                if not grid or not grid[0]: return 0
+                m, n = len(grid), len(grid[0])
+                maxd = 100
+                dq = deque()
+                fresh = 0
+                for x in range(m):
+                    for y in range(n):
+                        if grid[x][y] == 2:
+                            dq.append((x,y))
+                        elif grid[x][y] == 1:
+                            fresh += 1
+                minutes = 0
+                ## fresh = 0 就不需要再遍历了
+                while len(dq) and fresh > 0:
+                    ## sn 代表源的数量
+                    sn = len(dq)
+                    for i in range(sn):
+                        x, y = dq.popleft()
+                        for dx, dy in [[-1,0], [0,-1], [0,1], [1,0]]:
+                            _x, _y = x + dx, y + dy
+                            if 0 <= _x < m and 0 <= _y < n and grid[_x][_y] == 1:
+                                grid[_x][_y] = 2
+                                dq.append((_x, _y))
+                                fresh -= 1
+                    minutes += 1
+                if fresh == 0: return minutes
+                else: return -1

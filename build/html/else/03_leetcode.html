@@ -69,7 +69,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#id2">4.2. 均匀分布生成其他分布的方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">4.3. 海量数据处理</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id4">4.4. 链表</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#leetcode-sort-colors-k">4.5. [LeetCode] Sort Colors（三颜色排序 → K 颜色排序）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#leetcode-sort-colors">4.5. [LeetCode] Sort Colors 三颜色排序</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#k">4.6. 找到数组第 <span class="math notranslate nohighlight">\(k\)</span> 大的数</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-best-time-to-buy-and-sell-stock">4.7. [LeetCode] Best Time to Buy and Sell Stock 买卖股票的最佳时间</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-partition-equal-subset-sum">4.8. [LeetCode] Partition Equal Subset Sum 数组分成两个子集，和相等</a></li>
@@ -124,6 +124,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#leetcode">4.57. [LeetCode] 生存人数：统计生存人数最多的年份</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id22">4.58. [LeetCode] 验证栈的压入、弹出序列</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-s">4.59. [LeetCode] 和为 s 的连续正数序列</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#leetcode-rotting-oranges">4.60. [LeetCode] Rotting Oranges 腐败的橙子</a></li>
 </ul>
 </li>
 </ul>
@@ -781,8 +782,8 @@
 </li>
 </ul>
 </section>
-<section id="leetcode-sort-colors-k">
-<h2><span class="section-number">4.5. </span>[LeetCode] Sort Colors（三颜色排序 → K 颜色排序）<a class="headerlink" href="#leetcode-sort-colors-k" title="Permalink to this headline"></a></h2>
+<section id="leetcode-sort-colors">
+<h2><span class="section-number">4.5. </span>[LeetCode] Sort Colors 三颜色排序<a class="headerlink" href="#leetcode-sort-colors" title="Permalink to this headline"></a></h2>
 <p><a class="reference external" href="https://blog.csdn.net/princexiexiaofeng/article/details/79645511">https://blog.csdn.net/princexiexiaofeng/article/details/79645511</a></p>
 <blockquote>
 <div><div class="toggle docutils container">
@@ -4801,6 +4802,49 @@ $$</div><div class="toggle docutils container">
 <span class="linenos">7</span>            <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">s</span><span class="p">)</span> <span class="o">%</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
 <span class="linenos">8</span>                <span class="n">ans</span> <span class="o">+=</span> <span class="mi">1</span>
 <span class="linenos">9</span>        <span class="k">return</span> <span class="n">ans</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</section>
+<section id="leetcode-rotting-oranges">
+<h2><span class="section-number">4.60. </span>[LeetCode] Rotting Oranges 腐败的橙子<a class="headerlink" href="#leetcode-rotting-oranges" title="Permalink to this headline"></a></h2>
+<p>Hint：多源 BFS，同时从各个源推进一步；双端队列。</p>
+<p><a class="reference external" href="https://leetcode.com/problems/rotting-oranges">https://leetcode.com/problems/rotting-oranges</a></p>
+<blockquote>
+<div><div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<span class="linenos"> 2</span>    <span class="k">def</span> <span class="nf">orangesRotting</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="linenos"> 3</span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">grid</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">grid</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="k">return</span> <span class="mi">0</span>
+<span class="linenos"> 4</span>        <span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="linenos"> 5</span>        <span class="n">maxd</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="linenos"> 6</span>        <span class="n">dq</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+<span class="linenos"> 7</span>        <span class="n">fresh</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos"> 8</span>        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+<span class="linenos"> 9</span>            <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="linenos">10</span>                <span class="k">if</span> <span class="n">grid</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+<span class="linenos">11</span>                    <span class="n">dq</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+<span class="linenos">12</span>                <span class="k">elif</span> <span class="n">grid</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="linenos">13</span>                    <span class="n">fresh</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos">14</span>        <span class="n">minutes</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">15</span>        <span class="c1">## fresh = 0 就不需要再遍历了</span>
+<span class="linenos">16</span>        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">dq</span><span class="p">)</span> <span class="ow">and</span> <span class="n">fresh</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos">17</span>            <span class="c1">## sn 代表源的数量</span>
+<span class="linenos">18</span>            <span class="n">sn</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dq</span><span class="p">)</span>
+<span class="linenos">19</span>            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sn</span><span class="p">):</span>
+<span class="linenos">20</span>                <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">dq</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+<span class="linenos">21</span>                <span class="k">for</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span> <span class="ow">in</span> <span class="p">[[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]]:</span>
+<span class="linenos">22</span>                    <span class="n">_x</span><span class="p">,</span> <span class="n">_y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">dx</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">dy</span>
+<span class="linenos">23</span>                    <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">_x</span> <span class="o">&lt;</span> <span class="n">m</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">_y</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="ow">and</span> <span class="n">grid</span><span class="p">[</span><span class="n">_x</span><span class="p">][</span><span class="n">_y</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="linenos">24</span>                        <span class="n">grid</span><span class="p">[</span><span class="n">_x</span><span class="p">][</span><span class="n">_y</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="linenos">25</span>                        <span class="n">dq</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">))</span>
+<span class="linenos">26</span>                        <span class="n">fresh</span> <span class="o">-=</span> <span class="mi">1</span>
+<span class="linenos">27</span>            <span class="n">minutes</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos">28</span>        <span class="k">if</span> <span class="n">fresh</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="n">minutes</span>
+<span class="linenos">29</span>        <span class="k">else</span><span class="p">:</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 </pre></div>
 </div>
 </div>

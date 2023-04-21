@@ -5103,3 +5103,48 @@ https://leetcode.com/problems/rotting-oranges
                     minutes += 1
                 if fresh == 0: return minutes
                 else: return -1
+
+[LeetCode] Maximum Width of Binary Tree 二叉树最大宽度
+----------------------------------------------------------------
+
+Hint：层序遍历，计算每层最左边和最右边节点的序号之差作为该层的宽度。
+
+https://leetcode.com/problems/maximum-width-of-binary-tree
+
+
+  .. container:: toggle
+
+    .. container:: header
+
+        :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: python
+        :linenos:
+
+        # Definition for a binary tree node.
+        # class TreeNode:
+        #     def __init__(self, val=0, left=None, right=None):
+        #         self.val = val
+        #         self.left = left
+        #         self.right = right
+        class Solution:
+            def widthOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+                if root is None: return 0
+                dq = deque([(root, 1)])
+                r = []
+                while len(dq):
+                    n = len(dq)
+                    ## 为了避免溢出，每层最左侧的节点编号都从 1 开始
+                    ## r 保存每一层最右侧的节点的编号，其值就等于相应层的宽度
+                    init = dq[0][1]
+                    r.append(dq[-1][1] - init + 1)
+                    for i in range(n):
+                        p, idx = dq.popleft()
+                        idx = idx - init + 1
+                        if p.left:
+                            ## 左节点编号
+                            dq.append((p.left, idx*2))
+                        if p.right:
+                            ## 右节点编号
+                            dq.append((p.right, idx*2+1))
+                return max(r)

@@ -125,6 +125,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#id22">4.58. [LeetCode] 验证栈的压入、弹出序列</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-s">4.59. [LeetCode] 和为 s 的连续正数序列</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-rotting-oranges">4.60. [LeetCode] Rotting Oranges 腐败的橙子</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#leetcode-maximum-width-of-binary-tree">4.61. [LeetCode] Maximum Width of Binary Tree 二叉树最大宽度</a></li>
 </ul>
 </li>
 </ul>
@@ -4845,6 +4846,47 @@ $$</div><div class="toggle docutils container">
 <span class="linenos">27</span>            <span class="n">minutes</span> <span class="o">+=</span> <span class="mi">1</span>
 <span class="linenos">28</span>        <span class="k">if</span> <span class="n">fresh</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="n">minutes</span>
 <span class="linenos">29</span>        <span class="k">else</span><span class="p">:</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</section>
+<section id="leetcode-maximum-width-of-binary-tree">
+<h2><span class="section-number">4.61. </span>[LeetCode] Maximum Width of Binary Tree 二叉树最大宽度<a class="headerlink" href="#leetcode-maximum-width-of-binary-tree" title="Permalink to this headline"></a></h2>
+<p>Hint：层序遍历，计算每层最左边和最右边节点的序号之差作为该层的宽度。</p>
+<p><a class="reference external" href="https://leetcode.com/problems/maximum-width-of-binary-tree">https://leetcode.com/problems/maximum-width-of-binary-tree</a></p>
+<blockquote>
+<div><div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># Definition for a binary tree node.</span>
+<span class="linenos"> 2</span><span class="c1"># class TreeNode:</span>
+<span class="linenos"> 3</span><span class="c1">#     def __init__(self, val=0, left=None, right=None):</span>
+<span class="linenos"> 4</span><span class="c1">#         self.val = val</span>
+<span class="linenos"> 5</span><span class="c1">#         self.left = left</span>
+<span class="linenos"> 6</span><span class="c1">#         self.right = right</span>
+<span class="linenos"> 7</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<span class="linenos"> 8</span>    <span class="k">def</span> <span class="nf">widthOfBinaryTree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="linenos"> 9</span>        <span class="k">if</span> <span class="n">root</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
+<span class="linenos">10</span>        <span class="n">dq</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([(</span><span class="n">root</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+<span class="linenos">11</span>        <span class="n">r</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos">12</span>        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">dq</span><span class="p">):</span>
+<span class="linenos">13</span>            <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dq</span><span class="p">)</span>
+<span class="linenos">14</span>            <span class="c1">## 为了避免溢出，每层最左侧的节点编号都从 1 开始</span>
+<span class="linenos">15</span>            <span class="c1">## r 保存每一层最右侧的节点的编号，其值就等于相应层的宽度</span>
+<span class="linenos">16</span>            <span class="n">init</span> <span class="o">=</span> <span class="n">dq</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos">17</span>            <span class="n">r</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dq</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">init</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="linenos">18</span>            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="linenos">19</span>                <span class="n">p</span><span class="p">,</span> <span class="n">idx</span> <span class="o">=</span> <span class="n">dq</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+<span class="linenos">20</span>                <span class="n">idx</span> <span class="o">=</span> <span class="n">idx</span> <span class="o">-</span> <span class="n">init</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="linenos">21</span>                <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">left</span><span class="p">:</span>
+<span class="linenos">22</span>                    <span class="c1">## 左节点编号</span>
+<span class="linenos">23</span>                    <span class="n">dq</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">p</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">idx</span><span class="o">*</span><span class="mi">2</span><span class="p">))</span>
+<span class="linenos">24</span>                <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
+<span class="linenos">25</span>                    <span class="c1">## 右节点编号</span>
+<span class="linenos">26</span>                    <span class="n">dq</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">p</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">idx</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="linenos">27</span>        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

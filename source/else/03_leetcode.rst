@@ -2916,7 +2916,7 @@ https://leetcode.com/problems/number-of-islands/
 
       };
 
-给定两个字符串 s1 和 s2，检查 s2 是否由 s1 旋转得到
+判断字符串 s2 是否可由 s1 旋转得到
 --------------------------------------------------------------------------------------------
 
 Hint：对 s1 做循环移位，所得字符串都将是字符串 s1s1 的子串。
@@ -3311,7 +3311,7 @@ https://leetcode.com/problems/lexicographical-numbers/
                       return pos
                   pos *= 10  ## 进入子区间
 
-[LeetCode] Merge k Sorted Lists 合并 :math:`k` 条有序链表为一条有序链表（都是升序）
+[LeetCode] Merge k Sorted Lists 合并 :math:`k` 条有序链表
 --------------------------------------------------------------------------------------------
 
 Hint：建立大小为 :math:`k` 的小顶堆，每次弹出一个节点，并把该节点的下一个节点插入小顶堆中。时间复杂度 :math:`\mathcal{O}(n \log k)` ，:math:`n` 是节点个数。
@@ -3740,7 +3740,7 @@ https://blog.csdn.net/u014113686/article/details/82464635
       }
 
 
-[LeetCode] Minimum Window Substring 字符串 S 中包含字符串 T 中所有字符（可能会重复）的最短子串
+[LeetCode] Minimum Window Substring 字符串 S 中包含字符串 T 中所有字符的最短子串
 ----------------------------------------------------------------------------------------------------------
 
 Hint：用两个指针表示滑动窗口的起始和结尾；当窗口满足要求，则计算当前窗口的长度，然后两个指针都往后移动一步；终止条件是尾指针移动到了字符串 S 的结尾（'\\0'）。
@@ -5148,3 +5148,43 @@ https://leetcode.com/problems/maximum-width-of-binary-tree
                             ## 右节点编号
                             dq.append((p.right, idx*2+1))
                 return max(r)
+
+[LeetCode] Restore The Array 从字符串恢复整数数组
+----------------------------------------------------------------
+
+Hint：动态规划；整数不能以 0 开头；注意跳过数值范围明显越界的分割方法。
+
+https://leetcode.com/problems/restore-the-array
+
+
+  .. container:: toggle
+
+    .. container:: header
+
+        :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: python
+        :linenos:
+
+        class Solution:
+            def numberOfArrays(self, s: str, k: int) -> int:
+                mod = 1000000007
+                n = len(s)
+                nk = len(str(k))
+                dp = [0] * n
+                dp[0] = 1
+                for i in range(1, n):
+                    if s[i] != '0':
+                        ## s[i] 单独分割
+                        dp[i] = dp[i-1]
+                    else:
+                        dp[i] = 0
+                    ## s[j:i+1] 单独分割
+                    ## 不需要去遍历明显越界的 s[j:i+1]
+                    for j in range(max(0, i-nk), i):
+                        if s[j] != '0':
+                            dji = int(s[j:i+1])
+                            if dji <= k:
+                                dp[i] += dp[j-1] if j > 0 else 1
+                                dp[i] %= mod
+                return dp[-1]

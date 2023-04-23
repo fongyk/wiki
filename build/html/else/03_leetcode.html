@@ -96,18 +96,18 @@
 <li class="toctree-l3"><a class="reference internal" href="#id15">4.29. 数组操作模拟大数乘法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-number-of-islands">4.30. [LeetCode] Number of Islands 孤岛个数</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#palindrome">4.31. 回文（Palindrome）</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#s1-s2-s2-s1">4.32. 给定两个字符串 s1 和 s2，检查 s2 是否由 s1 旋转得到</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s2-s1">4.32. 判断字符串 s2 是否可由 s1 旋转得到</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-validate-binary-search-tree">4.33. [LeetCode] Validate Binary Search Tree 检查一棵二叉树是否为二叉查找树</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id16">4.34. 判断一个数是否是奇数</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-valid-number">4.35. [LeetCode] Valid Number 验证一个字符串是否表示某个有效数字</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cdots-n">4.36. 求 <span class="math notranslate nohighlight">\(1+2+3+ \cdots +n\)</span> ，不使用：乘除法，判断，循环，库函数。</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-lexicographical-numbers-1-sim-n">4.37. [LeetCode] Lexicographical Numbers 按字典序排列 <span class="math notranslate nohighlight">\(1 \sim n\)</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#leetcode-merge-k-sorted-lists-k">4.38. [LeetCode] Merge k Sorted Lists 合并 <span class="math notranslate nohighlight">\(k\)</span> 条有序链表为一条有序链表（都是升序）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#leetcode-merge-k-sorted-lists-k">4.38. [LeetCode] Merge k Sorted Lists 合并 <span class="math notranslate nohighlight">\(k\)</span> 条有序链表</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-max-points-on-a-line">4.39. [LeetCode] Max Points on a Line 统计共线的最多点数</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-word-break">4.40. [LeetCode] Word Break 字符串按字典切分</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-gas-station">4.41. [LeetCode] Gas Station 加油站回路</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id17">4.42. 最短过桥时间</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#leetcode-minimum-window-substring-s-t">4.43. [LeetCode] Minimum Window Substring 字符串 S 中包含字符串 T 中所有字符（可能会重复）的最短子串</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#leetcode-minimum-window-substring-s-t">4.43. [LeetCode] Minimum Window Substring 字符串 S 中包含字符串 T 中所有字符的最短子串</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-nth-digit-n">4.44. [LeetCode] Nth Digit 第 <span class="math notranslate nohighlight">\(N\)</span> 个数字</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-pow-x-n">4.45. [LeetCode] Pow(x, n) 求幂</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-longest-valid-parentheses">4.46. [LeetCode] Longest Valid Parentheses 最长有效匹配括号长度</a></li>
@@ -126,6 +126,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-s">4.59. [LeetCode] 和为 s 的连续正数序列</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-rotting-oranges">4.60. [LeetCode] Rotting Oranges 腐败的橙子</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-maximum-width-of-binary-tree">4.61. [LeetCode] Maximum Width of Binary Tree 二叉树最大宽度</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#leetcode-restore-the-array">4.62. [LeetCode] Restore The Array 从字符串恢复整数数组</a></li>
 </ul>
 </li>
 </ul>
@@ -2811,8 +2812,8 @@ $$</div><div class="toggle docutils container">
 </li>
 </ul>
 </section>
-<section id="s1-s2-s2-s1">
-<h2><span class="section-number">4.32. </span>给定两个字符串 s1 和 s2，检查 s2 是否由 s1 旋转得到<a class="headerlink" href="#s1-s2-s2-s1" title="Permalink to this headline"></a></h2>
+<section id="s2-s1">
+<h2><span class="section-number">4.32. </span>判断字符串 s2 是否可由 s1 旋转得到<a class="headerlink" href="#s2-s1" title="Permalink to this headline"></a></h2>
 <p>Hint：对 s1 做循环移位，所得字符串都将是字符串 s1s1 的子串。</p>
 <blockquote>
 <div><div class="toggle docutils container">
@@ -3181,7 +3182,7 @@ $$</div><div class="toggle docutils container">
 </div></blockquote>
 </section>
 <section id="leetcode-merge-k-sorted-lists-k">
-<h2><span class="section-number">4.38. </span>[LeetCode] Merge k Sorted Lists 合并 <span class="math notranslate nohighlight">\(k\)</span> 条有序链表为一条有序链表（都是升序）<a class="headerlink" href="#leetcode-merge-k-sorted-lists-k" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">4.38. </span>[LeetCode] Merge k Sorted Lists 合并 <span class="math notranslate nohighlight">\(k\)</span> 条有序链表<a class="headerlink" href="#leetcode-merge-k-sorted-lists-k" title="Permalink to this headline"></a></h2>
 <p>Hint：建立大小为 <span class="math notranslate nohighlight">\(k\)</span> 的小顶堆，每次弹出一个节点，并把该节点的下一个节点插入小顶堆中。时间复杂度 <span class="math notranslate nohighlight">\(\mathcal{O}(n \log k)\)</span> ，<span class="math notranslate nohighlight">\(n\)</span> 是节点个数。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/merge-k-sorted-lists/">https://leetcode.com/problems/merge-k-sorted-lists/</a></p>
 <blockquote>
@@ -3578,7 +3579,7 @@ $$</div><div class="toggle docutils container">
 </div></blockquote>
 </section>
 <section id="leetcode-minimum-window-substring-s-t">
-<h2><span class="section-number">4.43. </span>[LeetCode] Minimum Window Substring 字符串 S 中包含字符串 T 中所有字符（可能会重复）的最短子串<a class="headerlink" href="#leetcode-minimum-window-substring-s-t" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">4.43. </span>[LeetCode] Minimum Window Substring 字符串 S 中包含字符串 T 中所有字符的最短子串<a class="headerlink" href="#leetcode-minimum-window-substring-s-t" title="Permalink to this headline"></a></h2>
 <p>Hint：用两个指针表示滑动窗口的起始和结尾；当窗口满足要求，则计算当前窗口的长度，然后两个指针都往后移动一步；终止条件是尾指针移动到了字符串 S 的结尾（’\0’）。</p>
 <p>延伸：不考虑字符串 T 中重复的字符，求字符串 S 中包含字符串 T 中出现的字符的最短子串。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/minimum-window-substring/">https://leetcode.com/problems/minimum-window-substring/</a></p>
@@ -4887,6 +4888,42 @@ $$</div><div class="toggle docutils container">
 <span class="linenos">25</span>                    <span class="c1">## 右节点编号</span>
 <span class="linenos">26</span>                    <span class="n">dq</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">p</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">idx</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
 <span class="linenos">27</span>        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</section>
+<section id="leetcode-restore-the-array">
+<h2><span class="section-number">4.62. </span>[LeetCode] Restore The Array 从字符串恢复整数数组<a class="headerlink" href="#leetcode-restore-the-array" title="Permalink to this headline"></a></h2>
+<p>Hint：动态规划；整数不能以 0 开头；注意跳过数值范围明显越界的分割方法。</p>
+<p><a class="reference external" href="https://leetcode.com/problems/restore-the-array">https://leetcode.com/problems/restore-the-array</a></p>
+<blockquote>
+<div><div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<span class="linenos"> 2</span>    <span class="k">def</span> <span class="nf">numberOfArrays</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="linenos"> 3</span>        <span class="n">mod</span> <span class="o">=</span> <span class="mi">1000000007</span>
+<span class="linenos"> 4</span>        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="linenos"> 5</span>        <span class="n">nk</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+<span class="linenos"> 6</span>        <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+<span class="linenos"> 7</span>        <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos"> 8</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="linenos"> 9</span>            <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;0&#39;</span><span class="p">:</span>
+<span class="linenos">10</span>                <span class="c1">## s[i] 单独分割</span>
+<span class="linenos">11</span>                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos">12</span>            <span class="k">else</span><span class="p">:</span>
+<span class="linenos">13</span>                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">14</span>            <span class="c1">## s[j:i+1] 单独分割</span>
+<span class="linenos">15</span>            <span class="c1">## 不需要去遍历明显越界的 s[j:i+1]</span>
+<span class="linenos">16</span>            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="n">nk</span><span class="p">),</span> <span class="n">i</span><span class="p">):</span>
+<span class="linenos">17</span>                <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;0&#39;</span><span class="p">:</span>
+<span class="linenos">18</span>                    <span class="n">dji</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+<span class="linenos">19</span>                    <span class="k">if</span> <span class="n">dji</span> <span class="o">&lt;=</span> <span class="n">k</span><span class="p">:</span>
+<span class="linenos">20</span>                        <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">1</span>
+<span class="linenos">21</span>                        <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">%=</span> <span class="n">mod</span>
+<span class="linenos">22</span>        <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>

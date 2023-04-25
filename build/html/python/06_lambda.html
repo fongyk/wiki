@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>6. lambda用法 &mdash; fong alpha documentation</title>
+  <title>6. lambda 表达式 &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -55,7 +55,7 @@
 <li class="toctree-l2"><a class="reference internal" href="03_is.html">3. is和==</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_decorator.html">4. 装饰器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05_iterator.html">5. 迭代器和生成器</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">6. lambda用法</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6. lambda 表达式</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">6.1. 使用场景</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">6.2. 参考资料</a></li>
 </ul>
@@ -112,7 +112,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">Python</a> &raquo;</li>
-      <li><span class="section-number">6. </span>lambda用法</li>
+      <li><span class="section-number">6. </span>lambda 表达式</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/python/06_lambda.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -123,14 +123,13 @@
            <div itemprop="articleBody">
              
   <section id="lambda">
-<h1><span class="section-number">6. </span>lambda用法<a class="headerlink" href="#lambda" title="Permalink to this headline"></a></h1>
-<p>使用：</p>
+<h1><span class="section-number">6. </span>lambda 表达式<a class="headerlink" href="#lambda" title="Permalink to this headline"></a></h1>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">lambda</span> <span class="p">[</span><span class="n">arg1</span><span class="p">[,</span> <span class="n">arg2</span><span class="p">,</span> <span class="o">...</span> <span class="n">argN</span><span class="p">]]:</span> <span class="n">expression</span>
 </pre></div>
 </div>
 <dl class="simple">
 <dt>特性：</dt><dd><ul class="simple">
-<li><p>匿名函数。函数没有名字。</p></li>
+<li><p>匿名函数：函数没有名字。</p></li>
 <li><p>输入是 arg list，输出是根据 expression 计算得到的值。</p></li>
 <li><p>功能简单。</p></li>
 </ul>
@@ -153,7 +152,7 @@
 </ol>
 <blockquote>
 <div><ul class="simple">
-<li><p><strong>map</strong> ：将序列中的元素通过处理函数处理后返回一个新的列表。</p></li>
+<li><p><strong>map</strong> ：将序列中的元素通过函数处理后返回一个新的列表。</p></li>
 <li><p><strong>filter</strong> ：将序列中的元素通过函数过滤后返回一个新的列表。</p></li>
 <li><p><strong>reduce</strong> ：将序列中的元素通过一个二元函数处理返回一个结果。</p></li>
 <li><p><strong>sorted</strong> ：结合 lambda 对列表进行排序。 <code class="docutils literal notranslate"><span class="pre">sorted(iterable,</span> <span class="pre">cmp=None,</span> <span class="pre">key=None,</span> <span class="pre">reverse=False)</span></code></p></li>
@@ -165,14 +164,16 @@
 <span class="linenos"> 4</span><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="c1"># [2, 3, 7, 6, 3, -7, -4, 0, -9]</span>
 <span class="linenos"> 5</span>
 <span class="linenos"> 6</span><span class="go">## 提取序列中大于0的数</span>
-<span class="linenos"> 7</span><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="c1"># [1, 2, 6, 5, 2]</span>
+<span class="linenos"> 7</span><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="c1"># [1, 2, 6, 5, 2]</span>
 <span class="linenos"> 8</span>
 <span class="linenos"> 9</span><span class="go">## 返回所有元素相乘的结果</span>
 <span class="linenos">10</span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="c1"># 48000</span>
-<span class="linenos">11</span>
-<span class="linenos">12</span><span class="go">## 负数排在正数前面，同时绝对值大的排在后面</span>
-<span class="linenos">13</span><span class="go">## 两个key，先按第一个key排序，若第一个key相同则按下一个key排序</span>
-<span class="linenos">14</span><span class="gp">&gt;&gt;&gt; </span><span class="n">e</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:(</span><span class="n">x</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span> <span class="c1"># [-1, -5, -8, -10, 1, 2, 2, 5, 6]</span>
+<span class="linenos">11</span><span class="go">## 返回所有元素的平方和</span>
+<span class="linenos">12</span><span class="gp">&gt;&gt;&gt; </span><span class="n">e</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">*</span><span class="n">y</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="p">)</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="go">## 负数排在正数前面，同时绝对值大的排在后面</span>
+<span class="linenos">15</span><span class="go">## 两个key，先按第一个key排序，若第一个key相同则按下一个key排序</span>
+<span class="linenos">16</span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:(</span><span class="n">x</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span> <span class="c1"># [-1, -5, -8, -10, 1, 2, 2, 5, 6]</span>
 </pre></div>
 </div>
 <div class="admonition note">

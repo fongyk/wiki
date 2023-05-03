@@ -4,13 +4,14 @@
 类型与方法
 ----------------
 
-- **str**
+str
+^^^^^^^
 
-  - 索引、切片：[ind]；[first:last]获取区间 [first, last) 内的元素。
+  - 索引、切片：[ind]；[first:last] 获取区间 [first, last) 内的元素。
 
   - 长度：len
 
-  - 查找：若字符/序列不在字符串内，index 抛出异常 ``ValueError`` ；find 返回-1。
+  - 查找：若字符/序列不在字符串内，index 抛出异常 ``ValueError`` ；find 返回 -1。
 
   - 判断字符串内容：字母，isalpha()；数字，isdigit()；数字或字母，isalnum()；大小写，isupper()，islower()。
 
@@ -54,9 +55,10 @@
 
     **str** 是不可变对象，其所有方法都 **不改变对象本身** ，而是返回所创建的新对象。
 
-- **tuple**
+tuple
+^^^^^^^^^^^^^^
 
-  - 索引、切片：[ind]；[first:last]获取区间 [first, last) 内的元素。
+  - 索引、切片：[ind]；[first:last] 获取区间 [first, last) 内的元素。
   
   - 元组的元素不可改变，类似于常量类型。
 
@@ -94,9 +96,10 @@
 
 
 
-- **list**
+list
+^^^^^^^^^^^^^^
 
-  - 索引、切片：[ind]；[first:last]获取区间 [first, last) 内的元素。
+  - 索引、切片：[ind]；[first:last] 获取区间 [first, last) 内的元素。
 
   - 统计元素出现的次数：count
 
@@ -145,7 +148,8 @@
     [30, 20, 5, 3, 1]
 
 
-- **dict**
+dict
+^^^^^^^^^^^^^^
 
   - 获取：keys()，values()，items()。在 Python3 中返回的不再是列表，而是 dict_keys、dict_values、dict_items，需要手动转换为列表。
 
@@ -186,7 +190,7 @@
 
   - **collections.OrderedDict** ：按关键字排序的字典。
 
-  - **collections.defaultdict** ：defaultdict 类使用一种给定数据类型来初始化。当所访问的 key 不存在的时候，会实例化一个 value 作为默认值。因此，判断某个 key 是否存在，可使用 get(key)。
+  - **collections.defaultdict** ：defaultdict 类使用一种给定数据类型来初始化。当所访问的 key 不存在的时候，会实例化一个 value 作为默认值。因此，判断某个 key 是否存在，应使用 get(key)。
 
   .. code-block:: python
     :linenos:
@@ -203,7 +207,8 @@
 
     如果一个 defaultdict 必须包含给定的 key，则首先要 **显式** 地对所有的 key 进行访问和初始化。毕竟 defaultdict 只会为访问过的 key 关联一个默认值。
 
-- **set**
+set
+^^^^^^^^^^^^^^
 
   - 特征：无重复，无须，每个元素为不可变类型
 

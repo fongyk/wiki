@@ -55,10 +55,17 @@
 <li class="toctree-l2"><a class="reference internal" href="03_is.html">3. is和==</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_decorator.html">4. 装饰器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05_iterator.html">5. 迭代器和生成器</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06_lambda.html">6. lambda用法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_lambda.html">6. lambda 表达式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="07_arg.html">7. *args和**kwargs</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">8. 基本数据类型</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">8.1. 类型与方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">8.1. 类型与方法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#str">8.1.1. str</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tuple">8.1.2. tuple</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#list">8.1.3. list</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dict">8.1.4. dict</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#set">8.1.5. set</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">8.2. 深复制和浅复制</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id4">8.3. 再谈可变对象与不可变对象</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id5">8.4. 参考资料</a></li>
@@ -128,12 +135,13 @@
 <h1><span class="section-number">8. </span>基本数据类型<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
 <section id="id2">
 <h2><span class="section-number">8.1. </span>类型与方法<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
-<ul>
-<li><p><strong>str</strong></p>
-<ul class="simple">
-<li><p>索引、切片：[ind]；[first:last]获取区间 [first, last) 内的元素。</p></li>
+<section id="str">
+<h3><span class="section-number">8.1.1. </span>str<a class="headerlink" href="#str" title="Permalink to this headline"></a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>索引、切片：[ind]；[first:last] 获取区间 [first, last) 内的元素。</p></li>
 <li><p>长度：len</p></li>
-<li><p>查找：若字符/序列不在字符串内，index 抛出异常 <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> ；find 返回-1。</p></li>
+<li><p>查找：若字符/序列不在字符串内，index 抛出异常 <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> ；find 返回 -1。</p></li>
 <li><p>判断字符串内容：字母，isalpha()；数字，isdigit()；数字或字母，isalnum()；大小写，isupper()，islower()。</p></li>
 <li><p>大小写转换：capitalize()、lower()、upper()。</p></li>
 <li><p>获取字符 ASCII 码：ord(c)</p></li>
@@ -166,10 +174,13 @@
 <p class="admonition-title">Warning</p>
 <p><strong>str</strong> 是不可变对象，其所有方法都 <strong>不改变对象本身</strong> ，而是返回所创建的新对象。</p>
 </div>
-</li>
-<li><p><strong>tuple</strong></p>
-<ul>
-<li><p>索引、切片：[ind]；[first:last]获取区间 [first, last) 内的元素。</p></li>
+</div></blockquote>
+</section>
+<section id="tuple">
+<h3><span class="section-number">8.1.2. </span>tuple<a class="headerlink" href="#tuple" title="Permalink to this headline"></a></h3>
+<blockquote>
+<div><ul>
+<li><p>索引、切片：[ind]；[first:last] 获取区间 [first, last) 内的元素。</p></li>
 <li><p>元组的元素不可改变，类似于常量类型。</p></li>
 <li><p><strong>collections.namedtuple</strong> ：构造一个带字段名的元组，可以通过索引、切片或属性名称进行访问。:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="n">typename</span><span class="p">,</span> <span class="n">field_names</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rename</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -203,10 +214,13 @@
 <span class="linenos">24</span><span class="go">(&#39;fong&#39;, 25)</span>
 </pre></div>
 </div>
-</li>
-<li><p><strong>list</strong></p>
-<ul class="simple">
-<li><p>索引、切片：[ind]；[first:last]获取区间 [first, last) 内的元素。</p></li>
+</div></blockquote>
+</section>
+<section id="list">
+<h3><span class="section-number">8.1.3. </span>list<a class="headerlink" href="#list" title="Permalink to this headline"></a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>索引、切片：[ind]；[first:last] 获取区间 [first, last) 内的元素。</p></li>
 <li><p>统计元素出现的次数：count</p></li>
 <li><p>追加：append</p></li>
 <li><p>拓展：extend</p></li>
@@ -245,9 +259,12 @@
 <span class="linenos">28</span><span class="go">[30, 20, 5, 3, 1]</span>
 </pre></div>
 </div>
-</li>
-<li><p><strong>dict</strong></p>
-<ul class="simple">
+</div></blockquote>
+</section>
+<section id="dict">
+<h3><span class="section-number">8.1.4. </span>dict<a class="headerlink" href="#dict" title="Permalink to this headline"></a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><p>获取：keys()，values()，items()。在 Python3 中返回的不再是列表，而是 dict_keys、dict_values、dict_items，需要手动转换为列表。</p></li>
 <li><p>清除：clear()</p></li>
 <li><p>删除：pop(key)，返回健对应的值，并删除键所对应的键值对。</p></li>
@@ -280,7 +297,7 @@
 </div>
 <ul class="simple">
 <li><p><strong>collections.OrderedDict</strong> ：按关键字排序的字典。</p></li>
-<li><p><strong>collections.defaultdict</strong> ：defaultdict 类使用一种给定数据类型来初始化。当所访问的 key 不存在的时候，会实例化一个 value 作为默认值。因此，判断某个 key 是否存在，可使用 get(key)。</p></li>
+<li><p><strong>collections.defaultdict</strong> ：defaultdict 类使用一种给定数据类型来初始化。当所访问的 key 不存在的时候，会实例化一个 value 作为默认值。因此，判断某个 key 是否存在，应使用 get(key)。</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 <span class="linenos">2</span><span class="gp">&gt;&gt;&gt; </span><span class="n">dd</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="c1">## 使用 list 作为value type</span>
@@ -295,9 +312,12 @@
 <p class="admonition-title">Warning</p>
 <p>如果一个 defaultdict 必须包含给定的 key，则首先要 <strong>显式</strong> 地对所有的 key 进行访问和初始化。毕竟 defaultdict 只会为访问过的 key 关联一个默认值。</p>
 </div>
-</li>
-<li><p><strong>set</strong></p>
-<ul class="simple">
+</div></blockquote>
+</section>
+<section id="set">
+<h3><span class="section-number">8.1.5. </span>set<a class="headerlink" href="#set" title="Permalink to this headline"></a></h3>
+<blockquote>
+<div><ul class="simple">
 <li><p>特征：无重复，无须，每个元素为不可变类型</p></li>
 <li><p>增加元素：单个元素，add；多个元素，update</p></li>
 <li><p>删除：删除元素不存在，remove 报错，discard 无反应。</p></li>
@@ -309,8 +329,7 @@
 <span class="linenos">4</span><span class="go">set([&#39;a&#39;, &#39;c&#39;, &#39;b&#39;, &#39;e&#39;, &#39;d&#39;])</span>
 </pre></div>
 </div>
-</li>
-</ul>
+</div></blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>对于 <code class="docutils literal notranslate"><span class="pre">切片（slice）</span></code> 操作，下标越界 <strong>不会</strong> 报错，返回空。</p>
@@ -326,6 +345,7 @@
 <span class="n">If</span> <span class="n">i</span> <span class="ow">is</span> <span class="n">greater</span> <span class="n">than</span> <span class="ow">or</span> <span class="n">equal</span> <span class="n">to</span> <span class="n">j</span><span class="p">,</span> <span class="n">the</span> <span class="nb">slice</span> <span class="ow">is</span> <span class="n">empty</span><span class="o">.</span>
 </pre></div>
 </div>
+</section>
 </section>
 <section id="id3">
 <h2><span class="section-number">8.2. </span>深复制和浅复制<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>

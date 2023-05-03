@@ -4,7 +4,7 @@
 类变量
 -----------
 
-定义在类的开始。
+在类中方法之外定义的变量。
 
 - 类和实例都可以访问类变量
 
@@ -27,7 +27,9 @@
 
 - 静态方法不能访问类变量、实例变量、实例方法
 
-- 类和实例都可以访问静态方法
+- 类和实例都可以调用静态方法，需要使用 ``cls`` / ``self`` 来限定。
+
+- 静态方法调用其他静态方法时，需要使用类名来限定，即 ``<类名>.<静态方法名>`` 。
 
 类方法
 ---------------
@@ -70,6 +72,11 @@
           cls.var = num
           print cls.static_func(-1, 1)
 
+      @staticmethod
+      def static_func2(a, b):
+          ## 静态方法调用静态方法
+          return A.static_func(a*b, a/b)
+
 .. code-block:: python
   :linenos:
 
@@ -81,10 +88,8 @@
   class_method
   static_method
   0
-
   >>> print A.var
   200
-
   >>> obj.foo()
   __foo
   __b: 1
@@ -100,6 +105,6 @@
 
   https://www.cnblogs.com/20150705-yilushangyouni-Jacksu/p/6238187.html
 
-2. 一张图了解python 类方法与类变量 类变量与实例变量
+2. 一张图了解 python 类方法与类变量 类变量与实例变量
 
   https://blog.csdn.net/cgqdtc/article/details/80555319

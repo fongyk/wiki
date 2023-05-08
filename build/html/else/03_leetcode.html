@@ -127,6 +127,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-rotting-oranges">4.60. [LeetCode] Rotting Oranges 腐败的橙子</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-maximum-width-of-binary-tree">4.61. [LeetCode] Maximum Width of Binary Tree 二叉树最大宽度</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-restore-the-array">4.62. [LeetCode] Restore The Array 从字符串恢复整数数组</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#leetcode-non-overlapping-intervals">4.63. [LeetCode] Non-overlapping Intervals 不重叠区间</a></li>
 </ul>
 </li>
 </ul>
@@ -4924,6 +4925,31 @@ $$</div><div class="toggle docutils container">
 <span class="linenos">20</span>                        <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">1</span>
 <span class="linenos">21</span>                        <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">%=</span> <span class="n">mod</span>
 <span class="linenos">22</span>        <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</section>
+<section id="leetcode-non-overlapping-intervals">
+<h2><span class="section-number">4.63. </span>[LeetCode] Non-overlapping Intervals 不重叠区间<a class="headerlink" href="#leetcode-non-overlapping-intervals" title="Permalink to this headline"></a></h2>
+<p>Hint：贪心算法，总是选择结束最早的区间。</p>
+<p><a class="reference external" href="https://leetcode.com/problems/non-overlapping-intervals">https://leetcode.com/problems/non-overlapping-intervals</a></p>
+<blockquote>
+<div><div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<span class="linenos"> 2</span>    <span class="k">def</span> <span class="nf">eraseOverlapIntervals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">intervals</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="linenos"> 3</span>        <span class="n">intervals</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">intervals</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="linenos"> 4</span>        <span class="n">pend</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;-inf&quot;</span><span class="p">)</span>
+<span class="linenos"> 5</span>        <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos"> 6</span>        <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="ow">in</span> <span class="n">intervals</span><span class="p">:</span>
+<span class="linenos"> 7</span>            <span class="k">if</span> <span class="n">start</span> <span class="o">&gt;=</span> <span class="n">pend</span><span class="p">:</span>
+<span class="linenos"> 8</span>                <span class="n">pend</span> <span class="o">=</span> <span class="n">end</span>
+<span class="linenos"> 9</span>            <span class="k">else</span><span class="p">:</span>
+<span class="linenos">10</span>                <span class="n">cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos">11</span>        <span class="k">return</span> <span class="n">cnt</span>
 </pre></div>
 </div>
 </div>

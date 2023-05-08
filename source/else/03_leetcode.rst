@@ -5188,3 +5188,32 @@ https://leetcode.com/problems/restore-the-array
                                 dp[i] += dp[j-1] if j > 0 else 1
                                 dp[i] %= mod
                 return dp[-1]
+
+[LeetCode] Non-overlapping Intervals 不重叠区间
+----------------------------------------------------------------
+
+Hint：贪心算法，总是选择结束最早的区间。
+
+https://leetcode.com/problems/non-overlapping-intervals
+
+
+  .. container:: toggle
+
+    .. container:: header
+
+        :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: python
+        :linenos:
+
+        class Solution:
+            def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
+                intervals = sorted(intervals, key=lambda x: x[1])
+                pend = float("-inf")
+                cnt = 0
+                for start, end in intervals:
+                    if start >= pend:
+                        pend = end
+                    else:
+                        cnt += 1
+                return cnt

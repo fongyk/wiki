@@ -5217,3 +5217,36 @@ https://leetcode.com/problems/non-overlapping-intervals
                     else:
                         cnt += 1
                 return cnt
+
+[LeetCode] Stone Game II 石头游戏
+----------------------------------------------------------------
+
+Hint：记忆化递归；动态规划。
+
+https://leetcode.com/problems/stone-game-ii
+
+  .. container:: toggle
+
+    .. container:: header
+
+        :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: python
+        :linenos:
+
+        class Solution:
+            def stoneGameII(self, piles: List[int]) -> int:
+                m = 1
+                k = len(piles)
+                ## 记录状态 (i, m) 的最大分
+                mem = [[-1]*(2*k+1) for _ in range(k)]
+                return self.maxScore(piles, 0, m, mem)
+            
+            def maxScore(self, piles, i, m, mem):
+                if len(piles) - i <= 2*m:
+                    return sum(piles[i:])
+                if mem[i][m] >= 0:
+                    return mem[i][m]
+                ## 拿完 piles[i:i+x] 之后，要等对方从 i+x 开始拿，之后能拿到的最大分是 sum(piles[i+x:]) - self.maxScore(piles, i+x, max(m, x), mem)
+                mem[i][m] = max([sum(piles[i:i+x]) + sum(piles[i+x:]) - self.maxScore(piles, i+x, max(m, x), mem) for x in range(1, 2*m+1)])
+                return mem[i][m]

@@ -5218,12 +5218,14 @@ https://leetcode.com/problems/non-overlapping-intervals
                         cnt += 1
                 return cnt
 
-[LeetCode] Stone Game II 石头游戏
+[LeetCode] Stone Game 石头游戏
 ----------------------------------------------------------------
 
 Hint：记忆化递归；动态规划。
 
 https://leetcode.com/problems/stone-game-ii
+
+https://leetcode.com/problems/stone-game-iii
 
   .. container:: toggle
 
@@ -5250,3 +5252,34 @@ https://leetcode.com/problems/stone-game-ii
                 ## 拿完 piles[i:i+x] 之后，要等对方从 i+x 开始拿，之后能拿到的最大分是 sum(piles[i+x:]) - self.maxScore(piles, i+x, max(m, x), mem)
                 mem[i][m] = max([sum(piles[i:i+x]) + sum(piles[i+x:]) - self.maxScore(piles, i+x, max(m, x), mem) for x in range(1, 2*m+1)])
                 return mem[i][m]
+
+    .. code-block:: python
+        :linenos:
+
+        INT_MIN = -0x80000000
+        class Solution:
+            def stoneGameIII(self, stoneValue: List[int]) -> str:
+                n = len(stoneValue)
+                totalScore = sum(stoneValue)
+                ## 后 n 项和，避免后续重复计算
+                accuScore = [0] * (n+1)
+                for i in range(n-1, -1, -1):
+                    accuScore[i] = accuScore[i+1] + stoneValue[i]
+                ## dp[i]：从第 i 堆石头开始拿能够得到的最大分
+                dp = [0] * (n+1)
+                for i in range(n-1, -1, -1):
+                    takeOne = stoneValue[i] + accuScore[i+1] - dp[i+1]
+                    takeTwo = INT_MIN
+                    if i < n - 1:
+                        takeTwo = sum(stoneValue[i:i+2]) + accuScore[i+2] - dp[i+2]
+                    takeThree = INT_MIN
+                    if i < n - 2:
+                        takeThree = sum(stoneValue[i:i+3]) + accuScore[i+3] - dp[i+3]
+                    dp[i] = max(takeOne, takeTwo, takeThree)
+                
+                aliceScore = dp[0] << 1
+                if aliceScore == totalScore:
+                    return "Tie"
+                if aliceScore > totalScore:
+                    return "Alice"
+                return "Bob"

@@ -126,6 +126,12 @@
 
 **HEAD 指针指向当前版本的 master 分支。**
 
+- ``git checkout <commit>`` 切换到某次 commit 之后的状态。
+
+  - ``git checkout -`` 返回 checkout 之前的状态。
+
+  - 可以通过 ``git reflog`` 查看所有的 commit 记录，找到最新的 commit 并切换回去。
+
 - ``git checkout -- <file>`` 取消对已经 commit 内容的修改。
 
 - ``git reset <file>`` 取消对暂存区的修改（to unstage），还原到工作区。

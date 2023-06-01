@@ -205,6 +205,12 @@
 </div>
 <p><strong>HEAD 指针指向当前版本的 master 分支。</strong></p>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">&lt;commit&gt;</span></code> 切换到某次 commit 之后的状态。</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-</span></code> 返回 checkout 之前的状态。</p></li>
+<li><p>可以通过 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reflog</span></code> 查看所有的 commit 记录，找到最新的 commit 并切换回去。</p></li>
+</ul>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">--</span> <span class="pre">&lt;file&gt;</span></code> 取消对已经 commit 内容的修改。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">&lt;file&gt;</span></code> 取消对暂存区的修改（to unstage），还原到工作区。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">[&lt;mode&gt;]</span> <span class="pre">[&lt;commit&gt;]</span></code></p>

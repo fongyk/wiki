@@ -32,6 +32,17 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。
 
     - 执行 ``echo $0`` 或 ``ps -p $$`` 查看当前所处的 Shell 环境。
 
+通配符（Wildcard）
+---------------------
+
+- ``*`` ：匹配 0 个或多个任意字符。
+
+- ``?`` ：匹配一个任意字符。
+
+- ``[a-z0-9...]`` ：匹配集合中的任意单个字符；使用 ``^`` 或 ``!`` 取集合的补集。
+
+- ``{str1,str2,...}`` ：匹配集合中的任意单个字符串；逗号和字符串之间不能有空格； ``touch play.{h,cpp}`` 将创建 play.h 和 play.cpp 两个文件。
+
 变量
 -----------
 
@@ -69,6 +80,19 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。
     $ echo '$(date +"%Y-%m-%d %H:%M:%S" -d "-3 days")'
     $(date +"%Y-%m-%d %H:%M:%S" -d "-3 days")
 
+字符串替换
+^^^^^^^^^^^^^
+
+给定一个字符串变量 ``FOO`` ：
+
+- ``${FOO%suffix}`` 去掉后缀（将 suffix 替换为空）
+- ``${FOO#prefix}`` 去掉前缀（将 prefix 替换为空）
+- ``${FOO%%suffix}`` 去掉长后缀（通配符贪婪匹配）
+- ``${FOO##prefix}`` 去掉长前缀（通配符贪婪匹配）
+- ``${FOO/from/to}`` 将 from 的第一个匹配替换为 to
+- ``${FOO//from/to}`` 将 from 的所有匹配都替换为 to
+- ``${FOO/%from/to}`` 将 from 匹配的后缀替换为 to
+- ``${FOO/#from/to}`` 将 from 匹配的前缀替换为 to
 
 数组
 -----------
@@ -557,3 +581,7 @@ break 和 continue
 3. Shell test 单中括号[] 双中括号[[]] 的区别
 
   https://www.cnblogs.com/zeweiwu/p/5485711.html
+
+4. Bash cheatsheet
+
+  https://quickref.me/bash

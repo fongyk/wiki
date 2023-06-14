@@ -59,19 +59,23 @@
 <li class="toctree-l2"><a class="reference internal" href="05_sed.html">6. sed</a></li>
 <li class="toctree-l2"><a class="reference internal" href="08_awk.html">7. awk</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">8. Shell 基础</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">8.1. 变量</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">8.2. 字符串</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">8.3. 数组</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">8.4. 注释</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id6">8.5. 传递参数</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id7">8.6. 运算</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id8">数值运算</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id12">字符串运算</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id13">文件测试</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#wildcard">8.1. 通配符（Wildcard）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">8.2. 变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">8.3. 字符串</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">字符串替换</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">8.4. 数组</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">8.5. 注释</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">8.6. 传递参数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">8.7. 运算</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id9">数值运算</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">字符串运算</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">文件测试</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#printf">printf</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id14">8.7. 流程控制</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id15">8.8. 流程控制</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#if-else">if else</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#for">for</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#while">while</a></li>
@@ -80,8 +84,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#break-continue">break 和 continue</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id15">8.8. 函数</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id16">8.9. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">8.9. 函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">8.10. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="07_loginShell.html">9. Shell 交互与登录</a></li>
@@ -148,8 +152,17 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。</p>
 <li><p>执行 <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$0</span></code> 或 <code class="docutils literal notranslate"><span class="pre">ps</span> <span class="pre">-p</span> <span class="pre">$$</span></code> 查看当前所处的 Shell 环境。</p></li>
 </ul>
 </div>
+<section id="wildcard">
+<h2><span class="section-number">8.1. </span>通配符（Wildcard）<a class="headerlink" href="#wildcard" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">*</span></code> ：匹配 0 个或多个任意字符。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">?</span></code> ：匹配一个任意字符。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[a-z0-9...]</span></code> ：匹配集合中的任意单个字符；使用 <code class="docutils literal notranslate"><span class="pre">^</span></code> 或 <code class="docutils literal notranslate"><span class="pre">!</span></code> 取集合的补集。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{str1,str2,...}</span></code> ：匹配集合中的任意单个字符串；逗号和字符串之间不能有空格； <code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">play.{h,cpp}</span></code> 将创建 play.h 和 play.cpp 两个文件。</p></li>
+</ul>
+</section>
 <section id="id1">
-<h2><span class="section-number">8.1. </span>变量<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">8.2. </span>变量<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
 <p>变量定义的时候不需要 <code class="docutils literal notranslate"><span class="pre">$</span></code> 符号，引用取值的时候需要。定义的时候等号两边不允许带空格:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nv">var</span><span class="o">=</span><span class="s2">&quot;hello world&quot;</span>
 <span class="linenos">2</span><span class="nb">echo</span> <span class="nv">$var</span>
@@ -161,7 +174,7 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。</p>
 <p>删除变量（不能删除只读变量）： <code class="docutils literal notranslate"><span class="pre">unset</span> <span class="pre">var</span></code></p>
 </section>
 <section id="id2">
-<h2><span class="section-number">8.2. </span>字符串<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">8.3. </span>字符串<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <p>字符串可以用单引号、双引号，也可以不用引号，如果字符串中有空格则需要带上引号。</p>
 <ul class="simple">
 <li><p>获取字符串长度： <code class="docutils literal notranslate"><span class="pre">${#string}</span></code></p></li>
@@ -179,9 +192,23 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。</p>
 <span class="linenos">4</span><span class="k">$(</span>date +<span class="s2">&quot;%Y-%m-%d %H:%M:%S&quot;</span> -d <span class="s2">&quot;-3 days&quot;</span><span class="k">)</span>
 </pre></div>
 </div>
-</section>
 <section id="id4">
-<h2><span class="section-number">8.3. </span>数组<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<h3>字符串替换<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
+<p>给定一个字符串变量 <code class="docutils literal notranslate"><span class="pre">FOO</span></code> ：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">${FOO%suffix}</span></code> 去掉后缀（将 suffix 替换为空）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">${FOO#prefix}</span></code> 去掉前缀（将 prefix 替换为空）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">${FOO%%suffix}</span></code> 去掉长后缀（通配符贪婪匹配）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">${FOO##prefix}</span></code> 去掉长前缀（通配符贪婪匹配）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">${FOO/from/to}</span></code> 将 from 的第一个匹配替换为 to</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">${FOO//from/to}</span></code> 将 from 的所有匹配都替换为 to</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">${FOO/%from/to}</span></code> 将 from 匹配的后缀替换为 to</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">${FOO/#from/to}</span></code> 将 from 匹配的前缀替换为 to</p></li>
+</ul>
+</section>
+</section>
+<section id="id5">
+<h2><span class="section-number">8.4. </span>数组<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
 <p>定义:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">array</span><span class="o">=(</span>value0 value1 value2 value3<span class="o">)</span>
 </pre></div>
@@ -218,8 +245,8 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。</p>
 <p>dash 不支持 <code class="docutils literal notranslate"><span class="pre">{1..10}</span></code> 这种列表的写法。</p>
 </div>
 </section>
-<section id="id5">
-<h2><span class="section-number">8.4. </span>注释<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
+<section id="id6">
+<h2><span class="section-number">8.5. </span>注释<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
 <ul>
 <li><p>单行注释：<code class="docutils literal notranslate"><span class="pre">#</span></code></p></li>
 <li><p>多行注释:</p>
@@ -245,8 +272,8 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。</p>
 </li>
 </ul>
 </section>
-<section id="id6">
-<h2><span class="section-number">8.5. </span>传递参数<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
+<section id="id7">
+<h2><span class="section-number">8.6. </span>传递参数<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h2>
 <p>在执行 Shell 脚本时，可以向脚本传递参数，脚本内获取参数的格式为：<code class="docutils literal notranslate"><span class="pre">$n</span></code> 。 <code class="docutils literal notranslate"><span class="pre">$1</span></code> 为执行脚本的第一个参数，<code class="docutils literal notranslate"><span class="pre">$2</span></code> 为执行脚本的第二个参数，以此类推；超过 9 应该使用花括号如 <code class="docutils literal notranslate"><span class="pre">${10}</span></code> ；<code class="docutils literal notranslate"><span class="pre">$0</span></code> 为执行的文件名（包含文件路径）。</p>
 <ul class="simple">
 <li><p>获取参数个数：<code class="docutils literal notranslate"><span class="pre">$#</span></code></p></li>
@@ -254,14 +281,14 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。</p>
 <li><p>以列表形式获取全部参数：<code class="docutils literal notranslate"><span class="pre">$&#64;</span></code> ，得到类似于 <code class="docutils literal notranslate"><span class="pre">&quot;$1&quot;</span> <span class="pre">&quot;$2&quot;</span> <span class="pre">…</span> <span class="pre">&quot;$n&quot;</span></code> 的值</p></li>
 </ul>
 </section>
-<section id="id7">
-<h2><span class="section-number">8.6. </span>运算<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h2>
+<section id="id8">
+<h2><span class="section-number">8.7. </span>运算<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Shell 对于输入都是统一按字符串类型处理的，不管有没有加引号。有一些运算符是专门用于字面值是数值的字符串。</p>
 </div>
-<section id="id8">
-<h3>数值运算<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h3>
+<section id="id9">
+<h3>数值运算<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">expr</span></code> 可以实现基础的数值运算和一些字符串操作：</p>
 <ul class="simple">
 <li><p>出现在表达式中的运算符、数字、变量、圆括号的左右两边要有空格。</p></li>
@@ -323,8 +350,8 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。</p>
 <p><code class="docutils literal notranslate"><span class="pre">`command`</span></code> 等效于 <code class="docutils literal notranslate"><span class="pre">$(command)</span></code> ，都是获取 Shell 指令执行的结果，例如 <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">`expr</span> <span class="pre">$a</span> <span class="pre">+</span> <span class="pre">$b`</span></code> 等效于 <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$(expr</span> <span class="pre">$a</span> <span class="pre">+</span> <span class="pre">$b)</span></code> 。
 反引号是老式用法，推荐使用 <code class="docutils literal notranslate"><span class="pre">$(command)</span></code> 。</p>
 </div>
-<section id="id9">
-<h4>关系运算<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h4>
+<section id="id10">
+<h4>关系运算<a class="headerlink" href="#id10" title="Permalink to this headline"></a></h4>
 <p>下面的关系运算符只支持数字，不支持字面值非数值的字符串。</p>
 <ul class="simple">
 <li><p>相等： <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">$a</span> <span class="pre">-eq</span> <span class="pre">$b</span> <span class="pre">]</span></code></p></li>
@@ -335,16 +362,16 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。</p>
 <li><p>小于等于： <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">$a</span> <span class="pre">-le</span> <span class="pre">$b</span> <span class="pre">]</span></code></p></li>
 </ul>
 </section>
-<section id="id10">
-<h4>布尔运算<a class="headerlink" href="#id10" title="Permalink to this headline"></a></h4>
+<section id="id11">
+<h4>布尔运算<a class="headerlink" href="#id11" title="Permalink to this headline"></a></h4>
 <ul class="simple">
 <li><p>非： <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">!</span> <span class="pre">event</span> <span class="pre">]</span></code> 取反。</p></li>
 <li><p>与： <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">$a</span> <span class="pre">-lt</span> <span class="pre">20</span> <span class="pre">-a</span> <span class="pre">$b</span> <span class="pre">-gt</span> <span class="pre">100</span> <span class="pre">]</span></code></p></li>
 <li><p>或： <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">$a</span> <span class="pre">-lt</span> <span class="pre">20</span> <span class="pre">-o</span> <span class="pre">$b</span> <span class="pre">-gt</span> <span class="pre">100</span> <span class="pre">]</span></code></p></li>
 </ul>
 </section>
-<section id="id11">
-<h4>逻辑运算<a class="headerlink" href="#id11" title="Permalink to this headline"></a></h4>
+<section id="id12">
+<h4>逻辑运算<a class="headerlink" href="#id12" title="Permalink to this headline"></a></h4>
 <ul>
 <li><p>与： <code class="docutils literal notranslate"><span class="pre">[[</span> <span class="pre">$a</span> <span class="pre">-lt</span> <span class="pre">20</span> <span class="pre">&amp;&amp;</span> <span class="pre">$b</span> <span class="pre">-gt</span> <span class="pre">100</span> <span class="pre">]]</span></code></p>
 <blockquote>
@@ -358,8 +385,8 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。</p>
 </ul>
 </section>
 </section>
-<section id="id12">
-<h3>字符串运算<a class="headerlink" href="#id12" title="Permalink to this headline"></a></h3>
+<section id="id13">
+<h3>字符串运算<a class="headerlink" href="#id13" title="Permalink to this headline"></a></h3>
 <ul>
 <li><p>相等： <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">$a</span> <span class="pre">=</span> <span class="pre">$b</span> <span class="pre">]</span></code></p>
 <blockquote>
@@ -422,8 +449,8 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。</p>
 <p>更规范的写法是在变量外部都加双引号，即： <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">&quot;$1&quot;</span> <span class="pre">=</span> <span class="pre">'target'</span> <span class="pre">]</span></code> ，如果执行脚本的时候没有输入参数，原命令变成 <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">''</span> <span class="pre">=</span> <span class="pre">'target'</span> <span class="pre">]</span></code> 。</p>
 </div>
 </section>
-<section id="id13">
-<h3>文件测试<a class="headerlink" href="#id13" title="Permalink to this headline"></a></h3>
+<section id="id14">
+<h3>文件测试<a class="headerlink" href="#id14" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>目录： <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">-d</span> <span class="pre">$file</span> <span class="pre">]</span></code></p></li>
 <li><p>普通文件（非目录、非设备文件）： <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">-f</span> <span class="pre">$file</span> <span class="pre">]</span></code></p></li>
@@ -468,8 +495,8 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。</p>
 <p><code class="docutils literal notranslate"><span class="pre">%-10s</span></code> 指宽度为 10 个字符（ <code class="docutils literal notranslate"><span class="pre">-</span></code> 表示左对齐，没有则表示右对齐）。</p>
 </section>
 </section>
-<section id="id14">
-<h2><span class="section-number">8.7. </span>流程控制<a class="headerlink" href="#id14" title="Permalink to this headline"></a></h2>
+<section id="id15">
+<h2><span class="section-number">8.8. </span>流程控制<a class="headerlink" href="#id15" title="Permalink to this headline"></a></h2>
 <section id="if-else">
 <h3>if else<a class="headerlink" href="#if-else" title="Permalink to this headline"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">if</span> condition1
@@ -576,8 +603,8 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。</p>
 </ul>
 </section>
 </section>
-<section id="id15">
-<h2><span class="section-number">8.8. </span>函数<a class="headerlink" href="#id15" title="Permalink to this headline"></a></h2>
+<section id="id16">
+<h2><span class="section-number">8.9. </span>函数<a class="headerlink" href="#id16" title="Permalink to this headline"></a></h2>
 <p>定义形式如下:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="o">[</span><span class="k">function</span><span class="o">]</span> funname <span class="o">[()]</span>
 <span class="linenos">2</span><span class="o">{</span>
@@ -624,8 +651,8 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。</p>
 </pre></div>
 </div>
 </section>
-<section id="id16">
-<h2><span class="section-number">8.9. </span>参考资料<a class="headerlink" href="#id16" title="Permalink to this headline"></a></h2>
+<section id="id17">
+<h2><span class="section-number">8.10. </span>参考资料<a class="headerlink" href="#id17" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>Shell 教程</p></li>
 </ol>
@@ -643,6 +670,12 @@ Ubuntu 6.10 开始默认使用 dash，dash 符合 POSIX 标准。</p>
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://www.cnblogs.com/zeweiwu/p/5485711.html">https://www.cnblogs.com/zeweiwu/p/5485711.html</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p>Bash cheatsheet</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://quickref.me/bash">https://quickref.me/bash</a></p>
 </div></blockquote>
 </section>
 </section>

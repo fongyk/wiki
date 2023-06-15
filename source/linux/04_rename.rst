@@ -27,8 +27,6 @@ mv
 
 ``mv $f ${f}-new`` 在文件名后面加了 ``-new`` 。
 
-``mv $f ${f%substr_old}substr_new`` 可将 ``f`` 的子串 ``substr_old`` 替换为 ``substr_new`` 。
-
 awk
 ----------
 
@@ -77,7 +75,7 @@ rename
 
 后缀从 .jpg 改成 .JPG::
 
-    fong@GK40:/data6/fong/shell$ rename -n 's/\.jpg/\.JPG/g' *.jpg
+    fong@GK40:/data6/fong/shell$ rename -n 's/\.jpg/.JPG/g' *.jpg
     rename(ustc-1.jpg, ustc-1.JPG)
     rename(ustc-2.jpg, ustc-2.JPG)
     rename(ustc-3.jpg, ustc-3.JPG)

@@ -126,7 +126,6 @@
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">mv</span> <span class="pre">$f</span> <span class="pre">${f}-new</span></code> 在文件名后面加了 <code class="docutils literal notranslate"><span class="pre">-new</span></code> 。</p>
-<p><code class="docutils literal notranslate"><span class="pre">mv</span> <span class="pre">$f</span> <span class="pre">${f%substr_old}substr_new</span></code> 可将 <code class="docutils literal notranslate"><span class="pre">f</span></code> 的子串 <code class="docutils literal notranslate"><span class="pre">substr_old</span></code> 替换为 <code class="docutils literal notranslate"><span class="pre">substr_new</span></code> 。</p>
 </section>
 <section id="awk">
 <h2><span class="section-number">4.2. </span>awk<a class="headerlink" href="#awk" title="Permalink to this headline"></a></h2>
@@ -175,7 +174,7 @@ rename<span class="o">(</span>ustc-6.jpg, USTC-6.JPG<span class="o">)</span>
 </pre></div>
 </div>
 <p>后缀从 .jpg 改成 .JPG:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fong@GK40:/data6/fong/shell$ rename -n <span class="s1">&#39;s/\.jpg/\.JPG/g&#39;</span> *.jpg
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fong@GK40:/data6/fong/shell$ rename -n <span class="s1">&#39;s/\.jpg/.JPG/g&#39;</span> *.jpg
 rename<span class="o">(</span>ustc-1.jpg, ustc-1.JPG<span class="o">)</span>
 rename<span class="o">(</span>ustc-2.jpg, ustc-2.JPG<span class="o">)</span>
 rename<span class="o">(</span>ustc-3.jpg, ustc-3.JPG<span class="o">)</span>

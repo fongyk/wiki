@@ -59,7 +59,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#id5">版本管理</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id6">1.2. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">1.2. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="02_remoteRep.html">2. 远程仓库</a></li>
@@ -203,7 +203,7 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p><strong>HEAD 指针指向当前版本的 master 分支。</strong></p>
+<p><strong>HEAD 指针指向当前分支。</strong></p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">&lt;commit&gt;</span></code> 切换到某次 commit 之后的状态。</p>
 <ul>
@@ -218,6 +218,16 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">--soft</span></code> 从本地仓库撤销到暂存区（撤销了 git commit，不撤销 git add）。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--mixed</span></code> 默认 mode，撤销 git commit 和 git add，工作区内容保持。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--hard</span></code> 本地仓库回到之前版本，暂存区和工作区的修改都被丢弃。</p></li>
+<li><p>reset 一般用于本地最新 commit 或工作区/暂存区的还原，如果 reset 了已经 push 到远程仓库的 commit，那么直接 push 会产生错误。</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">revert</span> <span class="pre">&lt;commit&gt;</span></code></p>
+<ul>
+<li><p>用于回滚之前的某次/某些（有 bug 的）commit，不会删除之前的 commit 记录，会增加新的 revert 记录。</p></li>
+<li><p>回滚中间某次 commit 可能会产生冲突，因为后面的某次 commit 可能修改了相同的文件（修改了同一行，或者删除了文件）。此时需要先解决冲突（通过 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> 查看提示），参考 github 文档 – <a class="reference external" href="https://docs.github.com/zh/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line?platform=linux">使用命令行解决合并冲突</a> ，然后执行 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">-A</span></code> ， <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">revert</span> <span class="pre">--continue</span></code> 。</p></li>
+<li><p>放弃当前 revert 操作： <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">revert</span> <span class="pre">--abort</span></code> 。</p></li>
+<li><p>如果需要回滚多个连续的 commit ，使用 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">revert</span> <span class="pre">-n</span> <span class="pre">commit_begin..commit_end</span></code> ，左开右闭，如果需要包括左边的 commit，使用 <code class="docutils literal notranslate"><span class="pre">commit_begin^</span></code> 。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-n</span></code> 表示 no commit，不自动提交，后续需要手动提交。因为回滚多个 commit 的时候，默认会自动产生多个提交记录，因此最好手动做一次提交。</p></li>
 </ul>
 </li>
 </ul>
@@ -236,8 +246,8 @@
 </div>
 </section>
 </section>
-<section id="id6">
-<h2><span class="section-number">1.2. </span>参考资料<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
+<section id="id7">
+<h2><span class="section-number">1.2. </span>参考资料<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>Git和Github简单教程</p></li>
 </ol>
@@ -291,6 +301,12 @@
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/96631135">https://zhuanlan.zhihu.com/p/96631135</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="10">
+<li><p>git-revert</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://git-scm.com/docs/git-revert">https://git-scm.com/docs/git-revert</a></p>
 </div></blockquote>
 </section>
 </section>

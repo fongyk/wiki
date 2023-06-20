@@ -124,7 +124,7 @@
 
 |
 
-**HEAD 指针指向当前版本的 master 分支。**
+**HEAD 指针指向当前分支。**
 
 - ``git checkout <commit>`` 切换到某次 commit 之后的状态。
 
@@ -141,6 +141,15 @@
   - ``--soft`` 从本地仓库撤销到暂存区（撤销了 git commit，不撤销 git add）。
   - ``--mixed`` 默认 mode，撤销 git commit 和 git add，工作区内容保持。
   - ``--hard`` 本地仓库回到之前版本，暂存区和工作区的修改都被丢弃。
+  - reset 一般用于本地最新 commit 或工作区/暂存区的还原，如果 reset 了已经 push 到远程仓库的 commit，那么直接 push 会产生错误。
+
+- ``git revert <commit>``
+
+  - 用于回滚之前的某次/某些（有 bug 的）commit，不会删除之前的 commit 记录，会增加新的 revert 记录。
+  - 回滚中间某次 commit 可能会产生冲突，因为后面的某次 commit 可能修改了相同的文件（修改了同一行，或者删除了文件）。此时需要先解决冲突（通过 ``git status`` 查看提示），参考 github 文档 -- `使用命令行解决合并冲突 <https://docs.github.com/zh/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line?platform=linux>`_ ，然后执行 ``git add -A`` ， ``git revert --continue`` 。
+  - 放弃当前 revert 操作： ``git revert --abort`` 。
+  - 如果需要回滚多个连续的 commit ，使用 ``git revert -n commit_begin..commit_end`` ，左开右闭，如果需要包括左边的 commit，使用 ``commit_begin^`` 。
+  - ``-n`` 表示 no commit，不自动提交，后续需要手动提交。因为回滚多个 commit 的时候，默认会自动产生多个提交记录，因此最好手动做一次提交。
 
 .. tip::
 
@@ -191,3 +200,7 @@
 9. 这才是真正的Git——Git内部原理揭秘！
 
   https://zhuanlan.zhihu.com/p/96631135
+
+10. git-revert
+
+  https://git-scm.com/docs/git-revert

@@ -25,10 +25,10 @@ $                                           匹配输入字符串的结束位置
 \*?, +?, ??, {n}?, {n,}?, {n,m}?            非贪婪匹配                                                             对于字符串 oooo， ``o+?`` 将匹配单个 o，而 ``o+`` 将匹配所有 o。
 (pattern)                                   匹配 pattern 并获取这一匹配                                                                                     
 (?:pattern)                                 非获取匹配                                                              ``industr(?:y|ies)`` 是一个比 ``industry|industries`` 更简略的表达式                                       
-(?=pattern)                                 正向肯定预查（Look Ahead Positive Assert），非获取匹配                       ``Windows(?=95|98|NT|2000)`` 能匹配 Windows2000 中的 Windows ，但不能匹配 Windows3.1 中的 Windows。预查不消耗字符。 
-(?!pattern)                                 正向否定预查（Look Ahead Negative Assert），非获取匹配                       ``Windows(?!95|98|NT|2000)`` 能匹配 Windows3.1 中的 Windows ，但不能匹配 Windows2000 中的 Window。                                                                     
-(?<=pattern)                                反向肯定预查（Look Behind Positive Assert），非获取匹配                      ``(?<=95|98|NT|2000)Windows`` 能匹配 2000Windows 中的 Windows ，但不能匹配 3.1Windows 中的 Windows。                                                      
-(?<!pattern)                                反向否定预查（Look Behind Negative Assert），非获取匹配                      ``(?<!95|98|NT|2000)Windows`` 能匹配 3.1Windows 中的 Windows ，但不能匹配 2000Windows 中的 Windows。
+(?=pattern)                                 正向肯定预查（Look Ahead Positive Assertion），非获取匹配                       ``Windows(?=95|98|NT|2000)`` 能匹配 Windows2000 中的 Windows ，但不能匹配 Windows3.1 中的 Windows。预查不消耗字符。 
+(?!pattern)                                 正向否定预查（Look Ahead Negative Assertion），非获取匹配                       ``Windows(?!95|98|NT|2000)`` 能匹配 Windows3.1 中的 Windows ，但不能匹配 Windows2000 中的 Window。                                                                     
+(?<=pattern)                                反向肯定预查（Look Behind Positive Assertion），非获取匹配                      ``(?<=95|98|NT|2000)Windows`` 能匹配 2000Windows 中的 Windows ，但不能匹配 3.1Windows 中的 Windows。                                                      
+(?<!pattern)                                反向否定预查（Look Behind Negative Assertion），非获取匹配                      ``(?<!95|98|NT|2000)Windows`` 能匹配 3.1Windows 中的 Windows ，但不能匹配 2000Windows 中的 Windows。
 x|y                                          匹配 x 或 y                                                                      
 [xyz]                                        字符集合，匹配所包含的任意一个字符                                                                     
 [^xyz]                                       负值字符集合，匹配未包含的任意字符                                                                    
@@ -43,8 +43,9 @@ x|y                                          匹配 x 或 y
 \\t                                          匹配一个制表符                                                                     
 \\w                                          匹配字母、数字、下划线，等价于 ``[A-Za-z0-9_]``                                                                     
 \\W                                          匹配非字母、数字、下划线，等价于 ``[^A-Za-z0-9_]``                                                                        
-\\b                                          匹配 ``\w`` 类型和 ``\W`` 类型之间的分界                                ``er\b`` 可以匹配 never 中的 er，但不能匹配 verb 中的 er。                                       
+\\b                                          匹配 ``\w`` 类型和 ``\W`` 类型之间的分界                                ``er\b`` 能匹配 never 中的 er，但不能匹配 verb 中的 er。                                       
 \\B                                          匹配 ``\w`` 类型和 ``\w`` 类型之间的分界                                ``er\B`` 能匹配 verb 中的 er，但不能匹配 never 中的 er。                                       
+\\num                                        后向引用（Back Reference），对第 ``num`` 个获取式匹配的引用               ``([a-z])\1`` 能匹配连续的两个相同小写字母。                                       
 ========================================  ====================================================================  =============================================
 
 匹配邮箱的例子::
@@ -67,6 +68,10 @@ x|y                                          匹配 x 或 y
 
     放在中括号 ``[]`` 里面的时候， ``.`` ``+`` ``*`` 等特殊字符可以不用转义。
 
+.. tip::
+
+    VS Code 在使用正则进行查找替换的时候，替换结果中使用 ``$num`` 来引用所获取的匹配（ ``num`` 从 1 开始）。
+
 参考资料
 ------------------
 
@@ -88,5 +93,7 @@ x|y                                          匹配 x 或 y
   
   https://c.runoob.com/front-end/854/
 
+5. 在 Visual Studio 中使用正则表达式
 
+  https://learn.microsoft.com/zh-cn/visualstudio/ide/using-regular-expressions-in-visual-studio?view=vs-2022
   

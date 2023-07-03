@@ -1,6 +1,7 @@
 代理
 ===========
 
+
 HTTPS 连接
 -----------------
 
@@ -14,7 +15,7 @@ HTTPS 连接
     git config --global http.proxy 'socks5://127.0.0.1:7890' 
     git config --global https.proxy 'socks5://127.0.0.1:7890'
 
-查看配置： ``git config -l --global`` 。配置保存在 ``~/.gitconfig`` 。
+查看配置： ``git config -l --global`` 。全局配置保存在 ``~/.gitconfig`` 。
 
 取消代理::
 

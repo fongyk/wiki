@@ -1,6 +1,7 @@
 本地版本库
 ===========
 
+
 **Git** 是先进的分布式版本控制系统。
 
 .. image:: ./01_git-operations.png
@@ -19,12 +20,8 @@
 
 - **remote repository** ：远程仓库
 
-
-本地版本库
-------------
-
 创建与修改
-^^^^^^^^^^^^^^^^
+------------------------
 
 - ``git init`` 把当前目录变为 Git 可管理的仓库（目录下多了子目录 .git/ ，自动创建的第一个分支 master，以及指向 master 的一个指针叫 ``HEAD`` ）。
 
@@ -96,25 +93,9 @@
 
 - ``git mv file_from file_to`` 重命名文件，相当于 ``mv file_from file_to; git rm file_from; git add file_to`` 。要从 Git 中移除某个文件，就必须要从已跟踪文件清单中移除（确切地说，是从暂存区域移除），然后再提交。 ``git rm`` 就是用于完成此项工作，并连带从工作目录中删除指定的文件，这样以后就不会出现在未跟踪文件清单中了。
 
-忽略文件
-^^^^^^^^^^^^^^^
-
-一般我们总会有些文件无需纳入 Git 的管理，也不希望它们总出现在未跟踪文件列表。通常都是些自动生成的文件，比如日志文件，或者编译过程中创建的临时文件等。在这种情况下，我们可以创建一个名为 .gitignore 的文件，列出要忽略的文件模式。
-
-文件 .gitignore 的格式规范如下：
-
-- 所有空行或者以 ``＃`` 开头的行都会被 Git 忽略。
-
-- 可以使用标准的 glob 模式匹配。
-
-- 匹配模式可以以 ``/`` 开头防止递归（只在当前目录下匹配，不进入子目录）。
-
-- 匹配模式可以以 ``/`` 结尾指定目录。
-
-- 要忽略指定模式以外的文件或目录，可以在模式前加上惊叹号 ``!`` 表示取反。
 
 版本管理
-^^^^^^^^^^^
+------------
 
 .. image:: ./01_head.jpg
     :width: 500px
@@ -146,7 +127,7 @@
 - ``git revert <commit>``
 
   - 用于回滚之前的某次/某些（有 bug 的）commit，不会删除之前的 commit 记录，会增加新的 revert 记录。
-  - 回滚中间某次 commit 可能会产生冲突，因为后面的某次 commit 可能修改了相同的文件（修改了同一行，或者删除了文件）。此时需要先解决冲突（通过 ``git status`` 查看提示），参考 github 文档 -- `使用命令行解决合并冲突 <https://docs.github.com/zh/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line?platform=linux>`_ ，然后执行 ``git add -A`` ， ``git revert --continue`` 。
+  - 回滚中间某次 commit 可能会产生冲突，因为后面的某次 commit 可能修改了相同的文件（修改了同一行，或者删除了文件）。此时需要先解决冲突（通过 ``git status`` 查看提示），参考 github 文档 -- `使用命令行解决合并冲突 <https://docs.github.com/zh/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line?platform=linux>`_ ，然后执行 ``git add -A; git revert --continue`` 。
   - 放弃当前 revert 操作： ``git revert --abort`` 。
   - 如果需要回滚多个连续的 commit ，使用 ``git revert -n commit_begin..commit_end`` ，左开右闭，如果需要包括左边的 commit，使用 ``commit_begin^`` 。
   - ``-n`` 表示 no commit，不自动提交，后续需要手动提交。因为回滚多个 commit 的时候，默认会自动产生多个提交记录，因此最好手动做一次提交。
@@ -161,6 +142,68 @@
 .. tip::
 
     要引用某次 commit 的版本，可以用 ``HEAD`` ``HEAD^`` 等形式表示，也可以用版本号的 hash 值如 7ed6。版本号的 hash 值不需要是完整的，只需要前缀的几位，能够和其他 hash 值区分开就行。
+
+
+配置
+-------------
+
+``git config`` 支持三种生效范围的配置：
+
+- 系统级（ ``--system`` )
+  
+  - 对所有用户生效；需要管理员权限执行该命令。
+  
+  - 配置保存在 ``<path>/etc/gitconfig`` ，比如 ``C:/Program Files/Git/etc/gitconfig`` 。
+
+- 全局（ ``--global`` )
+  
+  - 对当前用户的所有项目生效。
+  
+  - 配置保存在 ``~/.gitconfig`` 或 ``~/.config/git/config`` 。
+
+- 局部（ ``--local`` ）
+  
+  - 默认选项。
+  
+  - 对当前项目/仓库生效。
+  
+  - 配置保存在 ``<gitrepo>/.git/config`` 。
+  
+**优先级**：Local > Global > System。
+
+列出所有配置及其对应的生效范围： ``git config -l --show-scope`` 。
+
+列出所有配置及其对应的配置文件： ``git config -l --show-origin`` 。
+
+配置全局用户名和邮箱::
+
+   git config --global user.name '<your name>'
+   git config --global user.email '<your email>'
+
+.. tip::
+
+    在 Linux 和 Windows 系统对同一个项目进行开发时，明明没有对仓库做任何修改，却仍然提示 unstaged changes，
+    查看 diff 是文件的权限变了（mode 100755 <-> mode 100644）。对当前项目忽略这种权限变化::
+
+      git config core.filemode false
+
+忽略文件
+------------
+
+一般我们总会有些文件无需纳入 Git 的管理，也不希望它们总出现在未跟踪文件列表。通常都是些自动生成的文件，比如日志文件，或者编译过程中创建的临时文件等。在这种情况下，我们可以创建一个名为 .gitignore 的文件，列出要忽略的文件模式。
+
+文件 .gitignore 的格式规范如下：
+
+- 所有空行或者以 ``＃`` 开头的行都会被 Git 忽略。
+
+- 可以使用标准的 glob 模式匹配。
+
+- 匹配模式可以以 ``/`` 开头防止递归（只在当前目录下匹配，不进入子目录）。
+
+- 匹配模式可以以 ``/`` 结尾指定目录。
+
+- 要忽略指定模式以外的文件或目录，可以在模式前加上惊叹号 ``!`` 表示取反。
+  
 
 参考资料
 -----------
@@ -204,3 +247,11 @@
 10. git-revert
 
   https://git-scm.com/docs/git-revert
+
+11. difference between global and local configuration in git
+    
+  https://stackoverflow.com/questions/60202175/what-is-the-difference-between-global-and-local-configuration-in-git
+
+12. old mode 100755 new mode 100644
+
+  https://stackoverflow.com/questions/1257592/how-do-i-remove-files-saying-old-mode-100755-new-mode-100644-from-unstaged-cha

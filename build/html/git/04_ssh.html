@@ -126,7 +126,7 @@ SSH 采用加密技术验证远程主机，同时允许远程主机验证用户�
 </pre></div>
 </div>
 <p>查看配置： <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">--list</span></code> 。</p>
-<p>所有的配置保存在 <code class="docutils literal notranslate"><span class="pre">~/.gitconfig</span></code> 。</p>
+<p>全局配置保存在 <code class="docutils literal notranslate"><span class="pre">~/.gitconfig</span></code> 。</p>
 </section>
 <section id="id1">
 <h3>生成密钥<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
@@ -167,7 +167,7 @@ Hi &lt;your name&gt;! You&#39;ve successfully authenticated, but GitHub does not
 </div>
 <p>第一次连接会把 <code class="docutils literal notranslate"><span class="pre">[ssh.github.com]:443</span></code> 添加到 <code class="docutils literal notranslate"><span class="pre">~/.ssh/known_hosts</span></code> 。</p>
 <p>如果你能在端口 443 上通过 SSH 连接到 <a class="reference external" href="mailto:git&#37;&#52;&#48;ssh&#46;github&#46;com">git<span>&#64;</span>ssh<span>&#46;</span>github<span>&#46;</span>com</a>，则可覆盖你的 SSH 设置来强制与 GitHub.com 的任何连接均通过该服务器和端口运行。
-要在 SSH 配置文件中设置此行为，请在 ~/.ssh/config 编辑该文件，并添加以下部分:</p>
+要在 SSH 配置文件中设置此行为，请在 <code class="docutils literal notranslate"><span class="pre">~/.ssh/config</span></code> 编辑该文件，并添加以下部分:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Host</span> <span class="n">ssh</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span>
     <span class="n">Hostname</span> <span class="n">ssh</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span>
     <span class="n">Port</span> <span class="mi">443</span>

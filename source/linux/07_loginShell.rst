@@ -57,7 +57,7 @@ Shell 交互与登录
 
 交互登录式 Shell 是需要用户名和密码登录后进入的 Shell（比如终端下登录远程服务器）或者通过 -login 选项（ ``bash -login`` ）在终端启动的 Shell 。此外，执行 ``su - username`` 或 ``su -l username`` 也将进入登录式 Shell。
 
-登入时，首先会读取启动文件 ``/etc/profile`` ， ``/etc/profile`` 是 Bash Shell 默认的主启动文件，不同 Linux 发行版其内容不尽相同。然后会执行 ``/etc/profile.d/*.sh`` 和 ``/etc/bashrc`` 。
+登入时，首先会读取启动文件 ``/etc/profile`` ， ``/etc/profile`` 是 Bash Shell 默认的主启动文件，不同 Linux 发行版其内容不尽相同。然后会执行 ``/etc/profile.d/*.sh`` 。
 
 接着检查是否存在 ``~/.bash_profile`` ，如果存在，则 bash 在当前 Shell 中执行 ``~/.bash_profile`` ，并停止寻找其他文件。如果没有找到，那么它将按照顺序查找 ``~/.bash_login`` 和 ``~/.profile`` ，并只执行第一个可读的文件。
 

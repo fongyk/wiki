@@ -70,7 +70,21 @@ x|y                                          匹配 x 或 y
 
 .. tip::
 
-    VS Code 在使用正则进行查找替换的时候，替换结果中使用 ``$num`` 来引用所获取的匹配（ ``num`` 从 1 开始）。
+    VS Code 在使用正则进行查找替换的时候，替换结果中使用 ``$num`` 来引用所获取的匹配组（ ``num`` 从 1 开始）, ``$0`` 表示完整的原始字符串。
+
+    VS Code 可以使用 ``\u`` ``\U`` ``\l`` ``\L`` 四种字符来改变匹配组的大小写：
+
+    - ``\u`` 将匹配组的第一个字符转换为大写
+  
+    - ``\l`` 将匹配组的第一个字符转换为小写
+
+    - ``\U`` 将匹配组的所有字符转换为大写
+
+    - ``\L`` 将匹配组的所有字符转换为小写
+
+    - ``\u\u\u$1`` 将第一个匹配组的前三个字符转为大写
+
+    - ``\l\U$1`` 将第一个匹配组的第一个字符转为小写，其余字符转为大写
 
 参考资料
 ------------------
@@ -97,3 +111,6 @@ x|y                                          匹配 x 或 y
 
   https://learn.microsoft.com/zh-cn/visualstudio/ide/using-regular-expressions-in-visual-studio?view=vs-2022
   
+6. VS Code now supports changing the case of regex matching groups while doing a find/replace
+
+  https://code.visualstudio.com/updates/v1_47#_editor

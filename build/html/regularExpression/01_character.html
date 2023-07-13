@@ -273,7 +273,16 @@
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>VS Code 在使用正则进行查找替换的时候，替换结果中使用 <code class="docutils literal notranslate"><span class="pre">$num</span></code> 来引用所获取的匹配（ <code class="docutils literal notranslate"><span class="pre">num</span></code> 从 1 开始）。</p>
+<p>VS Code 在使用正则进行查找替换的时候，替换结果中使用 <code class="docutils literal notranslate"><span class="pre">$num</span></code> 来引用所获取的匹配组（ <code class="docutils literal notranslate"><span class="pre">num</span></code> 从 1 开始）, <code class="docutils literal notranslate"><span class="pre">$0</span></code> 表示完整的原始字符串。</p>
+<p>VS Code 可以使用 <code class="docutils literal notranslate"><span class="pre">\u</span></code> <code class="docutils literal notranslate"><span class="pre">\U</span></code> <code class="docutils literal notranslate"><span class="pre">\l</span></code> <code class="docutils literal notranslate"><span class="pre">\L</span></code> 四种字符来改变匹配组的大小写：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">\u</span></code> 将匹配组的第一个字符转换为大写</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\l</span></code> 将匹配组的第一个字符转换为小写</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\U</span></code> 将匹配组的所有字符转换为大写</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\L</span></code> 将匹配组的所有字符转换为小写</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\u\u\u$1</span></code> 将第一个匹配组的前三个字符转为大写</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\l\U$1</span></code> 将第一个匹配组的第一个字符转为小写，其余字符转为大写</p></li>
+</ul>
 </div>
 </section>
 <section id="id3">
@@ -308,6 +317,12 @@
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://learn.microsoft.com/zh-cn/visualstudio/ide/using-regular-expressions-in-visual-studio?view=vs-2022">https://learn.microsoft.com/zh-cn/visualstudio/ide/using-regular-expressions-in-visual-studio?view=vs-2022</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="6">
+<li><p>VS Code now supports changing the case of regex matching groups while doing a find/replace</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://code.visualstudio.com/updates/v1_47#_editor">https://code.visualstudio.com/updates/v1_47#_editor</a></p>
 </div></blockquote>
 </section>
 </section>

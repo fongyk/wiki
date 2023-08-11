@@ -26,6 +26,7 @@ grep（Global search Regular Expression and Print out the line）是一种强大
 -l    列出文件内容匹配上 pattern 的文件名
 -E    扩展 grep，可以使用扩展正则表达式
 -V    显示版本信息
+-P, --perl-regexp    使用兼容 perl 的正则表达式，与 ``-E`` 冲突
 --color    匹配到的关键词显示颜色，默认为 ``auto``
 --include=file_pattern    只查找匹配 file_pattern 的文件
 --exclude=file_pattern    跳过匹配 file_pattern 的文件和目录
@@ -36,6 +37,9 @@ grep（Global search Regular Expression and Print out the line）是一种强大
     ``grep -E`` 相当于使用 ``egrep`` 。
 
     ``--color`` 选项可能导致输出到控制台的内容为空，但是如果重定向到文件，文件内容不为空。
+
+    如果要匹配非打印字符（比如 ``\t`` ），可以使用 ``grep -P`` ，在 Bash 里面也可以借助 ``$`` （比如 ``grep $'\tabc\t'``）。
+    grep 拿到的是 ``$`` 解析之后的结果， ``$`` 还会将输入的 Unicode 码翻译成对应的符号。
 
 
 基本正则字符

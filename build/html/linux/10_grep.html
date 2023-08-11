@@ -146,6 +146,9 @@
 <dt><kbd><span class="option">-V</span></kbd></dt>
 <dd><p>显示版本信息</p>
 </dd>
+<dt><kbd><span class="option">-P</span>, <span class="option">--perl-regexp</span></kbd></dt>
+<dd><p>使用兼容 perl 的正则表达式，与 <code class="docutils literal notranslate"><span class="pre">-E</span></code> 冲突</p>
+</dd>
 <dt><kbd><span class="option">--color</span></kbd></dt>
 <dd><p>匹配到的关键词显示颜色，默认为 <code class="docutils literal notranslate"><span class="pre">auto</span></code></p>
 </dd>
@@ -160,6 +163,8 @@
 <p class="admonition-title">Note</p>
 <p><code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">-E</span></code> 相当于使用 <code class="docutils literal notranslate"><span class="pre">egrep</span></code> 。</p>
 <p><code class="docutils literal notranslate"><span class="pre">--color</span></code> 选项可能导致输出到控制台的内容为空，但是如果重定向到文件，文件内容不为空。</p>
+<p>如果要匹配非打印字符（比如 <code class="docutils literal notranslate"><span class="pre">\t</span></code> ），可以使用 <code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">-P</span></code> ，在 Bash 里面也可以借助 <code class="docutils literal notranslate"><span class="pre">$</span></code> （比如 <code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">$'\tabc\t'</span></code>）。
+grep 拿到的是 <code class="docutils literal notranslate"><span class="pre">$</span></code> 解析之后的结果， <code class="docutils literal notranslate"><span class="pre">$</span></code> 还会将输入的 Unicode 码翻译成对应的符号。</p>
 </div>
 </section>
 <section id="id2">

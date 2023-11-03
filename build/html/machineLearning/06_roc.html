@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>6. ROC 曲线 &mdash; fong alpha documentation</title>
+  <title>6. ROC 曲线和 AUC &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -59,10 +59,13 @@
 <li class="toctree-l2"><a class="reference internal" href="03_pca.html">3. 主成分分析</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_derivative.html">4. 常用矩阵求导公式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05_newton.html">5. 牛顿方法</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">6. ROC 曲线</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6. ROC 曲线和 AUC</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">6.1. 基本概念</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#auc">6.2. AUC</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">6.3. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auc">6.2. AUC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">AUC 的缺陷</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">6.3. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="07_dbscan.html">7. DBSCAN</a></li>
@@ -93,7 +96,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">机器学习</a> &raquo;</li>
-      <li><span class="section-number">6. </span>ROC 曲线</li>
+      <li><span class="section-number">6. </span>ROC 曲线和 AUC</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/machineLearning/06_roc.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -103,8 +106,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="roc">
-<h1><span class="section-number">6. </span>ROC 曲线<a class="headerlink" href="#roc" title="Permalink to this headline"></a></h1>
+  <section id="roc-auc">
+<h1><span class="section-number">6. </span>ROC 曲线和 AUC<a class="headerlink" href="#roc-auc" title="Permalink to this headline"></a></h1>
 <p><strong>ROC</strong> ：Receiver operating characteristic curve，接收者操作特征曲线。</p>
 <blockquote>
 <div><ul class="simple">
@@ -113,7 +116,7 @@
 <div class="math notranslate nohighlight">
 \[FPR = \frac{FP}{N} = \frac{FP}{TN + FP}\]</div>
 <ul class="simple">
-<li><p>纵坐标：true positive rate（TPR），recall，hit rate，sensitivity，即正例样本的预测正确率（越大越好）</p></li>
+<li><p>纵坐标：true positive rate（TPR）/recall/hit rate/sensitivity，即正例样本的预测正确率（越大越好）</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[TPR = \frac{TP}{P} = \frac{TP}{TP + FN}\]</div>
@@ -121,7 +124,7 @@
 <a class="reference internal image-reference" href="../_images/06_roc.png"><img alt="../_images/06_roc.png" class="align-center" src="../_images/06_roc.png" style="width: 500px;" /></a>
 <ul class="simple">
 <li><p>离左上角越近的点预测 accuracy 越高。</p></li>
-<li><p>在A、B、C三者当中，最好的结果是 A 方法。</p></li>
+<li><p>在 A、B、C 三者当中，最好的是 A 方法。</p></li>
 <li><p>B 的 accuracy 是 50%。</p></li>
 <li><p>C’ 与 C 互为镜像点。不管 C 预测了什么，C’ 就做相反的预测。</p></li>
 </ul>
@@ -166,7 +169,7 @@
 </section>
 <section id="auc">
 <h2><span class="section-number">6.2. </span>AUC<a class="headerlink" href="#auc" title="Permalink to this headline"></a></h2>
-<p>ROC 空间里的单点，是给定分类模型且给定得分阈值后得出的。但同一个二元分类模型的阈值可能设定为高或低，每种阈值的设定会得出不同的 FPR 和 TPR。
+<p>ROC 空间里的单点是给定分类模型且给定得分阈值后得出的，但同一个二元分类模型的阈值可能设定为高或低，每种阈值的设定会得出不同的 FPR 和 TPR。
 一般地，减小阈值，FPR 和 TPR 都会增大。
 将同一模型每个阈值的 (FPR, TPR) 坐标都画在 ROC 空间里，就成为特定模型的 ROC 曲线。</p>
 <a class="reference internal image-reference" href="../_images/06_rocCurve.png"><img alt="../_images/06_rocCurve.png" class="align-center" src="../_images/06_rocCurve.png" style="width: 600px;" /></a>
@@ -225,9 +228,34 @@
 <span class="linenos">15</span>    <span class="k">return</span> <span class="n">area</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">neg</span><span class="p">))</span>
 </pre></div>
 </div>
-</section>
 <section id="id2">
-<h2><span class="section-number">6.3. </span>参考资料<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h3>AUC 的缺陷<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><ol class="arabic simple">
+<li><p>AUC 忽略了模型预测的概率值以及模型的拟合优度。AUC 只对概率值的排序敏感，因此无法衡量模型拟合程度的高低。</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="2">
+<li><p>AUC 是模型在所有情况下的表现性能的综合体现，但是 ROC 的最左和最右侧区域是比较极端的，一般并不会关注模型在这些情况下的表现。Partial AUC 可以在一定程度上缓解这个问题。</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="3">
+<li><p>AUC 对 FP 和 FN 同等对待，权重相同，然而实际业务中会有所侧重。</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="4">
+<li><p>AUC 只是一个标量值，不能提供模型预测误差的分布信息。</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="5">
+<li><p>在负样本远多于正样本的情形下，模型通过对负样本高估，可以人为地提高 AUC。相同 AUC 的两个模型在不同 ROC 区域的预测能力可能是不一样的。</p></li>
+</ol>
+</li>
+</ul>
+</section>
+</section>
+<section id="id3">
+<h2><span class="section-number">6.3. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>机器学习之分类性能度量指标 : ROC曲线、AUC值、正确率、召回率</p></li>
 </ol>
@@ -251,6 +279,12 @@
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://en.wikipedia.org/wiki/Trapezoidal_rule">https://en.wikipedia.org/wiki/Trapezoidal_rule</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li><p>AUC: a misleading measure of the performance of predictive distribution models</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://www2.unil.ch/biomapper/Download/Lobo-GloEcoBioGeo-2007.pdf">https://www2.unil.ch/biomapper/Download/Lobo-GloEcoBioGeo-2007.pdf</a></p>
 </div></blockquote>
 </section>
 </section>

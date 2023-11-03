@@ -1,5 +1,5 @@
-ROC 曲线
-================
+ROC 曲线和 AUC
+==================
 
 **ROC** ：Receiver operating characteristic curve，接收者操作特征曲线。
 
@@ -9,7 +9,7 @@ ROC 曲线
 
     FPR = \frac{FP}{N} = \frac{FP}{TN + FP}
 
-  - 纵坐标：true positive rate（TPR），recall，hit rate，sensitivity，即正例样本的预测正确率（越大越好）
+  - 纵坐标：true positive rate（TPR）/recall/hit rate/sensitivity，即正例样本的预测正确率（越大越好）
 
   .. math::
 
@@ -21,7 +21,7 @@ ROC 曲线
 
 - 离左上角越近的点预测 accuracy 越高。
 
-- 在A、B、C三者当中，最好的结果是 A 方法。
+- 在 A、B、C 三者当中，最好的是 A 方法。
 
 - B 的 accuracy 是 50%。
 
@@ -86,7 +86,7 @@ ROC 分析的是二元分类模型。
 AUC
 ----------------
 
-ROC 空间里的单点，是给定分类模型且给定得分阈值后得出的。但同一个二元分类模型的阈值可能设定为高或低，每种阈值的设定会得出不同的 FPR 和 TPR。
+ROC 空间里的单点是给定分类模型且给定得分阈值后得出的，但同一个二元分类模型的阈值可能设定为高或低，每种阈值的设定会得出不同的 FPR 和 TPR。
 一般地，减小阈值，FPR 和 TPR 都会增大。
 将同一模型每个阈值的 (FPR, TPR) 坐标都画在 ROC 空间里，就成为特定模型的 ROC 曲线。
 
@@ -153,6 +153,19 @@ ROC 空间里的单点，是给定分类模型且给定得分阈值后得出的�
 
       return area / (len(pos) * len(neg))
 
+AUC 的缺陷
+^^^^^^^^^^^^^^
+
+- 1. AUC 忽略了模型预测的概率值以及模型的拟合优度。AUC 只对概率值的排序敏感，因此无法衡量模型拟合程度的高低。
+
+- 2. AUC 是模型在所有情况下的表现性能的综合体现，但是 ROC 的最左和最右侧区域是比较极端的，一般并不会关注模型在这些情况下的表现。Partial AUC 可以在一定程度上缓解这个问题。
+
+- 3. AUC 对 FP 和 FN 同等对待，权重相同，然而实际业务中会有所侧重。
+
+- 4. AUC 只是一个标量值，不能提供模型预测误差的分布信息。
+
+- 5. 在负样本远多于正样本的情形下，模型通过对负样本高估，可以人为地提高 AUC。相同 AUC 的两个模型在不同 ROC 区域的预测能力可能是不一样的。
+
 
 参考资料
 ----------
@@ -172,3 +185,7 @@ ROC 空间里的单点，是给定分类模型且给定得分阈值后得出的�
 4. Trapezoidal rule
 
   https://en.wikipedia.org/wiki/Trapezoidal_rule
+
+5. AUC: a misleading measure of the performance of predictive distribution models
+
+  https://www2.unil.ch/biomapper/Download/Lobo-GloEcoBioGeo-2007.pdf

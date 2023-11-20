@@ -117,7 +117,7 @@
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>dev 分支的仓库已经包含了 master 分支的内容，但是在 master 分支下，无法看到 dev 分支新增或修改的内容。</p>
+<p>从 master 分支创建 dev分支，则 dev 分支的仓库已经包含了 master 分支的内容，但是在 master 分支下，无法看到 dev 分支新增或修改的内容。</p>
 </div>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code> -r：查看远程分支，-a：查看所有分支（包括本地分支）。</p></li>
@@ -138,6 +138,13 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>协同开发场景下，在开发自己的分支时，要注意合并 master 分支的最新更新： <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">origin</span> <span class="pre">master</span></code> ，手动解决冲突。</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>在所有分支中查找目标字符串:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git branch -a <span class="p">|</span> cut -c3- <span class="p">|</span> cut -d<span class="s1">&#39; &#39;</span> -f <span class="m">1</span> <span class="p">|</span> xargs git grep <span class="s2">&quot;target_string&quot;</span>
+</pre></div>
+</div>
 </div>
 </section>
 <section id="id3">
@@ -165,6 +172,12 @@
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://www.cnblogs.com/bestzhang/p/6903338.html">https://www.cnblogs.com/bestzhang/p/6903338.html</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li><p>Using Git, how could I search for a string across all branches</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://stackoverflow.com/questions/7151311/using-git-how-could-i-search-for-a-string-across-all-branches">https://stackoverflow.com/questions/7151311/using-git-how-could-i-search-for-a-string-across-all-branches</a></p>
 </div></blockquote>
 </section>
 </section>

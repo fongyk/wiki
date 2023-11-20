@@ -1,6 +1,8 @@
 分支管理
 =============
 
+.. highlight:: bash
+
 分支管理
 ------------
 
@@ -15,7 +17,7 @@
 
 .. note::
 
-  dev 分支的仓库已经包含了 master 分支的内容，但是在 master 分支下，无法看到 dev 分支新增或修改的内容。
+  从 master 分支创建 dev分支，则 dev 分支的仓库已经包含了 master 分支的内容，但是在 master 分支下，无法看到 dev 分支新增或修改的内容。
 
 - ``git branch`` -r：查看远程分支，-a：查看所有分支（包括本地分支）。
 
@@ -59,6 +61,13 @@
 
     协同开发场景下，在开发自己的分支时，要注意合并 master 分支的最新更新： ``git pull origin master`` ，手动解决冲突。
 
+
+.. tip::
+
+    在所有分支中查找目标字符串::
+
+      git branch -a | cut -c3- | cut -d' ' -f 1 | xargs git grep "target_string"
+
 参考资料
 -----------
 
@@ -77,3 +86,7 @@
 4. Git操作详解
 
   https://www.cnblogs.com/bestzhang/p/6903338.html
+
+5. Using Git, how could I search for a string across all branches
+
+  https://stackoverflow.com/questions/7151311/using-git-how-could-i-search-for-a-string-across-all-branches

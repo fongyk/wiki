@@ -49,10 +49,10 @@ type 可以是指针、引用、右值引用。
       Derived* pd;
 
       pd = dynamic_cast<Derived*>(pba);
-      if (pd==0) cout << "Null pointer on first type-cast.\n";
+      if (pd == 0) cout << "Null pointer on first type-cast.\n";
 
       pd = dynamic_cast<Derived*>(pbb);
-      if (pd==0) cout << "Null pointer on second type-cast.\n";
+      if (pd == 0) cout << "Null pointer on second type-cast.\n";
 
     } catch (exception& e) {cout << "Exception: " << e.what();}
     return 0;

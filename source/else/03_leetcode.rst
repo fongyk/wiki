@@ -33,7 +33,7 @@ https://blog.csdn.net/haolexiao/article/details/60511164
 海量数据处理
 -----------------------------------------------------------------
 
-Hint：哈希方法，把大文件划分成小文件，读进内存依次处理，如果需要统计频率/个数，再利用哈希；Bitmap，用一个（或几个）比特位来标记某个元素对应的值。
+Hint：哈希方法，把大文件划分成小文件，读进内存依次处理，如果需要统计频率/个数，再用哈希表；Bitmap，用一个（或几个）比特位来标记某个元素对应的值。
 
   .. container:: toggle
 
@@ -94,7 +94,7 @@ Hint：哈希方法，把大文件划分成小文件，读进内存依次处理�
 
 **对每一个节点操作之前，应先考虑该节点是否为空。**
 
-- 反转链表。Hint：方法一，逐个反转；方法二，递归；方法三，使用栈保存节点的值，反向赋给所有节点。
+- [LeetCode] Reverse Linked List 反转链表。Hint：方法一，逐个反转；方法二，递归；方法三，使用栈保存节点的值，反向赋给所有节点。
 
   .. container:: toggle
 
@@ -103,35 +103,35 @@ Hint：哈希方法，把大文件划分成小文件，读进内存依次处理�
       :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
-      :linenos:
+        :linenos:
 
-      struct ListNode
-      {
-          int val;
-          ListNode *next;
-          ListNode(int x) : val(x), next(NULL) {}
-      };
+        struct ListNode 
+        {
+            int val;
+            ListNode *next;
+            ListNode() : val(0), next(nullptr) {}
+            ListNode(int x) : val(x), next(nullptr) {}
+            ListNode(int x, ListNode *next) : val(x), next(next) {}
+        };
 
     .. code-block:: cpp
-      :linenos:
+        :linenos:
 
-      // 方法一，逐个反转
-      ListNode* reverseList(ListNode* head)
-      {
-          if(head==NULL || head->next==NULL) return head;
-          ListNode* newHead = head;
-          ListNode* curr = head -> next;
-          newHead -> next = NULL;
-          ListNode* post;
-          while(curr)
-          {
-              post = curr -> next;
-              curr -> next = newHead;
-              newHead = curr;
-              curr = post;
-          }
-          return newHead;
-      }
+        // 方法一，逐个反转
+        ListNode* reverseList(ListNode* head) 
+        {
+            if(!head || !head->next) return head;
+            ListNode* curr = head->next;
+            head->next = nullptr;
+            while(curr)
+            {
+                ListNode* post = curr->next;
+                curr->next = head;
+                head = curr;
+                curr = post;
+            }
+            return head;
+        }
 
     .. code-block:: cpp
       :linenos:
@@ -139,12 +139,12 @@ Hint：哈希方法，把大文件划分成小文件，读进内存依次处理�
       // 方法二，递归
       ListNode* reverseList(ListNode* head)
       {
-          if(head==NULL || head->next==NULL) return head;
+          if(head == nullptr || head->next == nullptr) return head;
           else
           {
-              ListNode* newHead = reverseList(head -> next);
-              head -> next -> next = head; // head 指向的下一个节点是 newHead 的最后一个节点
-              head -> next = NULL;
+              ListNode* newHead = reverseList(head->next);
+              head->next->next = head; // head 指向的下一个节点是 newHead 的最后一个节点
+              head->next = nullptr;
               return newHead;
           }
       }
@@ -155,20 +155,20 @@ Hint：哈希方法，把大文件划分成小文件，读进内存依次处理�
       // 方法三，使用栈保存节点的值，占用 O(n) 额外空间
       ListNode* reverseList(ListNode* head)
       {
-          if(head==NULL || head->next==NULL) return head;
+          if(head == nullptr || head->next == nullptr) return head;
           stack<int> stk;
           ListNode* p = head;
           while(p)
           {
-              stk.emplace(p -> val);
-              p = p -> next;
+              stk.emplace(p->val);
+              p = p->next;
           }
           p = head;
           while(p)
           {
-              p -> val = stk.top();
+              p->val = stk.top();
               stk.pop();
-              p = p -> next;
+              p = p->next;
           }
           return head;
       }
@@ -201,7 +201,7 @@ Hint：哈希方法，把大文件划分成小文件，读进内存依次处理�
               if(!head || !head->next) return head;
               ListNode* newHead = reverseAll(head->next);
               head->next->next = head;
-              head->next = NULL;
+              head->next = nullptr;
               return newHead;
           }
           ListNode* reverseK(ListNode* head, int k)
@@ -214,7 +214,7 @@ Hint：哈希方法，把大文件划分成小文件，读进内存依次处理�
                   if(!p) return head;
               }
               ListNode* secondHead = reverseK(p->next, k);
-              p->next = NULL; // 第一组的尾节点置为 NULL，便于直接调用 reverseAll
+              p->next = nullptr; // 第一组的尾节点置为 NULL，便于直接调用 reverseAll
               ListNode* newHead = reverseAll(head);
               head->next = secondHead; // 反转之后，head 成为第一组的尾节点
               return newHead;
@@ -257,10 +257,10 @@ Hint：哈希方法，把大文件划分成小文件，读进内存依次处理�
               if(!head || !head->next) return false;
               ListNode* slow = head;
               ListNode* fast = head;
-              while(fast && fast -> next)
+              while(fast && fast->next)
               {
-                  slow = slow -> next;
-                  fast = fast -> next -> next;
+                  slow = slow->next;
+                  fast = fast->next->next;
                   if(slow == fast) return true;
               }
               return false;
@@ -286,13 +286,13 @@ Hint：哈希方法，把大文件划分成小文件，读进内存依次处理�
 
       bool removeNode(ListNode* pNode)
       {
-          if(pNode == NULL) return true;
-          if(pNode -> next == NULL) return false;
-          pNode -> val = pNode -> next -> val;
-          pNode -> next = pNode -> next -> next;
+          if(pNode == nullptr) return true;
+          if(pNode->next == nullptr) return false;
+          pNode->val = pNode->next->val;
+          pNode->next = pNode->next->next;
           return true;
       }
-      // 注：如果需要删除最后一个节点，直接令 pNode -> next = NULL 是无法改变实参的（传值调用），可以将形参定义成指向指针的指针
+      // 注：如果需要删除最后一个节点，直接令 pNode->next = nullptr 是无法改变实参的（传值调用），可以将形参定义成指向指针的指针
       // 必须从链表头节点开始遍历，找到该节点的前驱节点
       // 还要考虑该链表只有一个节点的情形
       // 另外，可以在该函数内 delete 该指针，但是需要确保在其他地方不再需要访问 pNode 指向的内容
@@ -310,22 +310,22 @@ Hint：哈希方法，把大文件划分成小文件，读进内存依次处理�
 
       ListNode* FindKthToTail(ListNode* pListHead, unsigned int k)
       {
-          if(!pListHead || k == 0) return NULL;
+          if(!pListHead || k == 0) return nullptr;
 
           unsigned int tk = 1;
           ListNode* p = pListHead;
           while(tk < k)
           {
-              p = p -> next;
-              if(!p) return NULL;
+              p = p->next;
+              if(!p) return nullptr;
               tk += 1;
           }
 
           ListNode* pk = pListHead;
-          while(p -> next)
+          while(p->next)
           {
-              p = p -> next;
-              pk = pk -> next;
+              p = p->next;
+              pk = pk->next;
           }
           return pk;
       }
@@ -386,7 +386,7 @@ Hint：哈希方法，把大文件划分成小文件，读进内存依次处理�
       public:
           ListNode* sortList(ListNode* head)
           {
-              quickSort(head, NULL);
+              quickSort(head, nullptr);
               return head;
           }
       private:
@@ -395,24 +395,24 @@ Hint：哈希方法，把大文件划分成小文件，读进内存依次处理�
           // 当 curr 指向的数比 key 小，pre 移到下一位，交换两者的值
           ListNode* partion(ListNode* head, ListNode* tail)
           {
-              int key = head -> val;
+              int key = head->val;
               ListNode* pre = head;
-              ListNode* curr = head -> next;
+              ListNode* curr = head->next;
               while(curr != tail)
               {
-                  if(curr -> val < key)
+                  if(curr->val < key)
                   {
-                      pre = pre -> next;
-                      swap(pre -> val, curr -> val);
+                      pre = pre->next;
+                      swap(pre->val, curr->val);
                   }
-                  curr = curr -> next;
+                  curr = curr->next;
               }
-              swap(head -> val, pre -> val);
+              swap(head->val, pre->val);
               return pre;
           }
           void quickSort(ListNode* head, ListNode* tail)
           {
-              if(head == tail || (head -> next) == tail) return;
+              if(head == tail || (head->next) == tail) return;
               ListNode* mid = partion(head, tail);
               quickSort(head, mid);
               quickSort(mid->next, tail);
@@ -507,7 +507,7 @@ Hint：哈希方法，把大文件划分成小文件，读进内存依次处理�
           int val;
           struct TreeNode *left;
           struct TreeNode *right;
-          TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+          TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
       };
 
       class Solution
@@ -522,18 +522,18 @@ Hint：哈希方法，把大文件划分成小文件，读进内存依次处理�
           // 返回的是转换之后的链表的头节点
           TreeNode* converTree2List(TreeNode* root)
           {
-              if(!root) return NULL;
+              if(!root) return nullptr;
 
-              TreeNode* l = converTree2List(root -> left);
-              while(l && l -> right) l = l -> right; // 根节点应该接在左子树链表的尾节点之后
-              if(l) l -> right = root;
-              root -> left = l;
+              TreeNode* l = converTree2List(root->left);
+              while(l && l->right) l = l->right; // 根节点应该接在左子树链表的尾节点之后
+              if(l) l->right = root;
+              root->left = l;
 
-              TreeNode* r = converTree2List(root -> right);
-              if(r) r -> left = root;
-              root -> right = r; // 根节点应该接在右子树链表的头节点之前
+              TreeNode* r = converTree2List(root->right);
+              if(r) r->left = root;
+              root->right = r; // 根节点应该接在右子树链表的头节点之前
 
-              while(root -> left) root = root -> left; // 找到头节点
+              while(root->left) root = root->left; // 找到头节点
               return root;
           }
       };
@@ -597,27 +597,27 @@ Hint：哈希方法，把大文件划分成小文件，读进内存依次处理�
       public:
           void reorderList(ListNode* head)
           {
-              if(!head || !head -> next || !head -> next -> next) return;
+              if(!head || !head->next || !head->next->next) return;
 
               // 第一步：找到中间节点
               ListNode* slow = head;
               ListNode* fast = head;
-              while(fast && fast -> next)
+              while(fast && fast->next)
               {
-                  slow = slow -> next;
-                  fast = fast -> next -> next;
+                  slow = slow->next;
+                  fast = fast->next->next;
               }
 
               // 第二步：翻转第二段链表
-              ListNode* secondHead = slow -> next;
-              slow -> next = NULL; // 第一段链表的尾节点
-              ListNode* p = secondHead -> next;
-              secondHead -> next = NULL; // 第二段链表的尾节点
+              ListNode* secondHead = slow->next;
+              slow->next = nullptr; // 第一段链表的尾节点
+              ListNode* p = secondHead->next;
+              secondHead->next = nullptr; // 第二段链表的尾节点
               ListNode* q;
               while(p)
               {
-                  q = p -> next;
-                  p -> next = secondHead;
+                  q = p->next;
+                  p->next = secondHead;
                   secondHead = p;
                   p = q;
               }
@@ -627,10 +627,10 @@ Hint：哈希方法，把大文件划分成小文件，读进内存依次处理�
               ListNode* h2 = secondHead;
               while(h1 && h2)
               {
-                  ListNode* h1Post = h1 -> next;
-                  ListNode* h2Post = h2 -> next;
-                  h1 -> next = h2;
-                  h2 -> next = h1Post;
+                  ListNode* h1Post = h1->next;
+                  ListNode* h2Post = h2->next;
+                  h1->next = h2;
+                  h2->next = h1Post;
                   h1 = h1Post;
                   h2 = h2Post;
               }
@@ -759,9 +759,9 @@ https://leetcode.com/problems/kth-largest-element-in-an-array/
               int r = j;
               while(true)
               {
-                  while(l<=j && nums[l]<pivot) l++;
-                  while(r>i && nums[r]>pivot) r--;
-                  if(l>=r) break;
+                  while(l <= j && nums[l] < pivot) l++;
+                  while(r > i && nums[r] > pivot) r--;
+                  if(l >= r) break;
                   swap(nums[l], nums[r]);
                   l++;
                   r--;
@@ -777,9 +777,9 @@ https://leetcode.com/problems/kth-largest-element-in-an-array/
               int r = j+1;
               while(true)
               {
-                  while(nums[++l]<pivot && l<j);
-                  while(nums[--r]>pivot);
-                  if(l>=r) break;
+                  while(nums[++l] < pivot && l < j);
+                  while(nums[--r] > pivot);
+                  if(l >= r) break;
                   swap(nums[l], nums[r]);
               }
               swap(nums[i], nums[r]);
@@ -1309,9 +1309,9 @@ https://www.zhihu.com/question/50790221
 
       int minStep(int x)
       {
-      	if (x==0) return 0;
-      	if (x<0) x=-x;
-      	int n=sqrt(2*x); // 快速找到一个接近答案的 n
+      	if (x == 0) return 0;
+      	if (x < 0) x = -x;
+      	int n = sqrt(2*x); // 快速找到一个接近答案的 n
       	while ((n+1)*n/2-x & 1 || (n+1)*n/2 < x) // & 的优先级低
       		++n;
       	return n;
@@ -2969,10 +2969,10 @@ https://leetcode.com/problems/validate-binary-search-tree/
           bool checkBST(TreeNode* root, long long& pre)
           {
               if(!root) return true;
-              if(!checkBST(root -> left, pre)) return false;
-              if(pre >= (long long)(root -> val)) return false;
-              pre = (long long)(root -> val);
-              return checkBST(root -> right, pre);
+              if(!checkBST(root->left, pre)) return false;
+              if(pre >= (long long)(root->val)) return false;
+              pre = (long long)(root->val);
+              return checkBST(root->right, pre);
           }
       };
 
@@ -3331,14 +3331,14 @@ https://leetcode.com/problems/merge-k-sorted-lists/
       {
           int val;
           ListNode* next;
-          ListNode(int x) : val(x), next(NULL) {}
+          ListNode(int x) : val(x), next(nullptr) {}
       };
 
       struct comparator
       {
           bool operator()(ListNode* a, ListNode* b)
           {
-              return a -> val > b -> val; // 小顶堆
+              return a->val > b->val; // 小顶堆
           }
       };
 
@@ -3347,7 +3347,7 @@ https://leetcode.com/problems/merge-k-sorted-lists/
       public:
           ListNode* mergeKLists(vector<ListNode*>& lists)
           {
-              if(lists.size() == 0) return NULL;
+              if(lists.size() == 0) return nullptr;
               if(lists.size() == 1) return lists[0];
 
               ListNode* head = new ListNode(0); // 合并链表的临时头节点
@@ -3362,12 +3362,12 @@ https://leetcode.com/problems/merge-k-sorted-lists/
               {
                   ListNode* p = pq.top();
                   pq.pop();
-                  curr -> next = p;
+                  curr->next = p;
                   curr = p;
-                  if(p -> next) pq.push(p -> next);
+                  if(p->next) pq.push(p->next);
               }
 
-              curr = head -> next;
+              curr = head->next;
               delete head;
               return curr;
           }
@@ -3479,19 +3479,19 @@ https://leetcode.com/problems/word-break-ii
       public:
           bool wordBreak(string s, vector<string>& wordDict)
           {
-              if(s=="") return true;
-              if(wordDict.size()==0) return false;
-              return word_find(s, wordDict, 0);
+              if(s == "") return true;
+              if(wordDict.size() == 0) return false;
+              return wordFind(s, wordDict, 0);
           }
       private:
-          bool word_find(string& s, vector<string>& wordDict, int k)
+          bool wordFind(string& s, vector<string>& wordDict, int k)
           {
-              if(k==s.size()) return true;
+              if(k == s.size()) return true;
               for(int w = 0; w < wordDict.size(); ++w)
               {
                   if(k+wordDict[w].size()<=s.size() && s.substr(k, wordDict[w].size()) == wordDict[w])
                   {
-                      if(word_find(s, wordDict, k + wordDict[w].size())) return true;
+                      if(wordFind(s, wordDict, k + wordDict[w].size())) return true;
                   }
               }
               return false;
@@ -4768,7 +4768,7 @@ https://leetcode.com/problems/lru-cache/
           {
               if(cache_loc.find(key) == cache_loc.end()) return -1;
               auto p = cache_loc[key];
-              int value = p -> second;
+              int value = p->second;
               cache.erase(p);
               cache.emplace_front(key, value); // 最新访问的数据需要移到链表头部
               cache_loc[key] = cache.begin();

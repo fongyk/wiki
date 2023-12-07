@@ -97,7 +97,7 @@
   flag = None
   if not flag:
       print "flag is none:", flag
-      print flag==False
+      print flag == False
 
   flag = {}
   if not flag:

@@ -160,11 +160,11 @@
       const int m = a.size();
       const int n = b.size();
       vector<vector<string>> dp(2, vector<string>(n+1, ""));
-      for(int i=1; i<=m; ++i)
+      for(int i = 1; i <= m; ++i)
       {
-        for(int j=1; j<=n; ++j)
+        for(int j = 1; j <= n; ++j)
         {
-          if(a[i-1]==b[j-1]) dp[i&1][j] = dp[(i-1)&1][j-1] + a[i-1];
+          if(a[i-1] == b[j-1]) dp[i&1][j] = dp[(i-1)&1][j-1] + a[i-1];
           else dp[i&1][j] = dp[(i-1)&1][j].size() > dp[i&1][j-1].size()? dp[(i-1)&1][j]: dp[i&1][j-1];
         }
       }
@@ -501,7 +501,7 @@
     int minCost(int S, int v)
     {
       if(dp[S][v] >= 0) return dp[S][v]; // 记忆化搜索已经有的结果
-      if(S == (1<<N)-1 && v==0) return dp[S][v] = 0; // 递归终止条件：已访问过所有顶点并返回起点0
+      if(S == (1<<N)-1 && v == 0) return dp[S][v] = 0; // 递归终止条件：已访问过所有顶点并返回起点0
       int res = INF;
       for(int u = 0; u < N; ++u)
       {

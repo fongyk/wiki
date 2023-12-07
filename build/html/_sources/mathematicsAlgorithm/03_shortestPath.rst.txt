@@ -89,7 +89,7 @@ Dijkstra 算法
       int v = -1;
       for(int u = 0; u < V; ++u)
       {
-        if(!used[u] && (v==-1 || d[u] < d[v])) v = u;
+        if(!used[u] && (v == -1 || d[u] < d[v])) v = u;
       }
 
       if(v == -1 || d[v] == INF) break;

@@ -112,7 +112,7 @@ fill，fill\_n，for\_each
   template <class InputIterator, class Function>
   Function for_each (InputIterator first, InputIterator last, Function fn)
   {
-    while (first!=last)
+    while (first != last)
     {
       fn (*first);
       ++first;
@@ -330,7 +330,7 @@ reverse
 
       // print out content:
       std::cout << "myvector contains:";
-      for (std::vector<int>::iterator it=myvector.begin(); it!=myvector.end(); ++it)
+      for (std::vector<int>::iterator it = myvector.begin(); it != myvector.end(); ++it)
         std::cout << ' ' << *it;
       std::cout << '\n';
 
@@ -505,7 +505,7 @@ partial_sum
 
       std::partial_sum (val, val+5, result);
       std::cout << "using default partial_sum: ";
-      for (int i=0; i<5; i++) std::cout << result[i] << ' '; // 1 3 6 10 15
+      for (int i = 0; i < 5; i++) std::cout << result[i] << ' '; // 1 3 6 10 15
       std::cout << '\n';
 
       std::vector<int> result_vec(6, 0); // 0 0 0 0 0 0
@@ -513,12 +513,12 @@ partial_sum
 
       std::partial_sum (val, val+5, result, std::multiplies<int>()); // 1 2 6 24 120
       std::cout << "using functional operation multiplies: ";
-      for (int i=0; i<5; i++) std::cout << result[i] << ' ';
+      for (int i = 0; i < 5; i++) std::cout << result[i] << ' ';
       std::cout << '\n';
 
       std::partial_sum (val, val+5, result, myop); // 1 4 8 13 19
       std::cout << "using custom function: ";
-      for (int i=0; i<5; i++) std::cout << result[i] << ' ';
+      for (int i = 0; i < 5; i++) std::cout << result[i] << ' ';
       std::cout << '\n';
       return 0;
     }
@@ -584,7 +584,7 @@ inner\_product
 
 内积运算，再与 **init** 做运算::
 
-  while (first1!=last1)
+  while (first1 != last1)
   {
     init = init + (*first1)*(*first2);
     // or: init = binary_op1 (init, binary_op2(*first1,*first2));

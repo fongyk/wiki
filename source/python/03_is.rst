@@ -1,7 +1,7 @@
-is和==
+is 和 ==
 ============
 
-is和==
+is 和 ==
 ---------
 
 ``is`` 的作用是用来检查对象的标示符（object identity）是否一致，也就是比较两个对象在内存中的地址是否一样，而 ``==`` 是用来检查两个对象是否相等。
@@ -14,14 +14,14 @@ is和==
 
     >>> a = "hello"
     >>> b = "hello"
-    >>> a==b
+    >>> a == b
     True
     >>> a is b 
     False
 
     >>> a = [1,2,3]
     >>> b = a
-    >>> a==b 
+    >>> a == b 
     True
     >>> a is b
     True
@@ -41,7 +41,7 @@ None
             return True
 
     foo = Foo()
-    print foo==None # True
+    print foo == None # True
     print foo is None # False
 
 参考资料

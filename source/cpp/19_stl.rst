@@ -431,12 +431,12 @@ map
     std::map<char,int> mymap;
 
     // first insert function version (single parameter):
-    mymap.insert ( std::pair<char,int>('a',100) );
-    mymap.insert ( std::map<char,int>::value_type('z',200) );
+    mymap.insert(std::pair<char,int>('a',100));
+    mymap.insert(std::map<char,int>::value_type('z',200));
 
     std::pair<std::map<char,int>::iterator,bool> ret;
-    ret = mymap.insert ( std::pair<char,int>('z',500) );
-    if (ret.second==false)
+    ret = mymap.insert(std::pair<char,int>('z',500));
+    if (ret.second == false)
     {
       std::cout << "element 'z' already existed";
       std::cout << " with a value of " << ret.first->second << '\n';

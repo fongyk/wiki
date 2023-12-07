@@ -78,9 +78,9 @@ AOV 网（Activity On Vertex Network）：一个有向图，顶点表示活动�
         stack<int> S;
         for(int i = 0; i < G.vexnum; ++i)
         {
-          for(auto p = G.vertices[i].firstArc; p; p = p -> nextArc)
+          for(auto p = G.vertices[i].firstArc; p; p = p->nextArc)
           {
-            InDegree[p -> adjVex] ++; // 统计每个顶点的入度
+            InDegree[p->adjVex] ++; // 统计每个顶点的入度
           }
         }
 
@@ -95,9 +95,9 @@ AOV 网（Activity On Vertex Network）：一个有向图，顶点表示活动�
           S.pop();
           cout << v;
           cnt ++;
-          for(auto p = G.vertices[v].firstArc; p; p = p -> nextArc)
+          for(auto p = G.vertices[v].firstArc; p; p = p->nextArc)
           {
-            int u = p -> adjVex;
+            int u = p->adjVex;
             InDegree[u] --; // v 的所有出边入度减 1
             if(InDegree[u] == 0) S.push(u);
           }

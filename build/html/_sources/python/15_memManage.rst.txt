@@ -23,7 +23,7 @@
 
     >>> a = "hello"
     >>> b = "hello"
-    >>> a==b
+    >>> a == b
     True
     >>> a is b
     True
@@ -34,7 +34,7 @@
 
     >>> a = "hello world"
     >>> b = "hello world"
-    >>> a==b
+    >>> a == b
     True
     >>> a is b
     False
@@ -45,7 +45,7 @@
 
     >>> a = [1,2,3]
     >>> b = a
-    >>> a==b
+    >>> a == b
     True
     >>> a is b
     True

@@ -234,7 +234,7 @@
     void heapSort(T* arr, int len)
     {
       if(!arr) return;
-      for(int k = (len-1-1)/2; k>=0; --k) heapAdjust(arr, k, len-1);
+      for(int k = (len-1-1)/2; k >= 0; --k) heapAdjust(arr, k, len-1);
       for(int i = 1; i <= len; ++i)
       {
         swap(arr[0], arr[len-i]);
@@ -479,7 +479,7 @@
         dummyNode.mNext = head;
         pre = &dummyNode;
         curr = head;
-        while(NULL!=curr && curr->mData<=val)
+        while(NULL != curr && curr->mData <= val)
         {
             pre = curr;
             curr = curr->mNext;
@@ -492,7 +492,7 @@
     {
         ListNode dummyNode;
         ListNode *dummy = &dummyNode;
-        while(NULL!=head1 && NULL!=head2)
+        while(NULL != head1 && NULL != head2)
         {
             if(head1->mData <= head2->mData)
             {
@@ -506,8 +506,8 @@
             }
             dummy = dummy->mNext;
         }
-        if(NULL!=head1) dummy->mNext = head1;
-        if(NULL!=head2) dummy->mNext = head2;
+        if(NULL != head1) dummy->mNext = head1;
+        if(NULL != head2) dummy->mNext = head2;
 
         return dummyNode.mNext;
     }

@@ -560,7 +560,7 @@
               return false;
           }
           bool exist(vector<vector<char>>& board, string word) {
-              if(word=="") return true;
+              if(word == "") return true;
               if(board.size()==0) return false;
               int M = board.size();
               int N = board[0].size();
@@ -570,7 +570,7 @@
                   flag[m] = new bool[N+2];
                   for(int n = 0; n < N+2; ++n)
                   {
-                      if(m==0 || m==M+1 || n==0 || n==N+1) flag[m][n] = false;
+                      if(m == 0 || m == M+1 || n == 0 || n == N+1) flag[m][n] = false;
                       else flag[m][n] = true;
                   }
               }

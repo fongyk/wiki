@@ -70,7 +70,7 @@
     拆一个大塔为若干小塔，不同信息通过不同通道向上传递，使用 Attention Fusion 融合多塔 Embedding 生成 Final Embedding。
 
 .. image:: ./03_que2search.png
-    :width: 400px
+    :width: 600px
     :align: center
 
 .. note::

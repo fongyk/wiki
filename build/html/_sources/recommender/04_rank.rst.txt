@@ -49,7 +49,7 @@ Wide & Deep 模型分为 Wide 侧和 Deep 侧两部分。Wide 侧利用复杂的
 Wide 侧的交叉特征仍然需要精心设计， Wide 侧和 Deep 两部分模型的超参协同调优也很关键。
 
 .. image:: ./04_wideDeep.png
-    :width: 400px
+    :width: 700px
     :align: center
 
 `DeepFM <https://arxiv.org/pdf/1703.04247.pdf>`_

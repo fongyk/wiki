@@ -23,6 +23,7 @@
    machineLearning/index
    deepLearning/index
    mathematicsAlgorithm/index
+   recommender/index
    regularExpression/index
    cron/index
    computerNetwork/index

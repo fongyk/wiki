@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5. 重排 &mdash; fong alpha documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. 探索和利用" href="06_ee.html" />
+    <link rel="prev" title="4. 精排" href="04_rank.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> fong
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                alpha
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">快速访问</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">推荐系统</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_introduction.html">1. 概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_recall.html">2. 召回</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_prerank.html">3. 粗排</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_rank.html">4. 精排</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5. 重排</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">5.1. 多样性算法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">MMR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">DPP</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#listwise">5.2. Listwise 重排</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">5.3. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="06_ee.html">6. 探索和利用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_metric.html">7. 评价指标</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_llm.html">8. 推荐与大语言模型</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../regularExpression/index.html">正则表达式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cron/index.html">Cron 表达式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">技巧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">推荐系统</a> &raquo;</li>
+      <li><span class="section-number">5. </span>重排</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/recommender/05_rerank.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">5. </span>重排<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<p>重排的主要作用是为了提升用户的多样性体验，扶持业务产品，弥补精排的个性化不足和实现多目标的最优解。
+主要的策略为调权、强插、过滤、打散、多目标打分融合和模型重排。</p>
+<section id="id2">
+<h2><span class="section-number">5.1. </span>多样性算法<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<p>多样性（Diversity）和相关性（Relevance）是衡量推荐系统的常用的指标，这两个指标同时影响着推荐系统的商业目标和用户体验。</p>
+<p>相关性很好理解，就是推荐给用户的商品必须符合用户的兴趣，满足用户的购物需求。用户会用点击行为来表达兴趣，用下单行为来满足购物需求。</p>
+<p>多样性衡量单个推荐列表中物品之间的差异程度，通过计算同一个推荐列表中两两 Item 之间的相似度的平均值来衡量。</p>
+<section id="id3">
+<h3><a class="reference external" href="https://www.cs.cmu.edu/~jgc/publication/The_Use_MMR_Diversity_Based_LTMIR_1998.pdf">MMR</a><a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
+<p>MMR 全称为最大边缘相关模型（Maximal Marginal Relevance），它通过计算每个 Item 与 Query 的相关性以及与已选择 Item 的差异性来确定最终的排序。
+优化目标如下：</p>
+<div class="math notranslate nohighlight">
+\[\operatorname{argmax}_{d \in D \setminus R} \left( \lambda \cdot \mathrm{Sim}(d,q) - (1-\lambda) \cdot \max_{d' \in R} \mathrm{Sim}(d,d') \right)\]</div>
+<p><span class="math notranslate nohighlight">\(\lambda\)</span> 是用于平衡相关性和多样性的参数。</p>
+</section>
+<section id="id4">
+<h3><a class="reference external" href="https://proceedings.neurips.cc/paper_files/paper/2018/file/dbbf603ff0e99629dda5d75b6f75f966-Paper.pdf">DPP</a><a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
+<p>DPP（Determinantal Point Process）行列式点过程，是一种性能较高的概率模型，其将复杂的概率计算转换成简单的行列式计算，通过核矩阵的行列式计算每一个子集的概率。</p>
+<p>矩阵的行列式的物理意义为矩阵中的各个向量张成的平行多面体体积的平方。这些向量彼此之间越不相似，向量间的夹角就会越大，张成的平行多面体的体积也就越大，矩阵的行列式也就越大，对应的商品集合的多样性也就越高。当这些向量彼此正交的时候，多样性达到最高。
+而核矩阵（Kernel Matrix）的行列式可以同时度量商品集合的多样性和相关性。</p>
+<div class="math notranslate nohighlight">
+\[L = \operatorname{Diag}\left(r_{u}\right) \cdot S \cdot \operatorname{Diag}\left(r_{u}\right)\]</div>
+<p>其中，<span class="math notranslate nohighlight">\(S\)</span> 是 Item 之间的相似性矩阵，<span class="math notranslate nohighlight">\(r_u\)</span> 是 User 与 Item 的相关性度量向量（可以用 pCTCVR 来刻画）。</p>
+<p>DPP 通过最大后验概率（MAP）估计，找到商品集中相关性和多样性最大的子集，从而作为推荐给用户的商品集。</p>
+<p>相比于 MMR 每次只考虑当前内容与前序已选内容中最相似 Item 的相似度，DPP 会综合考虑所有已选内容的相互影响。</p>
+</section>
+</section>
+<section id="listwise">
+<h2><span class="section-number">5.2. </span>Listwise 重排<a class="headerlink" href="#listwise" title="Permalink to this headline"></a></h2>
+<p>因为重排序模块往往是放在精排模块之后，而精排已经对推荐物品做了比较准确的打分，所以往往重排模块的输入是精排模块的 Top 得分输出结果，而且是有序的。
+而精排模块的打分或者排序对于重排模块来说，是非常重要的参考信息。于是，这个排序模块的输出顺序就比较重要，而能够考虑到输入的序列性的模型，自然就是重排模型的首选。
+我们知道，最常见的考虑时序性的模型是 RNN 和 Transformer，所以经常把这两类模型用在重排模块，这是很自然的事情。
+一般的做法是：排序 Top 结果的物品有序，作为 RNN 或者 Transformer 的输入，RNN 或者 Transformer 明显可以融合当前上下文（也就是排序列表中其它物品的特征），来整体评估效果。
+RNN 或者 Transformer 每个输入对应位置经过特征融合，再次输出预测得分，按照新预测的得分重新对物品排序。</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://arxiv.org/pdf/1804.05936.pdf">DLCM</a></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/pdf/1805.08524.pdf">Global Rerank</a></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/pdf/1904.06813.pdf">PRM</a></p></li>
+</ul>
+</section>
+<section id="id5">
+<h2><span class="section-number">5.3. </span>参考资料<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>重排</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://chmx0929.gitbook.io/machine-learning/sou-suo-tui-jian-guang-gao/sou-suo-tui-jian-guang-gao/tui-jian/zhong-pai#map-mean-average-precision">https://chmx0929.gitbook.io/machine-learning/sou-suo-tui-jian-guang-gao/sou-suo-tui-jian-guang-gao/tui-jian/zhong-pai#map-mean-average-precision</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>基于行列式点过程的推荐多样性提升算法的直观理解</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://yangxudong.github.io/fast-dpp-map/">https://yangxudong.github.io/fast-dpp-map/</a></p>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="04_rank.html" class="btn btn-neutral float-left" title="4. 精排" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="06_ee.html" class="btn btn-neutral float-right" title="6. 探索和利用" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2023, fong.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

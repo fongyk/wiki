@@ -73,6 +73,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recommender/index.html">推荐系统</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../regularExpression/index.html">正则表达式</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cron/index.html">Cron 表达式</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
@@ -230,28 +231,13 @@
 </div>
 <section id="id2">
 <h3>AUC 的缺陷<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h3>
-<ul class="simple">
-<li><ol class="arabic simple">
+<ol class="arabic simple">
 <li><p>AUC 忽略了模型预测的概率值以及模型的拟合优度。AUC 只对概率值的排序敏感，因此无法衡量模型拟合程度的高低。</p></li>
-</ol>
-</li>
-<li><ol class="arabic simple" start="2">
 <li><p>AUC 是模型在所有情况下的表现性能的综合体现，但是 ROC 的最左和最右侧区域是比较极端的，一般并不会关注模型在这些情况下的表现。Partial AUC 可以在一定程度上缓解这个问题。</p></li>
-</ol>
-</li>
-<li><ol class="arabic simple" start="3">
 <li><p>AUC 对 FP 和 FN 同等对待，权重相同，然而实际业务中会有所侧重。</p></li>
-</ol>
-</li>
-<li><ol class="arabic simple" start="4">
 <li><p>AUC 只是一个标量值，不能提供模型预测误差的分布信息。</p></li>
-</ol>
-</li>
-<li><ol class="arabic simple" start="5">
 <li><p>在负样本远多于正样本的情形下，模型通过对负样本高估，可以人为地提高 AUC。相同 AUC 的两个模型在不同 ROC 区域的预测能力可能是不一样的。</p></li>
 </ol>
-</li>
-</ul>
 <p>在搜广推场景下，需要关注的是模型对同一用户不同 item 的打分能力，这时候一般会计算 GAUC。</p>
 </section>
 </section>

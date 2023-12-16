@@ -218,7 +218,7 @@ ESCM :math:`^2` 的 :math:`\mathcal{R}_{IPS}` 方法仍然是在点击空间建�
 
 .. tip::
 
-    排序公式一般是基于 ctr 和 cvr 预估分的各种加权变体，比如： :math:`ctr^{\alpha} \cdot cvr^{\beta} \cdot price^{\gamma}` 。
+    排序公式一般是基于 CTR 和 CVR 预估分的各种加权变体，比如： :math:`\mathrm{ctr}^{\alpha} \cdot \mathrm{cvr}^{\beta} \cdot \mathrm{price}^{\gamma}` 。
 
 
 `MMoE <https://dl.acm.org/doi/pdf/10.1145/3219819.3220007>`_
@@ -279,7 +279,7 @@ Exposure Bias
 Popularity Bias
 ^^^^^^^^^^^^^^^^^^^
 
-在实际推荐系统中，长尾问题是很常见的，曝光的 Item永 远只是一小部分热门 Item，大量的非热门 Item 曝光是很少的。
+在实际推荐系统中，长尾问题是很常见的，曝光的 Item 永远只是一小部分热门 Item，大量的非热门 Item 曝光是很少的。
 
 消偏思路：
 

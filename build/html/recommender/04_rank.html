@@ -301,7 +301,7 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>排序公式一般是基于 ctr 和 cvr 预估分的各种加权变体，比如： <span class="math notranslate nohighlight">\(ctr^{\alpha} \cdot cvr^{\beta} \cdot price^{\gamma}\)</span> 。</p>
+<p>排序公式一般是基于 CTR 和 CVR 预估分的各种加权变体，比如： <span class="math notranslate nohighlight">\(\mathrm{ctr}^{\alpha} \cdot \mathrm{cvr}^{\beta} \cdot \mathrm{price}^{\gamma}\)</span> 。</p>
 </div>
 </section>
 </section>
@@ -341,7 +341,7 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 </section>
 <section id="popularity-bias">
 <h3>Popularity Bias<a class="headerlink" href="#popularity-bias" title="Permalink to this headline"></a></h3>
-<p>在实际推荐系统中，长尾问题是很常见的，曝光的 Item永 远只是一小部分热门 Item，大量的非热门 Item 曝光是很少的。</p>
+<p>在实际推荐系统中，长尾问题是很常见的，曝光的 Item 永远只是一小部分热门 Item，大量的非热门 Item 曝光是很少的。</p>
 <p>消偏思路：</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://arxiv.org/pdf/2005.10545.pdf">ESAM</a> 迁移学习：曝光 Item 与未曝光 Item 的特征之间的关系是一致的，通过学习 Source Domain 的特性，从而将其适当地迁移到 Target Domain。</p></li>

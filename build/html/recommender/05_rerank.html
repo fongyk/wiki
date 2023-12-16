@@ -123,7 +123,7 @@
 <p>MMR 全称为最大边缘相关模型（Maximal Marginal Relevance），它通过计算每个 Item 与 Query 的相关性以及与已选择 Item 的差异性来确定最终的排序。
 优化目标如下：</p>
 <div class="math notranslate nohighlight">
-\[\operatorname{argmax}_{d \in D \setminus R} \left( \lambda \cdot \mathrm{Sim}(d,q) - (1-\lambda) \cdot \max_{d' \in R} \mathrm{Sim}(d,d') \right)\]</div>
+\[\operatorname{max}_{d \in D \setminus R} \left( \lambda \cdot \mathrm{Sim}(d,q) - (1-\lambda) \cdot \max_{d' \in R} \mathrm{Sim}(d,d') \right)\]</div>
 <p><span class="math notranslate nohighlight">\(\lambda\)</span> 是用于平衡相关性和多样性的参数。</p>
 </section>
 <section id="id4">

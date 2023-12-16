@@ -4,7 +4,7 @@
 当评估机器学习模型或信息检索系统的性能时，常用的评价指标包括：
 
 - AUC（Area Under the Curve）
-    分类器把一个随机抽取的正例排在一个随机抽取的负例之前的概率
+    分类器把一个随机抽取的正例排在一个随机抽取的负例之前的概率。
 
 - GAUC（Group Area Under the Curve）
     以 User 为 Group，计算每个 User 样本的 AUC，然后根据用户的样本量做加权平均（需要剔除只有正样本/负样本的用户）。
@@ -21,7 +21,7 @@
     \mathrm{MRR} = \frac{1}{N} \sum_{i=1}^{N} \frac{1}{rank_i}
 
 - `MAP（Mean Average Precision） <https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval)#Mean_average_precision>`_
-    平均精度均值，针对每个 User 计算 AP 再求均值。
+    平均精度均值，针对每个 User/Query 计算 AP 再求均值。
 
   .. math::
 

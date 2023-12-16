@@ -23,7 +23,7 @@ MMR 全称为最大边缘相关模型（Maximal Marginal Relevance），它通�
 
 .. math::
 
-    \operatorname{argmax}_{d \in D \setminus R} \left( \lambda \cdot \mathrm{Sim}(d,q) - (1-\lambda) \cdot \max_{d' \in R} \mathrm{Sim}(d,d') \right)
+    \operatorname{max}_{d \in D \setminus R} \left( \lambda \cdot \mathrm{Sim}(d,q) - (1-\lambda) \cdot \max_{d' \in R} \mathrm{Sim}(d,d') \right)
 
 :math:`\lambda` 是用于平衡相关性和多样性的参数。
 

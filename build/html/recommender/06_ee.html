@@ -65,8 +65,9 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">6. 探索和利用</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2">6.1. 冷启</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#epsilon-greedy">6.2. <span class="math notranslate nohighlight">\(\epsilon\)</span>-Greedy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#thompson-sampling">6.3. Thompson Sampling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">6.3. Thompson Sampling</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ucb">6.4. UCB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">6.5. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="07_metric.html">7. 评价指标</a></li>
@@ -117,7 +118,7 @@
 <p>探索和利用也是增加系统多样性的一种手段。</p>
 <section id="id2">
 <h2><span class="section-number">6.1. </span>冷启<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
-<p>冷启动不同于传统推荐链路（召回-粗排-精排-重排），其是单独的一路，会有专门的流量供给给冷启动链路，让 User 或者 Item 进入冷启动进行过渡。</p>
+<p>冷启动不同于传统推荐链路（召回-粗排-精排-重排），其是单独的一路，会有专门的流量供给冷启动链路，让 User 或者 Item 进入冷启动进行过渡。</p>
 <p>对于 User 冷启动来说，因为新用户缺少行为数据，所以不能直接用正常的个性化推荐链路，因为正常的个性化推荐链路中用户画像已经基本成型，其分布和新用户的分布是很不一样的。</p>
 <ul class="simple">
 <li><p>利用用户注册信息冷启动</p></li>
@@ -126,7 +127,7 @@
 <li><p>社交冷启动</p></li>
 <li><p>模型冷启动（单独对新用户建模）</p></li>
 </ul>
-<p>Item 冷启动的主要作用有两个第一是让新入库的 Item 得到充足的曝光，第二是让高质量的 Item 得到迅速下发，满足用户兴趣。</p>
+<p>Item 冷启动的主要作用有两个：第一是让新入库的 Item 得到充足的曝光，第二是让高质量的 Item 得到迅速下发，满足用户兴趣。</p>
 <ul class="simple">
 <li><p>基础信息冷启动（主题、类目）</p></li>
 <li><p>相似性冷启动</p></li>
@@ -137,17 +138,21 @@
 <p><span class="math notranslate nohighlight">\(\epsilon\)</span>-Greedy 是一种用于探索和利用平衡的强化学习策略，参数 <span class="math notranslate nohighlight">\(\epsilon\)</span> 是探索和利用之间的权衡点。</p>
 <p>具体而言，<span class="math notranslate nohighlight">\(\epsilon\)</span> 代表对探索的偏好程度，每次以概率 <span class="math notranslate nohighlight">\(\epsilon\)</span> 去探索，以概率 <span class="math notranslate nohighlight">\(1-\epsilon\)</span> 来利用，基于被选择 Item 的 Reward 来更新其回报期望。</p>
 </section>
-<section id="thompson-sampling">
-<h2><span class="section-number">6.3. </span>Thompson Sampling<a class="headerlink" href="#thompson-sampling" title="Permalink to this headline"></a></h2>
-<p>Thompson Sampling 假设多臂老虎机（Multi-Arm Bandit）的每个臂都有一个吐钱的概率 <span class="math notranslate nohighlight">\(p\)</span> ，同时 <span class="math notranslate nohighlight">\(p\)</span> 符合 Beta(wins, lose) 分布，每个臂都维护一个 Beta 分布的参数（即 win 和 lose）。每次试验后，选中一个臂，摇一下，有收益则该臂的 win 增加 1，否则该臂的 lose 增加 1。</p>
+<section id="id3">
+<h2><span class="section-number">6.3. </span><a class="reference external" href="https://en.wikipedia.org/wiki/Thompson_sampling">Thompson Sampling</a><a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<p>假设多臂老虎机（Multi-Armed Bandit）的每个臂都有一个吐钱的概率 <span class="math notranslate nohighlight">\(p\)</span> ，同时 <span class="math notranslate nohighlight">\(p\)</span> 符合 <a class="reference external" href="https://en.wikipedia.org/wiki/Beta_distribution">Beta(wins, lose) 分布</a> ，每个臂都维护一个 Beta 分布的参数（即 win 和 lose）。每次试验后，选中一个臂，摇一下，有收益则该臂的 win 增加 1，否则该臂的 lose 增加 1。</p>
 <p>每次选择臂的方式是：用每个臂现有的 Beta 分布产生一个随机数，选择所有臂产生的随机数中最大的那个臂去摇。</p>
 <p>Beta 分布的均值为：</p>
 <div class="math notranslate nohighlight">
 \[\frac{\mathrm{win}}{\mathrm{win} + \mathrm{lose}}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>假如 Beta 分布的两个参数分别表示曝光点击次数和曝光未点击次数，那么该分布的均值就等于真实的 CTR 统计值，产生的随机数可以认为是对 CTR 的预估值。</p>
+</div>
 </section>
 <section id="ucb">
 <h2><span class="section-number">6.4. </span>UCB<a class="headerlink" href="#ucb" title="Permalink to this headline"></a></h2>
-<p>UCB 算法全称是 Upper Confidence Bound（置信区间上界），算法步骤：</p>
+<p>UCB 全称是 Upper Confidence Bound（置信区间上界），算法步骤：</p>
 <ol class="arabic">
 <li><p>先对每个老虎机随机摇臂 <span class="math notranslate nohighlight">\(m\)</span> 次，获取其初始化收益期望 <span class="math notranslate nohighlight">\(\bar{x}_j\)</span>；</p></li>
 <li><p>用 <span class="math notranslate nohighlight">\(t\)</span> 表示至今摇臂的总次数，用 <span class="math notranslate nohighlight">\(n_j\)</span> 表示第 <span class="math notranslate nohighlight">\(j\)</span> 个老虎机至今被摇臂的次数，计算每个老虎机的 UCB 值：</p>
@@ -157,9 +162,24 @@
 </div></blockquote>
 </li>
 <li><p>选择 UCB 值最大的老虎机 <span class="math notranslate nohighlight">\(i\)</span> 进行摇臂，并观察其收益 <span class="math notranslate nohighlight">\(X_{i,t}\)</span> ；</p></li>
-<li><p>根据 <span class="math notranslate nohighlight">\(X_{i,t}\)</span> 更新 <span class="math notranslate nohighlight">\(X_{i,t}\)</span> 的收益期望 <span class="math notranslate nohighlight">\(\bar{x}_i\)</span> ；</p></li>
-<li><p>重复第二步。</p></li>
+<li><p>根据 <span class="math notranslate nohighlight">\(X_{i,t}\)</span> 更新收益期望 <span class="math notranslate nohighlight">\(\bar{x}_i\)</span> ；</p></li>
+<li><p>重复第 2 步。</p></li>
 </ol>
+</section>
+<section id="id4">
+<h2><span class="section-number">6.5. </span>参考资料<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>Multi-armed bandit</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://en.wikipedia.org/wiki/Multi-armed_bandit">https://en.wikipedia.org/wiki/Multi-armed_bandit</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>Introduction to Multi-Armed Bandits</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://arxiv.org/pdf/1904.07272.pdf?fbclid=IwAR32e-DUeDS7MYQwaxQqu7d1z7uVS2HJDkONhrIPBTxGP9ZGzUvJqXpH24s">https://arxiv.org/pdf/1904.07272.pdf?fbclid=IwAR32e-DUeDS7MYQwaxQqu7d1z7uVS2HJDkONhrIPBTxGP9ZGzUvJqXpH24s</a></p>
+</div></blockquote>
 </section>
 </section>
 

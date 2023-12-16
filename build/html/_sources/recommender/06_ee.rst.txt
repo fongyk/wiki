@@ -12,7 +12,7 @@
 冷启
 ----------
 
-冷启动不同于传统推荐链路（召回-粗排-精排-重排），其是单独的一路，会有专门的流量供给给冷启动链路，让 User 或者 Item 进入冷启动进行过渡。
+冷启动不同于传统推荐链路（召回-粗排-精排-重排），其是单独的一路，会有专门的流量供给冷启动链路，让 User 或者 Item 进入冷启动进行过渡。
 
 对于 User 冷启动来说，因为新用户缺少行为数据，所以不能直接用正常的个性化推荐链路，因为正常的个性化推荐链路中用户画像已经基本成型，其分布和新用户的分布是很不一样的。
 
@@ -22,7 +22,7 @@
 - 社交冷启动
 - 模型冷启动（单独对新用户建模）
 
-Item 冷启动的主要作用有两个第一是让新入库的 Item 得到充足的曝光，第二是让高质量的 Item 得到迅速下发，满足用户兴趣。
+Item 冷启动的主要作用有两个：第一是让新入库的 Item 得到充足的曝光，第二是让高质量的 Item 得到迅速下发，满足用户兴趣。
 
 - 基础信息冷启动（主题、类目）
 - 相似性冷启动
@@ -35,10 +35,10 @@ Item 冷启动的主要作用有两个第一是让新入库的 Item 得到充足
 具体而言，:math:`\epsilon` 代表对探索的偏好程度，每次以概率 :math:`\epsilon` 去探索，以概率 :math:`1-\epsilon` 来利用，基于被选择 Item 的 Reward 来更新其回报期望。
 
 
-Thompson Sampling
----------------------
+`Thompson Sampling <https://en.wikipedia.org/wiki/Thompson_sampling>`_
+---------------------------------------------------------------------------------------------------------
 
-Thompson Sampling 假设多臂老虎机（Multi-Arm Bandit）的每个臂都有一个吐钱的概率 :math:`p` ，同时 :math:`p` 符合 Beta(wins, lose) 分布，每个臂都维护一个 Beta 分布的参数（即 win 和 lose）。每次试验后，选中一个臂，摇一下，有收益则该臂的 win 增加 1，否则该臂的 lose 增加 1。
+假设多臂老虎机（Multi-Armed Bandit）的每个臂都有一个吐钱的概率 :math:`p` ，同时 :math:`p` 符合 `Beta(wins, lose) 分布 <https://en.wikipedia.org/wiki/Beta_distribution>`_ ，每个臂都维护一个 Beta 分布的参数（即 win 和 lose）。每次试验后，选中一个臂，摇一下，有收益则该臂的 win 增加 1，否则该臂的 lose 增加 1。
 
 每次选择臂的方式是：用每个臂现有的 Beta 分布产生一个随机数，选择所有臂产生的随机数中最大的那个臂去摇。
 
@@ -48,10 +48,14 @@ Beta 分布的均值为：
 
     \frac{\mathrm{win}}{\mathrm{win} + \mathrm{lose}}
 
+.. note::
+
+   假如 Beta 分布的两个参数分别表示曝光点击次数和曝光未点击次数，那么该分布的均值就等于真实的 CTR 统计值，产生的随机数可以认为是对 CTR 的预估值。
+
 UCB
 -------------
 
-UCB 算法全称是 Upper Confidence Bound（置信区间上界），算法步骤：
+UCB 全称是 Upper Confidence Bound（置信区间上界），算法步骤：
 
 1. 先对每个老虎机随机摇臂 :math:`m` 次，获取其初始化收益期望 :math:`\bar{x}_j`；
 #. 用 :math:`t` 表示至今摇臂的总次数，用 :math:`n_j` 表示第 :math:`j` 个老虎机至今被摇臂的次数，计算每个老虎机的 UCB 值：
@@ -61,5 +65,17 @@ UCB 算法全称是 Upper Confidence Bound（置信区间上界），算法步�
         \mathrm{UCB}_j(t) = \bar{x}_j + \sqrt{\frac{2\ln t}{n_j}}
 
 #. 选择 UCB 值最大的老虎机 :math:`i` 进行摇臂，并观察其收益 :math:`X_{i,t}` ；
-#. 根据 :math:`X_{i,t}` 更新 :math:`X_{i,t}` 的收益期望 :math:`\bar{x}_i` ；
-#. 重复第二步。
+#. 根据 :math:`X_{i,t}` 更新收益期望 :math:`\bar{x}_i` ；
+#. 重复第 2 步。
+
+
+参考资料
+--------------
+
+1. Multi-armed bandit
+
+  https://en.wikipedia.org/wiki/Multi-armed_bandit
+
+2. Introduction to Multi-Armed Bandits
+
+  https://arxiv.org/pdf/1904.07272.pdf?fbclid=IwAR32e-DUeDS7MYQwaxQqu7d1z7uVS2HJDkONhrIPBTxGP9ZGzUvJqXpH24s

@@ -199,7 +199,7 @@ ESCM :math:`^2` 是为了解决 ESMM 模型的两个问题而提出的：
 
 ESCM :math:`^2` 还提出：点击空间的转化率期望比曝光空间的转化率期望更高。
 
-ESCM :math:`^2` 的 :math:`\mathcal{R}_{IPS}` 方法仍然是在点击空间建模 CVR 和 CTCVR，同时使用预估的 pCTR 对 Loss 进行调权。
+ESCM :math:`^2` 的 :math:`\mathcal{R}_{IPS}` 目标仍然是在点击空间建模 CVR ，同时使用预估的 pCTR 对 Loss 进行调权。
 
 联合建模的问题
 ++++++++++++++++++++

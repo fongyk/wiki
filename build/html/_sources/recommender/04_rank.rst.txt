@@ -146,6 +146,25 @@ ETA 主要是解决长序列的建模问题，为了获得更好的实时性能�
 提出了 Embedding Gate 和 MLP Hidden Gate，分别作用于 Embedding 层和 MLP 层。
 
 
+`PEPNet <https://arxiv.org/pdf/2302.01115.pdf>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. image:: ./04_pepNet.png
+    :width: 800px
+    :align: center
+
+PEPNet 借鉴了 `LHUC 算法 <https://arxiv.org/pdf/1601.02828.pdf>`_ 的思想（Speaker Adaptation，在 DNN 网络中为每个 Speaker 学习 Hidden Unit Contributions，来提升不同 Speaker 的语音识别效果），
+提出了 Gate NU，通过 Gate NU 为神经网络层输入增加个性化偏置项，可以显著提升模型的目标预估能力。Gate NU 是一个两层神经网络，其中第二层网络的激活函数是 :math:`2 \times \mathrm{sigmoid}` ，目的是约束其输出的值域为 [0, 2] ，并且默认值为 1。
+
+PEPNet 主要有两个核心模块：EPNet 和 PPNet。
+
+- EPNet 用于 Multi-Task/Multi-Domain 学习，将 Domain 相关的特征作为 Gate NU 的输入，Gate NU 将原始的 Embedding 对不同 Domain 进行映射，进而解决了不同 Domain 特征空间的语义不一致的问题。
+
+- PPNet 关注用户的偏好，将个性化先验信息（User、Item、Author）拼接上 EPNet 输出的 Embedding 喂给 Gate NU， Gate NU 再作用于 DNN Tower。对于每一个用户，虽然 DNN 的结构是共享的，但是 DNN 经过 Gate NU 变换，使得最后的预估结果具有个性化。
+
+需要注意的是，EPNet 输出部分不回传梯度，是为了防止 EPNet 的 Embedding 被 PPNet 影响。
+
+
 多目标学习
 ------------------
 
@@ -174,8 +193,9 @@ ESMM 根据点击转化和点击的样本来学习 pCTCVR 和 pCTR 两个目标�
 - Data Sparsity (数据稀疏问题) 
     点击样本空间远小于曝光的样本空间，特别是某些业务场景点击样本极少，这给训练 CVR 模型带来了很大的挑战。
 
+实际上按照 ESMM 在曝光空间建模的思想，未点击样本的转化率是不确定的。例如，因为 CTR 模型预估得不准，把 Item 排在不好的位置，让用户失去了点击的机会，而实际上用户的转化意图可能很强（ :math:`p(z=1|y=0,x) > 0` ）。
 
-个人理解，这种训练方式并没有给 CVR 的预估带来额外的监督信息。实际上未点击样本的转化率是不确定的，可能是因为 CTR 模型预估得不准，把 Item 排在不好的位置，让用户失去了点击的机会，而实际上 CVR 应该可能很高。
+个人理解，ESMM 这种训练方式并没有给 CVR 的预估带来额外的监督信息。
 
 .. tip::
 
@@ -192,14 +212,16 @@ ESMM 根据点击转化和点击的样本来学习 pCTCVR 和 pCTR 两个目标�
 ESCM :math:`^2` 是为了解决 ESMM 模型的两个问题而提出的：
 
 - Inherent Estimation Bias
-    ESMM 在曝光空间的 CVR 预估值大于实际真实值（直观上，ESMM 给未点击样本预测了一个大于 0 的 CVR）。
+    ESMM 在曝光空间的 CVR 预估值大于实际真实值。ESMM 建模的 CVR 实际上是 :math:`P(r_{u,i}=1)` 而不是 :math:`P(r_{u,i}=1|o_{u,i}=1)` 。
+    （ `Multi-IPW/DR 论文 <https://arxiv.org/pdf/1910.09337.pdf>`_ 也分析了 ESMM 对 CVR 的高估问题）
 
 - Potential Independence Priority
-    ESMM 假设 CTR 和 CVR 预估任务是独立的，但事实上转化一定是在点击之后才会发生。
+    ESMM 假设 CTR 和 CVR 预估任务是独立的，但事实上转化一定是在点击之后发生的事件。
 
 ESCM :math:`^2` 还提出：点击空间的转化率期望比曝光空间的转化率期望更高。
 
 ESCM :math:`^2` 的 :math:`\mathcal{R}_{IPS}` 目标仍然是在点击空间建模 CVR ，同时使用预估的 pCTR 对 Loss 进行调权。
+
 
 联合建模的问题
 ++++++++++++++++++++
@@ -361,3 +383,7 @@ Selection Bias
 14. 阿里ESAM：用迁移学习解决召回中的样本偏差
 
   https://zhuanlan.zhihu.com/p/335626180
+
+15. PPNET 详解与应用
+
+  https://zhuanlan.zhihu.com/p/635364011

@@ -73,14 +73,15 @@
 <li class="toctree-l4"><a class="reference internal" href="#id8">ETA</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id9">BST</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id10">GateNet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">PEPNet</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id11">4.4. 多目标学习</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id12">4.4. 多目标学习</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#ctr-cvr">CTR &amp; CVR 联合建模</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id14">MMoE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15">MMoE</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id15">4.5. 负采样</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">4.5. 负采样</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#bias">4.6. Bias 问题</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#position-bias">Position Bias</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#exposure-bias">Exposure Bias</a></li>
@@ -88,7 +89,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#selection-bias">Selection Bias</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id16">4.7. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">4.7. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="05_rerank.html">5. 重排</a></li>
@@ -233,9 +234,21 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 <a class="reference internal image-reference" href="../_images/04_gateNet.png"><img alt="../_images/04_gateNet.png" class="align-center" src="../_images/04_gateNet.png" style="width: 600px;" /></a>
 <p>提出了 Embedding Gate 和 MLP Hidden Gate，分别作用于 Embedding 层和 MLP 层。</p>
 </section>
-</section>
 <section id="id11">
-<h2><span class="section-number">4.4. </span>多目标学习<a class="headerlink" href="#id11" title="Permalink to this headline"></a></h2>
+<h3><a class="reference external" href="https://arxiv.org/pdf/2302.01115.pdf">PEPNet</a><a class="headerlink" href="#id11" title="Permalink to this headline"></a></h3>
+<a class="reference internal image-reference" href="../_images/04_pepNet.png"><img alt="../_images/04_pepNet.png" class="align-center" src="../_images/04_pepNet.png" style="width: 800px;" /></a>
+<p>PEPNet 借鉴了 <a class="reference external" href="https://arxiv.org/pdf/1601.02828.pdf">LHUC 算法</a> 的思想（Speaker Adaptation，在 DNN 网络中为每个 Speaker 学习 Hidden Unit Contributions，来提升不同 Speaker 的语音识别效果），
+提出了 Gate NU，通过 Gate NU 为神经网络层输入增加个性化偏置项，可以显著提升模型的目标预估能力。Gate NU 是一个两层神经网络，其中第二层网络的激活函数是 <span class="math notranslate nohighlight">\(2 \times \mathrm{sigmoid}\)</span> ，目的是约束其输出的值域为 [0, 2] ，并且默认值为 1。</p>
+<p>PEPNet 主要有两个核心模块：EPNet 和 PPNet。</p>
+<ul class="simple">
+<li><p>EPNet 用于 Multi-Task/Multi-Domain 学习，将 Domain 相关的特征作为 Gate NU 的输入，Gate NU 将原始的 Embedding 对不同 Domain 进行映射，进而解决了不同 Domain 特征空间的语义不一致的问题。</p></li>
+<li><p>PPNet 关注用户的偏好，将个性化先验信息（User、Item、Author）拼接上 EPNet 输出的 Embedding 喂给 Gate NU， Gate NU 再作用于 DNN Tower。对于每一个用户，虽然 DNN 的结构是共享的，但是 DNN 经过 Gate NU 变换，使得最后的预估结果具有个性化。</p></li>
+</ul>
+<p>需要注意的是，EPNet 输出部分不回传梯度，是为了防止 EPNet 的 Embedding 被 PPNet 影响。</p>
+</section>
+</section>
+<section id="id12">
+<h2><span class="section-number">4.4. </span>多目标学习<a class="headerlink" href="#id12" title="Permalink to this headline"></a></h2>
 <p>多目标模型的提出主要针对两个问题：</p>
 <ul class="simple">
 <li><p>如果效果可以保证或者说效果下降得没有那么厉害的情况下，用一个模型实现多个任务，减少了模型布置的数量和线上的资源消耗（毕竟一个模型的部署比多个模型的部署要少很多的麻烦和出错概率）。</p></li>
@@ -243,8 +256,8 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 </ul>
 <section id="ctr-cvr">
 <h3>CTR &amp; CVR 联合建模<a class="headerlink" href="#ctr-cvr" title="Permalink to this headline"></a></h3>
-<section id="id12">
-<h4><a class="reference external" href="https://arxiv.org/pdf/1804.07931.pdf">ESMM</a><a class="headerlink" href="#id12" title="Permalink to this headline"></a></h4>
+<section id="id13">
+<h4><a class="reference external" href="https://arxiv.org/pdf/1804.07931.pdf">ESMM</a><a class="headerlink" href="#id13" title="Permalink to this headline"></a></h4>
 <a class="reference internal image-reference" href="../_images/04_esmm.png"><img alt="../_images/04_esmm.png" class="align-center" src="../_images/04_esmm.png" style="width: 600px;" /></a>
 <p>ESMM 根据点击转化和点击的样本来学习 pCTCVR 和 pCTR 两个目标（共享 Embedding），把 pCVR 当做一个中间变量，同时输出预估的 pCTR、pCVR 和 pCTCVR。损失函数中，pCTR 可以看做是 pCVR 的 Soft Mask。</p>
 <p>期望解决以下两个问题：</p>
@@ -260,7 +273,8 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 </dl>
 </li>
 </ul>
-<p>个人理解，这种训练方式并没有给 CVR 的预估带来额外的监督信息。实际上未点击样本的转化率是不确定的，可能是因为 CTR 模型预估得不准，把 Item 排在不好的位置，让用户失去了点击的机会，而实际上 CVR 应该可能很高。</p>
+<p>实际上按照 ESMM 在曝光空间建模的思想，未点击样本的转化率是不确定的。例如，因为 CTR 模型预估得不准，把 Item 排在不好的位置，让用户失去了点击的机会，而实际上用户的转化意图可能很强（ <span class="math notranslate nohighlight">\(p(z=1|y=0,x) &gt; 0\)</span> ）。</p>
+<p>个人理解，ESMM 这种训练方式并没有给 CVR 的预估带来额外的监督信息。</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>考虑到除法运算带来的数值稳定性问题，不能直接使用 pCTCVR / pCTR 来建模 pCVR。</p>
@@ -272,12 +286,13 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 <p>ESCM <span class="math notranslate nohighlight">\(^2\)</span> 是为了解决 ESMM 模型的两个问题而提出的：</p>
 <ul class="simple">
 <li><dl class="simple">
-<dt>Inherent Estimation Bias</dt><dd><p>ESMM 在曝光空间的 CVR 预估值大于实际真实值（直观上，ESMM 给未点击样本预测了一个大于 0 的 CVR）。</p>
+<dt>Inherent Estimation Bias</dt><dd><p>ESMM 在曝光空间的 CVR 预估值大于实际真实值。ESMM 建模的 CVR 实际上是 <span class="math notranslate nohighlight">\(P(r_{u,i}=1)\)</span> 而不是 <span class="math notranslate nohighlight">\(P(r_{u,i}=1|o_{u,i}=1)\)</span> 。
+（ <a class="reference external" href="https://arxiv.org/pdf/1910.09337.pdf">Multi-IPW/DR 论文</a> 也分析了 ESMM 对 CVR 的高估问题）</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>Potential Independence Priority</dt><dd><p>ESMM 假设 CTR 和 CVR 预估任务是独立的，但事实上转化一定是在点击之后才会发生。</p>
+<dt>Potential Independence Priority</dt><dd><p>ESMM 假设 CTR 和 CVR 预估任务是独立的，但事实上转化一定是在点击之后发生的事件。</p>
 </dd>
 </dl>
 </li>
@@ -285,8 +300,8 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 <p>ESCM <span class="math notranslate nohighlight">\(^2\)</span> 还提出：点击空间的转化率期望比曝光空间的转化率期望更高。</p>
 <p>ESCM <span class="math notranslate nohighlight">\(^2\)</span> 的 <span class="math notranslate nohighlight">\(\mathcal{R}_{IPS}\)</span> 目标仍然是在点击空间建模 CVR ，同时使用预估的 pCTR 对 Loss 进行调权。</p>
 </section>
-<section id="id13">
-<h4>联合建模的问题<a class="headerlink" href="#id13" title="Permalink to this headline"></a></h4>
+<section id="id14">
+<h4>联合建模的问题<a class="headerlink" href="#id14" title="Permalink to this headline"></a></h4>
 <p><strong>联合建模的好处</strong></p>
 <ul class="simple">
 <li><p>共享 Embedding，加速收敛。</p></li>
@@ -305,8 +320,8 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 </div>
 </section>
 </section>
-<section id="id14">
-<h3><a class="reference external" href="https://dl.acm.org/doi/pdf/10.1145/3219819.3220007">MMoE</a><a class="headerlink" href="#id14" title="Permalink to this headline"></a></h3>
+<section id="id15">
+<h3><a class="reference external" href="https://dl.acm.org/doi/pdf/10.1145/3219819.3220007">MMoE</a><a class="headerlink" href="#id15" title="Permalink to this headline"></a></h3>
 <a class="reference internal image-reference" href="../_images/04_mmoe.png"><img alt="../_images/04_mmoe.png" class="align-center" src="../_images/04_mmoe.png" style="width: 600px;" /></a>
 <p>Share Bottom 的结构在多任务相关性不强时，会损害各自任务的效果。</p>
 <p>MoE 模型像是将 Share Bottom 分解成多个 Expert，然后通过门控网络自动控制不同任务对这些 Expert 的梯度贡献。</p>
@@ -314,8 +329,8 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 <p>MMOE 中所有的 Expert 是被不同任务所共享的，这可能无法捕捉到任务之间更复杂的关系，从而给部分任务带来一定的噪声。</p>
 </section>
 </section>
-<section id="id15">
-<h2><span class="section-number">4.5. </span>负采样<a class="headerlink" href="#id15" title="Permalink to this headline"></a></h2>
+<section id="id16">
+<h2><span class="section-number">4.5. </span>负采样<a class="headerlink" href="#id16" title="Permalink to this headline"></a></h2>
 <p>为了控制数据规模，降低训练开销，可以保留全部正样本、对负样本进行降采样，一方面提高了训练效率，另一方面还缓解了正负样本不均衡的问题。</p>
 <p>负采样带来的问题是 CTR/CVR 预估值的漂移：打分均值偏高。校正公式：</p>
 <div class="math notranslate nohighlight">
@@ -364,8 +379,8 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 </div>
 </section>
 </section>
-<section id="id16">
-<h2><span class="section-number">4.7. </span>参考资料<a class="headerlink" href="#id16" title="Permalink to this headline"></a></h2>
+<section id="id17">
+<h2><span class="section-number">4.7. </span>参考资料<a class="headerlink" href="#id17" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>《深度学习推荐系统》，王喆，电子工业出版社。</p></li>
 <li><p>推荐系统的架构-冷启动-召回-粗排-精排-重排</p></li>
@@ -444,6 +459,12 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/335626180">https://zhuanlan.zhihu.com/p/335626180</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="15">
+<li><p>PPNET 详解与应用</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/635364011">https://zhuanlan.zhihu.com/p/635364011</a></p>
 </div></blockquote>
 </section>
 </section>

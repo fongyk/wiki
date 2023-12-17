@@ -9,13 +9,13 @@
     热度，LBS
 
 - 协同过滤
-    UserCF、ItemCF
+    UserCF，ItemCF
 
 - U2T2I
-    基于user tag召回
+    基于 User Tag 召回
   
 - I2I
-    `Swing <https://arxiv.org/pdf/2010.05525.pdf>`_ ，Embedding（Word2Vec、FastText），GraphEmbedding（Node2Vec、DeepWalk、EGES）
+    `Swing <https://arxiv.org/pdf/2010.05525.pdf>`_ ，Embedding（Word2Vec、FastText），Graph Embedding（Node2Vec、DeepWalk、EGES）
 
 - U2I
     `DSSM 双塔 <https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/cikm2013_DSSM_fullversion.pdf>`_ ， `Youtube DNN <https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/45530.pdf>`_ ，Sentence Bert
@@ -46,18 +46,18 @@
 
 **训练**：
 
-- User 侧特征输入一个 DNN，得到一个 User embedding。
-- Item 侧特征输入一个 DNN，得到一个 Item embedding。
+- User 侧特征输入一个 DNN，得到一个 User Embedding。
+- Item 侧特征输入一个 DNN，得到一个 Item Embedding。
 - 两个 Embedding 做内积运算得到 Logit，进入损失函数。
 
 **离线向量化**：
 
-- 所有 Item Embedding 离线推断好的。
-- 构建好 ANN 索引（比如 `FAISS <https://github.com/facebookresearch/faiss>`_ ）。
+- 所有 Item Embedding 离线推断好。
+- 构建好 ANN 向量索引（比如 `FAISS <https://github.com/facebookresearch/faiss>`_ ）。
 
 **线上部署**：
 
-- 实时 User 特征输入 User tower 得到 User embedding。
+- 实时 User 特征输入 User Tower 得到 User Embedding。
 - 用 User Embedding 在 ANN 索引中查找最近邻，得到召回结果。
 
 User 侧信息与 Item 侧信息只有唯一一次交叉机会，就是在双塔生成各自的 Embedding 之后的那次点积，
@@ -95,7 +95,7 @@ Loss
 
 `Youtube DNN <https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/45530.pdf>`_ 模型选择了 Sampled Softmax Loss 作为损失函数。
 对于二分类而言，BCE Loss 只是比较正负样本的差距，而且每次 Loss 的计算中，都是判断一个样本是正还是负，并没有纵向的对比。
-对于 Softmax Loss 而言，其是一次性进行多个 Item 之间的比较，而且，在每一次的 Loss 计算中，其都会将正样本和多个负样本进行比较，并且告诉模型正样本是和这一批负样本很不同的。Softmax Loss 训练出来的 Embedding 的区分性更好。
+对于 Softmax Loss 而言，其是一次性进行多个 Item 之间的比较，而且在每一次的 Loss 计算中，都会将正样本和多个负样本进行比较，并且告诉模型正样本是和这一批负样本很不同的。Softmax Loss 训练出来的 Embedding 的区分性更好。
 直观上，这种 Loss 的优化目标和向量化召回是更一致的。
 
 `EBF <https://arxiv.org/pdf/2006.11632.pdf>`_ 采用的是 Triplet Loss。

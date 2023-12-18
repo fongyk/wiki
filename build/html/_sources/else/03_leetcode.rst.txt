@@ -2424,126 +2424,119 @@ https://leetcode.com/problems/number-of-islands/
       :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
-      :linenos:
+        :linenos:
 
-      // 孤岛个数
-      class Solution
-      {
-      public:
-         void traverseIsland(vector<vector<char>>& grid, int m, int n, const int M, const int N)
-          {
-              queue<pair<int, int>> que;
+        // 孤岛个数
+        class Solution
+        {
+        public:
+            void traverseIsland(vector<vector<char>>& grid, int m, int n, const int M, const int N)
+            {
+                queue<pair<int, int>> que;
 
-              que.push(make_pair(m, n));
-              grid[m][n] = '0';
+                que.push(make_pair(m, n));
+                grid[m][n] = '0';
 
-              while (!que.empty())
-              {
-                  pair<int, int> p = que.front();
-                  que.pop();
+                while (!que.empty())
+                {
+                    pair<int, int> p = que.front();
+                    que.pop();
 
-                  if (p.first - 1 >= 0 && grid[p.first - 1][p.second] == '1')
-                  {
-                      grid[p.first - 1][p.second] = '0'; // 入队需要改变标志位，避免后续过程中同一坐标重复入队
-                      que.push(make_pair(p.first - 1, p.second));
-                  }
-                  if (p.first + 1 < M && grid[p.first + 1][p.second] == '1')
-                  {
-                      grid[p.first + 1][p.second] = '0';
-                      que.push(make_pair(p.first + 1, p.second));
-                  }
-                  if (p.second - 1 >= 0 && grid[p.first][p.second - 1] == '1')
-                  {
-                      grid[p.first][p.second - 1] = '0';
-                      que.push(make_pair(p.first, p.second - 1));
-                  }
-                  if (p.second + 1 < N && grid[p.first][p.second + 1] == '1')
-                  {
-                      grid[p.first][p.second + 1] = '0';
-                      que.push(make_pair(p.first, p.second + 1));
-                  }
-              }
-          }
+                    for (int i = 0; i < 4; ++i)
+                    {
+                        int next_x = p.first + directions[i][0];
+                        int next_y = p.second + directions[i][1];
+                        if (0 <= next_x && next_x < M && 0 <= next_y && next_y < N && grid[next_x][next_y] == '1')
+                        {
+                            // 入队需要改变标志位，避免后续过程中同一坐标重复入队
+                            grid[next_x][next_y] = '0';
+                            que.push(make_pair(next_x, next_y));
+                        }
+                    }
+                }
+            }
 
-          int numIslands(vector<vector<char>>& grid)
-          {
-              if(grid.size()==0) return 0;
-              int M = grid.size();
-              int N = grid[0].size();
-              int island = 0;
-              for(int m = 0; m < M; ++m)
-              {
-                  for(int n = 0; n < N; ++n)
-                  {
-                      if(grid[m][n]=='1')
-                      {
-                          island += 1;
-                          traverseIsland(grid, m, n, M, N);
-                      }
-                  }
-              }
-              return island;
-          }
-      };
+            int numIslands(vector<vector<char>>& grid)
+            {
+                if (grid.size()==0) return 0;
+                int M = grid.size();
+                int N = grid[0].size();
+                int island = 0;
+                for (int m = 0; m < M; ++m)
+                {
+                    for (int n = 0; n < N; ++n)
+                    {
+                        if (grid[m][n]=='1')
+                        {
+                            island += 1;
+                            traverseIsland(grid, m, n, M, N);
+                        }
+                    }
+                }
+                return island;
+            }
+        private:
+            static const int directions[4][2];
+        };
+
+        const int Solution::directions[4][2] = {{-1,0},{0,-1},{1,0},{0,1}};
 
     .. code-block:: cpp
-      :linenos:
+        :linenos:
 
-      // 最短时间
-      // https://www.nowcoder.com/practice/365493766c514d0da0cd774d3d40fd49?tpId=8&tqId=11040&tPage=1&rp=1&ru=/ta/cracking-the-coding-interview&qru=/ta/cracking-the-coding-interview/question-ranking
-      // https://leetcode.com/problems/shortest-path-in-binary-matrix/
+        // 最短时间
+        // https://www.nowcoder.com/practice/365493766c514d0da0cd774d3d40fd49?tpId=8&tqId=11040&tPage=1&rp=1&ru=/ta/cracking-the-coding-interview&qru=/ta/cracking-the-coding-interview/question-ranking
+        // https://leetcode.com/problems/shortest-path-in-binary-matrix/
 
-      struct point
-      {
-          int x;
-          int y;
-          int time;
-          point(int _x, int _y, int _time): x(_x), y(_y), time(_time){}
-      };
+        struct point
+        {
+            int x;
+            int y;
+            int time;
+            point(int _x, int _y, int _time): x(_x), y(_y), time(_time){}
+        };
 
-      class Flood
-      {
-      public:
-          int floodFill(vector<vector<int> > map, int n, int m)
-          {
-              queue<point> q;
-              if(map[0][0] != 1)
-              {
-                  q.push(point(0, 0, 0));
-                  map[0][0] = 1;
-              }
-              while(!q.empty())
-              {
-                  auto p = q.front();
-                  q.pop();
-                  if(p.x == n-1 && p.y == m-1) return p.time;
-                  if(p.y >= 1 && map[p.x][p.y-1] != 1)
-                  {
-                      q.push(point(p.x, p.y-1, p.time+1));
-                      map[p.x][p.y-1] = 1; // 入队需要改变标志位，避免后续过程中同一坐标重复入队
-                  }
-                  if(p.x >= 1 && map[p.x-1][p.y] != 1)
-                  {
-                      q.push(point(p.x-1, p.y, p.time+1));
-                      map[p.x-1][p.y] = 1;
-                  }
-                  if(p.x < n-1 && map[p.x+1][p.y] != 1)
-                  {
-                      q.push(point(p.x+1, p.y, p.time+1));
-                      map[p.x+1][p.y] = 1;
-                  }
-                  if(p.y < m-1 && map[p.x][p.y+1] != 1)
-                  {
-                      q.push(point(p.x, p.y+1, p.time+1));
-                      map[p.x][p.y+1] = 1;
-                  }
-              }
-              return INT_MAX;
-          }
-      };
+        class Solution
+        {
+        public:
+            int shortestPathBinaryMatrix(vector<vector<int>>& grid)
+            {
+                int n = grid.size();
+                queue<point> q;
+                if(grid[0][0] != 1)
+                {
+                    q.push(point(0, 0, 1));
+                    grid[0][0] = 1;
+                }
+                while(!q.empty())
+                {
+                    auto p = q.front();
+                    q.pop();
+                    if(p.x == n-1 && p.y == n-1) return p.time;
+                    for(int i = 0; i < 8; ++i)
+                    {
+                        int next_x = p.x + directions[i][0];
+                        int next_y = p.y + directions[i][1];
+                        if(0 <= next_x && next_x < n && 0 <= next_y && next_y < n && grid[next_x][next_y] != 1)
+                        {
+                            // 入队需要改变标志位，避免后续过程中同一坐标重复入队
+                            grid[next_x][next_y] = 1;
+                            q.push(point(next_x, next_y, p.time+1));
+                        }
+                    }
+                }
+                return -1;
+            }
+        private:
+            static const int directions[8][2];
+        };
 
-      // 注意：当点 p 的近邻都满足条件入队之后，它们的标志位全部同时改变
-      // 因为当最短路径包含点 p 时，只会再包含点 p 的一个近邻，最短路径不可能多次经过点 p 的不同近邻
+        const int Solution::directions[8][2] = {
+            {-1,-1},{-1,0},{-1,1},{0,-1},{0,1},{1,-1},{1,0},{1,1}
+        };
+
+        // 注意：当点 p 的近邻都满足条件入队之后，它们的标志位全部同时改变
+        // 因为当最短路径包含点 p 时，只会再包含点 p 的一个近邻，最短路径不可能多次经过点 p 的不同近邻
 
 回文（Palindrome）
 --------------------------------------------------------------------------------------------

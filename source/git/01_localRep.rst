@@ -78,6 +78,8 @@
 
 - ``git log`` 查看版本历史记录，包括版本的 hash 值、commit 注释等信息。
 
+  - ``git log <file>`` 查看文件的 commit 记录。
+
 - ``git reflog`` 查看可引用的历史版本记录，一般是为了找到所需的 commit 索引，从而进行版本回退或恢复操作所使用。
 
   .. code-block:: text
@@ -90,6 +92,8 @@
     7ed6b16 HEAD@{3}: reset: moving to HEAD
     7ed6b16 HEAD@{4}: commit: add a
     8337301 HEAD@{5}: commit (initial): add readme
+
+- ``git blame <file>`` 查看文件每一行的修改者。
 
 - ``git mv file_from file_to`` 重命名文件，相当于 ``mv file_from file_to; git rm file_from; git add file_to`` 。要从 Git 中移除某个文件，就必须要从已跟踪文件清单中移除（确切地说，是从暂存区域移除），然后再提交。 ``git rm`` 就是用于完成此项工作，并连带从工作目录中删除指定的文件，这样以后就不会出现在未跟踪文件清单中了。
 

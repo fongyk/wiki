@@ -2652,35 +2652,36 @@ https://leetcode.com/problems/number-of-islands/
       :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
-      :linenos:
+        :linenos:
 
-      class Solution
-      {
-      public:
-          // 寻找字符串 str 与其翻转字符串的最长公共子序列
-          int lcsLength(string& str)
-          {
-              int len = str.size();
-              vector<vector<int>> dp(len+1, vector<int>(len+1, 0));
-              for(int i = 1; i <= len; ++i)
-              {
-                  for(int j = len - 1; j >= 0; --j) // 注意这里 j 是反向的
-                  {
-                      if(str[i-1] == str[j]) dp[i][j] = dp[i-1][j+1] + 1;
-                      else dp[i][j] = max(dp[i-1][j], dp[i][j+1]);
-                  }
-              }
-              int ans = dp[len][0];
-              vector<vector<int>>().swap(dp);
-              return ans;
-          }
+        class Solution
+        {
+        public:
+            // 寻找字符串 str 与其翻转字符串的最长公共子序列
+            int lcsLength(string& str)
+            {
+                int len = str.size();
+                vector<vector<int>> dp(len+1, vector<int>(len+1, 0));
+                // dp[i][j] 表示前 i 个字符和后 j 个字符翻转后的最长公共子序列的长度
+                for(int i = 1; i <= len; ++i)
+                {
+                    for(int j = 1; j <= len; ++j)
+                    {
+                        if(str[i-1] == str[len-j]) dp[i][j] = dp[i-1][j-1] + 1;
+                        else dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
+                    }
+                }
+                int ans = dp[len][len];
+                vector<vector<int>>().swap(dp);
+                return ans;
+            }
 
-          int longestPalindromeSubseq(string s)
-          {
-              if(s.size() <= 1) return s.size();
-              return lcsLength(s);
-          }
-      };
+            int longestPalindromeSubseq(string s)
+            {
+                if(s.size() <= 1) return s.size();
+                return lcsLength(s);
+            }
+        };
 
 - [LeetCode] Count Different Palindromic Subsequences 统计不同回文子序列的个数（子序列可以不连续）。
 

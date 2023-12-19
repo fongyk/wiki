@@ -56,7 +56,8 @@
 <li class="toctree-l2"><a class="reference internal" href="02_remoteRep.html">2. 远程仓库</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">3. 分支管理</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2">3.1. 分支管理</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">3.2. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">3.2. 比较分支</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">3.3. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="04_ssh.html">4. SSH</a></li>
@@ -149,7 +150,12 @@
 </div>
 </section>
 <section id="id3">
-<h2><span class="section-number">3.2. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">3.2. </span>比较分支<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<p>Git 比较 Source 和 Destination 两个分支的时候，展示的 Diff 并不是当前两个分支中所有文件的 Diff，而是 <strong>将 Source 分支合入 Destination 分支时会带来的改变</strong> 。
+也就是说，实际比较的是 Source 分支和 <a class="reference external" href="https://stackoverflow.com/a/66789252">Merge Base</a> 节点， Merge Base 节点是这两个分支的最近公共 commit 节点。</p>
+</section>
+<section id="id4">
+<h2><span class="section-number">3.3. </span>参考资料<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>Git和Github简单教程</p></li>
 </ol>
@@ -179,6 +185,12 @@
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://stackoverflow.com/questions/7151311/using-git-how-could-i-search-for-a-string-across-all-branches">https://stackoverflow.com/questions/7151311/using-git-how-could-i-search-for-a-string-across-all-branches</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="6">
+<li><p>Comparing two branches yields different diffs</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://stackoverflow.com/questions/49135231/comparing-two-branches-yields-different-diffs">https://stackoverflow.com/questions/49135231/comparing-two-branches-yields-different-diffs</a></p>
 </div></blockquote>
 </section>
 </section>

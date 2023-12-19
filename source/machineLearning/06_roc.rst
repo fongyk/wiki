@@ -1,15 +1,15 @@
 ROC 曲线和 AUC
 ==================
 
-**ROC** ：Receiver operating characteristic curve，接收者操作特征曲线。
+**ROC** ：Receiver Operating Characteristic Curve，接收者操作特征曲线。
 
-  - 横坐标：false positive rate（FPR），即负例样本的预测错误率（越小越好）
+  - 横坐标：False Positive Rate（FPR），即负例样本的预测错误率（越小越好）
 
   .. math::
 
     FPR = \frac{FP}{N} = \frac{FP}{TN + FP}
 
-  - 纵坐标：true positive rate（TPR）/recall/hit rate/sensitivity，即正例样本的预测正确率（越大越好）
+  - 纵坐标：True Positive Rate（TPR）/Recall/Hit Rate/Sensitivity，即正例样本的预测正确率（越大越好）
 
   .. math::
 
@@ -19,13 +19,13 @@ ROC 曲线和 AUC
   :align: center
   :width: 500 px
 
-- 离左上角越近的点预测 accuracy 越高。
+- 离左上角越近的点预测 Accuracy 越高。
 
 - 在 A、B、C 三者当中，最好的是 A 方法。
 
-- B 的 accuracy 是 50%。
+- B 的 Accuracy 是 50%。
 
-- C' 与 C 互为镜像点。不管 C 预测了什么，C' 就做相反的预测。
+- C' 与 C 互为镜像点，不管 C 预测了什么，C' 就做相反的预测。
 
 
 基本概念
@@ -51,19 +51,19 @@ ROC 分析的是二元分类模型。
 
 常用评价指标：
 
-- 正确率（accuracy）
+- 正确率（Accuracy）
 
 .. math::
 
   ACC = \frac{TP + TN}{P + N}
 
-- 准确率（precision，positive predictive value - PPV）
+- 准确率（Precision，Positive Predictive Palue - PPV）
 
 .. math::
 
   PPV = \frac{TP}{TP + FP}
 
-- 召回率（recall，hit rate，sensitivity，true positive rate - TPR）
+- 召回率（Recall，Hit rate，Sensitivity，True Positive Rate - TPR）
 
 .. math::
 
@@ -76,7 +76,7 @@ ROC 分析的是二元分类模型。
   F_1 = \frac{2}{\frac{1}{PPV} + \frac{1}{TPR}} = 2 \times \frac{PPV \times TPR}{PPV + TPR} = \frac{2 \cdot TP}{2 \cdot TP + FP + FN}
 
 
-:math:`2 \times 2` 混淆矩阵（confusion matrix）：
+:math:`2 \times 2` 混淆矩阵（Confusion Matrix）：
 
 .. image:: ./06_confusionMatrix.jpg
   :align: center
@@ -96,16 +96,16 @@ ROC 空间里的单点是给定分类模型且给定得分阈值后得出的，�
 
 在比较不同的分类模型时，可以将每个模型的 ROC 曲线都画出来，比较曲线下面积作为模型优劣的指标。
 
-**AUC** ：Area under the curve of ROC。
+**AUC** ：Area Under the Curve of ROC。
 
 - 因为是在 1x1 的方格里求面积，AUC 必在 0 ~ 1 之间。
 
 - AUC 值 = 分类器把一个随机抽取的正例排在一个随机抽取的负例之前的概率（给予正例更高的得分）。
 
-- AUC 值越大的分类器，accuracy 越高。
+- AUC 值越大的分类器，Accuracy 越高。
 
 计算方法
-  - 根据 FPR 和 TPR 计算，采用梯形积分法（Trapezoidal rule）。
+  - 根据 FPR 和 TPR 计算，采用梯形积分法（Trapezoidal Rule）。
 
   .. math::
 
@@ -166,7 +166,7 @@ AUC 的缺陷
 
 #. 在负样本远多于正样本的情形下，模型通过对负样本高估，可以人为地提高 AUC。相同 AUC 的两个模型在不同 ROC 区域的预测能力可能是不一样的。
 
-在搜广推场景下，需要关注的是模型对同一用户不同 item 的打分能力，这时候一般会计算 GAUC。
+在搜广推场景下，需要关注的是模型对同一用户不同 Item 的打分能力，这时候一般会计算 GAUC（Group AUC）。
 
 参考资料
 ----------

@@ -288,6 +288,7 @@ Position Bias
 - 将位置信息作为特征进行训练；推理的时候，将位置特征统一设为默认值。
 - 参照 Wide & Deep，另外开辟一个浅层网络单独学习位置信息，将得到的结果和主模型的结果相加。训练过程中，可以适当的考虑对位置特征进行一定比例的屏蔽，防止模型过度依赖位置特征。预测的时候，就只输出主模型的分数，将位置网络抛弃。
 
+可参考 `Youtube Shallow Tower <https://daiwk.github.io/assets/youtube-multitask.pdf>`_ 对 Bias 的处理。
 
 Exposure Bias
 ^^^^^^^^^^^^^^^^^^^
@@ -387,3 +388,7 @@ Selection Bias
 15. PPNET 详解与应用
 
   https://zhuanlan.zhihu.com/p/635364011
+
+16. Youtube 排序系统：Recommending What Video to Watch Next
+
+  https://zhuanlan.zhihu.com/p/82584437

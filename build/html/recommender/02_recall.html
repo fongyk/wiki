@@ -65,7 +65,8 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#loss">2.3. Loss</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id7">2.4. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">2.4. 离线指标</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">2.5. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="03_prerank.html">3. 粗排</a></li>
@@ -213,7 +214,40 @@
 <p><a class="reference external" href="https://arxiv.org/pdf/2006.11632.pdf">EBF</a> 采用的是 Triplet Loss。</p>
 </section>
 <section id="id7">
-<h2><span class="section-number">2.4. </span>参考资料<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">2.4. </span>离线指标<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h2>
+<ul>
+<li><dl class="simple">
+<dt>Recall，Precision</dt><dd><p><span class="math notranslate nohighlight">\(R(u)\)</span> 表示召回 Item 的集合，<span class="math notranslate nohighlight">\(A(u)\)</span> 表示用户感兴趣的 Item 的集合（比如点击过的 Item）。</p>
+</dd>
+</dl>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{recall} &amp; = \frac{\sum_{u} | R(u) \cap A(u) |}{\sum_{u} | A(u) |} = \frac{\#hits}{\sum_{u} | A(u) |} \\
+\mathrm{precision} &amp; = \frac{\sum_{u} | R(u) \cap A(u) |}{\sum_{u} | R(u) |}\end{split}\]</div>
+</li>
+<li><dl>
+<dt><a class="reference external" href="https://www.researchgate.net/publication/221141030_Performance_of_recommender_algorithms_on_top-N_recommendation_tasks">NS-Recall，NS-Precision</a></dt><dd><p>负采样的召回和准确率，主要针对 Top-N 这类召回设计，用于衡量算法相对于随机能否发现用户兴趣。
+对于每一个正例 Item，都随机采样一些负样本，打分、排序，然后在这个只有一个正样本的排序列表中计算 Recall 和 Precision（只有 <span class="math notranslate nohighlight">\(0\)</span> 和 <span class="math notranslate nohighlight">\(\frac{1}{N}\)</span> 两种可能）。</p>
+<p><span class="math notranslate nohighlight">\(T\)</span> 是所有正例 Item 的个数。</p>
+</dd>
+</dl>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{recall}&#64;N &amp; = \frac{\#hits}{| T |} \\
+\mathrm{precision}&#64;N &amp; = \frac{\#hits}{N \cdot | T |} = \frac{\mathrm{recall}&#64;N}{N}\end{split}\]</div>
+</li>
+<li><dl class="simple">
+<dt><a class="reference external" href="https://www.researchgate.net/publication/262214507_Sparse_linear_methods_with_side_information_for_Top-N_recommendations">Hit Rate，Average Reciprocal Hit-Rank</a></dt><dd><p>ARHR 度量了一个 Item 被推荐的强烈程度。</p>
+</dd>
+</dl>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{hr} &amp; = \frac{\#hits}{\#users} \\
+\mathrm{arhr} &amp; = \frac{1}{\#users} \sum_i^{\#hits} \frac{1}{rank_i}\end{split}\]</div>
+</li>
+</ul>
+<p>还需要考虑召回的丰富度（比如类目）、和其他路的重合度等。</p>
+<p>此外，推荐系统中长尾效应十分明显，上述指标易受到头部数据的干扰，且大部分召回对尾部的学习不如头部数据好，因此可以增加单独的 <a class="reference external" href="https://www.researchgate.net/publication/262214507_Sparse_linear_methods_with_side_information_for_Top-N_recommendations">长尾指标</a> 。</p>
+</section>
+<section id="id9">
+<h2><span class="section-number">2.5. </span>参考资料<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>推荐系统[四]：精排-详解排序算法LTR (Learning to Rank)</p></li>
 </ol>
@@ -249,6 +283,24 @@
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/585495313">https://zhuanlan.zhihu.com/p/585495313</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="7">
+<li><p>推荐系统[八]算法实践总结V1：淘宝逛逛and阿里飞猪个性化推荐：召回算法实践总结【冷启动召回、复购召回、用户行为召回等算法实战】</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/609366598?utm_id=0">https://zhuanlan.zhihu.com/p/609366598?utm_id=0</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="8">
+<li><p>Trust your neighbors: A comprehensive survey of neighborhood-based methods for recommender systems</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://arxiv.org/pdf/2109.04584.pdf">https://arxiv.org/pdf/2109.04584.pdf</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="9">
+<li><p>召回常用评估指标</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://juejin.cn/post/6844904065638350861">https://juejin.cn/post/6844904065638350861</a></p>
 </div></blockquote>
 </section>
 </section>

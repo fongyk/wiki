@@ -63,7 +63,20 @@
 <li class="toctree-l2"><a class="reference internal" href="04_rank.html">4. 精排</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05_rerank.html">5. 重排</a></li>
 <li class="toctree-l2"><a class="reference internal" href="06_ee.html">6. 探索和利用</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">7. 评价指标</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">7. 评价指标</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">7.1. 常用指标</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auc">7.2. AUC 离在线不一致问题</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">特征维度</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">训练维度</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">线上结果置信度</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">数据分布</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">流量抢夺，链路纠缠</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">特殊时间点的漂移</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">7.3. 参考资料</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="08_llm.html">8. 推荐与大语言模型</a></li>
 </ul>
 </li>
@@ -102,6 +115,8 @@
              
   <section id="id1">
 <h1><span class="section-number">7. </span>评价指标<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<section id="id2">
+<h2><span class="section-number">7.1. </span>常用指标<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <p>当评估机器学习模型或信息检索系统的性能时，常用的评价指标包括：</p>
 <ul>
 <li><dl class="simple">
@@ -144,6 +159,91 @@
 <div class="math notranslate nohighlight">
 \[Q_{ctr} = \frac{\sum_i \mathrm{pCTR}_i}{\sum_i \mathrm{isClick}_i}\]</div>
 <p>离线评估的目的在于快速定位问题，快速排除不可行的思路，为线上评估找到靠谱的候选者。</p>
+<p>在分析线上效果时，可能需要分场景、类目等计算细分指标。</p>
+</section>
+<section id="auc">
+<h2><span class="section-number">7.2. </span>AUC 离在线不一致问题<a class="headerlink" href="#auc" title="Permalink to this headline"></a></h2>
+<section id="id3">
+<h3>特征维度<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
+<ul>
+<li><dl class="simple">
+<dt>特征出现穿越</dt><dd><p>一般是使用了和 Label 强相关的特征，或者序列特征使用了“未来”的数据（请求时间之后）。</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>离在线不一致</dt><dd><p>特征处理不一致（比如线上有做量化、半精度），或者数据来源没对齐。</p>
+<p>对于一些强 Bias 特征，离在线的使用方式也是特别重要的，如果使用不当往往离线收益很大而线上纹丝不动或者反向。
+比如 Position Bias，在推荐领域一般放到 Wide &amp; Deep 模型的 Wide 侧，离线训练时按实际曝光位置来训练；线上 Serving 时统一置为 0，这对于只追求序关系正确的推荐场景是没有问题的。但是放到广告 CTR 模型中就存在问题，因为广告场景中还需要依赖 pCTR 做出价计算去收取广告主的钱。</p>
+<p>可参考 <a class="reference external" href="https://daiwk.github.io/assets/youtube-multitask.pdf">Youtube Shallow Tower</a> 对 Bias 的处理。</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id4">
+<h3>训练维度<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>训练集与测试集是否存在重叠部分。</p></li>
+<li><p>训练集是否出现了过拟合。</p></li>
+</ul>
+</section>
+<section id="id5">
+<h3>线上结果置信度<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>线上指标统计时间窗口：不同指标达到可置信水平的统计窗口有较大区别，这跟业务和指标稳定性有很大关系。</p></li>
+<li><p>实验平台分桶是否足够随机（对比线上 AUC 的时候需要注意，不同模型的 AUC 是在不同流量下计算的，不一定具有可比性）。</p></li>
+<li><p>实验模型 Serving 状态：模型请求是否超时、模型更新时效性。</p></li>
+</ul>
+</section>
+<section id="id6">
+<h3>数据分布<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h3>
+<p>实验模型线下评估时拟合的是 Base 模型跑出来的数据分布，到上线后训练样本里既有 Base 模型跑出来样本也有实验模型跑出来的样本，且占比在不断变化，相当于数据分布在变。</p>
+<p>有效的经验：</p>
+<ul>
+<li><p>对无偏数据进行上采样，比如随机流量/探索流量产生的样本，或者新模型产生的样本。</p></li>
+<li><p>Base 模型和新模型融合：模型预估分数 <span class="math notranslate nohighlight">\(p_{new}\)</span> 和 Base 模型预估分数 <span class="math notranslate nohighlight">\(p_{base}\)</span> 直接在线上做线性融合；刚上线的时候 <span class="math notranslate nohighlight">\(\alpha\)</span> 选取比较小的值，随着迭代 <span class="math notranslate nohighlight">\(\alpha\)</span> 慢慢放大。</p>
+<div class="math notranslate nohighlight">
+\[p = \alpha \cdot p_{new} + (1 - \alpha) \cdot p_{base}\]</div>
+</li>
+</ul>
+</section>
+<section id="id7">
+<h3>流量抢夺，链路纠缠<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h3>
+<p>关注系统链路上下游的变化，收益可能被其他模块拿走了。</p>
+</section>
+<section id="id8">
+<h3>特殊时间点的漂移<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h3>
+<p>大促/活动时间节点的数据分布会发生较大变化。</p>
+</section>
+</section>
+<section id="id9">
+<h2><span class="section-number">7.3. </span>参考资料<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>“AUC提升了效果指标下降了”之原因分析</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://www.deeplearn.me/4237.html">https://www.deeplearn.me/4237.html</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>推荐系统，离线 AUC 涨了，线上 CTR 等效果没涨，可能有哪些原因？</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://www.zhihu.com/question/517418281/answer/2355367968">https://www.zhihu.com/question/517418281/answer/2355367968</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>KDD’23 | 转化率预估新思路：基于历史数据复用的大促转化率精准预估</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/640387297">https://zhuanlan.zhihu.com/p/640387297</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p>Youtube 排序系统：Recommending What Video to Watch Next</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/82584437">https://zhuanlan.zhihu.com/p/82584437</a></p>
+</div></blockquote>
+</section>
 </section>
 
 

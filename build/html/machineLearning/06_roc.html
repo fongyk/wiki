@@ -109,25 +109,25 @@
              
   <section id="roc-auc">
 <h1><span class="section-number">6. </span>ROC 曲线和 AUC<a class="headerlink" href="#roc-auc" title="Permalink to this headline"></a></h1>
-<p><strong>ROC</strong> ：Receiver operating characteristic curve，接收者操作特征曲线。</p>
+<p><strong>ROC</strong> ：Receiver Operating Characteristic Curve，接收者操作特征曲线。</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>横坐标：false positive rate（FPR），即负例样本的预测错误率（越小越好）</p></li>
+<li><p>横坐标：False Positive Rate（FPR），即负例样本的预测错误率（越小越好）</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[FPR = \frac{FP}{N} = \frac{FP}{TN + FP}\]</div>
 <ul class="simple">
-<li><p>纵坐标：true positive rate（TPR）/recall/hit rate/sensitivity，即正例样本的预测正确率（越大越好）</p></li>
+<li><p>纵坐标：True Positive Rate（TPR）/Recall/Hit Rate/Sensitivity，即正例样本的预测正确率（越大越好）</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[TPR = \frac{TP}{P} = \frac{TP}{TP + FN}\]</div>
 </div></blockquote>
 <a class="reference internal image-reference" href="../_images/06_roc.png"><img alt="../_images/06_roc.png" class="align-center" src="../_images/06_roc.png" style="width: 500px;" /></a>
 <ul class="simple">
-<li><p>离左上角越近的点预测 accuracy 越高。</p></li>
+<li><p>离左上角越近的点预测 Accuracy 越高。</p></li>
 <li><p>在 A、B、C 三者当中，最好的是 A 方法。</p></li>
-<li><p>B 的 accuracy 是 50%。</p></li>
-<li><p>C’ 与 C 互为镜像点。不管 C 预测了什么，C’ 就做相反的预测。</p></li>
+<li><p>B 的 Accuracy 是 50%。</p></li>
+<li><p>C’ 与 C 互为镜像点，不管 C 预测了什么，C’ 就做相反的预测。</p></li>
 </ul>
 <section id="id1">
 <h2><span class="section-number">6.1. </span>基本概念<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
@@ -146,17 +146,17 @@
 </ul>
 <p>常用评价指标：</p>
 <ul class="simple">
-<li><p>正确率（accuracy）</p></li>
+<li><p>正确率（Accuracy）</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[ACC = \frac{TP + TN}{P + N}\]</div>
 <ul class="simple">
-<li><p>准确率（precision，positive predictive value - PPV）</p></li>
+<li><p>准确率（Precision，Positive Predictive Palue - PPV）</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[PPV = \frac{TP}{TP + FP}\]</div>
 <ul class="simple">
-<li><p>召回率（recall，hit rate，sensitivity，true positive rate - TPR）</p></li>
+<li><p>召回率（Recall，Hit rate，Sensitivity，True Positive Rate - TPR）</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[TPR = \frac{TP}{P} = \frac{TP}{TP + FN}\]</div>
@@ -165,7 +165,7 @@
 </ul>
 <div class="math notranslate nohighlight">
 \[F_1 = \frac{2}{\frac{1}{PPV} + \frac{1}{TPR}} = 2 \times \frac{PPV \times TPR}{PPV + TPR} = \frac{2 \cdot TP}{2 \cdot TP + FP + FN}\]</div>
-<p><span class="math notranslate nohighlight">\(2 \times 2\)</span> 混淆矩阵（confusion matrix）：</p>
+<p><span class="math notranslate nohighlight">\(2 \times 2\)</span> 混淆矩阵（Confusion Matrix）：</p>
 <a class="reference internal image-reference" href="../_images/06_confusionMatrix.jpg"><img alt="../_images/06_confusionMatrix.jpg" class="align-center" src="../_images/06_confusionMatrix.jpg" style="width: 800px;" /></a>
 </section>
 <section id="auc">
@@ -175,15 +175,15 @@
 将同一模型每个阈值的 (FPR, TPR) 坐标都画在 ROC 空间里，就成为特定模型的 ROC 曲线。</p>
 <a class="reference internal image-reference" href="../_images/06_rocCurve.png"><img alt="../_images/06_rocCurve.png" class="align-center" src="../_images/06_rocCurve.png" style="width: 600px;" /></a>
 <p>在比较不同的分类模型时，可以将每个模型的 ROC 曲线都画出来，比较曲线下面积作为模型优劣的指标。</p>
-<p><strong>AUC</strong> ：Area under the curve of ROC。</p>
+<p><strong>AUC</strong> ：Area Under the Curve of ROC。</p>
 <ul class="simple">
 <li><p>因为是在 1x1 的方格里求面积，AUC 必在 0 ~ 1 之间。</p></li>
 <li><p>AUC 值 = 分类器把一个随机抽取的正例排在一个随机抽取的负例之前的概率（给予正例更高的得分）。</p></li>
-<li><p>AUC 值越大的分类器，accuracy 越高。</p></li>
+<li><p>AUC 值越大的分类器，Accuracy 越高。</p></li>
 </ul>
 <dl>
 <dt>计算方法</dt><dd><ul class="simple">
-<li><p>根据 FPR 和 TPR 计算，采用梯形积分法（Trapezoidal rule）。</p></li>
+<li><p>根据 FPR 和 TPR 计算，采用梯形积分法（Trapezoidal Rule）。</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\int_a^b f(x) dx \approx \sum_{k=1}^N \frac{f(x_{k-1}) + f(x_k)}{2} \Delta x_k\]</div>
@@ -238,7 +238,7 @@
 <li><p>AUC 只是一个标量值，不能提供模型预测误差的分布信息。</p></li>
 <li><p>在负样本远多于正样本的情形下，模型通过对负样本高估，可以人为地提高 AUC。相同 AUC 的两个模型在不同 ROC 区域的预测能力可能是不一样的。</p></li>
 </ol>
-<p>在搜广推场景下，需要关注的是模型对同一用户不同 item 的打分能力，这时候一般会计算 GAUC。</p>
+<p>在搜广推场景下，需要关注的是模型对同一用户不同 Item 的打分能力，这时候一般会计算 GAUC（Group AUC）。</p>
 </section>
 </section>
 <section id="id3">

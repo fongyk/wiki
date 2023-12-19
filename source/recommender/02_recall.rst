@@ -101,6 +101,42 @@ Loss
 `EBF <https://arxiv.org/pdf/2006.11632.pdf>`_ 采用的是 Triplet Loss。
 
 
+离线指标
+-------------
+
+- Recall，Precision
+    :math:`R(u)` 表示召回 Item 的集合，:math:`A(u)` 表示用户感兴趣的 Item 的集合（比如点击过的 Item）。
+
+  .. math::
+
+    \mathrm{recall} & = \frac{\sum_{u} | R(u) \cap A(u) |}{\sum_{u} | A(u) |} = \frac{\#hits}{\sum_{u} | A(u) |} \\
+    \mathrm{precision} & = \frac{\sum_{u} | R(u) \cap A(u) |}{\sum_{u} | R(u) |}
+
+- `NS-Recall，NS-Precision <https://www.researchgate.net/publication/221141030_Performance_of_recommender_algorithms_on_top-N_recommendation_tasks>`_
+    负采样的召回和准确率，主要针对 Top-N 这类召回设计，用于衡量算法相对于随机能否发现用户兴趣。
+    对于每一个正例 Item，都随机采样一些负样本，打分、排序，然后在这个只有一个正样本的排序列表中计算 Recall 和 Precision（只有 :math:`0` 和 :math:`\frac{1}{N}` 两种可能）。
+
+    :math:`T` 是所有正例 Item 的个数。
+
+  .. math::
+
+    \mathrm{recall}@N & = \frac{\#hits}{| T |} \\
+    \mathrm{precision}@N & = \frac{\#hits}{N \cdot | T |} = \frac{\mathrm{recall}@N}{N}
+
+- `Hit Rate，Average Reciprocal Hit-Rank <https://www.researchgate.net/publication/262214507_Sparse_linear_methods_with_side_information_for_Top-N_recommendations>`_
+    ARHR 度量了一个 Item 被推荐的强烈程度。
+
+  .. math::
+
+    \mathrm{hr} & = \frac{\#hits}{\#users} \\
+    \mathrm{arhr} & = \frac{1}{\#users} \sum_i^{\#hits} \frac{1}{rank_i}
+
+
+还需要考虑召回的丰富度（比如类目）、和其他路的重合度等。
+
+此外，推荐系统中长尾效应十分明显，上述指标易受到头部数据的干扰，且大部分召回对尾部的学习不如头部数据好，因此可以增加单独的 `长尾指标 <https://www.researchgate.net/publication/262214507_Sparse_linear_methods_with_side_information_for_Top-N_recommendations>`_ 。
+
+
 参考资料
 -------------
 
@@ -127,3 +163,15 @@ Loss
 6. 一文说尽推荐系统的召回模型
 
   https://zhuanlan.zhihu.com/p/585495313
+
+7. 推荐系统[八]算法实践总结V1：淘宝逛逛and阿里飞猪个性化推荐：召回算法实践总结【冷启动召回、复购召回、用户行为召回等算法实战】
+
+  https://zhuanlan.zhihu.com/p/609366598?utm_id=0
+
+8. Trust your neighbors: A comprehensive survey of neighborhood-based methods for recommender systems
+
+  https://arxiv.org/pdf/2109.04584.pdf
+
+9. 召回常用评估指标
+
+  https://juejin.cn/post/6844904065638350861

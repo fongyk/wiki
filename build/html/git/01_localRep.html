@@ -167,7 +167,11 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span> <span class="pre">&lt;commit1&gt;</span> <span class="pre">&lt;commit2&gt;</span></code> 比较两次 commit 的差异。</p></li>
 </ul>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> 查看版本历史记录，包括版本的 hash 值、commit 注释等信息。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> 查看版本历史记录，包括版本的 hash 值、commit 注释等信息。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">&lt;file&gt;</span></code> 查看文件的 commit 记录。</p></li>
+</ul>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reflog</span></code> 查看可引用的历史版本记录，一般是为了找到所需的 commit 索引，从而进行版本回退或恢复操作所使用。</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>$ git reflog
 <span class="linenos">2</span>41c873a (HEAD -&gt; master) HEAD@{0}: commit: update b
@@ -179,6 +183,7 @@
 </pre></div>
 </div>
 </li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">blame</span> <span class="pre">&lt;file&gt;</span></code> 查看文件每一行的修改者。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">mv</span> <span class="pre">file_from</span> <span class="pre">file_to</span></code> 重命名文件，相当于 <code class="docutils literal notranslate"><span class="pre">mv</span> <span class="pre">file_from</span> <span class="pre">file_to;</span> <span class="pre">git</span> <span class="pre">rm</span> <span class="pre">file_from;</span> <span class="pre">git</span> <span class="pre">add</span> <span class="pre">file_to</span></code> 。要从 Git 中移除某个文件，就必须要从已跟踪文件清单中移除（确切地说，是从暂存区域移除），然后再提交。 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rm</span></code> 就是用于完成此项工作，并连带从工作目录中删除指定的文件，这样以后就不会出现在未跟踪文件清单中了。</p></li>
 </ul>
 </section>

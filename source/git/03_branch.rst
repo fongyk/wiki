@@ -68,6 +68,12 @@
 
       git branch -a | cut -c3- | cut -d' ' -f 1 | xargs git grep "target_string"
 
+比较分支
+----------
+
+Git 比较 Source 和 Destination 两个分支的时候，展示的 Diff 并不是当前两个分支中所有文件的 Diff，而是 **将 Source 分支合入 Destination 分支时会带来的改变** 。
+也就是说，实际比较的是 Source 分支和 `Merge Base <https://stackoverflow.com/a/66789252>`_ 节点， Merge Base 节点是这两个分支的最近公共 commit 节点。
+
 参考资料
 -----------
 
@@ -90,3 +96,7 @@
 5. Using Git, how could I search for a string across all branches
 
   https://stackoverflow.com/questions/7151311/using-git-how-could-i-search-for-a-string-across-all-branches
+
+6. Comparing two branches yields different diffs
+
+  https://stackoverflow.com/questions/49135231/comparing-two-branches-yields-different-diffs

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>16. 类的static const成员 &mdash; fong alpha documentation</title>
+  <title>16. 类的 static const 成员 &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -64,7 +64,7 @@
 <li class="toctree-l2"><a class="reference internal" href="13_nullClassPtr.html">13. 空类指针</a></li>
 <li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html">14. static和extern</a></li>
 <li class="toctree-l2"><a class="reference internal" href="15_classAccess.html">15. public、protected、private</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">16. 类的static const成员</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">16. 类的 static const 成员</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#const">16.1. const 成员</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#static">16.2. static 成员</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id1">16.3. static const 成员</a></li>
@@ -119,7 +119,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">C/C++</a> &raquo;</li>
-      <li><span class="section-number">16. </span>类的static const成员</li>
+      <li><span class="section-number">16. </span>类的 static const 成员</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/cpp/16_staticconst.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -130,7 +130,7 @@
            <div itemprop="articleBody">
              
   <section id="static-const">
-<h1><span class="section-number">16. </span>类的static const成员<a class="headerlink" href="#static-const" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">16. </span>类的 static const 成员<a class="headerlink" href="#static-const" title="Permalink to this headline"></a></h1>
 <section id="const">
 <h2><span class="section-number">16.1. </span>const 成员<a class="headerlink" href="#const" title="Permalink to this headline"></a></h2>
 <p>const 数据成员的初始化只能在类的构造函数的初始化列表中进行。声明 const 变量时不能初始化。</p>
@@ -155,7 +155,7 @@
 </section>
 <section id="id1">
 <h2><span class="section-number">16.3. </span>static const 成员<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
-<p>静态常量成员，可以直接初始化（static cosnt 和 const static 含义相同）。</p>
+<p>静态常量成员，可以直接初始化（static const 和 const static 含义相同）。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cm">/* header.h */</span><span class="w"></span>
 <span class="linenos"> 2</span><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="w"></span>
 <span class="linenos"> 3</span><span class="p">{</span><span class="w"></span>
@@ -167,19 +167,19 @@
 <span class="linenos"> 9</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
 <span class="linenos">10</span>
 <span class="linenos">11</span><span class="k">private</span><span class="o">:</span><span class="w"></span>
-<span class="linenos">12</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">map</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">mapping</span><span class="p">;</span><span class="w"> </span><span class="c1">// 常量声明式</span>
+<span class="linenos">12</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">map</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">mapping</span><span class="p">;</span><span class="w"> </span><span class="c1">// 常量声明式</span>
 <span class="linenos">13</span><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="c1">// 常量声明式（直接初始化）</span>
 <span class="linenos">14</span><span class="p">};</span><span class="w"></span>
 <span class="linenos">15</span>
 <span class="linenos">16</span><span class="cm">/* source.cpp */</span><span class="w"></span>
-<span class="linenos">17</span><span class="k">const</span><span class="w"> </span><span class="n">map</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">Solution</span><span class="o">::</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{{</span><span class="sc">&#39;2&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;a&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;b&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;c&#39;</span><span class="p">}},</span><span class="w"></span>
+<span class="linenos">17</span><span class="k">const</span><span class="w"> </span><span class="n">map</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">Solution</span><span class="o">::</span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{{</span><span class="sc">&#39;2&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;a&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;b&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;c&#39;</span><span class="p">}},</span><span class="w"></span>
 <span class="linenos">18</span><span class="w">                                                    </span><span class="p">{</span><span class="sc">&#39;3&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;d&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;e&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;f&#39;</span><span class="p">}},</span><span class="w"></span>
 <span class="linenos">19</span><span class="w">                                                    </span><span class="p">{</span><span class="sc">&#39;4&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;g&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;h&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;i&#39;</span><span class="p">}}};</span><span class="w"> </span><span class="c1">// mapping 的定义</span>
 <span class="linenos">20</span>
 <span class="linenos">21</span><span class="c1">// 注：const map 只能通过成员函数 at 或迭代器 const_iterator 访问元素（it-&gt;first, it-&gt;second），不能通过下标[]的方式访问。</span>
 <span class="linenos">22</span>
 <span class="linenos">23</span><span class="c1">// 对应类的 static const int/char/bool 成员常量，如果不取他们的地址，则可以直接声明并使用，而无需提供以下的定义式。</span>
-<span class="linenos">24</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Solution</span><span class="o">::</span><span class="w"> </span><span class="n">var</span><span class="p">;</span><span class="w"> </span><span class="c1">// var 的定义。由于常量 var 在类内声明时已经获得了初始值，因此定义时不可以再设初始值。</span>
+<span class="linenos">24</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Solution</span><span class="o">::</span><span class="n">var</span><span class="p">;</span><span class="w"> </span><span class="c1">// var 的定义。由于常量 var 在类内声明时已经获得了初始值，因此定义时不可以再设初始值。</span>
 </pre></div>
 </div>
 <div class="admonition note">

@@ -37,6 +37,45 @@
 交叉模型
 -----------
 
+`Factorization Machines <https://www.ismll.uni-hildesheim.de/pub/pdfs/Rendle2010FM.pdf>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+FM 模型旨在解决稀疏矩阵下的特征组合问题。传统机器学习问题，一般仅考虑如何对特征赋予权重，而没有考虑特征间存在相互作用（关联性），FM 模型的提出较好地解决了该问题。
+FM 模型对于稀疏数据有较强的学习能力，且预测是 **线性时间复杂度** 。
+
+二阶交叉模型：
+
+.. math::
+
+    \hat{y}(\mathbf{x}) = w_0 + \sum_{i=1}^{n} w_i x_i + \sum_{i=1}^{n} \sum_{j=i+1}^{n} w_{ij} x_i x_j
+
+上式考虑了任意两个（互异）特征分量之间的关系。然而，这种直接在 :math:`x_i x_j` 前面配一个系数 :math:`w_{ij}` 的方式在稀疏数据上有一个很大的缺陷：
+对于观察样本中未出现过交互的两个特征分量，不能对相应的参数进行估计（权重为 0）。
+
+通过引入矩阵分解，将 :math:`w_{ij}` 表示为 :math:`\langle \mathbf{v}_i, \mathbf{v}_j \rangle = \mathbf{v}_i^{\top} \mathbf{v}_j` ，即 :math:`W = V^{\top} V,\ V \in \mathbb{R}^{n \times k}` （交互矩阵）。
+这样一来，每个特征 :math:`x_i` 都关联了一个向量 :math:`\mathbf{v}_i` ，这个向量就是需要学习的参数。在高度稀疏的数据场景中，由于没有足够样本来估计复杂的交互矩阵，因此 :math:`k` 一般取很小的值（对其限制能提高模型的泛化能力）。 
+
+于是，二阶交叉模型变成：
+
+.. math::
+
+    \hat{y}(\mathbf{x}) = w_0 + \sum_{i=1}^{n} w_i x_i + \sum_{i=1}^{n} \sum_{j=i+1}^{n} \langle \mathbf{v}_i, \mathbf{v}_j \rangle x_i x_j
+
+通过转换，可以将计算复杂度降低为 :math:`\mathcal{O}(kn)` ：
+
+.. math::
+
+    & \sum_{i=1}^{n} \sum_{j=i+1}^{n}\left\langle\mathbf{v}_{i}, \mathbf{v}_{j}\right\rangle x_{i} x_{j} \\ 
+    = & \frac{1}{2} \sum_{i=1}^{n} \sum_{j=1}^{n}\left\langle\mathbf{v}_{i}, \mathbf{v}_{j}\right\rangle x_{i} x_{j}-\frac{1}{2} \sum_{i=1}^{n}\left\langle\mathbf{v}_{i}, \mathbf{v}_{i}\right\rangle x_{i} x_{i} \\
+    = & \frac{1}{2}\left(\sum_{i=1}^{n} \sum_{j=1}^{n} \sum_{f=1}^{k} v_{i, f} v_{j, f} x_{i} x_{j}-\sum_{i=1}^{n} \sum_{f=1}^{k} v_{i, f} v_{i, f} x_{i} x_{i}\right) \\
+    = & \frac{1}{2} \sum_{f=1}^{k}\left(\left(\sum_{i=1}^{n} v_{i, f} x_{i}\right)\left(\sum_{j=1}^{n} v_{j, f} x_{j}\right)-\sum_{i=1}^{n} v_{i, f}^{2} x_{i}^{2}\right) \\
+    = & \frac{1}{2} \sum_{f=1}^{k}\left(\left(\sum_{i=1}^{n} v_{i, f} x_{i}\right)^{2}-\sum_{i=1}^{n} v_{i, f}^{2} x_{i}^{2}\right)
+
+.. tip::
+
+    实际应用中并不一定需要所有特征的二阶交叉，仍然会根据先验知识人工挑选一些特征。
+
+
 `Wide & Deep <https://arxiv.org/pdf/1606.07792.pdf>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -353,42 +392,47 @@ Selection Bias
    
   https://blog.csdn.net/u012328159/article/details/122938925
 
-7. 因子分解机（FM）简介及实践
+7. 分解机(Factorization Machines)推荐算法原理
+   
+  https://www.cnblogs.com/pinard/p/6370127.html
 
-  https://zhuanlan.zhihu.com/p/144346116
+8. FM（Factorization Machines）的理论与实践
 
-8. 如何从浅入深理解 attention？
+  https://zhuanlan.zhihu.com/p/50426292
+
+9. 如何从浅入深理解 attention？
 
   https://www.zhihu.com/question/473208103
 
-9. ESCM分析Part2–论证ESMM PCVR偏高的问题
+10. ESCM分析Part2–论证ESMM PCVR偏高的问题
 
   https://www.deeplearn.me/4276.html
 
-10. 推荐算法遇到后悔药：评蚂蚁的ESCM2模型
+11. 推荐算法遇到后悔药：评蚂蚁的ESCM2模型
 
   https://zhuanlan.zhihu.com/p/515777381
 
-11. 【推荐算法】ctr cvr联合建模问题合集
+12. 【推荐算法】ctr cvr联合建模问题合集
 
   https://blog.csdn.net/weixin_31866177/article/details/133812899
 
-12. 推荐系统中的多任务学习与多目标排序工程实践（上）
+13. 推荐系统中的多任务学习与多目标排序工程实践（上）
 
   https://zhuanlan.zhihu.com/p/422925553
 
-13. 推荐系统中的多目标学习
+14. 推荐系统中的多目标学习
 
   https://zhuanlan.zhihu.com/p/183760759
 
-14. 阿里ESAM：用迁移学习解决召回中的样本偏差
+15. 阿里ESAM：用迁移学习解决召回中的样本偏差
 
   https://zhuanlan.zhihu.com/p/335626180
 
-15. PPNET 详解与应用
+16. PPNET 详解与应用
 
   https://zhuanlan.zhihu.com/p/635364011
 
-16. Youtube 排序系统：Recommending What Video to Watch Next
+17. Youtube 排序系统：Recommending What Video to Watch Next
 
   https://zhuanlan.zhihu.com/p/82584437
+

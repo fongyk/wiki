@@ -152,7 +152,7 @@
 <p>双塔最大的缺点就在于，User &amp; Item 两侧信息交叉得太晚，等到最终能够通过 Dot 或 Cosine 交叉的时候，User &amp; Item Embedding 已经是高度浓缩的了，一些细粒度的信息已经在塔中被损耗掉，永远失去了与对侧信息交叉的机会。
 所以，双塔改建最重要的一条主线就是：如何保留更多的信息在 Final Embedding 中，从而有机会和对侧塔得到的 Embedding 交叉。</p>
 <dl class="simple">
-<dt><a class="reference external" href="https://zhuanlan.zhihu.com/p/358779957">SENet双塔模型</a></dt><dd><p>在将信息喂入塔之前，插入 SEBlock，动态学习各特征的重要性，增强重要信息，弱化甚至过滤掉原始特征中的噪声，从而减少信息在塔中传播过程中的污染与损耗，能够让可能多的重要信息“撑”到最后交叉那一刻。</p>
+<dt><a class="reference external" href="https://zhuanlan.zhihu.com/p/358779957">SENet双塔模型</a></dt><dd><p>在将信息喂入塔之前，插入 <a class="reference external" href="https://openaccess.thecvf.com/content_cvpr_2018/papers/Hu_Squeeze-and-Excitation_Networks_CVPR_2018_paper.pdf">SEBlock</a> ，动态学习各特征的重要性，增强重要信息，弱化甚至过滤掉原始特征中的噪声，从而减少信息在塔中传播过程中的污染与损耗，能够让可能多的重要信息“撑”到最后交叉那一刻。</p>
 </dd>
 </dl>
 <a class="reference internal image-reference" href="../_images/03_senetTower.png"><img alt="../_images/03_senetTower.png" class="align-center" src="../_images/03_senetTower.png" style="width: 400px;" /></a>

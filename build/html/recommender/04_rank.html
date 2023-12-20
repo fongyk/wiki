@@ -63,25 +63,26 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">4. 精排</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2">4.1. 特征</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">4.2. 交叉模型</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id4">Wide &amp; Deep</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id5">DeepFM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Factorization Machines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Wide &amp; Deep</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">DeepFM</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#attention">4.3. 序列建模与 Attention</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id6">DIN</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id7">DIEN</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id8">ETA</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id9">BST</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id10">GateNet</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id11">PEPNet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">DIN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">DIEN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">ETA</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">BST</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">GateNet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">PEPNet</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id12">4.4. 多目标学习</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id13">4.4. 多目标学习</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#ctr-cvr">CTR &amp; CVR 联合建模</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id15">MMoE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id16">MMoE</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id16">4.5. 负采样</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">4.5. 负采样</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#bias">4.6. Bias 问题</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#position-bias">Position Bias</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#exposure-bias">Exposure Bias</a></li>
@@ -89,7 +90,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#selection-bias">Selection Bias</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id17">4.7. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">4.7. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="05_rerank.html">5. 重排</a></li>
@@ -167,15 +168,41 @@
 <section id="id3">
 <h2><span class="section-number">4.2. </span>交叉模型<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <section id="id4">
-<h3><a class="reference external" href="https://arxiv.org/pdf/1606.07792.pdf">Wide &amp; Deep</a><a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
+<h3><a class="reference external" href="https://www.ismll.uni-hildesheim.de/pub/pdfs/Rendle2010FM.pdf">Factorization Machines</a><a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
+<p>FM 模型旨在解决稀疏矩阵下的特征组合问题。传统机器学习问题，一般仅考虑如何对特征赋予权重，而没有考虑特征间存在相互作用（关联性），FM 模型的提出较好地解决了该问题。
+FM 模型对于稀疏数据有较强的学习能力，且预测是 <strong>线性时间复杂度</strong> 。</p>
+<p>二阶交叉模型：</p>
+<div class="math notranslate nohighlight">
+\[\hat{y}(\mathbf{x}) = w_0 + \sum_{i=1}^{n} w_i x_i + \sum_{i=1}^{n} \sum_{j=i+1}^{n} w_{ij} x_i x_j\]</div>
+<p>上式考虑了任意两个（互异）特征分量之间的关系。然而，这种直接在 <span class="math notranslate nohighlight">\(x_i x_j\)</span> 前面配一个系数 <span class="math notranslate nohighlight">\(w_{ij}\)</span> 的方式在稀疏数据上有一个很大的缺陷：
+对于观察样本中未出现过交互的两个特征分量，不能对相应的参数进行估计（权重为 0）。</p>
+<p>通过引入矩阵分解，将 <span class="math notranslate nohighlight">\(w_{ij}\)</span> 表示为 <span class="math notranslate nohighlight">\(\langle \mathbf{v}_i, \mathbf{v}_j \rangle = \mathbf{v}_i^{\top} \mathbf{v}_j\)</span> ，即 <span class="math notranslate nohighlight">\(W = V^{\top} V,\ V \in \mathbb{R}^{n \times k}\)</span> （交互矩阵）。
+这样一来，每个特征 <span class="math notranslate nohighlight">\(x_i\)</span> 都关联了一个向量 <span class="math notranslate nohighlight">\(\mathbf{v}_i\)</span> ，这个向量就是需要学习的参数。在高度稀疏的数据场景中，由于没有足够样本来估计复杂的交互矩阵，因此 <span class="math notranslate nohighlight">\(k\)</span> 一般取很小的值（对其限制能提高模型的泛化能力）。</p>
+<p>于是，二阶交叉模型变成：</p>
+<div class="math notranslate nohighlight">
+\[\hat{y}(\mathbf{x}) = w_0 + \sum_{i=1}^{n} w_i x_i + \sum_{i=1}^{n} \sum_{j=i+1}^{n} \langle \mathbf{v}_i, \mathbf{v}_j \rangle x_i x_j\]</div>
+<p>通过转换，可以将计算复杂度降低为 <span class="math notranslate nohighlight">\(\mathcal{O}(kn)\)</span> ：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}&amp; \sum_{i=1}^{n} \sum_{j=i+1}^{n}\left\langle\mathbf{v}_{i}, \mathbf{v}_{j}\right\rangle x_{i} x_{j} \\
+= &amp; \frac{1}{2} \sum_{i=1}^{n} \sum_{j=1}^{n}\left\langle\mathbf{v}_{i}, \mathbf{v}_{j}\right\rangle x_{i} x_{j}-\frac{1}{2} \sum_{i=1}^{n}\left\langle\mathbf{v}_{i}, \mathbf{v}_{i}\right\rangle x_{i} x_{i} \\
+= &amp; \frac{1}{2}\left(\sum_{i=1}^{n} \sum_{j=1}^{n} \sum_{f=1}^{k} v_{i, f} v_{j, f} x_{i} x_{j}-\sum_{i=1}^{n} \sum_{f=1}^{k} v_{i, f} v_{i, f} x_{i} x_{i}\right) \\
+= &amp; \frac{1}{2} \sum_{f=1}^{k}\left(\left(\sum_{i=1}^{n} v_{i, f} x_{i}\right)\left(\sum_{j=1}^{n} v_{j, f} x_{j}\right)-\sum_{i=1}^{n} v_{i, f}^{2} x_{i}^{2}\right) \\
+= &amp; \frac{1}{2} \sum_{f=1}^{k}\left(\left(\sum_{i=1}^{n} v_{i, f} x_{i}\right)^{2}-\sum_{i=1}^{n} v_{i, f}^{2} x_{i}^{2}\right)\end{split}\]</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>实际应用中并不一定需要所有特征的二阶交叉，仍然会根据先验知识人工挑选一些特征。</p>
+</div>
+</section>
+<section id="id5">
+<h3><a class="reference external" href="https://arxiv.org/pdf/1606.07792.pdf">Wide &amp; Deep</a><a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
 <p>Wide &amp; Deep 模型分为 Wide 侧和 Deep 侧两部分。Wide 侧利用复杂的人工交叉特征去提高”记忆”能力，一般是 LR 模型或者 FM 模型；在 Deep 侧引入 DNN 让模型具有自动交叉组合的能力从而提高泛化性。</p>
 <p>“记忆”能力可以理解为模型直接学习并利用历史数据中物品或特征的“共现频率”的能力。简单的模型能够让原始输入数据更直接地影响输出结果，相当于模型记住了历史数据的分布特点。</p>
 <p>“泛化”能力可以理解为模型传递特征的相关性、发掘稀疏甚至从未出现过的稀有特征与最终标签相关性的能力。深度神经网络通过特征的多次自动组合，可以深度发掘数据中潜在的模式，得到较为稳定、平滑的推荐概率。</p>
 <p>Wide 侧的交叉特征仍然需要精心设计， Wide 侧和 Deep 两部分模型的超参协同调优也很关键。</p>
 <a class="reference internal image-reference" href="../_images/04_wideDeep.png"><img alt="../_images/04_wideDeep.png" class="align-center" src="../_images/04_wideDeep.png" style="width: 700px;" /></a>
 </section>
-<section id="id5">
-<h3><a class="reference external" href="https://arxiv.org/pdf/1703.04247.pdf">DeepFM</a><a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
+<section id="id6">
+<h3><a class="reference external" href="https://arxiv.org/pdf/1703.04247.pdf">DeepFM</a><a class="headerlink" href="#id6" title="Permalink to this headline"></a></h3>
 <p>DeepFM 是 DNN 与 <a class="reference external" href="https://sdcast.ksdaemon.ru/wp-content/uploads/2020/02/Rendle2010FM.pdf">FM</a> 结合的产物，也是 Wide &amp; Deep 的改进版，只是将其中的 LR 替换成了 FM，提升了模型 Wide 侧特征组合的能力。
 Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 模型那样做区分。</p>
 <p>FM 有两部分：线性部分和二阶交叉部分。线性部分给予每个特征一个权重，然后加权求和；交叉部分是对特征进行两两相乘，然后加权求和。两部分结果累加在一起即为 FM 侧的输出。</p>
@@ -189,8 +216,8 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 </section>
 <section id="attention">
 <h2><span class="section-number">4.3. </span>序列建模与 Attention<a class="headerlink" href="#attention" title="Permalink to this headline"></a></h2>
-<section id="id6">
-<h3><a class="reference external" href="https://arxiv.org/pdf/1706.06978.pdf">DIN</a><a class="headerlink" href="#id6" title="Permalink to this headline"></a></h3>
+<section id="id7">
+<h3><a class="reference external" href="https://arxiv.org/pdf/1706.06978.pdf">DIN</a><a class="headerlink" href="#id7" title="Permalink to this headline"></a></h3>
 <a class="reference internal image-reference" href="../_images/04_din.png"><img alt="../_images/04_din.png" class="align-center" src="../_images/04_din.png" style="width: 600px;" /></a>
 <p>出发点：</p>
 <ul class="simple">
@@ -208,8 +235,8 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 </dl>
 </div>
 </section>
-<section id="id7">
-<h3><a class="reference external" href="https://arxiv.org/pdf/1809.03672.pdf">DIEN</a><a class="headerlink" href="#id7" title="Permalink to this headline"></a></h3>
+<section id="id8">
+<h3><a class="reference external" href="https://arxiv.org/pdf/1809.03672.pdf">DIEN</a><a class="headerlink" href="#id8" title="Permalink to this headline"></a></h3>
 <a class="reference internal image-reference" href="../_images/04_dien.png"><img alt="../_images/04_dien.png" class="align-center" src="../_images/04_dien.png" style="width: 600px;" /></a>
 <p>DIEN 解决的是用户兴趣迁移的问题。用户的兴趣通常随着时间的流逝会发生变化，直接用 DIN 建模仅仅是关注相似的兴趣，而没有体现出这种兴趣随时间的迁移变化。所以，DIEN 着重在模型中加入了时间序列的迁移信息。</p>
 <ul class="simple">
@@ -219,23 +246,23 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 <p>DIN 更倾向于挖掘用户已经存在的兴趣，根据用户存在的兴趣来推荐用户喜欢的东西，而 DIEN 是根据用户的历史兴趣迁移去挖掘用户新的兴趣。</p>
 <p>DIEN 序列模型复杂度高，线上需要串行推断，时延高，需要工程优化。</p>
 </section>
-<section id="id8">
-<h3><a class="reference external" href="https://arxiv.org/pdf/2108.04468.pdf">ETA</a><a class="headerlink" href="#id8" title="Permalink to this headline"></a></h3>
+<section id="id9">
+<h3><a class="reference external" href="https://arxiv.org/pdf/2108.04468.pdf">ETA</a><a class="headerlink" href="#id9" title="Permalink to this headline"></a></h3>
 <a class="reference internal image-reference" href="../_images/04_eta.png"><img alt="../_images/04_eta.png" class="align-center" src="../_images/04_eta.png" style="width: 600px;" /></a>
 <p>ETA 主要是解决长序列的建模问题，为了获得更好的实时性能，首先设计一个辅助任务，从长期用户行为序列中检索 Topk 用户感兴趣的 Item；然后将用户短期的行为序列与检索出的 Topk 个 Item 过一个 Attention 网络。</p>
 </section>
-<section id="id9">
-<h3><a class="reference external" href="https://arxiv.org/pdf/1905.06874.pdf">BST</a><a class="headerlink" href="#id9" title="Permalink to this headline"></a></h3>
+<section id="id10">
+<h3><a class="reference external" href="https://arxiv.org/pdf/1905.06874.pdf">BST</a><a class="headerlink" href="#id10" title="Permalink to this headline"></a></h3>
 <a class="reference internal image-reference" href="../_images/04_bst.png"><img alt="../_images/04_bst.png" class="align-center" src="../_images/04_bst.png" style="width: 600px;" /></a>
 <p>将 Transformer 用于提取用户行为序列背后的隐藏信息，同时考虑序列的时间顺序，能够更好的表达用户兴趣。</p>
 </section>
-<section id="id10">
-<h3><a class="reference external" href="https://arxiv.org/pdf/2007.03519.pdf">GateNet</a><a class="headerlink" href="#id10" title="Permalink to this headline"></a></h3>
+<section id="id11">
+<h3><a class="reference external" href="https://arxiv.org/pdf/2007.03519.pdf">GateNet</a><a class="headerlink" href="#id11" title="Permalink to this headline"></a></h3>
 <a class="reference internal image-reference" href="../_images/04_gateNet.png"><img alt="../_images/04_gateNet.png" class="align-center" src="../_images/04_gateNet.png" style="width: 600px;" /></a>
 <p>提出了 Embedding Gate 和 MLP Hidden Gate，分别作用于 Embedding 层和 MLP 层。</p>
 </section>
-<section id="id11">
-<h3><a class="reference external" href="https://arxiv.org/pdf/2302.01115.pdf">PEPNet</a><a class="headerlink" href="#id11" title="Permalink to this headline"></a></h3>
+<section id="id12">
+<h3><a class="reference external" href="https://arxiv.org/pdf/2302.01115.pdf">PEPNet</a><a class="headerlink" href="#id12" title="Permalink to this headline"></a></h3>
 <a class="reference internal image-reference" href="../_images/04_pepNet.png"><img alt="../_images/04_pepNet.png" class="align-center" src="../_images/04_pepNet.png" style="width: 800px;" /></a>
 <p>PEPNet 借鉴了 <a class="reference external" href="https://arxiv.org/pdf/1601.02828.pdf">LHUC 算法</a> 的思想（Speaker Adaptation，在 DNN 网络中为每个 Speaker 学习 Hidden Unit Contributions，来提升不同 Speaker 的语音识别效果），
 提出了 Gate NU，通过 Gate NU 为神经网络层输入增加个性化偏置项，可以显著提升模型的目标预估能力。Gate NU 是一个两层神经网络，其中第二层网络的激活函数是 <span class="math notranslate nohighlight">\(2 \times \mathrm{sigmoid}\)</span> ，目的是约束其输出的值域为 [0, 2] ，并且默认值为 1。</p>
@@ -247,8 +274,8 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 <p>需要注意的是，EPNet 输出部分不回传梯度，是为了防止 EPNet 的 Embedding 被 PPNet 影响。</p>
 </section>
 </section>
-<section id="id12">
-<h2><span class="section-number">4.4. </span>多目标学习<a class="headerlink" href="#id12" title="Permalink to this headline"></a></h2>
+<section id="id13">
+<h2><span class="section-number">4.4. </span>多目标学习<a class="headerlink" href="#id13" title="Permalink to this headline"></a></h2>
 <p>多目标模型的提出主要针对两个问题：</p>
 <ul class="simple">
 <li><p>如果效果可以保证或者说效果下降得没有那么厉害的情况下，用一个模型实现多个任务，减少了模型布置的数量和线上的资源消耗（毕竟一个模型的部署比多个模型的部署要少很多的麻烦和出错概率）。</p></li>
@@ -256,8 +283,8 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 </ul>
 <section id="ctr-cvr">
 <h3>CTR &amp; CVR 联合建模<a class="headerlink" href="#ctr-cvr" title="Permalink to this headline"></a></h3>
-<section id="id13">
-<h4><a class="reference external" href="https://arxiv.org/pdf/1804.07931.pdf">ESMM</a><a class="headerlink" href="#id13" title="Permalink to this headline"></a></h4>
+<section id="id14">
+<h4><a class="reference external" href="https://arxiv.org/pdf/1804.07931.pdf">ESMM</a><a class="headerlink" href="#id14" title="Permalink to this headline"></a></h4>
 <a class="reference internal image-reference" href="../_images/04_esmm.png"><img alt="../_images/04_esmm.png" class="align-center" src="../_images/04_esmm.png" style="width: 600px;" /></a>
 <p>ESMM 根据点击转化和点击的样本来学习 pCTCVR 和 pCTR 两个目标（共享 Embedding），把 pCVR 当做一个中间变量，同时输出预估的 pCTR、pCVR 和 pCTCVR。损失函数中，pCTR 可以看做是 pCVR 的 Soft Mask。</p>
 <p>期望解决以下两个问题：</p>
@@ -300,8 +327,8 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 <p>ESCM <span class="math notranslate nohighlight">\(^2\)</span> 还提出：点击空间的转化率期望比曝光空间的转化率期望更高。</p>
 <p>ESCM <span class="math notranslate nohighlight">\(^2\)</span> 的 <span class="math notranslate nohighlight">\(\mathcal{R}_{IPS}\)</span> 目标仍然是在点击空间建模 CVR ，同时使用预估的 pCTR 对 Loss 进行调权。</p>
 </section>
-<section id="id14">
-<h4>联合建模的问题<a class="headerlink" href="#id14" title="Permalink to this headline"></a></h4>
+<section id="id15">
+<h4>联合建模的问题<a class="headerlink" href="#id15" title="Permalink to this headline"></a></h4>
 <p><strong>联合建模的好处</strong></p>
 <ul class="simple">
 <li><p>共享 Embedding，加速收敛。</p></li>
@@ -320,8 +347,8 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 </div>
 </section>
 </section>
-<section id="id15">
-<h3><a class="reference external" href="https://dl.acm.org/doi/pdf/10.1145/3219819.3220007">MMoE</a><a class="headerlink" href="#id15" title="Permalink to this headline"></a></h3>
+<section id="id16">
+<h3><a class="reference external" href="https://dl.acm.org/doi/pdf/10.1145/3219819.3220007">MMoE</a><a class="headerlink" href="#id16" title="Permalink to this headline"></a></h3>
 <a class="reference internal image-reference" href="../_images/04_mmoe.png"><img alt="../_images/04_mmoe.png" class="align-center" src="../_images/04_mmoe.png" style="width: 600px;" /></a>
 <p>Share Bottom 的结构在多任务相关性不强时，会损害各自任务的效果。</p>
 <p>MoE 模型像是将 Share Bottom 分解成多个 Expert，然后通过门控网络自动控制不同任务对这些 Expert 的梯度贡献。</p>
@@ -329,8 +356,8 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 <p>MMOE 中所有的 Expert 是被不同任务所共享的，这可能无法捕捉到任务之间更复杂的关系，从而给部分任务带来一定的噪声。</p>
 </section>
 </section>
-<section id="id16">
-<h2><span class="section-number">4.5. </span>负采样<a class="headerlink" href="#id16" title="Permalink to this headline"></a></h2>
+<section id="id17">
+<h2><span class="section-number">4.5. </span>负采样<a class="headerlink" href="#id17" title="Permalink to this headline"></a></h2>
 <p>为了控制数据规模，降低训练开销，可以保留全部正样本、对负样本进行降采样，一方面提高了训练效率，另一方面还缓解了正负样本不均衡的问题。</p>
 <p>负采样带来的问题是 CTR/CVR 预估值的漂移：打分均值偏高。校正公式：</p>
 <div class="math notranslate nohighlight">
@@ -380,8 +407,8 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 </div>
 </section>
 </section>
-<section id="id17">
-<h2><span class="section-number">4.7. </span>参考资料<a class="headerlink" href="#id17" title="Permalink to this headline"></a></h2>
+<section id="id18">
+<h2><span class="section-number">4.7. </span>参考资料<a class="headerlink" href="#id18" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>《深度学习推荐系统》，王喆，电子工业出版社。</p></li>
 <li><p>推荐系统的架构-冷启动-召回-粗排-精排-重排</p></li>
@@ -414,60 +441,66 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 <div><p><a class="reference external" href="https://blog.csdn.net/u012328159/article/details/122938925">https://blog.csdn.net/u012328159/article/details/122938925</a></p>
 </div></blockquote>
 <ol class="arabic simple" start="7">
-<li><p>因子分解机（FM）简介及实践</p></li>
+<li><p>分解机(Factorization Machines)推荐算法原理</p></li>
 </ol>
 <blockquote>
-<div><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/144346116">https://zhuanlan.zhihu.com/p/144346116</a></p>
+<div><p><a class="reference external" href="https://www.cnblogs.com/pinard/p/6370127.html">https://www.cnblogs.com/pinard/p/6370127.html</a></p>
 </div></blockquote>
 <ol class="arabic simple" start="8">
+<li><p>FM（Factorization Machines）的理论与实践</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/50426292">https://zhuanlan.zhihu.com/p/50426292</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="9">
 <li><p>如何从浅入深理解 attention？</p></li>
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://www.zhihu.com/question/473208103">https://www.zhihu.com/question/473208103</a></p>
 </div></blockquote>
-<ol class="arabic simple" start="9">
+<ol class="arabic simple" start="10">
 <li><p>ESCM分析Part2–论证ESMM PCVR偏高的问题</p></li>
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://www.deeplearn.me/4276.html">https://www.deeplearn.me/4276.html</a></p>
 </div></blockquote>
-<ol class="arabic simple" start="10">
+<ol class="arabic simple" start="11">
 <li><p>推荐算法遇到后悔药：评蚂蚁的ESCM2模型</p></li>
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/515777381">https://zhuanlan.zhihu.com/p/515777381</a></p>
 </div></blockquote>
-<ol class="arabic simple" start="11">
+<ol class="arabic simple" start="12">
 <li><p>【推荐算法】ctr cvr联合建模问题合集</p></li>
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://blog.csdn.net/weixin_31866177/article/details/133812899">https://blog.csdn.net/weixin_31866177/article/details/133812899</a></p>
 </div></blockquote>
-<ol class="arabic simple" start="12">
+<ol class="arabic simple" start="13">
 <li><p>推荐系统中的多任务学习与多目标排序工程实践（上）</p></li>
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/422925553">https://zhuanlan.zhihu.com/p/422925553</a></p>
 </div></blockquote>
-<ol class="arabic simple" start="13">
+<ol class="arabic simple" start="14">
 <li><p>推荐系统中的多目标学习</p></li>
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/183760759">https://zhuanlan.zhihu.com/p/183760759</a></p>
 </div></blockquote>
-<ol class="arabic simple" start="14">
+<ol class="arabic simple" start="15">
 <li><p>阿里ESAM：用迁移学习解决召回中的样本偏差</p></li>
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/335626180">https://zhuanlan.zhihu.com/p/335626180</a></p>
 </div></blockquote>
-<ol class="arabic simple" start="15">
+<ol class="arabic simple" start="16">
 <li><p>PPNET 详解与应用</p></li>
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/635364011">https://zhuanlan.zhihu.com/p/635364011</a></p>
 </div></blockquote>
-<ol class="arabic simple" start="16">
+<ol class="arabic simple" start="17">
 <li><p>Youtube 排序系统：Recommending What Video to Watch Next</p></li>
 </ol>
 <blockquote>

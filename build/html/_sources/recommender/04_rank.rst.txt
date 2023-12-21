@@ -52,7 +52,7 @@ FM 模型对于稀疏数据有较强的学习能力，且预测是 **线性时�
 上式考虑了任意两个（互异）特征分量之间的关系。然而，这种直接在 :math:`x_i x_j` 前面配一个系数 :math:`w_{ij}` 的方式在稀疏数据上有一个很大的缺陷：
 对于观察样本中未出现过交互的两个特征分量，不能对相应的参数进行估计（权重为 0）。
 
-通过引入矩阵分解，将 :math:`w_{ij}` 表示为 :math:`\langle \mathbf{v}_i, \mathbf{v}_j \rangle = \mathbf{v}_i^{\top} \mathbf{v}_j` ，即 :math:`W = V^{\top} V,\ V \in \mathbb{R}^{n \times k}` （交互矩阵）。
+通过引入矩阵分解，将 :math:`w_{ij}` 表示为 :math:`\langle \mathbf{v}_i, \mathbf{v}_j \rangle = \mathbf{v}_i^{\top} \mathbf{v}_j` ，交互矩阵 :math:`W = V V^{\top} \in \mathbb{R}^{n \times n},\ V \in \mathbb{R}^{n \times k}` 。
 这样一来，每个特征 :math:`x_i` 都关联了一个向量 :math:`\mathbf{v}_i` ，这个向量就是需要学习的参数。在高度稀疏的数据场景中，由于没有足够样本来估计复杂的交互矩阵，因此 :math:`k` 一般取很小的值（对其限制能提高模型的泛化能力）。 
 
 于是，二阶交叉模型变成：

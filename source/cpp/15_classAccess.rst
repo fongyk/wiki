@@ -1,4 +1,4 @@
-public、protected、private
+public/protected/private
 =============================
 
 .. table:: 类成员访问权限（可访问： :math:`\checkmark`）
@@ -53,9 +53,9 @@ public、protected、private
 class 与 struct
 -------------------
 
-class 不写权限修饰符，成员默认是 ``private`` ；struct 的成员默认是 ``public`` 。
+- class 不写权限修饰符，成员默认是 ``private`` ；struct 的成员默认是 ``public`` 。
 
-class 的继承默认是 ``private`` ，struct 的继承默认是 ``public`` 。
+- class 的继承默认是 ``private`` ，struct 的继承默认是 ``public`` 。
 
 
 参考资料

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3. Batch Normalization &mdash; fong alpha documentation</title>
+  <title>7. Batch Normalization &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -23,8 +23,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4. 过拟合" href="04_overfit.html" />
-    <link rel="prev" title="2. 激活函数" href="02_activationFunction.html" /> 
+    <link rel="next" title="8. 过拟合" href="04_overfit.html" />
+    <link rel="prev" title="6. 激活函数" href="02_activationFunction.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -55,38 +55,38 @@
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">深度学习</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="01_dataParallel.html">1. pytorch：多GPU模式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02_activationFunction.html">2. 激活函数</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">3. Batch Normalization</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">3.1. 加速训练</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#bn">3.2. BN消除</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">3.3. 训练与测试</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="01_dataParallel.html">1. pytorch：多 GPU 模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">2. pytorch：模型保存与读取</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">3. pytorch：cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_addModule.html">4. pytorch：Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_nograd.html">5. pytorch：no_grad()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_activationFunction.html">6. 激活函数</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">7. Batch Normalization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">7.1. 加速训练</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bn">7.2. BN 消除</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">7.3. 训练与测试</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id3">训练</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id4">测试</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">3.4. 缺点</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id6">3.5. 梯度推导</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">7.4. 缺点</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">7.5. 梯度推导</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id7">前向传播</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id8">反向传播</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id9">3.6. 代码实现</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">7.6. 代码实现</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id10">前向传播</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id11">反向传播</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id12">3.7. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">7.7. 参考资料</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="04_overfit.html">4. 过拟合</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">5. pytorch：模型保存与读取</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">6. pytorch: cuda</a></li>
-<li class="toctree-l2"><a class="reference internal" href="07_backprop.html">7. 反向传播</a></li>
-<li class="toctree-l2"><a class="reference internal" href="08_optimizer.html">8. 优化算法</a></li>
-<li class="toctree-l2"><a class="reference internal" href="09_addModule.html">9. pytorch：Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="10_receptivaField.html">10. 特征图与感受野</a></li>
-<li class="toctree-l2"><a class="reference internal" href="11_nograd.html">11. pytorch：no_grad()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_overfit.html">8. 过拟合</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_backprop.html">9. 反向传播</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_optimizer.html">10. 优化算法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_receptivaField.html">11. 特征图与感受野</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12_dml.html">12. Deep Metric Learning</a></li>
 </ul>
 </li>
@@ -115,7 +115,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">深度学习</a> &raquo;</li>
-      <li><span class="section-number">3. </span>Batch Normalization</li>
+      <li><span class="section-number">7. </span>Batch Normalization</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/deepLearning/03_batchnorm.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -126,7 +126,7 @@
            <div itemprop="articleBody">
              
   <section id="batch-normalization">
-<h1><span class="section-number">3. </span>Batch Normalization<a class="headerlink" href="#batch-normalization" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">7. </span>Batch Normalization<a class="headerlink" href="#batch-normalization" title="Permalink to this headline"></a></h1>
 <div class="math notranslate nohighlight">
 \[\begin{split}\hat{x}^{(k)} &amp;=\ \frac{x^{(k)} - E[x^{(k)}]}{\sqrt{Var[x^{{(k)}}] + \epsilon}}, \\
 y^{(k)} &amp;=\ \gamma^{(k)} \hat{x}^{(k)} + \beta^{(k)}.\end{split}\]</div>
@@ -137,24 +137,24 @@ y^{(k)} &amp;=\ \gamma^{(k)} \hat{x}^{(k)} + \beta^{(k)}.\end{split}\]</div>
 这样避免了梯度消失，梯度变大意味着学习收敛速度快，能大大加快训练速度。</p>
 <p>BN 一般用在全连接层或卷积层之后，激活函数之前。</p>
 <section id="id1">
-<h2><span class="section-number">3.1. </span>加速训练<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">7.1. </span>加速训练<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p><strong>增大学习率</strong> 。由于网络参数不断更新，导致各层输入的分布不断变化，导致往往需要使用较小的学习率，并精心设计参数初始化。使用 BN 进行归一化之后，各层输入的分布相同，因此可以使用更大的学习率更快地收敛，并降低网络对初始化的依赖。</p></li>
-<li><p><strong>移除 dropout</strong> 。进行 BN 之后，各样本的 feature map 已经融合了一个 batch 之中其他样本的特性（均值，方差），因此单一样本的影响变小，网络更好学习整体的规律，有效地减小了过拟合的可能性（ BN 提供了正则化的作用）。</p></li>
+<li><p><strong>移除 Dropout</strong> 。进行 BN 之后，各样本的 Feature Map 已经融合了一个 batch 之中其他样本的特性（均值，方差），因此单一样本的影响变小，网络更好学习整体的规律，有效地减小了过拟合的可能性（ BN 提供了正则化的作用）。</p></li>
 <li><p><strong>减小</strong> <span class="math notranslate nohighlight">\(L_2\)</span> <strong>正则化损失的权重</strong> 。</p></li>
 <li><p><strong>加速学习率衰减</strong> 。</p></li>
 </ul>
 </section>
 <section id="bn">
-<h2><span class="section-number">3.2. </span>BN消除<a class="headerlink" href="#bn" title="Permalink to this headline"></a></h2>
-<p>如果在训练过程中，网络发现这种 normalization 是多余的，可以通过学习使得：</p>
+<h2><span class="section-number">7.2. </span>BN 消除<a class="headerlink" href="#bn" title="Permalink to this headline"></a></h2>
+<p>如果在训练过程中，网络发现这种 Normalization 是多余的，可以通过学习使得：</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\gamma^{(k)} &amp;=\ \sqrt{Var[x^{{(k)}}]}, \\
 \beta^{(k)} &amp;=\ E[x^{(k)}].\end{split}\]</div>
 <p>从而消除 BN 的作用。</p>
 </section>
 <section id="id2">
-<h2><span class="section-number">3.3. </span>训练与测试<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">7.3. </span>训练与测试<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <section id="id3">
 <h3>训练<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
 <p>训练过程中，均值与方差是在每一个 batch 中分别计算得到的。</p>
@@ -162,7 +162,7 @@ y^{(k)} &amp;=\ \gamma^{(k)} \hat{x}^{(k)} + \beta^{(k)}.\end{split}\]</div>
 <div class="math notranslate nohighlight">
 \[\begin{split}\gamma &amp;=\ [\gamma^{(1)}, \gamma^{(2)}, ..., \gamma^{(C)}], \\
 \beta &amp;=\ [\beta^{(1)}, \beta^{(2)}, ..., \beta^{(C)}].\end{split}\]</div>
-<p>其中 <span class="math notranslate nohighlight">\(C\)</span> 是通道数（channel）。</p>
+<p>其中 <span class="math notranslate nohighlight">\(C\)</span> 是通道数（Channel）。</p>
 </section>
 <section id="id4">
 <h3>测试<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
@@ -178,13 +178,13 @@ var &amp;=\ (1 - momentum) \times var + momentum \times \sigma_B^2.\end{split}\]
 </section>
 </section>
 <section id="id5">
-<h2><span class="section-number">3.4. </span>缺点<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">7.4. </span>缺点<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
 <p>BN 统计均值、方差与 batch size 有关，batch size 太小会导致性能变差。而某些任务受内存限制，batch size 难以设置很大，因此 BN 作用难以显现。
 这时候出现了Group Normalization。</p>
 <a class="reference internal image-reference" href="../_images/03_groupNorm.jpg"><img alt="../_images/03_groupNorm.jpg" class="align-center" src="../_images/03_groupNorm.jpg" style="width: 700px;" /></a>
 </section>
 <section id="id6">
-<h2><span class="section-number">3.5. </span>梯度推导<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">7.5. </span>梯度推导<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
 <section id="id7">
 <h3>前向传播<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h3>
 <div class="math notranslate nohighlight">
@@ -225,7 +225,7 @@ y_i &amp;=\ \gamma \hat{x}_i + \beta\end{split}\]</div>
 </section>
 </section>
 <section id="id9">
-<h2><span class="section-number">3.6. </span>代码实现<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">7.6. </span>代码实现<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h2>
 <a class="reference internal image-reference" href="../_images/03_BNcircuit.png"><img alt="../_images/03_BNcircuit.png" class="align-center" src="../_images/03_BNcircuit.png" style="width: 600px;" /></a>
 <p>梯度回传过程中，参数及其梯度保持维度一致。</p>
 <section id="id10">
@@ -315,7 +315,7 @@ y_i &amp;=\ \gamma \hat{x}_i + \beta\end{split}\]</div>
 </section>
 </section>
 <section id="id12">
-<h2><span class="section-number">3.7. </span>参考资料<a class="headerlink" href="#id12" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">7.7. </span>参考资料<a class="headerlink" href="#id12" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>Batch Normalization</p></li>
 </ol>
@@ -359,8 +359,8 @@ y_i &amp;=\ \gamma \hat{x}_i + \beta\end{split}\]</div>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="02_activationFunction.html" class="btn btn-neutral float-left" title="2. 激活函数" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="04_overfit.html" class="btn btn-neutral float-right" title="4. 过拟合" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="02_activationFunction.html" class="btn btn-neutral float-left" title="6. 激活函数" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="04_overfit.html" class="btn btn-neutral float-right" title="8. 过拟合" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

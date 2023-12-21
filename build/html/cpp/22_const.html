@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>22. const和constexpr &mdash; fong alpha documentation</title>
+  <title>22. const 和 constexpr &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -57,23 +57,23 @@
 <li class="toctree-l2"><a class="reference internal" href="06_arrayArg.html">6. 数组形参</a></li>
 <li class="toctree-l2"><a class="reference internal" href="07_pointerReference.html">7. 指针与引用</a></li>
 <li class="toctree-l2"><a class="reference internal" href="08_overload.html">8. 重载、覆盖、隐藏</a></li>
-<li class="toctree-l2"><a class="reference internal" href="09_strcpy.html">9. strcpy函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_strcpy.html">9. strcpy 函数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="10_cast.html">10. 强制类型转换</a></li>
 <li class="toctree-l2"><a class="reference internal" href="11_heapStack.html">11. 堆和栈</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12_argPass.html">12. 参数传递</a></li>
 <li class="toctree-l2"><a class="reference internal" href="13_nullClassPtr.html">13. 空类指针</a></li>
 <li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html">14. static和extern</a></li>
 <li class="toctree-l2"><a class="reference internal" href="15_classAccess.html">15. public、protected、private</a></li>
-<li class="toctree-l2"><a class="reference internal" href="16_staticconst.html">16. 类的static const成员</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_staticconst.html">16. 类的 static const 成员</a></li>
 <li class="toctree-l2"><a class="reference internal" href="17_enumUnion.html">17. 枚举类型与共用体</a></li>
 <li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html">18. 常用函数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用 STL 容器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
 <li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">22. const和constexpr</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#constconst">22.1. 顶层const与底层const</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#const">22.2. const形参和实参</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id1">22.3. const成员函数</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">22. const 和 constexpr</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#const-const">22.1. 顶层 const 与底层 const</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#const">22.2. const 形参和实参</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">22.3. const 成员函数</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#constexpr">22.4. constexpr</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">22.5. 参考资料</a></li>
 </ul>
@@ -120,7 +120,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">C/C++</a> &raquo;</li>
-      <li><span class="section-number">22. </span>const和constexpr</li>
+      <li><span class="section-number">22. </span>const 和 constexpr</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/cpp/22_const.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -130,13 +130,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="constconstexpr">
-<h1><span class="section-number">22. </span>const和constexpr<a class="headerlink" href="#constconstexpr" title="Permalink to this headline"></a></h1>
-<section id="constconst">
-<h2><span class="section-number">22.1. </span>顶层const与底层const<a class="headerlink" href="#constconst" title="Permalink to this headline"></a></h2>
+  <section id="const-constexpr">
+<h1><span class="section-number">22. </span>const 和 constexpr<a class="headerlink" href="#const-constexpr" title="Permalink to this headline"></a></h1>
+<section id="const-const">
+<h2><span class="section-number">22.1. </span>顶层 const 与底层 const<a class="headerlink" href="#const-const" title="Permalink to this headline"></a></h2>
 <p>由于指针本身是一个对象，它又可以指向另一个对象，因此，指针本身是不是常量以及指针所指对象是不是常量就是两个相互独立的问题。</p>
 <p><strong>顶层const</strong> （top-level const）表示 <strong>对象本身</strong> 是常量，<strong>底层const</strong> （low-level const）与指针或引用等复合类型的 <strong>基本类型</strong> 部分有关。
-对指针而言，既可以是顶层const，也可以是底层const。</p>
+对指针而言，既可以是顶层 const，也可以是底层 const。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 <span class="linenos">2</span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="k">const</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="c1">// 顶层const，不能改变 p1 的值</span>
 <span class="linenos">3</span>
@@ -147,7 +147,7 @@
 <span class="linenos">8</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ci</span><span class="p">;</span><span class="w"> </span><span class="c1">// 用于声明引用的const都是底层const，r 不能改变 i</span>
 </pre></div>
 </div>
-<p>执行拷贝操作，被拷贝对象的顶层const属性不受影响。而对于底层const，要求拷入和拷出的对象具有相同的底层const属性，或在两个对象的数据类型能够转换。</p>
+<p>执行拷贝操作，被拷贝对象的顶层 const 属性不受影响。而对于底层 const，要求拷入和拷出的对象具有相同的底层 const 属性，或在两个对象的数据类型能够转换。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">// 承接上例的定义</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ci</span><span class="p">;</span><span class="w"> </span><span class="c1">// 正确</span>
@@ -160,21 +160,21 @@
 <span class="linenos">10</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">r2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="c1">// 正确，const int&amp; 可以绑定到普通 int</span>
 </pre></div>
 </div>
-<p>总结：可以使用 <strong>非常量对象</strong> 初始化一个 <strong>底层const对象</strong> ，但是不能使用 <strong>底层const对象</strong> 初始化一个 <strong>非常量对象</strong> 。同时，一个普通的引用
+<p>总结：可以使用 <strong>非常量对象</strong> 初始化一个 <strong>底层 const 对象</strong> ，但是不能使用 <strong>底层 const 对象</strong> 初始化一个 <strong>非常量对象</strong> 。同时，一个普通的引用
 必须使用同类型的对象初始化。同样的初始化规则可以应用到函数的 <strong>参数传递</strong> 上。</p>
 </section>
 <section id="const">
-<h2><span class="section-number">22.2. </span>const形参和实参<a class="headerlink" href="#const" title="Permalink to this headline"></a></h2>
-<p>使用实参初始化形参时，会 <strong>忽略掉顶层const</strong> ，换句话说，形参的顶层const被忽略了。因此，当形参有顶层const时，传给它常量对象或非常量对象都是可以的 。</p>
+<h2><span class="section-number">22.2. </span>const 形参和实参<a class="headerlink" href="#const" title="Permalink to this headline"></a></h2>
+<p>使用实参初始化形参时，会 <strong>忽略掉顶层 const</strong> ，换句话说，形参的顶层 const 被忽略了。因此，当形参有顶层 const 时，传给它常量对象或非常量对象都是可以的 。</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">fcn</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="cm">/* */</span><span class="p">}</span><span class="w"></span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">fcn</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="cm">/* */</span><span class="p">}</span><span class="w"> </span><span class="c1">// 重复定义了 fcn</span>
 </pre></div>
 </div>
-<p>上例中其实重复定义了fcn，而不是重载。调用fcn时，既可以传入const int对象，也可以传入int对象。
-反之，如果参数类型是int，也可传入const int对象（传值调用，函数拷贝了实参）。</p>
+<p>上例中其实重复定义了 fcn，而不是重载。调用 fcn 时，既可以传入 const int 对象，也可以传入 int 对象。
+反之，如果参数类型是 int，也可传入 const int 对象（传值调用，函数拷贝了实参）。</p>
 </section>
 <section id="id1">
-<h2><span class="section-number">22.3. </span>const成员函数<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">22.3. </span>const 成员函数<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
 <p>默认情况下，<code class="docutils literal notranslate"><span class="pre">this</span></code> 指针的类型是指向 <strong>类类型非常量版本的常量指针</strong> ，即 <code class="docutils literal notranslate"><span class="pre">ClassName</span> <span class="pre">*const</span></code> 。尽管 <code class="docutils literal notranslate"><span class="pre">this</span></code> 是隐式的，但它仍然需要遵守初始化规则，
 意味着在默认情况下，我们不能把 <code class="docutils literal notranslate"><span class="pre">this</span></code> 绑定到一个常量对象上。这一情况也使得我们不能在一个常量对象上调用普通的成员函数。通过把关键字 const 放在成员函数参数列表后面，
 定义该成员函数为 <strong>常量成员函数</strong> 。</p>

@@ -7,7 +7,7 @@
     - 可微性
     - 单调性：保证单层网络是凸函数
 
-下面介绍 **sigmoid** 、**tanh** 以及 **ReLU** 。
+下面介绍 **sigmoid** 、 **tanh** 以及 **relu** 。
 
 sigmoid
 -----------
@@ -37,10 +37,10 @@ sigmoid
 
 缺点：
 
-  - 容易饱和。当输入很大/很小时（saturation, 饱和），神经元的梯度接近0，出现“梯度消失”（gradient vanishing），导致无法完成深层网络的训练。
-  - 输出不是零均值的（not zero-centered）。假设某个神经元的输入一直是正的，即 :math:`x>0` . 对于 :math:`f(x)=w^{\top} x + b` ，则 :math:`w` 获得的梯度将是恒正或者恒负
-    （取决于 :math:`f` 得到的梯度的符号），导致 :math:`w` 的更新非常“曲折”（zig-zagging）。
-    当然，如果是按batch训练，最终梯度是各个样本下梯度的和，而每个样本下的梯度可能是符号各异的，因此在一定程度上可以缓解这个问题。
+  - 容易饱和。当输入很大/很小时（Saturation, 饱和），神经元的梯度接近0，出现“梯度消失”（Gradient Vanishing），导致无法完成深层网络的训练。
+  - 输出不是零均值的（Not Zero-centered）。假设某个神经元的输入一直是正的，即 :math:`x>0` . 对于 :math:`f(x)=w^{\top} x + b` ，则 :math:`w` 获得的梯度将是恒正或者恒负
+    （取决于 :math:`f` 得到的梯度的符号），导致 :math:`w` 的更新非常“曲折”（Zig-Zagging）。
+    当然，如果是按 batch 训练，最终梯度是各个样本下梯度的和，而每个样本下的梯度可能是符号各异的，因此在一定程度上可以缓解这个问题。
 
 
 tanh
@@ -59,13 +59,13 @@ tanh
     :width: 500px
     :align: center
 
-与 **sigmoid** 一样， **tanh** 也会产生饱和现象，但是 **tanh** 的输出是零均值的（zero-centered）。
+与 **sigmoid** 一样， **tanh** 也会产生饱和现象，但是 **tanh** 的输出是零均值的（Zero-centered）。
 
 
-ReLU
+relu
 ----------
 
-**ReLU** 函数的数学表达式如下：
+**relu** 函数的数学表达式如下：
 
 .. math::
 
@@ -81,7 +81,7 @@ ReLU
 
  - 避免梯度消失。
  - 计算简单。 **sigmoid** 和 **tanh** 都需要计算指数。
- - 收敛速度快。 `Krizhevsky et al. 论文 <http://www.cs.toronto.edu/~fritz/absps/imagenet.pdf>`_ 指出 **ReLU** 收敛速度比 **tanh** 快6倍。
+ - 收敛速度快。 `Krizhevsky et al. 论文 <http://www.cs.toronto.edu/~fritz/absps/imagenet.pdf>`_ 指出 **relu** 收敛速度比 **tanh** 快6倍。
 
     .. image:: ./02_alexplot.jpeg
         :width: 500px
@@ -89,12 +89,12 @@ ReLU
 
 缺点:
 
- - 容易产生死亡节点（dead ReLU）。一个非常大的梯度流过一个 **ReLU** 神经元，更新过参数之后，这个神经元对很多输入数据都输出0，则梯度一直为0。
-   当然 **ReLU** 的输出依靠 :math:`w` 和 :math:`x` 的共同作用，死亡节点可能会被重新激活。
+ - 容易产生死亡节点（Dead ReLU）。一个非常大的梯度流过一个 **relu** 神经元，更新过参数之后，这个神经元对很多输入数据都输出0，则梯度一直为0。
+   当然 **relu** 的输出依靠 :math:`w` 和 :math:`x` 的共同作用，死亡节点可能会被重新激活。
 
  - 输出不是零均值的。
 
-**LeakyReLU** 可以有效应对上述缺点。
+`LeakyReLU <https://arxiv.org/pdf/1505.00853.pdf>`_ 可以有效应对上述缺点。
 
 
 softmax 与最大化对数似然
@@ -109,23 +109,23 @@ softmax 与最大化对数似然
 梯度消失与梯度爆炸
 --------------------
 
-梯度消失（gradient vanishing）：梯度太小，难以确定参数更新方向。解决策略：
+梯度消失（Gradient Vanishing）：梯度太小，难以确定参数更新方向。解决策略：
 
-  - 使用激活函数 ReLU（正部导数恒为 1）
+  - 使用激活函数 relu（正部导数恒为 1）
 
   - Batch Normalization（将输出从饱和区拉到非饱和区）
 
   - 残差网络
 
-  - LSTM（long-short term memory networks）：遗忘门、输入门、输出门。
+  - LSTM（Long-Short Term Memory Networks）：遗忘门、输入门、输出门。
 
-梯度爆炸（gradient exploding）：梯度太大，学习不稳定。解决策略：
+梯度爆炸（Gradient Exploding）：梯度太大，学习不稳定。解决策略：
 
-  - 梯度截断（gradient clipping/clamping）
+  - 梯度截断（Gradient Clipping/Clamping）
 
   - 权重正则化
 
-  - 使用激活函数 ReLU（正部导数恒为 1）
+  - 使用激活函数 relu（正部导数恒为 1）
 
   - Batch Normalization（有正则化的作用）
 

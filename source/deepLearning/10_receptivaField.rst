@@ -1,9 +1,9 @@
 特征图与感受野
 ================
 
-特征图：feature map。
+特征图：Feature Map。
 
-感受野：receptive field。
+感受野：Receptive Field。
 
 
 特征图
@@ -11,7 +11,7 @@
 
 输入：:math:`C_{in} \times H_{in} \times W_{in}`
 
-卷积核：:math:`size = k \times k,\ padding = p,\ stride = s`
+卷积核：:math:`\mathrm{size} = k \times k,\ \mathrm{padding} = p,\ \mathrm{stride} = s`
 
 输出：:math:`C_{out} \times H_{out} \times W_{out}`
 
@@ -43,7 +43,7 @@
 
 - **从前往后推**
 
-  设 :math:`R_n` 表示第 :math:`n` 层卷积层的感受野（ :math:`R_n \times R_n` ）的大小，卷积核：:math:`size = k_n \times k_n,\ stride = s_n` 。
+  设 :math:`R_n` 表示第 :math:`n` 层卷积层的感受野（ :math:`R_n \times R_n` ）的大小，卷积核：:math:`\mathrm{size} = k_n \times k_n,\ \mathrm{stride} = s_n` 。
 
   .. math::
 
@@ -52,7 +52,7 @@
 
 - **从后往前推**
 
-  设 :math:`r_n` 表示输出层（ :math:`N` ）在第 :math:`n` 层输入特征图的感知范围（ :math:`r_n \times r_n` ）的大小，第 :math:`n` 层卷积核：:math:`size = k_n \times k_n,\ stride = s_n` 。
+  设 :math:`r_n` 表示输出层（ :math:`N` ）在第 :math:`n` 层输入特征图的感知范围（ :math:`r_n \times r_n` ）的大小，第 :math:`n` 层卷积核：:math:`\mathrm{size} = k_n \times k_n,\ \mathrm{stride} = s_n` 。
 
   最后一层在原图的感受野为 :math:`r_1` 。
 

@@ -20,7 +20,7 @@ PCA 是一种正交线性变换，把数据变换到一个新的坐标系统中�
 
 .. math::
 
-  \underset{W}{max} & \ Tr(W^{\top}XX^{\top}W) \\
+  \underset{W}{\mathrm{max}} & \ Tr(W^{\top}XX^{\top}W) \\
   s.t. & \ W^{\top}W=I. \\
   & \ X \in \mathbb{R}^{d \times m}, \\
   & \ W \in \mathbb{R}^{d \times d^\prime}, \\

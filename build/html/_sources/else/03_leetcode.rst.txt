@@ -3267,15 +3267,15 @@ https://leetcode.com/problems/lexicographical-numbers/
           vector<int> lexicalOrder(int n)
           {
               vector<int> res;
-              for(int high = 1; high <= 9; ++high) DFS(high, n, res); // 最高位不能为 0
+              for(int high = 1; high <= 9; ++high) dfs(high, n, res); // 最高位不能为 0
               return res;
           }
       private:
-          void DFS(int high, int n, vector<int>& res)
+          void dfs(int high, int n, vector<int>& res)
           {
               if(high > n) return;
               res.push_back(high); // 只有高位，没有低位。这是同一前缀的数字中最小的数
-              for(int low = 0; low <= 9; ++low) DFS(high * 10 + low, n, res); // 高位 + 低位
+              for(int low = 0; low <= 9; ++low) dfs(high * 10 + low, n, res); // 高位 + 低位
           }
       };
 

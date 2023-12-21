@@ -1,7 +1,7 @@
 牛顿方法
 =============
 
-牛顿方法（Newton's method, Newton-Raphson method）可以有效地近似实值函数的根。
+牛顿方法（Newton's Method, Newton-Raphson Method）可以有效地近似实值函数的根。
 
 
 一维
@@ -28,7 +28,7 @@
     J_{ij} &= \ \frac{\partial F_i}{\partial x_j}.  \\
 
 
-由于求解 Jacobian matrix 的逆复杂度较高，因此可以通过求解以下等式来节省时间开销：
+由于求解 Jacobian Matrix 的逆复杂度较高，因此可以通过求解以下等式来节省时间开销：
 
 .. math::
 
@@ -39,7 +39,7 @@
 
 - 初始点问题
 
-  - 导数为0，出现除0操作
+  - 导数为 0，出现除 0 操作
 
     .. math::
 
@@ -78,7 +78,7 @@
         H_{ij} &=\ \frac{\partial^2 F}{\partial x_i \ \partial x_j}. [\text{Hessian matrix}]
 
 
-- 求倒数（reciprocal）
+- 求倒数（Reciprocal）
 
   .. math::
 
@@ -86,7 +86,7 @@
       x_{n+1} &=\ x_n - \frac{f(x_n)}{f^{\prime}(x_n)} \\
        &=\ x_n (2 - a x_n).
 
-- 开根号（sqrt）
+- 开根号（Sqrt）
 
   .. math::
 

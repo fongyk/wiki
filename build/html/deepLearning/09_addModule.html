@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>9. pytorch：Module &mdash; fong alpha documentation</title>
+  <title>4. pytorch：Module &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -22,8 +22,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="10. 特征图与感受野" href="10_receptivaField.html" />
-    <link rel="prev" title="8. 优化算法" href="08_optimizer.html" /> 
+    <link rel="next" title="5. pytorch：no_grad()" href="11_nograd.html" />
+    <link rel="prev" title="3. pytorch：cuda" href="06_cuda.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -54,29 +54,29 @@
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">深度学习</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="01_dataParallel.html">1. pytorch：多GPU模式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02_activationFunction.html">2. 激活函数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03_batchnorm.html">3. Batch Normalization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="04_overfit.html">4. 过拟合</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">5. pytorch：模型保存与读取</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">6. pytorch: cuda</a></li>
-<li class="toctree-l2"><a class="reference internal" href="07_backprop.html">7. 反向传播</a></li>
-<li class="toctree-l2"><a class="reference internal" href="08_optimizer.html">8. 优化算法</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">9. pytorch：Module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#container">9.1. container</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="01_dataParallel.html">1. pytorch：多 GPU 模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">2. pytorch：模型保存与读取</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">3. pytorch：cuda</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4. pytorch：Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#container">4.1. container</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#sequential">Sequential</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#modulelist">ModuleList</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#moduledict">ModuleDict</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#add-module">9.2. add_module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#attribute">9.3. attribute 索引</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module">9.4. 附：Module 部分实例方法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id1">9.5. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-module">4.2. add_module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#attribute">4.3. attribute 索引</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module">4.4. 附：Module 部分实例方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">4.5. 参考资料</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="10_receptivaField.html">10. 特征图与感受野</a></li>
-<li class="toctree-l2"><a class="reference internal" href="11_nograd.html">11. pytorch：no_grad()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_nograd.html">5. pytorch：no_grad()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_activationFunction.html">6. 激活函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_batchnorm.html">7. Batch Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_overfit.html">8. 过拟合</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_backprop.html">9. 反向传播</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_optimizer.html">10. 优化算法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_receptivaField.html">11. 特征图与感受野</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12_dml.html">12. Deep Metric Learning</a></li>
 </ul>
 </li>
@@ -105,7 +105,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">深度学习</a> &raquo;</li>
-      <li><span class="section-number">9. </span>pytorch：Module</li>
+      <li><span class="section-number">4. </span>pytorch：Module</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/deepLearning/09_addModule.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -116,9 +116,9 @@
            <div itemprop="articleBody">
              
   <section id="pytorch-module">
-<h1><span class="section-number">9. </span>pytorch：Module<a class="headerlink" href="#pytorch-module" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">4. </span>pytorch：Module<a class="headerlink" href="#pytorch-module" title="Permalink to this headline"></a></h1>
 <section id="container">
-<h2><span class="section-number">9.1. </span>container<a class="headerlink" href="#container" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">4.1. </span>container<a class="headerlink" href="#container" title="Permalink to this headline"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> 是 Pytorch 中提供的一个类，是所有神经网络模块的基类。自定义的模块要继承这个基类。</p>
 <p>下面介绍三个容器，它们都继承自 <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> ：</p>
 <blockquote>
@@ -240,8 +240,8 @@
 </section>
 </section>
 <section id="add-module">
-<h2><span class="section-number">9.2. </span>add_module<a class="headerlink" href="#add-module" title="Permalink to this headline"></a></h2>
-<p>如果有一个元素是 <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> 的列表，直接赋值给一个模型的属性（attribute），并不会让列表内的 Modules 立即注册（register）为模型的模块。</p>
+<h2><span class="section-number">4.2. </span>add_module<a class="headerlink" href="#add-module" title="Permalink to this headline"></a></h2>
+<p>如果有一个元素是 <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> 的列表，直接赋值给一个模型的属性（Attribute），并不会让列表内的 Modules 立即注册（Register）为模型的模块。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="linenos">2</span><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
 <span class="linenos">3</span>
@@ -308,7 +308,7 @@
 </div>
 </section>
 <section id="attribute">
-<h2><span class="section-number">9.3. </span>attribute 索引<a class="headerlink" href="#attribute" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">4.3. </span>attribute 索引<a class="headerlink" href="#attribute" title="Permalink to this headline"></a></h2>
 <p>除了使用 <code class="docutils literal notranslate"><span class="pre">_modules[name]</span></code> 访问模块，还可以将 name 转换成属性（attribute）的索引，通过下标的形式访问。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
@@ -365,7 +365,7 @@
 </div>
 </section>
 <section id="module">
-<h2><span class="section-number">9.4. </span>附：Module 部分实例方法<a class="headerlink" href="#module" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">4.4. </span>附：Module 部分实例方法<a class="headerlink" href="#module" title="Permalink to this headline"></a></h2>
 <dl class="py method">
 <dt class="sig sig-object py" id="add_module">
 <span class="sig-name descname"><span class="pre">add_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#add_module" title="Permalink to this definition"></a></dt>
@@ -512,7 +512,7 @@
 
 </section>
 <section id="id1">
-<h2><span class="section-number">9.5. </span>参考资料<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">4.5. </span>参考资料<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>pytorch documentation</p></li>
 </ol>
@@ -550,8 +550,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="08_optimizer.html" class="btn btn-neutral float-left" title="8. 优化算法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="10_receptivaField.html" class="btn btn-neutral float-right" title="10. 特征图与感受野" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="06_cuda.html" class="btn btn-neutral float-left" title="3. pytorch：cuda" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="11_nograd.html" class="btn btn-neutral float-right" title="5. pytorch：no_grad()" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

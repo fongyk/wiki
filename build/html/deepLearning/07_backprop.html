@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>7. 反向传播 &mdash; fong alpha documentation</title>
+  <title>9. 反向传播 &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -23,8 +23,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="8. 优化算法" href="08_optimizer.html" />
-    <link rel="prev" title="6. pytorch: cuda" href="06_cuda.html" /> 
+    <link rel="next" title="10. 优化算法" href="08_optimizer.html" />
+    <link rel="prev" title="8. 过拟合" href="04_overfit.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -55,27 +55,27 @@
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">深度学习</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="01_dataParallel.html">1. pytorch：多GPU模式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02_activationFunction.html">2. 激活函数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03_batchnorm.html">3. Batch Normalization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="04_overfit.html">4. 过拟合</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">5. pytorch：模型保存与读取</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">6. pytorch: cuda</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">7. 反向传播</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">7.1. 链式法则</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">7.2. 前向传播</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">7.3. 误差反向传播</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="01_dataParallel.html">1. pytorch：多 GPU 模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">2. pytorch：模型保存与读取</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">3. pytorch：cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_addModule.html">4. pytorch：Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_nograd.html">5. pytorch：no_grad()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_activationFunction.html">6. 激活函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_batchnorm.html">7. Batch Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_overfit.html">8. 过拟合</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">9. 反向传播</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">9.1. 链式法则</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">9.2. 前向传播</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">9.3. 误差反向传播</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#mse-mean-squared-error"><strong>MSE</strong> （Mean Squared Error）</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#cross-entropy"><strong>Cross Entropy</strong> （交叉熵）</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">7.4. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">9.4. 参考资料</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="08_optimizer.html">8. 优化算法</a></li>
-<li class="toctree-l2"><a class="reference internal" href="09_addModule.html">9. pytorch：Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="10_receptivaField.html">10. 特征图与感受野</a></li>
-<li class="toctree-l2"><a class="reference internal" href="11_nograd.html">11. pytorch：no_grad()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_optimizer.html">10. 优化算法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_receptivaField.html">11. 特征图与感受野</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12_dml.html">12. Deep Metric Learning</a></li>
 </ul>
 </li>
@@ -104,7 +104,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">深度学习</a> &raquo;</li>
-      <li><span class="section-number">7. </span>反向传播</li>
+      <li><span class="section-number">9. </span>反向传播</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/deepLearning/07_backprop.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -115,7 +115,7 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">7. </span>反向传播<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">9. </span>反向传播<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
 <a class="reference internal image-reference" href="../_images/07_backprop.jpg"><img alt="../_images/07_backprop.jpg" class="align-center" src="../_images/07_backprop.jpg" style="width: 700px;" /></a>
 <table class="docutils align-center" id="id6">
 <caption><span class="caption-text">符号说明</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
@@ -168,7 +168,7 @@
 </tbody>
 </table>
 <section id="id2">
-<h2><span class="section-number">7.1. </span>链式法则<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">9.1. </span>链式法则<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <a class="reference internal image-reference" href="../_images/07_chainRule.jpg"><img alt="../_images/07_chainRule.jpg" class="align-center" src="../_images/07_chainRule.jpg" style="width: 300px;" /></a>
 <ul>
 <li><p><span class="math notranslate nohighlight">\(z = g \circ f(x_1, x_2)\)</span></p>
@@ -187,7 +187,7 @@
 </ul>
 </section>
 <section id="id3">
-<h2><span class="section-number">7.2. </span>前向传播<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">9.2. </span>前向传播<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <div class="math notranslate nohighlight">
 \[\begin{split}z^{(l+1)}_i &amp;= \  b^{(l)}_i + \sum_{j=1}^{C_l}w^{(l)}_{ij}a^{(l)}_j, \\
 g(t) &amp;= \  \frac{1}{1 + e^{-t}}, \\
@@ -198,7 +198,7 @@ a^{(l)}_i &amp;= \  g(z^{(l)}_i).\end{split}\]</div>
 \[\delta^{(l)}_i = \  \frac{\partial{\mathcal{L}}}{\partial{z^{(l)}_i}}\]</div>
 </section>
 <section id="id4">
-<h2><span class="section-number">7.3. </span>误差反向传播<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">9.3. </span>误差反向传播<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
 <section id="mse-mean-squared-error">
 <h3><strong>MSE</strong> （Mean Squared Error）<a class="headerlink" href="#mse-mean-squared-error" title="Permalink to this headline"></a></h3>
 <p>对每一个样本，损失为：</p>
@@ -244,8 +244,8 @@ a^{(l)}_i &amp;= \  g(z^{(l)}_i).\end{split}\]</div>
 <div class="math notranslate nohighlight">
 \[\begin{split}\mathcal{L} = - \sum_{j=1}^{C_n} y_j \ln \hat{y}_j, \\
 y_j \in \{ 0,1 \}, \\
-\hat{y}_j = softmax(\mathbb{a}^{(n)}, j) = \frac{e^{a^{(n)}_j}}{\sum_{k=1}^{C_n} e^{a^{(n)}_k}}.\end{split}\]</div>
-<p>softmax偏导为：</p>
+\hat{y}_j = \mathrm{softmax}(\mathbb{a}^{(n)}, j) = \frac{e^{a^{(n)}_j}}{\sum_{k=1}^{C_n} e^{a^{(n)}_k}}.\end{split}\]</div>
+<p>softmax 偏导为：</p>
 <div class="math notranslate nohighlight">
 $$
 \frac{\partial{\hat{y}_j}}{\partial{a^{(n)}_i}} =
@@ -253,7 +253,7 @@ $$
    - \hat{y}_j \hat{y}_i &amp; &amp; i \ne j \\
    \hat{y}_i (1 - \hat{y}_i) &amp; &amp;  i = j
 \end{cases}
-$$</div><p>另外，由链式法则（chain rule）：</p>
+$$</div><p>另外，由链式法则（Chain Rule）：</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\frac{\partial{\mathcal{L}}}{\partial{z^{(n)}_i}} &amp;= \  \frac{\partial{\mathcal{L}}}{\partial{a^{(n)}_i}} \frac{\partial{a^{(n)}_i}}{\partial{z^{(n)}_i}} \\
 \frac{\partial{\mathcal{L}}}{\partial{a^{(n)}_i}} &amp;= \  \sum_{j=1}^{C_n} \frac{\partial{\mathcal{L}}}{\partial{\hat{y}_j}} \frac{\partial{\hat{y}_j}}{\partial{a^{(n)}_i}} \\
@@ -274,7 +274,7 @@ $$</div><p>另外，由链式法则（chain rule）：</p>
 </section>
 </section>
 <section id="id5">
-<h2><span class="section-number">7.4. </span>参考资料<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">9.4. </span>参考资料<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>反向传播公式推导</p></li>
 </ol>
@@ -294,8 +294,8 @@ $$</div><p>另外，由链式法则（chain rule）：</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="06_cuda.html" class="btn btn-neutral float-left" title="6. pytorch: cuda" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="08_optimizer.html" class="btn btn-neutral float-right" title="8. 优化算法" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="04_overfit.html" class="btn btn-neutral float-left" title="8. 过拟合" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="08_optimizer.html" class="btn btn-neutral float-right" title="10. 优化算法" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>10. 特征图与感受野 &mdash; fong alpha documentation</title>
+  <title>11. 特征图与感受野 &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -23,8 +23,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="11. pytorch：no_grad()" href="11_nograd.html" />
-    <link rel="prev" title="9. pytorch：Module" href="09_addModule.html" /> 
+    <link rel="next" title="12. Deep Metric Learning" href="12_dml.html" />
+    <link rel="prev" title="10. 优化算法" href="08_optimizer.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -55,22 +55,22 @@
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">深度学习</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="01_dataParallel.html">1. pytorch：多GPU模式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02_activationFunction.html">2. 激活函数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03_batchnorm.html">3. Batch Normalization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="04_overfit.html">4. 过拟合</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">5. pytorch：模型保存与读取</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">6. pytorch: cuda</a></li>
-<li class="toctree-l2"><a class="reference internal" href="07_backprop.html">7. 反向传播</a></li>
-<li class="toctree-l2"><a class="reference internal" href="08_optimizer.html">8. 优化算法</a></li>
-<li class="toctree-l2"><a class="reference internal" href="09_addModule.html">9. pytorch：Module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">10. 特征图与感受野</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">10.1. 特征图</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">10.2. 感受野</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">10.3. 参考资料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01_dataParallel.html">1. pytorch：多 GPU 模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">2. pytorch：模型保存与读取</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">3. pytorch：cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_addModule.html">4. pytorch：Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_nograd.html">5. pytorch：no_grad()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_activationFunction.html">6. 激活函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_batchnorm.html">7. Batch Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_overfit.html">8. 过拟合</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_backprop.html">9. 反向传播</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_optimizer.html">10. 优化算法</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">11. 特征图与感受野</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">11.1. 特征图</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">11.2. 感受野</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">11.3. 参考资料</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="11_nograd.html">11. pytorch：no_grad()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12_dml.html">12. Deep Metric Learning</a></li>
 </ul>
 </li>
@@ -99,7 +99,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">深度学习</a> &raquo;</li>
-      <li><span class="section-number">10. </span>特征图与感受野</li>
+      <li><span class="section-number">11. </span>特征图与感受野</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/deepLearning/10_receptivaField.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -110,13 +110,13 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">10. </span>特征图与感受野<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
-<p>特征图：feature map。</p>
-<p>感受野：receptive field。</p>
+<h1><span class="section-number">11. </span>特征图与感受野<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<p>特征图：Feature Map。</p>
+<p>感受野：Receptive Field。</p>
 <section id="id2">
-<h2><span class="section-number">10.1. </span>特征图<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">11.1. </span>特征图<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <p>输入：<span class="math notranslate nohighlight">\(C_{in} \times H_{in} \times W_{in}\)</span></p>
-<p>卷积核：<span class="math notranslate nohighlight">\(size = k \times k,\ padding = p,\ stride = s\)</span></p>
+<p>卷积核：<span class="math notranslate nohighlight">\(\mathrm{size} = k \times k,\ \mathrm{padding} = p,\ \mathrm{stride} = s\)</span></p>
 <p>输出：<span class="math notranslate nohighlight">\(C_{out} \times H_{out} \times W_{out}\)</span></p>
 <p>计算量：<span class="math notranslate nohighlight">\(C_{out} \times H_{out} \times W_{out} \times k \times k \times C_{in}\)</span></p>
 <ul>
@@ -133,18 +133,18 @@ W_{out} = (W_{in} - 1) \times s + k\end{split}\]</div>
 </ul>
 </section>
 <section id="id3">
-<h2><span class="section-number">10.2. </span>感受野<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">11.2. </span>感受野<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <p>感受野，用来表示网络内部的不同位置的神经元对 <strong>原图像</strong> 的感知范围的大小。</p>
 <a class="reference internal image-reference" href="../_images/10_receptiveField.png"><img alt="../_images/10_receptiveField.png" class="align-center" src="../_images/10_receptiveField.png" style="width: 600px;" /></a>
 <ul>
 <li><p><strong>从前往后推</strong></p>
-<p>设 <span class="math notranslate nohighlight">\(R_n\)</span> 表示第 <span class="math notranslate nohighlight">\(n\)</span> 层卷积层的感受野（ <span class="math notranslate nohighlight">\(R_n \times R_n\)</span> ）的大小，卷积核：<span class="math notranslate nohighlight">\(size = k_n \times k_n,\ stride = s_n\)</span> 。</p>
+<p>设 <span class="math notranslate nohighlight">\(R_n\)</span> 表示第 <span class="math notranslate nohighlight">\(n\)</span> 层卷积层的感受野（ <span class="math notranslate nohighlight">\(R_n \times R_n\)</span> ）的大小，卷积核：<span class="math notranslate nohighlight">\(\mathrm{size} = k_n \times k_n,\ \mathrm{stride} = s_n\)</span> 。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}R_n &amp;=\ R_{n-1} + (k_n - 1) \prod_{i=1}^{n-1} s_i \\
 R_1 &amp;=\ k_1\end{split}\]</div>
 </li>
 <li><p><strong>从后往前推</strong></p>
-<p>设 <span class="math notranslate nohighlight">\(r_n\)</span> 表示输出层（ <span class="math notranslate nohighlight">\(N\)</span> ）在第 <span class="math notranslate nohighlight">\(n\)</span> 层输入特征图的感知范围（ <span class="math notranslate nohighlight">\(r_n \times r_n\)</span> ）的大小，第 <span class="math notranslate nohighlight">\(n\)</span> 层卷积核：<span class="math notranslate nohighlight">\(size = k_n \times k_n,\ stride = s_n\)</span> 。</p>
+<p>设 <span class="math notranslate nohighlight">\(r_n\)</span> 表示输出层（ <span class="math notranslate nohighlight">\(N\)</span> ）在第 <span class="math notranslate nohighlight">\(n\)</span> 层输入特征图的感知范围（ <span class="math notranslate nohighlight">\(r_n \times r_n\)</span> ）的大小，第 <span class="math notranslate nohighlight">\(n\)</span> 层卷积核：<span class="math notranslate nohighlight">\(\mathrm{size} = k_n \times k_n,\ \mathrm{stride} = s_n\)</span> 。</p>
 <p>最后一层在原图的感受野为 <span class="math notranslate nohighlight">\(r_1\)</span> 。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}r_n &amp;=\ (r_{n+1} - 1) \times s_n + k_n \\
@@ -153,7 +153,7 @@ r_N &amp;=\ k_N\end{split}\]</div>
 </ul>
 </section>
 <section id="id4">
-<h2><span class="section-number">10.3. </span>参考资料<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">11.3. </span>参考资料<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>feature map大小计算方法</p></li>
 </ol>
@@ -185,8 +185,8 @@ r_N &amp;=\ k_N\end{split}\]</div>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="09_addModule.html" class="btn btn-neutral float-left" title="9. pytorch：Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="11_nograd.html" class="btn btn-neutral float-right" title="11. pytorch：no_grad()" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="08_optimizer.html" class="btn btn-neutral float-left" title="10. 优化算法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="12_dml.html" class="btn btn-neutral float-right" title="12. Deep Metric Learning" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

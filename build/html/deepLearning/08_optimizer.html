@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>8. 优化算法 &mdash; fong alpha documentation</title>
+  <title>10. 优化算法 &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -23,8 +23,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="9. pytorch：Module" href="09_addModule.html" />
-    <link rel="prev" title="7. 反向传播" href="07_backprop.html" /> 
+    <link rel="next" title="11. 特征图与感受野" href="10_receptivaField.html" />
+    <link rel="prev" title="9. 反向传播" href="07_backprop.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -55,27 +55,27 @@
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">深度学习</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="01_dataParallel.html">1. pytorch：多GPU模式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02_activationFunction.html">2. 激活函数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03_batchnorm.html">3. Batch Normalization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="04_overfit.html">4. 过拟合</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">5. pytorch：模型保存与读取</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">6. pytorch: cuda</a></li>
-<li class="toctree-l2"><a class="reference internal" href="07_backprop.html">7. 反向传播</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">8. 优化算法</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">8.1. 可视化</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sgd">8.2. SGD</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#momentum">8.3. Momentum</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#adagrad">8.4. Adagrad</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#adadelta">8.5. Adadelta</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#rmsprop">8.6. RMSprop</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#adam">8.7. Adam</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">8.8. 参考资料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01_dataParallel.html">1. pytorch：多 GPU 模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">2. pytorch：模型保存与读取</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">3. pytorch：cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_addModule.html">4. pytorch：Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_nograd.html">5. pytorch：no_grad()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_activationFunction.html">6. 激活函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_batchnorm.html">7. Batch Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_overfit.html">8. 过拟合</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_backprop.html">9. 反向传播</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">10. 优化算法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">10.1. 可视化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sgd">10.2. SGD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#momentum">10.3. Momentum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adagrad">10.4. Adagrad</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adadelta">10.5. Adadelta</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rmsprop">10.6. RMSprop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adam">10.7. Adam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">10.8. 参考资料</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="09_addModule.html">9. pytorch：Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="10_receptivaField.html">10. 特征图与感受野</a></li>
-<li class="toctree-l2"><a class="reference internal" href="11_nograd.html">11. pytorch：no_grad()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_receptivaField.html">11. 特征图与感受野</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12_dml.html">12. Deep Metric Learning</a></li>
 </ul>
 </li>
@@ -104,7 +104,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">深度学习</a> &raquo;</li>
-      <li><span class="section-number">8. </span>优化算法</li>
+      <li><span class="section-number">10. </span>优化算法</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/deepLearning/08_optimizer.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -115,13 +115,13 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">8. </span>优化算法<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">10. </span>优化算法<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
 <section id="id2">
-<h2><span class="section-number">8.1. </span>可视化<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">10.1. </span>可视化<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <p><strong>等高线</strong></p>
 <a class="reference internal image-reference" href="../_images/08_contours_evaluation_optimizers.gif"><img alt="../_images/08_contours_evaluation_optimizers.gif" class="align-center" src="../_images/08_contours_evaluation_optimizers.gif" style="width: 500px;" /></a>
 <p><strong>鞍点</strong></p>
-<p>不是局部极值点的驻点（一阶梯度为零）。在鞍点处，Hessian 是不定矩阵（indefinite）：既不是半正定，也不是半负定。判断鞍点的充分条件：Hessian 矩阵同时具有正、负特征值。</p>
+<p>不是局部极值点的驻点（一阶梯度为零）。在鞍点处，Hessian 是不定矩阵（Indefinite）：既不是半正定，也不是半负定。判断鞍点的充分条件：Hessian 矩阵同时具有正、负特征值。</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>双曲抛物线（马鞍面） <span class="math notranslate nohighlight">\(z = \frac{x^2}{a^2} - \frac{y^2}{b^2}\)</span> 的鞍点在 <span class="math notranslate nohighlight">\((0,0)\)</span> 。</p></li>
@@ -131,15 +131,15 @@
 <a class="reference internal image-reference" href="../_images/08_saddle_point_evaluation_optimizers.gif"><img alt="../_images/08_saddle_point_evaluation_optimizers.gif" class="align-center" src="../_images/08_saddle_point_evaluation_optimizers.gif" style="width: 600px;" /></a>
 </section>
 <section id="sgd">
-<h2><span class="section-number">8.2. </span>SGD<a class="headerlink" href="#sgd" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">10.2. </span>SGD<a class="headerlink" href="#sgd" title="Permalink to this headline"></a></h2>
 <p>这里 <strong>SGD</strong> 指小批量梯度下降算法。</p>
-<p>小批量损失：<span class="math notranslate nohighlight">\(\mathcal{L}\)</span> ，学习率：<span class="math notranslate nohighlight">\(\eta\)</span> ，Hadamard积：<span class="math notranslate nohighlight">\(\odot\)</span> 。</p>
+<p>小批量损失：<span class="math notranslate nohighlight">\(\mathcal{L}\)</span> ，学习率：<span class="math notranslate nohighlight">\(\eta\)</span> ，Hadamard 积：<span class="math notranslate nohighlight">\(\odot\)</span> 。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}g &amp; \leftarrow \nabla_{\theta} \mathcal{L} (\theta; x^{(i:i+n)}; y^{(i:i+n)}) &amp;\  [\text{计算梯度}] \\
 \theta &amp; \leftarrow \theta - \eta g &amp;\  [\text{参数更新}]\end{split}\]</div>
 <dl class="simple">
 <dt>特点</dt><dd><ul class="simple">
-<li><p>相比于单样本SGD，可以降低参数更新时的方差，收敛更稳定；可以充分地利用深度学习库中高度优化的矩阵操作来进行更有效的梯度计算</p></li>
+<li><p>相比于单样本 SGD，可以降低参数更新时的方差，收敛更稳定；可以充分地利用深度学习库中高度优化的矩阵操作来进行更有效的梯度计算</p></li>
 <li><p>不能保证很好的收敛性：如果选择的太小，收敛速度会很慢；如果太大，损失函数就会在极小值处不停地震荡甚至偏离；容易困在鞍点。</p></li>
 <li><p>选择合适的学习率比较困难：对所有的参数更新使用同样的学习率。对于稀疏数据或者特征，有时我们可能想更快更新对应于不经常出现的特征的参数，对于常出现的特征更新慢一些。</p></li>
 </ul>
@@ -147,11 +147,11 @@
 </dl>
 </section>
 <section id="momentum">
-<h2><span class="section-number">8.3. </span>Momentum<a class="headerlink" href="#momentum" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">10.3. </span>Momentum<a class="headerlink" href="#momentum" title="Permalink to this headline"></a></h2>
 <div class="math notranslate nohighlight">
 \[\begin{split}v &amp; \leftarrow  \gamma v - \eta \nabla_{\theta} \mathcal{L}(\theta) &amp;\  [\text{速度更新}] \\
 \theta &amp; \leftarrow  \theta + v &amp;\ [\text{参数更新}]\end{split}\]</div>
-<p>动量（momentum）方法旨在加速学习，特别是处理高曲率、小但一致的梯度，或是带噪声的梯度。动量算法积累了之前梯度指数级衰减的移动平均，并且沿该方向继续移动。
+<p>动量（Momentum）方法旨在加速学习，特别是处理高曲率、小但一致的梯度，或是带噪声的梯度。动量算法积累了之前梯度指数级衰减的移动平均，并且沿该方向继续移动。
 当许多连续的梯度指向相同的方向时，步长最大。</p>
 <dl class="simple">
 <dt>特点</dt><dd><ul class="simple">
@@ -163,7 +163,7 @@
 </dl>
 </section>
 <section id="adagrad">
-<h2><span class="section-number">8.4. </span>Adagrad<a class="headerlink" href="#adagrad" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">10.4. </span>Adagrad<a class="headerlink" href="#adagrad" title="Permalink to this headline"></a></h2>
 <div class="math notranslate nohighlight">
 \[\begin{split}g &amp; \leftarrow \nabla_{\theta} \mathcal{L}(\theta) &amp;\  [\text{计算梯度}] \\
 r &amp; \leftarrow r + g \odot g &amp;\  [\text{累计平方梯度}] \\
@@ -179,7 +179,7 @@ r &amp; \leftarrow r + g \odot g &amp;\  [\text{累计平方梯度}] \\
 </dl>
 </section>
 <section id="adadelta">
-<h2><span class="section-number">8.5. </span>Adadelta<a class="headerlink" href="#adadelta" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">10.5. </span>Adadelta<a class="headerlink" href="#adadelta" title="Permalink to this headline"></a></h2>
 <div class="math notranslate nohighlight">
 \[\begin{split}g &amp; \leftarrow \nabla_{\theta} \mathcal{L}(\theta) &amp;\  [\text{计算梯度}] \\
 E[g^2] &amp; \leftarrow \gamma E[g^2] + (1 - \gamma) g \odot g  &amp;\  [\text{累计平方梯度：指数衰减平均}] \\
@@ -199,7 +199,7 @@ RMS[\Delta \theta] &amp; \leftarrow \sqrt{E[\Delta \theta^2] + \epsilon} &amp;\ 
 </dl>
 </section>
 <section id="rmsprop">
-<h2><span class="section-number">8.6. </span>RMSprop<a class="headerlink" href="#rmsprop" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">10.6. </span>RMSprop<a class="headerlink" href="#rmsprop" title="Permalink to this headline"></a></h2>
 <div class="math notranslate nohighlight">
 \[\begin{split}g &amp; \leftarrow \nabla_{\theta} \mathcal{L}(\theta) &amp;\  [\text{计算梯度}] \\
 r &amp; \leftarrow \gamma r + (1 - \gamma) g \odot g &amp;\  [\text{累计平方梯度：指数衰减平均}] \\
@@ -215,7 +215,7 @@ r &amp; \leftarrow \gamma r + (1 - \gamma) g \odot g &amp;\  [\text{累计平方
 </dl>
 </section>
 <section id="adam">
-<h2><span class="section-number">8.7. </span>Adam<a class="headerlink" href="#adam" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">10.7. </span>Adam<a class="headerlink" href="#adam" title="Permalink to this headline"></a></h2>
 <div class="math notranslate nohighlight">
 \[\begin{split}g &amp; \leftarrow \nabla_{\theta} \mathcal{L}(\theta) &amp;\  [\text{计算梯度}] \\
 t &amp; \leftarrow t + 1 &amp;\  [\text{迭代次数}] \\
@@ -235,7 +235,7 @@ n &amp; \leftarrow \beta_1 n + (1 - \beta_2) g \odot g &amp;\  [\text{有偏二�
 </dl>
 </section>
 <section id="id3">
-<h2><span class="section-number">8.8. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">10.8. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>An overview of gradient descent optimization algorithms</p></li>
 </ol>
@@ -273,8 +273,8 @@ n &amp; \leftarrow \beta_1 n + (1 - \beta_2) g \odot g &amp;\  [\text{有偏二�
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="07_backprop.html" class="btn btn-neutral float-left" title="7. 反向传播" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="09_addModule.html" class="btn btn-neutral float-right" title="9. pytorch：Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="07_backprop.html" class="btn btn-neutral float-left" title="9. 反向传播" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="10_receptivaField.html" class="btn btn-neutral float-right" title="11. 特征图与感受野" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

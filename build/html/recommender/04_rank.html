@@ -176,7 +176,7 @@ FM 模型对于稀疏数据有较强的学习能力，且预测是 <strong>线�
 \[\hat{y}(\mathbf{x}) = w_0 + \sum_{i=1}^{n} w_i x_i + \sum_{i=1}^{n} \sum_{j=i+1}^{n} w_{ij} x_i x_j\]</div>
 <p>上式考虑了任意两个（互异）特征分量之间的关系。然而，这种直接在 <span class="math notranslate nohighlight">\(x_i x_j\)</span> 前面配一个系数 <span class="math notranslate nohighlight">\(w_{ij}\)</span> 的方式在稀疏数据上有一个很大的缺陷：
 对于观察样本中未出现过交互的两个特征分量，不能对相应的参数进行估计（权重为 0）。</p>
-<p>通过引入矩阵分解，将 <span class="math notranslate nohighlight">\(w_{ij}\)</span> 表示为 <span class="math notranslate nohighlight">\(\langle \mathbf{v}_i, \mathbf{v}_j \rangle = \mathbf{v}_i^{\top} \mathbf{v}_j\)</span> ，即 <span class="math notranslate nohighlight">\(W = V^{\top} V,\ V \in \mathbb{R}^{n \times k}\)</span> （交互矩阵）。
+<p>通过引入矩阵分解，将 <span class="math notranslate nohighlight">\(w_{ij}\)</span> 表示为 <span class="math notranslate nohighlight">\(\langle \mathbf{v}_i, \mathbf{v}_j \rangle = \mathbf{v}_i^{\top} \mathbf{v}_j\)</span> ，交互矩阵 <span class="math notranslate nohighlight">\(W = V V^{\top} \in \mathbb{R}^{n \times n},\ V \in \mathbb{R}^{n \times k}\)</span> 。
 这样一来，每个特征 <span class="math notranslate nohighlight">\(x_i\)</span> 都关联了一个向量 <span class="math notranslate nohighlight">\(\mathbf{v}_i\)</span> ，这个向量就是需要学习的参数。在高度稀疏的数据场景中，由于没有足够样本来估计复杂的交互矩阵，因此 <span class="math notranslate nohighlight">\(k\)</span> 一般取很小的值（对其限制能提高模型的泛化能力）。</p>
 <p>于是，二阶交叉模型变成：</p>
 <div class="math notranslate nohighlight">

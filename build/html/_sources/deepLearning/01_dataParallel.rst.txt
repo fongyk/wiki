@@ -1,4 +1,4 @@
-pytorch：多GPU模式
+pytorch：多 GPU 模式
 =========================
 
 DataParallel
@@ -30,7 +30,7 @@ batch 的大小应该大于所使用的 GPU 的数量，还应当是 GPU 个数�
     # 相比于'model.attribute'多了'module'。
     model.module.attribute
 
-比如，``model.module.classifier.parameters()`` 。
+比如 ``model.module.classifier.parameters()`` 。
 
 
 网络内指定
@@ -50,7 +50,7 @@ batch 的大小应该大于所使用的 GPU 的数量，还应当是 GPU 个数�
 distributed
 ---------------
 
-``torch.distributed`` + ``torch.nn.parallel.DistributedDataParallel`` 比 ``torch.nn.DataParallel`` 更加高效，
+``torch.distributed`` + ``torch.nn.parallel.DistributedDataParallel`` 比 ``torch.nn.DataParallel`` 更加高效：
 
   - 每个进程维护自己的优化器，并在每次迭代中执行完整的优化步骤。虽然这可能看起来是多余的，因为梯度已经收集在一起并跨进程平均，因此每个进程的梯度都是相同的，然而，这意味着不需要参数广播步骤，从而减少节点之间传输张量的时间。
 

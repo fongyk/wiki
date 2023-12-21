@@ -156,7 +156,7 @@ ModuleDict
 add_module
 --------------------
 
-如果有一个元素是 ``nn.Module`` 的列表，直接赋值给一个模型的属性（attribute），并不会让列表内的 Modules 立即注册（register）为模型的模块。
+如果有一个元素是 ``nn.Module`` 的列表，直接赋值给一个模型的属性（Attribute），并不会让列表内的 Modules 立即注册（Register）为模型的模块。
 
 .. code-block:: python
   :linenos:

@@ -16,32 +16,36 @@
 
 - 样本的噪声太大甚至掩盖了真实样本的分布规律；
 
-- 训练迭代次数太多（over-training）。
+- 训练迭代次数太多（Over-Training）。
 
 
 解决方案
 -----------
 
-**1**. 调小模型复杂度。
+1. **调小模型复杂度**
 
-**2**. data augmentation.
+#. **Data Augmentation**
 
-**3**. dropout. dropout 随机屏蔽了部分神经元的前向和反向传播，有利于保持神经元的独立性；由于每次迭代都屏蔽不同神经元，因此模型的训练过程可以看作是多个模型的集成。
+#. Dropout
+      Dropout 随机屏蔽了部分神经元的前向和反向传播，有利于保持神经元的独立性；由于每次迭代都屏蔽不同神经元，因此模型的训练过程可以看作是多个模型的集成。
 
-**4**. early stopping. 记录观察validation accuracy，及时停止训练。
+#. Early Stopping
+      记录观察 Validation Accuracy，及时停止训练。
 
-**5**. 集成学习。Bagging：并行化模型生成，减小模型variance。Boosting：串行化模型生成，减小模型bias。
+#. 集成学习
+      Bagging：并行化模型生成，减小模型 Variance。
 
-**6**. 正则化。
+      Boosting：串行化模型生成，减小模型 Bias。
 
-    - L0正则化（非0元素个数），难以优化求解（NP-Hard）。
+#. 正则化
+    - L0 正则化（非 0 元素个数），难以优化求解（NP-Hard）。
 
-    - L1正则化（元素绝对值之和， Lasso regression），是L0范数的最优凸近似，使权值稀疏。权值稀疏的好处：特征选择 && 可解释性。
+    - L1正则化（元素绝对值之和， Lasso Regression），是 L0 范数的最优凸近似，使权值稀疏。权值稀疏的好处：特征选择 && 可解释性。
 
-    - L2正则化（元素平方和，Ridge regression / weight dacay），使权值分布均匀且值较小。
+    - L2正则化（元素平方和，Ridge Regression / Weight Dacay），使权值分布均匀且值较小。
 
 
-dropout 的 numpy 实现
+Dropout 的 numpy 实现
 -----------------------------
 
 前向传播：生成 mask，乘以当前层的激活函数输出。新的输出需要除以 keep_prob，保证能量一致。
@@ -184,7 +188,6 @@ dropout 的 numpy 实现
 
         return gradients
 
-|
 
 附：正则化
 ----------------
@@ -201,15 +204,15 @@ dropout 的 numpy 实现
   :width: 400px
   :align: center
 
-我们通常只对权重（weight）做正则惩罚，而不对偏置（bias）做正则惩罚。精确拟合偏置所需的数据通常比拟合权重少得多。每个权重会指定两个变量（前层-后层）
+我们通常只对权重（Weight）做正则惩罚，而不对偏置（Bias）做正则惩罚。精确拟合偏置所需的数据通常比拟合权重少得多。每个权重会指定两个变量（前层-后层）
 如何相互作用，我们需要在各种条件下观察这两个变量才能良好地拟合权重；而每个偏置仅控制一个单变量（后层），这意味着：即使不对其进行正则化也不会导致太大的方差。
 另外，对偏置进行正则化可能导致明显的欠拟合。
 
-No Free Lunch Theorem
+`No Free Lunch Theorem <https://en.wikipedia.org/wiki/No_free_lunch_theorem>`_
   没有一个机器学习算法总是比其他算法好。这意味着机器学习研究不是要找一个通用的学习算法或是最好的学习算法，而是理解
   什么样的分布与人工智能获取的经验分布相关，以及什么样的学习算法在我们关注的数据分布上效果更好。
 
-Occam's Razor
+`Occam's Razor <https://en.wikipedia.org/wiki/Occam%27s_razor>`_
   如果关于同一个问题有许多种理论，每一种都能作出同样准确的预言，那么应该挑选其中使用假定最少的。尽管越复杂的方法通常能做出越好的预言，但是在不考虑预言能力（即结果大致相同）的情况下，假设越少越好。
 
 

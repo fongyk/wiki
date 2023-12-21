@@ -8,13 +8,13 @@
     :align: center
     :width: 360px
 
-样本空间中任意点到超平面的距离（几何间隔，Geometric margin）为：
+样本空间中任意点到超平面的距离（几何间隔，Geometric Margin）为：
 
 .. math::
 
   r = \frac{|w^{\top} x + b|}{\| w \|}.
 
-函数间隔（Functional margin）：
+函数间隔（Functional Margin）：
 
 .. math::
 
@@ -24,8 +24,8 @@
 
 .. math::
 
-  \underset{w,b}{min} &\  \frac{1}{2} \left \| w \right \|^2 \\
-  s.t. &\  y_i(w^{\top} x_i + b) \geqslant 1, i=1,2,...,m
+  \underset{w,b}{\mathrm{min}} &\  \frac{1}{2} \left \| w \right \|^2 \\
+  \mathrm{s.t.} &\  y_i(w^{\top} x_i + b) \geqslant 1, i=1,2,...,m
 
 拉格朗日函数：
 
@@ -37,13 +37,13 @@
 
 .. math::
 
-  \underset{w,b}{min}(\underset{\alpha \geqslant 0}{max}L(w,b,\alpha))
+  \underset{w,b}{\mathrm{min}}(\underset{\alpha \geqslant 0}{\mathrm{max}}L(w,b,\alpha))
 
 对偶问题：
 
 .. math::
 
-  \underset{\alpha \geqslant 0}{max}(\underset{w,b}{min}L(w,b,\alpha))
+  \underset{\alpha \geqslant 0}{\mathrm{max}}(\underset{w,b}{\mathrm{min}}L(w,b,\alpha))
 
 令 :math:`L` 对  :math:`w` 和  :math:`b` 的偏导为 0 得：
 
@@ -56,8 +56,8 @@
 
 .. math::
 
-  \underset{\alpha \geqslant 0}{max} & \  \sum_{i=1}^m\alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y_i y_j x_i^{\top} x_j,\\
-  s.t.  & \  \sum_{i=1}^m \alpha_i y_i = 0,\\
+  \underset{\alpha \geqslant 0}{\mathrm{max}} & \  \sum_{i=1}^m\alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y_i y_j x_i^{\top} x_j,\\
+  \mathrm{s.t.}  & \  \sum_{i=1}^m \alpha_i y_i = 0,\\
         & \  \alpha_i \geqslant 0, \ i=1,2,...,m.
 
 
@@ -79,8 +79,8 @@ KKT条件：
 
 .. math::
 
-  \underset{w,b,\xi_i}{min} &\  \frac{1}{2} \left \| w \right \|^2 + C \sum_{i=1}^m \xi_i \\
-  s.t. &\  y_i(w^{\top} x_i + b) \geqslant 1 - \xi_i \\
+  \underset{w,b,\xi_i}{\mathrm{min}} &\  \frac{1}{2} \left \| w \right \|^2 + C \sum_{i=1}^m \xi_i \\
+  \mathrm{s.t.} &\  y_i(w^{\top} x_i + b) \geqslant 1 - \xi_i \\
        &\ \xi_i \geqslant 0,\ i=1,2,...,m
 
 拉格朗日函数：
@@ -101,8 +101,8 @@ KKT条件：
 
 .. math::
 
- \underset{\alpha \geqslant 0}{max} & \  \sum_{i=1}^m\alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y_i y_j x_i^{\top} x_j,\\
- s.t.  & \  \sum_{i=1}^m \alpha_i y_i = 0,\\
+ \underset{\alpha \geqslant 0}{\mathrm{max}} & \  \sum_{i=1}^m\alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y_i y_j x_i^{\top} x_j,\\
+ \mathrm{s.t.}  & \  \sum_{i=1}^m \alpha_i y_i = 0,\\
        & \  0 \leqslant \alpha_i \leqslant C, \ i=1,2,...,m.
 
 
@@ -144,8 +144,8 @@ KKT条件：
 
     - 线性核：:math:`\kappa(x_i, x_j) = x_i^{\top}x_j`
     - 多项式核：:math:`\kappa(x_i, x_j) = (x_i^{\top}x_j)^d`
-    - 高斯核：:math:`\kappa(x_i, x_j) = exp(-\frac{\| x_i - x_j \|^2}{2 \sigma^2})`
-    - 拉普拉斯核：:math:`\kappa(x_i, x_j) = exp(-\frac{\| x_i - x_j \|}{\sigma})`
+    - 高斯核：:math:`\kappa(x_i, x_j) = \mathrm{exp}(-\frac{\| x_i - x_j \|^2}{2 \sigma^2})`
+    - 拉普拉斯核：:math:`\kappa(x_i, x_j) = \mathrm{exp}(-\frac{\| x_i - x_j \|}{\sigma})`
 
   - 主要使用线性核，高斯核（RBF）。
 
@@ -161,12 +161,14 @@ KKT条件：
 
 2. 一对多（ :math:`O(N)` ）
 
-3. 使用多分类loss
+3. 使用多分类 Loss
 
 SVM库
 -----------
 
-sklearn, libsvm
+- sklearn
+  
+- libsvm
 
 
 优缺点
@@ -177,12 +179,12 @@ sklearn, libsvm
 
   - 它是凸优化问题，可得到全局最优。
 
-  - SVM在小样本训练集上可得到比其他方法好的结果。
+  - SVM 在小样本训练集上可得到比其他方法好的结果。
 
   - 利用核函数，可借助线性可分问题的求解方法，直接求解对应高维空间的问题。
 
 缺点
-  - SVM对缺失特征敏感。
+  - SVM 对缺失特征敏感。
 
   - 如何确定核函数？
 
@@ -202,8 +204,8 @@ sklearn, libsvm
   - 解的过程可以引入核函数。
 
 
-SVM与LR的异同
------------------
+SVM 与 LR 的异同
+-------------------
 
 相同点：
 
@@ -217,15 +219,15 @@ SVM与LR的异同
 
 不同点：
 
-  - 本质不同：loss function不同
+  - 本质不同：Loss Function不同
 
-  - SVM只有支持向量影响模型，LR中每个样本都有作用。
+  - SVM 只有支持向量影响模型，LR 中每个样本都有作用。
 
-  - SVM针对线性不可分问题有核函数。
+  - SVM 针对线性不可分问题有核函数。
 
-  - SVM依赖样本间的距离测度，样本特征需要归一化，也就是说SVM基于距离，LR基于概率。
+  - SVM 依赖样本间的距离测度，样本特征需要归一化，也就是说 SVM 基于距离，LR 基于概率。
 
-  - SVM是 **结构风险最小化** 算法（在训练误差和模型复杂度之间的折中，防止过拟合，从而达到真实误差最小化），因为SVM自带正则（ :math:`\left \| w \right \|^2` ）。
+  - SVM 是 **结构风险最小化** 算法（在训练误差和模型复杂度之间的折中，防止过拟合，从而达到真实误差最小化），因为 SVM 自带正则（ :math:`\left \| w \right \|^2` ）。
 
 参考资料
 --------------

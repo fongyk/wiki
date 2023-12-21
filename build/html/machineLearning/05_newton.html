@@ -108,7 +108,7 @@
              
   <section id="id1">
 <h1><span class="section-number">5. </span>牛顿方法<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
-<p>牛顿方法（Newton’s method, Newton-Raphson method）可以有效地近似实值函数的根。</p>
+<p>牛顿方法（Newton’s Method, Newton-Raphson Method）可以有效地近似实值函数的根。</p>
 <section id="id2">
 <h2><span class="section-number">5.1. </span>一维<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <div class="math notranslate nohighlight">
@@ -123,7 +123,7 @@ x &amp; \in \ \mathbb{R}^k,\\
 F &amp; : \ \mathbb{R}^k \rightarrow \mathbb{R}^k, \\
 J &amp; \in \ \mathbb{R}^{k \times k}, [\text{Jacobian matrix}] \\
 J_{ij} &amp;= \ \frac{\partial F_i}{\partial x_j}.  \\\end{split}\]</div>
-<p>由于求解 Jacobian matrix 的逆复杂度较高，因此可以通过求解以下等式来节省时间开销：</p>
+<p>由于求解 Jacobian Matrix 的逆复杂度较高，因此可以通过求解以下等式来节省时间开销：</p>
 <div class="math notranslate nohighlight">
 \[J \cdot (x_{n+1} - x_n) = -F(x_n).\]</div>
 </section>
@@ -132,7 +132,7 @@ J_{ij} &amp;= \ \frac{\partial F_i}{\partial x_j}.  \\\end{split}\]</div>
 <ul>
 <li><p>初始点问题</p>
 <ul>
-<li><p>导数为0，出现除0操作</p>
+<li><p>导数为 0，出现除 0 操作</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}f(x) &amp;=\  1 - x^2,\\
 x_0 &amp;=\  0, \\
@@ -166,13 +166,13 @@ H_{ij} &amp;=\ \frac{\partial^2 F}{\partial x_i \ \partial x_j}. [\text{Hessian 
 </li>
 </ul>
 </li>
-<li><p>求倒数（reciprocal）</p>
+<li><p>求倒数（Reciprocal）</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}f(x) &amp;=\  a - \frac{1}{x},\\
 x_{n+1} &amp;=\ x_n - \frac{f(x_n)}{f^{\prime}(x_n)} \\
  &amp;=\ x_n (2 - a x_n).\end{split}\]</div>
 </li>
-<li><p>开根号（sqrt）</p>
+<li><p>开根号（Sqrt）</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}f(x) &amp;=\  x^2 - a,\\
 x_{n+1} &amp;=\ x_n - \frac{f(x_n)}{f^{\prime}(x_n)} \\

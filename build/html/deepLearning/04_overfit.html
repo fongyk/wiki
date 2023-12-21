@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>4. 过拟合 &mdash; fong alpha documentation</title>
+  <title>8. 过拟合 &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -23,8 +23,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5. pytorch：模型保存与读取" href="05_modelSave.html" />
-    <link rel="prev" title="3. Batch Normalization" href="03_batchnorm.html" /> 
+    <link rel="next" title="9. 反向传播" href="07_backprop.html" />
+    <link rel="prev" title="7. Batch Normalization" href="03_batchnorm.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -55,25 +55,25 @@
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">深度学习</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="01_dataParallel.html">1. pytorch：多GPU模式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02_activationFunction.html">2. 激活函数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03_batchnorm.html">3. Batch Normalization</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">4. 过拟合</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">4.1. 表现</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">4.2. 原因</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">4.3. 解决方案</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dropout-numpy">4.4. dropout 的 numpy 实现</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">4.5. 附：正则化</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id6">4.6. 参考资料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01_dataParallel.html">1. pytorch：多 GPU 模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">2. pytorch：模型保存与读取</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">3. pytorch：cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_addModule.html">4. pytorch：Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_nograd.html">5. pytorch：no_grad()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_activationFunction.html">6. 激活函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_batchnorm.html">7. Batch Normalization</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">8. 过拟合</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">8.1. 表现</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">8.2. 原因</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">8.3. 解决方案</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dropout-numpy">8.4. Dropout 的 numpy 实现</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">8.5. 附：正则化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">8.6. 参考资料</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">5. pytorch：模型保存与读取</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">6. pytorch: cuda</a></li>
-<li class="toctree-l2"><a class="reference internal" href="07_backprop.html">7. 反向传播</a></li>
-<li class="toctree-l2"><a class="reference internal" href="08_optimizer.html">8. 优化算法</a></li>
-<li class="toctree-l2"><a class="reference internal" href="09_addModule.html">9. pytorch：Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="10_receptivaField.html">10. 特征图与感受野</a></li>
-<li class="toctree-l2"><a class="reference internal" href="11_nograd.html">11. pytorch：no_grad()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_backprop.html">9. 反向传播</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_optimizer.html">10. 优化算法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_receptivaField.html">11. 特征图与感受野</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12_dml.html">12. Deep Metric Learning</a></li>
 </ul>
 </li>
@@ -102,7 +102,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">深度学习</a> &raquo;</li>
-      <li><span class="section-number">4. </span>过拟合</li>
+      <li><span class="section-number">8. </span>过拟合</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/deepLearning/04_overfit.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -113,38 +113,54 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">4. </span>过拟合<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">8. </span>过拟合<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
 <p>复杂的模型将训练数据的抽样误差考虑在内，对抽样误差也进行了拟合。过拟合的模型可以看成是完全记忆型模型。</p>
 <section id="id2">
-<h2><span class="section-number">4.1. </span>表现<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">8.1. </span>表现<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <p>训练误差小，测试误差大，泛化能力差。</p>
 </section>
 <section id="id3">
-<h2><span class="section-number">4.2. </span>原因<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">8.2. </span>原因<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>训练集大小与模型复杂度不匹配；</p></li>
 <li><p>样本的噪声太大甚至掩盖了真实样本的分布规律；</p></li>
-<li><p>训练迭代次数太多（over-training）。</p></li>
+<li><p>训练迭代次数太多（Over-Training）。</p></li>
 </ul>
 </section>
 <section id="id4">
-<h2><span class="section-number">4.3. </span>解决方案<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
-<p><strong>1</strong>. 调小模型复杂度。</p>
-<p><strong>2</strong>. data augmentation.</p>
-<p><strong>3</strong>. dropout. dropout 随机屏蔽了部分神经元的前向和反向传播，有利于保持神经元的独立性；由于每次迭代都屏蔽不同神经元，因此模型的训练过程可以看作是多个模型的集成。</p>
-<p><strong>4</strong>. early stopping. 记录观察validation accuracy，及时停止训练。</p>
-<p><strong>5</strong>. 集成学习。Bagging：并行化模型生成，减小模型variance。Boosting：串行化模型生成，减小模型bias。</p>
-<p><strong>6</strong>. 正则化。</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>L0正则化（非0元素个数），难以优化求解（NP-Hard）。</p></li>
-<li><p>L1正则化（元素绝对值之和， Lasso regression），是L0范数的最优凸近似，使权值稀疏。权值稀疏的好处：特征选择 &amp;&amp; 可解释性。</p></li>
-<li><p>L2正则化（元素平方和，Ridge regression / weight dacay），使权值分布均匀且值较小。</p></li>
+<h2><span class="section-number">8.3. </span>解决方案<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<ol class="arabic">
+<li><p><strong>调小模型复杂度</strong></p></li>
+<li><p><strong>Data Augmentation</strong></p></li>
+<li><dl class="simple">
+<dt>Dropout</dt><dd><p>Dropout 随机屏蔽了部分神经元的前向和反向传播，有利于保持神经元的独立性；由于每次迭代都屏蔽不同神经元，因此模型的训练过程可以看作是多个模型的集成。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Early Stopping</dt><dd><p>记录观察 Validation Accuracy，及时停止训练。</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>集成学习</dt><dd><p>Bagging：并行化模型生成，减小模型 Variance。</p>
+<p>Boosting：串行化模型生成，减小模型 Bias。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>正则化</dt><dd><ul class="simple">
+<li><p>L0 正则化（非 0 元素个数），难以优化求解（NP-Hard）。</p></li>
+<li><p>L1正则化（元素绝对值之和， Lasso Regression），是 L0 范数的最优凸近似，使权值稀疏。权值稀疏的好处：特征选择 &amp;&amp; 可解释性。</p></li>
+<li><p>L2正则化（元素平方和，Ridge Regression / Weight Dacay），使权值分布均匀且值较小。</p></li>
 </ul>
-</div></blockquote>
+</dd>
+</dl>
+</li>
+</ol>
 </section>
 <section id="dropout-numpy">
-<h2><span class="section-number">4.4. </span>dropout 的 numpy 实现<a class="headerlink" href="#dropout-numpy" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">8.4. </span>Dropout 的 numpy 实现<a class="headerlink" href="#dropout-numpy" title="Permalink to this headline"></a></h2>
 <p>前向传播：生成 mask，乘以当前层的激活函数输出。新的输出需要除以 keep_prob，保证能量一致。</p>
 <p>反向传播：也要关闭 mask 对应的神经元，同样也需要除以 keep_prob。</p>
 <div class="toggle docutils container">
@@ -278,29 +294,26 @@
 </pre></div>
 </div>
 </div>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
 </section>
 <section id="id5">
-<h2><span class="section-number">4.5. </span>附：正则化<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">8.5. </span>附：正则化<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
 <div class="math notranslate nohighlight">
 \[L_q\text{-norm}: \ \| w \|^q_q = \sum_j | w_j |^q.\]</div>
 <a class="reference internal image-reference" href="../_images/04_norm.jpg"><img alt="../_images/04_norm.jpg" class="align-center" src="../_images/04_norm.jpg" style="width: 600px;" /></a>
 <a class="reference internal image-reference" href="../_images/04_norm2.jpg"><img alt="../_images/04_norm2.jpg" class="align-center" src="../_images/04_norm2.jpg" style="width: 400px;" /></a>
-<p>我们通常只对权重（weight）做正则惩罚，而不对偏置（bias）做正则惩罚。精确拟合偏置所需的数据通常比拟合权重少得多。每个权重会指定两个变量（前层-后层）
+<p>我们通常只对权重（Weight）做正则惩罚，而不对偏置（Bias）做正则惩罚。精确拟合偏置所需的数据通常比拟合权重少得多。每个权重会指定两个变量（前层-后层）
 如何相互作用，我们需要在各种条件下观察这两个变量才能良好地拟合权重；而每个偏置仅控制一个单变量（后层），这意味着：即使不对其进行正则化也不会导致太大的方差。
 另外，对偏置进行正则化可能导致明显的欠拟合。</p>
 <dl class="simple">
-<dt>No Free Lunch Theorem</dt><dd><p>没有一个机器学习算法总是比其他算法好。这意味着机器学习研究不是要找一个通用的学习算法或是最好的学习算法，而是理解
+<dt><a class="reference external" href="https://en.wikipedia.org/wiki/No_free_lunch_theorem">No Free Lunch Theorem</a></dt><dd><p>没有一个机器学习算法总是比其他算法好。这意味着机器学习研究不是要找一个通用的学习算法或是最好的学习算法，而是理解
 什么样的分布与人工智能获取的经验分布相关，以及什么样的学习算法在我们关注的数据分布上效果更好。</p>
 </dd>
-<dt>Occam’s Razor</dt><dd><p>如果关于同一个问题有许多种理论，每一种都能作出同样准确的预言，那么应该挑选其中使用假定最少的。尽管越复杂的方法通常能做出越好的预言，但是在不考虑预言能力（即结果大致相同）的情况下，假设越少越好。</p>
+<dt><a class="reference external" href="https://en.wikipedia.org/wiki/Occam%27s_razor">Occam’s Razor</a></dt><dd><p>如果关于同一个问题有许多种理论，每一种都能作出同样准确的预言，那么应该挑选其中使用假定最少的。尽管越复杂的方法通常能做出越好的预言，但是在不考虑预言能力（即结果大致相同）的情况下，假设越少越好。</p>
 </dd>
 </dl>
 </section>
 <section id="id6">
-<h2><span class="section-number">4.6. </span>参考资料<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">8.6. </span>参考资料<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>深度学习（Deep Learning）基础概念8：L2正则化（L2 Regularization）、Dropout原理及其python实现</p></li>
 </ol>
@@ -314,8 +327,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="03_batchnorm.html" class="btn btn-neutral float-left" title="3. Batch Normalization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="05_modelSave.html" class="btn btn-neutral float-right" title="5. pytorch：模型保存与读取" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="03_batchnorm.html" class="btn btn-neutral float-left" title="7. Batch Normalization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="07_backprop.html" class="btn btn-neutral float-right" title="9. 反向传播" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

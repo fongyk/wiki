@@ -63,7 +63,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#svm">2.5. SVM库</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id6">2.6. 优缺点</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id7">2.7. 解析</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#svmlr">2.8. SVM与LR的异同</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#svm-lr">2.8. SVM 与 LR 的异同</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id8">2.9. 参考资料</a></li>
 </ul>
 </li>
@@ -115,33 +115,33 @@
 <section id="id2">
 <h2><span class="section-number">2.1. </span>最大间隔划分超平面<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <a class="reference internal image-reference" href="../_images/02_margin.png"><img alt="../_images/02_margin.png" class="align-center" src="../_images/02_margin.png" style="width: 360px;" /></a>
-<p>样本空间中任意点到超平面的距离（几何间隔，Geometric margin）为：</p>
+<p>样本空间中任意点到超平面的距离（几何间隔，Geometric Margin）为：</p>
 <div class="math notranslate nohighlight">
 \[r = \frac{|w^{\top} x + b|}{\| w \|}.\]</div>
-<p>函数间隔（Functional margin）：</p>
+<p>函数间隔（Functional Margin）：</p>
 <div class="math notranslate nohighlight">
 \[y(w^{\top} x + b).\]</div>
 <p>原始问题：</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\underset{w,b}{min} &amp;\  \frac{1}{2} \left \| w \right \|^2 \\
-s.t. &amp;\  y_i(w^{\top} x_i + b) \geqslant 1, i=1,2,...,m\end{split}\]</div>
+\[\begin{split}\underset{w,b}{\mathrm{min}} &amp;\  \frac{1}{2} \left \| w \right \|^2 \\
+\mathrm{s.t.} &amp;\  y_i(w^{\top} x_i + b) \geqslant 1, i=1,2,...,m\end{split}\]</div>
 <p>拉格朗日函数：</p>
 <div class="math notranslate nohighlight">
 \[L(w,b,\alpha) = \frac{1}{2}w^{\top}w + \sum_{i=1}^m \alpha_i(1 - y_i(w^{\top} x_i + b))\]</div>
 <p>目标函数：</p>
 <div class="math notranslate nohighlight">
-\[\underset{w,b}{min}(\underset{\alpha \geqslant 0}{max}L(w,b,\alpha))\]</div>
+\[\underset{w,b}{\mathrm{min}}(\underset{\alpha \geqslant 0}{\mathrm{max}}L(w,b,\alpha))\]</div>
 <p>对偶问题：</p>
 <div class="math notranslate nohighlight">
-\[\underset{\alpha \geqslant 0}{max}(\underset{w,b}{min}L(w,b,\alpha))\]</div>
+\[\underset{\alpha \geqslant 0}{\mathrm{max}}(\underset{w,b}{\mathrm{min}}L(w,b,\alpha))\]</div>
 <p>令 <span class="math notranslate nohighlight">\(L\)</span> 对  <span class="math notranslate nohighlight">\(w\)</span> 和  <span class="math notranslate nohighlight">\(b\)</span> 的偏导为 0 得：</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}w &amp;=\ \sum_{i=1}^m \alpha_i y_i x_i,\\
 0 &amp;=\ \sum_{i=1}^m \alpha_i y_i.\end{split}\]</div>
 <p>对偶问题变成：</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\underset{\alpha \geqslant 0}{max} &amp; \  \sum_{i=1}^m\alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y_i y_j x_i^{\top} x_j,\\
-s.t.  &amp; \  \sum_{i=1}^m \alpha_i y_i = 0,\\
+\[\begin{split}\underset{\alpha \geqslant 0}{\mathrm{max}} &amp; \  \sum_{i=1}^m\alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y_i y_j x_i^{\top} x_j,\\
+\mathrm{s.t.}  &amp; \  \sum_{i=1}^m \alpha_i y_i = 0,\\
       &amp; \  \alpha_i \geqslant 0, \ i=1,2,...,m.\end{split}\]</div>
 <p>KKT条件：</p>
 <div class="math notranslate nohighlight">
@@ -154,8 +154,8 @@ s.t.  &amp; \  \sum_{i=1}^m \alpha_i y_i = 0,\\
 <p>引入松弛变量 <span class="math notranslate nohighlight">\(\xi_i \geqslant 0\)</span> ，用以表征样本不满足约束的程度。</p>
 <p>原始问题：</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\underset{w,b,\xi_i}{min} &amp;\  \frac{1}{2} \left \| w \right \|^2 + C \sum_{i=1}^m \xi_i \\
-s.t. &amp;\  y_i(w^{\top} x_i + b) \geqslant 1 - \xi_i \\
+\[\begin{split}\underset{w,b,\xi_i}{\mathrm{min}} &amp;\  \frac{1}{2} \left \| w \right \|^2 + C \sum_{i=1}^m \xi_i \\
+\mathrm{s.t.} &amp;\  y_i(w^{\top} x_i + b) \geqslant 1 - \xi_i \\
      &amp;\ \xi_i \geqslant 0,\ i=1,2,...,m\end{split}\]</div>
 <p>拉格朗日函数：</p>
 <div class="math notranslate nohighlight">
@@ -167,8 +167,8 @@ s.t. &amp;\  y_i(w^{\top} x_i + b) \geqslant 1 - \xi_i \\
 C &amp;=\ \alpha_i + \mu_i.\end{split}\]</div>
 <p>对偶问题：</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\underset{\alpha \geqslant 0}{max} &amp; \  \sum_{i=1}^m\alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y_i y_j x_i^{\top} x_j,\\
-s.t.  &amp; \  \sum_{i=1}^m \alpha_i y_i = 0,\\
+\[\begin{split}\underset{\alpha \geqslant 0}{\mathrm{max}} &amp; \  \sum_{i=1}^m\alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y_i y_j x_i^{\top} x_j,\\
+\mathrm{s.t.}  &amp; \  \sum_{i=1}^m \alpha_i y_i = 0,\\
       &amp; \  0 \leqslant \alpha_i \leqslant C, \ i=1,2,...,m.\end{split}\]</div>
 <p>KKT条件：</p>
 <div class="math notranslate nohighlight">
@@ -206,8 +206,8 @@ s.t.  &amp; \  \sum_{i=1}^m \alpha_i y_i = 0,\\
 <ul class="simple">
 <li><p>线性核：<span class="math notranslate nohighlight">\(\kappa(x_i, x_j) = x_i^{\top}x_j\)</span></p></li>
 <li><p>多项式核：<span class="math notranslate nohighlight">\(\kappa(x_i, x_j) = (x_i^{\top}x_j)^d\)</span></p></li>
-<li><p>高斯核：<span class="math notranslate nohighlight">\(\kappa(x_i, x_j) = exp(-\frac{\| x_i - x_j \|^2}{2 \sigma^2})\)</span></p></li>
-<li><p>拉普拉斯核：<span class="math notranslate nohighlight">\(\kappa(x_i, x_j) = exp(-\frac{\| x_i - x_j \|}{\sigma})\)</span></p></li>
+<li><p>高斯核：<span class="math notranslate nohighlight">\(\kappa(x_i, x_j) = \mathrm{exp}(-\frac{\| x_i - x_j \|^2}{2 \sigma^2})\)</span></p></li>
+<li><p>拉普拉斯核：<span class="math notranslate nohighlight">\(\kappa(x_i, x_j) = \mathrm{exp}(-\frac{\| x_i - x_j \|}{\sigma})\)</span></p></li>
 </ul>
 </li>
 <li><p>主要使用线性核，高斯核（RBF）。</p></li>
@@ -221,12 +221,15 @@ s.t.  &amp; \  \sum_{i=1}^m \alpha_i y_i = 0,\\
 <ol class="arabic simple">
 <li><p>一对一（ <span class="math notranslate nohighlight">\(O(N^2)\)</span> ）</p></li>
 <li><p>一对多（ <span class="math notranslate nohighlight">\(O(N)\)</span> ）</p></li>
-<li><p>使用多分类loss</p></li>
+<li><p>使用多分类 Loss</p></li>
 </ol>
 </section>
 <section id="svm">
 <h2><span class="section-number">2.5. </span>SVM库<a class="headerlink" href="#svm" title="Permalink to this headline"></a></h2>
-<p>sklearn, libsvm</p>
+<ul class="simple">
+<li><p>sklearn</p></li>
+<li><p>libsvm</p></li>
+</ul>
 </section>
 <section id="id6">
 <h2><span class="section-number">2.6. </span>优缺点<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
@@ -234,12 +237,12 @@ s.t.  &amp; \  \sum_{i=1}^m \alpha_i y_i = 0,\\
 <dt>优点</dt><dd><ul class="simple">
 <li><p>基于结构风险最小化，泛化能力强（自带正则化， <span class="math notranslate nohighlight">\(\left \| w \right \|^2\)</span> ）。</p></li>
 <li><p>它是凸优化问题，可得到全局最优。</p></li>
-<li><p>SVM在小样本训练集上可得到比其他方法好的结果。</p></li>
+<li><p>SVM 在小样本训练集上可得到比其他方法好的结果。</p></li>
 <li><p>利用核函数，可借助线性可分问题的求解方法，直接求解对应高维空间的问题。</p></li>
 </ul>
 </dd>
 <dt>缺点</dt><dd><ul class="simple">
-<li><p>SVM对缺失特征敏感。</p></li>
+<li><p>SVM 对缺失特征敏感。</p></li>
 <li><p>如何确定核函数？</p></li>
 <li><p>求解问题的二次规划，耗时耗存储。</p></li>
 </ul>
@@ -264,8 +267,8 @@ s.t.  &amp; \  \sum_{i=1}^m \alpha_i y_i = 0,\\
 </ul>
 </div></blockquote>
 </section>
-<section id="svmlr">
-<h2><span class="section-number">2.8. </span>SVM与LR的异同<a class="headerlink" href="#svmlr" title="Permalink to this headline"></a></h2>
+<section id="svm-lr">
+<h2><span class="section-number">2.8. </span>SVM 与 LR 的异同<a class="headerlink" href="#svm-lr" title="Permalink to this headline"></a></h2>
 <p>相同点：</p>
 <blockquote>
 <div><ul class="simple">
@@ -278,11 +281,11 @@ s.t.  &amp; \  \sum_{i=1}^m \alpha_i y_i = 0,\\
 <p>不同点：</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>本质不同：loss function不同</p></li>
-<li><p>SVM只有支持向量影响模型，LR中每个样本都有作用。</p></li>
-<li><p>SVM针对线性不可分问题有核函数。</p></li>
-<li><p>SVM依赖样本间的距离测度，样本特征需要归一化，也就是说SVM基于距离，LR基于概率。</p></li>
-<li><p>SVM是 <strong>结构风险最小化</strong> 算法（在训练误差和模型复杂度之间的折中，防止过拟合，从而达到真实误差最小化），因为SVM自带正则（ <span class="math notranslate nohighlight">\(\left \| w \right \|^2\)</span> ）。</p></li>
+<li><p>本质不同：Loss Function不同</p></li>
+<li><p>SVM 只有支持向量影响模型，LR 中每个样本都有作用。</p></li>
+<li><p>SVM 针对线性不可分问题有核函数。</p></li>
+<li><p>SVM 依赖样本间的距离测度，样本特征需要归一化，也就是说 SVM 基于距离，LR 基于概率。</p></li>
+<li><p>SVM 是 <strong>结构风险最小化</strong> 算法（在训练误差和模型复杂度之间的折中，防止过拟合，从而达到真实误差最小化），因为 SVM 自带正则（ <span class="math notranslate nohighlight">\(\left \| w \right \|^2\)</span> ）。</p></li>
 </ul>
 </div></blockquote>
 </section>

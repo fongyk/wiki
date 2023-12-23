@@ -44,7 +44,7 @@ MAE
 
 1. 对原始输入图片切分 Patch ；
 2. 对 Patch 进行随机采样，采样出约 75% 比例的 Patch ，对这些 Patch 做 Mask 处理；
-3. 对非 Mask 的 Patch ，将其转变为 Emebdding ，同时添加位置编码。然后将其送入 Encoder 部分，让 Encoder 从中提取图像的高语义信息。
+3. 对非 Mask 的 Patch ，将其转变为 Emebdding ，同时添加位置编码，然后将其送入 Encoder 部分，让 Encoder 从中提取图像的高语义信息。
 4. 对于 Encoder 部分的输出，按顺序将原来 Mask 的 Patch 拼接上去，同时添加位置编码，送入 Decoder 进行训练。注意此时是用同一个可训练的 Embedding 来表示所有被 Mask 的 Patch 。
 5. Decoder 部分将做像素级别的预测，对原始图像结果进行重建，使用 MSE Loss 计算预测像素值和真实像素值之间的误差。
 6. 训练完毕后，就可以把 Decoder 移开，拿 Encoder 部分做特征提取器，然后继续做别的下游任务了。
@@ -106,12 +106,11 @@ SimCLR 做了两次非线性映射（Encoder 和 Projector），可能是如下�
 
 `MoCo v2 <https://arxiv.org/pdf/2003.04297.pdf>`_ 的图像增强方法、Encoder、Projector、相似性计算方法以及 InfoNCE 损失函数和 SimCLR 基本一致。最主要的特点和创新在于：
 
-- MoCo v2 的下分枝模型参数更新，则采用了动量更新（Momentum Update）机制。
-    缓慢地更新模型参数（ :math:`m` 接近 1.0 ），对队列中来自不同 Batch 的实例表征编码的改变会相对稳定而统一，增加了表示空间的一致性。
+- MoCo v2 的下分枝模型参数更新，则采用了动量更新（Momentum Update）机制。缓慢地更新模型参数（ :math:`m` 接近 1.0 ），对队列中来自不同 Batch 的实例表征编码的改变会相对稳定而统一，增加了表示空间的一致性。
 
-    .. math::
+.. math::
 
-        \theta_k \leftarrow m \theta_k + (1 - m) \theta_q
+    \theta_k \leftarrow m \theta_k + (1 - m) \theta_q
 
 - MoCo v2 维护了一个较大的负例队列，当需要在正例和负例之间进行对比计算时，就从这个负例队列里取 K 个，已经不局限于 Batch Size 的限制了。
 
@@ -144,7 +143,7 @@ SwAV 维护了一些 Prototypes（聚类中心， :math:`C \in \mathbb{R}^{D \ti
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: ./15_byol.png
-    :width: 500 px
+    :width: 700 px
     :align: center
 
 BYOL 有两个不对称分支：Online 和 Target。Online 分支新增了一个非线性变换模块 Predictor；Target 依然采用动量更新结构。但是 BYOL 不用负例，所以并不需要维护负例队列。

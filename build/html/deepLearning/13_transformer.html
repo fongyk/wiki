@@ -192,7 +192,7 @@ Multi-Head Attention时间复杂度也是 <span class="math notranslate nohighli
 <a class="reference internal image-reference" href="../_images/13_vit.png"><img alt="../_images/13_vit.png" class="align-center" src="../_images/13_vit.png" style="width: 600px;" /></a>
 <p>ViT将输入图片分为多个 Patch，再将每个 Patch 投影为固定长度的向量（Patch Embedding）送入 Transformer，后续 Encoder 的操作和原始 Transformer 中完全相同。
 对于图像分类任务，在输入序列中加入一个特殊的 Token，它对应的输出即为最后的类别预测。</p>
-<p>但是当训练数据集不够大的时候，ViT 的表现通常比同等大小的 ResNet 要差一些，因为 Transformer 和 CNN 相比缺少归纳偏置（Inductive Bias），即一种先验知识/提前做好的假设。
+<p>当训练数据集不够大的时候，ViT 的表现通常比同等大小的 ResNet 要差一些，因为 Transformer 和 CNN 相比缺少归纳偏置（Inductive Bias），即一种先验知识/提前做好的假设。
 CNN 具有两种归纳偏置：</p>
 <ul class="simple">
 <li><p>局部性（Locality/Two-dimensional Neighborhood Structure），即图片上相邻的区域具有相似的特征；</p></li>

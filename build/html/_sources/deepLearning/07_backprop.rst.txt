@@ -135,7 +135,7 @@
 
   \mathcal{L} = - \sum_{j=1}^{C_n} y_j \ln \hat{y}_j, \\
   y_j \in \{ 0,1 \}, \\
-  \hat{y}_j = \mathrm{softmax}(\mathbb{a}^{(n)}, j) = \frac{e^{a^{(n)}_j}}{\sum_{k=1}^{C_n} e^{a^{(n)}_k}}.
+  \hat{y}_j = \mathrm{softmax}(\mathbf{a}^{(n)}, j) = \frac{e^{a^{(n)}_j}}{\sum_{k=1}^{C_n} e^{a^{(n)}_k}}.
 
 softmax 偏导为：
 

@@ -17,3 +17,6 @@
     08_optimizer.rst
     10_receptivaField.rst
     12_dml.rst
+    13_transformer.rst
+    14_clip.rst
+    15_selfSupervised.rst

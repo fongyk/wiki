@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>13. Transformer &mdash; fong alpha documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="14. 多模态 CLIP 模型" href="14_clip.html" />
+    <link rel="prev" title="12. Deep Metric Learning" href="12_dml.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> fong
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                alpha
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">快速访问</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">深度学习</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_dataParallel.html">1. pytorch：多 GPU 模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">2. pytorch：模型保存与读取</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">3. pytorch：cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_addModule.html">4. pytorch：Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_nograd.html">5. pytorch：no_grad()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_activationFunction.html">6. 激活函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_batchnorm.html">7. Batch Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_overfit.html">8. 过拟合</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_backprop.html">9. 反向传播</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_optimizer.html">10. 优化算法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_receptivaField.html">11. 特征图与感受野</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_dml.html">12. Deep Metric Learning</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">13. Transformer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">13.1. 输入</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#encoder">13.2. Encoder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decoder">13.3. Decoder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self-attention">13.4. Self-Attention</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">计算复杂度</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#layer-normalization">13.5. Layer Normalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cv">13.6. CV 领域的应用</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">ViT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Swin Transformer</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">13.7. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="14_clip.html">14. 多模态 CLIP 模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_selfSupervised.html">15. 自监督学习和对比学习</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recommender/index.html">推荐系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../regularExpression/index.html">正则表达式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cron/index.html">Cron 表达式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">技巧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">深度学习</a> &raquo;</li>
+      <li><span class="section-number">13. </span>Transformer</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/deepLearning/13_transformer.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="transformer">
+<h1><span class="section-number">13. </span>Transformer<a class="headerlink" href="#transformer" title="Permalink to this headline"></a></h1>
+<p><a class="reference external" href="https://arxiv.org/pdf/1706.03762.pdf">Transformer</a> 是一个典型的 Encoder-Decoder 模型，采用完全依赖于注意力机制的架构。</p>
+<a class="reference internal image-reference" href="../_images/13_transformer.png"><img alt="../_images/13_transformer.png" class="align-center" src="../_images/13_transformer.png" style="width: 400px;" /></a>
+<p>Encoder 和 Decoder 均由 6 个 Block 堆叠而成。</p>
+<section id="id2">
+<h2><span class="section-number">13.1. </span>输入<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<p>包括 Input Embedding 和 Positional Encoding（正弦/余弦编码）。</p>
+</section>
+<section id="encoder">
+<h2><span class="section-number">13.2. </span>Encoder<a class="headerlink" href="#encoder" title="Permalink to this headline"></a></h2>
+<p>Encoder 由 3 个子模块构成：</p>
+<ul class="simple">
+<li><p>Multi-Head Self-Attention</p></li>
+<li><p>Layer Normalization</p></li>
+<li><p>Feed Forward Network</p></li>
+</ul>
+</section>
+<section id="decoder">
+<h2><span class="section-number">13.3. </span>Decoder<a class="headerlink" href="#decoder" title="Permalink to this headline"></a></h2>
+<p>Decoder 由 4 个子模块构成：</p>
+<ul class="simple">
+<li><p>Multi-Head Self-Attention</p></li>
+<li><p>Multi-Head Encoder-Dencoder Attention 交互模块</p></li>
+<li><p>Layer Normalization</p></li>
+<li><p>Feed Forward Network</p></li>
+</ul>
+<p>Encoder 端可以并行计算，一次性将输入序列全部 Encoding 出来，但 Decoder 端不是一次性把所有 Token 预测出来的，而是像 seq2seq 一样一个接着一个预测出来的。</p>
+</section>
+<section id="self-attention">
+<h2><span class="section-number">13.4. </span>Self-Attention<a class="headerlink" href="#self-attention" title="Permalink to this headline"></a></h2>
+<a class="reference internal image-reference" href="../_images/13_attention.png"><img alt="../_images/13_attention.png" class="align-center" src="../_images/13_attention.png" style="width: 600px;" /></a>
+<p>在 Self-Attention 中，序列中的每个单词和该序列中其余单词进行 Attention 计算。Self-Attention 的特点在于无视 Token 之间的距离直接计算依赖关系，从而能够学习到序列的内部结构，实现起来也比较简单。引入 Self-Attention 后会更容易捕获句子中长距离的相互依赖的特征。</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{SelfAttention}(Q,K,V) = \mathrm{softmax} \left( \frac{QK^T}{\sqrt{d}} \right)V\]</div>
+<p>其中， <span class="math notranslate nohighlight">\(Q=XW_Q,\ K=XW_K,\ V=XW_V \in \mathbb{R}^{n \times d}\)</span> 。由于这 3 个矩阵都是由输入 <span class="math notranslate nohighlight">\(X\)</span> 得到，因此叫 Self-Attention。</p>
+<p>使用 <span class="math notranslate nohighlight">\(\boldsymbol{q}\)</span> 和 <span class="math notranslate nohighlight">\(\boldsymbol{k}\)</span> 两组向量来计算权重（而不是一组），增加了权重的自由度，权重有可能是非对偶的（即 <span class="math notranslate nohighlight">\(\boldsymbol{q}_i^{\top}\boldsymbol{k}_j \ne \boldsymbol{k}_i^{\top}\boldsymbol{q}_j\)</span> ），增强了模型的表达能力。</p>
+<p>假设两个 <span class="math notranslate nohighlight">\(d\)</span> 维向量的每个分量都是一个相互独立的服从标准正态分布的随机变量，那么他们的点乘方差就是 <span class="math notranslate nohighlight">\(d\)</span> ，对每一个分量除以 <span class="math notranslate nohighlight">\(\sqrt{d}\)</span> 可以让点乘的方差归一化成 1。</p>
+<a class="reference internal image-reference" href="../_images/13_example.png"><img alt="../_images/13_example.png" class="align-center" src="../_images/13_example.png" style="width: 600px;" /></a>
+<p>Multi-Head Attention 相当于 <span class="math notranslate nohighlight">\(h\)</span> 个不同的 Self-Attention 的集成。将模型分为多个头，形成多个子空间，可以让模型去关注不同方面的信息，最后再将各个方面的信息综合起来。类比 CNN 中同时使用多个卷积核的作用，多头的注意力有助于网络捕捉到更丰富的特征/信息。</p>
+<section id="id3">
+<h3>计算复杂度<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
+<p>假设序列长度为 <span class="math notranslate nohighlight">\(n\)</span> ， <span class="math notranslate nohighlight">\(Q,K,V \in \mathbb{R}^{n \times d}\)</span> 。
+Self-Attention 三个步骤的复杂度：</p>
+<ul class="simple">
+<li><p>相似度计算： <span class="math notranslate nohighlight">\(\mathcal{O}(n^2 d)\)</span></p></li>
+<li><p>softmax： <span class="math notranslate nohighlight">\(\mathcal{O}(n^2)\)</span></p></li>
+<li><p>加权平均： <span class="math notranslate nohighlight">\(\mathcal{O}(n^2 d)\)</span></p></li>
+</ul>
+<p>因此总的时间复杂度是 <span class="math notranslate nohighlight">\(\mathcal{O}(n^2 d)\)</span> 。</p>
+<p>Multi-Head Attention 的实现不是循环地计算每个头，而是通过 Transposes and Reshapes，把一个大矩阵相乘变成了多个小矩阵的相乘。
+Multi-Head Attention时间复杂度也是 <span class="math notranslate nohighlight">\(\mathcal{O}(n^2 d)\)</span> （每个头的对应的 <span class="math notranslate nohighlight">\(\boldsymbol{q},\boldsymbol{k},\boldsymbol{v}\)</span> 向量维度为 <span class="math notranslate nohighlight">\(\frac{d}{h}\)</span> ）。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>如果考虑从 <span class="math notranslate nohighlight">\(X\)</span> 到 <span class="math notranslate nohighlight">\(Q,K,V\)</span> 的线性映射，时间复杂度还需要加上 <span class="math notranslate nohighlight">\(\mathcal{O}(n d^2)\)</span> 。</p>
+</div>
+</section>
+</section>
+<section id="layer-normalization">
+<h2><span class="section-number">13.5. </span>Layer Normalization<a class="headerlink" href="#layer-normalization" title="Permalink to this headline"></a></h2>
+<p>Layer Normalization 的作用是对神经网络中隐藏层输出的 Embedding 施加尺度约束，将其归一为标准正态分布，以起到加快训练速度、加速收敛的作用。</p>
+</section>
+<section id="cv">
+<h2><span class="section-number">13.6. </span>CV 领域的应用<a class="headerlink" href="#cv" title="Permalink to this headline"></a></h2>
+<section id="id4">
+<h3><a class="reference external" href="https://arxiv.org/pdf/2010.11929.pdf">ViT</a><a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
+<a class="reference internal image-reference" href="../_images/13_vit.png"><img alt="../_images/13_vit.png" class="align-center" src="../_images/13_vit.png" style="width: 600px;" /></a>
+<p>ViT将输入图片分为多个 Patch，再将每个 Patch 投影为固定长度的向量（Patch Embedding）送入 Transformer，后续 Encoder 的操作和原始 Transformer 中完全相同。
+对于图像分类任务，在输入序列中加入一个特殊的 Token，它对应的输出即为最后的类别预测。</p>
+<p>但是当训练数据集不够大的时候，ViT 的表现通常比同等大小的 ResNet 要差一些，因为 Transformer 和 CNN 相比缺少归纳偏置（Inductive Bias），即一种先验知识/提前做好的假设。
+CNN 具有两种归纳偏置：</p>
+<ul class="simple">
+<li><p>局部性（Locality/Two-dimensional Neighborhood Structure），即图片上相邻的区域具有相似的特征；</p></li>
+<li><p>平移不变形（Translation Equivariance）。</p></li>
+</ul>
+<p>当 CNN 具有以上两种归纳偏置，就有了很多先验信息，需要相对少的数据就可以学习一个比较好的模型。</p>
+<section id="patch-embedding">
+<h4>Patch Embedding<a class="headerlink" href="#patch-embedding" title="Permalink to this headline"></a></h4>
+<p>假设输入图片大小为 <span class="math notranslate nohighlight">\(224 \times 224 \times 3\)</span> ，将图片分为固定大小的 Patch，每个 Patch大小为 <span class="math notranslate nohighlight">\(16 \times 16 \times 3\)</span> ，则每张图像会生成  <span class="math notranslate nohighlight">\(\frac{224 \times 224}{16 \times 16} = 196\)</span> 个 Patch，即输入序列长度为 <span class="math notranslate nohighlight">\(196\)</span> 。
+每个 Patch 维度 <span class="math notranslate nohighlight">\(16 \times 16 \times 3 = 768\)</span> ，线性投射层的维度为 <span class="math notranslate nohighlight">\(768 \times 768\)</span> ，因此输入通过线性投射层之后的维度依然为 <span class="math notranslate nohighlight">\(196 \times 768\)</span> ，即一共有 <span class="math notranslate nohighlight">\(196\)</span> 个 Token，每个 Token Embedding 的维度是 <span class="math notranslate nohighlight">\(768\)</span> 。
+这里还需要加上一个特殊字符 cls，因此最终的维度是 <span class="math notranslate nohighlight">\(197 \times 768\)</span> 。</p>
+<p>经过 Transformer Encoder 的维度仍然是 <span class="math notranslate nohighlight">\(197 \times 768\)</span> ，取特殊字符 cls 对应的输出第 0 个  <span class="math notranslate nohighlight">\(768\)</span> 维的向量作为 Encoder 的最终输出 ，代表最终的 Image Presentation（另一种做法是不加 cls 字符，对所有的 Token 的输出向量取平均），再接 MLP 进行分类。</p>
+</section>
+<section id="positional-encoding">
+<h4>Positional Encoding<a class="headerlink" href="#positional-encoding" title="Permalink to this headline"></a></h4>
+<p>有 1-D 位置编码和 2-D 位置编码。
+位置编码可以理解为一张表，表一共有 <span class="math notranslate nohighlight">\(N\)</span> 行，和输入序列长度相同；每一行代表一个向量，向量的维度和 Patch Embedding 的维度相同（ <span class="math notranslate nohighlight">\(768\)</span> ）。</p>
+<p>位置向量和 Patch Embedding 相加（保证维度不变），作为 Transformer Encoder 的输入。</p>
+<p>实验结果表明，不管使用哪种位置编码方式，模型的精度都很接近，甚至不使用位置编码，模型的性能损失也没有特别大。
+原因可能是 ViT 是作用在 Image Patch 上的，而不是 Pixel，对网络来说这些 Patch 之间的相对位置信息很容易理解。</p>
+<p>当输入图片分辨率发生变化，输入序列的长度也发生变化，虽然 ViT 可以处理任意长度的序列，但是预训练好的位置编码无法再使用（例如原来是 <span class="math notranslate nohighlight">\(3 \times 3 = 9\)</span> 个 Patch，
+每个 Patch 的位置编码都是有明确意义的，如果 Patch 数量变多，位置信息就会发生变化）。
+一种做法是使用插值算法，扩大位置编码表。但是如果序列长度变化过大，插值操作会损失模型性能，这是 ViT 在微调时的一种局限性。</p>
+</section>
+<section id="cnn-transformer">
+<h4>CNN + Transformer 混合模型<a class="headerlink" href="#cnn-transformer" title="Permalink to this headline"></a></h4>
+<p>既然 CNN 具有归纳偏置的特性，Transformer 又具有很强全局归纳建模能力，使用 CNN+Transformer 的混合模型是不是可以得到更好的效果呢？</p>
+<p><span class="math notranslate nohighlight">\(224 \times 224 \times 3\)</span> 的图像经过卷积层得到 <span class="math notranslate nohighlight">\(14 \times 14 \times 768\)</span> 的 Feature Map，拉成一个  <span class="math notranslate nohighlight">\(196 \times 768\)</span> 的二维 Tensor，后续操作和 ViT 相同。</p>
+</section>
+</section>
+<section id="id5">
+<h3><a class="reference external" href="https://arxiv.org/pdf/2103.14030.pdf">Swin Transformer</a><a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
+<a class="reference internal image-reference" href="../_images/13_swin1.png"><img alt="../_images/13_swin1.png" class="align-center" src="../_images/13_swin1.png" style="width: 400px;" /></a>
+<p>Swin Transformer 主要有两个创新：</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>使用了层级式多分辨率的 Patch（Hierarchical Feature Maps）。</dt><dd><p>先是进行 4 倍下采样，然后是 8 倍，接着是 16 倍，一直下采样直到达到预期的下采样倍数。相比之下，ViT 只使用了 16 倍的下采样。
+这样利于支持更多的图像下游任务，而不仅仅是分类。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>窗口式的 Self-Attention（W-MSA，SW-MSA）。</dt><dd><p>将 Feature Map 划分成一个个的小窗口，将这些小窗口送入到 Swin Transformer Block 中，减少了计算量。</p>
+</dd>
+</dl>
+</li>
+</ul>
+<section id="id6">
+<h4>模型框架<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h4>
+<a class="reference internal image-reference" href="../_images/13_swin2.png"><img alt="../_images/13_swin2.png" class="align-center" src="../_images/13_swin2.png" style="width: 800px;" /></a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Transformer 的输入输出都是二维的矩阵，比如图中的 <span class="math notranslate nohighlight">\(\frac{H}{4} \times \frac{W}{4} \times C\)</span> 其实是 <span class="math notranslate nohighlight">\(\frac{HW}{16}\times C\)</span> 。</p>
+</div>
+<section id="patch-partition-linear-embedding">
+<h5>Patch partition + Linear Embedding<a class="headerlink" href="#patch-partition-linear-embedding" title="Permalink to this headline"></a></h5>
+<p>同 ViT。</p>
+</section>
+<section id="patch-merging">
+<h5>Patch Merging<a class="headerlink" href="#patch-merging" title="Permalink to this headline"></a></h5>
+<p>实现 Feature Map 分辨率减半，通道数翻倍。</p>
+</section>
+<section id="swin-transformer-block">
+<h5>Swin Transformer Block<a class="headerlink" href="#swin-transformer-block" title="Permalink to this headline"></a></h5>
+<p>W-MSA（Windows Multi-Head Attention）和 SW-MSA（Shifted Windows Multi-Head Attention）代替了原生版本的 Multi-Head Attention。</p>
+<p>W-MSA 将 Feature Map 分成一个个 Windows，然后对每个 Windows 执行 Multi-Head Attention 操作，减少了计算量。</p>
+<p>W-MSA 的各个 Windows 之间相互独立、缺乏交互，SW-MSA 会重新划分窗口，使得之前各个 Windows 的数据可以进一步融合、传递（需要 Mask 掉原本不相邻的数据块）。</p>
+<a class="reference internal image-reference" href="../_images/13_swin3.png"><img alt="../_images/13_swin3.png" class="align-center" src="../_images/13_swin3.png" style="width: 500px;" /></a>
+</section>
+<section id="relative-position-bias">
+<h5>Relative Position Bias<a class="headerlink" href="#relative-position-bias" title="Permalink to this headline"></a></h5>
+<p>相对位置偏置 <span class="math notranslate nohighlight">\(B\)</span> 融合进 Attention 的公式中：</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{Attention}(Q,K,V) = \mathrm{softmax} \left( \frac{QK^T}{\sqrt{d}} + B \right)V\]</div>
+</section>
+</section>
+</section>
+</section>
+<section id="id7">
+<h2><span class="section-number">13.7. </span>参考资料<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>Transformer</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://paddlepedia.readthedocs.io/en/latest/tutorials/pretrain_model/transformer.html">https://paddlepedia.readthedocs.io/en/latest/tutorials/pretrain_model/transformer.html</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>Transformer</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://xiaomindog.github.io/2021/01/20/Transformer/">https://xiaomindog.github.io/2021/01/20/Transformer/</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>The Illustrated Transformer</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://jalammar.github.io/illustrated-transformer/">https://jalammar.github.io/illustrated-transformer/</a></p>
+<p><a class="reference external" href="https://zhuanlan.zhihu.com/p/48508221">https://zhuanlan.zhihu.com/p/48508221</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p>举个例子讲下transformer的输入输出细节及其他</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/166608727">https://zhuanlan.zhihu.com/p/166608727</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li><p>ViT（Vision Transformer）解析</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/445122996">https://zhuanlan.zhihu.com/p/445122996</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="6">
+<li><p>Swin Transformer原理详解篇</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://juejin.cn/post/7157873015055712293">https://juejin.cn/post/7157873015055712293</a></p>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="12_dml.html" class="btn btn-neutral float-left" title="12. Deep Metric Learning" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="14_clip.html" class="btn btn-neutral float-right" title="14. 多模态 CLIP 模型" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2024, fong.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

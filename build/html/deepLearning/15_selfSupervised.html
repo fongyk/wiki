@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>15. 自监督学习和对比学习 &mdash; fong alpha documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="数理与算法" href="../mathematicsAlgorithm/index.html" />
+    <link rel="prev" title="14. 多模态 CLIP 模型" href="14_clip.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> fong
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                alpha
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">快速访问</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">深度学习</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_dataParallel.html">1. pytorch：多 GPU 模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">2. pytorch：模型保存与读取</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">3. pytorch：cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_addModule.html">4. pytorch：Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_nograd.html">5. pytorch：no_grad()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_activationFunction.html">6. 激活函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_batchnorm.html">7. Batch Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_overfit.html">8. 过拟合</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_backprop.html">9. 反向传播</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_optimizer.html">10. 优化算法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_receptivaField.html">11. 特征图与感受野</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_dml.html">12. Deep Metric Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_transformer.html">13. Transformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_clip.html">14. 多模态 CLIP 模型</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">15. 自监督学习和对比学习</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">15.1. 自监督学习</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mae">MAE</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#contrastive-learning">15.2. 对比学习（Contrastive Learning）</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">基于负例的对比学习： SimCLR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#batch">基于负例的对比学习：Batch 之外</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">对比聚类： SwAV</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">非对称结构： BYOL</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">15.3. 参考资料</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recommender/index.html">推荐系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../regularExpression/index.html">正则表达式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cron/index.html">Cron 表达式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">技巧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">深度学习</a> &raquo;</li>
+      <li><span class="section-number">15. </span>自监督学习和对比学习</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/deepLearning/15_selfSupervised.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">15. </span>自监督学习和对比学习<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<p>有监督预训练的典型问题，就是 <strong>标注数据总是有限的</strong> ，就算 ImageNet 已经很大，但是很难更大，那么它的天花板就摆在那，就是有限的数据总量。
+NLP 领域目前的经验应该是：自监督预训练使用的数据量越大，模型越复杂，那么模型能够吸收的知识越多，对下游任务效果来说越好。
+这可能是自从 Bert 出现以来一再被反复证明的真理，如果它不是唯一的真理，那也肯定是最大的真理。图像领域如果技术想要有质的提升，可能也必须得走这条路，就是：充分使用越来越大量的无标注数据，使用越来越复杂的模型，采用自监督预训练模式，来从中吸取图像本身的先验知识分布，在下游任务中通过 Fine-tuning，来把预训练过程习得的知识，迁移给并提升下游任务的效果。</p>
+<section id="id2">
+<h2><span class="section-number">15.1. </span>自监督学习<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<section id="mae">
+<h3>MAE<a class="headerlink" href="#mae" title="Permalink to this headline"></a></h3>
+<p>自监督训练在 CV 领域的应用落后于 NLP，主要原因有三方面：</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>CV 模型与 NLP 模型的架构不同</dt><dd><p>在 ViT 成功之前，CV 领域占主导的方法依然是 CNN。想象一下，把一张图随机遮盖掉一部分，当卷积窗口在这张图片上移动时，它会同时覆盖到遮盖和未遮盖的部分（没有独立的 Token 的概念），换而言之，它很难找到那些真正被遮盖的部分，更不要提进一步去预测它了。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>CV 模型与 NLP 模型的信息密度不一样</dt><dd><p>一句话的语义信息是丰富的，但一张图的像素信息是冗余的。
+在 NLP 中，我们可能只需 Mask 掉少量的数据，就能迫使模型学到语义信息；但是在图像领域中，对一张图我们需要 Mask 掉大量的像素块，才能迫使模型不靠学插值、真正从图像语义上重建图像。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>CV 模型与 NLP 模型对 Decoder 的需求不一样</dt><dd><p>在 NLP 任务中，Encoder 负责提取的文字特征是高语义的，Decoder 负责重建的是文字，也是高语义的。
+在 CV 任务中，Encoder 负责提取的图像特征是高语义的，但 Decoder 负责重建的图像却是低语义的（还原完整的一张图，势必包含很多冗余的像素信息）。
+换而言之，NLP 的 Encoder-Decoder 架构设计和训练间几乎没差异（Symmetric），但 CV 的 Encoder-Decoder 却存在差异（Asymmetric） 。</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>基于以上观点，提出了用于 CV 自监督训练的 MAE 模型：</p>
+<ul class="simple">
+<li><p>它是 Transformer 架构；</p></li>
+<li><p>在训练中 Mask 掉了图片的大部分像素区域；</p></li>
+<li><p>它有不对称的 Encoder-Decoder 结构。</p></li>
+</ul>
+<section id="id3">
+<h4>架构<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h4>
+<a class="reference internal image-reference" href="../_images/15_mae.png"><img alt="../_images/15_mae.png" class="align-center" src="../_images/15_mae.png" style="width: 400px;" /></a>
+</section>
+<section id="id4">
+<h4>训练流程<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h4>
+<ol class="arabic simple">
+<li><p>对原始输入图片切分 Patch ；</p></li>
+<li><p>对 Patch 进行随机采样，采样出约 75% 比例的 Patch ，对这些 Patch 做 Mask 处理；</p></li>
+<li><p>对非 Mask 的 Patch ，将其转变为 Emebdding ，同时添加位置编码。然后将其送入 Encoder 部分，让 Encoder 从中提取图像的高语义信息。</p></li>
+<li><p>对于 Encoder 部分的输出，按顺序将原来 Mask 的 Patch 拼接上去，同时添加位置编码，送入 Decoder 进行训练。注意此时是用同一个可训练的 Embedding 来表示所有被 Mask 的 Patch 。</p></li>
+<li><p>Decoder 部分将做像素级别的预测，对原始图像结果进行重建，使用 MSE Loss 计算预测像素值和真实像素值之间的误差。</p></li>
+<li><p>训练完毕后，就可以把 Decoder 移开，拿 Encoder 部分做特征提取器，然后继续做别的下游任务了。</p></li>
+</ol>
+<p>使用 MAE，通过图像重建任务来做预训练的最终目的是：获得一个强有力的特征提取 Encoder ，方便迁移到其他任务上（例如分类、检测）。</p>
+</section>
+</section>
+</section>
+<section id="contrastive-learning">
+<h2><span class="section-number">15.2. </span>对比学习（Contrastive Learning）<a class="headerlink" href="#contrastive-learning" title="Permalink to this headline"></a></h2>
+<p>对比学习是自监督学习的一种，也就是说，不依赖标注数据，要从无标注图像中自己学习知识。自监督学习其实在图像领域里已经被探索了很久了，可以分为两种类型：生成式自监督学习，判别式自监督学习。
+<a class="reference external" href="https://arxiv.org/pdf/1312.6114.pdf">VAE</a> 和 <a class="reference external" href="https://arxiv.org/pdf/1406.2661.pdf">GAN</a> 是生成式自监督学习的两类典型方法，它要求模型重建图像或者图像的一部分，这类型的任务难度相对比较高，要求像素级的重构，中间的图像编码必须包含很多细节信息。</p>
+<p>对比学习则是典型的判别式自监督学习，相对生成式自监督学习，对比学习的任务难度要低一些。
+目前，对比学习貌似处于“无明确定义、有指导原则”的状态，它的指导原则是： <strong>通过自动构造相似实例和不相似实例，要求习得一个表示学习模型，通过这个模型，使得相似的实例在投影空间中比较接近，而不相似的实例在投影空间中距离比较远</strong> 。而如何构造相似实例以及不相似实例，如何构造能够遵循上述指导原则的表示学习模型结构，以及如何防止模型坍塌（Model Collapse），这几个点是其中的关键。</p>
+<section id="id5">
+<h3>基于负例的对比学习： <a class="reference external" href="https://arxiv.org/pdf/2002.05709.pdf">SimCLR</a><a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
+<a class="reference internal image-reference" href="../_images/15_simCLR.png"><img alt="../_images/15_simCLR.png" class="align-center" src="../_images/15_simCLR.png" style="width: 400px;" /></a>
+<dl class="simple">
+<dt>正例</dt><dd><p>对于某张图片，在图像增强操作集合中，随机抽取两种分别作用在原始图像上，得到两张经过增强的新图像，它们互为正例。</p>
+</dd>
+<dt>负例</dt><dd><p>训练 Batch 内任意其它图像都可做为负例。</p>
+</dd>
+</dl>
+<p>SimCLR 模型由对称的上下两个分支（Branch）构成，增强图像 <span class="math notranslate nohighlight">\(\tilde{x}\)</span> 先经过 Encoder <span class="math notranslate nohighlight">\(f(\cdot)\)</span> 得到图像表征 <span class="math notranslate nohighlight">\(\boldsymbol{h}\)</span> ，再经过非线性的 Projector <span class="math notranslate nohighlight">\(g(\cdot)\)</span> 得到 <span class="math notranslate nohighlight">\(\boldsymbol{z}\)</span> 。正负样本的距离是在 <span class="math notranslate nohighlight">\(\boldsymbol{z}\)</span> 空间优化的，而 <span class="math notranslate nohighlight">\(\boldsymbol{h}\)</span> 才是预训练模型希望产出的特征表达。</p>
+<p>SimCLR 做了两次非线性映射（Encoder 和 Projector），可能是如下原因：一般的特征抽取器在做特征提取的时候，底层网络偏向抽取通用的低层特征，往往与任务无关， <strong>通用性强</strong> ；接近任务 Loss 的高层网络结构，更倾向编码 <strong>任务相关</strong> 的高阶特征信息。</p>
+<p>采用 <a class="reference external" href="https://arxiv.org/pdf/1807.03748.pdf">Info NCE</a> 损失函数：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathcal{L}(i,j) &amp;= \log \frac{\exp(s_{i,j} / \tau)}{\sum_{k=1,k \ne i}^{2N} \exp(s_{i,k} / \tau)} \\
+s_{i,j} &amp;= \frac{\boldsymbol{z}_i^{\top} \boldsymbol{z}_j}{\left\Vert \boldsymbol{z}_i \right\Vert \left\Vert \boldsymbol{z}_j \right\Vert}\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>对比学习在做特征表示相似性计算时，要先对表示向量做 L2 正则，之后再做点积计算，或者直接采用 Cosine 相似性。
+使用去掉长度信息后的单位长度向量，能增加深度学习模型的训练稳定性。</p>
+<p><a class="reference external" href="https://arxiv.org/pdf/2005.10242.pdf">好的对比学习系统应该具备两个属性</a> ：</p>
+<ul class="simple">
+<li><p>Alignment：正例映射到单位超球面后，距离比较近。</p></li>
+<li><p>Uniformity：表征里保留尽可能多的信息，使得映射到单位超球面的特征尽可能均匀地分布在球面上。</p></li>
+</ul>
+<p>温度参数 <span class="math notranslate nohighlight">\(\tau\)</span> 作用：会将模型更新的重点聚焦到有难度的负例（Hard Negative），并对它们做相应的惩罚，难度越大，则分配到的惩罚越多。
+倾向于使用小的温度系数，但并不是越小越好，需要考虑一些 Hard Positive 的干扰。</p>
+</div>
+</section>
+<section id="batch">
+<h3>基于负例的对比学习：Batch 之外<a class="headerlink" href="#batch" title="Permalink to this headline"></a></h3>
+<a class="reference internal image-reference" href="../_images/15_mocov2.png"><img alt="../_images/15_mocov2.png" class="align-center" src="../_images/15_mocov2.png" style="width: 400px;" /></a>
+<p><a class="reference external" href="https://arxiv.org/pdf/2003.04297.pdf">MoCo v2</a> 的图像增强方法、Encoder、Projector、相似性计算方法以及 InfoNCE 损失函数和 SimCLR 基本一致。最主要的特点和创新在于：</p>
+<ul>
+<li><dl>
+<dt>MoCo v2 的下分枝模型参数更新，则采用了动量更新（Momentum Update）机制。</dt><dd><p>缓慢地更新模型参数（ <span class="math notranslate nohighlight">\(m\)</span> 接近 1.0 ），对队列中来自不同 Batch 的实例表征编码的改变会相对稳定而统一，增加了表示空间的一致性。</p>
+<div class="math notranslate nohighlight">
+\[\theta_k \leftarrow m \theta_k + (1 - m) \theta_q\]</div>
+</dd>
+</dl>
+</li>
+<li><p>MoCo v2 维护了一个较大的负例队列，当需要在正例和负例之间进行对比计算时，就从这个负例队列里取 K 个，已经不局限于 Batch Size 的限制了。</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>MoCo 和 SimCLR 模型的演进：</p>
+<a class="reference internal image-reference" href="../_images/15_mocoSimCLR.png"><img alt="../_images/15_mocoSimCLR.png" class="align-center" src="../_images/15_mocoSimCLR.png" style="width: 500px;" /></a>
+</div>
+</section>
+<section id="id7">
+<h3>对比聚类： <a class="reference external" href="https://arxiv.org/pdf/2006.09882.pdf">SwAV</a><a class="headerlink" href="#id7" title="Permalink to this headline"></a></h3>
+<a class="reference internal image-reference" href="../_images/15_swav.png"><img alt="../_images/15_swav.png" class="align-center" src="../_images/15_swav.png" style="width: 500px;" /></a>
+<p>SwAV 维护了一些 Prototypes（聚类中心， <span class="math notranslate nohighlight">\(C \in \mathbb{R}^{D \times K}\)</span> ），根据 <a class="reference external" href="https://proceedings.neurips.cc/paper_files/paper/2013/file/af21d0c97db2e27e13572cbf59eb343d-Paper.pdf">Sinkhorn-Knopp 算法</a> （均匀地分配未标记数据点到聚类中心，建模为 Optimal Transport Distances 问题）进行 Soft Assignment，将 <span class="math notranslate nohighlight">\(\boldsymbol{z}\)</span> 分配到这些 Prototypes，得到一个编码 <span class="math notranslate nohighlight">\(\boldsymbol{q}\)</span> ，
+希望正例对应的 Prototypes 也相似，优化目标为 Swapped Prediction：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathcal{L} &amp; = \mathcal{L}(\boldsymbol{z}_1, \boldsymbol{q}_2) + \mathcal{L}(\boldsymbol{z}_2, \boldsymbol{q}_1) \\
+\mathcal{L}(\boldsymbol{z}, \boldsymbol{q}) &amp; = - \sum_{k} \boldsymbol{q}^{(k)} \log \boldsymbol{p}^{(k)} \\
+\boldsymbol{p}^{(k)} &amp; = \frac{\exp(\boldsymbol{z}^{\top} \boldsymbol{c}_k / \tau)}{\sum_{k'} \exp(\boldsymbol{z}^{\top} \boldsymbol{c}_{k'} / \tau)}\end{split}\]</div>
+</section>
+<section id="id8">
+<h3>非对称结构： <a class="reference external" href="https://arxiv.org/pdf/2006.07733.pdf">BYOL</a><a class="headerlink" href="#id8" title="Permalink to this headline"></a></h3>
+<a class="reference internal image-reference" href="../_images/15_byol.png"><img alt="../_images/15_byol.png" class="align-center" src="../_images/15_byol.png" style="width: 500px;" /></a>
+<p>BYOL 有两个不对称分支：Online 和 Target。Online 分支新增了一个非线性变换模块 Predictor；Target 依然采用动量更新结构。但是 BYOL 不用负例，所以并不需要维护负例队列。
+优化目标要求正例的 Online 部分在表示空间中向 Target 侧靠近，也即拉近两组图像增强正例之间的距离：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathcal{L} &amp; = \mathcal{L}(\boldsymbol{z}_1, \boldsymbol{v}_2) + \mathcal{L}(\boldsymbol{z}_2, \boldsymbol{v}_1) \\
+\mathcal{L}(\boldsymbol{z}, \boldsymbol{v}) &amp; = \left\lVert  \boldsymbol{z} - \boldsymbol{v} \right\rVert^2_2\end{split}\]</div>
+<p>既然 BYOL 只用正例，它是如何防止模型坍塌的呢？最关键的因素在于新加入的 Predictor 结构。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>论文 <a class="reference external" href="https://arxiv.org/pdf/2011.13377.pdf">How Well Do Self-Supervised Models Transfer</a> 对 13 个知名自监督模型进行相对公平的对比测试，得出了一些很有价值的结论。</p>
+</div>
+</section>
+</section>
+<section id="id9">
+<h2><span class="section-number">15.3. </span>参考资料<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>对比学习（Contrastive Learning）:研究进展精要</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/367290573">https://zhuanlan.zhihu.com/p/367290573</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>CV大模型系列之：MAE，实现像素级图像重建</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://juejin.cn/post/7267417057438777399">https://juejin.cn/post/7267417057438777399</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>Self-Supervised Learning 超详细解读 (目录)</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/381354026">https://zhuanlan.zhihu.com/p/381354026</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p>How Well Do Self-Supervised Models Transfer?</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://arxiv.org/pdf/2011.13377.pdf">https://arxiv.org/pdf/2011.13377.pdf</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li><p>图像自标记的可视化指南</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://blog.csdn.net/u011984148/article/details/107454900">https://blog.csdn.net/u011984148/article/details/107454900</a></p>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="14_clip.html" class="btn btn-neutral float-left" title="14. 多模态 CLIP 模型" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../mathematicsAlgorithm/index.html" class="btn btn-neutral float-right" title="数理与算法" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2024, fong.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

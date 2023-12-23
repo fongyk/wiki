@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>14. 多模态 CLIP 模型 &mdash; fong alpha documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="15. 自监督学习和对比学习" href="15_selfSupervised.html" />
+    <link rel="prev" title="13. Transformer" href="13_transformer.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> fong
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                alpha
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">快速访问</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">深度学习</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_dataParallel.html">1. pytorch：多 GPU 模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">2. pytorch：模型保存与读取</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">3. pytorch：cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_addModule.html">4. pytorch：Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_nograd.html">5. pytorch：no_grad()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_activationFunction.html">6. 激活函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_batchnorm.html">7. Batch Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_overfit.html">8. 过拟合</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_backprop.html">9. 反向传播</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_optimizer.html">10. 优化算法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_receptivaField.html">11. 特征图与感受野</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_dml.html">12. Deep Metric Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_transformer.html">13. Transformer</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">14. 多模态 CLIP 模型</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">14.1. 框架</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#loss">14.2. Loss</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#zero-shot">14.3. Zero-Shot 预测</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">14.4. 参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="15_selfSupervised.html">15. 自监督学习和对比学习</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recommender/index.html">推荐系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../regularExpression/index.html">正则表达式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cron/index.html">Cron 表达式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">技巧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">深度学习</a> &raquo;</li>
+      <li><span class="section-number">14. </span>多模态 CLIP 模型</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/deepLearning/14_clip.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">14. </span>多模态 <a class="reference external" href="https://arxiv.org/pdf/2103.00020.pdf">CLIP</a> 模型<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<section id="id2">
+<h2><span class="section-number">14.1. </span>框架<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<a class="reference internal image-reference" href="../_images/14_clip.png"><img alt="../_images/14_clip.png" class="align-center" src="../_images/14_clip.png" style="width: 600px;" /></a>
+<p>CLIP 的训练数据是 &lt;图像，文本&gt; Pair。如图所示，一个 Batch 有若干张图像，每张图像都配有相应的文字描述信息（Prompt）。</p>
+<p>CLIP模型由两个主体部分组成：Text Encoder 和 Image Encoder。这两部分可以分别理解成文本和图像的特征提取器：</p>
+<ul class="simple">
+<li><p>Text Encoder：借鉴 <a class="reference external" href="https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf">GPT-2</a> 的 Transformer 结构。每条 Prompt 在进入Text Encoder 前，都会添加表示开始和结束的符号 [SOS] 与 [EOS]。最终将最后一层 [EOS] 位置的向量作为该 Prompt 的特征表示向量。</p></li>
+<li><p>Image Encoder：尝试了 5 种不同的 ResNet 架构和 3 种 ViT 架构，最终选用的是“<a class="reference external" href="mailto:ViT-L/14&#37;&#52;&#48;336px">ViT-L/14<span>&#64;</span>336px</a>”这个模型，也就是架构为 Large/Patch_size = 14 的 ViT，同时在预训练结束后，用更高分辨率（336 x 336）的图片做了一个 Epoch 的 Fine-tune 让 CLIP 效果更好。</p></li>
+</ul>
+<p>CLIP 是从头开始训练 Text Encoder 和 Image Encoder，没有借助其它预训练模型。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>CLIP 没有用前人已经做好的图文数据集，因为一来这些数据集质量不高，二来数量太少。CLIP 团队自己制作了一个含4亿“图像-文本“对的数据集。他们从 Wikipedia 上取出出现次数在 100 以上的词制作成一个 Query List，每个 Query 有约 2 万个“图像-文本”对。</p>
+</div>
+</section>
+<section id="loss">
+<h2><span class="section-number">14.2. </span>Loss<a class="headerlink" href="#loss" title="Permalink to this headline"></a></h2>
+<p>一个大小为 <span class="math notranslate nohighlight">\(N\)</span> 的 Batch，正样本有 <span class="math notranslate nohighlight">\(N\)</span> 对，负样本有 <span class="math notranslate nohighlight">\(N^2 - N\)</span> 对。采用对称 <a class="reference external" href="https://arxiv.org/pdf/1807.03748.pdf">Info NCE</a> 损失。</p>
+<p>Loss 分成两部分，考虑了“图片-&gt;文字”和“文字-&gt;图片”的双向关系：</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathcal{L}_I\)</span> ：对于每一张图片，我们都希望找到和它最相似的文字。</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathcal{L}_T\)</span> ：对于每一段文字，我们都希望找到和它最相似的图片。</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathcal{L} &amp; = \frac{1}{2} (\mathcal{L}_I + \mathcal{L}_T) \\
+\mathcal{L}_I &amp; = -\frac{1}{N}\sum_{i=1}^{N}\log\frac{s(\boldsymbol{v}_i, \boldsymbol{t}_i) e^{\tau}}{\sum_{j=1}^{N} s(\boldsymbol{v}_i, \boldsymbol{t}_j) e^{\tau}} \\
+\mathcal{L}_T &amp; = -\frac{1}{N}\sum_{i=1}^{N}\log\frac{s(\boldsymbol{t}_i, \boldsymbol{v}_i) e^{\tau}}{\sum_{j=1}^{N} s(\boldsymbol{t}_i, \boldsymbol{v}_j) e^{\tau}}\end{split}\]</div>
+<p>温度系数 <span class="math notranslate nohighlight">\(\tau\)</span> 对 Logits 进行了平滑，控制了模型对负样本的区分度。</p>
+<p>表征向量 <span class="math notranslate nohighlight">\(\boldsymbol{v}\)</span> 和 <span class="math notranslate nohighlight">\(\boldsymbol{t}\)</span> 都经过 L2 归一化，约束在一个超球面上，有利于训练的稳定和泛化性能。</p>
+</section>
+<section id="zero-shot">
+<h2><span class="section-number">14.3. </span>Zero-Shot 预测<a class="headerlink" href="#zero-shot" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>首先创建一个标签全集，得到每一个标签的特征向量；</p></li>
+<li><p>取一张图片过 Image Encoder 后得到该图片的特征向量；</p></li>
+<li><p>计算图片向量和文字向量间的相似度，取相似度最高的文本标签作为预测结果。</p></li>
+</ol>
+<p>CLIP 不用做任何微调，也能实现 Zero-Shot 的图片分类。同时，大规模的数据训练，使得 CLIP 不仅能提炼出不同模态数据中的关键特征，还要真正掌握这些特征之间的相关性，因而对 Train-Test 出现的数据分布偏移（Distribution Shift）具有较好的鲁棒性。</p>
+<p>缺点：</p>
+<ul class="simple">
+<li><p>文本标签是个闭集，不能预测出没见过的文本。</p></li>
+<li><p>能做好分类任务，但无法处理更抽象的图像识别任务。</p></li>
+<li><p>无法做图像-文本的生成式网络。</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2><span class="section-number">14.4. </span>参考资料<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>CV大模型系列之：多模态经典之作CLIP，探索图文结合的奥秘</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://juejin.cn/post/7264503343996747830">https://juejin.cn/post/7264503343996747830</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>CLIP：多模态领域革命者</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/555314976">https://zhuanlan.zhihu.com/p/555314976</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>GPT: Improving Language Understanding by Generative Pre-Training</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf">https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf</a></p>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="13_transformer.html" class="btn btn-neutral float-left" title="13. Transformer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="15_selfSupervised.html" class="btn btn-neutral float-right" title="15. 自监督学习和对比学习" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2024, fong.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

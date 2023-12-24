@@ -706,17 +706,17 @@ https://blog.csdn.net/princexiexiaofeng/article/details/79645511
               if(nums.size() <= 1) return;
               int left = 0;
               int right = nums.size() - 1;
-              for(int mid = left; mid <= right; ++ mid)
+              for(int mid = left; mid <= right; ++mid)
               {
                   while(nums[mid]==2 && mid < right)
                   {
                       swap(nums[mid], nums[right]);
-                      right --;
+                      right--;
                   }
                   while(nums[mid]==0 && mid > left)
                   {
                       swap(nums[mid], nums[left]);
-                      left ++;
+                      left++;
                   }
               }
           }
@@ -926,11 +926,11 @@ https://leetcode.com/problems/partition-equal-subset-sum/
 
       class Solution(object):
           def backtrack(self, nums, sum_nums, sum_current, i): ## self
-              if sum_current == sum_nums/2:
+              if sum_current == sum_nums / 2:
                   return True
               if i == len(nums):
                   return False
-              if self.backtrack(nums, sum_nums, sum_current+nums[i],i+1): ## self
+              if self.backtrack(nums, sum_nums, sum_current+nums[i], i+1): ## self
                   return True
               if self.backtrack(nums, sum_nums, sum_current, i+1): ## self
                   return True
@@ -977,14 +977,14 @@ https://leetcode.com/problems/find-all-anagrams-in-a-string/
               vector<int> p_counter(26, 0), s_counter(26, 0);
               for(int i = 0; i < p.size(); ++i)
               {
-                  ++ p_counter[p[i]-'a'];
-                  ++ s_counter[s[i]-'a'];
+                  ++p_counter[p[i]-'a'];
+                  ++s_counter[s[i]-'a'];
               }
               if(p_counter == s_counter) vec.push_back(0);
               for(int i = p.size(); i < s.size(); ++i)
               {
-                  -- s_counter[s[i-p.size()]-'a'];
-                  ++ s_counter[s[i]-'a'];
+                  --s_counter[s[i-p.size()]-'a'];
+                  ++s_counter[s[i]-'a'];
                   if(s_counter == p_counter) vec.push_back(i-p.size()+1);
               }
               return vec;
@@ -1149,7 +1149,7 @@ https://leetcode.com/problems/find-all-anagrams-in-a-string/
               {
                   if(nums[i] > 0) return i+1;
               }
-              return n+1;
+              return n + 1;
           }
       };
 
@@ -1225,7 +1225,7 @@ https://leetcode.com/problems/spiral-matrix/
               while(start*2 < row && start*2 < col)
               {
                   tranverseMatrixAccorindTo4Directions(matrix, row, col, start, vec);
-                  ++ start;
+                  ++start;
               }
               return vec;
           }
@@ -1371,12 +1371,12 @@ Hint：移位操作；负数可能造成死循环。
       :linenos:
 
       // 方法一：不断右移 n。如果 n 是负数，需要保持最高位为 1，不断移位后这个数字会变成 0xFFFFFFFF 而陷入死循环。
-      int Numberof1(int n)
+      int numberOf1(int n)
       {
         int cnt = 0;
         while(n)
         {
-          if(n & 1) cnt ++;
+          if(n & 1) cnt++;
           n >>= 1;
         }
         return cnt;
@@ -1386,13 +1386,13 @@ Hint：移位操作；负数可能造成死循环。
       :linenos:
 
       // 方法二：n 不动，左移一个比较子。
-      int Numberof1(int n)
+      int numberOf1(int n)
       {
         int cnt = 0;
         unsigned int flag = 1;
         while(flag) // 连续左移32次之后为0
         {
-          if(n & flag) cnt ++;
+          if(n & flag) cnt++;
           flag <<= 1;
         }
         return cnt;
@@ -1403,12 +1403,12 @@ Hint：移位操作；负数可能造成死循环。
       :linenos:
 
       // 方法三：把一个整数减 1，再和原整数做逻辑与运算，会把该整数最右边的一个 1 变成 0。
-      int Numberof1(int n)
+      int numberOf1(int n)
       {
         int cnt = 0;
         while(n)
         {
-          cnt ++;
+          cnt++;
           n = (n - 1) & n;
         }
         return cnt;
@@ -1589,10 +1589,10 @@ https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-charac
                   int hash[26] = {0};
                   int mask = 0;
                   int next_start = start + 1;
-                  for(int end = start; end < s.size(); ++ end)
+                  for(int end = start; end < s.size(); ++end)
                   {
                       int idx = s[end] - 'a';
-                      ++ hash[idx];
+                      ++hash[idx];
                       if(hash[idx] < k) mask |= (1 << idx); // 0 -> 1
                       else mask &= ~(1 << idx);             // 1 -> 0
                       if(mask == 0)
@@ -2016,7 +2016,7 @@ https://leetcode.com/problems/fraction-to-recurring-decimal/
                       frac_part += ")";
                       break;
                   }
-                  mp[rem] = idx ++;
+                  mp[rem] = idx++;
                   frac_part += to_string((10*rem) / den);
                   rem = (10*rem) % den;
               }
@@ -2261,7 +2261,7 @@ Hint：采用二分查找的思路。
                   int mid = low + (high - low) / 2;
                   if(nums[mid] == target) return true;
 
-                  if(nums[mid] == nums[high]) -- high; // 增加这个判断。注：只有当 low == high，才会出现： mid == high 。
+                  if(nums[mid] == nums[high]) --high; // 增加这个判断。注：只有当 low == high，才会出现： mid == high 。
 
                   else if(nums[mid] < nums[high])
                   {
@@ -2332,7 +2332,7 @@ https://leetcode.com/problems/maximum-gap/
               size_t curr = 1;
               while(curr < bucket.size())
               {
-                  if(bucket[curr][0] == INT_MAX && bucket[curr][1] == INT_MIN) curr ++; // 空桶
+                  if(bucket[curr][0] == INT_MAX && bucket[curr][1] == INT_MIN) curr++; // 空桶
                   else
                   {
                       if(curr - pre >= 1)
@@ -2342,7 +2342,7 @@ https://leetcode.com/problems/maximum-gap/
                           gap = max(gap, curr_min - pre_max);
                       }
                       pre = curr;
-                      curr ++;
+                      curr++;
                   }
               }
               return gap;
@@ -2573,7 +2573,7 @@ https://leetcode.com/problems/number-of-islands/
         // 方法一，中心扩展法
         class Solution {
         public:
-            void Palindrome(int i, int j, string s, int& start, int& longest)
+            void palindrome(int i, int j, string s, int& start, int& longest)
             {
                 while(i >= 0 && j < s.size() && s.at(i) == s.at(j))
                 {
@@ -2582,7 +2582,7 @@ https://leetcode.com/problems/number-of-islands/
                 }
                 i += 1;
                 j -= 1;
-                if(j-i+1 > longest)
+                if(j - i + 1 > longest)
                 {
                     longest = j-i+1;
                     start = i;
@@ -2593,10 +2593,10 @@ https://leetcode.com/problems/number-of-islands/
                 if(len <= 1) return s;
                 int start = 0;
                 int longest = 1;
-                for(int i = 0; i < len-1; ++ i)
+                for(int i = 0; i < len-1; ++i)
                 {
-                    Palindrome(i, i, s, start, longest);
-                    Palindrome(i, i+1, s, start, longest);
+                    palindrome(i, i, s, start, longest);
+                    palindrome(i, i+1, s, start, longest);
                 }
                 string str;
                 str.assign(s, start, longest);
@@ -2619,9 +2619,9 @@ https://leetcode.com/problems/number-of-islands/
                size_t start = 0;
                size_t longest = 1;
                for(size_t i = 0; i < len; ++i) dp[i][i] = true;
-               for(size_t gap = 0; gap < len; ++ gap)
+               for(size_t gap = 0; gap < len; ++gap)
                {
-                   for(int i = 0; i + gap < len; ++ i)
+                   for(int i = 0; i + gap < len; ++i)
                    {
                        int j = i + gap;
                        if(s[i] == s[j])
@@ -3885,10 +3885,10 @@ https://leetcode.com/problems/nth-digit/
           {
               int sum = 0;
               int k = 1;
-              while(sum + k*9*pow(10, k-1) < n)
+              while(sum + k * 9 * pow(10, k-1) < n)
               {
-                  sum += k*9*pow(10, k-1);
-                  k ++;
+                  sum += k * 9 * pow(10, k-1);
+                  k++;
               }
               int a = (n - sum) / k;
               int b = (n - sum) % k;
@@ -4301,7 +4301,7 @@ https://windliang.cc/2018/07/18/leetCode-4-Median-of-Two-Sorted-Arrays/
                   }
                   if((m+n)%2 == 1 && k == (m+n)/2) return median;
                   if((m+n)%2 == 0 && k == (m+n)/2-1) premedian = median;
-                  if((m+n)%2 == 0 && k == (m+n)/2) return (premedian + median)/2.0;
+                  if((m+n)%2 == 0 && k == (m+n)/2) return (premedian + median) / 2.0;
                   ++k;
               }
           }
@@ -4359,7 +4359,7 @@ https://windliang.cc/2018/07/18/leetCode-4-Median-of-Two-Sorted-Arrays/
           vector<int> maxSlidingWindow(vector<int>& nums, int k)
           {
               vector<int> win_max;
-              if(nums.size()==0 || k <=0) return win_max;
+              if(nums.size() == 0 || k <= 0) return win_max;
               deque<int> que; // 双端队列，存的是元素下标
               for(int i = 0; i < k && i < nums.size(); ++i)
               {

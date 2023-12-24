@@ -207,6 +207,12 @@ Relative Position Bias
 
     \mathrm{Attention}(Q,K,V) = \mathrm{softmax} \left( \frac{QK^T}{\sqrt{d}} + B \right)V
 
+.. note::
+
+    ViT 和 Swin Transformer 的实现：
+
+    - https://huggingface.co/docs/transformers/model_doc/vit
+    - https://huggingface.co/docs/transformers/model_doc/swin
 
 参考资料
 ----------------
@@ -237,3 +243,7 @@ Relative Position Bias
 6. Swin Transformer原理详解篇
 
   https://juejin.cn/post/7157873015055712293
+
+7. Hugging Face Transformers
+
+  https://huggingface.co/docs/transformers/index

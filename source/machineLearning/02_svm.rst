@@ -157,9 +157,9 @@ KKT条件：
 多分类
 --------
 
-1. 一对一（ :math:`O(N^2)` ）
+1. 一对一（ :math:`\mathcal{O}(N^2)` ）
 
-2. 一对多（ :math:`O(N)` ）
+2. 一对多（ :math:`\mathcal{O}(N)` ）
 
 3. 使用多分类 Loss
 

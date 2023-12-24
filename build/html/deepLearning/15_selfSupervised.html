@@ -74,14 +74,14 @@
 <li class="toctree-l4"><a class="reference internal" href="#mae">MAE</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#contrastive-learning">15.2. 对比学习（Contrastive Learning）</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id5">基于负例的对比学习： SimCLR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">15.2. 对比学习</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id6">基于负例的对比学习： SimCLR</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#batch">基于负例的对比学习：Batch 之外</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id7">对比聚类： SwAV</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id8">非对称结构： BYOL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">对比聚类： SwAV</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">非对称结构： BYOL</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id9">15.3. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">15.3. 参考资料</a></li>
 </ul>
 </li>
 </ul>
@@ -175,14 +175,14 @@ NLP 领域目前的经验应该是：自监督预训练使用的数据量越大�
 </section>
 </section>
 </section>
-<section id="contrastive-learning">
-<h2><span class="section-number">15.2. </span>对比学习（Contrastive Learning）<a class="headerlink" href="#contrastive-learning" title="Permalink to this headline"></a></h2>
-<p>对比学习是自监督学习的一种，也就是说，不依赖标注数据，要从无标注图像中自己学习知识。自监督学习其实在图像领域里已经被探索了很久了，可以分为两种类型：生成式自监督学习，判别式自监督学习。
+<section id="id5">
+<h2><span class="section-number">15.2. </span>对比学习<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
+<p>对比学习（Contrastive Learning）是自监督学习的一种，也就是说，不依赖标注数据，要从无标注图像中自己学习知识。自监督学习其实在图像领域里已经被探索了很久了，可以分为两种类型：生成式自监督学习，判别式自监督学习。
 <a class="reference external" href="https://arxiv.org/pdf/1312.6114.pdf">VAE</a> 和 <a class="reference external" href="https://arxiv.org/pdf/1406.2661.pdf">GAN</a> 是生成式自监督学习的两类典型方法，它要求模型重建图像或者图像的一部分，这类型的任务难度相对比较高，要求像素级的重构，中间的图像编码必须包含很多细节信息。</p>
 <p>对比学习则是典型的判别式自监督学习，相对生成式自监督学习，对比学习的任务难度要低一些。
 目前，对比学习貌似处于“无明确定义、有指导原则”的状态，它的指导原则是： <strong>通过自动构造相似实例和不相似实例，要求习得一个表示学习模型，通过这个模型，使得相似的实例在投影空间中比较接近，而不相似的实例在投影空间中距离比较远</strong> 。而如何构造相似实例以及不相似实例，如何构造能够遵循上述指导原则的表示学习模型结构，以及如何防止模型坍塌（Model Collapse），这几个点是其中的关键。</p>
-<section id="id5">
-<h3>基于负例的对比学习： <a class="reference external" href="https://arxiv.org/pdf/2002.05709.pdf">SimCLR</a><a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
+<section id="id6">
+<h3>基于负例的对比学习： <a class="reference external" href="https://arxiv.org/pdf/2002.05709.pdf">SimCLR</a><a class="headerlink" href="#id6" title="Permalink to this headline"></a></h3>
 <a class="reference internal image-reference" href="../_images/15_simCLR.png"><img alt="../_images/15_simCLR.png" class="align-center" src="../_images/15_simCLR.png" style="width: 400px;" /></a>
 <dl class="simple">
 <dt>正例</dt><dd><p>对于某张图片，在图像增强操作集合中，随机抽取两种分别作用在原始图像上，得到两张经过增强的新图像，它们互为正例。</p>
@@ -227,8 +227,8 @@ s_{i,j} &amp;= \frac{\boldsymbol{z}_i^{\top} \boldsymbol{z}_j}{\left\Vert \bolds
 <a class="reference internal image-reference" href="../_images/15_mocoSimCLR.png"><img alt="../_images/15_mocoSimCLR.png" class="align-center" src="../_images/15_mocoSimCLR.png" style="width: 500px;" /></a>
 </div>
 </section>
-<section id="id7">
-<h3>对比聚类： <a class="reference external" href="https://arxiv.org/pdf/2006.09882.pdf">SwAV</a><a class="headerlink" href="#id7" title="Permalink to this headline"></a></h3>
+<section id="id8">
+<h3>对比聚类： <a class="reference external" href="https://arxiv.org/pdf/2006.09882.pdf">SwAV</a><a class="headerlink" href="#id8" title="Permalink to this headline"></a></h3>
 <a class="reference internal image-reference" href="../_images/15_swav.png"><img alt="../_images/15_swav.png" class="align-center" src="../_images/15_swav.png" style="width: 500px;" /></a>
 <p>SwAV 维护了一些 Prototypes（聚类中心， <span class="math notranslate nohighlight">\(C \in \mathbb{R}^{D \times K}\)</span> ），根据 <a class="reference external" href="https://proceedings.neurips.cc/paper_files/paper/2013/file/af21d0c97db2e27e13572cbf59eb343d-Paper.pdf">Sinkhorn-Knopp 算法</a> （均匀地分配未标记数据点到聚类中心，建模为 Optimal Transport Distances 问题）进行 Soft Assignment，将 <span class="math notranslate nohighlight">\(\boldsymbol{z}\)</span> 分配到这些 Prototypes，得到一个编码 <span class="math notranslate nohighlight">\(\boldsymbol{q}\)</span> ，
 希望正例对应的 Prototypes 也相似，优化目标为 Swapped Prediction：</p>
@@ -237,8 +237,8 @@ s_{i,j} &amp;= \frac{\boldsymbol{z}_i^{\top} \boldsymbol{z}_j}{\left\Vert \bolds
 \mathcal{L}(\boldsymbol{z}, \boldsymbol{q}) &amp; = - \sum_{k} \boldsymbol{q}^{(k)} \log \boldsymbol{p}^{(k)} \\
 \boldsymbol{p}^{(k)} &amp; = \frac{\exp(\boldsymbol{z}^{\top} \boldsymbol{c}_k / \tau)}{\sum_{k'} \exp(\boldsymbol{z}^{\top} \boldsymbol{c}_{k'} / \tau)}\end{split}\]</div>
 </section>
-<section id="id8">
-<h3>非对称结构： <a class="reference external" href="https://arxiv.org/pdf/2006.07733.pdf">BYOL</a><a class="headerlink" href="#id8" title="Permalink to this headline"></a></h3>
+<section id="id9">
+<h3>非对称结构： <a class="reference external" href="https://arxiv.org/pdf/2006.07733.pdf">BYOL</a><a class="headerlink" href="#id9" title="Permalink to this headline"></a></h3>
 <a class="reference internal image-reference" href="../_images/15_byol.png"><img alt="../_images/15_byol.png" class="align-center" src="../_images/15_byol.png" style="width: 700px;" /></a>
 <p>BYOL 有两个不对称分支：Online 和 Target。Online 分支新增了一个非线性变换模块 Predictor；Target 依然采用动量更新结构。但是 BYOL 不用负例，所以并不需要维护负例队列。
 优化目标要求正例的 Online 部分在表示空间中向 Target 侧靠近，也即拉近两组图像增强正例之间的距离：</p>
@@ -252,8 +252,8 @@ s_{i,j} &amp;= \frac{\boldsymbol{z}_i^{\top} \boldsymbol{z}_j}{\left\Vert \bolds
 </div>
 </section>
 </section>
-<section id="id9">
-<h2><span class="section-number">15.3. </span>参考资料<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h2>
+<section id="id10">
+<h2><span class="section-number">15.3. </span>参考资料<a class="headerlink" href="#id10" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>对比学习（Contrastive Learning）:研究进展精要</p></li>
 </ol>

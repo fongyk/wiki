@@ -111,6 +111,16 @@ Pytorch
          
          Docs
 
+Hugging Face
+---------------
+
+.. figure:: pictures/huggingface.png
+    :target: https://huggingface.co/
+    :width: 160px
+    :height: 120px
+    :align: center
+
+    huggingface
 
 
 ShareLatex/Overleaf

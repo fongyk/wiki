@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>5. pytorch：no_grad() &mdash; fong alpha documentation</title>
+  <title>5. Pytorch：no_grad() &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -23,7 +23,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="6. 激活函数" href="02_activationFunction.html" />
-    <link rel="prev" title="4. pytorch：Module" href="09_addModule.html" /> 
+    <link rel="prev" title="4. Pytorch：Module" href="09_addModule.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -54,12 +54,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">深度学习</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="01_dataParallel.html">1. pytorch：多GPU模式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">2. pytorch：模型保存与读取</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">3. pytorch: cuda</a></li>
-<li class="toctree-l2"><a class="reference internal" href="09_addModule.html">4. pytorch：Module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">5. pytorch：no_grad()</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#model-eval-with-torch-no-grad">5.1. model.eval() 和 with torch.no_grad()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01_dataParallel.html">1. Pytorch：多 GPU 模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">2. Pytorch：模型保存与读取</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">3. Pytorch：cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_addModule.html">4. Pytorch：Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5. Pytorch：no_grad()</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#eval-no-grad">5.1. eval 和 no_grad</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#model-eval">model.eval()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#with-torch-no-grad">with torch.no_grad()</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#id1">5.2. 参考资料</a></li>
 </ul>
 </li>
@@ -70,6 +74,9 @@
 <li class="toctree-l2"><a class="reference internal" href="08_optimizer.html">10. 优化算法</a></li>
 <li class="toctree-l2"><a class="reference internal" href="10_receptivaField.html">11. 特征图与感受野</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12_dml.html">12. Deep Metric Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_transformer.html">13. Transformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_clip.html">14. 多模态 CLIP 模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_selfSupervised.html">15. 自监督学习和对比学习</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
@@ -97,7 +104,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">深度学习</a> &raquo;</li>
-      <li><span class="section-number">5. </span>pytorch：no_grad()</li>
+      <li><span class="section-number">5. </span>Pytorch：no_grad()</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/deepLearning/11_nograd.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -108,25 +115,25 @@
            <div itemprop="articleBody">
              
   <section id="pytorch-no-grad">
-<h1><span class="section-number">5. </span>pytorch：no_grad()<a class="headerlink" href="#pytorch-no-grad" title="Permalink to this headline"></a></h1>
-<section id="model-eval-with-torch-no-grad">
-<h2><span class="section-number">5.1. </span>model.eval() 和 with torch.no_grad()<a class="headerlink" href="#model-eval-with-torch-no-grad" title="Permalink to this headline"></a></h2>
-<p><strong>model.eval()</strong></p>
-<blockquote>
-<div><ul class="simple">
+<h1><span class="section-number">5. </span>Pytorch：no_grad()<a class="headerlink" href="#pytorch-no-grad" title="Permalink to this headline"></a></h1>
+<section id="eval-no-grad">
+<h2><span class="section-number">5.1. </span>eval 和 no_grad<a class="headerlink" href="#eval-no-grad" title="Permalink to this headline"></a></h2>
+<section id="model-eval">
+<h3>model.eval()<a class="headerlink" href="#model-eval" title="Permalink to this headline"></a></h3>
+<ul class="simple">
 <li><p>会保留所有网络层的计算数据。</p></li>
-<li><p>autograd 机制也在工作，执行 <code class="docutils literal notranslate"><span class="pre">loss.backward()</span></code> 仍然计算变量的梯度。</p></li>
-<li><p>其作用是使 Dropout 层失活（p=1.0），同时改变 BatchNorm 的行为，采用全局的均值和方差。</p></li>
+<li><p>Autograd 机制也在工作，执行 <code class="docutils literal notranslate"><span class="pre">loss.backward()</span></code> 仍然计算变量的梯度。</p></li>
+<li><p>其作用是使 Dropout 层失活（p = 1.0），同时改变 BatchNorm 的行为，采用全局的均值和方差。</p></li>
 </ul>
-</div></blockquote>
-<p><strong>with torch.no_grad()</strong></p>
-<blockquote>
-<div><ul class="simple">
-<li><p>autograd 机制不工作，无法进行梯度计算。</p></li>
+</section>
+<section id="with-torch-no-grad">
+<h3>with torch.no_grad()<a class="headerlink" href="#with-torch-no-grad" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Autograd 机制不工作，无法进行梯度计算。</p></li>
 <li><p>可以加速前向推理，节约内存。</p></li>
 </ul>
-</div></blockquote>
 <p>提特征时两者配合使用。</p>
+</section>
 </section>
 <section id="id1">
 <h2><span class="section-number">5.2. </span>参考资料<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
@@ -143,7 +150,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="09_addModule.html" class="btn btn-neutral float-left" title="4. pytorch：Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="09_addModule.html" class="btn btn-neutral float-left" title="4. Pytorch：Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="02_activationFunction.html" class="btn btn-neutral float-right" title="6. 激活函数" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

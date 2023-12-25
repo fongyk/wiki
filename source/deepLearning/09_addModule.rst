@@ -1,7 +1,7 @@
-pytorch：Module
+Pytorch：Module
 =========================
 
-container
+Container
 ---------------
 
 ``nn.Module`` 是 Pytorch 中提供的一个类，是所有神经网络模块的基类。自定义的模块要继承这个基类。
@@ -233,10 +233,10 @@ add_module
   ## 可以看到，上面的参数是同步更新的
 
 
-attribute 索引
+Attribute 索引
 -----------------
 
-除了使用 ``_modules[name]`` 访问模块，还可以将 name 转换成属性（attribute）的索引，通过下标的形式访问。
+除了使用 ``_modules[name]`` 访问模块，还可以将 ``name`` 转换成属性（Attribute）的索引，通过下标的形式访问。
 
 .. code-block:: python
   :linenos:

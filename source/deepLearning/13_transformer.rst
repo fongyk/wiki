@@ -56,12 +56,14 @@ Self-Attention
 
 假设两个 :math:`d` 维向量的每个分量都是一个相互独立的服从标准正态分布的随机变量，那么他们的点乘方差就是 :math:`d` ，对每一个分量除以 :math:`\sqrt{d}` 可以让点乘的方差归一化成 1。
 
-.. image:: ./13_example.png
+Multi-Head Attention 相当于 :math:`h` 个不同的 Self-Attention 的集成。将模型分为多个头，形成多个子空间，可以让模型去关注不同方面的信息，最后再将各个方面的信息综合起来。类比 CNN 中同时使用多个卷积核的作用，多头的注意力有助于网络捕捉到更丰富的特征/信息。
+
+.. figure:: ./13_example.png
     :width: 600 px
     :align: center
 
-Multi-Head Attention 相当于 :math:`h` 个不同的 Self-Attention 的集成。将模型分为多个头，形成多个子空间，可以让模型去关注不同方面的信息，最后再将各个方面的信息综合起来。类比 CNN 中同时使用多个卷积核的作用，多头的注意力有助于网络捕捉到更丰富的特征/信息。
-
+    `Self-Attention 示例 <https://jalammar.github.io/illustrated-transformer/>`_
+    
 
 计算复杂度
 ^^^^^^^^^^^^^^
@@ -141,10 +143,14 @@ CNN + Transformer 混合模型
 +++++++++++++++++++++++++++++
 
 
-既然 CNN 具有归纳偏置的特性，Transformer 又具有很强全局归纳建模能力，使用 CNN+Transformer 的混合模型是不是可以得到更好的效果呢？
+既然 CNN 具有归纳偏置的特性，Transformer 又具有很强全局归纳建模能力，使用 CNN + Transformer 的混合模型是不是可以得到更好的效果呢？
 
 :math:`224 \times 224 \times 3` 的图像经过卷积层得到 :math:`14 \times 14 \times 768` 的 Feature Map，拉成一个  :math:`196 \times 768` 的二维 Tensor，后续操作和 ViT 相同。
 
+
+.. note::
+
+    Patch Size 增大一倍，Patch 数量（即序列长度）会减少到原来的四分之一，在维持 Hidden Layer 维度不变的情况下，计算量将会大大减少。
 
 `Swin Transformer <https://arxiv.org/pdf/2103.14030.pdf>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -174,7 +180,7 @@ Swin Transformer 主要有两个创新：
 
     Transformer 的输入输出都是二维的矩阵，比如图中的 :math:`\frac{H}{4} \times \frac{W}{4} \times C` 其实是 :math:`\frac{HW}{16}\times C` 。
 
-Patch partition + Linear Embedding
+Patch Partition + Linear Embedding
 """"""""""""""""""""""""""""""""""""""""
 
 同 ViT。

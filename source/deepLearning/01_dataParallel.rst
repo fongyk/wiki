@@ -1,4 +1,4 @@
-pytorch：多 GPU 模式
+Pytorch：多 GPU 模式
 =========================
 
 DataParallel
@@ -7,7 +7,7 @@ DataParallel
 Pytorch 中可以通过 ``torch.nn.DataParallel`` 切换到多GPU（multi-GPU）模式，在 module 级别上实现数据并行。
 此容器通过将 mini-batch 划分到不同的设备上来实现给定 module 的并行。
 在 forward 过程中，module 会在每个设备上都复制一遍，每个副本都会处理部分输入。
-在 backward 过程中，副本上的梯度会累加到原始 module 上，在一块 GPU 上更新参数，最后将参数广播（broadcast）给其他 GPU，完成一次迭代。
+在 backward 过程中，副本上的梯度会累加到原始 module 上，在一块 GPU 上更新参数，最后将参数广播（Broadcast）给其他 GPU，完成一次迭代。
 
 batch 的大小应该大于所使用的 GPU 的数量，还应当是 GPU 个数的整数倍，这样划分出来的每一块 GPU 上都会有相同的样本数量。
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1. pytorch：多 GPU 模式 &mdash; fong alpha documentation</title>
+  <title>1. Pytorch：多 GPU 模式 &mdash; fong alpha documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -22,7 +22,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2. pytorch：模型保存与读取" href="05_modelSave.html" />
+    <link rel="next" title="2. Pytorch：模型保存与读取" href="05_modelSave.html" />
     <link rel="prev" title="深度学习" href="index.html" /> 
 </head>
 
@@ -54,7 +54,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">深度学习</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">1. pytorch：多 GPU 模式</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1. Pytorch：多 GPU 模式</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#dataparallel">1.1. DataParallel</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id1">网络外指定</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id2">网络内指定</a></li>
@@ -70,10 +70,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#id6">1.3. 参考资料</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">2. pytorch：模型保存与读取</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">3. pytorch：cuda</a></li>
-<li class="toctree-l2"><a class="reference internal" href="09_addModule.html">4. pytorch：Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="11_nograd.html">5. pytorch：no_grad()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">2. Pytorch：模型保存与读取</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">3. Pytorch：cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_addModule.html">4. Pytorch：Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_nograd.html">5. Pytorch：no_grad()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02_activationFunction.html">6. 激活函数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_batchnorm.html">7. Batch Normalization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_overfit.html">8. 过拟合</a></li>
@@ -81,6 +81,9 @@
 <li class="toctree-l2"><a class="reference internal" href="08_optimizer.html">10. 优化算法</a></li>
 <li class="toctree-l2"><a class="reference internal" href="10_receptivaField.html">11. 特征图与感受野</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12_dml.html">12. Deep Metric Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_transformer.html">13. Transformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_clip.html">14. 多模态 CLIP 模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_selfSupervised.html">15. 自监督学习和对比学习</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
@@ -108,7 +111,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">深度学习</a> &raquo;</li>
-      <li><span class="section-number">1. </span>pytorch：多 GPU 模式</li>
+      <li><span class="section-number">1. </span>Pytorch：多 GPU 模式</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/deepLearning/01_dataParallel.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -119,13 +122,13 @@
            <div itemprop="articleBody">
              
   <section id="pytorch-gpu">
-<h1><span class="section-number">1. </span>pytorch：多 GPU 模式<a class="headerlink" href="#pytorch-gpu" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">1. </span>Pytorch：多 GPU 模式<a class="headerlink" href="#pytorch-gpu" title="Permalink to this headline"></a></h1>
 <section id="dataparallel">
 <h2><span class="section-number">1.1. </span>DataParallel<a class="headerlink" href="#dataparallel" title="Permalink to this headline"></a></h2>
 <p>Pytorch 中可以通过 <code class="docutils literal notranslate"><span class="pre">torch.nn.DataParallel</span></code> 切换到多GPU（multi-GPU）模式，在 module 级别上实现数据并行。
 此容器通过将 mini-batch 划分到不同的设备上来实现给定 module 的并行。
 在 forward 过程中，module 会在每个设备上都复制一遍，每个副本都会处理部分输入。
-在 backward 过程中，副本上的梯度会累加到原始 module 上，在一块 GPU 上更新参数，最后将参数广播（broadcast）给其他 GPU，完成一次迭代。</p>
+在 backward 过程中，副本上的梯度会累加到原始 module 上，在一块 GPU 上更新参数，最后将参数广播（Broadcast）给其他 GPU，完成一次迭代。</p>
 <p>batch 的大小应该大于所使用的 GPU 的数量，还应当是 GPU 个数的整数倍，这样划分出来的每一块 GPU 上都会有相同的样本数量。</p>
 <p>有两种使用方式：网络外指定、网络内指定。</p>
 <section id="id1">
@@ -315,7 +318,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="深度学习" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="05_modelSave.html" class="btn btn-neutral float-right" title="2. pytorch：模型保存与读取" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="05_modelSave.html" class="btn btn-neutral float-right" title="2. Pytorch：模型保存与读取" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

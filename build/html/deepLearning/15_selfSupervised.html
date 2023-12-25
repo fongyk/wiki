@@ -205,9 +205,15 @@ s_{i,j} &amp;= \frac{\boldsymbol{z}_i^{\top} \boldsymbol{z}_j}{\left\Vert \bolds
 <li><p>Alignment：正例映射到单位超球面后，距离比较近。</p></li>
 <li><p>Uniformity：表征里保留尽可能多的信息，使得映射到单位超球面的特征尽可能均匀地分布在球面上。</p></li>
 </ul>
-<p>温度参数 <span class="math notranslate nohighlight">\(\tau\)</span> 作用：会将模型更新的重点聚焦到有难度的负例（Hard Negative），并对它们做相应的惩罚，难度越大，则分配到的惩罚越多。
+<p>温度参数 <span class="math notranslate nohighlight">\(\tau\)</span> 的作用：会将模型更新的重点聚焦到有难度的负例（Hard Negative），并对它们做相应的惩罚，难度越大，则分配到的惩罚越多。
 倾向于使用小的温度系数，但并不是越小越好，需要考虑一些 Hard Positive 的干扰。</p>
 </div>
+<figure class="align-center" id="id11">
+<a class="reference internal image-reference" href="../_images/15_augmentations.png"><img alt="../_images/15_augmentations.png" src="../_images/15_augmentations.png" style="width: 700px;" /></a>
+<figcaption>
+<p><span class="caption-text">Data Augmentations</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
 </section>
 <section id="batch">
 <h3>基于负例的对比学习：Batch 之外<a class="headerlink" href="#batch" title="Permalink to this headline"></a></h3>
@@ -221,11 +227,12 @@ s_{i,j} &amp;= \frac{\boldsymbol{z}_i^{\top} \boldsymbol{z}_j}{\left\Vert \bolds
 <ul class="simple">
 <li><p>MoCo v2 维护了一个较大的负例队列，当需要在正例和负例之间进行对比计算时，就从这个负例队列里取 K 个，已经不局限于 Batch Size 的限制了。</p></li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>MoCo 和 SimCLR 模型的演进：</p>
-<a class="reference internal image-reference" href="../_images/15_mocoSimCLR.png"><img alt="../_images/15_mocoSimCLR.png" class="align-center" src="../_images/15_mocoSimCLR.png" style="width: 500px;" /></a>
-</div>
+<figure class="align-center" id="id12">
+<a class="reference internal image-reference" href="../_images/15_mocoSimCLR.png"><img alt="../_images/15_mocoSimCLR.png" src="../_images/15_mocoSimCLR.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-text">MoCo 和 SimCLR 模型的演进</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
 </section>
 <section id="id8">
 <h3>对比聚类： <a class="reference external" href="https://arxiv.org/pdf/2006.09882.pdf">SwAV</a><a class="headerlink" href="#id8" title="Permalink to this headline"></a></h3>
@@ -245,7 +252,7 @@ s_{i,j} &amp;= \frac{\boldsymbol{z}_i^{\top} \boldsymbol{z}_j}{\left\Vert \bolds
 <div class="math notranslate nohighlight">
 \[\begin{split}\mathcal{L} &amp; = \mathcal{L}(\boldsymbol{z}_1, \boldsymbol{v}_2) + \mathcal{L}(\boldsymbol{z}_2, \boldsymbol{v}_1) \\
 \mathcal{L}(\boldsymbol{z}, \boldsymbol{v}) &amp; = \left\lVert  \boldsymbol{z} - \boldsymbol{v} \right\rVert^2_2\end{split}\]</div>
-<p>既然 BYOL 只用正例，它是如何防止模型坍塌的呢？最关键的因素在于新加入的 Predictor 结构。</p>
+<p>BYOL 只用正例，防止模型坍塌的关键因素在于新加入的 Predictor 结构，具体机理不明。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>论文 <a class="reference external" href="https://arxiv.org/pdf/2011.13377.pdf">How Well Do Self-Supervised Models Transfer</a> 对 13 个知名自监督模型进行相对公平的对比测试，得出了一些很有价值的结论。</p>

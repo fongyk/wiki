@@ -94,8 +94,15 @@ SimCLR 做了两次非线性映射（Encoder 和 Projector），可能是如下�
     - Alignment：正例映射到单位超球面后，距离比较近。
     - Uniformity：表征里保留尽可能多的信息，使得映射到单位超球面的特征尽可能均匀地分布在球面上。
 
-    温度参数 :math:`\tau` 作用：会将模型更新的重点聚焦到有难度的负例（Hard Negative），并对它们做相应的惩罚，难度越大，则分配到的惩罚越多。
+    温度参数 :math:`\tau` 的作用：会将模型更新的重点聚焦到有难度的负例（Hard Negative），并对它们做相应的惩罚，难度越大，则分配到的惩罚越多。
     倾向于使用小的温度系数，但并不是越小越好，需要考虑一些 Hard Positive 的干扰。
+
+.. figure:: ./15_augmentations.png
+    :width: 700 px
+    :align: center
+    
+    Data Augmentations
+
 
 基于负例的对比学习：Batch 之外
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -114,13 +121,12 @@ SimCLR 做了两次非线性映射（Encoder 和 Projector），可能是如下�
 
 - MoCo v2 维护了一个较大的负例队列，当需要在正例和负例之间进行对比计算时，就从这个负例队列里取 K 个，已经不局限于 Batch Size 的限制了。
 
-.. note::
 
-    MoCo 和 SimCLR 模型的演进：
+.. figure:: ./15_mocoSimCLR.png
+    :width: 500 px
+    :align: center
 
-    .. image:: ./15_mocoSimCLR.png
-        :width: 500 px
-        :align: center
+    MoCo 和 SimCLR 模型的演进
 
 
 对比聚类： `SwAV <https://arxiv.org/pdf/2006.09882.pdf>`_
@@ -154,7 +160,7 @@ BYOL 有两个不对称分支：Online 和 Target。Online 分支新增了一个
     \mathcal{L} & = \mathcal{L}(\boldsymbol{z}_1, \boldsymbol{v}_2) + \mathcal{L}(\boldsymbol{z}_2, \boldsymbol{v}_1) \\
     \mathcal{L}(\boldsymbol{z}, \boldsymbol{v}) & = \left\lVert  \boldsymbol{z} - \boldsymbol{v} \right\rVert^2_2
 
-既然 BYOL 只用正例，它是如何防止模型坍塌的呢？最关键的因素在于新加入的 Predictor 结构。
+BYOL 只用正例，防止模型坍塌的关键因素在于新加入的 Predictor 结构，具体机理不明。
 
 .. note::
 

@@ -1,4 +1,4 @@
-pytorch：cuda
+Pytorch：cuda
 ======================
 
 使用指定 GPU
@@ -18,8 +18,8 @@ pytorch：cuda
     import torch
     torch.cuda.set_device(1)
 
-device切换
--------------
+device 切换
+---------------
 
 对于一个 ``tensor`` 对象， ``cuda()`` 返回该对象在CUDA内存中的拷贝::
 

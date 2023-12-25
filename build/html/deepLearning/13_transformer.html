@@ -72,16 +72,16 @@
 <li class="toctree-l3"><a class="reference internal" href="#encoder">13.2. Encoder</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#decoder">13.3. Decoder</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#self-attention">13.4. Self-Attention</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id3">计算复杂度</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">计算复杂度</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#layer-normalization">13.5. Layer Normalization</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cv">13.6. CV 领域的应用</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id4">ViT</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id5">Swin Transformer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">ViT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">Swin Transformer</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id7">13.7. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">13.7. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="14_clip.html">14. 多模态 CLIP 模型</a></li>
@@ -161,10 +161,15 @@
 <p>其中， <span class="math notranslate nohighlight">\(Q=XW_Q,\ K=XW_K,\ V=XW_V \in \mathbb{R}^{n \times d}\)</span> 。由于这 3 个矩阵都是由输入 <span class="math notranslate nohighlight">\(X\)</span> 得到，因此叫 Self-Attention。</p>
 <p>使用 <span class="math notranslate nohighlight">\(\boldsymbol{q}\)</span> 和 <span class="math notranslate nohighlight">\(\boldsymbol{k}\)</span> 两组向量来计算权重（而不是一组），增加了权重的自由度，权重有可能是非对偶的（即 <span class="math notranslate nohighlight">\(\boldsymbol{q}_i^{\top}\boldsymbol{k}_j \ne \boldsymbol{k}_i^{\top}\boldsymbol{q}_j\)</span> ），增强了模型的表达能力。</p>
 <p>假设两个 <span class="math notranslate nohighlight">\(d\)</span> 维向量的每个分量都是一个相互独立的服从标准正态分布的随机变量，那么他们的点乘方差就是 <span class="math notranslate nohighlight">\(d\)</span> ，对每一个分量除以 <span class="math notranslate nohighlight">\(\sqrt{d}\)</span> 可以让点乘的方差归一化成 1。</p>
-<a class="reference internal image-reference" href="../_images/13_example.png"><img alt="../_images/13_example.png" class="align-center" src="../_images/13_example.png" style="width: 600px;" /></a>
 <p>Multi-Head Attention 相当于 <span class="math notranslate nohighlight">\(h\)</span> 个不同的 Self-Attention 的集成。将模型分为多个头，形成多个子空间，可以让模型去关注不同方面的信息，最后再将各个方面的信息综合起来。类比 CNN 中同时使用多个卷积核的作用，多头的注意力有助于网络捕捉到更丰富的特征/信息。</p>
-<section id="id3">
-<h3>计算复杂度<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
+<figure class="align-center" id="id9">
+<a class="reference internal image-reference" href="../_images/13_example.png"><img alt="../_images/13_example.png" src="../_images/13_example.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text"><a class="reference external" href="https://jalammar.github.io/illustrated-transformer/">Self-Attention 示例</a></span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="id4">
+<h3>计算复杂度<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
 <p>假设序列长度为 <span class="math notranslate nohighlight">\(n\)</span> ， <span class="math notranslate nohighlight">\(Q,K,V \in \mathbb{R}^{n \times d}\)</span> 。
 Self-Attention 三个步骤的复杂度：</p>
 <ul class="simple">
@@ -187,8 +192,8 @@ Multi-Head Attention时间复杂度也是 <span class="math notranslate nohighli
 </section>
 <section id="cv">
 <h2><span class="section-number">13.6. </span>CV 领域的应用<a class="headerlink" href="#cv" title="Permalink to this headline"></a></h2>
-<section id="id4">
-<h3><a class="reference external" href="https://arxiv.org/pdf/2010.11929.pdf">ViT</a><a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
+<section id="id5">
+<h3><a class="reference external" href="https://arxiv.org/pdf/2010.11929.pdf">ViT</a><a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
 <a class="reference internal image-reference" href="../_images/13_vit.png"><img alt="../_images/13_vit.png" class="align-center" src="../_images/13_vit.png" style="width: 600px;" /></a>
 <p>ViT将输入图片分为多个 Patch，再将每个 Patch 投影为固定长度的向量（Patch Embedding）送入 Transformer，后续 Encoder 的操作和原始 Transformer 中完全相同。
 对于图像分类任务，在输入序列中加入一个特殊的 Token，它对应的输出即为最后的类别预测。</p>
@@ -219,12 +224,16 @@ CNN 具有两种归纳偏置：</p>
 </section>
 <section id="cnn-transformer">
 <h4>CNN + Transformer 混合模型<a class="headerlink" href="#cnn-transformer" title="Permalink to this headline"></a></h4>
-<p>既然 CNN 具有归纳偏置的特性，Transformer 又具有很强全局归纳建模能力，使用 CNN+Transformer 的混合模型是不是可以得到更好的效果呢？</p>
+<p>既然 CNN 具有归纳偏置的特性，Transformer 又具有很强全局归纳建模能力，使用 CNN + Transformer 的混合模型是不是可以得到更好的效果呢？</p>
 <p><span class="math notranslate nohighlight">\(224 \times 224 \times 3\)</span> 的图像经过卷积层得到 <span class="math notranslate nohighlight">\(14 \times 14 \times 768\)</span> 的 Feature Map，拉成一个  <span class="math notranslate nohighlight">\(196 \times 768\)</span> 的二维 Tensor，后续操作和 ViT 相同。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Patch Size 增大一倍，Patch 数量（即序列长度）会减少到原来的四分之一，在维持 Hidden Layer 维度不变的情况下，计算量将会大大减少。</p>
+</div>
 </section>
 </section>
-<section id="id5">
-<h3><a class="reference external" href="https://arxiv.org/pdf/2103.14030.pdf">Swin Transformer</a><a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
+<section id="id6">
+<h3><a class="reference external" href="https://arxiv.org/pdf/2103.14030.pdf">Swin Transformer</a><a class="headerlink" href="#id6" title="Permalink to this headline"></a></h3>
 <a class="reference internal image-reference" href="../_images/13_swin1.png"><img alt="../_images/13_swin1.png" class="align-center" src="../_images/13_swin1.png" style="width: 400px;" /></a>
 <p>Swin Transformer 主要有两个创新：</p>
 <ul class="simple">
@@ -240,15 +249,15 @@ CNN 具有两种归纳偏置：</p>
 </dl>
 </li>
 </ul>
-<section id="id6">
-<h4>模型框架<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h4>
+<section id="id7">
+<h4>模型框架<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h4>
 <a class="reference internal image-reference" href="../_images/13_swin2.png"><img alt="../_images/13_swin2.png" class="align-center" src="../_images/13_swin2.png" style="width: 800px;" /></a>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Transformer 的输入输出都是二维的矩阵，比如图中的 <span class="math notranslate nohighlight">\(\frac{H}{4} \times \frac{W}{4} \times C\)</span> 其实是 <span class="math notranslate nohighlight">\(\frac{HW}{16}\times C\)</span> 。</p>
 </div>
 <section id="patch-partition-linear-embedding">
-<h5>Patch partition + Linear Embedding<a class="headerlink" href="#patch-partition-linear-embedding" title="Permalink to this headline"></a></h5>
+<h5>Patch Partition + Linear Embedding<a class="headerlink" href="#patch-partition-linear-embedding" title="Permalink to this headline"></a></h5>
 <p>同 ViT。</p>
 </section>
 <section id="patch-merging">
@@ -279,8 +288,8 @@ CNN 具有两种归纳偏置：</p>
 </section>
 </section>
 </section>
-<section id="id7">
-<h2><span class="section-number">13.7. </span>参考资料<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h2>
+<section id="id8">
+<h2><span class="section-number">13.7. </span>参考资料<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>Transformer</p></li>
 </ol>

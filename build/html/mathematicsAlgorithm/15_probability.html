@@ -166,11 +166,11 @@ P \left( \bigcup_{i=1}^n A_i \right) &amp;=\ \sum_{i=1}^n P(A_i) - \sum_{i &lt; 
 <table class="docutils align-center" id="id11">
 <caption><span class="caption-text">常见概率分布</span><a class="headerlink" href="#id11" title="Permalink to this table"></a></caption>
 <colgroup>
+<col style="width: 8%" />
 <col style="width: 9%" />
-<col style="width: 10%" />
-<col style="width: 42%" />
-<col style="width: 16%" />
-<col style="width: 23%" />
+<col style="width: 45%" />
+<col style="width: 15%" />
+<col style="width: 22%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>分布</p></th>
@@ -213,19 +213,19 @@ P \left( \bigcup_{i=1}^n A_i \right) &amp;=\ \sum_{i=1}^n P(A_i) - \sum_{i &lt; 
 </tr>
 <tr class="row-odd"><td><p>正态分布</p></td>
 <td><p>连续</p></td>
-<td><p><span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2 \pi} \sigma}exp\left( -\frac{(x-\mu)^2}{2\sigma^2} \right)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2 \pi} \sigma}\mathrm{exp}\left( -\frac{(x-\mu)^2}{2\sigma^2} \right)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mu\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\sigma^2\)</span></p></td>
 </tr>
 <tr class="row-even"><td><p>对数正态分布</p></td>
 <td><p>连续</p></td>
-<td><p><span class="math notranslate nohighlight">\(\frac{1}{x}\cdot\frac{1}{\sqrt{2\pi}\sigma}exp\left(-\frac{(\ln x-\mu)^2}{2\sigma^2} \right)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{1}{x}\cdot\frac{1}{\sqrt{2\pi}\sigma}\mathrm{exp}\left(-\frac{(\ln x-\mu)^2}{2\sigma^2} \right)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(e^{\mu + \frac{\sigma^2}{2}}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\((e^{\sigma^2}-1)e^{2\mu + \sigma^2}\)</span></p></td>
 </tr>
 <tr class="row-odd"><td><p>拉普拉斯分布</p></td>
 <td><p>连续</p></td>
-<td><p><span class="math notranslate nohighlight">\(\frac{1}{2b}exp \left( -\frac{|x - \mu|}{b} \right)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{1}{2b}\mathrm{exp} \left( -\frac{|x - \mu|}{b} \right)\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\mu\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(2b^2\)</span></p></td>
 </tr>
@@ -239,10 +239,10 @@ P \left( \bigcup_{i=1}^n A_i \right) &amp;=\ \sum_{i=1}^n P(A_i) - \sum_{i &lt; 
 \[Var[X] = E[X^2] - E^2[X]\]</div>
 <p>中位数：</p>
 <div class="math notranslate nohighlight">
-\[\int_{-\infty} ^{median} f(x) dx \geqslant \frac{1}{2} \ and \ \int_{median} ^{+\infty} f(x) dx \geqslant \frac{1}{2}.\]</div>
+\[\int_{-\infty} ^{median} f(x) dx \geqslant \frac{1}{2} \ \mathrm{and} \ \int_{median} ^{+\infty} f(x) dx \geqslant \frac{1}{2}.\]</div>
 <p>众数：</p>
 <div class="math notranslate nohighlight">
-\[mode = argmax \ f(x)\]</div>
+\[mode = \mathrm{argmax} \ f(x)\]</div>
 </section>
 <section id="id8">
 <h2><span class="section-number">15.7. </span>对数正态分布<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h2>
@@ -252,7 +252,7 @@ P \left( \bigcup_{i=1}^n A_i \right) &amp;=\ \sum_{i=1}^n P(A_i) - \sum_{i &lt; 
        &amp;=\ \frac{d}{dx} \Phi \left( \frac{\ln x - \mu}{\sigma} \right) \\
        &amp;=\ \varphi \left( \frac{\ln x - \mu}{\sigma} \right) \frac{d}{dx} \left( \frac{\ln x - \mu}{\sigma} \right) \\
        &amp;=\ \varphi \left( \frac{\ln x - \mu}{\sigma} \right) \frac{1}{\sigma x} \\
-       &amp;=\ \frac{1}{x}\cdot\frac{1}{\sqrt{2\pi}\sigma}exp\left(-\frac{(\ln x-\mu)^2}{2\sigma^2} \right)\end{split}\]</div>
+       &amp;=\ \frac{1}{x}\cdot\frac{1}{\sqrt{2\pi}\sigma}\mathrm{exp}\left(-\frac{(\ln x-\mu)^2}{2\sigma^2} \right)\end{split}\]</div>
 <div class="math notranslate nohighlight">
 \[mean =  e^{\mu + \frac{\sigma^2}{2}},\ variance = (e^{\sigma^2}-1) e^{2\mu + \sigma^2},\ median = e^\mu,\ mode = e^{\mu - \sigma^2}.\]</div>
 <a class="reference internal image-reference" href="../_images/15_pdf.png"><img alt="../_images/15_pdf.png" class="align-center" src="../_images/15_pdf.png" style="width: 300px;" /></a>
@@ -260,12 +260,12 @@ P \left( \bigcup_{i=1}^n A_i \right) &amp;=\ \sum_{i=1}^n P(A_i) - \sum_{i &lt; 
 <section id="id9">
 <h2><span class="section-number">15.8. </span>实例<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h2>
 <ul>
-<li><p>已知 <span class="math notranslate nohighlight">\(X_1, X_2, ..., X_n\)</span> 是 <span class="math notranslate nohighlight">\(n\)</span> 个相互独立同分布随机变量，<span class="math notranslate nohighlight">\(F_X(x)\)</span> 和 <span class="math notranslate nohighlight">\(p_X(x)\)</span> 是它们的（累计）分布函数和概率密度函数，分别求其最大值 <span class="math notranslate nohighlight">\(Y = max(X_1, X_2, ..., X_n)\)</span> 与其最小值 <span class="math notranslate nohighlight">\(Z = min(X_1, X_2, ..., X_n)\)</span> 的分布函数与概率密度函数。</p>
+<li><p>已知 <span class="math notranslate nohighlight">\(X_1, X_2, ..., X_n\)</span> 是 <span class="math notranslate nohighlight">\(n\)</span> 个相互独立同分布随机变量，<span class="math notranslate nohighlight">\(F_X(x)\)</span> 和 <span class="math notranslate nohighlight">\(p_X(x)\)</span> 是它们的（累计）分布函数和概率密度函数，分别求其最大值 <span class="math notranslate nohighlight">\(Y = \mathrm{max}(X_1, X_2, ..., X_n)\)</span> 与其最小值 <span class="math notranslate nohighlight">\(Z = \mathrm{min}(X_1, X_2, ..., X_n)\)</span> 的分布函数与概率密度函数。</p>
 <dl>
 <dt>解：</dt><dd><p>对于 <span class="math notranslate nohighlight">\(Y\)</span> ：</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}F_Y(y) &amp;=\ P(Y \leqslant y) \\
-       &amp;=\ P(max(X_1, X_2, ..., X_n) \leqslant y) \\
+       &amp;=\ P(\mathrm{max}(X_1, X_2, ..., X_n) \leqslant y) \\
        &amp;=\ P(X_1 \leqslant y, X_2 \leqslant y, ..., X_n \leqslant y) \\
        &amp;=\ P(X_1 \leqslant y)P(X_2 \leqslant y) \cdots P(X_n \leqslant y) \\
        &amp;=\ [F_X(y)]^n\end{split}\]</div>
@@ -293,7 +293,7 @@ p_Z(z) = n (1-z)^{n-1},\ E[Z] = \frac{1}{n+1}.\end{split}\]</div>
 <p>对于 <span class="math notranslate nohighlight">\(U\)</span> ，</p>
 <div class="math notranslate nohighlight">
 $$
-f_U(u) = \int_{x \in [0,1],\ u-x \in [0,1]} f_{XY}(x, u-x) dx = \int_{max(0, u-1)}^{min(1, u)} f_{XY}(x, u-x) dx \\
+f_U(u) = \int_{x \in [0,1],\ u-x \in [0,1]} f_{XY}(x, u-x) dx = \int_{\mathrm{max}(0, u-1)}^{\mathrm{min}(1, u)} f_{XY}(x, u-x) dx \\
 =
 \begin{cases}
   u &amp; , &amp; 0 \leqslant u \leqslant 1 \\
@@ -302,7 +302,7 @@ f_U(u) = \int_{x \in [0,1],\ u-x \in [0,1]} f_{XY}(x, u-x) dx = \int_{max(0, u-1
 $$</div><p>对于 <span class="math notranslate nohighlight">\(V\)</span> ，设 <span class="math notranslate nohighlight">\(Z = -Y \sim U(-1, 0)\)</span> ，则 <span class="math notranslate nohighlight">\(V = X + Z\)</span> ，</p>
 <div class="math notranslate nohighlight">
 $$
-f_V(v) = \int_{x \in [0,1],\ v-x \in [-1,0]} f_{XY}(x, v-x) dx = \int_{max(0, v)}^{min(1, v+1)} f_{XY}(x, v-x) dx \\
+f_V(v) = \int_{x \in [0,1],\ v-x \in [-1,0]} f_{XY}(x, v-x) dx = \int_{\mathrm{max}(0, v)}^{\mathrm{min}(1, v+1)} f_{XY}(x, v-x) dx \\
 =
 \begin{cases}
   1 + v &amp; , &amp; -1 \leqslant v \leqslant 0 \\

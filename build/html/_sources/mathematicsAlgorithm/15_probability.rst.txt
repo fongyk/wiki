@@ -62,18 +62,18 @@
 .. table:: 常见概率分布
   :align: center
 
-  ======================  =========================  ===========================================================================================================  =========================================  ===========================================================
-        分布                         类型                    概率密度函数（pdf）                                                                                                         均值                              方差
-  ======================  =========================  ===========================================================================================================  =========================================  ===========================================================
-      伯努利分布                     离散                :math:`p^k (1-p)^{1-k},\ k \in \{ 0,1 \}`                                                                         :math:`p`                             :math:`p(1-p)`
-      二项分布                       离散                :math:`C_n^k p^k (1-p)^{n-k}`                                                                                     :math:`np`                             :math:`np(1-p)`
-      泊松分布                       离散                :math:`\frac{\lambda^k}{k!}e^{-\lambda}`                                                                         :math:`\lambda`                         :math:`\lambda`
-      均匀分布                       连续                :math:`\frac{1}{b-a},\ a \leqslant x \leqslant b`                                                            :math:`\frac{1}{2}(a+b)`                     :math:`\frac{1}{12}(b-a)^2`
-      指数分布                       连续                 :math:`\lambda e^{-\lambda x},\ x \geqslant 0`                                                                :math:`\frac{1}{\lambda}`                 :math:`\frac{1}{\lambda ^2}`
-      正态分布                       连续               :math:`\frac{1}{\sqrt{2 \pi} \sigma}exp\left( -\frac{(x-\mu)^2}{2\sigma^2} \right)`                            :math:`\mu`                                 :math:`\sigma^2`
-      对数正态分布                   连续               :math:`\frac{1}{x}\cdot\frac{1}{\sqrt{2\pi}\sigma}exp\left(-\frac{(\ln x-\mu)^2}{2\sigma^2} \right)`           :math:`e^{\mu + \frac{\sigma^2}{2}}`            :math:`(e^{\sigma^2}-1)e^{2\mu + \sigma^2}`
-      拉普拉斯分布                   连续                 :math:`\frac{1}{2b}exp \left( -\frac{|x - \mu|}{b} \right)`                                                   :math:`\mu`                                 :math:`2b^2`
-  ======================  =========================  ===========================================================================================================  =========================================  ===========================================================
+  ======================  =========================  =======================================================================================================================  =========================================  ===========================================================
+        分布                         类型                    概率密度函数（pdf）                                                                                                         均值                                          方差
+  ======================  =========================  =======================================================================================================================  =========================================  ===========================================================
+      伯努利分布                     离散                :math:`p^k (1-p)^{1-k},\ k \in \{ 0,1 \}`                                                                                :math:`p`                                     :math:`p(1-p)`
+      二项分布                       离散                :math:`C_n^k p^k (1-p)^{n-k}`                                                                                            :math:`np`                                    :math:`np(1-p)`
+      泊松分布                       离散                :math:`\frac{\lambda^k}{k!}e^{-\lambda}`                                                                                 :math:`\lambda`                               :math:`\lambda`
+      均匀分布                       连续                :math:`\frac{1}{b-a},\ a \leqslant x \leqslant b`                                                                        :math:`\frac{1}{2}(a+b)`                     :math:`\frac{1}{12}(b-a)^2`
+      指数分布                       连续                 :math:`\lambda e^{-\lambda x},\ x \geqslant 0`                                                                          :math:`\frac{1}{\lambda}`                     :math:`\frac{1}{\lambda ^2}`
+      正态分布                       连续               :math:`\frac{1}{\sqrt{2 \pi} \sigma}\mathrm{exp}\left( -\frac{(x-\mu)^2}{2\sigma^2} \right)`                              :math:`\mu`                                   :math:`\sigma^2`
+      对数正态分布                   连续               :math:`\frac{1}{x}\cdot\frac{1}{\sqrt{2\pi}\sigma}\mathrm{exp}\left(-\frac{(\ln x-\mu)^2}{2\sigma^2} \right)`             :math:`e^{\mu + \frac{\sigma^2}{2}}`            :math:`(e^{\sigma^2}-1)e^{2\mu + \sigma^2}`
+      拉普拉斯分布                   连续                 :math:`\frac{1}{2b}\mathrm{exp} \left( -\frac{|x - \mu|}{b} \right)`                                                    :math:`\mu`                                    :math:`2b^2`
+  ======================  =========================  =======================================================================================================================  =========================================  ===========================================================
 
 均值：
 
@@ -91,13 +91,13 @@
 
 .. math::
 
-    \int_{-\infty} ^{median} f(x) dx \geqslant \frac{1}{2} \ and \ \int_{median} ^{+\infty} f(x) dx \geqslant \frac{1}{2}.
+    \int_{-\infty} ^{median} f(x) dx \geqslant \frac{1}{2} \ \mathrm{and} \ \int_{median} ^{+\infty} f(x) dx \geqslant \frac{1}{2}.
 
 众数：
 
 .. math::
 
-    mode = argmax \ f(x)
+    mode = \mathrm{argmax} \ f(x)
 
 
 对数正态分布
@@ -111,7 +111,7 @@
            &=\ \frac{d}{dx} \Phi \left( \frac{\ln x - \mu}{\sigma} \right) \\
            &=\ \varphi \left( \frac{\ln x - \mu}{\sigma} \right) \frac{d}{dx} \left( \frac{\ln x - \mu}{\sigma} \right) \\
            &=\ \varphi \left( \frac{\ln x - \mu}{\sigma} \right) \frac{1}{\sigma x} \\
-           &=\ \frac{1}{x}\cdot\frac{1}{\sqrt{2\pi}\sigma}exp\left(-\frac{(\ln x-\mu)^2}{2\sigma^2} \right)
+           &=\ \frac{1}{x}\cdot\frac{1}{\sqrt{2\pi}\sigma}\mathrm{exp}\left(-\frac{(\ln x-\mu)^2}{2\sigma^2} \right)
 
 .. math::
 
@@ -124,7 +124,7 @@
 实例
 -----------
 
-- 已知 :math:`X_1, X_2, ..., X_n` 是 :math:`n` 个相互独立同分布随机变量，:math:`F_X(x)` 和 :math:`p_X(x)` 是它们的（累计）分布函数和概率密度函数，分别求其最大值 :math:`Y = max(X_1, X_2, ..., X_n)` 与其最小值 :math:`Z = min(X_1, X_2, ..., X_n)` 的分布函数与概率密度函数。
+- 已知 :math:`X_1, X_2, ..., X_n` 是 :math:`n` 个相互独立同分布随机变量，:math:`F_X(x)` 和 :math:`p_X(x)` 是它们的（累计）分布函数和概率密度函数，分别求其最大值 :math:`Y = \mathrm{max}(X_1, X_2, ..., X_n)` 与其最小值 :math:`Z = \mathrm{min}(X_1, X_2, ..., X_n)` 的分布函数与概率密度函数。
 
   解：
     对于 :math:`Y` ：
@@ -132,7 +132,7 @@
     .. math::
 
         F_Y(y) &=\ P(Y \leqslant y) \\
-               &=\ P(max(X_1, X_2, ..., X_n) \leqslant y) \\
+               &=\ P(\mathrm{max}(X_1, X_2, ..., X_n) \leqslant y) \\
                &=\ P(X_1 \leqslant y, X_2 \leqslant y, ..., X_n \leqslant y) \\
                &=\ P(X_1 \leqslant y)P(X_2 \leqslant y) \cdots P(X_n \leqslant y) \\
                &=\ [F_X(y)]^n
@@ -171,7 +171,7 @@
         :nowrap:
 
         $$
-        f_U(u) = \int_{x \in [0,1],\ u-x \in [0,1]} f_{XY}(x, u-x) dx = \int_{max(0, u-1)}^{min(1, u)} f_{XY}(x, u-x) dx \\
+        f_U(u) = \int_{x \in [0,1],\ u-x \in [0,1]} f_{XY}(x, u-x) dx = \int_{\mathrm{max}(0, u-1)}^{\mathrm{min}(1, u)} f_{XY}(x, u-x) dx \\
         =
         \begin{cases}
           u & , & 0 \leqslant u \leqslant 1 \\
@@ -185,7 +185,7 @@
         :nowrap:
 
         $$
-        f_V(v) = \int_{x \in [0,1],\ v-x \in [-1,0]} f_{XY}(x, v-x) dx = \int_{max(0, v)}^{min(1, v+1)} f_{XY}(x, v-x) dx \\
+        f_V(v) = \int_{x \in [0,1],\ v-x \in [-1,0]} f_{XY}(x, v-x) dx = \int_{\mathrm{max}(0, v)}^{\mathrm{min}(1, v+1)} f_{XY}(x, v-x) dx \\
         =
         \begin{cases}
           1 + v & , & -1 \leqslant v \leqslant 0 \\

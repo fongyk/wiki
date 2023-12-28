@@ -162,7 +162,7 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>对序列特征的处理一般是 Sum/Mean Pooling 或者 Attention（DIN/DIEN/BST）等。</p>
-<p>特征重要性：可以在网络 Embedding 层之后加一层 L1 Layer，为每个特征分配一个权重，Loss 中加入这些权重对应的 L1 Loss。</p>
+<p>特征重要性：可以在网络 Embedding 层之后加一层 L1 Layer，为每个特征分配一个权重，Loss 中加入这些权重对应的 L1 Loss；或者使用 SENet 来做特征加权。新增特征也可以通过 AB 实验来简单验证重要性。</p>
 </div>
 </section>
 <section id="id3">

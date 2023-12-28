@@ -140,7 +140,7 @@
 $$
 m[i][j] =
 \begin{cases}
-   min \{ m[i][k] + m[k+1][j] + p_i \times p_{k+1} \times p_{j+1} \},\ i \leqslant k &lt; j &amp; &amp; i \ne j \\
+   \mathrm{min} \{ m[i][k] + m[k+1][j] + p_i \times p_{k+1} \times p_{j+1} \},\ i \leqslant k &lt; j &amp; &amp; i \ne j \\
    0 &amp; &amp;  i = j
 \end{cases}
 
@@ -187,7 +187,7 @@ $$
 c[i][j] =
 \begin{cases}
    c[i-1][j-1] + 1 &amp; &amp; {i,j &gt; 0;\ X[i-1] = Y[j-1]} \\
-   max\{ c[i-1][j], c[i][j-1] \} &amp; &amp; {i,j &gt; 0;\ X[i-1] \ne Y[j-1]}
+   \mathrm{max}\{ c[i-1][j], c[i][j-1] \} &amp; &amp; {i,j &gt; 0;\ X[i-1] \ne Y[j-1]}
 \end{cases}
 $$</div><div class="toggle docutils container">
 <div class="header docutils container">
@@ -286,7 +286,7 @@ $$
 d[i][j] =
 \begin{cases}
    d[i-1][j-1] &amp; &amp; {i,j &gt; 0;\ X[i-1] = Y[j-1]} \\
-   min\{ d[i-1][j], d[i][j-1], d[i-1][j-1] \} + 1 &amp; &amp; {i,j &gt; 0;\ X[i-1] \ne Y[j-1]}
+   \mathrm{min} \{ d[i-1][j], d[i][j-1], d[i-1][j-1] \} + 1 &amp; &amp; {i,j &gt; 0;\ X[i-1] \ne Y[j-1]}
 \end{cases}
 $$</div></section>
 <section id="id4">
@@ -296,7 +296,7 @@ $$</div></section>
 <p>设 <span class="math notranslate nohighlight">\(dp[i]\)</span> 是以 <span class="math notranslate nohighlight">\(a[i]\)</span> 结尾的最长上升子序列的长度。</p>
 <p>递推关系：</p>
 <div class="math notranslate nohighlight">
-\[dp[i] = max\{ 1, dp[j]+1\ |\ j &lt; i\ \text{且}\ a[j] &lt; a[i]\}.\]</div>
+\[dp[i] = \mathrm{max}\{ 1, dp[j]+1\ |\ j &lt; i\ \text{且}\ a[j] &lt; a[i]\}.\]</div>
 </li>
 </ul>
 <div class="toggle docutils container">
@@ -362,7 +362,7 @@ $$</div></section>
 <p>设 <span class="math notranslate nohighlight">\(dp[i]\)</span> 是以 <span class="math notranslate nohighlight">\(a[i]\)</span> 结尾的最大子段和。</p>
 <p>递推关系：</p>
 <div class="math notranslate nohighlight">
-\[dp[i] = max\{ dp[i-1] + a[i], a[i] \},\ 1 \leqslant i &lt; n.\]</div>
+\[dp[i] = \mathrm{max}\{ dp[i-1] + a[i], a[i] \},\ 1 \leqslant i &lt; n.\]</div>
 <div class="toggle docutils container">
 <div class="header docutils container">
 <p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
@@ -395,7 +395,7 @@ $$
 dp[i+1][j] =
 \begin{cases}
    dp[i][j] &amp; &amp; j &lt; w[i] \\
-   max\{ dp[i][j], dp[i][j-w[i]] + v[i] \} &amp; &amp;  j \geqslant w[i]
+   \mathrm{max}\{ dp[i][j], dp[i][j-w[i]] + v[i] \} &amp; &amp;  j \geqslant w[i]
 \end{cases}
 $$</div><div class="toggle docutils container">
 <div class="header docutils container">
@@ -528,7 +528,7 @@ $$</div><div class="toggle docutils container">
 <p>递推关系：</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}dp[V][0] &amp;= 0 \\
-dp[S][v] &amp;=  min\{ dp[S \cup u][u] + d[v][u] \},\ u \notin S\end{split}\]</div>
+dp[S][v] &amp;=  \mathrm{min}\{ dp[S \cup u][u] + d[v][u] \},\ u \notin S\end{split}\]</div>
 <div class="toggle docutils container">
 <div class="header docutils container">
 <p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
@@ -636,7 +636,7 @@ dp[S][v] &amp;=  min\{ dp[S \cup u][u] + d[v][u] \},\ u \notin S\end{split}\]</d
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">## 作者：知乎用户</span>
 <span class="linenos"> 2</span><span class="c1">## 链接：https://www.zhihu.com/question/19690210/answer/18079633</span>
-<span class="linenos"> 3</span><span class="c1">## f(n,m)：n 层楼，m 个鸡蛋所需最少次数</span>
+<span class="linenos"> 3</span><span class="c1">## f(n, m)：n 层楼，m 个鸡蛋所需最少次数</span>
 <span class="linenos"> 4</span><span class="c1">## f(0, m) = 0</span>
 <span class="linenos"> 5</span><span class="c1">## f(n, 1) = n</span>
 <span class="linenos"> 6</span><span class="c1">## f(n, m) = min{max{f(k-1, m-1), f(n-k, m)}} + 1, 1 &lt;= k &lt;= n。 k 表示尝试在第 k 层扔下鸡蛋。</span>

@@ -5219,8 +5219,6 @@ Hint：记忆化递归；动态规划。
 
 https://leetcode.com/problems/stone-game-ii
 
-https://leetcode.com/problems/stone-game-iii
-
   .. container:: toggle
 
     .. container:: header
@@ -5246,6 +5244,15 @@ https://leetcode.com/problems/stone-game-iii
                 ## 拿完 piles[i:i+x] 之后，要等对方从 i+x 开始拿，之后能拿到的最大分是 sum(piles[i+x:]) - self.maxScore(piles, i+x, max(m, x), mem)
                 mem[i][m] = max([sum(piles[i:i+x]) + sum(piles[i+x:]) - self.maxScore(piles, i+x, max(m, x), mem) for x in range(1, 2*m+1)])
                 return mem[i][m]
+
+
+https://leetcode.com/problems/stone-game-iii
+
+  .. container:: toggle
+
+    .. container:: header
+
+        :math:`\color{darkgreen}{Code}`
 
     .. code-block:: python
         :linenos:

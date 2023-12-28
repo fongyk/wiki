@@ -15,7 +15,7 @@
   $$
   m[i][j] =
   \begin{cases}
-     min \{ m[i][k] + m[k+1][j] + p_i \times p_{k+1} \times p_{j+1} \},\ i \leqslant k < j & & i \ne j \\
+     \mathrm{min} \{ m[i][k] + m[k+1][j] + p_i \times p_{k+1} \times p_{j+1} \},\ i \leqslant k < j & & i \ne j \\
      0 & &  i = j
   \end{cases}
 
@@ -74,7 +74,7 @@
   c[i][j] =
   \begin{cases}
      c[i-1][j-1] + 1 & & {i,j > 0;\ X[i-1] = Y[j-1]} \\
-     max\{ c[i-1][j], c[i][j-1] \} & & {i,j > 0;\ X[i-1] \ne Y[j-1]}
+     \mathrm{max}\{ c[i-1][j], c[i][j-1] \} & & {i,j > 0;\ X[i-1] \ne Y[j-1]}
   \end{cases}
   $$
 
@@ -190,7 +190,7 @@
   d[i][j] =
   \begin{cases}
      d[i-1][j-1] & & {i,j > 0;\ X[i-1] = Y[j-1]} \\
-     min\{ d[i-1][j], d[i][j-1], d[i-1][j-1] \} + 1 & & {i,j > 0;\ X[i-1] \ne Y[j-1]}
+     \mathrm{min} \{ d[i-1][j], d[i][j-1], d[i-1][j-1] \} + 1 & & {i,j > 0;\ X[i-1] \ne Y[j-1]}
   \end{cases}
   $$
 
@@ -206,7 +206,7 @@
 
   .. math::
 
-      dp[i] = max\{ 1, dp[j]+1\ |\ j < i\ \text{且}\ a[j] < a[i]\}.
+      dp[i] = \mathrm{max}\{ 1, dp[j]+1\ |\ j < i\ \text{且}\ a[j] < a[i]\}.
 
 .. container:: toggle
 
@@ -281,7 +281,7 @@
 
 .. math::
 
-    dp[i] = max\{ dp[i-1] + a[i], a[i] \},\ 1 \leqslant i < n.
+    dp[i] = \mathrm{max}\{ dp[i-1] + a[i], a[i] \},\ 1 \leqslant i < n.
 
 .. container:: toggle
 
@@ -324,7 +324,7 @@
   dp[i+1][j] =
   \begin{cases}
      dp[i][j] & & j < w[i] \\
-     max\{ dp[i][j], dp[i][j-w[i]] + v[i] \} & &  j \geqslant w[i]
+     \mathrm{max}\{ dp[i][j], dp[i][j-w[i]] + v[i] \} & &  j \geqslant w[i]
   \end{cases}
   $$
 
@@ -482,7 +482,7 @@
 .. math::
 
   dp[V][0] &= 0 \\
-  dp[S][v] &=  min\{ dp[S \cup u][u] + d[v][u] \},\ u \notin S
+  dp[S][v] &=  \mathrm{min}\{ dp[S \cup u][u] + d[v][u] \},\ u \notin S
   
 
 .. container:: toggle
@@ -611,7 +611,7 @@
 
       ## 作者：知乎用户
       ## 链接：https://www.zhihu.com/question/19690210/answer/18079633
-      ## f(n,m)：n 层楼，m 个鸡蛋所需最少次数
+      ## f(n, m)：n 层楼，m 个鸡蛋所需最少次数
       ## f(0, m) = 0
       ## f(n, 1) = n
       ## f(n, m) = min{max{f(k-1, m-1), f(n-k, m)}} + 1, 1 <= k <= n。 k 表示尝试在第 k 层扔下鸡蛋。

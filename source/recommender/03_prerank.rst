@@ -53,7 +53,7 @@
 所以，双塔改建最重要的一条主线就是：如何保留更多的信息在 Final Embedding 中，从而有机会和对侧塔得到的 Embedding 交叉。
 
 `SENet双塔模型 <https://zhuanlan.zhihu.com/p/358779957>`_
-    在将信息喂入塔之前，插入 `SEBlock <https://openaccess.thecvf.com/content_cvpr_2018/papers/Hu_Squeeze-and-Excitation_Networks_CVPR_2018_paper.pdf>`_ ，动态学习各特征的重要性，增强重要信息，弱化甚至过滤掉原始特征中的噪声，从而减少信息在塔中传播过程中的污染与损耗，能够让可能多的重要信息“撑”到最后交叉那一刻。
+    在将信息喂入塔之前，插入 `SEBlock <https://openaccess.thecvf.com/content_cvpr_2018/papers/Hu_Squeeze-and-Excitation_Networks_CVPR_2018_paper.pdf>`_ ，动态学习各特征的重要性，增强重要信息，弱化甚至过滤掉原始特征中的噪声，从而减少信息在塔中传播过程中的污染与损耗，能够让可能多的重要信息“撑”到最后交叉那一刻。参考 `FiBiNet <https://arxiv.org/pdf/1905.09433.pdf>`_ 。
 
 .. image:: ./03_senetTower.png
     :width: 400px
@@ -80,7 +80,7 @@
 还有一种方式是让粗排模型对精排模型 **蒸馏** 。
 具体做法是用精排模型的打分作为一个 Soft Label，用 KL 散度或者 MSE 去建立精排打分和粗排模型打分的损失函数，让粗排模型更好的拟合精排的分布。
 
-
+`Google 还提出使用对比学习来训练双塔模型 <https://arxiv.org/pdf/2007.12865.pdf>`_ ，使用 Masking + Dropout 对 Item 侧的特征进行 Augmentation。
 
 负样本
 ---------
@@ -107,3 +107,7 @@
 4. “并联”双塔模型 | 你还不知道怎么玩吗！
 
   https://mp.weixin.qq.com/s/karPWLyHITu-qZceEhpn-w
+
+5. 张俊林：推荐系统排序环节特征 Embedding 建模
+   
+  https://www.6aiq.com/article/1665572839066

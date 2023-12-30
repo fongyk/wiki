@@ -21,21 +21,21 @@
 前缀
 ^^^^^^^^^^
 
-前缀是指从串首开始到某个位置 :math:`i` 结束的一个特殊子串。字符串 :math:`S` 以 :math:`S[i]` 结尾的前缀表示为 :math:`Prefix(S,i) = S[0:i]` 。
+前缀是指从串首开始到某个位置 :math:`i` 结束的一个特殊子串。字符串 :math:`S` 以 :math:`S[i]` 结尾的前缀表示为 :math:`\mathrm{prefix}(S,i) = S[0:i]` 。
 
 **真前缀** 指除了 :math:`S` 本身之外的前缀。
 
-举例来说，字符串 ``abcabcd`` 的所有前缀为 ``{a, ab, abc, abca, abcab, abcabc, abcabcd}`` ，而它的真前缀为 ``{a, ab, abc, abca, abcab, abcabc}`` 。
+举例来说，字符串 :math:`abcabcd` 的所有前缀为 :math:`\{ a, ab, abc, abca, abcab, abcabc, abcabcd \}` ，而它的真前缀为 :math:`\{ a, ab, abc, abca, abcab, abcabc \}` 。
 
 
 后缀
 ^^^^^^^^^^
 
-后缀是指从某个位置 :math:`i` 开始到整个串末尾结束的一个特殊子串。字符串 :math:`S` 以 :math:`S[i]` 开头的后缀表示为 :math:`Suffix(S,i) = S[i:|S|-1]` 。
+后缀是指从某个位置 :math:`i` 开始到整个串末尾结束的一个特殊子串。字符串 :math:`S` 以 :math:`S[i]` 开头的后缀表示为 :math:`\mathrm{suffix}(S,i) = S[i:|S|-1]` 。
 
 **真后缀** 指除了 :math:`S` 本身之外的前缀。
 
-举例来说，字符串 ``abcabcd`` 的所有后缀为 ``{d, cd, bcd, abcd, cabcd, bcabcd, abcabcd}`` ，而它的真后缀为 ``{d, cd, bcd, abcd, cabcd, bcabcd}`` 。
+举例来说，字符串 :math:`abcabcd` 的所有后缀为 :math:`\{ d, cd, bcd, abcd, cabcd, bcabcd, abcabcd \}` ，而它的真后缀为 :math:`\{ d, cd, bcd, abcd, cabcd, bcabcd \}` 。
 
 
 字典序
@@ -57,23 +57,23 @@
 
 简单来说， :math:`\pi[i]` 就是子串 :math:`S[0:i]` 最长的相等的真前缀与真后缀的长度。特别地，规定  :math:`\pi[0] = 0` 。
 
-举例来说，对于字符串 ``abcabcd`` ：
+举例来说，对于字符串 :math:`abcabcd` ：
 
-- :math:`\pi[0]=0` ，因为 ``a`` 没有真前缀和真后缀，根据规定为 0。
+- :math:`\pi[0]=0` ，因为 :math:`a` 没有真前缀和真后缀，根据规定为 0。
 
-- :math:`\pi[1]=0` ，因为 ``ab`` 无相等的真前缀和真后缀。
+- :math:`\pi[1]=0` ，因为 :math:`ab` 无相等的真前缀和真后缀。
 
-- :math:`\pi[2]=0` ，因为 ``abc`` 无相等的真前缀和真后缀。
+- :math:`\pi[2]=0` ，因为 :math:`abc` 无相等的真前缀和真后缀。
 
-- :math:`\pi[3]=1` ，因为 ``abca`` 只有一对相等的真前缀和真后缀：``a``，长度为 1。
+- :math:`\pi[3]=1` ，因为 :math:`abca` 只有一对相等的真前缀和真后缀：:math:`a`，长度为 1。
 
-- :math:`\pi[4]=2` ，因为 ``abcab`` 相等的真前缀和真后缀只有 ``ab``，长度为 2。
+- :math:`\pi[4]=2` ，因为 :math:`abcab` 相等的真前缀和真后缀只有 :math:`ab`，长度为 2。
 
-- :math:`\pi[5]=3` ，因为 ``abcabc`` 相等的真前缀和真后缀只有 ``abc``，长度为 3。
+- :math:`\pi[5]=3` ，因为 :math:`abcabc` 相等的真前缀和真后缀只有 :math:`abc`，长度为 3。
 
-- :math:`\pi[6]=0` ，因为 ``abcabcd`` 无相等的真前缀和真后缀。
+- :math:`\pi[6]=0` ，因为 :math:`abcabcd` 无相等的真前缀和真后缀。
 
-同理可以计算字符串 ``aabaaab`` 的前缀函数为 ``[0, 1, 0, 1, 2, 2, 3]`` 。
+同理可以计算字符串 :math:`aabaaab` 的前缀函数为 :math:`[0, 1, 0, 1, 2, 2, 3]` 。
 
 
 朴素算法
@@ -170,7 +170,7 @@
 问题描述
 ^^^^^^^^^^^^^
 
-给定一个文本 :math:`T` 和一个字符串 :math:`S` ，我们尝试找到并展示 :math:`S` 在 :math:`T` 中的所有出现位置（occurrence）。
+给定一个文本 :math:`T` 和一个字符串 :math:`S` ，我们尝试找到并展示 :math:`S` 在 :math:`T` 中的所有出现位置（Occurrence）。
 
 
 KMP 算法

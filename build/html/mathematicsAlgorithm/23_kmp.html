@@ -153,15 +153,15 @@
 </section>
 <section id="id4">
 <h3>前缀<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
-<p>前缀是指从串首开始到某个位置 <span class="math notranslate nohighlight">\(i\)</span> 结束的一个特殊子串。字符串 <span class="math notranslate nohighlight">\(S\)</span> 以 <span class="math notranslate nohighlight">\(S[i]\)</span> 结尾的前缀表示为 <span class="math notranslate nohighlight">\(Prefix(S,i) = S[0:i]\)</span> 。</p>
+<p>前缀是指从串首开始到某个位置 <span class="math notranslate nohighlight">\(i\)</span> 结束的一个特殊子串。字符串 <span class="math notranslate nohighlight">\(S\)</span> 以 <span class="math notranslate nohighlight">\(S[i]\)</span> 结尾的前缀表示为 <span class="math notranslate nohighlight">\(\mathrm{prefix}(S,i) = S[0:i]\)</span> 。</p>
 <p><strong>真前缀</strong> 指除了 <span class="math notranslate nohighlight">\(S\)</span> 本身之外的前缀。</p>
-<p>举例来说，字符串 <code class="docutils literal notranslate"><span class="pre">abcabcd</span></code> 的所有前缀为 <code class="docutils literal notranslate"><span class="pre">{a,</span> <span class="pre">ab,</span> <span class="pre">abc,</span> <span class="pre">abca,</span> <span class="pre">abcab,</span> <span class="pre">abcabc,</span> <span class="pre">abcabcd}</span></code> ，而它的真前缀为 <code class="docutils literal notranslate"><span class="pre">{a,</span> <span class="pre">ab,</span> <span class="pre">abc,</span> <span class="pre">abca,</span> <span class="pre">abcab,</span> <span class="pre">abcabc}</span></code> 。</p>
+<p>举例来说，字符串 <span class="math notranslate nohighlight">\(abcabcd\)</span> 的所有前缀为 <span class="math notranslate nohighlight">\(\{ a, ab, abc, abca, abcab, abcabc, abcabcd \}\)</span> ，而它的真前缀为 <span class="math notranslate nohighlight">\(\{ a, ab, abc, abca, abcab, abcabc \}\)</span> 。</p>
 </section>
 <section id="id5">
 <h3>后缀<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
-<p>后缀是指从某个位置 <span class="math notranslate nohighlight">\(i\)</span> 开始到整个串末尾结束的一个特殊子串。字符串 <span class="math notranslate nohighlight">\(S\)</span> 以 <span class="math notranslate nohighlight">\(S[i]\)</span> 开头的后缀表示为 <span class="math notranslate nohighlight">\(Suffix(S,i) = S[i:|S|-1]\)</span> 。</p>
+<p>后缀是指从某个位置 <span class="math notranslate nohighlight">\(i\)</span> 开始到整个串末尾结束的一个特殊子串。字符串 <span class="math notranslate nohighlight">\(S\)</span> 以 <span class="math notranslate nohighlight">\(S[i]\)</span> 开头的后缀表示为 <span class="math notranslate nohighlight">\(\mathrm{suffix}(S,i) = S[i:|S|-1]\)</span> 。</p>
 <p><strong>真后缀</strong> 指除了 <span class="math notranslate nohighlight">\(S\)</span> 本身之外的前缀。</p>
-<p>举例来说，字符串 <code class="docutils literal notranslate"><span class="pre">abcabcd</span></code> 的所有后缀为 <code class="docutils literal notranslate"><span class="pre">{d,</span> <span class="pre">cd,</span> <span class="pre">bcd,</span> <span class="pre">abcd,</span> <span class="pre">cabcd,</span> <span class="pre">bcabcd,</span> <span class="pre">abcabcd}</span></code> ，而它的真后缀为 <code class="docutils literal notranslate"><span class="pre">{d,</span> <span class="pre">cd,</span> <span class="pre">bcd,</span> <span class="pre">abcd,</span> <span class="pre">cabcd,</span> <span class="pre">bcabcd}</span></code> 。</p>
+<p>举例来说，字符串 <span class="math notranslate nohighlight">\(abcabcd\)</span> 的所有后缀为 <span class="math notranslate nohighlight">\(\{ d, cd, bcd, abcd, cabcd, bcabcd, abcabcd \}\)</span> ，而它的真后缀为 <span class="math notranslate nohighlight">\(\{ d, cd, bcd, abcd, cabcd, bcabcd \}\)</span> 。</p>
 </section>
 <section id="id6">
 <h3>字典序<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h3>
@@ -177,17 +177,17 @@
 <li><p>如果没有相等的，那么 <span class="math notranslate nohighlight">\(\pi[i] = 0\)</span> 。</p></li>
 </ul>
 <p>简单来说， <span class="math notranslate nohighlight">\(\pi[i]\)</span> 就是子串 <span class="math notranslate nohighlight">\(S[0:i]\)</span> 最长的相等的真前缀与真后缀的长度。特别地，规定  <span class="math notranslate nohighlight">\(\pi[0] = 0\)</span> 。</p>
-<p>举例来说，对于字符串 <code class="docutils literal notranslate"><span class="pre">abcabcd</span></code> ：</p>
+<p>举例来说，对于字符串 <span class="math notranslate nohighlight">\(abcabcd\)</span> ：</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\pi[0]=0\)</span> ，因为 <code class="docutils literal notranslate"><span class="pre">a</span></code> 没有真前缀和真后缀，根据规定为 0。</p></li>
-<li><p><span class="math notranslate nohighlight">\(\pi[1]=0\)</span> ，因为 <code class="docutils literal notranslate"><span class="pre">ab</span></code> 无相等的真前缀和真后缀。</p></li>
-<li><p><span class="math notranslate nohighlight">\(\pi[2]=0\)</span> ，因为 <code class="docutils literal notranslate"><span class="pre">abc</span></code> 无相等的真前缀和真后缀。</p></li>
-<li><p><span class="math notranslate nohighlight">\(\pi[3]=1\)</span> ，因为 <code class="docutils literal notranslate"><span class="pre">abca</span></code> 只有一对相等的真前缀和真后缀：<code class="docutils literal notranslate"><span class="pre">a</span></code>，长度为 1。</p></li>
-<li><p><span class="math notranslate nohighlight">\(\pi[4]=2\)</span> ，因为 <code class="docutils literal notranslate"><span class="pre">abcab</span></code> 相等的真前缀和真后缀只有 <code class="docutils literal notranslate"><span class="pre">ab</span></code>，长度为 2。</p></li>
-<li><p><span class="math notranslate nohighlight">\(\pi[5]=3\)</span> ，因为 <code class="docutils literal notranslate"><span class="pre">abcabc</span></code> 相等的真前缀和真后缀只有 <code class="docutils literal notranslate"><span class="pre">abc</span></code>，长度为 3。</p></li>
-<li><p><span class="math notranslate nohighlight">\(\pi[6]=0\)</span> ，因为 <code class="docutils literal notranslate"><span class="pre">abcabcd</span></code> 无相等的真前缀和真后缀。</p></li>
+<li><p><span class="math notranslate nohighlight">\(\pi[0]=0\)</span> ，因为 <span class="math notranslate nohighlight">\(a\)</span> 没有真前缀和真后缀，根据规定为 0。</p></li>
+<li><p><span class="math notranslate nohighlight">\(\pi[1]=0\)</span> ，因为 <span class="math notranslate nohighlight">\(ab\)</span> 无相等的真前缀和真后缀。</p></li>
+<li><p><span class="math notranslate nohighlight">\(\pi[2]=0\)</span> ，因为 <span class="math notranslate nohighlight">\(abc\)</span> 无相等的真前缀和真后缀。</p></li>
+<li><p><span class="math notranslate nohighlight">\(\pi[3]=1\)</span> ，因为 <span class="math notranslate nohighlight">\(abca\)</span> 只有一对相等的真前缀和真后缀：<span class="math notranslate nohighlight">\(a\)</span>，长度为 1。</p></li>
+<li><p><span class="math notranslate nohighlight">\(\pi[4]=2\)</span> ，因为 <span class="math notranslate nohighlight">\(abcab\)</span> 相等的真前缀和真后缀只有 <span class="math notranslate nohighlight">\(ab\)</span>，长度为 2。</p></li>
+<li><p><span class="math notranslate nohighlight">\(\pi[5]=3\)</span> ，因为 <span class="math notranslate nohighlight">\(abcabc\)</span> 相等的真前缀和真后缀只有 <span class="math notranslate nohighlight">\(abc\)</span>，长度为 3。</p></li>
+<li><p><span class="math notranslate nohighlight">\(\pi[6]=0\)</span> ，因为 <span class="math notranslate nohighlight">\(abcabcd\)</span> 无相等的真前缀和真后缀。</p></li>
 </ul>
-<p>同理可以计算字符串 <code class="docutils literal notranslate"><span class="pre">aabaaab</span></code> 的前缀函数为 <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">2,</span> <span class="pre">3]</span></code> 。</p>
+<p>同理可以计算字符串 <span class="math notranslate nohighlight">\(aabaaab\)</span> 的前缀函数为 <span class="math notranslate nohighlight">\([0, 1, 0, 1, 2, 2, 3]\)</span> 。</p>
 </section>
 <section id="id8">
 <h2><span class="section-number">23.3. </span>朴素算法<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h2>
@@ -254,7 +254,7 @@
 <h2><span class="section-number">23.5. </span>查找子串：KMP 算法<a class="headerlink" href="#id12" title="Permalink to this headline"></a></h2>
 <section id="id13">
 <h3>问题描述<a class="headerlink" href="#id13" title="Permalink to this headline"></a></h3>
-<p>给定一个文本 <span class="math notranslate nohighlight">\(T\)</span> 和一个字符串 <span class="math notranslate nohighlight">\(S\)</span> ，我们尝试找到并展示 <span class="math notranslate nohighlight">\(S\)</span> 在 <span class="math notranslate nohighlight">\(T\)</span> 中的所有出现位置（occurrence）。</p>
+<p>给定一个文本 <span class="math notranslate nohighlight">\(T\)</span> 和一个字符串 <span class="math notranslate nohighlight">\(S\)</span> ，我们尝试找到并展示 <span class="math notranslate nohighlight">\(S\)</span> 在 <span class="math notranslate nohighlight">\(T\)</span> 中的所有出现位置（Occurrence）。</p>
 </section>
 <section id="id14">
 <h3>KMP 算法<a class="headerlink" href="#id14" title="Permalink to this headline"></a></h3>

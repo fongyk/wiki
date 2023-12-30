@@ -1,7 +1,7 @@
 并查集
 =========
 
-并查集是一种树形的数据结构，顾名思义，它用于处理一些不相交集合（Disjoint Set）的合并及查询问题。它支持两种操作：
+`并查集 <https://en.wikipedia.org/wiki/Disjoint-set_data_structure>`_ 是一种树形的数据结构，顾名思义，它用于处理一些不相交集合（Disjoint Set）的合并及查询问题。它支持两种操作：
 
 - 合并（Union）：把两个不相交的集合合并为一个集合。
 
@@ -115,7 +115,7 @@
 复杂度
 -------------
 
-简单来说，对于有 :math:`n` 个元素的并查集，空间复杂度是 :math:`\mathcal{O}(n)` ；:math:`m` 次合并、查询操作的摊还时间是 :math:`\mathcal{O}(m \log^* n)`，其中 :math:`\log^*` 是迭代对数（iterated logarithm）。
+简单来说，对于有 :math:`n` 个元素的并查集，空间复杂度是 :math:`\mathcal{O}(n)` ；:math:`m` 次合并、查询操作的摊还时间是 :math:`\mathcal{O}(m \log^* n)`，其中 :math:`\log^*` 是迭代对数（ `Iterated Logarithm <https://en.wikipedia.org/wiki/Iterated_logarithm>`_ ）。
 
 
 Python 参考代码

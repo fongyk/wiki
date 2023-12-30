@@ -146,7 +146,7 @@ $$</div></section>
 <p>本问题等价于“把 <span class="math notranslate nohighlight">\(n+m\)</span> 个相同的球放到 <span class="math notranslate nohighlight">\(m\)</span> 个不同盒子中，且无空盒”，即先在每个盒子中放 1 个球。</p>
 <p>因此，放法有：</p>
 <div class="math notranslate nohighlight">
-\[C_{n+m-1}^{m-1}.\]</div>
+\[C_{n+m-1}^{m-1}\]</div>
 </section>
 <section id="id4">
 <h2><span class="section-number">19.3. </span>球不同，盒同，无空盒<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
@@ -164,20 +164,20 @@ dp[0][k] &amp;=\ 1,\quad k \geqslant 0.\end{split}\]</div>
 <p>设 <span class="math notranslate nohighlight">\(dp[n][m]\)</span> 表示 <span class="math notranslate nohighlight">\(n\)</span> 个球放到 <span class="math notranslate nohighlight">\(m\)</span> 个盒子中且无空盒的放法，递推公式如上。</p>
 <p>可以枚举空盒的个数，则放法有：</p>
 <div class="math notranslate nohighlight">
-\[\sum_{k=1}^m dp[n][k].\]</div>
+\[\sum_{k=1}^m dp[n][k]\]</div>
 </section>
 <section id="id6">
 <h2><span class="section-number">19.5. </span>球不同，盒不同，无空盒<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
 <p>设 <span class="math notranslate nohighlight">\(dp[n][m]\)</span> 表示 <span class="math notranslate nohighlight">\(n\)</span> 个球放到 <span class="math notranslate nohighlight">\(m\)</span> 个盒子中且无空盒的放法，递推公式如上。</p>
 <p>需要考虑盒子的排列，则放法有：</p>
 <div class="math notranslate nohighlight">
-\[dp[n][m] \times m!.\]</div>
+\[dp[n][m] \times m!\]</div>
 </section>
 <section id="id7">
 <h2><span class="section-number">19.6. </span>球不同，盒不同，允许空盒<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h2>
 <p>每个球都有 <span class="math notranslate nohighlight">\(m\)</span> 种选择，放法有：</p>
 <div class="math notranslate nohighlight">
-\[m^n.\]</div>
+\[m^n\]</div>
 </section>
 <section id="id8">
 <h2><span class="section-number">19.7. </span>球同，盒同，允许空盒<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h2>

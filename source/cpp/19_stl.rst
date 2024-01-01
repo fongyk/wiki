@@ -445,6 +445,40 @@ map
     return 0;
   }
 
+在使用指针作为 map/set 的 key 的时候要注意，key 是指针所指对象的地址，即使不同指针所指对象的值是一样的，但它们对应的 key 可能是不一样的。
+如果需要保持 map/set 中指针所指对象的值也是唯一的，那么需要自定义 ``Compare`` 类（函数对象类）。
+
+.. code-block:: cpp
+  :linenos:
+
+  #include <iostream>
+  #include <string>
+  #include <map>
+
+  template<class T>
+  struct Compare 
+  {
+      bool operator()(const T* lhs, const T* rhs) const // 定义为 const 成员
+      {
+          return *lhs < *rhs;
+      }
+  };
+
+  int main ()
+  {
+    std::string s1 = "a", s2 = "a", s3 = "a";
+    std::map<std::string*, int> mp;
+    mp[&s1] = 1;
+    mp[&s2] = 2;
+    std::cout << mp.size() << std::endl; // 2
+    std::cout << (mp.find(&s3) == mp.end()) << std::endl; // 1
+    std::map<std::string*, int, Compare<std::string>> mpc;
+    mpc[&s1] = 1;
+    mpc[&s2] = 2;
+    std::cout << mpc.size() << std::endl; // 1
+    std::cout << (mpc.find(&s3) == mpc.end()) << std::endl; // 0
+    return 0;
+  }
 
 .. note::
 

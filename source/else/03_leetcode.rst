@@ -5284,3 +5284,144 @@ https://leetcode.com/problems/stone-game-iii
                 if aliceScore > totalScore:
                     return "Alice"
                 return "Bob"
+
+栈和队列的实现
+----------------------------------------------------------------
+
+https://leetcode.com/problems/implement-queue-using-stacks
+
+Hint：总在第一个栈压入最新元素，在第二个栈弹出最旧元素。
+
+  .. container:: toggle
+
+    .. container:: header
+
+        :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+        :linenos:
+
+        class MyQueue 
+        {
+        public:
+            MyQueue() {}
+            
+            void push(int x) 
+            {
+                s1.push(x);
+            }
+            
+            int pop() 
+            {
+                int front = peek();
+                s2.pop();
+                return front;
+            }
+            
+            int peek() 
+            {
+                if(s2.empty())
+                {
+                    while(!s1.empty())
+                    {
+                        s2.push(s1.top());
+                        s1.pop();
+                    }
+                }
+                return s2.top();
+            }
+            
+            bool empty() 
+            {
+                return s1.empty() && s2.empty();
+            }
+        private:
+            stack<int> s1;
+            stack<int> s2;
+        };
+
+https://leetcode.com/problems/implement-stack-using-queues
+
+Hint：总在第一个队列压入最新元素。
+
+  .. container:: toggle
+
+    .. container:: header
+
+        :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: cpp
+        :linenos:
+
+        class MyStack 
+        {
+        public:
+            MyStack() {}
+            
+            void push(int x) 
+            {
+                // 保证 q1 数据比 q2 新
+                q1.push(x);
+            }
+            
+            int pop() 
+            {
+                // 优先从 q1 弹出
+                if(!q1.empty()) 
+                {
+                    while(q1.size() > 1)
+                    {
+                        q2.push(q1.front());
+                        q1.pop();
+                    }
+                    int t = q1.front();
+                    q1.pop();
+                    return t;
+                }
+                else 
+                {
+                    while(q2.size() > 1)
+                    {
+                        q1.push(q2.front());
+                        q2.pop();
+                    }
+                    int t = q2.front();
+                    q2.pop();
+                    return t;
+                }
+            }
+            
+            int top() 
+            {
+                if(!q1.empty()) 
+                {
+                    while(q1.size() > 1)
+                    {
+                        q2.push(q1.front());
+                        q1.pop();
+                    }
+                    return q1.front();
+                }
+                else 
+                {
+                    while(q2.size() > 1)
+                    {
+                        q1.push(q2.front());
+                        q2.pop();
+                    }
+                    int t = q2.front();
+                    // 下面这一步很重要，保证 q2 的数据总是比 q1 旧
+                    q1.push(t);
+                    q2.pop();
+                    return t;
+                }
+            }
+            
+            bool empty() 
+            {
+                return q1.empty() && q2.empty();
+            }
+        private:
+            queue<int> q1;
+            queue<int> q2;
+        };

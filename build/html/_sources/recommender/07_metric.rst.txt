@@ -28,7 +28,7 @@
 
   .. math::
 
-    \mathrm{MAP} = \frac{1}{U} \sum_{u=1}^{U} \frac{ \sum_{i=1}^{R_u} P(u,i) \times rel_{u,i} }{R_u}
+    \mathrm{MAP} = \frac{1}{U} \sum_{u=1}^{U} \frac{ \sum_{i=1} P(u,i) \times rel_{u,i} }{R_u}
 
 - `NDCG（Normalized Discounted Cumulative Gain） <https://en.wikipedia.org/wiki/Discounted_cumulative_gain>`_
     归一化折损累计增益，思想：高相关性的结果比一般相关性的结果更影响最终的指标得分；有高相关性的结果出现在更靠前的位置的时候，指标会越高。

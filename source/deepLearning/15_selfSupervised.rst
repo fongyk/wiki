@@ -60,6 +60,9 @@ MAE
 对比学习则是典型的判别式自监督学习，相对生成式自监督学习，对比学习的任务难度要低一些。
 目前，对比学习貌似处于“无明确定义、有指导原则”的状态，它的指导原则是： **通过自动构造相似实例和不相似实例，要求习得一个表示学习模型，通过这个模型，使得相似的实例在投影空间中比较接近，而不相似的实例在投影空间中距离比较远** 。而如何构造相似实例以及不相似实例，如何构造能够遵循上述指导原则的表示学习模型结构，以及如何防止模型坍塌（Model Collapse），这几个点是其中的关键。
 
+模型坍塌：所有的表征向量都收敛到同一个点，即模型对所有的输入都输出相同的 Embedding。
+
+
 基于负例的对比学习： `SimCLR <https://arxiv.org/pdf/2002.05709.pdf>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -121,12 +124,17 @@ SimCLR 做了两次非线性映射（Encoder 和 Projector），可能是如下�
 
 - MoCo v2 维护了一个较大的负例队列，当需要在正例和负例之间进行对比计算时，就从这个负例队列里取 K 个，已经不局限于 Batch Size 的限制了。
 
+`MoCo <https://arxiv.org/pdf/1911.05722.pdf>`_ 还发现 BN 对性能是有负面影响的，可能是 BN 导致了 Batch 内各样本之间的信息泄露，使得模型发现了能够快速降低 Loss 的方法，所以提出了 Shuffle BN。
 
 .. figure:: ./15_mocoSimCLR.png
     :width: 500 px
     :align: center
 
     MoCo 和 SimCLR 模型的演进
+
+.. note::
+
+    MoCo 在测试的时候使用的是 Encoder，直接丢弃了 Momentum Encoder。
 
 
 对比聚类： `SwAV <https://arxiv.org/pdf/2006.09882.pdf>`_
@@ -160,11 +168,34 @@ BYOL 有两个不对称分支：Online 和 Target。Online 分支新增了一个
     \mathcal{L} & = \mathcal{L}(\boldsymbol{z}_1, \boldsymbol{v}_2) + \mathcal{L}(\boldsymbol{z}_2, \boldsymbol{v}_1) \\
     \mathcal{L}(\boldsymbol{z}, \boldsymbol{v}) & = \left\lVert  \boldsymbol{z} - \boldsymbol{v} \right\rVert^2_2
 
-BYOL 只用正例，防止模型坍塌的关键因素在于新加入的 Predictor 结构，具体机理不明。
+BYOL 只用正例，防止模型坍塌的关键因素在于新加入的 Predictor 结构。
+
+有 `分析 <https://imbue.com/research/2020-08-24-understanding-self-supervised-contrastive-learning/>`_ 指出 BYOL 的 Predictor 如果去掉 BN ，模型就无效了。
+
+
+双子网络： `SimSiam <https://arxiv.org/pdf/2011.10566.pdf>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. image:: ./15_simSiam.png
+    :width: 500 px
+    :align: center
+
+SimSiam 不需要负样本对、不使用 Momentum Encoder、不需要大的 Batch Size，只使用一个 Encoder ，优化正例之间的余弦相似度：
+
+.. math::
+
+    \mathcal{L} & = \mathcal{L}(\boldsymbol{z}_1, \boldsymbol{p}_2) + \mathcal{L}(\boldsymbol{z}_2, \boldsymbol{p}_1) \\
+    \mathcal{L}(\boldsymbol{z}, \boldsymbol{p}) & = - \frac{\boldsymbol{p}^{\top} \boldsymbol{z}}{\left\Vert \boldsymbol{p} \right\Vert \left\Vert \boldsymbol{z} \right\Vert}
+
+其防止模型坍塌的关键点在于 Predictor + Stop Gradient：
+
+- Predictor 的引入使得模型梯度的更新分为了前后两部分；
+- Stop Gradient 机制使得 Encoder 的更新比 Predictor 更慢，根据链式法则，Encoder 和 Predictor 能够保持很好的同步，因此 Encoder 能跟上 Predictor 去快速拟合目标，不至于直接塌陷。
 
 .. note::
 
     论文 `How Well Do Self-Supervised Models Transfer <https://arxiv.org/pdf/2011.13377.pdf>`_ 对 13 个知名自监督模型进行相对公平的对比测试，得出了一些很有价值的结论。
+
 
 参考资料
 --------------
@@ -188,3 +219,7 @@ BYOL 只用正例，防止模型坍塌的关键因素在于新加入的 Predicto
 5. 图像自标记的可视化指南
 
   https://blog.csdn.net/u011984148/article/details/107454900
+
+6. 从动力学角度看优化算法（六）：为什么SimSiam不退化？
+
+  https://kexue.fm/archives/7980

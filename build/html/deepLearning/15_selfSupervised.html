@@ -55,11 +55,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">深度学习</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="01_dataParallel.html">1. pytorch：多 GPU 模式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">2. pytorch：模型保存与读取</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">3. pytorch：cuda</a></li>
-<li class="toctree-l2"><a class="reference internal" href="09_addModule.html">4. pytorch：Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="11_nograd.html">5. pytorch：no_grad()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01_dataParallel.html">1. Pytorch：多 GPU 模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_modelSave.html">2. Pytorch：模型保存与读取</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_cuda.html">3. Pytorch：cuda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_addModule.html">4. Pytorch：Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_nograd.html">5. Pytorch：no_grad()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02_activationFunction.html">6. 激活函数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_batchnorm.html">7. Batch Normalization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_overfit.html">8. 过拟合</a></li>
@@ -79,9 +79,10 @@
 <li class="toctree-l4"><a class="reference internal" href="#batch">基于负例的对比学习：Batch 之外</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id8">对比聚类： SwAV</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id9">非对称结构： BYOL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">双子网络： SimSiam</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id10">15.3. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">15.3. 参考资料</a></li>
 </ul>
 </li>
 </ul>
@@ -181,6 +182,7 @@ NLP 领域目前的经验应该是：自监督预训练使用的数据量越大�
 <a class="reference external" href="https://arxiv.org/pdf/1312.6114.pdf">VAE</a> 和 <a class="reference external" href="https://arxiv.org/pdf/1406.2661.pdf">GAN</a> 是生成式自监督学习的两类典型方法，它要求模型重建图像或者图像的一部分，这类型的任务难度相对比较高，要求像素级的重构，中间的图像编码必须包含很多细节信息。</p>
 <p>对比学习则是典型的判别式自监督学习，相对生成式自监督学习，对比学习的任务难度要低一些。
 目前，对比学习貌似处于“无明确定义、有指导原则”的状态，它的指导原则是： <strong>通过自动构造相似实例和不相似实例，要求习得一个表示学习模型，通过这个模型，使得相似的实例在投影空间中比较接近，而不相似的实例在投影空间中距离比较远</strong> 。而如何构造相似实例以及不相似实例，如何构造能够遵循上述指导原则的表示学习模型结构，以及如何防止模型坍塌（Model Collapse），这几个点是其中的关键。</p>
+<p>模型坍塌：所有的表征向量都收敛到同一个点，即模型对所有的输入都输出相同的 Embedding。</p>
 <section id="id6">
 <h3>基于负例的对比学习： <a class="reference external" href="https://arxiv.org/pdf/2002.05709.pdf">SimCLR</a><a class="headerlink" href="#id6" title="Permalink to this headline"></a></h3>
 <a class="reference internal image-reference" href="../_images/15_simCLR.png"><img alt="../_images/15_simCLR.png" class="align-center" src="../_images/15_simCLR.png" style="width: 400px;" /></a>
@@ -208,10 +210,10 @@ s_{i,j} &amp;= \frac{\boldsymbol{z}_i^{\top} \boldsymbol{z}_j}{\left\Vert \bolds
 <p>温度参数 <span class="math notranslate nohighlight">\(\tau\)</span> 的作用：会将模型更新的重点聚焦到有难度的负例（Hard Negative），并对它们做相应的惩罚，难度越大，则分配到的惩罚越多。
 倾向于使用小的温度系数，但并不是越小越好，需要考虑一些 Hard Positive 的干扰。</p>
 </div>
-<figure class="align-center" id="id11">
+<figure class="align-center" id="id13">
 <a class="reference internal image-reference" href="../_images/15_augmentations.png"><img alt="../_images/15_augmentations.png" src="../_images/15_augmentations.png" style="width: 700px;" /></a>
 <figcaption>
-<p><span class="caption-text">Data Augmentations</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Data Augmentations</span><a class="headerlink" href="#id13" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -227,12 +229,17 @@ s_{i,j} &amp;= \frac{\boldsymbol{z}_i^{\top} \boldsymbol{z}_j}{\left\Vert \bolds
 <ul class="simple">
 <li><p>MoCo v2 维护了一个较大的负例队列，当需要在正例和负例之间进行对比计算时，就从这个负例队列里取 K 个，已经不局限于 Batch Size 的限制了。</p></li>
 </ul>
-<figure class="align-center" id="id12">
+<p><a class="reference external" href="https://arxiv.org/pdf/1911.05722.pdf">MoCo</a> 还发现 BN 对性能是有负面影响的，可能是 BN 导致了 Batch 内各样本之间的信息泄露，使得模型发现了能够快速降低 Loss 的方法，所以提出了 Shuffle BN。</p>
+<figure class="align-center" id="id14">
 <a class="reference internal image-reference" href="../_images/15_mocoSimCLR.png"><img alt="../_images/15_mocoSimCLR.png" src="../_images/15_mocoSimCLR.png" style="width: 500px;" /></a>
 <figcaption>
-<p><span class="caption-text">MoCo 和 SimCLR 模型的演进</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
+<p><span class="caption-text">MoCo 和 SimCLR 模型的演进</span><a class="headerlink" href="#id14" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>MoCo 在测试的时候使用的是 Encoder，直接丢弃了 Momentum Encoder。</p>
+</div>
 </section>
 <section id="id8">
 <h3>对比聚类： <a class="reference external" href="https://arxiv.org/pdf/2006.09882.pdf">SwAV</a><a class="headerlink" href="#id8" title="Permalink to this headline"></a></h3>
@@ -252,15 +259,29 @@ s_{i,j} &amp;= \frac{\boldsymbol{z}_i^{\top} \boldsymbol{z}_j}{\left\Vert \bolds
 <div class="math notranslate nohighlight">
 \[\begin{split}\mathcal{L} &amp; = \mathcal{L}(\boldsymbol{z}_1, \boldsymbol{v}_2) + \mathcal{L}(\boldsymbol{z}_2, \boldsymbol{v}_1) \\
 \mathcal{L}(\boldsymbol{z}, \boldsymbol{v}) &amp; = \left\lVert  \boldsymbol{z} - \boldsymbol{v} \right\rVert^2_2\end{split}\]</div>
-<p>BYOL 只用正例，防止模型坍塌的关键因素在于新加入的 Predictor 结构，具体机理不明。</p>
+<p>BYOL 只用正例，防止模型坍塌的关键因素在于新加入的 Predictor 结构。</p>
+<p>有 <a class="reference external" href="https://imbue.com/research/2020-08-24-understanding-self-supervised-contrastive-learning/">分析</a> 指出 BYOL 的 Predictor 如果去掉 BN ，模型就无效了。</p>
+</section>
+<section id="id11">
+<h3>双子网络： <a class="reference external" href="https://arxiv.org/pdf/2011.10566.pdf">SimSiam</a><a class="headerlink" href="#id11" title="Permalink to this headline"></a></h3>
+<a class="reference internal image-reference" href="../_images/15_simSiam.png"><img alt="../_images/15_simSiam.png" class="align-center" src="../_images/15_simSiam.png" style="width: 500px;" /></a>
+<p>SimSiam 不需要负样本对、不使用 Momentum Encoder、不需要大的 Batch Size，只使用一个 Encoder ，优化正例之间的余弦相似度：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathcal{L} &amp; = \mathcal{L}(\boldsymbol{z}_1, \boldsymbol{p}_2) + \mathcal{L}(\boldsymbol{z}_2, \boldsymbol{p}_1) \\
+\mathcal{L}(\boldsymbol{z}, \boldsymbol{p}) &amp; = - \frac{\boldsymbol{p}^{\top} \boldsymbol{z}}{\left\Vert \boldsymbol{p} \right\Vert \left\Vert \boldsymbol{z} \right\Vert}\end{split}\]</div>
+<p>其防止模型坍塌的关键点在于 Predictor + Stop Gradient：</p>
+<ul class="simple">
+<li><p>Predictor 的引入使得模型梯度的更新分为了前后两部分；</p></li>
+<li><p>Stop Gradient 机制使得 Encoder 的更新比 Predictor 更慢，根据链式法则，Encoder 和 Predictor 能够保持很好的同步，因此 Encoder 能跟上 Predictor 去快速拟合目标，不至于直接塌陷。</p></li>
+</ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>论文 <a class="reference external" href="https://arxiv.org/pdf/2011.13377.pdf">How Well Do Self-Supervised Models Transfer</a> 对 13 个知名自监督模型进行相对公平的对比测试，得出了一些很有价值的结论。</p>
 </div>
 </section>
 </section>
-<section id="id10">
-<h2><span class="section-number">15.3. </span>参考资料<a class="headerlink" href="#id10" title="Permalink to this headline"></a></h2>
+<section id="id12">
+<h2><span class="section-number">15.3. </span>参考资料<a class="headerlink" href="#id12" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>对比学习（Contrastive Learning）:研究进展精要</p></li>
 </ol>
@@ -290,6 +311,12 @@ s_{i,j} &amp;= \frac{\boldsymbol{z}_i^{\top} \boldsymbol{z}_j}{\left\Vert \bolds
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://blog.csdn.net/u011984148/article/details/107454900">https://blog.csdn.net/u011984148/article/details/107454900</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="6">
+<li><p>从动力学角度看优化算法（六）：为什么SimSiam不退化？</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://kexue.fm/archives/7980">https://kexue.fm/archives/7980</a></p>
 </div></blockquote>
 </section>
 </section>

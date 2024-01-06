@@ -5425,3 +5425,198 @@ Hint：总在第一个队列压入最新元素。
             queue<int> q1;
             queue<int> q2;
         };
+
+`单调栈 <https://algo.itcharge.cn/03.Stack/02.Monotone-Stack/01.Monotone-Stack/>`_
+----------------------------------------------------------------------------------------------------
+
+单调栈（Monotonic Stack）在栈的「先进后出」规则基础上，要求从栈顶到栈底的元素单调递增/递减。
+
+- [LeetCode] Daily Temperatures 每日温度。
+
+  https://leetcode.com/problems/daily-temperatures
+
+  .. container:: toggle
+
+    .. container:: header
+
+        :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: python
+        :linenos:
+
+        class Solution(object):
+            def dailyTemperatures(self, temperatures):
+                """
+                :type temperatures: List[int]
+                :rtype: List[int]
+                """
+                n = len(temperatures)
+                ans = [0] * n
+                stk = []
+                ## 逆序遍历，栈顶元素最小
+                for i in range(n-1, -1, -1):
+                    while stk and temperatures[i] >= temperatures[stk[-1]]:
+                        stk.pop()
+                    if stk:
+                        ans[i] = stk[-1] - i
+                    ## 入栈
+                    stk.append(i)
+                return ans
+
+
+- [LeetCode] Next Greater Element 下一个更大的元素。延伸：数组为循环数组，Hint：把原数组拷贝一遍追加在尾部，就可以模拟循环数组。
+
+  https://leetcode.com/problems/next-greater-element-i
+
+  .. container:: toggle
+
+    .. container:: header
+
+        :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: python
+        :linenos:
+
+        class Solution:
+            def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+                ## 用字典存储已经找到的结果
+                mp = {}
+                stk = []
+                ## 逆序遍历，栈顶元素最小
+                for num in nums2[::-1]:
+                    while stk and num >= stk[-1]:
+                        stk.pop()
+                    if stk:
+                        mp[num] = stk[-1]
+                    else:
+                        mp[num] = -1
+                    ## 入栈
+                    stk.append(num)
+                ans = []
+                for num in nums1:
+                    ans.append(mp[num])
+                return ans
+
+  https://leetcode.com/problems/next-greater-element-ii
+
+  .. container:: toggle
+
+    .. container:: header
+
+        :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: python
+        :linenos:
+
+        class Solution(object):
+            def nextGreaterElements(self, nums):
+                """
+                :type nums: List[int]
+                :rtype: List[int]
+                """
+                n = len(nums)
+                ## 把 nums 拷贝一遍就可以模拟循环数组 
+                nums.extend(nums[:])
+                stk = []
+                ans = []
+                for i in range(2*n-1, -1, -1):
+                    while stk and nums[i] >= stk[-1]:
+                        stk.pop()
+                    if i < n:
+                        if stk:
+                            ans.append(stk[-1])
+                        else:
+                            ans.append(-1)
+                    stk.append(nums[i])
+                return ans[::-1]
+
+- [LeetCode] Largest Rectangle in Histogram 直方图中的最大矩形面积。
+
+  https://leetcode.com/problems/largest-rectangle-in-histogram
+
+  .. container:: toggle
+
+    .. container:: header
+
+        :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: python
+        :linenos:
+
+        class Solution(object):
+            def largestRectangleArea(self, height):
+                """
+                :type height: List[int]
+                :rtype: int
+                """
+                if not height:
+                    return 0
+                ## 尾部追加 -1，方便计算以最后一个 bar 结尾的矩形面积
+                height.append(-1)
+                ans = 0
+                stk = []
+                ## 栈顶元素最大
+                for i in range(len(height)):
+                    while stk and height[i] < height[stk[-1]]:
+                        last = stk[-1]
+                        stk.pop()
+                        h = height[last]
+                        pre = stk[-1] if stk else -1
+                        ## 计算 [pre, i) 之间的 bar 构成的矩形面积
+                        ## pre = -1 代表高度最低的矩形，面积为 h * i
+                        ans = max(ans, h * (i - 1 - pre))
+                    ## 入栈
+                    stk.append(i)
+                return ans
+
+- [LeetCode] Maximal Rectangle 矩阵中的最大矩形。Hint：以 :math:`0 \sim i-1` 行为底，以第 :math:`i` 行为顶，将问题转化为「直方图中的最大矩形面积」进行求解，其中直方图的高度为连续 1 的数量。
+
+  https://leetcode.com/problems/maximal-rectangle
+
+  .. container:: toggle
+
+    .. container:: header
+
+        :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: python
+        :linenos:
+
+        class Solution:
+            def maximalRectangle(self, matrix: List[List[str]]) -> int:
+                rows, cols = len(matrix), len(matrix[0])
+                height = [0] * cols
+                ans = 0
+                for r in range(rows):
+                    for c in range(cols):
+                        if matrix[r][c] == '1':
+                            height[c] += 1
+                        else:
+                            height[c] = 0 ## 注意，这里不是累加
+                    ans = max(ans, self.largestRectangleArea(height))
+                return ans
+
+            def largestRectangleArea(self, height):
+                """
+                :type height: List[int]
+                :rtype: int
+                """
+                if not height:
+                    return 0
+                ## 尾部追加 -1，方便计算以最后一个 bar 结尾的矩形面积
+                height.append(-1)
+                ans = 0
+                stk = []
+                ## 栈顶元素最大
+                for i in range(len(height)):
+                    while stk and height[i] < height[stk[-1]]:
+                        last = stk[-1]
+                        stk.pop()
+                        h = height[last]
+                        pre = stk[-1] if stk else -1
+                        ## 计算 [pre, i) 之间的 bar 构成的矩形面积
+                        ## pre = -1 代表高度最低的矩形，面积为 h * i
+                        ans = max(ans, h * (i - 1 - pre))
+                    ## 入栈
+                    stk.append(i)
+                return ans

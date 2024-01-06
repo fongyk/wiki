@@ -131,6 +131,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-non-overlapping-intervals">4.63. [LeetCode] Non-overlapping Intervals 不重叠区间</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-stone-game">4.64. [LeetCode] Stone Game 石头游戏</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id23">4.65. 栈和队列的实现</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id25">4.66. 单调栈</a></li>
 </ul>
 </li>
 </ul>
@@ -5153,6 +5154,181 @@ $$</div><div class="toggle docutils container">
 </div>
 </div>
 </div></blockquote>
+</section>
+<section id="id25">
+<h2><span class="section-number">4.66. </span><a class="reference external" href="https://algo.itcharge.cn/03.Stack/02.Monotone-Stack/01.Monotone-Stack/">单调栈</a><a class="headerlink" href="#id25" title="Permalink to this headline"></a></h2>
+<p>单调栈（Monotonic Stack）在栈的「先进后出」规则基础上，要求从栈顶到栈底的元素单调递增/递减。</p>
+<ul>
+<li><p>[LeetCode] Daily Temperatures 每日温度。</p>
+<p><a class="reference external" href="https://leetcode.com/problems/daily-temperatures">https://leetcode.com/problems/daily-temperatures</a></p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="linenos"> 2</span>    <span class="k">def</span> <span class="nf">dailyTemperatures</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temperatures</span><span class="p">):</span>
+<span class="linenos"> 3</span>        <span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 4</span><span class="sd">        :type temperatures: List[int]</span>
+<span class="linenos"> 5</span><span class="sd">        :rtype: List[int]</span>
+<span class="linenos"> 6</span><span class="sd">        &quot;&quot;&quot;</span>
+<span class="linenos"> 7</span>        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">temperatures</span><span class="p">)</span>
+<span class="linenos"> 8</span>        <span class="n">ans</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+<span class="linenos"> 9</span>        <span class="n">stk</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos">10</span>        <span class="c1">## 逆序遍历，栈顶元素最小</span>
+<span class="linenos">11</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+<span class="linenos">12</span>            <span class="k">while</span> <span class="n">stk</span> <span class="ow">and</span> <span class="n">temperatures</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">temperatures</span><span class="p">[</span><span class="n">stk</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]:</span>
+<span class="linenos">13</span>                <span class="n">stk</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="linenos">14</span>            <span class="k">if</span> <span class="n">stk</span><span class="p">:</span>
+<span class="linenos">15</span>                <span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">stk</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">i</span>
+<span class="linenos">16</span>            <span class="c1">## 入栈</span>
+<span class="linenos">17</span>            <span class="n">stk</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="linenos">18</span>        <span class="k">return</span> <span class="n">ans</span>
+</pre></div>
+</div>
+</div>
+</li>
+<li><p>[LeetCode] Next Greater Element 下一个更大的元素。延伸：数组为循环数组，Hint：把原数组拷贝一遍追加在尾部，就可以模拟循环数组。</p>
+<p><a class="reference external" href="https://leetcode.com/problems/next-greater-element-i">https://leetcode.com/problems/next-greater-element-i</a></p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<span class="linenos"> 2</span>    <span class="k">def</span> <span class="nf">nextGreaterElement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums1</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">nums2</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="linenos"> 3</span>        <span class="c1">## 用字典存储已经找到的结果</span>
+<span class="linenos"> 4</span>        <span class="n">mp</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="linenos"> 5</span>        <span class="n">stk</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos"> 6</span>        <span class="c1">## 逆序遍历，栈顶元素最小</span>
+<span class="linenos"> 7</span>        <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">nums2</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+<span class="linenos"> 8</span>            <span class="k">while</span> <span class="n">stk</span> <span class="ow">and</span> <span class="n">num</span> <span class="o">&gt;=</span> <span class="n">stk</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+<span class="linenos"> 9</span>                <span class="n">stk</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="linenos">10</span>            <span class="k">if</span> <span class="n">stk</span><span class="p">:</span>
+<span class="linenos">11</span>                <span class="n">mp</span><span class="p">[</span><span class="n">num</span><span class="p">]</span> <span class="o">=</span> <span class="n">stk</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos">12</span>            <span class="k">else</span><span class="p">:</span>
+<span class="linenos">13</span>                <span class="n">mp</span><span class="p">[</span><span class="n">num</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="linenos">14</span>            <span class="c1">## 入栈</span>
+<span class="linenos">15</span>            <span class="n">stk</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+<span class="linenos">16</span>        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos">17</span>        <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">nums1</span><span class="p">:</span>
+<span class="linenos">18</span>            <span class="n">ans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mp</span><span class="p">[</span><span class="n">num</span><span class="p">])</span>
+<span class="linenos">19</span>        <span class="k">return</span> <span class="n">ans</span>
+</pre></div>
+</div>
+</div>
+<p><a class="reference external" href="https://leetcode.com/problems/next-greater-element-ii">https://leetcode.com/problems/next-greater-element-ii</a></p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="linenos"> 2</span>    <span class="k">def</span> <span class="nf">nextGreaterElements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">):</span>
+<span class="linenos"> 3</span>        <span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 4</span><span class="sd">        :type nums: List[int]</span>
+<span class="linenos"> 5</span><span class="sd">        :rtype: List[int]</span>
+<span class="linenos"> 6</span><span class="sd">        &quot;&quot;&quot;</span>
+<span class="linenos"> 7</span>        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+<span class="linenos"> 8</span>        <span class="c1">## 把 nums 拷贝一遍就可以模拟循环数组</span>
+<span class="linenos"> 9</span>        <span class="n">nums</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">nums</span><span class="p">[:])</span>
+<span class="linenos">10</span>        <span class="n">stk</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos">11</span>        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos">12</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+<span class="linenos">13</span>            <span class="k">while</span> <span class="n">stk</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">stk</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+<span class="linenos">14</span>                <span class="n">stk</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="linenos">15</span>            <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+<span class="linenos">16</span>                <span class="k">if</span> <span class="n">stk</span><span class="p">:</span>
+<span class="linenos">17</span>                    <span class="n">ans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stk</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="linenos">18</span>                <span class="k">else</span><span class="p">:</span>
+<span class="linenos">19</span>                    <span class="n">ans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">20</span>            <span class="n">stk</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="linenos">21</span>        <span class="k">return</span> <span class="n">ans</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</li>
+<li><p>[LeetCode] Largest Rectangle in Histogram 直方图中的最大矩形面积。</p>
+<p><a class="reference external" href="https://leetcode.com/problems/largest-rectangle-in-histogram">https://leetcode.com/problems/largest-rectangle-in-histogram</a></p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="linenos"> 2</span>    <span class="k">def</span> <span class="nf">largestRectangleArea</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+<span class="linenos"> 3</span>        <span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 4</span><span class="sd">        :type height: List[int]</span>
+<span class="linenos"> 5</span><span class="sd">        :rtype: int</span>
+<span class="linenos"> 6</span><span class="sd">        &quot;&quot;&quot;</span>
+<span class="linenos"> 7</span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">height</span><span class="p">:</span>
+<span class="linenos"> 8</span>            <span class="k">return</span> <span class="mi">0</span>
+<span class="linenos"> 9</span>        <span class="c1">## 尾部追加 -1，方便计算以最后一个 bar 结尾的矩形面积</span>
+<span class="linenos">10</span>        <span class="n">height</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">11</span>        <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">12</span>        <span class="n">stk</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos">13</span>        <span class="c1">## 栈顶元素最大</span>
+<span class="linenos">14</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">height</span><span class="p">)):</span>
+<span class="linenos">15</span>            <span class="k">while</span> <span class="n">stk</span> <span class="ow">and</span> <span class="n">height</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">height</span><span class="p">[</span><span class="n">stk</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]:</span>
+<span class="linenos">16</span>                <span class="n">last</span> <span class="o">=</span> <span class="n">stk</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos">17</span>                <span class="n">stk</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="linenos">18</span>                <span class="n">h</span> <span class="o">=</span> <span class="n">height</span><span class="p">[</span><span class="n">last</span><span class="p">]</span>
+<span class="linenos">19</span>                <span class="n">pre</span> <span class="o">=</span> <span class="n">stk</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">stk</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+<span class="linenos">20</span>                <span class="c1">## 计算 [pre, i) 之间的 bar 构成的矩形面积</span>
+<span class="linenos">21</span>                <span class="c1">## pre = -1 代表高度最低的矩形，面积为 h * i</span>
+<span class="linenos">22</span>                <span class="n">ans</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">h</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">pre</span><span class="p">))</span>
+<span class="linenos">23</span>            <span class="c1">## 入栈</span>
+<span class="linenos">24</span>            <span class="n">stk</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="linenos">25</span>        <span class="k">return</span> <span class="n">ans</span>
+</pre></div>
+</div>
+</div>
+</li>
+<li><p>[LeetCode] Maximal Rectangle 矩阵中的最大矩形。Hint：以 <span class="math notranslate nohighlight">\(0 \sim i-1\)</span> 行为底，以第 <span class="math notranslate nohighlight">\(i\)</span> 行为顶，将问题转化为「直方图中的最大矩形面积」进行求解，其中直方图的高度为连续 1 的数量。</p>
+<p><a class="reference external" href="https://leetcode.com/problems/maximal-rectangle">https://leetcode.com/problems/maximal-rectangle</a></p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<span class="linenos"> 2</span>    <span class="k">def</span> <span class="nf">maximalRectangle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matrix</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="linenos"> 3</span>        <span class="n">rows</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="linenos"> 4</span>        <span class="n">height</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">cols</span>
+<span class="linenos"> 5</span>        <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos"> 6</span>        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
+<span class="linenos"> 7</span>            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
+<span class="linenos"> 8</span>                <span class="k">if</span> <span class="n">matrix</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span>
+<span class="linenos"> 9</span>                    <span class="n">height</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos">10</span>                <span class="k">else</span><span class="p">:</span>
+<span class="linenos">11</span>                    <span class="n">height</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">## 注意，这里不是累加</span>
+<span class="linenos">12</span>            <span class="n">ans</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">largestRectangleArea</span><span class="p">(</span><span class="n">height</span><span class="p">))</span>
+<span class="linenos">13</span>        <span class="k">return</span> <span class="n">ans</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span>    <span class="k">def</span> <span class="nf">largestRectangleArea</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+<span class="linenos">16</span>        <span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">17</span><span class="sd">        :type height: List[int]</span>
+<span class="linenos">18</span><span class="sd">        :rtype: int</span>
+<span class="linenos">19</span><span class="sd">        &quot;&quot;&quot;</span>
+<span class="linenos">20</span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">height</span><span class="p">:</span>
+<span class="linenos">21</span>            <span class="k">return</span> <span class="mi">0</span>
+<span class="linenos">22</span>        <span class="c1">## 尾部追加 -1，方便计算以最后一个 bar 结尾的矩形面积</span>
+<span class="linenos">23</span>        <span class="n">height</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">24</span>        <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">25</span>        <span class="n">stk</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos">26</span>        <span class="c1">## 栈顶元素最大</span>
+<span class="linenos">27</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">height</span><span class="p">)):</span>
+<span class="linenos">28</span>            <span class="k">while</span> <span class="n">stk</span> <span class="ow">and</span> <span class="n">height</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">height</span><span class="p">[</span><span class="n">stk</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]:</span>
+<span class="linenos">29</span>                <span class="n">last</span> <span class="o">=</span> <span class="n">stk</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos">30</span>                <span class="n">stk</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="linenos">31</span>                <span class="n">h</span> <span class="o">=</span> <span class="n">height</span><span class="p">[</span><span class="n">last</span><span class="p">]</span>
+<span class="linenos">32</span>                <span class="n">pre</span> <span class="o">=</span> <span class="n">stk</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">stk</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+<span class="linenos">33</span>                <span class="c1">## 计算 [pre, i) 之间的 bar 构成的矩形面积</span>
+<span class="linenos">34</span>                <span class="c1">## pre = -1 代表高度最低的矩形，面积为 h * i</span>
+<span class="linenos">35</span>                <span class="n">ans</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">h</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">pre</span><span class="p">))</span>
+<span class="linenos">36</span>            <span class="c1">## 入栈</span>
+<span class="linenos">37</span>            <span class="n">stk</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="linenos">38</span>        <span class="k">return</span> <span class="n">ans</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ul>
 </section>
 </section>
 

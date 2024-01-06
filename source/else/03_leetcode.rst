@@ -5233,7 +5233,7 @@ https://leetcode.com/problems/stone-game-ii
                 m = 1
                 k = len(piles)
                 ## 记录状态 (i, m) 的最大分
-                mem = [[-1]*(2*k+1) for _ in range(k)]
+                mem = [[-1]*k for _ in range(k)]
                 return self.maxScore(piles, 0, m, mem)
             
             def maxScore(self, piles, i, m, mem):

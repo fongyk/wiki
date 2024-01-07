@@ -236,6 +236,10 @@ ESMM 根据点击转化和点击的样本来学习 pCTCVR 和 pCTR 两个目标�
 
 个人理解，ESMM 这种训练方式并没有给 CVR 的预估带来额外的监督信息。
 
+`An Analysis Of Entire Space Multi-Task Models For Post-Click Conversion
+Prediction <https://arxiv.org/pdf/2108.13475.pdf>`_ 探讨了不同的 CTR & CVR 联合建模方式（参数是否共享、建模空间、优化目标等），
+其实直接共享 Embedding、只在点击空间优化 CVR 预估就能取得较好的效果。
+
 .. tip::
 
     考虑到除法运算带来的数值稳定性问题，不能直接使用 pCTCVR / pCTR 来建模 pCVR。
@@ -251,8 +255,8 @@ ESMM 根据点击转化和点击的样本来学习 pCTCVR 和 pCTR 两个目标�
 ESCM :math:`^2` 是为了解决 ESMM 模型的两个问题而提出的：
 
 - Inherent Estimation Bias
-    ESMM 在曝光空间的 CVR 预估值大于实际真实值。ESMM 建模的 CVR 实际上是 :math:`P(r_{u,i}=1)` 而不是 :math:`P(r_{u,i}=1|o_{u,i}=1)` 。
-    （ `Multi-IPW/DR 论文 <https://arxiv.org/pdf/1910.09337.pdf>`_ 也分析了 ESMM 对 CVR 的高估问题）
+    ESMM 在曝光空间的 CVR 预估值大于实际真实值。ESMM 建模的 CVR 实际上是 :math:`P(r_{u,i}=1)` 而不是 :math:`P(r_{u,i}=1|o_{u,i}=1)` （ `Multi-IPW/DR 论文 <https://arxiv.org/pdf/1910.09337.pdf>`_ 也分析了 ESMM 对 CVR 的高估问题）。
+    模型上线可能会导致点击率跌、转化率涨。
 
 - Potential Independence Priority
     ESMM 假设 CTR 和 CVR 预估任务是独立的，但事实上转化一定是在点击之后发生的事件。

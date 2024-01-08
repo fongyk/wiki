@@ -80,9 +80,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#id13">4.4. 多目标学习</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#ctr-cvr">CTR &amp; CVR 联合建模</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id16">MMoE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id17">MTMS</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id17">4.5. 负采样</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">4.5. 负采样</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#bias">4.6. Bias 问题</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#position-bias">Position Bias</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#exposure-bias">Exposure Bias</a></li>
@@ -90,7 +91,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#selection-bias">Selection Bias</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id18">4.7. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">4.7. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="05_rerank.html">5. 重排</a></li>
@@ -303,10 +304,10 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 </li>
 </ul>
 <p>实际上按照 ESMM 在曝光空间建模的思想，未点击样本的转化率是不确定的。例如，因为 CTR 模型预估得不准，把 Item 排在不好的位置，让用户失去了点击的机会，而实际上用户的转化意图可能很强（ <span class="math notranslate nohighlight">\(p(z=1|y=0,x) &gt; 0\)</span> ）。</p>
-<p>个人理解，ESMM 这种训练方式并没有给 CVR 的预估带来额外的监督信息。</p>
 <p><a class="reference external" href="https://arxiv.org/pdf/2108.13475.pdf">An Analysis Of Entire Space Multi-Task Models For Post-Click Conversion
 Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是否共享、建模空间、优化目标等），
 其实直接共享 Embedding、只在点击空间优化 CVR 预估就能取得较好的效果。</p>
+<p>个人理解，ESMM 这种训练方式并没有给 CVR 的预估带来额外的监督信息，共享 Embedding 贡献了比较大的收益。</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>考虑到除法运算带来的数值稳定性问题，不能直接使用 pCTCVR / pCTR 来建模 pCVR。</p>
@@ -318,19 +319,20 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 <p>ESCM <span class="math notranslate nohighlight">\(^2\)</span> 是为了解决 ESMM 模型的两个问题而提出的：</p>
 <ul class="simple">
 <li><dl class="simple">
-<dt>Inherent Estimation Bias</dt><dd><p>ESMM 在曝光空间的 CVR 预估值大于实际真实值。ESMM 建模的 CVR 实际上是 <span class="math notranslate nohighlight">\(P(r_{u,i}=1)\)</span> 而不是 <span class="math notranslate nohighlight">\(P(r_{u,i}=1|o_{u,i}=1)\)</span> （ <a class="reference external" href="https://arxiv.org/pdf/1910.09337.pdf">Multi-IPW/DR 论文</a> 也分析了 ESMM 对 CVR 的高估问题）。
+<dt>Inherent Estimation Bias</dt><dd><p>ESMM 在曝光空间的 CVR 预估值大于实际真实值。ESCM <span class="math notranslate nohighlight">\(^2\)</span> 基于的假设是：点击空间的转化率期望比曝光空间的转化率期望更高，即 <span class="math notranslate nohighlight">\(\mathbb{E}_{\mathcal{O}}[R] &gt; \mathbb{E}_{\mathcal{D}}[R]\)</span> 。（ <a class="reference external" href="https://arxiv.org/pdf/1910.09337.pdf">Multi-IPW/DR 论文</a> 也分析了 ESMM 对 CVR 的高估问题）。
 模型上线可能会导致点击率跌、转化率涨。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>Potential Independence Priority</dt><dd><p>ESMM 假设 CTR 和 CVR 预估任务是独立的，但事实上转化一定是在点击之后发生的事件。</p>
+<dt>Potential Independence Priority</dt><dd><p>ESMM 假设 CTR 和 CVR 预估任务是独立的，但事实上转化一定是在点击之后发生的事件。ESMM 建模的 CVR 实际上是 <span class="math notranslate nohighlight">\(P(r_{u,i}=1)\)</span> 而不是 <span class="math notranslate nohighlight">\(P(r_{u,i}=1|o_{u,i}=1)\)</span> ，蕴含了 <span class="math notranslate nohighlight">\(P(r_{u,i}=1|o_{u,i}=0)\)</span> 这一部分。</p>
 </dd>
 </dl>
 </li>
 </ul>
-<p>ESCM <span class="math notranslate nohighlight">\(^2\)</span> 还提出：点击空间的转化率期望比曝光空间的转化率期望更高。</p>
-<p>ESCM <span class="math notranslate nohighlight">\(^2\)</span> 的 <span class="math notranslate nohighlight">\(\mathcal{R}_{IPS}\)</span> 目标仍然是在点击空间建模 CVR ，同时使用预估的 pCTR 对 Loss 进行调权。</p>
+<p>ESCM <span class="math notranslate nohighlight">\(^2\)</span> 的 <span class="math notranslate nohighlight">\(\mathcal{R}_{IPS}\)</span> 目标仍然是在点击空间建模 CVR ，同时使用预估的 pCTR 对 Loss 进行调权。总体优化目标：</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L} = \mathcal{L}_{\mathrm{CTR}} + \lambda_c \mathcal{L}_{\mathrm{CVR}} + \lambda_g \mathcal{L}_{\mathrm{CTCVR}}\]</div>
 </section>
 <section id="id15">
 <h4>联合建模的问题<a class="headerlink" href="#id15" title="Permalink to this headline"></a></h4>
@@ -360,9 +362,21 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 <p>MMoE 在 MoE 的基础上将所有任务共享一个门控网络变成不同任务使用不同的门控网络，不同任务同一个专家也有不同的权重，更加利于模型捕捉到子任务间的相关性和差异性。</p>
 <p>MMOE 中所有的 Expert 是被不同任务所共享的，这可能无法捕捉到任务之间更复杂的关系，从而给部分任务带来一定的噪声。</p>
 </section>
-</section>
 <section id="id17">
-<h2><span class="section-number">4.5. </span>负采样<a class="headerlink" href="#id17" title="Permalink to this headline"></a></h2>
+<h3><a class="reference external" href="https://github.com/tangxyw/RecSysPapers/blob/main/Multi-Scenario/%5B2021%5D%5BBaidu%5D%20Multi-Task%20and%20Multi-Scene%20Unified%20Ranking%20Model%20for%20Online%20Advertising.pdf">MTMS</a><a class="headerlink" href="#id17" title="Permalink to this headline"></a></h3>
+<a class="reference internal image-reference" href="../_images/04_mtms.png"><img alt="../_images/04_mtms.png" class="align-center" src="../_images/04_mtms.png" style="width: 800px;" /></a>
+<p>MTMS 对多任务、多场景进行统一特征管理，训练分成两个阶段：</p>
+<ul class="simple">
+<li><p>Update：不同场景的 CTR/CVR 任务独立、并行训练，CTR 和 CVR 任务不共享 Embedding。独立训练各任务能够使模型快速收敛。</p></li>
+<li><p>Join：固定各模型的 Embedding，然后融合这些 Embedding 去训练 Ranking Network。（两个阶段的 DNN 网络是不一样的）</p></li>
+</ul>
+<p>优化目标为：</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L} = \mathcal{L}_{\mathrm{CTR}} + \mathcal{L}_{\mathrm{CVR}} + \mathcal{L}_{\mathrm{CTCVR}}\]</div>
+</section>
+</section>
+<section id="id18">
+<h2><span class="section-number">4.5. </span>负采样<a class="headerlink" href="#id18" title="Permalink to this headline"></a></h2>
 <p>为了控制数据规模，降低训练开销，可以保留全部正样本、对负样本进行降采样，一方面提高了训练效率，另一方面还缓解了正负样本不均衡的问题。</p>
 <p>负采样带来的问题是 CTR/CVR 预估值的漂移：打分均值偏高。校正公式：</p>
 <div class="math notranslate nohighlight">
@@ -412,8 +426,8 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 </div>
 </section>
 </section>
-<section id="id18">
-<h2><span class="section-number">4.7. </span>参考资料<a class="headerlink" href="#id18" title="Permalink to this headline"></a></h2>
+<section id="id19">
+<h2><span class="section-number">4.7. </span>参考资料<a class="headerlink" href="#id19" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>《深度学习推荐系统》，王喆，电子工业出版社。</p></li>
 <li><p>推荐系统的架构-冷启动-召回-粗排-精排-重排</p></li>
@@ -510,6 +524,12 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/82584437">https://zhuanlan.zhihu.com/p/82584437</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="18">
+<li><p>百度多任务多场景统一Ranking模型</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/602626697">https://zhuanlan.zhihu.com/p/602626697</a></p>
 </div></blockquote>
 </section>
 </section>

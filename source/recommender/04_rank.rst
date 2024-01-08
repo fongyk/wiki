@@ -234,11 +234,11 @@ ESMM 根据点击转化和点击的样本来学习 pCTCVR 和 pCTR 两个目标�
 
 实际上按照 ESMM 在曝光空间建模的思想，未点击样本的转化率是不确定的。例如，因为 CTR 模型预估得不准，把 Item 排在不好的位置，让用户失去了点击的机会，而实际上用户的转化意图可能很强（ :math:`p(z=1|y=0,x) > 0` ）。
 
-个人理解，ESMM 这种训练方式并没有给 CVR 的预估带来额外的监督信息。
-
 `An Analysis Of Entire Space Multi-Task Models For Post-Click Conversion
 Prediction <https://arxiv.org/pdf/2108.13475.pdf>`_ 探讨了不同的 CTR & CVR 联合建模方式（参数是否共享、建模空间、优化目标等），
 其实直接共享 Embedding、只在点击空间优化 CVR 预估就能取得较好的效果。
+
+个人理解，ESMM 这种训练方式并没有给 CVR 的预估带来额外的监督信息，共享 Embedding 贡献了比较大的收益。
 
 .. tip::
 
@@ -255,15 +255,18 @@ Prediction <https://arxiv.org/pdf/2108.13475.pdf>`_ 探讨了不同的 CTR & CVR
 ESCM :math:`^2` 是为了解决 ESMM 模型的两个问题而提出的：
 
 - Inherent Estimation Bias
-    ESMM 在曝光空间的 CVR 预估值大于实际真实值。ESMM 建模的 CVR 实际上是 :math:`P(r_{u,i}=1)` 而不是 :math:`P(r_{u,i}=1|o_{u,i}=1)` （ `Multi-IPW/DR 论文 <https://arxiv.org/pdf/1910.09337.pdf>`_ 也分析了 ESMM 对 CVR 的高估问题）。
+    ESMM 在曝光空间的 CVR 预估值大于实际真实值。ESCM :math:`^2` 基于的假设是：点击空间的转化率期望比曝光空间的转化率期望更高，即 :math:`\mathbb{E}_{\mathcal{O}}[R] > \mathbb{E}_{\mathcal{D}}[R]` 。（ `Multi-IPW/DR 论文 <https://arxiv.org/pdf/1910.09337.pdf>`_ 也分析了 ESMM 对 CVR 的高估问题）。
     模型上线可能会导致点击率跌、转化率涨。
 
 - Potential Independence Priority
-    ESMM 假设 CTR 和 CVR 预估任务是独立的，但事实上转化一定是在点击之后发生的事件。
+    ESMM 假设 CTR 和 CVR 预估任务是独立的，但事实上转化一定是在点击之后发生的事件。ESMM 建模的 CVR 实际上是 :math:`P(r_{u,i}=1)` 而不是 :math:`P(r_{u,i}=1|o_{u,i}=1)` ，蕴含了 :math:`P(r_{u,i}=1|o_{u,i}=0)` 这一部分。
 
-ESCM :math:`^2` 还提出：点击空间的转化率期望比曝光空间的转化率期望更高。
 
-ESCM :math:`^2` 的 :math:`\mathcal{R}_{IPS}` 目标仍然是在点击空间建模 CVR ，同时使用预估的 pCTR 对 Loss 进行调权。
+ESCM :math:`^2` 的 :math:`\mathcal{R}_{IPS}` 目标仍然是在点击空间建模 CVR ，同时使用预估的 pCTR 对 Loss 进行调权。总体优化目标：
+
+.. math::
+
+  \mathcal{L} = \mathcal{L}_{\mathrm{CTR}} + \lambda_c \mathcal{L}_{\mathrm{CVR}} + \lambda_g \mathcal{L}_{\mathrm{CTCVR}}
 
 
 联合建模的问题
@@ -300,6 +303,26 @@ MoE 模型像是将 Share Bottom 分解成多个 Expert，然后通过门控网�
 MMoE 在 MoE 的基础上将所有任务共享一个门控网络变成不同任务使用不同的门控网络，不同任务同一个专家也有不同的权重，更加利于模型捕捉到子任务间的相关性和差异性。
 
 MMOE 中所有的 Expert 是被不同任务所共享的，这可能无法捕捉到任务之间更复杂的关系，从而给部分任务带来一定的噪声。
+
+
+`MTMS <https://github.com/tangxyw/RecSysPapers/blob/main/Multi-Scenario/%5B2021%5D%5BBaidu%5D%20Multi-Task%20and%20Multi-Scene%20Unified%20Ranking%20Model%20for%20Online%20Advertising.pdf>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. image:: ./04_mtms.png
+    :width: 800px
+    :align: center
+
+MTMS 对多任务、多场景进行统一特征管理，训练分成两个阶段：
+
+- Update：不同场景的 CTR/CVR 任务独立、并行训练，CTR 和 CVR 任务不共享 Embedding。独立训练各任务能够使模型快速收敛。
+- Join：固定各模型的 Embedding，然后融合这些 Embedding 去训练 Ranking Network。（两个阶段的 DNN 网络是不一样的）
+
+优化目标为：
+
+.. math::
+
+  \mathcal{L} = \mathcal{L}_{\mathrm{CTR}} + \mathcal{L}_{\mathrm{CVR}} + \mathcal{L}_{\mathrm{CTCVR}}
+
 
 
 负采样
@@ -440,3 +463,7 @@ Selection Bias
 
   https://zhuanlan.zhihu.com/p/82584437
 
+
+18. 百度多任务多场景统一Ranking模型
+
+  https://zhuanlan.zhihu.com/p/602626697

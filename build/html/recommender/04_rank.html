@@ -303,11 +303,11 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 </dl>
 </li>
 </ul>
-<p>实际上按照 ESMM 在曝光空间建模的思想，未点击样本的转化率是不确定的。例如，因为 CTR 模型预估得不准，把 Item 排在不好的位置，让用户失去了点击的机会，而实际上用户的转化意图可能很强（ <span class="math notranslate nohighlight">\(p(z=1|y=0,x) &gt; 0\)</span> ）。</p>
+<p>实际上按照 ESMM 在曝光空间建模的思想，未点击样本的转化率是不确定的。例如，因为 CTR 模型预估得不准，把 Item 排在不好的位置，让用户失去了点击的机会，而实际上用户的转化意图可能很强。</p>
 <p><a class="reference external" href="https://arxiv.org/pdf/2108.13475.pdf">An Analysis Of Entire Space Multi-Task Models For Post-Click Conversion
 Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是否共享、建模空间、优化目标等），
 其实直接共享 Embedding、只在点击空间优化 CVR 预估就能取得较好的效果。</p>
-<p>个人理解，ESMM 这种训练方式并没有给 CVR 的预估带来额外的监督信息，共享 Embedding 贡献了比较大的收益。</p>
+<p>个人理解，ESMM 这种训练方式并没有给 CVR 的预估带来额外的监督信息（共享 Embedding 贡献了比较大的收益）。在未点击样本上，假如 CTR 已经预估得比较准确，那么 CTR DNN 的输出会接近 0，根据求导链式法则，CVR DNN 获得的梯度将会较小，这时候即使 CVR DNN 输出较大的预估值，其参数也不会大幅更新。</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>考虑到除法运算带来的数值稳定性问题，不能直接使用 pCTCVR / pCTR 来建模 pCVR。</p>

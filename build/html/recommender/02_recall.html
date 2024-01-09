@@ -59,14 +59,19 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">推荐系统</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="01_introduction.html">1. 概述</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">2. 召回</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id3">2.1. Swing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">2.2. 向量化召回</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id5">负样本</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.1. 协同过滤</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#memory-based-collaborative-filtering">Memory-Based Collaborative Filtering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model-based-collaborative-filtering">Model-Based Collaborative Filtering</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#loss">2.3. Loss</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id7">2.4. 离线指标</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id9">2.5. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">2.2. Swing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">2.3. 向量化召回</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id7">负样本</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#loss">2.4. Loss</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">2.5. 离线指标</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">2.6. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="03_prerank.html">3. 粗排</a></li>
@@ -145,14 +150,50 @@
 <p>召回处于整体推荐链条的前端，其结果经过粗排、精排两次筛选，作用于最终业务指标时，影响力就大大减弱了。
 受限于巨大的候选集和实时性要求，召回模型的复杂度受限，不能上太复杂的模型。</p>
 <section id="id3">
-<h2><span class="section-number">2.1. </span><a class="reference external" href="https://arxiv.org/pdf/2010.05525.pdf">Swing</a><a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">2.1. </span><a class="reference external" href="https://zh.wikipedia.org/wiki/%E5%8D%94%E5%90%8C%E9%81%8E%E6%BF%BE">协同过滤</a><a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<p>协同过滤（Collaborative Filtering）是一种在推荐系统中广泛使用的技术。
+该技术通过分析 <strong>用户</strong> 或者 <strong>事物</strong> 之间的相似性（“协同”），来预测用户可能感兴趣的内容并将其推荐给用户。这里的相似性可以是人口特征（性别、年龄、居住地等）的相似性，也可以是历史浏览内容的相似性（比如都关注过和中餐相关的内容）等。比如，用户 A 和 B 都是居住在北京的年龄在 20-30 岁的女性，并且都关注过化妆品和衣物相关的内容，这种情况下，协同过滤可能会认为 A 和 B 相似程度很高，于是可能会把 A 关注但 B 没有关注的内容推荐给 B，反之亦然。</p>
+<section id="memory-based-collaborative-filtering">
+<h3>Memory-Based Collaborative Filtering<a class="headerlink" href="#memory-based-collaborative-filtering" title="Permalink to this headline"></a></h3>
+<p>其实就是基于最近邻的协同过滤，可分为两类：</p>
+<ul>
+<li><p>基于用户（User-Based）的协同过滤</p>
+<ol class="arabic simple">
+<li><p>收集用户信息。</p></li>
+<li><p>最近邻搜索(Nearest Neighbor Search, NNS)，计算用户之间的相似度。</p></li>
+<li><p>产生推荐结果。例如：透过对 A 用户的最近邻用户进行统计，选择出现频率高且在 A 用户的评分项目中不存在的推荐给A。</p></li>
+</ol>
+</li>
+<li><p>基于项目（Item-Based）的协同过滤</p>
+<p>基本假设：能够引起用户兴趣的项目，必定与其之前评分高的项目相似。</p>
+<ol class="arabic simple">
+<li><p>收集用户信息。</p></li>
+<li><p>针对项目的最近邻搜索，计算项目之间的相似度。</p></li>
+<li><p>产生推荐结果。由于未考虑用户间的差别，所以精度比较差。但是却不需要用户的历史数据，或是进行用户识别。对于项目来讲，它们之间的相似性要稳定很多，因此可以离线完成工作量最大的相似性计算步骤，从而降低了在线计算量，提高推荐效率。</p></li>
+</ol>
+</li>
+</ul>
+</section>
+<section id="model-based-collaborative-filtering">
+<h3>Model-Based Collaborative Filtering<a class="headerlink" href="#model-based-collaborative-filtering" title="Permalink to this headline"></a></h3>
+<p>Memory-Based Collaborative Filtering 缺点是数据稀疏，难以处理大数据量，会影响即时结果。
+以模型为基础的协同过滤是先用历史数据得到一个模型（关联算法、聚类、分类、矩阵分解等），再用此模型进行预测。</p>
+<p>矩阵分解方法基于 User-Item 关系矩阵 <span class="math notranslate nohighlight">\(R \in \mathbb{R}^{m \times n}\)</span> 的 <strong>低秩性</strong> 假设（某些行/列存在相关性），对其进行分解，比如：</p>
+<div class="math notranslate nohighlight">
+\[R = PQ^{\top}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(P \in \mathbb{R}^{m \times d},\ Q \in \mathbb{R}^{n \times d},\ d \ll m,n\)</span> 。
+这样一来，衡量一对 User 和 Item 之间的相关性只要计算两个向量 <span class="math notranslate nohighlight">\(\boldsymbol{p}\)</span> 和 <span class="math notranslate nohighlight">\(\boldsymbol{q}\)</span> 之间的相似度。</p>
+</section>
+</section>
+<section id="id5">
+<h2><span class="section-number">2.2. </span><a class="reference external" href="https://arxiv.org/pdf/2010.05525.pdf">Swing</a><a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
 <p>出发点：如果大量用户同时喜欢两个物品，且这些用户之间的相关性低，那么这两个物品一定是强关联。</p>
 <div class="math notranslate nohighlight">
 \[s(i, j)=\sum_{u \in U_{i} \cap U_{j}} \sum_{v \in U_{i} \cap U_{j}} \frac{1}{\alpha+\left|I_{u} \cap I_{v}\right|}\]</div>
 <p><span class="math notranslate nohighlight">\(U_{i}\)</span> 是喜欢物品 <span class="math notranslate nohighlight">\(i\)</span> 的用户集合；<span class="math notranslate nohighlight">\(I_{u}\)</span> 是用户 <span class="math notranslate nohighlight">\(u\)</span> 喜欢的物品集合。</p>
 </section>
-<section id="id4">
-<h2><span class="section-number">2.2. </span>向量化召回<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<section id="id6">
+<h2><span class="section-number">2.3. </span>向量化召回<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
 <a class="reference internal image-reference" href="../_images/02_twoTower.png"><img alt="../_images/02_twoTower.png" class="align-center" src="../_images/02_twoTower.png" style="width: 400px;" /></a>
 <p>双塔是召回+粗排的绝对主力模型。</p>
 <p><strong>训练</strong>：</p>
@@ -173,8 +214,8 @@
 </ul>
 <p>User 侧信息与 Item 侧信息只有唯一一次交叉机会，就是在双塔生成各自的 Embedding 之后的那次点积，
 但是这时参与交叉的 User/Item Embedding 已经是高度浓缩的了，一些细节信息已经损失，永远失去了与对侧信息交叉的机会。</p>
-<section id="id5">
-<h3>负样本<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
+<section id="id7">
+<h3>负样本<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h3>
 <p>如果说排序是特征的艺术，那么召回就是样本的艺术，特别是负样本的艺术。
 <strong>要破除“召回照搬排序”的迷信，不能（只）拿“曝光未点击”做负样本</strong>。</p>
 <p>离线训练数据的分布，应该与线上实际应用的数据保持一致。从线上日志获得的训练样本，已经是上一版本的召回、粗排、精排替用户筛选过的，即已经是对用户“比较靠谱”的样本了。拿这样的样本训练出来的模型做召回，一叶障目，只见树木，不见森林。</p>
@@ -206,15 +247,15 @@
 </section>
 </section>
 <section id="loss">
-<h2><span class="section-number">2.3. </span>Loss<a class="headerlink" href="#loss" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">2.4. </span>Loss<a class="headerlink" href="#loss" title="Permalink to this headline"></a></h2>
 <p><a class="reference external" href="https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/45530.pdf">Youtube DNN</a> 模型选择了 Sampled Softmax Loss 作为损失函数。
 对于二分类而言，BCE Loss 只是比较正负样本的差距，而且每次 Loss 的计算中，都是判断一个样本是正还是负，并没有纵向的对比。
 对于 Softmax Loss 而言，其是一次性进行多个 Item 之间的比较，而且在每一次的 Loss 计算中，都会将正样本和多个负样本进行比较，并且告诉模型正样本是和这一批负样本很不同的。Softmax Loss 训练出来的 Embedding 的区分性更好。
 直观上，这种 Loss 的优化目标和向量化召回是更一致的。</p>
 <p><a class="reference external" href="https://arxiv.org/pdf/2006.11632.pdf">EBF</a> 采用的是 Triplet Loss。</p>
 </section>
-<section id="id7">
-<h2><span class="section-number">2.4. </span>离线指标<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h2>
+<section id="id9">
+<h2><span class="section-number">2.5. </span>离线指标<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h2>
 <ul>
 <li><dl class="simple">
 <dt>Recall，Precision</dt><dd><p><span class="math notranslate nohighlight">\(R(u)\)</span> 表示召回 Item 的集合，<span class="math notranslate nohighlight">\(A(u)\)</span> 表示用户感兴趣的 Item 的集合（比如点击过的 Item）。</p>
@@ -246,8 +287,8 @@
 <p>还需要考虑召回的丰富度（比如类目）、和其他路的重合度等。</p>
 <p>此外，推荐系统中长尾效应十分明显，上述指标易受到头部数据的干扰，且大部分召回对尾部的学习不如头部数据好，因此可以增加单独的 <a class="reference external" href="https://www.researchgate.net/publication/262214507_Sparse_linear_methods_with_side_information_for_Top-N_recommendations">长尾指标</a> 。</p>
 </section>
-<section id="id9">
-<h2><span class="section-number">2.5. </span>参考资料<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h2>
+<section id="id11">
+<h2><span class="section-number">2.6. </span>参考资料<a class="headerlink" href="#id11" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>推荐系统[四]：精排-详解排序算法LTR (Learning to Rank)</p></li>
 </ol>
@@ -301,6 +342,12 @@
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://juejin.cn/post/6844904065638350861">https://juejin.cn/post/6844904065638350861</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="10">
+<li><p>推荐系统之矩阵分解家族</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/35262187">https://zhuanlan.zhihu.com/p/35262187</a></p>
 </div></blockquote>
 </section>
 </section>

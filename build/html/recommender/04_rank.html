@@ -85,13 +85,11 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#id18">4.5. 负采样</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#bias">4.6. Bias 问题</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#position-bias">Position Bias</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#exposure-bias">Exposure Bias</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#popularity-bias">Popularity Bias</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#selection-bias">Selection Bias</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#position-bias">Position Bias</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id19">4.7. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">4.7. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="05_rerank.html">5. 重排</a></li>
@@ -290,6 +288,10 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 <h4><a class="reference external" href="https://arxiv.org/pdf/1804.07931.pdf">ESMM</a><a class="headerlink" href="#id14" title="Permalink to this headline"></a></h4>
 <a class="reference internal image-reference" href="../_images/04_esmm.png"><img alt="../_images/04_esmm.png" class="align-center" src="../_images/04_esmm.png" style="width: 600px;" /></a>
 <p>ESMM 根据点击转化和点击的样本来学习 pCTCVR 和 pCTR 两个目标（共享 Embedding），把 pCVR 当做一个中间变量，同时输出预估的 pCTR、pCVR 和 pCTCVR。损失函数中，pCTR 可以看做是 pCVR 的 Soft Mask。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{pCTCVR} &amp; = \mathrm{pCTR} \times \mathrm{pCVR} \\
+                &amp; = p(y=1, z=1 | \boldsymbol{x}) \\
+                &amp; = p(y=1 | \boldsymbol{x}) \times p(z=1 | y=1, \boldsymbol{x})\end{split}\]</div>
 <p>期望解决以下两个问题：</p>
 <ul class="simple">
 <li><dl class="simple">
@@ -325,14 +327,21 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 </dl>
 </li>
 <li><dl class="simple">
-<dt>Potential Independence Priority</dt><dd><p>ESMM 假设 CTR 和 CVR 预估任务是独立的，但事实上转化一定是在点击之后发生的事件。ESMM 建模的 CVR 实际上是 <span class="math notranslate nohighlight">\(P(r_{u,i}=1)\)</span> 而不是 <span class="math notranslate nohighlight">\(P(r_{u,i}=1|o_{u,i}=1)\)</span> ，蕴含了 <span class="math notranslate nohighlight">\(P(r_{u,i}=1|o_{u,i}=0)\)</span> 这一部分。</p>
+<dt>Potential Independence Priority</dt><dd><p>ESMM 假设 CTR 和 CVR 预估任务是独立的（没有建模点击-&gt;转化的空间依赖关系），但事实上转化一定是在点击之后发生的事件。ESMM 建模的 CVR 实际上是 <span class="math notranslate nohighlight">\(P(r=1)\)</span> 而不是其预期的 <span class="math notranslate nohighlight">\(P(r=1|o=1)\)</span> ，蕴含了 <span class="math notranslate nohighlight">\(P(r=1|o=0)\)</span> 这一部分。其中 <span class="math notranslate nohighlight">\(o\)</span> 表示点击， <span class="math notranslate nohighlight">\(r\)</span> 表示转化（Post-Click Conversion）。</p>
 </dd>
 </dl>
 </li>
 </ul>
-<p>ESCM <span class="math notranslate nohighlight">\(^2\)</span> 的 <span class="math notranslate nohighlight">\(\mathcal{R}_{IPS}\)</span> 目标仍然是在点击空间建模 CVR ，同时使用预估的 pCTR 对 Loss 进行调权。总体优化目标：</p>
+<p>ESCM <span class="math notranslate nohighlight">\(^2\)</span> 仍然显式对 CVR 建模，提出 <span class="math notranslate nohighlight">\(\mathcal{R}_{IPS} = \mathbb{E}_{\mathcal{D}} \left[ \frac{o}{\hat{o}} \delta(r, \hat{r}) \right]\)</span> 在曝光空间建模 CVR ，使用预估的 pCTR 作为倾向分对 Loss 进行（逆）调权（即 IPS）。
+其中 <span class="math notranslate nohighlight">\(\delta\)</span> 是 BCE Loss， <span class="math notranslate nohighlight">\(\hat{o}\)</span> 和 <span class="math notranslate nohighlight">\(\hat{r}\)</span> 分别是 pCTR 和 pCVR 。在 CTR 预估准确的前提下，<span class="math notranslate nohighlight">\(\mathcal{R}_{IPS}\)</span> 是曝光空间 CVR 的 <strong>无偏估计</strong> ，也即 <span class="math notranslate nohighlight">\(\hat{r} \rightarrow P(r=1|do(o=1))\)</span> 是 CVR（在点击发生的前提下）的无偏估计。
+考虑到 IPS 的高方差问题，训练不稳定，ESCM <span class="math notranslate nohighlight">\(^2\)</span> 还提出了 <span class="math notranslate nohighlight">\(\mathcal{R}_{DR}\)</span> 额外构建了一个 Imputation Tower。</p>
+<p>总体优化目标：</p>
 <div class="math notranslate nohighlight">
 \[\mathcal{L} = \mathcal{L}_{\mathrm{CTR}} + \lambda_c \mathcal{L}_{\mathrm{CVR}} + \lambda_g \mathcal{L}_{\mathrm{CTCVR}}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>反事实问题（Counterfactual Problem）：在未点击空间，对 CVR 建模。</p>
+</div>
 </section>
 <section id="id15">
 <h4>联合建模的问题<a class="headerlink" href="#id15" title="Permalink to this headline"></a></h4>
@@ -385,6 +394,50 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 </section>
 <section id="bias">
 <h2><span class="section-number">4.6. </span>Bias 问题<a class="headerlink" href="#bias" title="Permalink to this headline"></a></h2>
+<section id="selection-bias">
+<h3>Selection Bias<a class="headerlink" href="#selection-bias" title="Permalink to this headline"></a></h3>
+<p>在实际推荐系统中，长尾问题是很常见的，曝光的 Item 永远只是一小部分热门 Item，大量的非热门 Item 曝光是很少的。</p>
+<p>消偏思路：</p>
+<ul class="simple">
+<li><p>增强冷启动和探索。</p></li>
+<li><p>迁移学习。</p></li>
+<li><p>Inverse Propensity Scoring 和 Data Imputation。</p></li>
+</ul>
+<section id="id19">
+<h4>迁移学习： <a class="reference external" href="https://arxiv.org/pdf/2005.10545.pdf">ESAM</a><a class="headerlink" href="#id19" title="Permalink to this headline"></a></h4>
+<a class="reference internal image-reference" href="../_images/04_esam.png"><img alt="../_images/04_esam.png" class="align-center" src="../_images/04_esam.png" style="width: 800px;" /></a>
+<p>目标是期望模型对曝光空间和未曝光空间的打分分布一致。</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathcal{L}_{DA}\)</span> ：实现 Attribute Correlation Alignment，要求 Source Domain 和 Target Domain 的 Item 关系是相似的，具体表现为不同 Domain 的协方差矩阵一致。</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathcal{L}_{DC}^c\)</span> ：实现 Center-Wise Clustering for Source Clustering，在 Source Domain 要求相似 Item（具有同类型的 User Feedback，例如点击/购买）高度聚合，不相似的 Item 相互远离（类似于分类中的 Center Loss），结合 <span class="math notranslate nohighlight">\(\mathcal{L}_{DA}\)</span> 也间接对 Target Domain 产生了相同的约束效果。</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathcal{L}_{DC}^p\)</span> ：实现 Self-Training for Target Clustering，构造伪标签，通过优化 <span class="math notranslate nohighlight">\(l(x) = -p(x) \log p(x)\)</span> 使得低分的伪负样本得分越来越低，高分的伪正样本得分越来越高。</p></li>
+</ul>
+</section>
+<section id="inverse-propensity-scoring-data-imputation">
+<h4>Inverse Propensity Scoring 和 Data Imputation<a class="headerlink" href="#inverse-propensity-scoring-data-imputation" title="Permalink to this headline"></a></h4>
+<p>IPS 使用 Propensity Scoring（倾向分）对 Loss 调权：</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}_{IPS} = \mathbb{E}_{\mathcal{D}} \left[ \frac{o \cdot \delta}{\hat{q}} \right]\]</div>
+<p>Data Imputation 使用模型在全样本空间对目标进行预估，一般会结合 IPS 共同建模，称为 DR（Doubly Robust）：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathcal{L}_{DR} &amp; = \mathbb{E}_{\mathcal{D}} \left[ \hat{\delta} + \frac{o \cdot e}{\hat{q}} \right] \\
+e &amp; = \delta - \hat{\delta}\end{split}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(\hat{q}\)</span> 和 <span class="math notranslate nohighlight">\(\hat{\delta}\)</span> 一般需要额外建模，比如 ESCM <span class="math notranslate nohighlight">\(^2\)</span> 中的 CTR Tower 和 Imputation Tower。</p>
+<p>IPS 和 DR 都可以获得目标的无偏估计。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>使用 IPS/DR 的一些论文：</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://arxiv.org/pdf/2204.05125.pdf">ESCM2: Entire Space Counterfactual Multi-Task Model for Post-Click Conversion Rate Estimation</a></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/pdf/1910.09337.pdf">Large-scale Causal Approaches To Debiasing Post-click Conversion Rate Estimation With Multi-task Learning</a></p></li>
+<li><p><a class="reference external" href="https://proceedings.mlr.press/v97/wang19n.html">Doubly Robust Joint Learning for Recommendation on Data Missing Not at Random</a></p></li>
+<li><p><a class="reference external" href="https://www.csie.ntu.edu.tw/~cjlin/papers/occtr/ctr_oc.pdf">Improving Ad Click Prediction by Considering Non-displayed Events</a></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/pdf/1103.4601.pdf">Doubly Robust Policy Evaluation and Learning</a> （提出 DR）</p></li>
+<li><p><a class="reference external" href="https://www.stat.cmu.edu/~brian/905-2008/papers/Horvitz-Thompson-1952-jasa.pdf">A Generalization Of Sampling Without Replacement From A Finite Universe</a> （提出 IPS）</p></li>
+</ul>
+</div>
+</section>
+</section>
 <section id="position-bias">
 <h3>Position Bias<a class="headerlink" href="#position-bias" title="Permalink to this headline"></a></h3>
 <p>用户会对展现的推荐位产生明显倾向性的选择，比如第一推荐位就是比最后一推荐位的点击率要高。
@@ -395,28 +448,6 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 <li><p>参照 Wide &amp; Deep，另外开辟一个浅层网络单独学习位置信息，将得到的结果和主模型的结果相加。训练过程中，可以适当的考虑对位置特征进行一定比例的屏蔽，防止模型过度依赖位置特征。预测的时候，就只输出主模型的分数，将位置网络抛弃。</p></li>
 </ul>
 <p>可参考 <a class="reference external" href="https://daiwk.github.io/assets/youtube-multitask.pdf">Youtube Shallow Tower</a> 对 Bias 的处理。</p>
-</section>
-<section id="exposure-bias">
-<h3>Exposure Bias<a class="headerlink" href="#exposure-bias" title="Permalink to this headline"></a></h3>
-<p>曝光给用户的 Item 只是一小部分，大部分 Item 都没有给曝光给用户，但是这些没有曝光的 Item 用户不一定不喜欢。</p>
-<p>一般来说解决方法是 Item 冷启动。</p>
-</section>
-<section id="popularity-bias">
-<h3>Popularity Bias<a class="headerlink" href="#popularity-bias" title="Permalink to this headline"></a></h3>
-<p>在实际推荐系统中，长尾问题是很常见的，曝光的 Item 永远只是一小部分热门 Item，大量的非热门 Item 曝光是很少的。</p>
-<p>消偏思路：</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://arxiv.org/pdf/2005.10545.pdf">ESAM</a> 迁移学习：曝光 Item 与未曝光 Item 的特征之间的关系是一致的，通过学习 Source Domain 的特性，从而将其适当地迁移到 Target Domain。</p></li>
-</ul>
-</section>
-<section id="selection-bias">
-<h3>Selection Bias<a class="headerlink" href="#selection-bias" title="Permalink to this headline"></a></h3>
-<p>在有评分反馈的推荐系统中，用户很多时候只对自己特别喜欢或者特别不喜欢的 Item 进行打分，大量的其他 Item 其实被用户忽略掉了，如果在模型加入这个特征，那么模型就只会对有过操作的 Item 比较敏感，对其他 Item 反响平平。</p>
-<p>消偏思路：</p>
-<ul class="simple">
-<li><p>Propensity Score：把用户对 Item 的打分作为样本的权重，重新训练。</p></li>
-<li><p>Data Imputation：对用户忽略的大量特征进行数据填充，填充方式分为两种：第一种是统计特征填充，第二种是直接模型预测缺失值。</p></li>
-</ul>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
 <p>做精排有一个点要注意，可以定时对模型进行迭代或者模型冷启动。
@@ -426,8 +457,8 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 </div>
 </section>
 </section>
-<section id="id19">
-<h2><span class="section-number">4.7. </span>参考资料<a class="headerlink" href="#id19" title="Permalink to this headline"></a></h2>
+<section id="id20">
+<h2><span class="section-number">4.7. </span>参考资料<a class="headerlink" href="#id20" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>《深度学习推荐系统》，王喆，电子工业出版社。</p></li>
 <li><p>推荐系统的架构-冷启动-召回-粗排-精排-重排</p></li>

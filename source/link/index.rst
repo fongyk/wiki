@@ -120,7 +120,7 @@ Hugging Face
     :height: 120px
     :align: center
 
-    huggingface
+    hugging face
 
 
 ShareLatex/Overleaf
@@ -429,6 +429,30 @@ Read the Docs
     :align: center
 
     weekly
+
+
+图像计算器
+----------------
+.. hlist::
+    :columns: 2
+
+
+    - .. figure:: pictures/geogebra.png
+         :target: https://www.geogebra.org/graphing
+         :width: 160px
+         :height: 120px
+         :align: center
+         
+         geogebra
+
+         
+    - .. figure:: pictures/desmos.png
+         :target: https://www.desmos.com/calculator?lang=zh-CN
+         :width: 160px
+         :height: 120px
+         :align: center
+         
+         desmos
 
 
 Github Page

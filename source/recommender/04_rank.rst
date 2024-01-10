@@ -224,6 +224,12 @@ CTR & CVR 联合建模
 
 ESMM 根据点击转化和点击的样本来学习 pCTCVR 和 pCTR 两个目标（共享 Embedding），把 pCVR 当做一个中间变量，同时输出预估的 pCTR、pCVR 和 pCTCVR。损失函数中，pCTR 可以看做是 pCVR 的 Soft Mask。
 
+.. math::
+
+  \mathrm{pCTCVR} & = \mathrm{pCTR} \times \mathrm{pCVR} \\
+                  & = p(y=1, z=1 | \boldsymbol{x}) \\
+                  & = p(y=1 | \boldsymbol{x}) \times p(z=1 | y=1, \boldsymbol{x})
+
 期望解决以下两个问题：
 
 - Sample Selection Bias (样本选择偏差) 
@@ -259,15 +265,23 @@ ESCM :math:`^2` 是为了解决 ESMM 模型的两个问题而提出的：
     模型上线可能会导致点击率跌、转化率涨。
 
 - Potential Independence Priority
-    ESMM 假设 CTR 和 CVR 预估任务是独立的，但事实上转化一定是在点击之后发生的事件。ESMM 建模的 CVR 实际上是 :math:`P(r_{u,i}=1)` 而不是 :math:`P(r_{u,i}=1|o_{u,i}=1)` ，蕴含了 :math:`P(r_{u,i}=1|o_{u,i}=0)` 这一部分。
+    ESMM 假设 CTR 和 CVR 预估任务是独立的（没有建模点击->转化的空间依赖关系），但事实上转化一定是在点击之后发生的事件。ESMM 建模的 CVR 实际上是 :math:`P(r=1)` 而不是其预期的 :math:`P(r=1|o=1)` ，蕴含了 :math:`P(r=1|o=0)` 这一部分。其中 :math:`o` 表示点击， :math:`r` 表示转化（Post-Click Conversion）。
 
 
-ESCM :math:`^2` 的 :math:`\mathcal{R}_{IPS}` 目标仍然是在点击空间建模 CVR ，同时使用预估的 pCTR 对 Loss 进行调权。总体优化目标：
+ESCM :math:`^2` 仍然显式对 CVR 建模，提出 :math:`\mathcal{R}_{IPS} = \mathbb{E}_{\mathcal{D}} \left[ \frac{o}{\hat{o}} \delta(r, \hat{r}) \right]` 在曝光空间建模 CVR ，使用预估的 pCTR 作为倾向分对 Loss 进行（逆）调权（即 IPS）。
+其中 :math:`\delta` 是 BCE Loss， :math:`\hat{o}` 和 :math:`\hat{r}` 分别是 pCTR 和 pCVR 。在 CTR 预估准确的前提下，:math:`\mathcal{R}_{IPS}` 是曝光空间 CVR 的 **无偏估计** ，也即 :math:`\hat{r} \rightarrow P(r=1|do(o=1))` 是 CVR（在点击发生的前提下）的无偏估计。
+考虑到 IPS 的高方差问题，训练不稳定，ESCM :math:`^2` 还提出了 :math:`\mathcal{R}_{DR}` 额外构建了一个 Imputation Tower。
+
+总体优化目标：
 
 .. math::
 
   \mathcal{L} = \mathcal{L}_{\mathrm{CTR}} + \lambda_c \mathcal{L}_{\mathrm{CVR}} + \lambda_g \mathcal{L}_{\mathrm{CTCVR}}
 
+
+.. note::
+
+  反事实问题（Counterfactual Problem）：在未点击空间，对 CVR 建模。
 
 联合建模的问题
 ++++++++++++++++++++
@@ -342,6 +356,62 @@ MTMS 对多任务、多场景进行统一特征管理，训练分成两个阶段
 Bias 问题
 --------------
 
+Selection Bias
+^^^^^^^^^^^^^^^^^^^
+
+在实际推荐系统中，长尾问题是很常见的，曝光的 Item 永远只是一小部分热门 Item，大量的非热门 Item 曝光是很少的。
+
+消偏思路：
+
+- 增强冷启动和探索。
+- 迁移学习。
+- Inverse Propensity Scoring 和 Data Imputation。
+  
+迁移学习： `ESAM <https://arxiv.org/pdf/2005.10545.pdf>`_
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+.. image:: ./04_esam.png
+    :width: 800px
+    :align: center
+
+目标是期望模型对曝光空间和未曝光空间的打分分布一致。
+
+- :math:`\mathcal{L}_{DA}` ：实现 Attribute Correlation Alignment，要求 Source Domain 和 Target Domain 的 Item 关系是相似的，具体表现为不同 Domain 的协方差矩阵一致。
+- :math:`\mathcal{L}_{DC}^c` ：实现 Center-Wise Clustering for Source Clustering，在 Source Domain 要求相似 Item（具有同类型的 User Feedback，例如点击/购买）高度聚合，不相似的 Item 相互远离（类似于分类中的 Center Loss），结合 :math:`\mathcal{L}_{DA}` 也间接对 Target Domain 产生了相同的约束效果。
+- :math:`\mathcal{L}_{DC}^p` ：实现 Self-Training for Target Clustering，构造伪标签，通过优化 :math:`l(x) = -p(x) \log p(x)` 使得低分的伪负样本得分越来越低，高分的伪正样本得分越来越高。
+
+Inverse Propensity Scoring 和 Data Imputation
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+IPS 使用 Propensity Scoring（倾向分）对 Loss 调权：
+
+.. math::
+
+  \mathcal{L}_{IPS} = \mathbb{E}_{\mathcal{D}} \left[ \frac{o \cdot \delta}{\hat{q}} \right]
+
+Data Imputation 使用模型在全样本空间对目标进行预估，一般会结合 IPS 共同建模，称为 DR（Doubly Robust）：
+
+.. math::
+
+  \mathcal{L}_{DR} & = \mathbb{E}_{\mathcal{D}} \left[ \hat{\delta} + \frac{o \cdot e}{\hat{q}} \right] \\
+  e & = \delta - \hat{\delta}
+
+其中 :math:`\hat{q}` 和 :math:`\hat{\delta}` 一般需要额外建模，比如 ESCM :math:`^2` 中的 CTR Tower 和 Imputation Tower。
+
+IPS 和 DR 都可以获得目标的无偏估计。
+
+.. note::
+
+  使用 IPS/DR 的一些论文：
+
+  - `ESCM2: Entire Space Counterfactual Multi-Task Model for Post-Click Conversion Rate Estimation <https://arxiv.org/pdf/2204.05125.pdf>`_
+  - `Large-scale Causal Approaches To Debiasing Post-click Conversion Rate Estimation With Multi-task Learning <https://arxiv.org/pdf/1910.09337.pdf>`_
+  - `Doubly Robust Joint Learning for Recommendation on Data Missing Not at Random <https://proceedings.mlr.press/v97/wang19n.html>`_
+  - `Improving Ad Click Prediction by Considering Non-displayed Events <https://www.csie.ntu.edu.tw/~cjlin/papers/occtr/ctr_oc.pdf>`_
+  - `Doubly Robust Policy Evaluation and Learning <https://arxiv.org/pdf/1103.4601.pdf>`_ （提出 DR）
+  - `A Generalization Of Sampling Without Replacement From A Finite Universe <https://www.stat.cmu.edu/~brian/905-2008/papers/Horvitz-Thompson-1952-jasa.pdf>`_ （提出 IPS）
+
+
 Position Bias
 ^^^^^^^^^^^^^^^^^^
 
@@ -356,34 +426,6 @@ Position Bias
 
 可参考 `Youtube Shallow Tower <https://daiwk.github.io/assets/youtube-multitask.pdf>`_ 对 Bias 的处理。
 
-Exposure Bias
-^^^^^^^^^^^^^^^^^^^
-
-
-曝光给用户的 Item 只是一小部分，大部分 Item 都没有给曝光给用户，但是这些没有曝光的 Item 用户不一定不喜欢。
-
-一般来说解决方法是 Item 冷启动。
-
-
-Popularity Bias
-^^^^^^^^^^^^^^^^^^^
-
-在实际推荐系统中，长尾问题是很常见的，曝光的 Item 永远只是一小部分热门 Item，大量的非热门 Item 曝光是很少的。
-
-消偏思路：
-
-- `ESAM <https://arxiv.org/pdf/2005.10545.pdf>`_ 迁移学习：曝光 Item 与未曝光 Item 的特征之间的关系是一致的，通过学习 Source Domain 的特性，从而将其适当地迁移到 Target Domain。
-
-
-Selection Bias
-^^^^^^^^^^^^^^^^^^^
-
-在有评分反馈的推荐系统中，用户很多时候只对自己特别喜欢或者特别不喜欢的 Item 进行打分，大量的其他 Item 其实被用户忽略掉了，如果在模型加入这个特征，那么模型就只会对有过操作的 Item 比较敏感，对其他 Item 反响平平。
-
-消偏思路：
-
-- Propensity Score：把用户对 Item 的打分作为样本的权重，重新训练。
-- Data Imputation：对用户忽略的大量特征进行数据填充，填充方式分为两种：第一种是统计特征填充，第二种是直接模型预测缺失值。
 
 .. attention::
 

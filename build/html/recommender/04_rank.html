@@ -287,11 +287,14 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 <section id="id14">
 <h4><a class="reference external" href="https://arxiv.org/pdf/1804.07931.pdf">ESMM</a><a class="headerlink" href="#id14" title="Permalink to this headline"></a></h4>
 <a class="reference internal image-reference" href="../_images/04_esmm.png"><img alt="../_images/04_esmm.png" class="align-center" src="../_images/04_esmm.png" style="width: 600px;" /></a>
-<p>ESMM 根据点击转化和点击的样本来学习 pCTCVR 和 pCTR 两个目标（共享 Embedding），把 pCVR 当做一个中间变量，同时输出预估的 pCTR、pCVR 和 pCTCVR。损失函数中，pCTR 可以看做是 pCVR 的 Soft Mask。</p>
+<p>ESMM 根据点击转化和点击的样本来学习 pCTCVR 和 pCTR 两个目标（共享 Embedding），把 pCVR 当做一个中间变量（隐式地学习），同时输出预估的 pCTR、pCVR 和 pCTCVR。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\mathrm{pCTCVR} &amp; = \mathrm{pCTR} \times \mathrm{pCVR} \\
                 &amp; = p(y=1, z=1 | \boldsymbol{x}) \\
-                &amp; = p(y=1 | \boldsymbol{x}) \times p(z=1 | y=1, \boldsymbol{x})\end{split}\]</div>
+                &amp; = p(y=1 | \boldsymbol{x}) \times p(z=1 | y=1, \boldsymbol{x}) \\\end{split}\]</div>
+<p>损失函数中，pCTR 可以看做是 pCVR 的 Soft Mask。</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L} = \mathbb{E}_\mathcal{D} \left[ l(y, f(\boldsymbol{x}, \theta_{\mathrm{CTR}})) + l(y\&amp;z, f(\boldsymbol{x}, \theta_{\mathrm{CTR}}) \times f(\boldsymbol{x}, \theta_{\mathrm{CVR}})) \right]\]</div>
 <p>期望解决以下两个问题：</p>
 <ul class="simple">
 <li><dl class="simple">
@@ -305,14 +308,17 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 </dl>
 </li>
 </ul>
-<p>实际上按照 ESMM 在曝光空间建模的思想，未点击样本的转化率是不确定的。例如，因为 CTR 模型预估得不准，把 Item 排在不好的位置，让用户失去了点击的机会，而实际上用户的转化意图可能很强。</p>
+<p>个人理解，ESMM 这种训练方式并没有给 CVR 的预估带来额外的监督信息（共享 Embedding 贡献了比较大的收益）。在未点击样本上，假如 CTR 已经预估得比较准确，那么 CTR DNN 的输出会接近 0，根据求导链式法则，CVR DNN 获得的梯度将会较小，这时候即使 CVR DNN 输出较大的预估值（模型直接用学到的点击空间的 CVR 作为曝光空间的 CVR），其参数也不会大幅更新。</p>
 <p><a class="reference external" href="https://arxiv.org/pdf/2108.13475.pdf">An Analysis Of Entire Space Multi-Task Models For Post-Click Conversion
 Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是否共享、建模空间、优化目标等），
 其实直接共享 Embedding、只在点击空间优化 CVR 预估就能取得较好的效果。</p>
-<p>个人理解，ESMM 这种训练方式并没有给 CVR 的预估带来额外的监督信息（共享 Embedding 贡献了比较大的收益）。在未点击样本上，假如 CTR 已经预估得比较准确，那么 CTR DNN 的输出会接近 0，根据求导链式法则，CVR DNN 获得的梯度将会较小，这时候即使 CVR DNN 输出较大的预估值（模型直接用点击空间的 pCVR 作为曝光空间的 pCVR），其参数也不会大幅更新。</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>考虑到除法运算带来的数值稳定性问题，不能直接使用 pCTCVR / pCTR 来建模 pCVR。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>未点击样本的转化率不一定是低的，假如因为 CTR 模型预估得不准，把 Item 排在不好的位置，让用户失去了点击的机会，而实际上用户的转化意图可能很强。</p>
 </div>
 </section>
 <section id="escm-2">
@@ -332,12 +338,13 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 </dl>
 </li>
 </ul>
-<p>ESCM <span class="math notranslate nohighlight">\(^2\)</span> 仍然显式对 CVR 建模，提出 <span class="math notranslate nohighlight">\(\mathcal{R}_{IPS} = \mathbb{E}_{\mathcal{D}} \left[ \frac{o}{\hat{o}} \delta(r, \hat{r}) \right]\)</span> 在曝光空间建模 CVR ，使用预估的 pCTR 作为倾向分对 Loss 进行（逆）调权（即 IPS）。
-其中 <span class="math notranslate nohighlight">\(\delta\)</span> 是 BCE Loss， <span class="math notranslate nohighlight">\(\hat{o}\)</span> 和 <span class="math notranslate nohighlight">\(\hat{r}\)</span> 分别是 pCTR 和 pCVR 。在 CTR 预估准确的前提下，<span class="math notranslate nohighlight">\(\mathcal{R}_{IPS}\)</span> 是曝光空间 CVR 损失 <span class="math notranslate nohighlight">\(\mathcal{P} = \mathbb{E}_{\mathcal{D}} [ \delta(r, \hat{r}) ]\)</span> 的 <strong>无偏估计</strong> ，也即 <span class="math notranslate nohighlight">\(\hat{r} \rightarrow P(r=1|do(o=1))\)</span> 是 CVR（在点击发生的前提下）的无偏估计。
-考虑到 IPS 的高方差问题，训练不稳定，ESCM <span class="math notranslate nohighlight">\(^2\)</span> 还提出了 <span class="math notranslate nohighlight">\(\mathcal{R}_{DR}\)</span> 额外构建了一个 Imputation Tower。</p>
+<p>ESCM <span class="math notranslate nohighlight">\(^2\)</span> 仍然显式地对 CVR 建模，提出 <span class="math notranslate nohighlight">\(\mathcal{R}_{IPS} = \mathbb{E}_{\mathcal{D}} \left[ \frac{o}{\hat{o}} \delta(r, \hat{r}) \right]\)</span> 在曝光空间建模 CVR ，使用预估的 CTR 作为倾向分对 Loss 进行（逆）调权（即 IPS）。
+其中 <span class="math notranslate nohighlight">\(\delta\)</span> 是 BCE Loss， <span class="math notranslate nohighlight">\(\hat{o}\)</span> 和 <span class="math notranslate nohighlight">\(\hat{r}\)</span> 分别是预测的 CTR 和 CVR 。在 CTR 预估准确的前提下，<span class="math notranslate nohighlight">\(\mathcal{R}_{IPS}\)</span> 是曝光空间 CVR 损失 <span class="math notranslate nohighlight">\(\mathcal{P} = \mathbb{E}_{\mathcal{D}} [ \delta(r, \hat{r}) ]\)</span> 的 <strong>无偏估计</strong> ，也即 <span class="math notranslate nohighlight">\(\hat{r} \rightarrow P(r=1|do(o=1))\)</span> 是曝光空间 CVR 的无偏估计（ <span class="math notranslate nohighlight">\(do\)</span> 指代因果推断中的 do 演算）。</p>
+<p>考虑到 IPS 的高方差问题，训练不稳定，ESCM <span class="math notranslate nohighlight">\(^2\)</span> 还提出了 <span class="math notranslate nohighlight">\(\mathcal{R}_{DR}\)</span> 额外构建了一个 Imputation Tower 预估 CVR 的 <strong>预估损失</strong> 。</p>
 <p>总体优化目标：</p>
 <div class="math notranslate nohighlight">
 \[\mathcal{L} = \mathcal{L}_{\mathrm{CTR}} + \lambda_c \mathcal{L}_{\mathrm{CVR}} + \lambda_g \mathcal{L}_{\mathrm{CTCVR}}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(\mathcal{L}_{\mathrm{CVR}}\)</span> 可以是 <span class="math notranslate nohighlight">\(\mathcal{R}_{IPS}\)</span> 或 <span class="math notranslate nohighlight">\(\mathcal{R}_{DR}\)</span> 。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>反事实问题（Counterfactual Problem）：在未点击空间，对 CVR 建模。</p>
@@ -402,7 +409,7 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 <ul class="simple">
 <li><p>增强冷启动和探索。</p></li>
 <li><p>迁移学习。</p></li>
-<li><p>Inverse Propensity Scoring 和 Data Imputation。</p></li>
+<li><p>Inverse Propensity Scoring 和 Imputation。</p></li>
 </ul>
 <section id="id19">
 <h4>迁移学习： <a class="reference external" href="https://arxiv.org/pdf/2005.10545.pdf">ESAM</a><a class="headerlink" href="#id19" title="Permalink to this headline"></a></h4>
@@ -410,16 +417,17 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 <p>目标是期望模型对曝光空间和未曝光空间的打分分布一致。</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\mathcal{L}_{DA}\)</span> ：实现 Attribute Correlation Alignment，要求 Source Domain 和 Target Domain 的 Item 关系是相似的，具体表现为不同 Domain 的协方差矩阵一致。</p></li>
-<li><p><span class="math notranslate nohighlight">\(\mathcal{L}_{DC}^c\)</span> ：实现 Center-Wise Clustering for Source Clustering，在 Source Domain 要求相似 Item（具有同类型的 User Feedback，例如点击/购买）高度聚合，不相似的 Item 相互远离（类似于分类中的 Center Loss），结合 <span class="math notranslate nohighlight">\(\mathcal{L}_{DA}\)</span> 也间接对 Target Domain 产生了相同的约束效果。</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathcal{L}_{DC}^c\)</span> ：实现 Center-Wise Clustering for Source Clustering，在 Source Domain 要求相似 Item（具有同类型的 User Feedback，例如点击/购买）高度聚合，不相似的 Item 相互远离（类似于分类任务中的 Center Loss），结合 <span class="math notranslate nohighlight">\(\mathcal{L}_{DA}\)</span> 也间接对 Target Domain 产生了相同的约束效果。</p></li>
 <li><p><span class="math notranslate nohighlight">\(\mathcal{L}_{DC}^p\)</span> ：实现 Self-Training for Target Clustering，构造伪标签，通过优化 <span class="math notranslate nohighlight">\(l(x) = -p(x) \log p(x)\)</span> 使得低分的伪负样本得分越来越低，高分的伪正样本得分越来越高。</p></li>
 </ul>
 </section>
-<section id="inverse-propensity-scoring-data-imputation">
-<h4>Inverse Propensity Scoring 和 Data Imputation<a class="headerlink" href="#inverse-propensity-scoring-data-imputation" title="Permalink to this headline"></a></h4>
-<p>IPS 使用 Propensity Scoring（倾向分）对 Loss 调权：</p>
+<section id="inverse-propensity-scoring-imputation">
+<h4>Inverse Propensity Scoring 和 Imputation<a class="headerlink" href="#inverse-propensity-scoring-imputation" title="Permalink to this headline"></a></h4>
+<p>IPS 使用 Propensity Score（倾向分）对 Loss 调权：</p>
 <div class="math notranslate nohighlight">
 \[\mathcal{L}_{IPS} = \mathbb{E}_{\mathcal{D}} \left[ \frac{o \cdot \delta}{\hat{q}} \right]\]</div>
-<p>Data Imputation 使用模型在全样本空间对目标进行预估，一般会结合 IPS 共同建模，称为 DR（Doubly Robust）：</p>
+<p>Imputation 使用模型在全样本空间对目标进行预估，或者用模型给未观测到的样本预测一个伪标签，不过容易陷入另一个困境：这个模型可能也只是基于观测样本得到的、有偏的。
+一般会结合 IPS 共同建模，称为 DR（Doubly Robust），例如：</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\mathcal{L}_{DR} &amp; = \mathbb{E}_{\mathcal{D}} \left[ \hat{\delta} + \frac{o \cdot e}{\hat{q}} \right] \\
 e &amp; = \delta - \hat{\delta}\end{split}\]</div>
@@ -451,7 +459,7 @@ e &amp; = \delta - \hat{\delta}\end{split}\]</div>
 <p>可参考 <a class="reference external" href="https://daiwk.github.io/assets/youtube-multitask.pdf">Youtube Shallow Tower</a> 对 Bias 的处理。</p>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
-<p>做精排有一个点要注意，可以定时对模型进行迭代或者模型冷启动。
+<p>做精排可以定时对模型进行迭代或者模型冷启动。
 <strong>如果精排模型长期不进行迭代，产生的训练数据会逐渐拟合模型的分布，模型将和数据合二为一，那么之后的新模型将很难超过当前的模型，甚至连持平都很困难</strong> 。
 这种模型就是推荐工程师最讨厌的“老汤模型”。这时候只能通过更长周期的训练数据让新模型去追赶老模型或者去加载老模型的参数热启动新模型，但是热启动的方式很难去改变模型的结构，模型建模受限大。
 所以，算法工程师们在初次建模的时候就要考虑到老汤模型的问题，定时对精排模型进行迭代或者每隔一段时间（比如 3 个月）就将模型重训-进行数据冷启动，这么做的方式是让模型忘记之前过时的分布，着重拟合当前的分布。</p>
@@ -562,6 +570,12 @@ e &amp; = \delta - \hat{\delta}\end{split}\]</div>
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/602626697">https://zhuanlan.zhihu.com/p/602626697</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="19">
+<li><p>ESMM建模CVR，是否有预估偏置？Entire Space的锅？</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/352991132">https://zhuanlan.zhihu.com/p/352991132</a></p>
 </div></blockquote>
 </section>
 </section>

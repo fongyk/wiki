@@ -152,7 +152,7 @@
 <section id="id3">
 <h2><span class="section-number">2.1. </span><a class="reference external" href="https://zh.wikipedia.org/wiki/%E5%8D%94%E5%90%8C%E9%81%8E%E6%BF%BE">协同过滤</a><a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <p>协同过滤（Collaborative Filtering）是一种在推荐系统中广泛使用的技术。
-该技术通过分析 <strong>用户</strong> 或者 <strong>事物</strong> 之间的相似性（“协同”），来预测用户可能感兴趣的内容并将其推荐给用户。这里的相似性可以是人口特征（性别、年龄、居住地等）的相似性，也可以是历史浏览内容的相似性（比如都关注过和中餐相关的内容）等。比如，用户 A 和 B 都是居住在北京的年龄在 20-30 岁的女性，并且都关注过化妆品和衣物相关的内容，这种情况下，协同过滤可能会认为 A 和 B 相似程度很高，于是可能会把 A 关注但 B 没有关注的内容推荐给 B，反之亦然。</p>
+该技术通过分析 User 或者 Item 之间的相似性（“协同”），来预测用户可能感兴趣的内容并将其推荐给用户。这里的相似性可以是人口特征（性别、年龄、居住地等）的相似性，也可以是历史浏览内容的相似性（比如都关注过和中餐相关的内容）等。比如，用户 A 和 B 都是居住在北京的年龄在 20-30 岁的女性，并且都关注过化妆品和衣物相关的内容，这种情况下，协同过滤可能会认为 A 和 B 相似程度很高，于是可能会把 A 关注但 B 没有关注的内容推荐给 B，反之亦然。</p>
 <section id="memory-based-collaborative-filtering">
 <h3>Memory-Based Collaborative Filtering<a class="headerlink" href="#memory-based-collaborative-filtering" title="Permalink to this headline"></a></h3>
 <p>其实就是基于最近邻的协同过滤，可分为两类：</p>
@@ -181,7 +181,7 @@
 <p>矩阵分解方法基于 User-Item 关系矩阵 <span class="math notranslate nohighlight">\(R \in \mathbb{R}^{m \times n}\)</span> 的 <strong>低秩性</strong> 假设（某些行/列存在相关性），对其进行分解，比如：</p>
 <div class="math notranslate nohighlight">
 \[R = PQ^{\top}\]</div>
-<p>其中 <span class="math notranslate nohighlight">\(P \in \mathbb{R}^{m \times d},\ Q \in \mathbb{R}^{n \times d},\ d \ll m,n\)</span> 。
+<p>其中 <span class="math notranslate nohighlight">\(P \in \mathbb{R}^{m \times d},\ Q \in \mathbb{R}^{n \times d},\ d \ll m,n\)</span> 。优化目标是观测到的样本的 MSE Loss + L2 正则。
 这样一来，衡量一对 User 和 Item 之间的相关性只要计算两个向量 <span class="math notranslate nohighlight">\(\boldsymbol{p}\)</span> 和 <span class="math notranslate nohighlight">\(\boldsymbol{q}\)</span> 之间的相似度。</p>
 </section>
 </section>

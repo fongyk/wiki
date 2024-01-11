@@ -222,13 +222,19 @@ CTR & CVR 联合建模
     :width: 600px
     :align: center
 
-ESMM 根据点击转化和点击的样本来学习 pCTCVR 和 pCTR 两个目标（共享 Embedding），把 pCVR 当做一个中间变量，同时输出预估的 pCTR、pCVR 和 pCTCVR。损失函数中，pCTR 可以看做是 pCVR 的 Soft Mask。
+ESMM 根据点击转化和点击的样本来学习 pCTCVR 和 pCTR 两个目标（共享 Embedding），把 pCVR 当做一个中间变量（隐式地学习），同时输出预估的 pCTR、pCVR 和 pCTCVR。
 
 .. math::
 
   \mathrm{pCTCVR} & = \mathrm{pCTR} \times \mathrm{pCVR} \\
                   & = p(y=1, z=1 | \boldsymbol{x}) \\
-                  & = p(y=1 | \boldsymbol{x}) \times p(z=1 | y=1, \boldsymbol{x})
+                  & = p(y=1 | \boldsymbol{x}) \times p(z=1 | y=1, \boldsymbol{x}) \\
+
+损失函数中，pCTR 可以看做是 pCVR 的 Soft Mask。
+
+.. math::
+
+  \mathcal{L} = \mathbb{E}_\mathcal{D} \left[ l(y, f(\boldsymbol{x}, \theta_{\mathrm{CTR}})) + l(y\&z, f(\boldsymbol{x}, \theta_{\mathrm{CTR}}) \times f(\boldsymbol{x}, \theta_{\mathrm{CVR}})) \right]
 
 期望解决以下两个问题：
 
@@ -238,17 +244,20 @@ ESMM 根据点击转化和点击的样本来学习 pCTCVR 和 pCTR 两个目标�
 - Data Sparsity (数据稀疏问题) 
     点击样本空间远小于曝光的样本空间，特别是某些业务场景点击样本极少，这给训练 CVR 模型带来了很大的挑战。
 
-实际上按照 ESMM 在曝光空间建模的思想，未点击样本的转化率是不确定的。例如，因为 CTR 模型预估得不准，把 Item 排在不好的位置，让用户失去了点击的机会，而实际上用户的转化意图可能很强。
+
+个人理解，ESMM 这种训练方式并没有给 CVR 的预估带来额外的监督信息（共享 Embedding 贡献了比较大的收益）。在未点击样本上，假如 CTR 已经预估得比较准确，那么 CTR DNN 的输出会接近 0，根据求导链式法则，CVR DNN 获得的梯度将会较小，这时候即使 CVR DNN 输出较大的预估值（模型直接用学到的点击空间的 CVR 作为曝光空间的 CVR），其参数也不会大幅更新。
 
 `An Analysis Of Entire Space Multi-Task Models For Post-Click Conversion
 Prediction <https://arxiv.org/pdf/2108.13475.pdf>`_ 探讨了不同的 CTR & CVR 联合建模方式（参数是否共享、建模空间、优化目标等），
 其实直接共享 Embedding、只在点击空间优化 CVR 预估就能取得较好的效果。
 
-个人理解，ESMM 这种训练方式并没有给 CVR 的预估带来额外的监督信息（共享 Embedding 贡献了比较大的收益）。在未点击样本上，假如 CTR 已经预估得比较准确，那么 CTR DNN 的输出会接近 0，根据求导链式法则，CVR DNN 获得的梯度将会较小，这时候即使 CVR DNN 输出较大的预估值（模型直接用点击空间的 pCVR 作为曝光空间的 pCVR），其参数也不会大幅更新。
-
 .. tip::
 
     考虑到除法运算带来的数值稳定性问题，不能直接使用 pCTCVR / pCTR 来建模 pCVR。
+
+.. note::
+
+    未点击样本的转化率不一定是低的，假如因为 CTR 模型预估得不准，把 Item 排在不好的位置，让用户失去了点击的机会，而实际上用户的转化意图可能很强。
 
 
 `ESCM <https://arxiv.org/pdf/2204.05125.pdf>`_ :math:`^2`
@@ -267,10 +276,10 @@ ESCM :math:`^2` 是为了解决 ESMM 模型的两个问题而提出的：
 - Potential Independence Priority
     ESMM 假设 CTR 和 CVR 预估任务是独立的（没有建立点击->转化的空间依赖关系），但事实上转化一定是在点击之后发生的事件。ESMM 建模的 CVR 实际上是 :math:`P(r=1)` 而不是其预期的 :math:`P(r=1|o=1)` ，蕴含了 :math:`P(r=1|o=0)` 这一部分。其中 :math:`o` 表示点击， :math:`r` 表示转化（Post-Click Conversion）。
 
+ESCM :math:`^2` 仍然显式地对 CVR 建模，提出 :math:`\mathcal{R}_{IPS} = \mathbb{E}_{\mathcal{D}} \left[ \frac{o}{\hat{o}} \delta(r, \hat{r}) \right]` 在曝光空间建模 CVR ，使用预估的 CTR 作为倾向分对 Loss 进行（逆）调权（即 IPS）。
+其中 :math:`\delta` 是 BCE Loss， :math:`\hat{o}` 和 :math:`\hat{r}` 分别是预测的 CTR 和 CVR 。在 CTR 预估准确的前提下，:math:`\mathcal{R}_{IPS}` 是曝光空间 CVR 损失 :math:`\mathcal{P} = \mathbb{E}_{\mathcal{D}} [ \delta(r, \hat{r}) ]` 的 **无偏估计** ，也即 :math:`\hat{r} \rightarrow P(r=1|do(o=1))` 是曝光空间 CVR 的无偏估计（ :math:`do` 指代因果推断中的 do 演算）。
 
-ESCM :math:`^2` 仍然显式对 CVR 建模，提出 :math:`\mathcal{R}_{IPS} = \mathbb{E}_{\mathcal{D}} \left[ \frac{o}{\hat{o}} \delta(r, \hat{r}) \right]` 在曝光空间建模 CVR ，使用预估的 pCTR 作为倾向分对 Loss 进行（逆）调权（即 IPS）。
-其中 :math:`\delta` 是 BCE Loss， :math:`\hat{o}` 和 :math:`\hat{r}` 分别是 pCTR 和 pCVR 。在 CTR 预估准确的前提下，:math:`\mathcal{R}_{IPS}` 是曝光空间 CVR 损失 :math:`\mathcal{P} = \mathbb{E}_{\mathcal{D}} [ \delta(r, \hat{r}) ]` 的 **无偏估计** ，也即 :math:`\hat{r} \rightarrow P(r=1|do(o=1))` 是 CVR（在点击发生的前提下）的无偏估计。
-考虑到 IPS 的高方差问题，训练不稳定，ESCM :math:`^2` 还提出了 :math:`\mathcal{R}_{DR}` 额外构建了一个 Imputation Tower。
+考虑到 IPS 的高方差问题，训练不稳定，ESCM :math:`^2` 还提出了 :math:`\mathcal{R}_{DR}` 额外构建了一个 Imputation Tower 预估 CVR 的 **预估损失** 。
 
 总体优化目标：
 
@@ -278,6 +287,7 @@ ESCM :math:`^2` 仍然显式对 CVR 建模，提出 :math:`\mathcal{R}_{IPS} = \
 
   \mathcal{L} = \mathcal{L}_{\mathrm{CTR}} + \lambda_c \mathcal{L}_{\mathrm{CVR}} + \lambda_g \mathcal{L}_{\mathrm{CTCVR}}
 
+其中 :math:`\mathcal{L}_{\mathrm{CVR}}` 可以是 :math:`\mathcal{R}_{IPS}` 或 :math:`\mathcal{R}_{DR}` 。
 
 .. note::
 
@@ -367,7 +377,7 @@ Selection Bias
 
 - 增强冷启动和探索。
 - 迁移学习。
-- Inverse Propensity Scoring 和 Data Imputation。
+- Inverse Propensity Scoring 和 Imputation。
   
 迁移学习： `ESAM <https://arxiv.org/pdf/2005.10545.pdf>`_
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -379,19 +389,20 @@ Selection Bias
 目标是期望模型对曝光空间和未曝光空间的打分分布一致。
 
 - :math:`\mathcal{L}_{DA}` ：实现 Attribute Correlation Alignment，要求 Source Domain 和 Target Domain 的 Item 关系是相似的，具体表现为不同 Domain 的协方差矩阵一致。
-- :math:`\mathcal{L}_{DC}^c` ：实现 Center-Wise Clustering for Source Clustering，在 Source Domain 要求相似 Item（具有同类型的 User Feedback，例如点击/购买）高度聚合，不相似的 Item 相互远离（类似于分类中的 Center Loss），结合 :math:`\mathcal{L}_{DA}` 也间接对 Target Domain 产生了相同的约束效果。
+- :math:`\mathcal{L}_{DC}^c` ：实现 Center-Wise Clustering for Source Clustering，在 Source Domain 要求相似 Item（具有同类型的 User Feedback，例如点击/购买）高度聚合，不相似的 Item 相互远离（类似于分类任务中的 Center Loss），结合 :math:`\mathcal{L}_{DA}` 也间接对 Target Domain 产生了相同的约束效果。
 - :math:`\mathcal{L}_{DC}^p` ：实现 Self-Training for Target Clustering，构造伪标签，通过优化 :math:`l(x) = -p(x) \log p(x)` 使得低分的伪负样本得分越来越低，高分的伪正样本得分越来越高。
 
-Inverse Propensity Scoring 和 Data Imputation
+Inverse Propensity Scoring 和 Imputation
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-IPS 使用 Propensity Scoring（倾向分）对 Loss 调权：
+IPS 使用 Propensity Score（倾向分）对 Loss 调权：
 
 .. math::
 
   \mathcal{L}_{IPS} = \mathbb{E}_{\mathcal{D}} \left[ \frac{o \cdot \delta}{\hat{q}} \right]
 
-Data Imputation 使用模型在全样本空间对目标进行预估，一般会结合 IPS 共同建模，称为 DR（Doubly Robust）：
+Imputation 使用模型在全样本空间对目标进行预估，或者用模型给未观测到的样本预测一个伪标签，不过容易陷入另一个困境：这个模型可能也只是基于观测样本得到的、有偏的。
+一般会结合 IPS 共同建模，称为 DR（Doubly Robust），例如：
 
 .. math::
 
@@ -431,7 +442,7 @@ Position Bias
 
 .. attention::
 
-    做精排有一个点要注意，可以定时对模型进行迭代或者模型冷启动。
+    做精排可以定时对模型进行迭代或者模型冷启动。
     **如果精排模型长期不进行迭代，产生的训练数据会逐渐拟合模型的分布，模型将和数据合二为一，那么之后的新模型将很难超过当前的模型，甚至连持平都很困难** 。
     这种模型就是推荐工程师最讨厌的“老汤模型”。这时候只能通过更长周期的训练数据让新模型去追赶老模型或者去加载老模型的参数热启动新模型，但是热启动的方式很难去改变模型的结构，模型建模受限大。
     所以，算法工程师们在初次建模的时候就要考虑到老汤模型的问题，定时对精排模型进行迭代或者每隔一段时间（比如 3 个月）就将模型重训-进行数据冷启动，这么做的方式是让模型忘记之前过时的分布，着重拟合当前的分布。
@@ -511,3 +522,7 @@ Position Bias
 18. 百度多任务多场景统一Ranking模型
 
   https://zhuanlan.zhihu.com/p/602626697
+
+19. ESMM建模CVR，是否有预估偏置？Entire Space的锅？
+
+  https://zhuanlan.zhihu.com/p/352991132

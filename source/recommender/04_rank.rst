@@ -244,7 +244,7 @@ ESMM 根据点击转化和点击的样本来学习 pCTCVR 和 pCTR 两个目标�
 Prediction <https://arxiv.org/pdf/2108.13475.pdf>`_ 探讨了不同的 CTR & CVR 联合建模方式（参数是否共享、建模空间、优化目标等），
 其实直接共享 Embedding、只在点击空间优化 CVR 预估就能取得较好的效果。
 
-个人理解，ESMM 这种训练方式并没有给 CVR 的预估带来额外的监督信息（共享 Embedding 贡献了比较大的收益）。在未点击样本上，假如 CTR 已经预估得比较准确，那么 CTR DNN 的输出会接近 0，根据求导链式法则，CVR DNN 获得的梯度将会较小，这时候即使 CVR DNN 输出较大的预估值，其参数也不会大幅更新。
+个人理解，ESMM 这种训练方式并没有给 CVR 的预估带来额外的监督信息（共享 Embedding 贡献了比较大的收益）。在未点击样本上，假如 CTR 已经预估得比较准确，那么 CTR DNN 的输出会接近 0，根据求导链式法则，CVR DNN 获得的梯度将会较小，这时候即使 CVR DNN 输出较大的预估值（模型直接用点击空间的 pCVR 作为曝光空间的 pCVR），其参数也不会大幅更新。
 
 .. tip::
 
@@ -265,11 +265,11 @@ ESCM :math:`^2` 是为了解决 ESMM 模型的两个问题而提出的：
     模型上线可能会导致点击率跌、转化率涨。
 
 - Potential Independence Priority
-    ESMM 假设 CTR 和 CVR 预估任务是独立的（没有建模点击->转化的空间依赖关系），但事实上转化一定是在点击之后发生的事件。ESMM 建模的 CVR 实际上是 :math:`P(r=1)` 而不是其预期的 :math:`P(r=1|o=1)` ，蕴含了 :math:`P(r=1|o=0)` 这一部分。其中 :math:`o` 表示点击， :math:`r` 表示转化（Post-Click Conversion）。
+    ESMM 假设 CTR 和 CVR 预估任务是独立的（没有建立点击->转化的空间依赖关系），但事实上转化一定是在点击之后发生的事件。ESMM 建模的 CVR 实际上是 :math:`P(r=1)` 而不是其预期的 :math:`P(r=1|o=1)` ，蕴含了 :math:`P(r=1|o=0)` 这一部分。其中 :math:`o` 表示点击， :math:`r` 表示转化（Post-Click Conversion）。
 
 
 ESCM :math:`^2` 仍然显式对 CVR 建模，提出 :math:`\mathcal{R}_{IPS} = \mathbb{E}_{\mathcal{D}} \left[ \frac{o}{\hat{o}} \delta(r, \hat{r}) \right]` 在曝光空间建模 CVR ，使用预估的 pCTR 作为倾向分对 Loss 进行（逆）调权（即 IPS）。
-其中 :math:`\delta` 是 BCE Loss， :math:`\hat{o}` 和 :math:`\hat{r}` 分别是 pCTR 和 pCVR 。在 CTR 预估准确的前提下，:math:`\mathcal{R}_{IPS}` 是曝光空间 CVR 的 **无偏估计** ，也即 :math:`\hat{r} \rightarrow P(r=1|do(o=1))` 是 CVR（在点击发生的前提下）的无偏估计。
+其中 :math:`\delta` 是 BCE Loss， :math:`\hat{o}` 和 :math:`\hat{r}` 分别是 pCTR 和 pCVR 。在 CTR 预估准确的前提下，:math:`\mathcal{R}_{IPS}` 是曝光空间 CVR 损失 :math:`\mathcal{P} = \mathbb{E}_{\mathcal{D}} [ \delta(r, \hat{r}) ]` 的 **无偏估计** ，也即 :math:`\hat{r} \rightarrow P(r=1|do(o=1))` 是 CVR（在点击发生的前提下）的无偏估计。
 考虑到 IPS 的高方差问题，训练不稳定，ESCM :math:`^2` 还提出了 :math:`\mathcal{R}_{DR}` 额外构建了一个 Imputation Tower。
 
 总体优化目标：
@@ -282,6 +282,8 @@ ESCM :math:`^2` 仍然显式对 CVR 建模，提出 :math:`\mathcal{R}_{IPS} = \
 .. note::
 
   反事实问题（Counterfactual Problem）：在未点击空间，对 CVR 建模。
+
+  虽然 :math:`\mathcal{R}_{IPS}` 号称在曝光空间建模，但是公式中乘的 :math:`o` 相当于一个 Mask，约束了只对点击样本生效。
 
 联合建模的问题
 ++++++++++++++++++++

@@ -309,7 +309,7 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 <p><a class="reference external" href="https://arxiv.org/pdf/2108.13475.pdf">An Analysis Of Entire Space Multi-Task Models For Post-Click Conversion
 Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是否共享、建模空间、优化目标等），
 其实直接共享 Embedding、只在点击空间优化 CVR 预估就能取得较好的效果。</p>
-<p>个人理解，ESMM 这种训练方式并没有给 CVR 的预估带来额外的监督信息（共享 Embedding 贡献了比较大的收益）。在未点击样本上，假如 CTR 已经预估得比较准确，那么 CTR DNN 的输出会接近 0，根据求导链式法则，CVR DNN 获得的梯度将会较小，这时候即使 CVR DNN 输出较大的预估值，其参数也不会大幅更新。</p>
+<p>个人理解，ESMM 这种训练方式并没有给 CVR 的预估带来额外的监督信息（共享 Embedding 贡献了比较大的收益）。在未点击样本上，假如 CTR 已经预估得比较准确，那么 CTR DNN 的输出会接近 0，根据求导链式法则，CVR DNN 获得的梯度将会较小，这时候即使 CVR DNN 输出较大的预估值（模型直接用点击空间的 pCVR 作为曝光空间的 pCVR），其参数也不会大幅更新。</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>考虑到除法运算带来的数值稳定性问题，不能直接使用 pCTCVR / pCTR 来建模 pCVR。</p>
@@ -327,13 +327,13 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 </dl>
 </li>
 <li><dl class="simple">
-<dt>Potential Independence Priority</dt><dd><p>ESMM 假设 CTR 和 CVR 预估任务是独立的（没有建模点击-&gt;转化的空间依赖关系），但事实上转化一定是在点击之后发生的事件。ESMM 建模的 CVR 实际上是 <span class="math notranslate nohighlight">\(P(r=1)\)</span> 而不是其预期的 <span class="math notranslate nohighlight">\(P(r=1|o=1)\)</span> ，蕴含了 <span class="math notranslate nohighlight">\(P(r=1|o=0)\)</span> 这一部分。其中 <span class="math notranslate nohighlight">\(o\)</span> 表示点击， <span class="math notranslate nohighlight">\(r\)</span> 表示转化（Post-Click Conversion）。</p>
+<dt>Potential Independence Priority</dt><dd><p>ESMM 假设 CTR 和 CVR 预估任务是独立的（没有建立点击-&gt;转化的空间依赖关系），但事实上转化一定是在点击之后发生的事件。ESMM 建模的 CVR 实际上是 <span class="math notranslate nohighlight">\(P(r=1)\)</span> 而不是其预期的 <span class="math notranslate nohighlight">\(P(r=1|o=1)\)</span> ，蕴含了 <span class="math notranslate nohighlight">\(P(r=1|o=0)\)</span> 这一部分。其中 <span class="math notranslate nohighlight">\(o\)</span> 表示点击， <span class="math notranslate nohighlight">\(r\)</span> 表示转化（Post-Click Conversion）。</p>
 </dd>
 </dl>
 </li>
 </ul>
 <p>ESCM <span class="math notranslate nohighlight">\(^2\)</span> 仍然显式对 CVR 建模，提出 <span class="math notranslate nohighlight">\(\mathcal{R}_{IPS} = \mathbb{E}_{\mathcal{D}} \left[ \frac{o}{\hat{o}} \delta(r, \hat{r}) \right]\)</span> 在曝光空间建模 CVR ，使用预估的 pCTR 作为倾向分对 Loss 进行（逆）调权（即 IPS）。
-其中 <span class="math notranslate nohighlight">\(\delta\)</span> 是 BCE Loss， <span class="math notranslate nohighlight">\(\hat{o}\)</span> 和 <span class="math notranslate nohighlight">\(\hat{r}\)</span> 分别是 pCTR 和 pCVR 。在 CTR 预估准确的前提下，<span class="math notranslate nohighlight">\(\mathcal{R}_{IPS}\)</span> 是曝光空间 CVR 的 <strong>无偏估计</strong> ，也即 <span class="math notranslate nohighlight">\(\hat{r} \rightarrow P(r=1|do(o=1))\)</span> 是 CVR（在点击发生的前提下）的无偏估计。
+其中 <span class="math notranslate nohighlight">\(\delta\)</span> 是 BCE Loss， <span class="math notranslate nohighlight">\(\hat{o}\)</span> 和 <span class="math notranslate nohighlight">\(\hat{r}\)</span> 分别是 pCTR 和 pCVR 。在 CTR 预估准确的前提下，<span class="math notranslate nohighlight">\(\mathcal{R}_{IPS}\)</span> 是曝光空间 CVR 损失 <span class="math notranslate nohighlight">\(\mathcal{P} = \mathbb{E}_{\mathcal{D}} [ \delta(r, \hat{r}) ]\)</span> 的 <strong>无偏估计</strong> ，也即 <span class="math notranslate nohighlight">\(\hat{r} \rightarrow P(r=1|do(o=1))\)</span> 是 CVR（在点击发生的前提下）的无偏估计。
 考虑到 IPS 的高方差问题，训练不稳定，ESCM <span class="math notranslate nohighlight">\(^2\)</span> 还提出了 <span class="math notranslate nohighlight">\(\mathcal{R}_{DR}\)</span> 额外构建了一个 Imputation Tower。</p>
 <p>总体优化目标：</p>
 <div class="math notranslate nohighlight">
@@ -341,6 +341,7 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>反事实问题（Counterfactual Problem）：在未点击空间，对 CVR 建模。</p>
+<p>虽然 <span class="math notranslate nohighlight">\(\mathcal{R}_{IPS}\)</span> 号称在曝光空间建模，但是公式中乘的 <span class="math notranslate nohighlight">\(o\)</span> 相当于一个 Mask，约束了只对点击样本生效。</p>
 </div>
 </section>
 <section id="id15">

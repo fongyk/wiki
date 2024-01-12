@@ -43,85 +43,6 @@ AnyKnew
     anyknew
 
 
-arXiv
------------
-
-.. figure:: pictures/arxiv.jpeg
-    :target: https://arxiv.org/
-    :width: 160px
-    :height: 120px
-    :align: center
-
-    arxiv
-
-
-
-C++ Reference
----------------
-
-.. hlist::
-    :columns: 2
-
-    - .. figure:: pictures/cplusplus.jpeg
-         :target: http://www.cplusplus.com/reference/
-         :width: 160px
-         :height: 120px
-         :align: center
-         
-         cplusplus
-
-    - .. figure:: pictures/cppreference.jpeg
-         :target: https://en.cppreference.com/w/
-         :width: 160px
-         :height: 120px
-         :align: center
-         
-         cppreference
-
-Numpy
------------
-
-.. figure:: pictures/numpy.jpeg
-    :target: https://numpy.org/doc/stable/reference/index.html
-    :width: 160px
-    :height: 120px
-    :align: center
-
-    reference
-
-Pytorch
-------------
-
-.. hlist::
-    :columns: 2
-
-    - .. figure:: pictures/pytorch-tutorial.jpeg
-         :target: https://pytorch.org/tutorials/
-         :width: 160px
-         :height: 120px
-         :align: center
-         
-         Tutorials
-
-    - .. figure:: pictures/pytorch-doc.jpeg
-         :target: https://pytorch.org/docs/master/index.html
-         :width: 160px
-         :height: 120px
-         :align: center
-         
-         Docs
-
-Hugging Face
----------------
-
-.. figure:: pictures/huggingface.png
-    :target: https://huggingface.co/
-    :width: 160px
-    :height: 120px
-    :align: center
-
-    hugging face
-
 
 ShareLatex/Overleaf
 --------------------------
@@ -145,39 +66,7 @@ ShareLatex/Overleaf
     
     latex
 
-PlanetB
----------
 
-.. figure:: pictures/planetb.jpeg
-    :target: http://www.planetb.ca/syntax-highlight-word
-    :width: 160px
-    :height: 120px
-    :align: center
-    
-    planetb
-
-
-ANN Search
----------------------------
-
-.. hlist::
-    :columns: 2
-
-    - .. figure:: pictures/faiss.jpeg
-         :target: https://github.com/facebookresearch/faiss
-         :width: 160px
-         :height: 120px
-         :align: center
-         
-         faiss
-
-    - .. figure:: pictures/annoy.jpeg
-         :target: https://github.com/spotify/annoy
-         :width: 160px
-         :height: 120px
-         :align: center
-         
-         annoy
 
 
 C++ Shell
@@ -285,6 +174,29 @@ Diagram
          
          drawio
 
+图形计算器
+----------------
+.. hlist::
+    :columns: 2
+
+
+    - .. figure:: pictures/geogebra.png
+         :target: https://www.geogebra.org/graphing
+         :width: 160px
+         :height: 120px
+         :align: center
+         
+         geogebra
+
+         
+    - .. figure:: pictures/desmos.png
+         :target: https://www.desmos.com/calculator?lang=zh-CN
+         :width: 160px
+         :height: 120px
+         :align: center
+         
+         desmos
+
 
 重构与设计模式
 ------------------------
@@ -372,6 +284,109 @@ Jupyter
     jupyter
 
 
+arXiv
+-----------
+
+.. figure:: pictures/arxiv.jpeg
+    :target: https://arxiv.org/
+    :width: 160px
+    :height: 120px
+    :align: center
+
+    arxiv
+
+
+
+C++ Reference
+---------------
+
+.. hlist::
+    :columns: 2
+
+    - .. figure:: pictures/cplusplus.jpeg
+         :target: http://www.cplusplus.com/reference/
+         :width: 160px
+         :height: 120px
+         :align: center
+         
+         cplusplus
+
+    - .. figure:: pictures/cppreference.jpeg
+         :target: https://en.cppreference.com/w/
+         :width: 160px
+         :height: 120px
+         :align: center
+         
+         cppreference
+
+Numpy
+-----------
+
+.. figure:: pictures/numpy.jpeg
+    :target: https://numpy.org/doc/stable/reference/index.html
+    :width: 160px
+    :height: 120px
+    :align: center
+
+    reference
+
+Pytorch
+------------
+
+.. hlist::
+    :columns: 2
+
+    - .. figure:: pictures/pytorch-tutorial.jpeg
+         :target: https://pytorch.org/tutorials/
+         :width: 160px
+         :height: 120px
+         :align: center
+         
+         Tutorials
+
+    - .. figure:: pictures/pytorch-doc.jpeg
+         :target: https://pytorch.org/docs/master/index.html
+         :width: 160px
+         :height: 120px
+         :align: center
+         
+         Docs
+
+Hugging Face
+---------------
+
+.. figure:: pictures/huggingface.png
+    :target: https://huggingface.co/
+    :width: 160px
+    :height: 120px
+    :align: center
+
+    hugging face
+
+
+ANN Search
+---------------------------
+
+.. hlist::
+    :columns: 2
+
+    - .. figure:: pictures/faiss.jpeg
+         :target: https://github.com/facebookresearch/faiss
+         :width: 160px
+         :height: 120px
+         :align: center
+         
+         faiss
+
+    - .. figure:: pictures/annoy.jpeg
+         :target: https://github.com/spotify/annoy
+         :width: 160px
+         :height: 120px
+         :align: center
+         
+         annoy
+
+
 Standford University Lectures
 -------------------------------
 
@@ -430,29 +445,6 @@ Read the Docs
 
     weekly
 
-
-图像计算器
-----------------
-.. hlist::
-    :columns: 2
-
-
-    - .. figure:: pictures/geogebra.png
-         :target: https://www.geogebra.org/graphing
-         :width: 160px
-         :height: 120px
-         :align: center
-         
-         geogebra
-
-         
-    - .. figure:: pictures/desmos.png
-         :target: https://www.desmos.com/calculator?lang=zh-CN
-         :width: 160px
-         :height: 120px
-         :align: center
-         
-         desmos
 
 
 Github Page

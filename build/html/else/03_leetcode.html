@@ -128,10 +128,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-rotting-oranges">4.60. [LeetCode] Rotting Oranges 腐败的橙子</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-maximum-width-of-binary-tree">4.61. [LeetCode] Maximum Width of Binary Tree 二叉树最大宽度</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-restore-the-array">4.62. [LeetCode] Restore The Array 从字符串恢复整数数组</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#leetcode-non-overlapping-intervals">4.63. [LeetCode] Non-overlapping Intervals 不重叠区间</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">4.63. 重叠区间问题</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-stone-game">4.64. [LeetCode] Stone Game 石头游戏</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id23">4.65. 栈和队列的实现</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id25">4.66. 单调栈</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">4.65. 栈和队列的实现</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id26">4.66. 单调栈</a></li>
 </ul>
 </li>
 </ul>
@@ -4928,12 +4928,13 @@ $$</div><div class="toggle docutils container">
 </div>
 </div></blockquote>
 </section>
-<section id="leetcode-non-overlapping-intervals">
-<h2><span class="section-number">4.63. </span>[LeetCode] Non-overlapping Intervals 不重叠区间<a class="headerlink" href="#leetcode-non-overlapping-intervals" title="Permalink to this headline"></a></h2>
-<p>Hint：贪心算法，总是选择结束最早的区间。</p>
+<section id="id23">
+<h2><span class="section-number">4.63. </span>重叠区间问题<a class="headerlink" href="#id23" title="Permalink to this headline"></a></h2>
+<p>一般使用贪心算法，先对序列排序；维护区间 start/end 的最小值。</p>
+<ul>
+<li><p>[LeetCode] Non-overlapping Intervals 不重叠区间。Hint：贪心算法，总是选择结束最早的区间。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/non-overlapping-intervals">https://leetcode.com/problems/non-overlapping-intervals</a></p>
-<blockquote>
-<div><div class="toggle docutils container">
+<div class="toggle docutils container">
 <div class="header docutils container">
 <p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
 </div>
@@ -4951,7 +4952,28 @@ $$</div><div class="toggle docutils container">
 </pre></div>
 </div>
 </div>
-</div></blockquote>
+</li>
+<li><p>[LeetCode] Minimum Number of Arrows to Burst Balloons 用最少数量的箭引爆气球。Hint：贪心算法。</p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<span class="linenos"> 2</span>    <span class="k">def</span> <span class="nf">findMinArrowShots</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="linenos"> 3</span>        <span class="n">points</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="linenos"> 4</span>        <span class="n">min_end</span> <span class="o">=</span> <span class="o">-</span> <span class="mi">2</span><span class="o">**</span><span class="mi">31</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="linenos"> 5</span>        <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos"> 6</span>        <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="ow">in</span> <span class="n">points</span><span class="p">:</span>
+<span class="linenos"> 7</span>            <span class="k">if</span> <span class="n">start</span> <span class="o">&gt;</span> <span class="n">min_end</span><span class="p">:</span>
+<span class="linenos"> 8</span>                <span class="c1">## 在 x = min_end 处发射一支箭</span>
+<span class="linenos"> 9</span>                <span class="n">min_end</span> <span class="o">=</span> <span class="n">end</span>
+<span class="linenos">10</span>                <span class="n">ans</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos">11</span>        <span class="k">return</span> <span class="n">ans</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ul>
 </section>
 <section id="leetcode-stone-game">
 <h2><span class="section-number">4.64. </span>[LeetCode] Stone Game 石头游戏<a class="headerlink" href="#leetcode-stone-game" title="Permalink to this headline"></a></h2>
@@ -5020,8 +5042,8 @@ $$</div><div class="toggle docutils container">
 </div>
 </div></blockquote>
 </section>
-<section id="id23">
-<h2><span class="section-number">4.65. </span>栈和队列的实现<a class="headerlink" href="#id23" title="Permalink to this headline"></a></h2>
+<section id="id24">
+<h2><span class="section-number">4.65. </span>栈和队列的实现<a class="headerlink" href="#id24" title="Permalink to this headline"></a></h2>
 <p><a class="reference external" href="https://leetcode.com/problems/implement-queue-using-stacks">https://leetcode.com/problems/implement-queue-using-stacks</a></p>
 <p>Hint：总在第一个栈压入最新元素，在第二个栈弹出最旧元素。</p>
 <blockquote>
@@ -5155,8 +5177,8 @@ $$</div><div class="toggle docutils container">
 </div>
 </div></blockquote>
 </section>
-<section id="id25">
-<h2><span class="section-number">4.66. </span><a class="reference external" href="https://algo.itcharge.cn/03.Stack/02.Monotone-Stack/01.Monotone-Stack/">单调栈</a><a class="headerlink" href="#id25" title="Permalink to this headline"></a></h2>
+<section id="id26">
+<h2><span class="section-number">4.66. </span><a class="reference external" href="https://algo.itcharge.cn/03.Stack/02.Monotone-Stack/01.Monotone-Stack/">单调栈</a><a class="headerlink" href="#id26" title="Permalink to this headline"></a></h2>
 <p>单调栈（Monotonic Stack）在栈的「先进后出」规则基础上，要求从栈顶到栈底的元素单调递增/递减。</p>
 <ul>
 <li><p>[LeetCode] Daily Temperatures 每日温度。</p>

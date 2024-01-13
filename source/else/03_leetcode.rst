@@ -5183,34 +5183,60 @@ https://leetcode.com/problems/restore-the-array
                                 dp[i] %= mod
                 return dp[-1]
 
-[LeetCode] Non-overlapping Intervals 不重叠区间
+
+重叠区间问题
 ----------------------------------------------------------------
 
-Hint：贪心算法，总是选择结束最早的区间。
+一般使用贪心算法，先对序列排序；维护区间 start/end 的最小值。
 
-https://leetcode.com/problems/non-overlapping-intervals
+- [LeetCode] Non-overlapping Intervals 不重叠区间。Hint：贪心算法，总是选择结束最早的区间。
+
+  https://leetcode.com/problems/non-overlapping-intervals
 
 
   .. container:: toggle
 
-    .. container:: header
+      .. container:: header
 
-        :math:`\color{darkgreen}{Code}`
+          :math:`\color{darkgreen}{Code}`
 
-    .. code-block:: python
+      .. code-block:: python
+          :linenos:
+
+          class Solution:
+              def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
+                  intervals = sorted(intervals, key=lambda x: x[1])
+                  pend = float("-inf")
+                  cnt = 0
+                  for start, end in intervals:
+                      if start >= pend:
+                          pend = end
+                      else:
+                          cnt += 1
+                  return cnt
+
+- [LeetCode] Minimum Number of Arrows to Burst Balloons 用最少数量的箭引爆气球。Hint：贪心算法。
+
+  .. container:: toggle
+
+      .. container:: header
+
+          :math:`\color{darkgreen}{Code}`
+
+      .. code-block:: python
         :linenos:
 
         class Solution:
-            def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
-                intervals = sorted(intervals, key=lambda x: x[1])
-                pend = float("-inf")
-                cnt = 0
-                for start, end in intervals:
-                    if start >= pend:
-                        pend = end
-                    else:
-                        cnt += 1
-                return cnt
+            def findMinArrowShots(self, points: List[List[int]]) -> int:
+                points = sorted(points, key = lambda x: (x[1], x[0]))
+                min_end = - 2**31 - 1
+                ans = 0
+                for start, end in points:
+                    if start > min_end:
+                        ## 在 x = min_end 处发射一支箭
+                        min_end = end
+                        ans += 1
+                return ans
 
 [LeetCode] Stone Game 石头游戏
 ----------------------------------------------------------------

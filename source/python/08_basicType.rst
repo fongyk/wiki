@@ -111,6 +111,8 @@ list
 
   - 弹出元素：pop，默认弹出列表末尾的元素
 
+  - 清空列表：clear
+
   - 移除/删除元素：remove，del （del可删除切片）
 
   - 排序：sort

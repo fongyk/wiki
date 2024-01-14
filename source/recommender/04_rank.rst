@@ -279,7 +279,7 @@ ESCM :math:`^2` 是为了解决 ESMM 模型的两个问题而提出的：
 ESCM :math:`^2` 仍然显式地对 CVR 建模，提出 :math:`\mathcal{R}_{IPS} = \mathbb{E}_{\mathcal{D}} \left[ \frac{o}{\hat{o}} \delta(r, \hat{r}) \right]` 在曝光空间建模 CVR ，使用预估的 CTR 作为倾向分对 Loss 进行（逆）调权（即 IPS）。
 其中 :math:`\delta` 是 BCE Loss， :math:`\hat{o}` 和 :math:`\hat{r}` 分别是预测的 CTR 和 CVR 。在 CTR 预估准确的前提下，:math:`\mathcal{R}_{IPS}` 是曝光空间 CVR 损失 :math:`\mathcal{P} = \mathbb{E}_{\mathcal{D}} [ \delta(r, \hat{r}) ]` 的 **无偏估计** ，也即 :math:`\hat{r} \rightarrow P(r=1|do(o=1))` 是曝光空间 CVR 的无偏估计（ :math:`do` 指代因果推断中的 do 演算）。
 
-考虑到 IPS 的高方差问题，训练不稳定，ESCM :math:`^2` 还提出了 :math:`\mathcal{R}_{DR}` 额外构建了一个 Imputation Tower 预估 CVR 的 **预估损失** 。
+考虑到 IPS 的高方差问题（当分母 :math:`\hat{o}` 很小，对应的权重很大），训练不稳定，ESCM :math:`^2` 还提出了 :math:`\mathcal{R}_{DR}` 额外构建了一个 Imputation Tower 预估 CVR 的 **预估损失** 。
 
 总体优化目标：
 

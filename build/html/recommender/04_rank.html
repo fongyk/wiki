@@ -340,7 +340,7 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 </ul>
 <p>ESCM <span class="math notranslate nohighlight">\(^2\)</span> 仍然显式地对 CVR 建模，提出 <span class="math notranslate nohighlight">\(\mathcal{R}_{IPS} = \mathbb{E}_{\mathcal{D}} \left[ \frac{o}{\hat{o}} \delta(r, \hat{r}) \right]\)</span> 在曝光空间建模 CVR ，使用预估的 CTR 作为倾向分对 Loss 进行（逆）调权（即 IPS）。
 其中 <span class="math notranslate nohighlight">\(\delta\)</span> 是 BCE Loss， <span class="math notranslate nohighlight">\(\hat{o}\)</span> 和 <span class="math notranslate nohighlight">\(\hat{r}\)</span> 分别是预测的 CTR 和 CVR 。在 CTR 预估准确的前提下，<span class="math notranslate nohighlight">\(\mathcal{R}_{IPS}\)</span> 是曝光空间 CVR 损失 <span class="math notranslate nohighlight">\(\mathcal{P} = \mathbb{E}_{\mathcal{D}} [ \delta(r, \hat{r}) ]\)</span> 的 <strong>无偏估计</strong> ，也即 <span class="math notranslate nohighlight">\(\hat{r} \rightarrow P(r=1|do(o=1))\)</span> 是曝光空间 CVR 的无偏估计（ <span class="math notranslate nohighlight">\(do\)</span> 指代因果推断中的 do 演算）。</p>
-<p>考虑到 IPS 的高方差问题，训练不稳定，ESCM <span class="math notranslate nohighlight">\(^2\)</span> 还提出了 <span class="math notranslate nohighlight">\(\mathcal{R}_{DR}\)</span> 额外构建了一个 Imputation Tower 预估 CVR 的 <strong>预估损失</strong> 。</p>
+<p>考虑到 IPS 的高方差问题（当分母 <span class="math notranslate nohighlight">\(\hat{o}\)</span> 很小，对应的权重很大），训练不稳定，ESCM <span class="math notranslate nohighlight">\(^2\)</span> 还提出了 <span class="math notranslate nohighlight">\(\mathcal{R}_{DR}\)</span> 额外构建了一个 Imputation Tower 预估 CVR 的 <strong>预估损失</strong> 。</p>
 <p>总体优化目标：</p>
 <div class="math notranslate nohighlight">
 \[\mathcal{L} = \mathcal{L}_{\mathrm{CTR}} + \lambda_c \mathcal{L}_{\mathrm{CVR}} + \lambda_g \mathcal{L}_{\mathrm{CTCVR}}\]</div>

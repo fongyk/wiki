@@ -162,7 +162,7 @@ arg，\*args，\*\*kwargs
 仅限位置参数
 -----------------------------
 
-在函数定义中， ``/`` 表示在它之前的形参是仅限位置形参（ positional-only arguments），仅限位置形参没有外部可用的名称。
+在函数定义中， ``/`` 表示在它之前的形参是仅限位置形参（Positional-Only Argument），仅限位置形参没有外部可用的名称。
 在调用接受仅限位置形参的函数时，参数只会基于它们的位置被映射到形参。
 在 ``/`` 之后的参数可以是位置参数，也可以是键值对参数。
 
@@ -193,7 +193,7 @@ arg，\*args，\*\*kwargs
 命名关键字参数
 ---------------
 
-Python3 的命名关键字参数（keyword-only argument），以独立的 ``*`` 为标记，强制用户在调用函数的时候必须写出 ``*`` 之后的参数名。
+Python3 的命名关键字参数（Keyword-Only Argument），以独立的 ``*`` 为标记，强制用户在调用函数的时候必须写出 ``*`` 之后的参数名。
 
 .. code-block:: python
   :linenos:
@@ -213,6 +213,52 @@ Python3 的命名关键字参数（keyword-only argument），以独立的 ``*``
   Traceback (most recent call last):
     File "<stdin>", line 1, in <module>
   TypeError: foo() missing 1 required keyword-only argument: 'c'
+
+默认参数与可变类型
+-----------------------
+
+默认参数是在函数定义的时候就被计算的，默认参数值存储在函数的 ``__defaults__`` 属性中，每次调用函数都是从这个属性中读取默认参数值。
+
+当默认参数值是可变类型的时候，这个默认值可能会因为函数调用而改变。
+
+.. code-block:: python
+  :linenos:
+
+  >>> def foo(n, l=[]):
+  ...     l.append(n)
+  ...     return l
+  ...
+  >>> foo.__defaults__ 
+  ([],)
+  >>> foo(1)
+  [1]
+  >>> foo(2)
+  [1, 2]
+  >>> foo.__defaults__
+  ([1, 2],)
+
+
+为了避免这种预期之外的结果，可以使用 ``None`` 作为默认参数值，在函数体中增加一个判断。
+
+.. code-block:: python
+  :linenos:
+
+  >>> def bar(n, l=None):
+  ...     if l is None: l = []
+  ...     l.append(n)
+  ...     return l
+  ... 
+  >>> bar.__defaults__
+  (None,)
+  >>> bar(1)
+  [1]
+  >>> bar(2)
+  [2]
+  >>> bar.__defaults__
+  (None,)
+
+
+
 
 参考资料
 ---------------

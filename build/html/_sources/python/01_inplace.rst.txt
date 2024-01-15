@@ -4,7 +4,7 @@ in-place 运算
 += 运算
 -----------
 
-``+=`` 是一个in-place运算符，看如下例子：
+``+=`` 是一个 in-place 运算符，看如下例子：
 
 ..  code-block:: python
     :linenos:
@@ -42,11 +42,11 @@ in-place 运算
 
 .. note::
 
-    ``a = a + [1,2]`` 不是in-place运算，尽管使用了同一个变量名。
+    ``a = a + [1,2]`` 不是 in-place 运算，尽管使用了同一个变量名。
 
 
-add和iadd
-------------
+add 和 iadd
+----------------
 
 ``operator`` 包中有两个操作：``add`` 和 ``iadd`` 。``add`` 是正常加运算， ``iadd`` 是原位加运算。
 
@@ -58,12 +58,11 @@ add和iadd
         also takes two arguments, but it makes in-place change in 1st argument passed by storing the sum in it. As object mutation is needed in this process, immutable targets such as numbers, strings and tuples, shouldn’t have ``_iadd_`` method.
         Inplace operator’s ``iadd()`` method, implements **“a+=b”** if it exists (i.e in case of immutable targets, it doesn’t exist) and changes the value of passed argument. But if not, **“a+b”** is implemented.
 
-分两种情况讨论。
 
-immutable targets
+不可变目标
 ^^^^^^^^^^^^^^^^^^^^^^
 
-对于不可变目标（immutable targets），如数字、字符串、元组， ``_add_`` 和 ``_iadd_`` 结果是一样的，输入实参不会发生改变。
+对于不可变目标（Immutable Targets），如数字、字符串、元组， ``_add_`` 和 ``_iadd_`` 结果是一样的，输入实参不会发生改变。
 
 .. code-block:: python
     :linenos:
@@ -91,10 +90,10 @@ immutable targets
     >>> print x
     5
 
-mutable targets
+可变目标
 ^^^^^^^^^^^^^^^^^
 
-对于可变目标（mutable targets），如列表、字典、集合，输入实参会被重现赋值和更新。
+对于可变目标（Mutable Targets），如列表、字典、集合，输入实参会被重现赋值和更新。
 
 .. code-block:: python
     :linenos:
@@ -124,7 +123,7 @@ mutable targets
 
     **不可变目标** （数字、字符串、元组）作为函数参数，相当于 **值传递** ，函数对实参进行拷贝。
 
-    **可变目标** （列表、字典、集合）作为函数参数，相当于 **引用传递** ，函数对实参的修改有效。
+    **可变目标** （列表、字典、集合）作为函数参数，相当于 **引用传递** ，函数对实参的修改有效。这里的修改是通过调用变量的成员方法，如果在函数中通过 ``=`` 运算符直接对该变量重新赋值，那么这种改变也不会影响实参。
 
 
 参考资料

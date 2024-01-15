@@ -111,7 +111,7 @@ list
 
   - 弹出元素：pop，默认弹出列表末尾的元素
 
-  - 清空列表：clear
+  - 清空：clear()
 
   - 移除/删除元素：remove，del （del可删除切片）
 
@@ -155,7 +155,7 @@ dict
 
   - 获取：keys()，values()，items()。在 Python3 中返回的不再是列表，而是 dict_keys、dict_values、dict_items，需要手动转换为列表。
 
-  - 清除：clear()
+  - 清空：clear()
 
   - 删除：pop(key)，返回健对应的值，并删除键所对应的键值对。
 
@@ -217,6 +217,8 @@ set
   - 增加元素：单个元素，add；多个元素，update
 
   - 删除：删除元素不存在，remove 报错，discard 无反应。
+  
+  - 清空：clear()
 
   - 集合操作：\&，\|，\-，\^（交差补集，去除交集后剩下元素的并集），issubset 、isupperset。
 

@@ -17,7 +17,7 @@
 
 - 以全局函数的形式重载，是为了保证该运算符的操作数能够被 **对称的处理** 。比如， ``a + b`` 和 ``b + a`` 的行为应该是一样的，如果定义成类成员函数：``A operator+(const B b)`` ，``a + b`` 被转换成 ``a.operator+(b)`` ，而 ``b + a`` 被转换成 ``b.operator+(a)`` ，它们的行为是不一样的。
 
-- 如果需要访问非public成员，全局函数需要在类内声明为友元（friend）。
+- 如果需要访问非 public 成员，全局函数需要在类内声明为友元（friend）。
 
 运算符重载函数的参数个数取决于：
 
@@ -44,6 +44,7 @@
       friend istream& operator>>(istream &in, complex &A);
       friend ostream& operator<<(ostream &out, complex &A);
       //以成员函数的形式重载
+      Complex& operator=(const Complex &c);
       Complex& operator+=(const Complex &c);
       Complex& operator-=(const Complex &c);
       Complex& operator*=(const Complex &c);
@@ -333,7 +334,7 @@ placement new() 既可以在栈上构造对象，也可以在堆上构造对象�
 
 1. C++运算符重载
 
-  http://c.biancheng.net/cpp/biancheng/cpp/rumen_10/
+  https://c.biancheng.net/cplus/operator/
 
 2. 重载new和delete运算符
 

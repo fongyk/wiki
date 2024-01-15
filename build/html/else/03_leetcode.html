@@ -132,6 +132,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#leetcode-stone-game">4.64. [LeetCode] Stone Game 石头游戏</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id24">4.65. 栈和队列的实现</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id26">4.66. 单调栈</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id27">4.67. 单词接龙</a></li>
 </ul>
 </li>
 </ul>
@@ -5346,6 +5347,101 @@ $$</div><div class="toggle docutils container">
 <span class="linenos">36</span>            <span class="c1">## 入栈</span>
 <span class="linenos">37</span>            <span class="n">stk</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 <span class="linenos">38</span>        <span class="k">return</span> <span class="n">ans</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ul>
+</section>
+<section id="id27">
+<h2><span class="section-number">4.67. </span>单词接龙<a class="headerlink" href="#id27" title="Permalink to this headline"></a></h2>
+<ul>
+<li><p>[LeetCode] Word Ladder 单词接龙（最短路径的长度）。Hint：BFS。</p>
+<p><a class="reference external" href="https://leetcode.com/problems/word-ladder">https://leetcode.com/problems/word-ladder</a></p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">## l 单词长度，n 单词数量</span>
+<span class="linenos"> 2</span><span class="c1">## 预先计算好两两单词之间距离的时间复杂度是 O(ln^2)，这还不包括 dfs/bfs 每次遍历距离矩阵的时间</span>
+<span class="linenos"> 3</span><span class="c1">## 遍历替换单词每一个字母的时间复杂度是 O(26ln)，基于哈希表的 set 查找时间是 O(1)</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">Queue</span>
+<span class="linenos"> 6</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<span class="linenos"> 7</span>    <span class="k">def</span> <span class="nf">ladderLength</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">beginWord</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">endWord</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">wordList</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="linenos"> 8</span>        <span class="n">wordSet</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">wordList</span><span class="p">)</span>
+<span class="linenos"> 9</span>        <span class="n">q</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+<span class="linenos">10</span>        <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="n">beginWord</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="linenos">11</span>        <span class="n">usedSet</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">beginWord</span><span class="p">])</span>
+<span class="linenos">12</span>        <span class="k">while</span> <span class="ow">not</span> <span class="n">q</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
+<span class="linenos">13</span>            <span class="n">word</span><span class="p">,</span> <span class="n">l</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="linenos">14</span>            <span class="k">if</span> <span class="n">word</span> <span class="o">==</span> <span class="n">endWord</span><span class="p">:</span>
+<span class="linenos">15</span>                <span class="k">return</span> <span class="n">l</span>
+<span class="linenos">16</span>            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)):</span>
+<span class="linenos">17</span>                <span class="c1">## 改变第 i 个字母</span>
+<span class="linenos">18</span>                <span class="n">wordP1</span><span class="p">,</span> <span class="n">wordP2</span> <span class="o">=</span> <span class="n">word</span><span class="p">[:</span><span class="n">i</span><span class="p">],</span> <span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
+<span class="linenos">19</span>                <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="s2">&quot;abcdefghijklmnopqrstuvwxyz&quot;</span><span class="p">:</span>
+<span class="linenos">20</span>                    <span class="n">nextWord</span> <span class="o">=</span> <span class="n">wordP1</span> <span class="o">+</span> <span class="n">c</span> <span class="o">+</span> <span class="n">wordP2</span>
+<span class="linenos">21</span>                    <span class="k">if</span> <span class="n">c</span> <span class="o">!=</span> <span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">and</span> <span class="n">nextWord</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">usedSet</span> <span class="ow">and</span> <span class="n">nextWord</span> <span class="ow">in</span> <span class="n">wordSet</span><span class="p">:</span>
+<span class="linenos">22</span>                        <span class="n">usedSet</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">nextWord</span><span class="p">)</span>
+<span class="linenos">23</span>                        <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="n">nextWord</span><span class="p">,</span> <span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="linenos">24</span>        <span class="k">return</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</li>
+<li><p>[LeetCode] Word Ladder II 单词接龙（最短路径集合）。Hint：如果直接在 BFS 的时候存储路径，需要很大的空间。首先用 BFS 确定路径长度，再用 DFS 沿着路径长度递减的方向查找。</p>
+<p><a class="reference external" href="https://leetcode.com/problems/word-ladder-ii">https://leetcode.com/problems/word-ladder-ii</a></p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">## bfs 从 endWord 出发，这样在 dfs 的时候从 beginWord 出发、沿着 dist 减小的方向一定是通向 endWord 的方向。</span>
+<span class="linenos"> 2</span><span class="c1">## 如果 bfs 从 beginWord 出发，那么 dfs 沿着 dist 增大的方向是发散的、不一定是通向 endWord 的方向。</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">Queue</span>
+<span class="linenos"> 5</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<span class="linenos"> 6</span>    <span class="k">def</span> <span class="nf">findLadders</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">beginWord</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">endWord</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">wordList</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+<span class="linenos"> 7</span>        <span class="bp">self</span><span class="o">.</span><span class="n">wordSet</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">wordList</span><span class="p">)</span>
+<span class="linenos"> 8</span>        <span class="bp">self</span><span class="o">.</span><span class="n">wordSet</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">beginWord</span><span class="p">)</span> <span class="c1">## beginWord 加入 wordSet，需要计算路径长度</span>
+<span class="linenos"> 9</span>        <span class="bp">self</span><span class="o">.</span><span class="n">distDict</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">## 存储 endWord 到其他 word 的路径长度</span>
+<span class="linenos">10</span>        <span class="bp">self</span><span class="o">.</span><span class="n">bfs</span><span class="p">(</span><span class="n">endWord</span><span class="p">)</span>  <span class="c1">## 从 endWord 出发</span>
+<span class="linenos">11</span>        <span class="n">res</span><span class="p">,</span> <span class="n">seq</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="linenos">12</span>        <span class="bp">self</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">beginWord</span><span class="p">,</span> <span class="n">endWord</span><span class="p">,</span> <span class="n">seq</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="k">return</span> <span class="n">res</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span>    <span class="k">def</span> <span class="nf">bfs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">startWord</span><span class="p">):</span>
+<span class="linenos">16</span>        <span class="n">q</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+<span class="linenos">17</span>        <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="n">startWord</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="linenos">18</span>        <span class="bp">self</span><span class="o">.</span><span class="n">distDict</span><span class="p">[</span><span class="n">startWord</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">19</span>        <span class="k">while</span> <span class="ow">not</span> <span class="n">q</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
+<span class="linenos">20</span>            <span class="n">word</span><span class="p">,</span> <span class="n">dist</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="linenos">21</span>            <span class="n">nextWordList</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getNextWordList</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+<span class="linenos">22</span>            <span class="k">for</span> <span class="n">nextWord</span> <span class="ow">in</span> <span class="n">nextWordList</span><span class="p">:</span>
+<span class="linenos">23</span>                <span class="k">if</span> <span class="n">nextWord</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">distDict</span><span class="p">:</span>
+<span class="linenos">24</span>                    <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="n">nextWord</span><span class="p">,</span> <span class="n">dist</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+<span class="linenos">25</span>                    <span class="bp">self</span><span class="o">.</span><span class="n">distDict</span><span class="p">[</span><span class="n">nextWord</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span>    <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">beginWord</span><span class="p">,</span> <span class="n">endWord</span><span class="p">,</span> <span class="n">seq</span><span class="p">,</span> <span class="n">res</span><span class="p">):</span>
+<span class="linenos">28</span>        <span class="n">seq</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">beginWord</span><span class="p">)</span>
+<span class="linenos">29</span>        <span class="k">if</span> <span class="n">beginWord</span> <span class="o">==</span> <span class="n">endWord</span><span class="p">:</span>
+<span class="linenos">30</span>            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq</span><span class="p">[:])</span> <span class="c1">## 注意：这里要对 seq 拷贝</span>
+<span class="linenos">31</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos">32</span>            <span class="n">nextWordList</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getNextWordList</span><span class="p">(</span><span class="n">beginWord</span><span class="p">)</span>
+<span class="linenos">33</span>            <span class="k">for</span> <span class="n">nextWord</span> <span class="ow">in</span> <span class="n">nextWordList</span><span class="p">:</span>
+<span class="linenos">34</span>                <span class="k">if</span> <span class="n">nextWord</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">distDict</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">distDict</span><span class="p">[</span><span class="n">nextWord</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">distDict</span><span class="p">[</span><span class="n">beginWord</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+<span class="linenos">35</span>                    <span class="bp">self</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">nextWord</span><span class="p">,</span> <span class="n">endWord</span><span class="p">,</span> <span class="n">seq</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+<span class="linenos">36</span>        <span class="n">seq</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="linenos">37</span>
+<span class="linenos">38</span>    <span class="k">def</span> <span class="nf">getNextWordList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
+<span class="linenos">39</span>        <span class="n">nextWordList</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos">40</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)):</span>
+<span class="linenos">41</span>            <span class="n">wordP1</span><span class="p">,</span> <span class="n">wordP2</span> <span class="o">=</span> <span class="n">word</span><span class="p">[:</span><span class="n">i</span><span class="p">],</span> <span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
+<span class="linenos">42</span>            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="s2">&quot;abcdefghijklmnopqrstuvwxyz&quot;</span><span class="p">:</span>
+<span class="linenos">43</span>                <span class="n">nextWord</span> <span class="o">=</span> <span class="n">wordP1</span> <span class="o">+</span> <span class="n">c</span> <span class="o">+</span> <span class="n">wordP2</span>
+<span class="linenos">44</span>                <span class="k">if</span> <span class="n">c</span> <span class="o">!=</span> <span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">and</span> <span class="n">nextWord</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">wordSet</span><span class="p">:</span>
+<span class="linenos">45</span>                    <span class="n">nextWordList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nextWord</span><span class="p">)</span>
+<span class="linenos">46</span>        <span class="k">return</span> <span class="n">nextWordList</span>
 </pre></div>
 </div>
 </div>

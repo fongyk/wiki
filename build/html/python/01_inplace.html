@@ -52,12 +52,12 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Python</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">1. in-place 运算</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">1.1. += 运算</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#addiadd">1.2. add和iadd</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#immutable-targets">1.2.1. immutable targets</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mutable-targets">1.2.2. mutable targets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-iadd">1.2. add 和 iadd</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">1.2.1. 不可变目标</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">1.2.2. 可变目标</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">1.3. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">1.3. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="02_all.html">2. __all__ 的使用</a></li>
@@ -132,7 +132,7 @@
 <h1><span class="section-number">1. </span>in-place 运算<a class="headerlink" href="#in-place" title="Permalink to this headline"></a></h1>
 <section id="id1">
 <h2><span class="section-number">1.1. </span>+= 运算<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">+=</span></code> 是一个in-place运算符，看如下例子：</p>
+<p><code class="docutils literal notranslate"><span class="pre">+=</span></code> 是一个 in-place 运算符，看如下例子：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">a</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="linenos">2</span><span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
 <span class="linenos">3</span><span class="n">a</span> <span class="o">+=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
@@ -160,11 +160,11 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">a</span> <span class="pre">+</span> <span class="pre">[1,2]</span></code> 不是in-place运算，尽管使用了同一个变量名。</p>
+<p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">a</span> <span class="pre">+</span> <span class="pre">[1,2]</span></code> 不是 in-place 运算，尽管使用了同一个变量名。</p>
 </div>
 </section>
-<section id="addiadd">
-<h2><span class="section-number">1.2. </span>add和iadd<a class="headerlink" href="#addiadd" title="Permalink to this headline"></a></h2>
+<section id="add-iadd">
+<h2><span class="section-number">1.2. </span>add 和 iadd<a class="headerlink" href="#add-iadd" title="Permalink to this headline"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">operator</span></code> 包中有两个操作：<code class="docutils literal notranslate"><span class="pre">add</span></code> 和 <code class="docutils literal notranslate"><span class="pre">iadd</span></code> 。<code class="docutils literal notranslate"><span class="pre">add</span></code> 是正常加运算， <code class="docutils literal notranslate"><span class="pre">iadd</span></code> 是原位加运算。</p>
 <blockquote>
 <div><dl class="simple">
@@ -176,10 +176,9 @@ Inplace operator’s <code class="docutils literal notranslate"><span class="pre
 </dd>
 </dl>
 </div></blockquote>
-<p>分两种情况讨论。</p>
-<section id="immutable-targets">
-<h3><span class="section-number">1.2.1. </span>immutable targets<a class="headerlink" href="#immutable-targets" title="Permalink to this headline"></a></h3>
-<p>对于不可变目标（immutable targets），如数字、字符串、元组， <code class="docutils literal notranslate"><span class="pre">_add_</span></code> 和 <code class="docutils literal notranslate"><span class="pre">_iadd_</span></code> 结果是一样的，输入实参不会发生改变。</p>
+<section id="id2">
+<h3><span class="section-number">1.2.1. </span>不可变目标<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h3>
+<p>对于不可变目标（Immutable Targets），如数字、字符串、元组， <code class="docutils literal notranslate"><span class="pre">_add_</span></code> 和 <code class="docutils literal notranslate"><span class="pre">_iadd_</span></code> 结果是一样的，输入实参不会发生改变。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">operator</span>
 <span class="linenos">2</span>
 <span class="linenos">3</span><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
@@ -203,9 +202,9 @@ Inplace operator’s <code class="docutils literal notranslate"><span class="pre
 </pre></div>
 </div>
 </section>
-<section id="mutable-targets">
-<h3><span class="section-number">1.2.2. </span>mutable targets<a class="headerlink" href="#mutable-targets" title="Permalink to this headline"></a></h3>
-<p>对于可变目标（mutable targets），如列表、字典、集合，输入实参会被重现赋值和更新。</p>
+<section id="id3">
+<h3><span class="section-number">1.2.2. </span>可变目标<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
+<p>对于可变目标（Mutable Targets），如列表、字典、集合，输入实参会被重现赋值和更新。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">operator</span>
 <span class="linenos">2</span>
 <span class="linenos">3</span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
@@ -229,12 +228,12 @@ Inplace operator’s <code class="docutils literal notranslate"><span class="pre
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><strong>不可变目标</strong> （数字、字符串、元组）作为函数参数，相当于 <strong>值传递</strong> ，函数对实参进行拷贝。</p>
-<p><strong>可变目标</strong> （列表、字典、集合）作为函数参数，相当于 <strong>引用传递</strong> ，函数对实参的修改有效。</p>
+<p><strong>可变目标</strong> （列表、字典、集合）作为函数参数，相当于 <strong>引用传递</strong> ，函数对实参的修改有效。这里的修改是通过调用变量的成员方法，如果在函数中通过 <code class="docutils literal notranslate"><span class="pre">=</span></code> 运算符直接对该变量重新赋值，那么这种改变也不会影响实参。</p>
 </div>
 </section>
 </section>
-<section id="id2">
-<h2><span class="section-number">1.3. </span>参考资料<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<section id="id4">
+<h2><span class="section-number">1.3. </span>参考资料<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>pytorch issue：</p></li>
 </ol>

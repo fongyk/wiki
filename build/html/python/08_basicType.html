@@ -227,6 +227,7 @@
 <li><p>拓展：extend</p></li>
 <li><p>插入：insert</p></li>
 <li><p>弹出元素：pop，默认弹出列表末尾的元素</p></li>
+<li><p>清空：clear()</p></li>
 <li><p>移除/删除元素：remove，del （del可删除切片）</p></li>
 <li><p>排序：sort</p></li>
 </ul>
@@ -267,7 +268,7 @@
 <blockquote>
 <div><ul class="simple">
 <li><p>获取：keys()，values()，items()。在 Python3 中返回的不再是列表，而是 dict_keys、dict_values、dict_items，需要手动转换为列表。</p></li>
-<li><p>清除：clear()</p></li>
+<li><p>清空：clear()</p></li>
 <li><p>删除：pop(key)，返回健对应的值，并删除键所对应的键值对。</p></li>
 <li><p>访问：get(key)，不存在时返回 None。</p></li>
 <li><p>更新：update(d)，把另一个字典 d 中的项添加到当前字典。</p></li>
@@ -322,6 +323,7 @@
 <li><p>特征：无重复，无须，每个元素为不可变类型</p></li>
 <li><p>增加元素：单个元素，add；多个元素，update</p></li>
 <li><p>删除：删除元素不存在，remove 报错，discard 无反应。</p></li>
+<li><p>清空：clear()</p></li>
 <li><p>集合操作：&amp;，|，-，^（交差补集，去除交集后剩下元素的并集），issubset 、isupperset。</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="gp">&gt;&gt;&gt; </span><span class="n">s1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">}</span> <span class="c1">## 或者 s1 = set([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;])</span>

@@ -5646,3 +5646,106 @@ Hint：总在第一个队列压入最新元素。
                     ## 入栈
                     stk.append(i)
                 return ans
+
+
+单词接龙
+-----------------------------
+
+- [LeetCode] Word Ladder 单词接龙（最短路径的长度）。Hint：BFS。
+
+  https://leetcode.com/problems/word-ladder
+
+  .. container:: toggle
+
+    .. container:: header
+
+        :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: python
+        :linenos:
+
+        ## l 单词长度，n 单词数量
+        ## 预先计算好两两单词之间距离的时间复杂度是 O(ln^2)，这还不包括 dfs/bfs 每次遍历距离矩阵的时间
+        ## 遍历替换单词每一个字母的时间复杂度是 O(26ln)，基于哈希表的 set 查找时间是 O(1)
+
+        from queue import Queue
+        class Solution:
+            def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+                wordSet = set(wordList)
+                q = Queue()
+                q.put((beginWord, 1))
+                usedSet = set([beginWord])
+                while not q.empty():
+                    word, l = q.get()
+                    if word == endWord:
+                        return l
+                    for i in range(len(word)):
+                        ## 改变第 i 个字母
+                        wordP1, wordP2 = word[:i], word[i+1:]
+                        for c in "abcdefghijklmnopqrstuvwxyz":
+                            nextWord = wordP1 + c + wordP2
+                            if c != word[i] and nextWord not in usedSet and nextWord in wordSet:
+                                usedSet.add(nextWord)
+                                q.put((nextWord, l+1))
+                return 0
+
+- [LeetCode] Word Ladder II 单词接龙（最短路径集合）。Hint：如果直接在 BFS 的时候存储路径，需要很大的空间。首先用 BFS 确定路径长度，再用 DFS 沿着路径长度递减的方向查找。
+
+  https://leetcode.com/problems/word-ladder-ii
+
+  .. container:: toggle
+
+    .. container:: header
+
+        :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: python
+        :linenos:
+
+        ## bfs 从 endWord 出发，这样在 dfs 的时候从 beginWord 出发、沿着 dist 减小的方向一定是通向 endWord 的方向。
+        ## 如果 bfs 从 beginWord 出发，那么 dfs 沿着 dist 增大的方向是发散的、不一定是通向 endWord 的方向。
+
+        from queue import Queue
+        class Solution:
+            def findLadders(self, beginWord: str, endWord: str, wordList: List[str]) -> List[List[str]]:
+                self.wordSet = set(wordList)
+                self.wordSet.add(beginWord) ## beginWord 加入 wordSet，需要计算路径长度
+                self.distDict = {} ## 存储 endWord 到其他 word 的路径长度
+                self.bfs(endWord)  ## 从 endWord 出发
+                res, seq = [], []
+                self.dfs(beginWord, endWord, seq, res)
+                return res
+
+            def bfs(self, startWord):
+                q = Queue()
+                q.put((startWord, 0))
+                self.distDict[startWord] = 0
+                while not q.empty():
+                    word, dist = q.get()
+                    nextWordList = self.getNextWordList(word)
+                    for nextWord in nextWordList:
+                        if nextWord not in self.distDict:
+                            q.put((nextWord, dist + 1))
+                            self.distDict[nextWord] = dist + 1
+
+            def dfs(self, beginWord, endWord, seq, res):
+                seq.append(beginWord)
+                if beginWord == endWord:
+                    res.append(seq[:]) ## 注意：这里要对 seq 拷贝
+                else:
+                    nextWordList = self.getNextWordList(beginWord)
+                    for nextWord in nextWordList:
+                        if nextWord in self.distDict and self.distDict[nextWord] == self.distDict[beginWord] - 1:
+                            self.dfs(nextWord, endWord, seq, res)
+                seq.pop()
+
+            def getNextWordList(self, word):
+                nextWordList = []
+                for i in range(len(word)):
+                    wordP1, wordP2 = word[:i], word[i+1:]
+                    for c in "abcdefghijklmnopqrstuvwxyz":
+                        nextWord = wordP1 + c + wordP2
+                        if c != word[i] and nextWord in self.wordSet:
+                            nextWordList.append(nextWord)
+                return nextWordList
+

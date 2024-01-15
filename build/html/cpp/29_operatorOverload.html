@@ -57,20 +57,20 @@
 <li class="toctree-l2"><a class="reference internal" href="06_arrayArg.html">6. 数组形参</a></li>
 <li class="toctree-l2"><a class="reference internal" href="07_pointerReference.html">7. 指针与引用</a></li>
 <li class="toctree-l2"><a class="reference internal" href="08_overload.html">8. 重载、覆盖、隐藏</a></li>
-<li class="toctree-l2"><a class="reference internal" href="09_strcpy.html">9. strcpy函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_strcpy.html">9. strcpy 函数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="10_cast.html">10. 强制类型转换</a></li>
 <li class="toctree-l2"><a class="reference internal" href="11_heapStack.html">11. 堆和栈</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12_argPass.html">12. 参数传递</a></li>
 <li class="toctree-l2"><a class="reference internal" href="13_nullClassPtr.html">13. 空类指针</a></li>
-<li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html">14. static和extern</a></li>
-<li class="toctree-l2"><a class="reference internal" href="15_classAccess.html">15. public、protected、private</a></li>
-<li class="toctree-l2"><a class="reference internal" href="16_staticconst.html">16. 类的static const成员</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_staticExtern.html">14. static 和 extern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_classAccess.html">15. public/protected/private</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_staticconst.html">16. 类的 static const 成员</a></li>
 <li class="toctree-l2"><a class="reference internal" href="17_enumUnion.html">17. 枚举类型与共用体</a></li>
 <li class="toctree-l2"><a class="reference internal" href="18_commonFunc.html">18. 常用函数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="19_stl.html">19. 常用 STL 容器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20_define.html">20. #define</a></li>
 <li class="toctree-l2"><a class="reference internal" href="21_operatorPrior.html">21. 运算符优先级</a></li>
-<li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const和constexpr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_const.html">22. const 和 constexpr</a></li>
 <li class="toctree-l2"><a class="reference internal" href="23_copyControl.html">23. 拷贝控制</a></li>
 <li class="toctree-l2"><a class="reference internal" href="24_exception.html">24. 异常</a></li>
 <li class="toctree-l2"><a class="reference internal" href="25_namespace.html">25. 命名空间</a></li>
@@ -144,7 +144,7 @@
 <li><p>重载不能改变运算符的优先级和结合性。</p></li>
 <li><p>运算符重载函数不能有默认的参数，否则就改变了运算符操作数的个数。</p></li>
 <li><p>以全局函数的形式重载，是为了保证该运算符的操作数能够被 <strong>对称的处理</strong> 。比如， <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span></code> 和 <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">+</span> <span class="pre">a</span></code> 的行为应该是一样的，如果定义成类成员函数：<code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">operator+(const</span> <span class="pre">B</span> <span class="pre">b)</span></code> ，<code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span></code> 被转换成 <code class="docutils literal notranslate"><span class="pre">a.operator+(b)</span></code> ，而 <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">+</span> <span class="pre">a</span></code> 被转换成 <code class="docutils literal notranslate"><span class="pre">b.operator+(a)</span></code> ，它们的行为是不一样的。</p></li>
-<li><p>如果需要访问非public成员，全局函数需要在类内声明为友元（friend）。</p></li>
+<li><p>如果需要访问非 public 成员，全局函数需要在类内声明为友元（friend）。</p></li>
 </ul>
 <p>运算符重载函数的参数个数取决于：</p>
 <ul class="simple">
@@ -167,17 +167,18 @@
 <span class="linenos">14</span><span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">istream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">istream</span><span class="w"> </span><span class="o">&amp;</span><span class="n">in</span><span class="p">,</span><span class="w"> </span><span class="n">complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">A</span><span class="p">);</span><span class="w"></span>
 <span class="linenos">15</span><span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">ostream</span><span class="w"> </span><span class="o">&amp;</span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">A</span><span class="p">);</span><span class="w"></span>
 <span class="linenos">16</span><span class="w">    </span><span class="c1">//以成员函数的形式重载</span>
-<span class="linenos">17</span><span class="w">    </span><span class="n">Complex</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">18</span><span class="w">    </span><span class="n">Complex</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">-=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">19</span><span class="w">    </span><span class="n">Complex</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">*=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">20</span><span class="w">    </span><span class="n">Complex</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">/=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c</span><span class="p">);</span><span class="w"></span>
-<span class="linenos">21</span><span class="k">public</span><span class="o">:</span><span class="w"></span>
-<span class="linenos">22</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">real</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_real</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="linenos">23</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">imag</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_imag</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="linenos">24</span><span class="k">private</span><span class="o">:</span><span class="w"></span>
-<span class="linenos">25</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">m_real</span><span class="p">;</span><span class="w">  </span><span class="c1">//实部</span>
-<span class="linenos">26</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">m_imag</span><span class="p">;</span><span class="w">  </span><span class="c1">//虚部</span>
-<span class="linenos">27</span><span class="p">};</span><span class="w"></span>
+<span class="linenos">17</span><span class="w">    </span><span class="n">Complex</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">18</span><span class="w">    </span><span class="n">Complex</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">19</span><span class="w">    </span><span class="n">Complex</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">-=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">20</span><span class="w">    </span><span class="n">Complex</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">*=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">21</span><span class="w">    </span><span class="n">Complex</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">/=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">22</span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="linenos">23</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">real</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_real</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">24</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">imag</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_imag</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">25</span><span class="k">private</span><span class="o">:</span><span class="w"></span>
+<span class="linenos">26</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">m_real</span><span class="p">;</span><span class="w">  </span><span class="c1">//实部</span>
+<span class="linenos">27</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">m_imag</span><span class="p">;</span><span class="w">  </span><span class="c1">//虚部</span>
+<span class="linenos">28</span><span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -418,7 +419,7 @@
 <li><p>C++运算符重载</p></li>
 </ol>
 <blockquote>
-<div><p><a class="reference external" href="http://c.biancheng.net/cpp/biancheng/cpp/rumen_10/">http://c.biancheng.net/cpp/biancheng/cpp/rumen_10/</a></p>
+<div><p><a class="reference external" href="https://c.biancheng.net/cplus/operator/">https://c.biancheng.net/cplus/operator/</a></p>
 </div></blockquote>
 <ol class="arabic simple" start="2">
 <li><p>重载new和delete运算符</p></li>

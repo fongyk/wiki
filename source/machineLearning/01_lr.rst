@@ -1,4 +1,4 @@
-Logistic Regression
+逻辑回归
 ============================
 
 模型：
@@ -9,7 +9,7 @@ Logistic Regression
   g(z) &= \  \frac{1}{1+e^{-z}},\\
   g^\prime(z) &= \  (1-g(z))g(z) \in (0, 0.25].
 
-对数损失函数（极大似然）：
+Binary Cross Entropy Loss（极大似然）：
 
 .. math::
 
@@ -17,10 +17,29 @@ Logistic Regression
 
 虽然使用了 sigmoid 函数，但该模型仍然是线性分类器，因为即使不经过 sigmoid 函数也可以得出分类结果（与 0 比较），sigmoid 将其转化为概率。
 
+Logistic Regression 更准确的翻译是 **对数几率（Log-Odds）回归** 。对数几率定义为：
+
+.. math::
+
+  \mathrm{LogOdds} & = \log \frac{p(y=1|x)}{1 - p(y=1|x)} \\
+                   & = \log \frac{\mathrm{sigmoid}(z)}{1 - \mathrm{sigmoid}(z)} \\
+                   & = \theta^\top x \\
+                   & = w^\top \tilde{x} + b
+
+.. tip::
+
+  `Tensorflow 对 BCE Loss 计算的优化 <https://www.tensorflow.org/versions/r1.15/api_docs/python/tf/nn/sigmoid_cross_entropy_with_logits>`_ ：
+
+  .. math::
+
+      & - y * \log(\mathrm{sigmoid}(z)) - (1 - y) * \log(1 - \mathrm{sigmoid}(z)) \\
+    = & \ z - z * y + \log(1 + \exp(-z)) \\
+    = & \ \max(z, 0) - z * y + \log(1 + \exp(-\mathrm{abs}(z)))
+
 基本假设
 -----------
 
-1. 数据服从伯努利分布 :math:`y \sim Bernoulli(\phi)`
+1. 数据服从 `伯努利分布 <https://zh.wikipedia.org/wiki/%E4%BC%AF%E5%8A%AA%E5%88%A9%E5%88%86%E5%B8%83>`_ :math:`y \sim Bernoulli(\phi)`
 
 2. 样例为正例的概率为 :math:`\phi=h_\theta(x)`
 
@@ -58,6 +77,8 @@ Logistic Regression
 
 1. 为什么使用极大似然函数作为损失函数？
 
+  - BCE Loss 是关于参数 :math:`\theta` 的凸函数 ，使用梯度下降算法可以找到全局最优解。
+
   - 极大似然：希望最大化每个样本的分类正确概率，样本服从伯努利分布。
 
   - 将极大似然取对数后就等同于对数损失函数，在 LR 模型中，这个损失函数使参数更新速度较快：
@@ -68,12 +89,24 @@ Logistic Regression
 
     可见梯度只与 :math:`y_i,x_i` 有关，与 :math:`h_\theta` 的导数无关。其中上标 :math:`(j)` 表示向量的第 :math:`j` 维分量。
 
-  - 为什么不用平方损失函数（多用于线性回归）？在线性回归中，前提假设是 :math:`y` 服从正态分布，即 :math:`y \sim \mathcal{N}(\mu, \sigma^2)` 。
-    另外，如果使用平方损失函数， :math:`\theta` 更新与 :math:`h_\theta` 的梯度有关，而 sigmoid 函数的梯度在定义域内小于0.25，导致参数更新慢。
+2. 为什么不用平方损失函数（多用于线性回归）？
+   
+   - MSE Loss 是关于参数 :math:`\theta` 的非凸函数，容易陷入局部最优解。
 
-2. 训练中如何有很多特征高度相关或将某个特征重复100遍，影响如何？
+   - 在线性回归中，前提假设是 :math:`y` 服从正态分布，即 :math:`y \sim \mathcal{N}(\mu, \sigma^2)` 。
+   
+   - 如果使用平方损失函数， :math:`\theta` 更新与 :math:`h_\theta` 的梯度有关，而 sigmoid 函数的梯度在定义域内小于0.25，导致参数更新慢。
+
+3. 训练中如何有很多特征高度相关或将某个特征重复 100 遍，影响如何？
 
   如果损失函数收敛，不影响分类结果（每个特征对应的权重 :math:`\theta_j` 变为原来的百分之一）。将相关特征去除，使模型具有更好的解释性，也能加快训练速度。
+
+.. note::
+
+  `凸函数 <https://en.wikipedia.org/wiki/Convex_function>`_ ：
+
+  - 一元：二阶导数非负
+  - 多元：Hessian Matrix 半正定
 
 参考资料
 ------------
@@ -91,3 +124,7 @@ Logistic Regression
   https://www.jianshu.com/p/894bda167422
 
 4. 周志华《机器学习》Page 57 -- 60。
+
+5. Logistic regression - Prove That the Cost Function Is Convex
+
+  https://math.stackexchange.com/questions/1582452/logistic-regression-prove-that-the-cost-function-is-convex

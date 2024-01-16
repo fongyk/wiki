@@ -96,6 +96,10 @@ SVD分解
 当 :math:`d` 很大时， :math:`C=XX^{\top}` 是很高维的矩阵，计算该矩阵并求特征向量开销大。此时对 :math:`X` 做SVD分解，得到 :math:`U` 便是
 协方差矩阵 :math:`C` 的特征向量。
 
+.. note::
+
+  均值方差标准化（Standard Score Normalization，Z-Score Normalization）： :math:`z = \frac{x - \mu}{\sigma}` ，将原始数据转化为均值为 0、标准差为 1 的数据分布，减少不同维度的特征之间的尺度差异性，使其具有可比性，加速算法的收敛速度和精度。
+
 参考资料
 -----------
 
@@ -105,10 +109,4 @@ SVD分解
 
   http://ufldl.stanford.edu/wiki/index.php/PCA
 
-3. 约束优化方法之拉格朗日乘子法与KKT条件
 
-  https://www.cnblogs.com/ooon/p/5721119.html
-
-4. 关于拉格朗日乘子法及KKT条件的探究
-
-  https://wenku.baidu.com/view/48af72d6fc4ffe473268ab8b.html

@@ -257,3 +257,11 @@ SVM 与 LR 的异同
 7. Support-vector machine
 
   https://en.wikipedia.org/wiki/Support-vector_machine#Soft-margin
+
+8. 约束优化方法之拉格朗日乘子法与KKT条件
+
+  https://www.cnblogs.com/ooon/p/5721119.html
+
+9. 关于拉格朗日乘子法及KKT条件的探究
+
+  https://wenku.baidu.com/view/48af72d6fc4ffe473268ab8b.html

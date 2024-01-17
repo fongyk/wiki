@@ -277,7 +277,7 @@ ESCM :math:`^2` 是为了解决 ESMM 模型的两个问题而提出的：
     ESMM 假设 CTR 和 CVR 预估任务是独立的（没有建立点击->转化的空间依赖关系），但事实上转化一定是在点击之后发生的事件。ESMM 建模的 CVR 实际上是 :math:`P(r=1)` 而不是其预期的 :math:`P(r=1|o=1)` ，蕴含了 :math:`P(r=1|o=0)` 这一部分。其中 :math:`o` 表示点击， :math:`r` 表示转化（Post-Click Conversion）。
 
 ESCM :math:`^2` 仍然显式地对 CVR 建模，提出 :math:`\mathcal{R}_{IPS} = \mathbb{E}_{\mathcal{D}} \left[ \frac{o}{\hat{o}} \delta(r, \hat{r}) \right]` 在曝光空间建模 CVR ，使用预估的 CTR 作为倾向分对 Loss 进行（逆）调权（即 IPS）。
-其中 :math:`\delta` 是 BCE Loss， :math:`\hat{o}` 和 :math:`\hat{r}` 分别是预测的 CTR 和 CVR 。在 CTR 预估准确的前提下，:math:`\mathcal{R}_{IPS}` 是曝光空间 CVR 损失 :math:`\mathcal{P} = \mathbb{E}_{\mathcal{D}} [ \delta(r, \hat{r}) ]` 的 **无偏估计** ，也即 :math:`\hat{r} \rightarrow P(r=1|do(o=1))` 是曝光空间 CVR 的无偏估计（ :math:`do` 指代因果推断中的 do 演算）。
+其中 :math:`\delta` 是 BCE Loss， :math:`\hat{o}` 和 :math:`\hat{r}` 分别是预测的 CTR 和 CVR 。在 CTR 预估准确的前提下，:math:`\mathcal{R}_{IPS}` 是 **理想的** 曝光空间 CVR 损失 :math:`\mathcal{P} = \mathbb{E}_{\mathcal{D}} [ \delta(r, \hat{r}) ]` （当所有样本及其标签都可观测到）的 **无偏估计** ，也即 :math:`\hat{r} \rightarrow P(r=1|do(o=1))` 是曝光空间 CVR 的无偏估计（ :math:`do` 指代因果推断中的 do 演算）。
 
 考虑到 IPS 的高方差问题（当分母 :math:`\hat{o}` 很小，对应的权重很大），训练不稳定，ESCM :math:`^2` 还提出了 :math:`\mathcal{R}_{DR}` 额外构建了一个 Imputation Tower 预估 CVR 的 **预估损失** 。
 
@@ -293,7 +293,7 @@ ESCM :math:`^2` 仍然显式地对 CVR 建模，提出 :math:`\mathcal{R}_{IPS} 
 
   反事实问题（Counterfactual Problem）：在未点击空间，对 CVR 建模。
 
-  虽然 :math:`\mathcal{R}_{IPS}` 号称在曝光空间建模，但是公式中乘的 :math:`o` 相当于一个 Mask，约束了只对点击样本生效。
+  虽然 :math:`\mathcal{R}_{IPS}` 号称在曝光空间建模，但是公式中乘的 :math:`o` 相当于一个 Mask，约束了只对点击样本生效，不过其均值是在所有曝光样本上计算的。
 
 联合建模的问题
 ++++++++++++++++++++
@@ -386,8 +386,9 @@ Selection Bias
     :width: 800px
     :align: center
 
-目标是期望模型对曝光空间和未曝光空间的打分分布一致。
+目标是期望模型对曝光空间和未曝光空间的打分分布一致，优化向量召回的效果。
 
+- :math:`\mathcal{L}_{s}` ：基于观测样本（Source Domain），建模 Query 和 Item 的向量相关性，比如 BCE Loss。
 - :math:`\mathcal{L}_{DA}` ：实现 Attribute Correlation Alignment，要求 Source Domain 和 Target Domain 的 Item 关系是相似的，具体表现为不同 Domain 的协方差矩阵一致。
 - :math:`\mathcal{L}_{DC}^c` ：实现 Center-Wise Clustering for Source Clustering，在 Source Domain 要求相似 Item（具有同类型的 User Feedback，例如点击/购买）高度聚合，不相似的 Item 相互远离（类似于分类任务中的 Center Loss），结合 :math:`\mathcal{L}_{DA}` 也间接对 Target Domain 产生了相同的约束效果。
 - :math:`\mathcal{L}_{DC}^p` ：实现 Self-Training for Target Clustering，构造伪标签，通过优化 :math:`l(x) = -p(x) \log p(x)` 使得低分的伪负样本得分越来越低，高分的伪正样本得分越来越高。

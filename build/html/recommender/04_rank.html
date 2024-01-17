@@ -339,7 +339,7 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 </li>
 </ul>
 <p>ESCM <span class="math notranslate nohighlight">\(^2\)</span> 仍然显式地对 CVR 建模，提出 <span class="math notranslate nohighlight">\(\mathcal{R}_{IPS} = \mathbb{E}_{\mathcal{D}} \left[ \frac{o}{\hat{o}} \delta(r, \hat{r}) \right]\)</span> 在曝光空间建模 CVR ，使用预估的 CTR 作为倾向分对 Loss 进行（逆）调权（即 IPS）。
-其中 <span class="math notranslate nohighlight">\(\delta\)</span> 是 BCE Loss， <span class="math notranslate nohighlight">\(\hat{o}\)</span> 和 <span class="math notranslate nohighlight">\(\hat{r}\)</span> 分别是预测的 CTR 和 CVR 。在 CTR 预估准确的前提下，<span class="math notranslate nohighlight">\(\mathcal{R}_{IPS}\)</span> 是曝光空间 CVR 损失 <span class="math notranslate nohighlight">\(\mathcal{P} = \mathbb{E}_{\mathcal{D}} [ \delta(r, \hat{r}) ]\)</span> 的 <strong>无偏估计</strong> ，也即 <span class="math notranslate nohighlight">\(\hat{r} \rightarrow P(r=1|do(o=1))\)</span> 是曝光空间 CVR 的无偏估计（ <span class="math notranslate nohighlight">\(do\)</span> 指代因果推断中的 do 演算）。</p>
+其中 <span class="math notranslate nohighlight">\(\delta\)</span> 是 BCE Loss， <span class="math notranslate nohighlight">\(\hat{o}\)</span> 和 <span class="math notranslate nohighlight">\(\hat{r}\)</span> 分别是预测的 CTR 和 CVR 。在 CTR 预估准确的前提下，<span class="math notranslate nohighlight">\(\mathcal{R}_{IPS}\)</span> 是 <strong>理想的</strong> 曝光空间 CVR 损失 <span class="math notranslate nohighlight">\(\mathcal{P} = \mathbb{E}_{\mathcal{D}} [ \delta(r, \hat{r}) ]\)</span> （当所有样本及其标签都可观测到）的 <strong>无偏估计</strong> ，也即 <span class="math notranslate nohighlight">\(\hat{r} \rightarrow P(r=1|do(o=1))\)</span> 是曝光空间 CVR 的无偏估计（ <span class="math notranslate nohighlight">\(do\)</span> 指代因果推断中的 do 演算）。</p>
 <p>考虑到 IPS 的高方差问题（当分母 <span class="math notranslate nohighlight">\(\hat{o}\)</span> 很小，对应的权重很大），训练不稳定，ESCM <span class="math notranslate nohighlight">\(^2\)</span> 还提出了 <span class="math notranslate nohighlight">\(\mathcal{R}_{DR}\)</span> 额外构建了一个 Imputation Tower 预估 CVR 的 <strong>预估损失</strong> 。</p>
 <p>总体优化目标：</p>
 <div class="math notranslate nohighlight">
@@ -348,7 +348,7 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>反事实问题（Counterfactual Problem）：在未点击空间，对 CVR 建模。</p>
-<p>虽然 <span class="math notranslate nohighlight">\(\mathcal{R}_{IPS}\)</span> 号称在曝光空间建模，但是公式中乘的 <span class="math notranslate nohighlight">\(o\)</span> 相当于一个 Mask，约束了只对点击样本生效。</p>
+<p>虽然 <span class="math notranslate nohighlight">\(\mathcal{R}_{IPS}\)</span> 号称在曝光空间建模，但是公式中乘的 <span class="math notranslate nohighlight">\(o\)</span> 相当于一个 Mask，约束了只对点击样本生效，不过其均值是在所有曝光样本上计算的。</p>
 </div>
 </section>
 <section id="id15">
@@ -414,8 +414,9 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 <section id="id19">
 <h4>迁移学习： <a class="reference external" href="https://arxiv.org/pdf/2005.10545.pdf">ESAM</a><a class="headerlink" href="#id19" title="Permalink to this headline"></a></h4>
 <a class="reference internal image-reference" href="../_images/04_esam.png"><img alt="../_images/04_esam.png" class="align-center" src="../_images/04_esam.png" style="width: 800px;" /></a>
-<p>目标是期望模型对曝光空间和未曝光空间的打分分布一致。</p>
+<p>目标是期望模型对曝光空间和未曝光空间的打分分布一致，优化向量召回的效果。</p>
 <ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathcal{L}_{s}\)</span> ：基于观测样本（Source Domain），建模 Query 和 Item 的向量相关性，比如 BCE Loss。</p></li>
 <li><p><span class="math notranslate nohighlight">\(\mathcal{L}_{DA}\)</span> ：实现 Attribute Correlation Alignment，要求 Source Domain 和 Target Domain 的 Item 关系是相似的，具体表现为不同 Domain 的协方差矩阵一致。</p></li>
 <li><p><span class="math notranslate nohighlight">\(\mathcal{L}_{DC}^c\)</span> ：实现 Center-Wise Clustering for Source Clustering，在 Source Domain 要求相似 Item（具有同类型的 User Feedback，例如点击/购买）高度聚合，不相似的 Item 相互远离（类似于分类任务中的 Center Loss），结合 <span class="math notranslate nohighlight">\(\mathcal{L}_{DA}\)</span> 也间接对 Target Domain 产生了相同的约束效果。</p></li>
 <li><p><span class="math notranslate nohighlight">\(\mathcal{L}_{DC}^p\)</span> ：实现 Self-Training for Target Clustering，构造伪标签，通过优化 <span class="math notranslate nohighlight">\(l(x) = -p(x) \log p(x)\)</span> 使得低分的伪负样本得分越来越低，高分的伪正样本得分越来越高。</p></li>

@@ -98,7 +98,8 @@ SVD分解
 
 .. note::
 
-  均值方差标准化（Standard Score Normalization，Z-Score Normalization）： :math:`z = \frac{x - \mu}{\sigma}` ，将原始数据转化为均值为 0、标准差为 1 的数据分布，减少不同维度的特征之间的尺度差异性，使其具有可比性，加速算法的收敛速度和精度。
+  均值方差标准化（Standard Score Normalization，Z-Score Normalization）： :math:`z = \frac{x - \mu}{\sigma}` ，
+  将原始数据转化为均值为 0、标准差为 1 的数据分布，减少不同维度的特征之间的尺度差异性，使其具有可比性，加速算法的收敛速度、提升精度。
 
 参考资料
 -----------

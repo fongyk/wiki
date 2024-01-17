@@ -15,7 +15,7 @@ Binary Cross Entropy Loss（极大似然）：
 
   \mathcal{l}_\theta = -\frac{1}{m} \sum_{i=1}^m y_i \log h_\theta(x_i) + (1 - y_i) \log(1 - h_\theta(x_i))
 
-虽然使用了 sigmoid 函数，但该模型仍然是线性分类器，因为即使不经过 sigmoid 函数也可以得出分类结果（与 0 比较），sigmoid 将其转化为概率。
+虽然使用了 sigmoid 函数（也叫做 `Logistic Function <https://en.wikipedia.org/wiki/Logistic_function>`_ ），但该模型仍然是线性分类器，因为即使不经过 sigmoid 函数也可以得出分类结果（与 0 比较），sigmoid 将其转化为概率。
 
 Logistic Regression 更准确的翻译是 **对数几率（Log-Odds）回归** 。对数几率定义为：
 
@@ -24,7 +24,13 @@ Logistic Regression 更准确的翻译是 **对数几率（Log-Odds）回归** �
   \mathrm{LogOdds} & = \log \frac{p(y=1|x)}{1 - p(y=1|x)} \\
                    & = \log \frac{\mathrm{sigmoid}(z)}{1 - \mathrm{sigmoid}(z)} \\
                    & = \theta^\top x \\
-                   & = w^\top \tilde{x} + b
+                   & = w^\top \tilde{x} + b \quad [x \text{比} \tilde{x} \text{多填充了一维 1 用于 Bias}]
+
+对数几率也叫做 `Logit <https://en.wikipedia.org/wiki/Logit>`_ ，它是 sigmoid 函数的反函数：
+
+.. math::
+
+  \mathrm{Logit}(p) = \log \frac{p}{1-p}, \quad p \in (0,1)
 
 .. tip::
 
@@ -103,7 +109,7 @@ Logistic Regression 更准确的翻译是 **对数几率（Log-Odds）回归** �
 
 .. note::
 
-  `凸函数 <https://en.wikipedia.org/wiki/Convex_function>`_ ：
+  `凸函数（Convex Function） <https://en.wikipedia.org/wiki/Convex_function>`_ ：
 
   - 一元：二阶导数非负
   - 多元：Hessian Matrix 半正定

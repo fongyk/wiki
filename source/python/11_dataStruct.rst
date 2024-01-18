@@ -224,7 +224,7 @@ queue 模块实现了多生产者、多消费者队列，适用于消息必须�
 deque
 ^^^^^^^^
 
-double-ended queue，双端队列。
+双端队列（Double-Ended Queue）。
 
 ::
 

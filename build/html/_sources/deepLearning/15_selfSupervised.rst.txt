@@ -84,7 +84,7 @@ SimCLR 做了两次非线性映射（Encoder 和 Projector），可能是如下�
 
 .. math::
 
-    \mathcal{L}(i,j) &= \log \frac{\exp(s_{i,j} / \tau)}{\sum_{k=1,k \ne i}^{2N} \exp(s_{i,k} / \tau)} \\
+    \mathcal{L}(i,j) &= - \log \frac{\exp(s_{i,j} / \tau)}{\sum_{k=1,k \ne i}^{2N} \exp(s_{i,k} / \tau)} \\
     s_{i,j} &= \frac{\boldsymbol{z}_i^{\top} \boldsymbol{z}_j}{\left\Vert \boldsymbol{z}_i \right\Vert \left\Vert \boldsymbol{z}_j \right\Vert}
 
 .. note::

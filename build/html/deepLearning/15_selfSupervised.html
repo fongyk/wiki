@@ -196,7 +196,7 @@ NLP 领域目前的经验应该是：自监督预训练使用的数据量越大�
 <p>SimCLR 做了两次非线性映射（Encoder 和 Projector），可能是如下原因：一般的特征抽取器在做特征提取的时候，底层网络偏向抽取通用的低层特征，往往与任务无关， <strong>通用性强</strong> ；接近任务 Loss 的高层网络结构，更倾向编码 <strong>任务相关</strong> 的高阶特征信息。</p>
 <p>采用 <a class="reference external" href="https://arxiv.org/pdf/1807.03748.pdf">Info NCE</a> 损失函数：</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\mathcal{L}(i,j) &amp;= \log \frac{\exp(s_{i,j} / \tau)}{\sum_{k=1,k \ne i}^{2N} \exp(s_{i,k} / \tau)} \\
+\[\begin{split}\mathcal{L}(i,j) &amp;= - \log \frac{\exp(s_{i,j} / \tau)}{\sum_{k=1,k \ne i}^{2N} \exp(s_{i,k} / \tau)} \\
 s_{i,j} &amp;= \frac{\boldsymbol{z}_i^{\top} \boldsymbol{z}_j}{\left\Vert \boldsymbol{z}_i \right\Vert \left\Vert \boldsymbol{z}_j \right\Vert}\end{split}\]</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

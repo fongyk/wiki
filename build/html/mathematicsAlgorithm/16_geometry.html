@@ -73,10 +73,11 @@
 <li class="toctree-l2"><a class="reference internal" href="15_probability.html">15. 概率基础</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">16. 几何</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2">16.1. 仿射变换</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#translation">平移（translation）</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#scaling">缩放（scaling）</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#rotation">逆时针旋转（rotation）</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#shear">错切（shear）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#identity">恒等变换（Identity）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#translation">平移（Translation）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#scaling">缩放（Scaling）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rotation">逆时针旋转（Rotation）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#shear">错切（Shear）</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">16.2. 线段相交</a><ul>
@@ -137,11 +138,11 @@
 <h2><span class="section-number">16.1. </span>仿射变换<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <p>仿射变换（Affine Transformation）是一个向量空间到另一个向量空间的变换（平移 + 线性变换），变换前后保持以下属性：</p>
 <ul class="simple">
-<li><p>collinearity ：共线的点仍然共线。</p></li>
-<li><p>parallelism ：平行的线仍然平行。</p></li>
-<li><p>convexity ：凸集仍然是凸集。</p></li>
-<li><p>ratios of lengths ：不同线段的长度比值保持不变。</p></li>
-<li><p>barycenters ：点集的重心保持不变。</p></li>
+<li><p>Collinearity ：共线的点仍然共线。</p></li>
+<li><p>Parallelism ：平行的线仍然平行。</p></li>
+<li><p>Convexity ：凸集仍然是凸集。</p></li>
+<li><p>Ratios Of Lengths ：不同线段的长度比值保持不变。</p></li>
+<li><p>Barycenters ：点集的重心保持不变。</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 $$
@@ -164,8 +165,19 @@ T =
   a_3 &amp; a_4 &amp; t_y \\
   0 &amp; 0 &amp; 1
 \end{bmatrix}
-$$</div><section id="translation">
-<h3>平移（translation）<a class="headerlink" href="#translation" title="Permalink to this headline"></a></h3>
+$$</div><section id="identity">
+<h3>恒等变换（Identity）<a class="headerlink" href="#identity" title="Permalink to this headline"></a></h3>
+<div class="math notranslate nohighlight">
+$$
+T =
+\begin{bmatrix}
+  1 &amp; 0 &amp; 0 \\
+  0 &amp; 1 &amp; 0 \\
+  0 &amp; 0 &amp; 1
+\end{bmatrix}
+$$</div></section>
+<section id="translation">
+<h3>平移（Translation）<a class="headerlink" href="#translation" title="Permalink to this headline"></a></h3>
 <div class="math notranslate nohighlight">
 $$
 T =
@@ -176,7 +188,7 @@ T =
 \end{bmatrix}
 $$</div></section>
 <section id="scaling">
-<h3>缩放（scaling）<a class="headerlink" href="#scaling" title="Permalink to this headline"></a></h3>
+<h3>缩放（Scaling）<a class="headerlink" href="#scaling" title="Permalink to this headline"></a></h3>
 <div class="math notranslate nohighlight">
 $$
 T =
@@ -188,7 +200,7 @@ T =
 $$</div><p>当 <span class="math notranslate nohighlight">\(s_x=-1\)</span> 或 <span class="math notranslate nohighlight">\(s_y=-1\)</span> 表示翻转（镜像）。</p>
 </section>
 <section id="rotation">
-<h3>逆时针旋转（rotation）<a class="headerlink" href="#rotation" title="Permalink to this headline"></a></h3>
+<h3>逆时针旋转（Rotation）<a class="headerlink" href="#rotation" title="Permalink to this headline"></a></h3>
 <div class="math notranslate nohighlight">
 $$
 T =
@@ -199,7 +211,7 @@ T =
 \end{bmatrix}
 $$</div></section>
 <section id="shear">
-<h3>错切（shear）<a class="headerlink" href="#shear" title="Permalink to this headline"></a></h3>
+<h3>错切（Shear）<a class="headerlink" href="#shear" title="Permalink to this headline"></a></h3>
 <div class="math notranslate nohighlight">
 $$
 T =
@@ -233,7 +245,7 @@ $$</div></section>
 </div>
 <p><strong>跨立实验</strong></p>
 <p>如果两条线段相交，那么：以其中任意一条线段为标准，另一条线段的两个端点一定在这条线段（延长线）的两端，或者在这条线段上。</p>
-<p>如果在两端，利用向量叉乘（cross product）可表示为：</p>
+<p>如果在两端，利用向量叉乘（ <a class="reference external" href="https://en.wikipedia.org/wiki/Cross_product">Cross Product</a> ）可表示为：</p>
 <div class="math notranslate nohighlight">
 \[(\overrightarrow{AB} \times \overrightarrow{AC}) \cdot (\overrightarrow{AB} \times \overrightarrow{AD}) &lt; 0,\quad (\overrightarrow{CD} \times \overrightarrow{CA}) \cdot (\overrightarrow{CD} \times \overrightarrow{CB}) &lt; 0.\]</div>
 <a class="reference internal image-reference" href="../_images/16_crossProduct.jpg"><img alt="../_images/16_crossProduct.jpg" class="align-center" src="../_images/16_crossProduct.jpg" style="width: 600px;" /></a>
@@ -353,7 +365,7 @@ $$
 \end{vmatrix}
  = 0
 $$</div><p>表示两线段重合或平行。</p>
-<p>若 <span class="math notranslate nohighlight">\(\Delta \neq 0\)</span> ，（利用 Cramer 法则）求出</p>
+<p>若 <span class="math notranslate nohighlight">\(\Delta \neq 0\)</span> ，（利用 <a class="reference external" href="https://en.wikipedia.org/wiki/Cramer%27s_rule">Cramer 法则</a> ）求出</p>
 <div class="math notranslate nohighlight">
 $$
 \lambda

@@ -15,9 +15,7 @@
   - ``git branch dev`` 创建分支
   - ``git checkout dev`` 切换分支
 
-.. note::
-
-  从 master 分支创建 dev分支，则 dev 分支的仓库已经包含了 master 分支的内容，但是在 master 分支下，无法看到 dev 分支新增或修改的内容。
+  从 master 分支创建 dev 分支，则 dev 分支的仓库已经包含了 master 分支的内容，但是在 master 分支下，无法看到 dev 分支新增或修改的内容。
 
 - ``git branch`` -r：查看远程分支，-a：查看所有分支（包括本地分支）。
 
@@ -56,6 +54,11 @@
 .. image:: ./03_delete_branch.png
     :width: 300px
     :align: center
+
+|
+
+`git merge <https://git-scm.com/docs/git-merge>`_ 会产生一条额外的 commit 记录，如果希望得到更干净、直观的记录，可以使用 `get rebase <https://git-scm.com/docs/git-rebase>`_ 。rebase 操作还能用于合并多次提交记录。
+但是不建议在公共分支（如 master）进行 rebase 操作，避免出现代码提交记录错乱和浪费存储空间的现象。
 
 .. note::
 
@@ -100,3 +103,7 @@ Git 比较 Source 和 Destination 两个分支的时候，展示的 Diff 并不�
 6. Comparing two branches yields different diffs
 
   https://stackoverflow.com/questions/49135231/comparing-two-branches-yields-different-diffs
+
+7. git rebase与merge的区别
+
+  https://dingjingmaster.github.io/2022/05/0002-rebase%E4%B8%8Emerge%E7%9A%84%E5%8C%BA%E5%88%AB/

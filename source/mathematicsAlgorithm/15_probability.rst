@@ -91,13 +91,13 @@
 
 .. math::
 
-    \int_{-\infty} ^{median} f(x) dx \geqslant \frac{1}{2} \ \mathrm{and} \ \int_{median} ^{+\infty} f(x) dx \geqslant \frac{1}{2}.
+    \int_{-\infty} ^{\mathrm{median}} f(x) dx \geqslant \frac{1}{2} \ \mathrm{and} \ \int_{\mathrm{median}} ^{+\infty} f(x) dx \geqslant \frac{1}{2}.
 
 众数：
 
 .. math::
 
-    mode = \mathrm{argmax} \ f(x)
+    \mathrm{mode} = \mathrm{argmax} \ f(x)
 
 
 对数正态分布
@@ -115,7 +115,7 @@
 
 .. math::
 
-    mean =  e^{\mu + \frac{\sigma^2}{2}},\ variance = (e^{\sigma^2}-1) e^{2\mu + \sigma^2},\ median = e^\mu,\ mode = e^{\mu - \sigma^2}.
+    \mathrm{mean} =  e^{\mu + \frac{\sigma^2}{2}},\ \mathrm{variance} = (e^{\sigma^2}-1) e^{2\mu + \sigma^2},\ \mathrm{median} = e^\mu,\ \mathrm{mode} = e^{\mu - \sigma^2}.
 
 .. image:: ./15_pdf.png
   :align: center

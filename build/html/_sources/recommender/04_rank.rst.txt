@@ -66,10 +66,10 @@ FM 模型对于稀疏数据有较强的学习能力，且预测是 **线性时�
 .. math::
 
     & \sum_{i=1}^{n} \sum_{j=i+1}^{n}\left\langle\mathbf{v}_{i}, \mathbf{v}_{j}\right\rangle x_{i} x_{j} \\ 
-    = & \frac{1}{2} \sum_{i=1}^{n} \sum_{j=1}^{n}\left\langle\mathbf{v}_{i}, \mathbf{v}_{j}\right\rangle x_{i} x_{j}-\frac{1}{2} \sum_{i=1}^{n}\left\langle\mathbf{v}_{i}, \mathbf{v}_{i}\right\rangle x_{i} x_{i} \\
-    = & \frac{1}{2}\left(\sum_{i=1}^{n} \sum_{j=1}^{n} \sum_{f=1}^{k} v_{i, f} v_{j, f} x_{i} x_{j}-\sum_{i=1}^{n} \sum_{f=1}^{k} v_{i, f} v_{i, f} x_{i} x_{i}\right) \\
-    = & \frac{1}{2} \sum_{f=1}^{k}\left(\left(\sum_{i=1}^{n} v_{i, f} x_{i}\right)\left(\sum_{j=1}^{n} v_{j, f} x_{j}\right)-\sum_{i=1}^{n} v_{i, f}^{2} x_{i}^{2}\right) \\
-    = & \frac{1}{2} \sum_{f=1}^{k}\left(\left(\sum_{i=1}^{n} v_{i, f} x_{i}\right)^{2}-\sum_{i=1}^{n} v_{i, f}^{2} x_{i}^{2}\right)
+    = & \frac{1}{2} \left( \sum_{i=1}^{n} \sum_{j=1}^{n}\left\langle\mathbf{v}_{i}, \mathbf{v}_{j}\right\rangle x_{i} x_{j} - \sum_{i=1}^{n}\left\langle\mathbf{v}_{i}, \mathbf{v}_{i}\right\rangle x_{i} x_{i} \right) \\
+    = & \frac{1}{2} \left( \sum_{i=1}^{n} \sum_{j=1}^{n} \sum_{f=1}^{k} v_{i, f} v_{j, f} x_{i} x_{j} - \sum_{i=1}^{n} \sum_{f=1}^{k} v_{i, f} v_{i, f} x_{i} x_{i} \right) \\
+    = & \frac{1}{2} \sum_{f=1}^{k}\left(\left(\sum_{i=1}^{n} v_{i, f} x_{i}\right)\left(\sum_{j=1}^{n} v_{j, f} x_{j}\right) - \sum_{i=1}^{n} v_{i, f}^{2} x_{i}^{2} \right) \\
+    = & \frac{1}{2} \sum_{f=1}^{k}\left(\left(\sum_{i=1}^{n} v_{i, f} x_{i}\right)^{2} - \sum_{i=1}^{n} v_{i, f}^{2} x_{i}^{2}\right)
 
 .. tip::
 
@@ -328,7 +328,42 @@ MoE 模型像是将 Share Bottom 分解成多个 Expert，然后通过门控网�
 
 MMoE 在 MoE 的基础上将所有任务共享一个门控网络变成不同任务使用不同的门控网络，不同任务同一个专家也有不同的权重，更加利于模型捕捉到子任务间的相关性和差异性。
 
-MMOE 中所有的 Expert 是被不同任务所共享的，这可能无法捕捉到任务之间更复杂的关系，从而给部分任务带来一定的噪声。
+MMoE 中所有的 Expert 是被不同任务所共享的，这可能无法捕捉到任务之间更复杂的关系，从而给部分任务带来一定的噪声。
+
+`STAR <https://arxiv.org/pdf/2101.11427.pdf>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. image:: ./04_star.png
+    :width: 400px
+    :align: center
+
+创新点：
+
+- Partitioned Normalization：假定样本只在各个 Domain 内独立同分布，对不同 Domain 采用私有统计量（均值和方差）和可学习参数（ :math:`\gamma_p` 和 :math:`\beta_p` ）。
+  
+  .. math::
+
+    z^{\prime} = (\gamma * \gamma_p) \frac{z - E_p}{\sqrt{Var_p + \epsilon}} + (\beta + \beta_p)
+
+- STAR Topology Fully-Connected Network：对于每一个 FC 层，都有中心的共享参数和场景私有参数，每个场景最终的参数通过二者进行 Element-wise Product 得到：
+
+  .. math::
+
+    W_p^{\star} = W_p \otimes W, \quad b_p^{\star} = b_p + b.
+
+- Auxiliary Network：类似于 Wide & Deep 的做法，将 Domain Indicator 特征输入一个小的辅助网络，其输出和主网络相加，再经过 Sigmoid 得到最终预测值。
+
+相比于 MMoE 的优点：
+
+- MMoE 对不同任务采用独立的 FC 层，缺少共享参数。
+- MMoE 通过 Gate 隐式地建模场景间的关系，这样会丢失 Domain-Specific 知识；而 STAR 引入场景先验，通过场景私有参数 & 共享参数显式地建模场景间的关系。
+- MMoE 需要计算每个场景的 Expert 和 Gate，计算开销更大。
+- MMoE 对于新场景不友好，Gate 的学习存在冷启动问题。
+
+
+.. note::
+
+  论文中还对比了 `Cross-Stitch <https://arxiv.org/pdf/1604.03539.pdf>`_ ，这是 CV 领域提出的一个多任务学习方法，用于学习两个网络的 Hidden Layer 输出特征的线性组合。
 
 
 `MTMS <https://github.com/tangxyw/RecSysPapers/blob/main/Multi-Scenario/%5B2021%5D%5BBaidu%5D%20Multi-Task%20and%20Multi-Scene%20Unified%20Ranking%20Model%20for%20Online%20Advertising.pdf>`_
@@ -527,3 +562,7 @@ Position Bias
 19. ESMM建模CVR，是否有预估偏置？Entire Space的锅？
 
   https://zhuanlan.zhihu.com/p/352991132
+
+20. CIKM 2021 | 多场景下的星型CTR预估模型STAR
+
+  https://zhuanlan.zhihu.com/p/437246384

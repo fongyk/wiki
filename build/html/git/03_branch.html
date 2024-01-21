@@ -109,19 +109,14 @@
 <p class="admonition-title">Warning</p>
 <p>Github 已经将 master 分支改名为 main。</p>
 </div>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">dev</span></code> 创建分支 dev，并切换到 dev 分支（此时可以正常 add、commit 等）。相当于下面两条指令：</p>
 <ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">dev</span></code> 创建分支 dev，并切换到 dev 分支（此时可以正常 add、commit 等）。相当于下面两条指令：</p>
+<ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">dev</span></code> 创建分支</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">dev</span></code> 切换分支</p></li>
 </ul>
+<p>从 master 分支创建 dev 分支，则 dev 分支的仓库已经包含了 master 分支的内容，但是在 master 分支下，无法看到 dev 分支新增或修改的内容。</p>
 </li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>从 master 分支创建 dev分支，则 dev 分支的仓库已经包含了 master 分支的内容，但是在 master 分支下，无法看到 dev 分支新增或修改的内容。</p>
-</div>
-<ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code> -r：查看远程分支，-a：查看所有分支（包括本地分支）。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span> <span class="pre">dev</span></code> 把 dev 分支的内容合并到当前分支（如 master 分支）。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-d</span> <span class="pre">dev</span></code> （合并之后）删除 dev 分支。</p></li>
@@ -137,6 +132,11 @@
 <a class="reference internal image-reference" href="../_images/03_merge_branch.png"><img alt="../_images/03_merge_branch.png" class="align-center" src="../_images/03_merge_branch.png" style="width: 300px;" /></a>
 <p><strong>5.</strong> 删除 <strong>dev</strong> 分支。</p>
 <a class="reference internal image-reference" href="../_images/03_delete_branch.png"><img alt="../_images/03_delete_branch.png" class="align-center" src="../_images/03_delete_branch.png" style="width: 300px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><a class="reference external" href="https://git-scm.com/docs/git-merge">git merge</a> 会产生一条额外的 commit 记录，如果希望得到更干净、直观的记录，可以使用 <a class="reference external" href="https://git-scm.com/docs/git-rebase">get rebase</a> 。rebase 操作还能用于合并多次提交记录。
+但是不建议在公共分支（如 master）进行 rebase 操作，避免出现代码提交记录错乱和浪费存储空间的现象。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>协同开发场景下，在开发自己的分支时，要注意合并 master 分支的最新更新： <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">origin</span> <span class="pre">master</span></code> ，手动解决冲突。</p>
@@ -191,6 +191,12 @@
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://stackoverflow.com/questions/49135231/comparing-two-branches-yields-different-diffs">https://stackoverflow.com/questions/49135231/comparing-two-branches-yields-different-diffs</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="7">
+<li><p>git rebase与merge的区别</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://dingjingmaster.github.io/2022/05/0002-rebase%E4%B8%8Emerge%E7%9A%84%E5%8C%BA%E5%88%AB/">https://dingjingmaster.github.io/2022/05/0002-rebase%E4%B8%8Emerge%E7%9A%84%E5%8C%BA%E5%88%AB/</a></p>
 </div></blockquote>
 </section>
 </section>

@@ -6,15 +6,15 @@
 
 仿射变换（Affine Transformation）是一个向量空间到另一个向量空间的变换（平移 + 线性变换），变换前后保持以下属性：
 
-- collinearity ：共线的点仍然共线。
+- Collinearity ：共线的点仍然共线。
 
-- parallelism ：平行的线仍然平行。
+- Parallelism ：平行的线仍然平行。
 
-- convexity ：凸集仍然是凸集。
+- Convexity ：凸集仍然是凸集。
 
-- ratios of lengths ：不同线段的长度比值保持不变。
+- Ratios Of Lengths ：不同线段的长度比值保持不变。
 
-- barycenters ：点集的重心保持不变。
+- Barycenters ：点集的重心保持不变。
 
 .. math::
     :nowrap:
@@ -41,7 +41,22 @@
     \end{bmatrix}
     $$
 
-平移（translation）
+恒等变换（Identity）
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. math::
+    :nowrap:
+
+    $$
+    T =
+    \begin{bmatrix}
+      1 & 0 & 0 \\
+      0 & 1 & 0 \\
+      0 & 0 & 1
+    \end{bmatrix}
+    $$
+
+平移（Translation）
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. math::
@@ -56,7 +71,7 @@
     \end{bmatrix}
     $$
 
-缩放（scaling）
+缩放（Scaling）
 ^^^^^^^^^^^^^^^^^^
 
 .. math::
@@ -73,7 +88,7 @@
 
 当 :math:`s_x=-1` 或 :math:`s_y=-1` 表示翻转（镜像）。
 
-逆时针旋转（rotation）
+逆时针旋转（Rotation）
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. math::
@@ -88,7 +103,7 @@
     \end{bmatrix}
     $$
 
-错切（shear）
+错切（Shear）
 ^^^^^^^^^^^^^^^^^^
 
 .. math::
@@ -142,7 +157,7 @@
 
 如果两条线段相交，那么：以其中任意一条线段为标准，另一条线段的两个端点一定在这条线段（延长线）的两端，或者在这条线段上。
 
-如果在两端，利用向量叉乘（cross product）可表示为：
+如果在两端，利用向量叉乘（ `Cross Product <https://en.wikipedia.org/wiki/Cross_product>`_ ）可表示为：
 
 .. math::
 
@@ -299,7 +314,7 @@
 
 表示两线段重合或平行。
 
-若 :math:`\Delta \neq 0` ，（利用 Cramer 法则）求出
+若 :math:`\Delta \neq 0` ，（利用 `Cramer 法则 <https://en.wikipedia.org/wiki/Cramer%27s_rule>`_ ）求出
 
 .. math::
   :nowrap:

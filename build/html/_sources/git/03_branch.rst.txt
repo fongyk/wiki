@@ -57,7 +57,7 @@
 
 |
 
-`git merge <https://git-scm.com/docs/git-merge>`_ 会产生一条额外的 commit 记录，如果希望得到更干净、直观的记录，可以使用 `get rebase <https://git-scm.com/docs/git-rebase>`_ 。rebase 操作还能用于合并多次提交记录。
+`git merge <https://git-scm.com/docs/git-merge>`_ 会产生一条额外的 commit 记录，如果希望得到更干净、直观的记录，可以使用 `git rebase <https://git-scm.com/docs/git-rebase>`_ 。rebase 操作还能用于合并多次提交记录。
 但是不建议在公共分支（如 master）进行 rebase 操作，避免出现代码提交记录错乱和浪费存储空间的现象。
 
 .. note::

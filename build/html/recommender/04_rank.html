@@ -80,17 +80,18 @@
 <li class="toctree-l3"><a class="reference internal" href="#id13">4.4. 多目标学习</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#ctr-cvr">CTR &amp; CVR 联合建模</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id16">MMoE</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id17">STAR</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id18">MTMS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id17">PLE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id18">STAR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id19">MTMS</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id19">4.5. 负采样</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">4.5. 负采样</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#bias">4.6. Bias 问题</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#selection-bias">Selection Bias</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#position-bias">Position Bias</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id21">4.7. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">4.7. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="05_rerank.html">5. 重排</a></li>
@@ -381,8 +382,18 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 <p>MMoE 中所有的 Expert 是被不同任务所共享的，这可能无法捕捉到任务之间更复杂的关系，从而给部分任务带来一定的噪声。</p>
 </section>
 <section id="id17">
-<h3><a class="reference external" href="https://arxiv.org/pdf/2101.11427.pdf">STAR</a><a class="headerlink" href="#id17" title="Permalink to this headline"></a></h3>
-<a class="reference internal image-reference" href="../_images/04_star.png"><img alt="../_images/04_star.png" class="align-center" src="../_images/04_star.png" style="width: 400px;" /></a>
+<h3><a class="reference external" href="https://github.com/tangxyw/RecSysPapers/blob/main/Multi-Task/%5B2020%5D%5BTencent%5D%5BPLE%5D%20Progressive%20Layered%20Extraction%20%28PLE%29%20-%20A%20Novel%20Multi-Task%20Learning%20%28MTL%29%20Model%20for%20Personalized%20Recommendations.pdf">PLE</a><a class="headerlink" href="#id17" title="Permalink to this headline"></a></h3>
+<p><a class="reference internal" href="../_images/04_cgc.png"><img alt="cgc" src="../_images/04_cgc.png" style="width: 40%;" /></a>   <a class="reference internal" href="../_images/04_ple.png"><img alt="ple" src="../_images/04_ple.png" style="width: 50%;" /></a></p>
+<p>PLE 致力于解决两个问题：</p>
+<ul class="simple">
+<li><p>负迁移（Negative Transfer）：当两个任务/场景的相关性很弱，共享 Embedding 之后效果反而变得更差。</p></li>
+<li><p>跷跷板现象（Seesaw Phenomenon）：一个任务性能的提升是通过损害另一个任务的性能做到的。</p></li>
+</ul>
+<p>PLE 显式地区分了共享 Expert 网络和任务专有的 Expert 网络，使用一个 Gating Network（一层 FC + Softmax）对各个 Expert 输出的向量进行加权。这些 Expert 网络是多层级的。</p>
+</section>
+<section id="id18">
+<h3><a class="reference external" href="https://arxiv.org/pdf/2101.11427.pdf">STAR</a><a class="headerlink" href="#id18" title="Permalink to this headline"></a></h3>
+<a class="reference internal image-reference" href="../_images/04_star.png"><img alt="../_images/04_star.png" class="align-center" src="../_images/04_star.png" style="width: 300px;" /></a>
 <p>创新点：</p>
 <ul>
 <li><p>Partitioned Normalization：假定样本只在各个 Domain 内独立同分布，对不同 Domain 采用私有统计量（均值和方差）和可学习参数（ <span class="math notranslate nohighlight">\(\gamma_p\)</span> 和 <span class="math notranslate nohighlight">\(\beta_p\)</span> ）。</p>
@@ -399,7 +410,7 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 <ul class="simple">
 <li><p>MMoE 对不同任务采用独立的 FC 层，缺少共享参数。</p></li>
 <li><p>MMoE 通过 Gate 隐式地建模场景间的关系，这样会丢失 Domain-Specific 知识；而 STAR 引入场景先验，通过场景私有参数 &amp; 共享参数显式地建模场景间的关系。</p></li>
-<li><p>MMoE 需要计算每个场景的 Expert 和 Gate，计算开销更大。</p></li>
+<li><p>MMoE 需要计算所有的 Expert，计算开销更大。</p></li>
 <li><p>MMoE 对于新场景不友好，Gate 的学习存在冷启动问题。</p></li>
 </ul>
 <div class="admonition note">
@@ -407,8 +418,8 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 <p>论文中还对比了 <a class="reference external" href="https://arxiv.org/pdf/1604.03539.pdf">Cross-Stitch</a> ，这是 CV 领域提出的一个多任务学习方法，用于学习两个网络的 Hidden Layer 输出特征的线性组合。</p>
 </div>
 </section>
-<section id="id18">
-<h3><a class="reference external" href="https://github.com/tangxyw/RecSysPapers/blob/main/Multi-Scenario/%5B2021%5D%5BBaidu%5D%20Multi-Task%20and%20Multi-Scene%20Unified%20Ranking%20Model%20for%20Online%20Advertising.pdf">MTMS</a><a class="headerlink" href="#id18" title="Permalink to this headline"></a></h3>
+<section id="id19">
+<h3><a class="reference external" href="https://github.com/tangxyw/RecSysPapers/blob/main/Multi-Scenario/%5B2021%5D%5BBaidu%5D%20Multi-Task%20and%20Multi-Scene%20Unified%20Ranking%20Model%20for%20Online%20Advertising.pdf">MTMS</a><a class="headerlink" href="#id19" title="Permalink to this headline"></a></h3>
 <a class="reference internal image-reference" href="../_images/04_mtms.png"><img alt="../_images/04_mtms.png" class="align-center" src="../_images/04_mtms.png" style="width: 800px;" /></a>
 <p>MTMS 对多任务、多场景进行统一特征管理，训练分成两个阶段：</p>
 <ul class="simple">
@@ -420,8 +431,8 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 \[\mathcal{L} = \mathcal{L}_{\mathrm{CTR}} + \mathcal{L}_{\mathrm{CVR}} + \mathcal{L}_{\mathrm{CTCVR}}\]</div>
 </section>
 </section>
-<section id="id19">
-<h2><span class="section-number">4.5. </span>负采样<a class="headerlink" href="#id19" title="Permalink to this headline"></a></h2>
+<section id="id20">
+<h2><span class="section-number">4.5. </span>负采样<a class="headerlink" href="#id20" title="Permalink to this headline"></a></h2>
 <p>为了控制数据规模，降低训练开销，可以保留全部正样本、对负样本进行降采样，一方面提高了训练效率，另一方面还缓解了正负样本不均衡的问题。</p>
 <p>负采样带来的问题是 CTR/CVR 预估值的漂移：打分均值偏高。校正公式：</p>
 <div class="math notranslate nohighlight">
@@ -432,15 +443,16 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 <h2><span class="section-number">4.6. </span>Bias 问题<a class="headerlink" href="#bias" title="Permalink to this headline"></a></h2>
 <section id="selection-bias">
 <h3>Selection Bias<a class="headerlink" href="#selection-bias" title="Permalink to this headline"></a></h3>
-<p>在实际推荐系统中，长尾问题是很常见的，曝光的 Item 永远只是一小部分热门 Item，大量的非热门 Item 曝光是很少的。</p>
+<p>在实际推荐系统中，长尾问题是很常见的，曝光的 Item 永远只是一小部分热门 Item，大量的非热门 Item 曝光是很少的。
+更确切地说，参与打分的样本数量远多于被曝光的样本。</p>
 <p>消偏思路：</p>
 <ul class="simple">
 <li><p>增强冷启动和探索。</p></li>
 <li><p>迁移学习。</p></li>
 <li><p>Inverse Propensity Scoring 和 Imputation。</p></li>
 </ul>
-<section id="id20">
-<h4>迁移学习： <a class="reference external" href="https://arxiv.org/pdf/2005.10545.pdf">ESAM</a><a class="headerlink" href="#id20" title="Permalink to this headline"></a></h4>
+<section id="id21">
+<h4>迁移学习： <a class="reference external" href="https://arxiv.org/pdf/2005.10545.pdf">ESAM</a><a class="headerlink" href="#id21" title="Permalink to this headline"></a></h4>
 <a class="reference internal image-reference" href="../_images/04_esam.png"><img alt="../_images/04_esam.png" class="align-center" src="../_images/04_esam.png" style="width: 800px;" /></a>
 <p>目标是期望模型对曝光空间和未曝光空间的打分分布一致，优化向量召回的效果。</p>
 <ul class="simple">
@@ -495,8 +507,8 @@ e &amp; = \delta - \hat{\delta}\end{split}\]</div>
 </div>
 </section>
 </section>
-<section id="id21">
-<h2><span class="section-number">4.7. </span>参考资料<a class="headerlink" href="#id21" title="Permalink to this headline"></a></h2>
+<section id="id22">
+<h2><span class="section-number">4.7. </span>参考资料<a class="headerlink" href="#id22" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>《深度学习推荐系统》，王喆，电子工业出版社。</p></li>
 <li><p>推荐系统的架构-冷启动-召回-粗排-精排-重排</p></li>

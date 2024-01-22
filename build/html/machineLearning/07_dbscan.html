@@ -54,7 +54,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">机器学习</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="01_lr.html">1. Logistic Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01_lr.html">1. 逻辑回归</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02_svm.html">2. 支持向量机</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_pca.html">3. 主成分分析</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_derivative.html">4. 常用矩阵求导公式</a></li>
@@ -114,11 +114,11 @@
 <p>参数对 ( <span class="math notranslate nohighlight">\(\epsilon\)</span> , <span class="math notranslate nohighlight">\(MinPts\)</span> ) 用来描述邻域的样本分布紧密程度，<span class="math notranslate nohighlight">\(\epsilon\)</span> 是样本的邻域距离阈值，<span class="math notranslate nohighlight">\(MinPts\)</span> 是邻域中样本个数的阈值。</p>
 <p>假设有样本集 <span class="math notranslate nohighlight">\(\mathcal{D} = \{ x_1, x_2, \cdots, x_n \}\)</span> ，定义几个概念如下：</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\epsilon\)</span> 邻域（Eps-neighborhood）：<span class="math notranslate nohighlight">\(\mathcal{N}_{\epsilon}(x_i) = \{ x_j \in \mathcal{D} | distance(x_i, x_j) \leq \epsilon  \}\)</span> 。</p></li>
-<li><p>核心点（Core points）：核心点的 <span class="math notranslate nohighlight">\(\epsilon\)</span> 邻域包含至少 <span class="math notranslate nohighlight">\(MinPts\)</span> 个样本点。</p></li>
-<li><p>密度直达（Directly density-reachable）：假设 <span class="math notranslate nohighlight">\(x_i\)</span> 是核心点，<span class="math notranslate nohighlight">\(x_j \in \mathcal{N}_{\epsilon}(x_i)\)</span> ，则称 <span class="math notranslate nohighlight">\(x_j\)</span> 由 <span class="math notranslate nohighlight">\(x_i\)</span> 密度直达，反之不一定成立。</p></li>
-<li><p>密度可达（Density-reachable）：假设存在样本序列 <span class="math notranslate nohighlight">\(p_1, p_2, \cdots, p_T\)</span> ，满足 <span class="math notranslate nohighlight">\(p_1 = x_i, p_T = x_j\)</span> ，且 <span class="math notranslate nohighlight">\(p_1, p_2, \cdots, p_{T-1}\)</span> 都是核心点， <span class="math notranslate nohighlight">\(p_{t+1}\)</span> 由 <span class="math notranslate nohighlight">\(p_t\)</span> 密度直达，则称 <span class="math notranslate nohighlight">\(x_j\)</span> 由 <span class="math notranslate nohighlight">\(x_i\)</span> 密度可达，反之不一定成立。</p></li>
-<li><p>密度相连（Density-connected）: 对于 <span class="math notranslate nohighlight">\(x_i\)</span> 和 <span class="math notranslate nohighlight">\(x_j\)</span> ，如果存在核心点  <span class="math notranslate nohighlight">\(x_k\)</span> ，使 <span class="math notranslate nohighlight">\(x_i\)</span> 和 <span class="math notranslate nohighlight">\(x_j\)</span> 均由 <span class="math notranslate nohighlight">\(x_k\)</span> 密度可达，则称 <span class="math notranslate nohighlight">\(x_i\)</span> 和 <span class="math notranslate nohighlight">\(x_j\)</span> 密度相连；密度相连关系是满足对称性的。</p></li>
+<li><p><span class="math notranslate nohighlight">\(\epsilon\)</span> 邻域（Eps-Neighborhood）：<span class="math notranslate nohighlight">\(\mathcal{N}_{\epsilon}(x_i) = \{ x_j \in \mathcal{D} | \mathrm{distance}(x_i, x_j) \leq \epsilon  \}\)</span> 。</p></li>
+<li><p>核心点（Core Points）：核心点的 <span class="math notranslate nohighlight">\(\epsilon\)</span> 邻域包含至少 <span class="math notranslate nohighlight">\(MinPts\)</span> 个样本点。</p></li>
+<li><p>密度直达（Directly Density-Reachable）：假设 <span class="math notranslate nohighlight">\(x_i\)</span> 是核心点，<span class="math notranslate nohighlight">\(x_j \in \mathcal{N}_{\epsilon}(x_i)\)</span> ，则称 <span class="math notranslate nohighlight">\(x_j\)</span> 由 <span class="math notranslate nohighlight">\(x_i\)</span> 密度直达，反之不一定成立。</p></li>
+<li><p>密度可达（Density-Reachable）：假设存在样本序列 <span class="math notranslate nohighlight">\(p_1, p_2, \cdots, p_T\)</span> ，满足 <span class="math notranslate nohighlight">\(p_1 = x_i, p_T = x_j\)</span> ，且 <span class="math notranslate nohighlight">\(p_1, p_2, \cdots, p_{T-1}\)</span> 都是核心点， <span class="math notranslate nohighlight">\(p_{t+1}\)</span> 由 <span class="math notranslate nohighlight">\(p_t\)</span> 密度直达，则称 <span class="math notranslate nohighlight">\(x_j\)</span> 由 <span class="math notranslate nohighlight">\(x_i\)</span> 密度可达，反之不一定成立。</p></li>
+<li><p>密度相连（Density-Connected）: 对于 <span class="math notranslate nohighlight">\(x_i\)</span> 和 <span class="math notranslate nohighlight">\(x_j\)</span> ，如果存在核心点  <span class="math notranslate nohighlight">\(x_k\)</span> ，使 <span class="math notranslate nohighlight">\(x_i\)</span> 和 <span class="math notranslate nohighlight">\(x_j\)</span> 均由 <span class="math notranslate nohighlight">\(x_k\)</span> 密度可达，则称 <span class="math notranslate nohighlight">\(x_i\)</span> 和 <span class="math notranslate nohighlight">\(x_j\)</span> 密度相连；密度相连关系是满足对称性的。</p></li>
 </ul>
 <a class="reference internal image-reference" href="../_images/07_dbscan.png"><img alt="../_images/07_dbscan.png" class="align-center" src="../_images/07_dbscan.png" style="width: 600px;" /></a>
 </section>
@@ -135,7 +135,7 @@
 </ul>
 <p>DBSCAN 的优点：</p>
 <ul class="simple">
-<li><p>可以对任意形状的稠密数据集进行聚类，而 K-means 之类的聚类算法一般只适用于凸数据集（在欧氏空间中，凸集是对于集合内的每一对点，连接该对点的直线段上的每个点也在该集合内。例如，立方体是凸集，月牙形不是凸集）。</p></li>
+<li><p>可以对任意形状的稠密数据集进行聚类，而 K-Means 之类的聚类算法一般只适用于凸数据集（在欧氏空间中，凸集是对于集合内的每一对点，连接该对点的直线段上的每个点也在该集合内。例如，立方体是凸集，月牙形不是凸集）。</p></li>
 <li><p>可以在聚类的同时发现异常点，对数据集中的异常点不敏感。</p></li>
 <li><p>聚类结果相对稳定。</p></li>
 <li><p>不需要指定聚类的数量。</p></li>

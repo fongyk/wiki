@@ -330,11 +330,32 @@ MMoE 在 MoE 的基础上将所有任务共享一个门控网络变成不同任�
 
 MMoE 中所有的 Expert 是被不同任务所共享的，这可能无法捕捉到任务之间更复杂的关系，从而给部分任务带来一定的噪声。
 
+
+`PLE <https://github.com/tangxyw/RecSysPapers/blob/main/Multi-Task/%5B2020%5D%5BTencent%5D%5BPLE%5D%20Progressive%20Layered%20Extraction%20%28PLE%29%20-%20A%20Novel%20Multi-Task%20Learning%20%28MTL%29%20Model%20for%20Personalized%20Recommendations.pdf>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. |cgc| image:: 04_cgc.png
+   :width: 40%
+
+.. |ple| image:: 04_ple.png
+   :width: 50%
+
+|cgc|   |ple|
+
+
+PLE 致力于解决两个问题：
+
+- 负迁移（Negative Transfer）：当两个任务/场景的相关性很弱，共享 Embedding 之后效果反而变得更差。
+- 跷跷板现象（Seesaw Phenomenon）：一个任务性能的提升是通过损害另一个任务的性能做到的。
+
+PLE 显式地区分了共享 Expert 网络和任务专有的 Expert 网络，使用一个 Gating Network（一层 FC + Softmax）对各个 Expert 输出的向量进行加权。这些 Expert 网络是多层级的。
+
+
 `STAR <https://arxiv.org/pdf/2101.11427.pdf>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: ./04_star.png
-    :width: 400px
+    :width: 300px
     :align: center
 
 创新点：
@@ -357,7 +378,7 @@ MMoE 中所有的 Expert 是被不同任务所共享的，这可能无法捕捉�
 
 - MMoE 对不同任务采用独立的 FC 层，缺少共享参数。
 - MMoE 通过 Gate 隐式地建模场景间的关系，这样会丢失 Domain-Specific 知识；而 STAR 引入场景先验，通过场景私有参数 & 共享参数显式地建模场景间的关系。
-- MMoE 需要计算每个场景的 Expert 和 Gate，计算开销更大。
+- MMoE 需要计算所有的 Expert，计算开销更大。
 - MMoE 对于新场景不友好，Gate 的学习存在冷启动问题。
 
 
@@ -407,6 +428,7 @@ Selection Bias
 ^^^^^^^^^^^^^^^^^^^
 
 在实际推荐系统中，长尾问题是很常见的，曝光的 Item 永远只是一小部分热门 Item，大量的非热门 Item 曝光是很少的。
+更确切地说，参与打分的样本数量远多于被曝光的样本。
 
 消偏思路：
 

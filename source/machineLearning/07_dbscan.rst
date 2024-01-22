@@ -12,15 +12,15 @@ DBSCAN（Density-Based Spatial Clustering of Applications with Noise）是一种
 
 假设有样本集 :math:`\mathcal{D} = \{ x_1, x_2, \cdots, x_n \}` ，定义几个概念如下：
 
-- :math:`\epsilon` 邻域（Eps-neighborhood）：:math:`\mathcal{N}_{\epsilon}(x_i) = \{ x_j \in \mathcal{D} | distance(x_i, x_j) \leq \epsilon  \}` 。
+- :math:`\epsilon` 邻域（Eps-Neighborhood）：:math:`\mathcal{N}_{\epsilon}(x_i) = \{ x_j \in \mathcal{D} | \mathrm{distance}(x_i, x_j) \leq \epsilon  \}` 。
 
-- 核心点（Core points）：核心点的 :math:`\epsilon` 邻域包含至少 :math:`MinPts` 个样本点。
+- 核心点（Core Points）：核心点的 :math:`\epsilon` 邻域包含至少 :math:`MinPts` 个样本点。
 
-- 密度直达（Directly density-reachable）：假设 :math:`x_i` 是核心点，:math:`x_j \in \mathcal{N}_{\epsilon}(x_i)` ，则称 :math:`x_j` 由 :math:`x_i` 密度直达，反之不一定成立。
+- 密度直达（Directly Density-Reachable）：假设 :math:`x_i` 是核心点，:math:`x_j \in \mathcal{N}_{\epsilon}(x_i)` ，则称 :math:`x_j` 由 :math:`x_i` 密度直达，反之不一定成立。
 
-- 密度可达（Density-reachable）：假设存在样本序列 :math:`p_1, p_2, \cdots, p_T` ，满足 :math:`p_1 = x_i, p_T = x_j` ，且 :math:`p_1, p_2, \cdots, p_{T-1}` 都是核心点， :math:`p_{t+1}` 由 :math:`p_t` 密度直达，则称 :math:`x_j` 由 :math:`x_i` 密度可达，反之不一定成立。
+- 密度可达（Density-Reachable）：假设存在样本序列 :math:`p_1, p_2, \cdots, p_T` ，满足 :math:`p_1 = x_i, p_T = x_j` ，且 :math:`p_1, p_2, \cdots, p_{T-1}` 都是核心点， :math:`p_{t+1}` 由 :math:`p_t` 密度直达，则称 :math:`x_j` 由 :math:`x_i` 密度可达，反之不一定成立。
 
-- 密度相连（Density-connected）: 对于 :math:`x_i` 和 :math:`x_j` ，如果存在核心点  :math:`x_k` ，使 :math:`x_i` 和 :math:`x_j` 均由 :math:`x_k` 密度可达，则称 :math:`x_i` 和 :math:`x_j` 密度相连；密度相连关系是满足对称性的。
+- 密度相连（Density-Connected）: 对于 :math:`x_i` 和 :math:`x_j` ，如果存在核心点  :math:`x_k` ，使 :math:`x_i` 和 :math:`x_j` 均由 :math:`x_k` 密度可达，则称 :math:`x_i` 和 :math:`x_j` 密度相连；密度相连关系是满足对称性的。
 
 .. image:: ./07_dbscan.png
   :align: center
@@ -45,7 +45,7 @@ DBSCAN 首先选择一个核心点作为种子，然后找到所有这个核心�
 
 DBSCAN 的优点：
 
-- 可以对任意形状的稠密数据集进行聚类，而 K-means 之类的聚类算法一般只适用于凸数据集（在欧氏空间中，凸集是对于集合内的每一对点，连接该对点的直线段上的每个点也在该集合内。例如，立方体是凸集，月牙形不是凸集）。
+- 可以对任意形状的稠密数据集进行聚类，而 K-Means 之类的聚类算法一般只适用于凸数据集（在欧氏空间中，凸集是对于集合内的每一对点，连接该对点的直线段上的每个点也在该集合内。例如，立方体是凸集，月牙形不是凸集）。
 
 - 可以在聚类的同时发现异常点，对数据集中的异常点不敏感。
 

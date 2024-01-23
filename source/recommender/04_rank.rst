@@ -348,7 +348,7 @@ PLE 致力于解决两个问题：
 - 负迁移（Negative Transfer）：当两个任务/场景的相关性很弱，共享 Embedding 之后效果反而变得更差。
 - 跷跷板现象（Seesaw Phenomenon）：一个任务性能的提升是通过损害另一个任务的性能做到的。
 
-PLE 显式地区分了共享 Expert 网络和任务专有的 Expert 网络，使用一个 Gating Network（一层 FC + Softmax）对各个 Expert 输出的向量进行加权。这些 Expert 网络是多层级的。
+PLE 显式地区分了共享 Expert 网络（参数被所有样本更新）和任务专有的 Expert 网络（参数只会被一个任务的样本更新），使用一个 Gating Network（一层 FC + Softmax）对各个 Expert 输出的向量进行加权。这些 Expert 网络是多层级的。
 
 
 `STAR <https://arxiv.org/pdf/2101.11427.pdf>`_
@@ -366,7 +366,7 @@ PLE 显式地区分了共享 Expert 网络和任务专有的 Expert 网络，使
 
     z^{\prime} = (\gamma * \gamma_p) \frac{z - E_p}{\sqrt{Var_p + \epsilon}} + (\beta + \beta_p)
 
-- STAR Topology Fully-Connected Network：对于每一个 FC 层，都有中心的共享参数和场景私有参数，每个场景最终的参数通过二者进行 Element-wise Product 得到：
+- STAR Topology Fully-Connected Network：对于每一个 FC 层，都有中心的共享参数和场景私有参数（私有参数只会被该场景的样本更新），每个场景最终的参数通过二者进行 Element-Wise Product 得到：
 
   .. math::
 

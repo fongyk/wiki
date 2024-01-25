@@ -5647,6 +5647,54 @@ Hint：总在第一个队列压入最新元素。
                     stk.append(i)
                 return ans
 
+- [LeetCode] Beautiful Towers I 美丽塔。Hint：两个单调栈（正向 + 反向），动态规划。
+
+  https://leetcode.com/problems/beautiful-towers-i
+
+  .. container:: toggle
+
+    .. container:: header
+
+        :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: python
+        :linenos:
+
+        class Solution:
+            def maximumSumOfHeights(self, maxHeights: List[int]) -> int:
+                n = len(maxHeights)
+                ## prefix[i] 表示区间 [0, i] 能构成的非递减数组的元素和最大值，且位置 i 是山顶，高度为 maxHeights[i]
+                ## suffix[i] 表示区间 [i, n) 能构成的非递增数组的元素和最大值，且位置 i 是山顶，高度为 maxHeights[i]
+                ## 以位置 i 为山顶的 mountain 数组的元素和为：prefix[i] + suffix[i] - maxHeights[i]
+                prefix = [0] * n
+                suffix = [0] * n
+                ## stk 保存下标
+                stk = []
+                for i in range(n):
+                    while stk and maxHeights[stk[-1]] > maxHeights[i]:
+                        stk.pop()
+                    if not stk:
+                        ## 区间 [0, i] 的高度统一设为 maxHeights[i]
+                        prefix[i] = (i + 1) * maxHeights[i]
+                    else:
+                        ## 动态规划
+                        ## 区间 (stk[-1], i] 的高度统一设为 maxHeights[i]
+                        prefix[i] = prefix[stk[-1]] + (i - stk[-1]) * maxHeights[i]
+                    stk.append(i)
+                stk = []
+                for i in range(n-1, -1, -1):
+                    while stk and maxHeights[stk[-1]] > maxHeights[i]:
+                        stk.pop()
+                    if not stk:
+                        suffix[i] = (n - i) * maxHeights[i]
+                    else:
+                        suffix[i] = suffix[stk[-1]] + (stk[-1] - i) * maxHeights[i]
+                    stk.append(i)
+                ans = 0
+                for i in range(n):
+                    ans = max(ans, prefix[i] + suffix[i] - maxHeights[i])
+                return ans
+
 
 单词接龙
 -----------------------------

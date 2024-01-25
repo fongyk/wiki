@@ -72,7 +72,7 @@ Multi-Head Attention 相当于 :math:`h` 个不同的 Self-Attention 的集成�
 Self-Attention 三个步骤的复杂度：
 
 - 相似度计算： :math:`\mathcal{O}(n^2 d)`
-- softmax： :math:`\mathcal{O}(n^2)`
+- Softmax： :math:`\mathcal{O}(n^2)`
 - 加权平均： :math:`\mathcal{O}(n^2 d)`
 
 因此总的时间复杂度是 :math:`\mathcal{O}(n^2 d)` 。

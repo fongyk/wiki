@@ -169,27 +169,27 @@
 
 
 向量叉乘/向量积
-  两个向量 :math:`\overrightarrow{a},\overrightarrow{b}` 的向量积 :math:`\overrightarrow{a} \times \overrightarrow{b}` 为一个向量，
-  它的方向与 :math:`\overrightarrow{a},\overrightarrow{b}` 都垂直，且使 :math:`\overrightarrow{a},\overrightarrow{b}, \overrightarrow{a} \times \overrightarrow{b}` 构成右手系；
-  它的模等于以 :math:`\overrightarrow{a},\overrightarrow{b}` 为边的平行四边形的面积，即 :math:`|\overrightarrow{a} \times \overrightarrow{b}| = |\overrightarrow{a}||\overrightarrow{b}|\sin \theta` ，
-  其中 :math:`\theta` 为 :math:`\overrightarrow{a},\overrightarrow{b}` 的夹角。
+  两个向量 :math:`\vec{a},\vec{b}` 的向量积 :math:`\vec{a} \times \vec{b}` 为一个向量，
+  它的方向与 :math:`\vec{a},\vec{b}` 都垂直，且使 :math:`\vec{a},\vec{b}, \vec{a} \times \vec{b}` 构成右手系；
+  它的模等于以 :math:`\vec{a},\vec{b}` 为边的平行四边形的面积，即 :math:`|\vec{a} \times \vec{b}| = |\vec{a}||\vec{b}|\sin \theta` ，
+  其中 :math:`\theta` 为 :math:`\vec{a},\vec{b}` 的夹角。
 
   性质：
 
     .. math::
 
-      \overrightarrow{a} \times \overrightarrow{b} &=\ - \overrightarrow{b} \times \overrightarrow{a} \\
-      \overrightarrow{a} \times \lambda \overrightarrow{a} &=\ 0
+      \vec{a} \times \vec{b} &=\ - \vec{b} \times \vec{a} \\
+      \vec{a} \times \lambda \vec{a} &=\ 0
 
 
     .. math::
       :nowrap:
 
       $$
-      \overrightarrow{a} \times \overrightarrow{b}
+      \vec{a} \times \vec{b}
        =
       \begin{vmatrix}
-        \overrightarrow{i} & \overrightarrow{j} & \overrightarrow{k} \\
+        \vec{i} & \vec{j} & \vec{k} \\
         a_1 & a_2 & a_3 \\
         b_1 & b_2 & b_3
       \end{vmatrix}
@@ -198,19 +198,19 @@
         a_2 & a_3\\
         b_2 & b_3
       \end{vmatrix}
-      \overrightarrow{i}
+      \vec{i}
       -
       \begin{vmatrix}
         a_1 & a_3\\
         b_1 & b_3
       \end{vmatrix}
-      \overrightarrow{j}
+      \vec{j}
       +
       \begin{vmatrix}
         a_1 & a_2\\
         b_1 & b_2
       \end{vmatrix}
-      \overrightarrow{k}
+      \vec{k}
       $$
 
       $$
@@ -222,7 +222,7 @@
       c_1 c_4 - c_2 c_3
       $$
 
-  其中 :math:`[O; \overrightarrow{i}, \overrightarrow{j}, \overrightarrow{k}]` 是一个直角坐标系；二维向量的第三维可扩展为 0。
+  其中 :math:`[O; \vec{i}, \vec{j}, \vec{k}]` 是一个直角坐标系；二维向量的第三维可扩展为 0。
 
 **相交判断**
 
@@ -314,7 +314,7 @@
 
 表示两线段重合或平行。
 
-若 :math:`\Delta \neq 0` ，（利用 `Cramer 法则 <https://en.wikipedia.org/wiki/Cramer%27s_rule>`_ ）求出
+若 :math:`\Delta \neq 0` ，利用 `Cramer 法则 <https://en.wikipedia.org/wiki/Cramer%27s_rule>`_ 求出：
 
 .. math::
   :nowrap:
@@ -347,8 +347,8 @@
 
 **问题** ：按逆时针顺序给定多边形 :math:`n` 个顶点的坐标，判断该多边形是否是凸多边形。
 
-**方案** ：凸多边形的特点是：对于任意一条边，其他的边都在它的同一侧；按逆时针顺序，下一条边 :math:`\overrightarrow{l}_{i+1}` 一定在当前边 :math:`\overrightarrow{l}_i` 的逆时针方向。
-判断方法：如果 :math:`\overrightarrow{l}_i \times \overrightarrow{l}_{i+1}` 符号为正，则在逆时针方向；符号为负，则在顺时针方向；大小为 0，表示平行/共线。
+**方案** ：凸多边形的特点是：对于任意一条边，其他的边都在它的同一侧；按逆时针顺序，下一条边 :math:`\vec{l}_{i+1}` 一定在当前边 :math:`\vec{l}_i` 的逆时针方向。
+判断方法：如果 :math:`\vec{l}_i \times \vec{l}_{i+1}` 符号为正，则在逆时针方向；符号为负，则在顺时针方向；大小为 0，表示平行/共线。
 
 
 参考资料

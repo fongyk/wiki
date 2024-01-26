@@ -250,21 +250,21 @@ $$</div></section>
 \[(\overrightarrow{AB} \times \overrightarrow{AC}) \cdot (\overrightarrow{AB} \times \overrightarrow{AD}) &lt; 0,\quad (\overrightarrow{CD} \times \overrightarrow{CA}) \cdot (\overrightarrow{CD} \times \overrightarrow{CB}) &lt; 0.\]</div>
 <a class="reference internal image-reference" href="../_images/16_crossProduct.jpg"><img alt="../_images/16_crossProduct.jpg" class="align-center" src="../_images/16_crossProduct.jpg" style="width: 600px;" /></a>
 <dl>
-<dt>向量叉乘/向量积</dt><dd><p>两个向量 <span class="math notranslate nohighlight">\(\overrightarrow{a},\overrightarrow{b}\)</span> 的向量积 <span class="math notranslate nohighlight">\(\overrightarrow{a} \times \overrightarrow{b}\)</span> 为一个向量，
-它的方向与 <span class="math notranslate nohighlight">\(\overrightarrow{a},\overrightarrow{b}\)</span> 都垂直，且使 <span class="math notranslate nohighlight">\(\overrightarrow{a},\overrightarrow{b}, \overrightarrow{a} \times \overrightarrow{b}\)</span> 构成右手系；
-它的模等于以 <span class="math notranslate nohighlight">\(\overrightarrow{a},\overrightarrow{b}\)</span> 为边的平行四边形的面积，即 <span class="math notranslate nohighlight">\(|\overrightarrow{a} \times \overrightarrow{b}| = |\overrightarrow{a}||\overrightarrow{b}|\sin \theta\)</span> ，
-其中 <span class="math notranslate nohighlight">\(\theta\)</span> 为 <span class="math notranslate nohighlight">\(\overrightarrow{a},\overrightarrow{b}\)</span> 的夹角。</p>
+<dt>向量叉乘/向量积</dt><dd><p>两个向量 <span class="math notranslate nohighlight">\(\vec{a},\vec{b}\)</span> 的向量积 <span class="math notranslate nohighlight">\(\vec{a} \times \vec{b}\)</span> 为一个向量，
+它的方向与 <span class="math notranslate nohighlight">\(\vec{a},\vec{b}\)</span> 都垂直，且使 <span class="math notranslate nohighlight">\(\vec{a},\vec{b}, \vec{a} \times \vec{b}\)</span> 构成右手系；
+它的模等于以 <span class="math notranslate nohighlight">\(\vec{a},\vec{b}\)</span> 为边的平行四边形的面积，即 <span class="math notranslate nohighlight">\(|\vec{a} \times \vec{b}| = |\vec{a}||\vec{b}|\sin \theta\)</span> ，
+其中 <span class="math notranslate nohighlight">\(\theta\)</span> 为 <span class="math notranslate nohighlight">\(\vec{a},\vec{b}\)</span> 的夹角。</p>
 <p>性质：</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
-\[\begin{split}\overrightarrow{a} \times \overrightarrow{b} &amp;=\ - \overrightarrow{b} \times \overrightarrow{a} \\
-\overrightarrow{a} \times \lambda \overrightarrow{a} &amp;=\ 0\end{split}\]</div>
+\[\begin{split}\vec{a} \times \vec{b} &amp;=\ - \vec{b} \times \vec{a} \\
+\vec{a} \times \lambda \vec{a} &amp;=\ 0\end{split}\]</div>
 <div class="math notranslate nohighlight">
 $$
-\overrightarrow{a} \times \overrightarrow{b}
+\vec{a} \times \vec{b}
  =
 \begin{vmatrix}
-  \overrightarrow{i} &amp; \overrightarrow{j} &amp; \overrightarrow{k} \\
+  \vec{i} &amp; \vec{j} &amp; \vec{k} \\
   a_1 &amp; a_2 &amp; a_3 \\
   b_1 &amp; b_2 &amp; b_3
 \end{vmatrix}
@@ -273,19 +273,19 @@ $$
   a_2 &amp; a_3\\
   b_2 &amp; b_3
 \end{vmatrix}
-\overrightarrow{i}
+\vec{i}
 -
 \begin{vmatrix}
   a_1 &amp; a_3\\
   b_1 &amp; b_3
 \end{vmatrix}
-\overrightarrow{j}
+\vec{j}
 +
 \begin{vmatrix}
   a_1 &amp; a_2\\
   b_1 &amp; b_2
 \end{vmatrix}
-\overrightarrow{k}
+\vec{k}
 $$
 
 $$
@@ -296,7 +296,7 @@ $$
 =
 c_1 c_4 - c_2 c_3
 $$</div></div></blockquote>
-<p>其中 <span class="math notranslate nohighlight">\([O; \overrightarrow{i}, \overrightarrow{j}, \overrightarrow{k}]\)</span> 是一个直角坐标系；二维向量的第三维可扩展为 0。</p>
+<p>其中 <span class="math notranslate nohighlight">\([O; \vec{i}, \vec{j}, \vec{k}]\)</span> 是一个直角坐标系；二维向量的第三维可扩展为 0。</p>
 </dd>
 </dl>
 <p><strong>相交判断</strong></p>
@@ -365,7 +365,7 @@ $$
 \end{vmatrix}
  = 0
 $$</div><p>表示两线段重合或平行。</p>
-<p>若 <span class="math notranslate nohighlight">\(\Delta \neq 0\)</span> ，（利用 <a class="reference external" href="https://en.wikipedia.org/wiki/Cramer%27s_rule">Cramer 法则</a> ）求出</p>
+<p>若 <span class="math notranslate nohighlight">\(\Delta \neq 0\)</span> ，利用 <a class="reference external" href="https://en.wikipedia.org/wiki/Cramer%27s_rule">Cramer 法则</a> 求出：</p>
 <div class="math notranslate nohighlight">
 $$
 \lambda
@@ -391,8 +391,8 @@ $$</div><p>只有当 <span class="math notranslate nohighlight">\(0 \leqslant \l
 <section id="id6">
 <h2><span class="section-number">16.3. </span>凸多边形<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
 <p><strong>问题</strong> ：按逆时针顺序给定多边形 <span class="math notranslate nohighlight">\(n\)</span> 个顶点的坐标，判断该多边形是否是凸多边形。</p>
-<p><strong>方案</strong> ：凸多边形的特点是：对于任意一条边，其他的边都在它的同一侧；按逆时针顺序，下一条边 <span class="math notranslate nohighlight">\(\overrightarrow{l}_{i+1}\)</span> 一定在当前边 <span class="math notranslate nohighlight">\(\overrightarrow{l}_i\)</span> 的逆时针方向。
-判断方法：如果 <span class="math notranslate nohighlight">\(\overrightarrow{l}_i \times \overrightarrow{l}_{i+1}\)</span> 符号为正，则在逆时针方向；符号为负，则在顺时针方向；大小为 0，表示平行/共线。</p>
+<p><strong>方案</strong> ：凸多边形的特点是：对于任意一条边，其他的边都在它的同一侧；按逆时针顺序，下一条边 <span class="math notranslate nohighlight">\(\vec{l}_{i+1}\)</span> 一定在当前边 <span class="math notranslate nohighlight">\(\vec{l}_i\)</span> 的逆时针方向。
+判断方法：如果 <span class="math notranslate nohighlight">\(\vec{l}_i \times \vec{l}_{i+1}\)</span> 符号为正，则在逆时针方向；符号为负，则在顺时针方向；大小为 0，表示平行/共线。</p>
 </section>
 <section id="id7">
 <h2><span class="section-number">16.4. </span>参考资料<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h2>

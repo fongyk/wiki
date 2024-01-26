@@ -144,7 +144,7 @@ SimCLR 做了两次非线性映射（Encoder 和 Projector），可能是如下�
     :width: 500 px
     :align: center
 
-SwAV 维护了一些 Prototypes（聚类中心， :math:`C \in \mathbb{R}^{D \times K}` ），根据 `Sinkhorn-Knopp 算法 <https://proceedings.neurips.cc/paper_files/paper/2013/file/af21d0c97db2e27e13572cbf59eb343d-Paper.pdf>`_ （均匀地分配未标记数据点到聚类中心，建模为 Optimal Transport Distances 问题）进行 Soft Assignment，将 :math:`\boldsymbol{z}` 分配到这些 Prototypes，得到一个编码 :math:`\boldsymbol{q}` ，
+SwAV 维护了一些 Prototypes（聚类中心， :math:`\mathbf{C} \in \mathbb{R}^{D \times K}` ），根据 `Sinkhorn-Knopp 算法 <https://proceedings.neurips.cc/paper_files/paper/2013/file/af21d0c97db2e27e13572cbf59eb343d-Paper.pdf>`_ （均匀地分配未标记数据点到聚类中心，建模为 Optimal Transport Distances 问题）进行 Soft Assignment，将 :math:`\boldsymbol{z}` 分配到这些 Prototypes，得到一个编码 :math:`\boldsymbol{q}` ，
 希望正例对应的 Prototypes 也相似，优化目标为 Swapped Prediction：
 
 .. math::
@@ -185,7 +185,7 @@ SimSiam 不需要负样本对、不使用 Momentum Encoder、不需要大的 Bat
 .. math::
 
     \mathcal{L} & = \mathcal{L}(\boldsymbol{z}_1, \boldsymbol{p}_2) + \mathcal{L}(\boldsymbol{z}_2, \boldsymbol{p}_1) \\
-    \mathcal{L}(\boldsymbol{z}, \boldsymbol{p}) & = - \frac{\boldsymbol{p}^{\top} \boldsymbol{z}}{\left\Vert \boldsymbol{p} \right\Vert \left\Vert \boldsymbol{z} \right\Vert}
+    \mathcal{L}(\boldsymbol{z}, \boldsymbol{p}) & = - \frac{\boldsymbol{p}^{\top} \boldsymbol{z}}{\left\| \boldsymbol{p} \right\| \left\| \boldsymbol{z} \right\|}
 
 其防止模型坍塌的关键点在于 Predictor + Stop Gradient：
 

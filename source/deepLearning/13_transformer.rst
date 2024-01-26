@@ -108,8 +108,8 @@ ViT将输入图片分为多个 Patch，再将每个 Patch 投影为固定长度�
 当训练数据集不够大的时候，ViT 的表现通常比同等大小的 ResNet 要差一些，因为 Transformer 和 CNN 相比缺少归纳偏置（Inductive Bias），即一种先验知识/提前做好的假设。
 CNN 具有两种归纳偏置：
 
-- 局部性（Locality/Two-dimensional Neighborhood Structure），即图片上相邻的区域具有相似的特征；
-- 平移不变形（Translation Equivariance）。
+- 局部性（Locality/Two-dimensional Neighborhood Structure）：图片上相邻的区域具有相似的特征；
+- 平移不变性（Translation Invariance）：当目标出现在图像的不同位置时，也能得出相同的分类结果（主要依靠 Global Pooling）。
 
 当 CNN 具有以上两种归纳偏置，就有了很多先验信息，需要相对少的数据就可以学习一个比较好的模型。
 

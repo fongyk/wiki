@@ -113,9 +113,9 @@ html_theme = 'sphinx_rtd_theme'
 #
 # html_theme_options = {}
 
-html_logo = "logo.jpg"
+html_logo = "magnum.jpg"
 
-html_favicon = "favicon.ico"
+html_favicon = "magnum.ico"
 
 html_show_sourcelink = True
 

@@ -275,6 +275,14 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 <li><p>PPNet 关注用户的偏好，将个性化先验信息（User、Item、Author）拼接上 EPNet 输出的 Embedding 喂给 Gate NU， Gate NU 再作用于 DNN Tower。对于每一个用户，虽然 DNN 的结构是共享的，但是 DNN 经过 Gate NU 变换，使得最后的预估结果具有个性化。</p></li>
 </ul>
 <p>需要注意的是，EPNet 输出部分不回传梯度，是为了防止 EPNet 的 Embedding 被 PPNet 影响。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>向量加权一般有两种形式：</p>
+<ul class="simple">
+<li><p>Vector-Wise：一个向量的所有元素共用同一个权重。</p></li>
+<li><p>Bit-Wise：向量的每个元素都有单独的权重。</p></li>
+</ul>
+</div>
 </section>
 </section>
 <section id="id13">

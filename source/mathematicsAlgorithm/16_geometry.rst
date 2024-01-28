@@ -339,7 +339,7 @@
   \end{vmatrix}
   $$
 
-只有当 :math:`0 \leqslant \lambda \leqslant 1,\ 0 \leqslant \mu \leqslant 1` 两条线段才相交。否则交点在线段的延长线上。
+只有当 :math:`0 \leqslant \lambda \leqslant 1,\ 0 \leqslant \mu \leqslant 1` 两条线段才相交，否则交点在线段的延长线上。
 
 
 凸多边形

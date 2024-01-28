@@ -203,6 +203,12 @@ PEPNet 主要有两个核心模块：EPNet 和 PPNet。
 
 需要注意的是，EPNet 输出部分不回传梯度，是为了防止 EPNet 的 Embedding 被 PPNet 影响。
 
+.. note::
+
+  向量加权一般有两种形式：
+
+  - Vector-Wise：一个向量的所有元素共用同一个权重。
+  - Bit-Wise：向量的每个元素都有单独的权重。
 
 多目标学习
 ------------------

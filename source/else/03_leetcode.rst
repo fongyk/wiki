@@ -1271,13 +1271,6 @@ https://leetcode.com/problems/longest-consecutive-sequence/
               return longest
 
 
-最大公约数与最小公倍数
--------------------------------------------------------------------------------
-
-Hint：辗转相除法；最小公倍数等于两数乘积除以最大公约数。
-
-https://www.cnblogs.com/Arvin-JIN/p/7247619.html
-
 
 跳跃的蚂蚱
 -------------------------------------------------------------------------------
@@ -2028,29 +2021,6 @@ https://leetcode.com/problems/fraction-to-recurring-decimal/
           }
       };
 
-
-正整数质因数分解
----------------------------------------------------------------------------------------------------------------------------------------------
-
-  .. container:: toggle
-
-    .. container:: header
-
-      :math:`\color{darkgreen}{Code}`
-
-    .. code-block:: python
-      :linenos:
-
-      ## 不断除以 2 之后，2 的倍数都不可能再整除 n；3,5,7,... 同理。
-      ## 思想类似于：找到 n 以内的素数，即把素数的倍数都排除。
-      def decomp(n):
-          prime = 2
-          while n >= prime:
-              if n % prime == 0:
-                  print prime
-                  n /= prime
-              else:
-                  prime += 1
 
 
 旋转数组查找

@@ -676,69 +676,73 @@ memset
     }
 
 
-附：头文件
+附：几个头文件
 ----------------
 
-- ``cmath``
+- ``<cmath>``
 
-  - pow()
+  - pow
 
-  - sqrt()
+  - sqrt
 
-  - floor()
+  - floor
 
-  - ceil()
+  - ceil
 
-  - round()
+  - round
 
-  - log()
+  - log
 
-  - log10()
+  - log10
 
-  - exp()
+  - exp
 
-- ``cstdlib``
+- ``<cstdlib>``
 
-  - abs()
+  - abs
 
-  - fabs()
+  - fabs
 
-  - rand()
+  - rand
 
-- ``limits``
+- ``<limits>``
 
   - INT_MIN: ``(signed int)0x80000000``
 
   - INT_MAX: ``0x7fffffff``
 
-- ``algorithm``
+- ``<algorithm>``
 
-  - min()
+  - min
 
-  - max()
+  - max
 
-- ``utility``
+- ``<utility>``
 
   - pair
 
   - move
 
-- ``functional``
+- ``<functional>``
 
-  - less< *TYPE* >()
+  - less< *TYPE* >
 
-  - greater< *TYPE* >()
+  - greater< *TYPE* >
 
-- ``cassert``
+- ``<cassert>``
 
-  - assert()
+  - assert
 
 
 
 参考资料
 --------------
 
-1. C++ reference
+1. Cppreference headers
+
+  https://en.cppreference.com/w/cpp/header
+
+2. C++ reference
 
   http://www.cplusplus.com/reference/algorithm/lower_bound
 
@@ -765,14 +769,14 @@ memset
   http://www.cplusplus.com/reference/cstring/memset
 
 
-2. C/C++-STL中lower_bound与upper_bound的用法
+3. C/C++-STL中lower_bound与upper_bound的用法
 
   https://blog.csdn.net/jadeyansir/article/details/77015626
 
-3. c++sort函数的使用总结
+4. c++sort函数的使用总结
 
   https://www.cnblogs.com/TX980502/p/8528840.html
 
-4. C++ sort排序函数用法
+5. C++ sort排序函数用法
 
   https://blog.csdn.net/w_linux/article/details/76222112

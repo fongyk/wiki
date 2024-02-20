@@ -488,7 +488,7 @@
 </div>
 </div>
 </li>
-<li><p>链表排序。Hint：方法一，快速排序或归并排序；方法二，遍历链表把值存入数组，使用数组的排序方法，再把值赋回链表。</p>
+<li><p>[LeetCode] Sort List 链表排序。Hint：方法一，快速排序或归并排序；方法二，遍历链表把值存入数组，使用数组的排序方法，再把值赋回链表。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/sort-list/">https://leetcode.com/problems/sort-list/</a></p>
 <div class="toggle docutils container">
 <div class="header docutils container">
@@ -806,12 +806,12 @@
 <span class="linenos"> 8</span><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
 <span class="linenos"> 9</span><span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">left</span><span class="p">;</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">right</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">mid</span><span class="p">)</span><span class="w"></span>
 <span class="linenos">10</span><span class="w">        </span><span class="p">{</span><span class="w"></span>
-<span class="linenos">11</span><span class="w">            </span><span class="k">while</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span><span class="o">==</span><span class="mi">2</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">right</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">11</span><span class="w">            </span><span class="k">while</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">right</span><span class="p">)</span><span class="w"></span>
 <span class="linenos">12</span><span class="w">            </span><span class="p">{</span><span class="w"></span>
 <span class="linenos">13</span><span class="w">                </span><span class="n">swap</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">],</span><span class="w"> </span><span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]);</span><span class="w"></span>
 <span class="linenos">14</span><span class="w">                </span><span class="n">right</span><span class="o">--</span><span class="p">;</span><span class="w"></span>
 <span class="linenos">15</span><span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="linenos">16</span><span class="w">            </span><span class="k">while</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">left</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">16</span><span class="w">            </span><span class="k">while</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">left</span><span class="p">)</span><span class="w"></span>
 <span class="linenos">17</span><span class="w">            </span><span class="p">{</span><span class="w"></span>
 <span class="linenos">18</span><span class="w">                </span><span class="n">swap</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">],</span><span class="w"> </span><span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]);</span><span class="w"></span>
 <span class="linenos">19</span><span class="w">                </span><span class="n">left</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
@@ -820,7 +820,7 @@
 <span class="linenos">22</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="linenos">23</span><span class="p">};</span><span class="w"></span>
 <span class="linenos">24</span>
-<span class="linenos">25</span><span class="c1">// 注：要先判断 nums[mid]==2，再判断 nums[mid]==0，否则会出错，如 [1,2,0]</span>
+<span class="linenos">25</span><span class="c1">// 注：要先判断 nums[mid] == 2，再判断 nums[mid] == 0，否则会出错，如 [1,2,0]</span>
 <span class="linenos">26</span><span class="c1">// 因为 2 是往后交换，0 是往前交换；2 交换得到的可能是 0，但可以保证 0 交换得到的不会是 2，因为 2 在 0 之前被处理了</span>
 <span class="linenos">27</span><span class="c1">// 如果判断顺序反过来，2 交换得到的 0 不会被处理</span>
 </pre></div>
@@ -1320,7 +1320,7 @@
 <section id="id6">
 <h2><span class="section-number">4.13. </span>跳跃的蚂蚱<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
 <p>从 0 点出发，往正或负向跳跃，第一次跳跃一个单位，之后每次跳跃距离比上一次多一个单位，跳跃多少次可到到达坐标 <span class="math notranslate nohighlight">\(x\)</span> 处？
-Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能到达的坐标是一个差为 2 的等差数列（如 <span class="math notranslate nohighlight">\(n=2\)</span> ，可到达 <span class="math notranslate nohighlight">\(\{-3,-1,1,3\}\)</span> ）。
+Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能到达的坐标是一个公差为 2 的等差数列（如 <span class="math notranslate nohighlight">\(n=2\)</span> ，可到达 <span class="math notranslate nohighlight">\(\{-3,-1,1,3\}\)</span> ）。
 只需找到最小的 <span class="math notranslate nohighlight">\(n\)</span> 使得</p>
 <div class="math notranslate nohighlight">
 \[(1+2+...+n) - x = \frac{n(n+1)}{2} - x\]</div>
@@ -1351,8 +1351,8 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </section>
 <section id="n-0">
 <h2><span class="section-number">4.14. </span>求 <span class="math notranslate nohighlight">\(n\)</span> 的阶乘末尾有多少个 <span class="math notranslate nohighlight">\(0\)</span><a class="headerlink" href="#n-0" title="Permalink to this headline"></a></h2>
-<p>Hint：1个 <span class="math notranslate nohighlight">\(5\)</span> 和1个 <span class="math notranslate nohighlight">\(2\)</span> 搭配可以得到1个 <span class="math notranslate nohighlight">\(0\)</span> ；<span class="math notranslate nohighlight">\(2\)</span> 的个数比 <span class="math notranslate nohighlight">\(5\)</span> 多，
-因此只关心 <span class="math notranslate nohighlight">\(5\)</span> 的个数；<span class="math notranslate nohighlight">\(25\)</span> 包含2个 <span class="math notranslate nohighlight">\(5\)</span> ，<span class="math notranslate nohighlight">\(125\)</span> 包含3个 <span class="math notranslate nohighlight">\(5\)</span> …。</p>
+<p>Hint：1 个 <span class="math notranslate nohighlight">\(5\)</span> 和1个 <span class="math notranslate nohighlight">\(2\)</span> 搭配可以得到 1 个 <span class="math notranslate nohighlight">\(0\)</span> ；<span class="math notranslate nohighlight">\(2\)</span> 的个数比 <span class="math notranslate nohighlight">\(5\)</span> 多，
+因此只关心 <span class="math notranslate nohighlight">\(5\)</span> 的个数；<span class="math notranslate nohighlight">\(25\)</span> 包含 2 个 <span class="math notranslate nohighlight">\(5\)</span> ，<span class="math notranslate nohighlight">\(125\)</span> 包含 3 个 <span class="math notranslate nohighlight">\(5\)</span> …。</p>
 <blockquote>
 <div><div class="toggle docutils container">
 <div class="header docutils container">
@@ -1381,7 +1381,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 <section id="id7">
 <h2><span class="section-number">4.15. </span>求一个整数的二进制表示中 <span class="math notranslate nohighlight">\(1\)</span> 的个数<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h2>
 <p>Hint：移位操作；负数可能造成死循环。</p>
-<p><strong>C++中，指定移位次数大于或等于对象类型的比特数（如int型的32位），或者对负数进行左移操作，结果都是未定义的</strong> 。
+<p><strong>C++中，指定移位次数大于或等于对象类型的比特数（如 int 型的 32 位），或者对负数进行左移操作，结果都是未定义的</strong> 。
 例如：<code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&gt;&gt;</span> <span class="pre">32</span></code> 是未定义的，但是允许 <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&gt;&gt;=</span> <span class="pre">1</span></code> 执行无限次，这是安全的。</p>
 <p>延伸：检查一个数是否是 2 的整次幂，Hint：二进制表示只有一个 1；检查一个数是否是 4 的整次幂，Hint：4 的整次幂的二进制表示中，
 1 都在奇数位；检查一个数是否是 3 的整次幂，Hint：质数的整次幂的质因子只有该质数本身。</p>
@@ -1460,8 +1460,8 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </section>
 <section id="leetcode-subarray-sum-equals-k-k">
 <h2><span class="section-number">4.16. </span>[LeetCode] Subarray Sum Equals K 子数组和为 <span class="math notranslate nohighlight">\(K\)</span><a class="headerlink" href="#leetcode-subarray-sum-equals-k-k" title="Permalink to this headline"></a></h2>
-<p>Hint：依次求数组的前 <span class="math notranslate nohighlight">\(n\)</span> 项和 <span class="math notranslate nohighlight">\(sum[n]\)</span> ，<span class="math notranslate nohighlight">\(n \in [0, arr\_size]\)</span> （注意：0也在内），
-将和作为哈希表的key，和的值出现次数作为value；如果存在 <span class="math notranslate nohighlight">\(sum[i]−sum[j]=K \ (i \ge j)\)</span> ，则 <span class="math notranslate nohighlight">\(sum[i]\)</span> 和 <span class="math notranslate nohighlight">\(sum[j]\)</span> 都应该在哈希表中。</p>
+<p>Hint：依次求数组的前 <span class="math notranslate nohighlight">\(n\)</span> 项和 <span class="math notranslate nohighlight">\(s[n]\)</span> ，<span class="math notranslate nohighlight">\(n \in [0, N]\)</span> （注意：0 也在内），
+将和作为哈希表的 key，和的值出现次数作为 value；如果存在 <span class="math notranslate nohighlight">\(s[i]−s[j]=K \ (i \gt j)\)</span> ，则 <span class="math notranslate nohighlight">\(s[i]\)</span> 和 <span class="math notranslate nohighlight">\(s[j]\)</span> 都应该在哈希表中。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/subarray-sum-equals-k/">https://leetcode.com/problems/subarray-sum-equals-k/</a></p>
 <blockquote>
 <div><div class="toggle docutils container">
@@ -2264,7 +2264,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 </section>
 <section id="id13">
 <h2><span class="section-number">4.27. </span>数组操作模拟大数乘法<a class="headerlink" href="#id13" title="Permalink to this headline"></a></h2>
-<p>Hint：从低位到高位，采用竖式计算，记录所有位的乘积，再将对应位的结果相加，最后进位。假设数组 <span class="math notranslate nohighlight">\(a\)</span> 和 <span class="math notranslate nohighlight">\(b\)</span> 从低位到高位存储了两个大数（可能存在小数点），则乘积为 <span class="math notranslate nohighlight">\(ans[k] = \sum_{i+j=k}  a[i] \times b[j]\)</span> 。</p>
+<p>Hint：从低位到高位，采用竖式计算，记录所有位的乘积，再将对应位的结果相加，最后进位。假设数组 <span class="math notranslate nohighlight">\(a\)</span> 和 <span class="math notranslate nohighlight">\(b\)</span> 从低位到高位存储了两个大数（可能存在小数点），则乘积为 <span class="math notranslate nohighlight">\(\mathrm{ans}[k] = \sum_{i+j=k}  a[i] \times b[j]\)</span> 。</p>
 <blockquote>
 <div><div class="toggle docutils container">
 <div class="header docutils container">
@@ -3869,10 +3869,15 @@ $$</div><div class="toggle docutils container">
 </section>
 <section id="id16">
 <h2><span class="section-number">4.45. </span>丢弃的数<a class="headerlink" href="#id16" title="Permalink to this headline"></a></h2>
-<p>从 <span class="math notranslate nohighlight">\(1,2,...,n\)</span> 中取丢弃 <span class="math notranslate nohighlight">\(k\)</span> 个数，剩余的数形成一个数组 <span class="math notranslate nohighlight">\(arr\)</span> ，求出丢弃的数。</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(k=1\)</span> 。Hint：<span class="math notranslate nohighlight">\(a = \sum_{i=1}^n i - \sum arr\)</span> 。</p></li>
-<li><p><span class="math notranslate nohighlight">\(k=2\)</span> 。Hint：<span class="math notranslate nohighlight">\(a + b = \sum_{i=1}^n i - \sum arr,\ a \times b = n! / \prod arr\)</span> ；考虑到连乘可能溢出，可以使用平方和 <span class="math notranslate nohighlight">\(a^2 + b^2 = \sum_{i=1}^n i^2 - \sum arr^2\)</span> 。</p></li>
+<p>从 <span class="math notranslate nohighlight">\(1,2,...,n\)</span> 中取丢弃 <span class="math notranslate nohighlight">\(k\)</span> 个数，剩余的数形成一个数组 <span class="math notranslate nohighlight">\(v\)</span> ，求出丢弃的数。</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(k=1\)</span></p>
+<p><span class="math notranslate nohighlight">\(a = \sum_{i=1}^n i - \sum_{j=1} v_j\)</span> 。</p>
+</li>
+<li><p><span class="math notranslate nohighlight">\(k=2\)</span></p>
+<p><span class="math notranslate nohighlight">\(a + b = \sum_{i=1}^n i - \sum_{j=1} v_j,\ a \times b = n! / \prod_{j=1} v_j\)</span> 。</p>
+<p>考虑到连乘可能溢出，可以使用平方和 <span class="math notranslate nohighlight">\(a^2 + b^2 = \sum_{i=1}^n i^2 - \sum_{j=1} v_j^2\)</span> 。</p>
+</li>
 </ul>
 </section>
 <section id="leetcode-trapping-rain-water">

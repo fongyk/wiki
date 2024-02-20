@@ -366,7 +366,7 @@ Hint：哈希方法，把大文件划分成小文件，读进内存依次处理�
       }
 
 
-- 链表排序。Hint：方法一，快速排序或归并排序；方法二，遍历链表把值存入数组，使用数组的排序方法，再把值赋回链表。
+- [LeetCode] Sort List 链表排序。Hint：方法一，快速排序或归并排序；方法二，遍历链表把值存入数组，使用数组的排序方法，再把值赋回链表。
 
   https://leetcode.com/problems/sort-list/
 
@@ -708,12 +708,12 @@ https://blog.csdn.net/princexiexiaofeng/article/details/79645511
               int right = nums.size() - 1;
               for(int mid = left; mid <= right; ++mid)
               {
-                  while(nums[mid]==2 && mid < right)
+                  while(nums[mid] == 2 && mid < right)
                   {
                       swap(nums[mid], nums[right]);
                       right--;
                   }
-                  while(nums[mid]==0 && mid > left)
+                  while(nums[mid] == 0 && mid > left)
                   {
                       swap(nums[mid], nums[left]);
                       left++;
@@ -722,7 +722,7 @@ https://blog.csdn.net/princexiexiaofeng/article/details/79645511
           }
       };
 
-      // 注：要先判断 nums[mid]==2，再判断 nums[mid]==0，否则会出错，如 [1,2,0]
+      // 注：要先判断 nums[mid] == 2，再判断 nums[mid] == 0，否则会出错，如 [1,2,0]
       // 因为 2 是往后交换，0 是往前交换；2 交换得到的可能是 0，但可以保证 0 交换得到的不会是 2，因为 2 在 0 之前被处理了
       // 如果判断顺序反过来，2 交换得到的 0 不会被处理
 
@@ -1276,7 +1276,7 @@ https://leetcode.com/problems/longest-consecutive-sequence/
 -------------------------------------------------------------------------------
 
 从 0 点出发，往正或负向跳跃，第一次跳跃一个单位，之后每次跳跃距离比上一次多一个单位，跳跃多少次可到到达坐标 :math:`x` 处？
-Hint：走 :math:`n` 步之后能到达的坐标是一个差为 2 的等差数列（如 :math:`n=2` ，可到达 :math:`\{-3,-1,1,3\}` ）。
+Hint：走 :math:`n` 步之后能到达的坐标是一个公差为 2 的等差数列（如 :math:`n=2` ，可到达 :math:`\{-3,-1,1,3\}` ）。
 只需找到最小的 :math:`n` 使得
 
 .. math::
@@ -1314,8 +1314,8 @@ https://www.zhihu.com/question/50790221
 求 :math:`n` 的阶乘末尾有多少个 :math:`0` 
 -------------------------------------------------------------------------------
 
-Hint：1个 :math:`5` 和1个 :math:`2` 搭配可以得到1个 :math:`0` ；:math:`2` 的个数比 :math:`5` 多，
-因此只关心 :math:`5` 的个数；:math:`25` 包含2个 :math:`5` ，:math:`125` 包含3个 :math:`5` ...。
+Hint：1 个 :math:`5` 和1个 :math:`2` 搭配可以得到 1 个 :math:`0` ；:math:`2` 的个数比 :math:`5` 多，
+因此只关心 :math:`5` 的个数；:math:`25` 包含 2 个 :math:`5` ，:math:`125` 包含 3 个 :math:`5` ...。
 
   .. container:: toggle
 
@@ -1348,7 +1348,7 @@ Hint：1个 :math:`5` 和1个 :math:`2` 搭配可以得到1个 :math:`0` ；:mat
 
 Hint：移位操作；负数可能造成死循环。 
 
-**C++中，指定移位次数大于或等于对象类型的比特数（如int型的32位），或者对负数进行左移操作，结果都是未定义的** 。
+**C++中，指定移位次数大于或等于对象类型的比特数（如 int 型的 32 位），或者对负数进行左移操作，结果都是未定义的** 。
 例如：``n >> 32`` 是未定义的，但是允许 ``n >>= 1`` 执行无限次，这是安全的。
 
 延伸：检查一个数是否是 2 的整次幂，Hint：二进制表示只有一个 1；检查一个数是否是 4 的整次幂，Hint：4 的整次幂的二进制表示中，
@@ -1441,8 +1441,8 @@ Hint：移位操作；负数可能造成死循环。
 [LeetCode] Subarray Sum Equals K 子数组和为 :math:`K` 
 -------------------------------------------------------------------------------
 
-Hint：依次求数组的前 :math:`n` 项和 :math:`sum[n]` ，:math:`n \in [0, arr\_size]` （注意：0也在内），
-将和作为哈希表的key，和的值出现次数作为value；如果存在 :math:`sum[i]−sum[j]=K \ (i \ge j)` ，则 :math:`sum[i]` 和 :math:`sum[j]` 都应该在哈希表中。
+Hint：依次求数组的前 :math:`n` 项和 :math:`s[n]` ，:math:`n \in [0, N]` （注意：0 也在内），
+将和作为哈希表的 key，和的值出现次数作为 value；如果存在 :math:`s[i]−s[j]=K \ (i \gt j)` ，则 :math:`s[i]` 和 :math:`s[j]` 都应该在哈希表中。
 
 https://leetcode.com/problems/subarray-sum-equals-k/
 
@@ -2324,7 +2324,7 @@ https://leetcode.com/problems/maximum-gap/
 数组操作模拟大数乘法
 --------------------------------------------------------------------------------------------
 
-Hint：从低位到高位，采用竖式计算，记录所有位的乘积，再将对应位的结果相加，最后进位。假设数组 :math:`a` 和 :math:`b` 从低位到高位存储了两个大数（可能存在小数点），则乘积为 :math:`ans[k] = \sum_{i+j=k}  a[i] \times b[j]` 。
+Hint：从低位到高位，采用竖式计算，记录所有位的乘积，再将对应位的结果相加，最后进位。假设数组 :math:`a` 和 :math:`b` 从低位到高位存储了两个大数（可能存在小数点），则乘积为 :math:`\mathrm{ans}[k] = \sum_{i+j=k}  a[i] \times b[j]` 。
 
   .. container:: toggle
 
@@ -4045,11 +4045,17 @@ https://leetcode.com/problems/longest-valid-parentheses/
 丢弃的数
 --------------------------------------------------------------------------------------------
 
-从 :math:`1,2,...,n` 中取丢弃 :math:`k` 个数，剩余的数形成一个数组 :math:`arr` ，求出丢弃的数。
+从 :math:`1,2,...,n` 中取丢弃 :math:`k` 个数，剩余的数形成一个数组 :math:`v` ，求出丢弃的数。
 
-- :math:`k=1` 。Hint：:math:`a = \sum_{i=1}^n i - \sum arr` 。
+- :math:`k=1` 
+    
+  :math:`a = \sum_{i=1}^n i - \sum_{j=1} v_j` 。
 
-- :math:`k=2` 。Hint：:math:`a + b = \sum_{i=1}^n i - \sum arr,\ a \times b = n! / \prod arr` ；考虑到连乘可能溢出，可以使用平方和 :math:`a^2 + b^2 = \sum_{i=1}^n i^2 - \sum arr^2` 。
+- :math:`k=2` 
+    
+  :math:`a + b = \sum_{i=1}^n i - \sum_{j=1} v_j,\ a \times b = n! / \prod_{j=1} v_j` 。
+    
+  考虑到连乘可能溢出，可以使用平方和 :math:`a^2 + b^2 = \sum_{i=1}^n i^2 - \sum_{j=1} v_j^2` 。
 
 [LeetCode] Trapping Rain Water 接雨水
 --------------------------------------------------------------------------------------------

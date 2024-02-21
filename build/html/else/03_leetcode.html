@@ -1244,8 +1244,8 @@
 <span class="linenos"> 6</span><span class="w">        </span><span class="c1">// 特别注意</span>
 <span class="linenos"> 7</span><span class="w">        </span><span class="c1">// 如果把 start, endX, endY, k 声明为 unsigned int 类型，在减到 0 的时候可能会死循环，因为 unsigned int 类型不会小于 0。</span>
 <span class="linenos"> 8</span>
-<span class="linenos"> 9</span><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">endX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">row</span><span class="mi">-1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">10</span><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">endY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">col</span><span class="mi">-1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">endX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">10</span><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">endY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">;</span><span class="w"></span>
 <span class="linenos">11</span>
 <span class="linenos">12</span><span class="w">        </span><span class="c1">// 1 向右</span>
 <span class="linenos">13</span><span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">start</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">endY</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">matrix</span><span class="p">[</span><span class="n">start</span><span class="p">][</span><span class="n">k</span><span class="p">]);</span><span class="w"></span>
@@ -1269,7 +1269,7 @@
 <span class="linenos">31</span><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">col</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">vec</span><span class="p">;</span><span class="w"></span>
 <span class="linenos">32</span><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 <span class="linenos">33</span><span class="w">        </span><span class="c1">// 循环中止条件：圈数判断（ (start,start) 是每一圈的入口坐标）</span>
-<span class="linenos">34</span><span class="w">        </span><span class="k">while</span><span class="p">(</span><span class="n">start</span><span class="o">*</span><span class="mi">2</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">start</span><span class="o">*</span><span class="mi">2</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">34</span><span class="w">        </span><span class="k">while</span><span class="p">(</span><span class="n">start</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"></span>
 <span class="linenos">35</span><span class="w">        </span><span class="p">{</span><span class="w"></span>
 <span class="linenos">36</span><span class="w">            </span><span class="n">tranverseMatrixAccorindTo4Directions</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">vec</span><span class="p">);</span><span class="w"></span>
 <span class="linenos">37</span><span class="w">            </span><span class="o">++</span><span class="n">start</span><span class="p">;</span><span class="w"></span>
@@ -2319,7 +2319,7 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 <section id="leetcode-number-of-islands">
 <h2><span class="section-number">4.28. </span>[LeetCode] Number of Islands 孤岛个数<a class="headerlink" href="#leetcode-number-of-islands" title="Permalink to this headline"></a></h2>
 <p>Hint：使用队列，广度优先遍历（BFS）。</p>
-<p>延伸：从坐标 <span class="math notranslate nohighlight">\((0, 0)\)</span> 到 <span class="math notranslate nohighlight">\((n-1, m-1)\)</span> 的最短时间，只能走四邻域，<span class="math notranslate nohighlight">\(map[i][j] = 1\)</span> 表示有障碍。Hint：BFS，第一个到达的就是时间最短的。</p>
+<p>延伸：从坐标 <span class="math notranslate nohighlight">\((0, 0)\)</span> 到 <span class="math notranslate nohighlight">\((n-1, m-1)\)</span> 的最短时间，只能走四邻域，<span class="math notranslate nohighlight">\(\mathrm{map}[i][j] = 1\)</span> 表示有障碍。Hint：BFS，第一个到达的就是时间最短的。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/number-of-islands/">https://leetcode.com/problems/number-of-islands/</a></p>
 <blockquote>
 <div><div class="toggle docutils container">
@@ -2447,14 +2447,14 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 <p><a class="reference external" href="https://leetcode.com/problems/longest-palindromic-substring/">https://leetcode.com/problems/longest-palindromic-substring/</a></p>
 <div class="math notranslate nohighlight">
 $$
-dp[i][i] = true
+dp[i][i] = \mathrm{true}
 $$
 
 $$
 dp[i][j] =
 \begin{cases}
-true &amp; &amp;\ s[i] = s[j]\ \&amp;\&amp;\ (i \leqslant j \leqslant i+1\ ||\ dp[i+1][j-1] = true) \\
-false &amp; &amp;\ else
+\mathrm{true} &amp; &amp;\ s[i] = s[j]\ \&amp;\&amp;\ (i \leqslant j \leqslant i+1\ ||\ dp[i+1][j-1] = \mathrm{true}) \\
+\mathrm{false} &amp; &amp;\ \mathrm{otherwise}
 \end{cases}
 $$</div><div class="toggle docutils container">
 <div class="header docutils container">
@@ -3288,9 +3288,8 @@ $$</div><div class="toggle docutils container">
 </section>
 <section id="leetcode-word-break">
 <h2><span class="section-number">4.38. </span>[LeetCode] Word Break 字符串按字典切分<a class="headerlink" href="#leetcode-word-break" title="Permalink to this headline"></a></h2>
-<p>Hint：回溯；动态规划；字典树。延伸：返回所有的切分方式。</p>
+<p>Hint：回溯；动态规划；字典树。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/word-break">https://leetcode.com/problems/word-break</a></p>
-<p><a class="reference external" href="https://leetcode.com/problems/word-break-ii">https://leetcode.com/problems/word-break-ii</a></p>
 <blockquote>
 <div><div class="toggle docutils container">
 <div class="header docutils container">
@@ -3390,6 +3389,15 @@ $$</div><div class="toggle docutils container">
 <span class="linenos">33</span><span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+</div></blockquote>
+<p>延伸：返回所有的切分方式。</p>
+<p><a class="reference external" href="https://leetcode.com/problems/word-break-ii">https://leetcode.com/problems/word-break-ii</a></p>
+<blockquote>
+<div><div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
+</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">## 返回所有的切分方式</span>
 <span class="linenos"> 2</span><span class="c1">## 使用字典树 Trie</span>
 <span class="linenos"> 3</span>
@@ -3456,11 +3464,8 @@ $$</div><div class="toggle docutils container">
 <section id="leetcode-gas-station">
 <h2><span class="section-number">4.39. </span>[LeetCode] Gas Station 加油站回路<a class="headerlink" href="#leetcode-gas-station" title="Permalink to this headline"></a></h2>
 <p>Hint：只要 gas 总和不小于 cost 总和，一定存在可以完成回路的出发点。</p>
-<p>延伸：从起点到终点的最少加油次数。Hint：贪心算法，把路过的每个加油站的油量存入优先队列，当需要加油时，
-弹出队列中的最大油量。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/gas-station/">https://leetcode.com/problems/gas-station/</a></p>
 <p><a class="reference external" href="https://leetcode.com/problems/gas-station/discuss/191463/topic">https://leetcode.com/problems/gas-station/discuss/191463/topic</a></p>
-<p><a class="reference external" href="https://leetcode.com/problems/minimum-number-of-refueling-stops/">https://leetcode.com/problems/minimum-number-of-refueling-stops/</a></p>
 <blockquote>
 <div><div class="toggle docutils container">
 <div class="header docutils container">
@@ -3489,6 +3494,16 @@ $$</div><div class="toggle docutils container">
 <span class="linenos">21</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="linenos">22</span><span class="p">};</span><span class="w"></span>
 </pre></div>
+</div>
+</div>
+</div></blockquote>
+<p>延伸：从起点到终点的最少加油次数。Hint：贪心算法，把路过的每个加油站的油量存入优先队列，当需要加油时，
+弹出队列中的最大油量。</p>
+<p><a class="reference external" href="https://leetcode.com/problems/minimum-number-of-refueling-stops/">https://leetcode.com/problems/minimum-number-of-refueling-stops/</a></p>
+<blockquote>
+<div><div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
 </div>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="w"></span>
 <span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
@@ -4739,14 +4754,8 @@ $$</div><div class="toggle docutils container">
 <h2><span class="section-number">4.57. </span>[LeetCode] 和为 s 的连续正数序列<a class="headerlink" href="#leetcode-s" title="Permalink to this headline"></a></h2>
 <p>Hint：双指针。</p>
 <p><a class="reference external" href="https://leetcode.cn/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/">https://leetcode.cn/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/</a></p>
-<p>延伸：统计序列的个数。</p>
-<p><a class="reference external" href="https://leetcode.com/problems/consecutive-numbers-sum">https://leetcode.com/problems/consecutive-numbers-sum</a></p>
 <blockquote>
-<div><div class="math notranslate nohighlight">
-\[\begin{split}x + (x+1) + \cdots + (x+k-1) &amp; = \frac{k(2x+k-1)}{2},\ x &gt; 0,\ k &gt; 0 \\
-                            &amp; = kx + \frac{k(k-1)}{2} \\
-                            &amp; \geq  \frac{k(k+1)}{2}\end{split}\]</div>
-<div class="toggle docutils container">
+<div><div class="toggle docutils container">
 <div class="header docutils container">
 <p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
 </div>
@@ -4770,6 +4779,19 @@ $$</div><div class="toggle docutils container">
 <span class="linenos">18</span>                <span class="n">begin</span> <span class="o">+=</span> <span class="mi">1</span>
 <span class="linenos">19</span>        <span class="k">return</span> <span class="n">res</span>
 </pre></div>
+</div>
+</div>
+</div></blockquote>
+<p>延伸：统计和为 n 的序列的个数。</p>
+<p><a class="reference external" href="https://leetcode.com/problems/consecutive-numbers-sum">https://leetcode.com/problems/consecutive-numbers-sum</a></p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}x + (x+1) + \cdots + (x+k-1) &amp; = \frac{k(2x+k-1)}{2},\ x &gt; 0,\ k &gt; 0 \\
+                            &amp; = kx + \frac{k(k-1)}{2} \\
+                            &amp; \geq  \frac{k(k+1)}{2}\end{split}\]</div>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">math</span>
 <span class="linenos">2</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>

@@ -1197,8 +1197,8 @@ https://leetcode.com/problems/spiral-matrix/
               // 特别注意
               // 如果把 start, endX, endY, k 声明为 unsigned int 类型，在减到 0 的时候可能会死循环，因为 unsigned int 类型不会小于 0。
 
-              int endX = row-1 - start;
-              int endY = col-1 - start;
+              int endX = row - 1 - start;
+              int endY = col - 1 - start;
 
               // 1 向右
               for(int k = start; k <= endY; ++k) vec.push_back(matrix[start][k]);
@@ -1222,7 +1222,7 @@ https://leetcode.com/problems/spiral-matrix/
               if(col == 0) return vec;
               int start = 0;
               // 循环中止条件：圈数判断（ (start,start) 是每一圈的入口坐标）
-              while(start*2 < row && start*2 < col)
+              while(start * 2 < row && start * 2 < col)
               {
                   tranverseMatrixAccorindTo4Directions(matrix, row, col, start, vec);
                   ++start;
@@ -2383,7 +2383,7 @@ Hint：从低位到高位，采用竖式计算，记录所有位的乘积，再�
 
 Hint：使用队列，广度优先遍历（BFS）。
 
-延伸：从坐标 :math:`(0, 0)` 到 :math:`(n-1, m-1)` 的最短时间，只能走四邻域，:math:`map[i][j] = 1` 表示有障碍。Hint：BFS，第一个到达的就是时间最短的。
+延伸：从坐标 :math:`(0, 0)` 到 :math:`(n-1, m-1)` 的最短时间，只能走四邻域，:math:`\mathrm{map}[i][j] = 1` 表示有障碍。Hint：BFS，第一个到达的就是时间最短的。
 
 https://leetcode.com/problems/number-of-islands/
 
@@ -2519,14 +2519,14 @@ https://leetcode.com/problems/number-of-islands/
       :nowrap:
 
       $$
-      dp[i][i] = true
+      dp[i][i] = \mathrm{true}
       $$
 
       $$
       dp[i][j] =
       \begin{cases}
-      true & &\ s[i] = s[j]\ \&\&\ (i \leqslant j \leqslant i+1\ ||\ dp[i+1][j-1] = true) \\
-      false & &\ else
+      \mathrm{true} & &\ s[i] = s[j]\ \&\&\ (i \leqslant j \leqslant i+1\ ||\ dp[i+1][j-1] = \mathrm{true}) \\
+      \mathrm{false} & &\ \mathrm{otherwise}
       \end{cases}
       $$
 
@@ -3419,11 +3419,10 @@ https://leetcode.com/problems/max-points-on-a-line/
 [LeetCode] Word Break 字符串按字典切分
 --------------------------------------------------------------------------------------------
 
-Hint：回溯；动态规划；字典树。延伸：返回所有的切分方式。
+Hint：回溯；动态规划；字典树。
 
 https://leetcode.com/problems/word-break
 
-https://leetcode.com/problems/word-break-ii
 
   .. container:: toggle
 
@@ -3533,6 +3532,16 @@ https://leetcode.com/problems/word-break-ii
           }
       };
 
+延伸：返回所有的切分方式。
+
+https://leetcode.com/problems/word-break-ii
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+      
     .. code-block:: python
         :linenos:
 
@@ -3601,14 +3610,9 @@ https://leetcode.com/problems/word-break-ii
 
 Hint：只要 gas 总和不小于 cost 总和，一定存在可以完成回路的出发点。
 
-延伸：从起点到终点的最少加油次数。Hint：贪心算法，把路过的每个加油站的油量存入优先队列，当需要加油时，
-弹出队列中的最大油量。
-
 https://leetcode.com/problems/gas-station/
 
 https://leetcode.com/problems/gas-station/discuss/191463/topic
-
-https://leetcode.com/problems/minimum-number-of-refueling-stops/
 
   .. container:: toggle
 
@@ -3641,6 +3645,17 @@ https://leetcode.com/problems/minimum-number-of-refueling-stops/
               return totalDiff >= 0 ? start: -1;
           }
       };
+
+延伸：从起点到终点的最少加油次数。Hint：贪心算法，把路过的每个加油站的油量存入优先队列，当需要加油时，
+弹出队列中的最大油量。
+
+https://leetcode.com/problems/minimum-number-of-refueling-stops/
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
 
     .. code-block:: cpp
       :linenos:
@@ -4975,16 +4990,6 @@ Hint：双指针。
 
 https://leetcode.cn/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/
 
-延伸：统计序列的个数。
-
-https://leetcode.com/problems/consecutive-numbers-sum
-
-  .. math::
-
-    x + (x+1) + \cdots + (x+k-1) & = \frac{k(2x+k-1)}{2},\ x > 0,\ k > 0 \\
-                                & = kx + \frac{k(k-1)}{2} \\
-                                & \geq  \frac{k(k+1)}{2}
-
   .. container:: toggle
 
     .. container:: header
@@ -5013,6 +5018,22 @@ https://leetcode.com/problems/consecutive-numbers-sum
                         s -= begin
                         begin += 1
                 return res
+
+延伸：统计和为 n 的序列的个数。
+
+https://leetcode.com/problems/consecutive-numbers-sum
+
+  .. math::
+
+    x + (x+1) + \cdots + (x+k-1) & = \frac{k(2x+k-1)}{2},\ x > 0,\ k > 0 \\
+                                & = kx + \frac{k(k-1)}{2} \\
+                                & \geq  \frac{k(k+1)}{2}
+
+  .. container:: toggle
+
+    .. container:: header
+
+        :math:`\color{darkgreen}{Code}`
 
     .. code-block:: python
         :linenos:

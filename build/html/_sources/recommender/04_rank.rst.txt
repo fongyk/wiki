@@ -128,13 +128,18 @@ FM 有两部分：线性部分和二阶交叉部分。线性部分给予每个�
 
 其做法是对序列 ID Embedding 加入 Target Attention。
 
+论文中还提出一个新的激活函数：Dice。相比于 PReLU，Dice 会根据数据分布自适应地决定跃升点。
+
+.. image:: ./04_dice.png
+    :width: 400px
+    :align: center
+
 .. note::
 
     `Self Attention 和 Target Attention <https://www.zhihu.com/question/473208103/answer/2663109954>`_
         在推荐领域，两者的区分可以简单理解为：Q、K、V 是否来自相同的特征。当 Q、K、V 均来自相同特征时，则为 Self Attention，反之则为 Target Attention。
         在精排模型中，基本采用 Target Attention ，将当前 Item 作为 Q，用户历史行为序列作为 K 和 V。
         也有一些模型应用时无法采用 Target Attention，比如双塔模型 User 和 Item 侧是分开的，无法在某一侧的模型结构中同时获得 Item 和用户行为历史，此时则可采用 Self Attention。
-
 
 
 `DIEN <https://arxiv.org/pdf/1809.03672.pdf>`_

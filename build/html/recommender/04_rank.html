@@ -228,6 +228,8 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 <li><p>Local Activation：尽管用户的兴趣很多，但是只有部分行为兴趣对当前的点击产生作用。</p></li>
 </ul>
 <p>其做法是对序列 ID Embedding 加入 Target Attention。</p>
+<p>论文中还提出一个新的激活函数：Dice。相比于 PReLU，Dice 会根据数据分布自适应地决定跃升点。</p>
+<a class="reference internal image-reference" href="../_images/04_dice.png"><img alt="../_images/04_dice.png" class="align-center" src="../_images/04_dice.png" style="width: 400px;" /></a>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <dl class="simple">

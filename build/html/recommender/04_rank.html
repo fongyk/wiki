@@ -61,37 +61,40 @@
 <li class="toctree-l2"><a class="reference internal" href="02_recall.html">2. 召回</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_prerank.html">3. 粗排</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">4. 精排</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">4.1. 特征</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">4.2. 交叉模型</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id4">Factorization Machines</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id5">Wide &amp; Deep</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id6">DeepFM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">4.1. 特征</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">特征选择</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">4.2. 交叉模型</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Factorization Machines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">Wide &amp; Deep</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">DeepFM</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#attention">4.3. 序列建模与 Attention</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id7">DIN</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id8">DIEN</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id9">ETA</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id10">BST</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id11">GateNet</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id12">PEPNet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">DIN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">DIEN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">ETA</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">BST</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">GateNet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">PEPNet</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id13">4.4. 多目标学习</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id14">4.4. 多目标学习</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#ctr-cvr">CTR &amp; CVR 联合建模</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id16">MMoE</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id17">PLE</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id18">STAR</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id19">MTMS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id17">MMoE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id18">PLE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id19">STAR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id20">MTMS</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id20">4.5. 负采样</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">4.5. 负采样</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#bias">4.6. Bias 问题</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#selection-bias">Selection Bias</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#position-bias">Position Bias</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id22">4.7. 参考资料</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">4.7. 参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="05_rerank.html">5. 重排</a></li>
@@ -162,16 +165,51 @@
 </ul>
 </li>
 </ul>
+<section id="id3">
+<h3>特征选择<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><strong>过滤法（Filter）</strong> ：是一种预处理方法，它按照某种度量来评估每个特征的重要性，并根据这个度量选择最优的特征子集。这种方法通常比较快，因为它可以独立于模型训练。</p>
+<ul>
+<li><p>缺失率、方差、频率</p></li>
+<li><p>相关系数</p></li>
+<li><p>卡方检验</p></li>
+<li><p>互信息</p></li>
+</ul>
+</li>
+<li><p><strong>包裹法（Wrapper）</strong> ：贪心算法，它不断地添加或删除特征、不断地训练模型来寻找最优的特征子集，复杂度高。</p>
+<ul>
+<li><p>序贯选择</p></li>
+<li><p>启发式搜索</p>
+<ul>
+<li><p>RFE：每轮训练之后删除低权重的特征。</p></li>
+</ul>
+</li>
+<li><p>随机搜索</p>
+<ul>
+<li><p>Null Importance：真正强健、稳定且重要的特征一定是在真标签下很重要，但一旦标签打乱，这些优质特征的重要性就会变差；相反地，如果某特征在原始标签下表现一般，但打乱标签后重要性上升，这类“见风使舵”的特征就需要剔除掉。</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>嵌入法（Embedded）</strong> ：特征选择和模型训练同时进行，训练结束得到各个特征的权值系数，根据权值系数从大到小选择特征。</p>
+<ul>
+<li><p>L1 Loss：在 Embedding 层之后加一层 L1 Layer，为每个特征分配一个权重，Loss 中加入这些权重对应的 L1 Loss。</p></li>
+<li><p><a class="reference external" href="https://arxiv.org/pdf/2206.00267.pdf">LPFS</a> ：使用一种 Smoothed-L0 权重：<span class="math notranslate nohighlight">\(g_{\epsilon}(x) = \frac{x^2}{x^2 + \epsilon}\)</span> ，这样得到的重要特征的权重会接近 1。</p></li>
+<li><p>Attention：SENet</p></li>
+</ul>
+</li>
+</ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>对序列特征的处理一般是 Sum/Mean Pooling 或者 Attention（DIN/DIEN/BST）等。</p>
-<p>特征重要性：可以在网络 Embedding 层之后加一层 L1 Layer，为每个特征分配一个权重，Loss 中加入这些权重对应的 L1 Loss；或者使用 SENet 来做特征加权。新增特征也可以通过 AB 实验来简单验证有效性。</p>
+<p>新增特征也可以通过 AB 实验来简单验证有效性。</p>
 </div>
 </section>
-<section id="id3">
-<h2><span class="section-number">4.2. </span>交叉模型<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+</section>
 <section id="id4">
-<h3><a class="reference external" href="https://www.ismll.uni-hildesheim.de/pub/pdfs/Rendle2010FM.pdf">Factorization Machines</a><a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
+<h2><span class="section-number">4.2. </span>交叉模型<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<section id="id5">
+<h3><a class="reference external" href="https://www.ismll.uni-hildesheim.de/pub/pdfs/Rendle2010FM.pdf">Factorization Machines</a><a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
 <p>FM 模型旨在解决稀疏矩阵下的特征组合问题。传统机器学习问题，一般仅考虑如何对特征赋予权重，而没有考虑特征间存在相互作用（关联性），FM 模型的提出较好地解决了该问题。
 FM 模型对于稀疏数据有较强的学习能力，且预测是 <strong>线性时间复杂度</strong> 。</p>
 <p>二阶交叉模型：</p>
@@ -196,16 +234,16 @@ FM 模型对于稀疏数据有较强的学习能力，且预测是 <strong>线�
 <p>实际应用中并不一定需要所有特征的二阶交叉，仍然会根据先验知识人工挑选一些特征。</p>
 </div>
 </section>
-<section id="id5">
-<h3><a class="reference external" href="https://arxiv.org/pdf/1606.07792.pdf">Wide &amp; Deep</a><a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
+<section id="id6">
+<h3><a class="reference external" href="https://arxiv.org/pdf/1606.07792.pdf">Wide &amp; Deep</a><a class="headerlink" href="#id6" title="Permalink to this headline"></a></h3>
 <p>Wide &amp; Deep 模型分为 Wide 侧和 Deep 侧两部分。Wide 侧利用复杂的人工交叉特征去提高”记忆”能力，一般是 LR 模型或者 FM 模型；在 Deep 侧引入 DNN 让模型具有自动交叉组合的能力从而提高泛化性。</p>
 <p>“记忆”能力可以理解为模型直接学习并利用历史数据中物品或特征的“共现频率”的能力。简单的模型能够让原始输入数据更直接地影响输出结果，相当于模型记住了历史数据的分布特点。</p>
 <p>“泛化”能力可以理解为模型传递特征的相关性、发掘稀疏甚至从未出现过的稀有特征与最终标签相关性的能力。深度神经网络通过特征的多次自动组合，可以深度发掘数据中潜在的模式，得到较为稳定、平滑的推荐概率。</p>
 <p>Wide 侧的交叉特征仍然需要精心设计， Wide 侧和 Deep 两部分模型的超参协同调优也很关键。</p>
 <a class="reference internal image-reference" href="../_images/04_wideDeep.png"><img alt="../_images/04_wideDeep.png" class="align-center" src="../_images/04_wideDeep.png" style="width: 700px;" /></a>
 </section>
-<section id="id6">
-<h3><a class="reference external" href="https://arxiv.org/pdf/1703.04247.pdf">DeepFM</a><a class="headerlink" href="#id6" title="Permalink to this headline"></a></h3>
+<section id="id7">
+<h3><a class="reference external" href="https://arxiv.org/pdf/1703.04247.pdf">DeepFM</a><a class="headerlink" href="#id7" title="Permalink to this headline"></a></h3>
 <p>DeepFM 是 DNN 与 <a class="reference external" href="https://sdcast.ksdaemon.ru/wp-content/uploads/2020/02/Rendle2010FM.pdf">FM</a> 结合的产物，也是 Wide &amp; Deep 的改进版，只是将其中的 LR 替换成了 FM，提升了模型 Wide 侧特征组合的能力。
 Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 模型那样做区分。</p>
 <p>FM 有两部分：线性部分和二阶交叉部分。线性部分给予每个特征一个权重，然后加权求和；交叉部分是对特征进行两两相乘，然后加权求和。两部分结果累加在一起即为 FM 侧的输出。</p>
@@ -219,8 +257,8 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 </section>
 <section id="attention">
 <h2><span class="section-number">4.3. </span>序列建模与 Attention<a class="headerlink" href="#attention" title="Permalink to this headline"></a></h2>
-<section id="id7">
-<h3><a class="reference external" href="https://arxiv.org/pdf/1706.06978.pdf">DIN</a><a class="headerlink" href="#id7" title="Permalink to this headline"></a></h3>
+<section id="id8">
+<h3><a class="reference external" href="https://arxiv.org/pdf/1706.06978.pdf">DIN</a><a class="headerlink" href="#id8" title="Permalink to this headline"></a></h3>
 <a class="reference internal image-reference" href="../_images/04_din.png"><img alt="../_images/04_din.png" class="align-center" src="../_images/04_din.png" style="width: 600px;" /></a>
 <p>出发点：</p>
 <ul class="simple">
@@ -240,8 +278,8 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 </dl>
 </div>
 </section>
-<section id="id8">
-<h3><a class="reference external" href="https://arxiv.org/pdf/1809.03672.pdf">DIEN</a><a class="headerlink" href="#id8" title="Permalink to this headline"></a></h3>
+<section id="id9">
+<h3><a class="reference external" href="https://arxiv.org/pdf/1809.03672.pdf">DIEN</a><a class="headerlink" href="#id9" title="Permalink to this headline"></a></h3>
 <a class="reference internal image-reference" href="../_images/04_dien.png"><img alt="../_images/04_dien.png" class="align-center" src="../_images/04_dien.png" style="width: 600px;" /></a>
 <p>DIEN 解决的是用户兴趣迁移的问题。用户的兴趣通常随着时间的流逝会发生变化，直接用 DIN 建模仅仅是关注相似的兴趣，而没有体现出这种兴趣随时间的迁移变化。所以，DIEN 着重在模型中加入了时间序列的迁移信息。</p>
 <ul class="simple">
@@ -251,23 +289,23 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 <p>DIN 更倾向于挖掘用户已经存在的兴趣，根据用户存在的兴趣来推荐用户喜欢的东西，而 DIEN 是根据用户的历史兴趣迁移去挖掘用户新的兴趣。</p>
 <p>DIEN 序列模型复杂度高，线上需要串行推断，时延高，需要工程优化。</p>
 </section>
-<section id="id9">
-<h3><a class="reference external" href="https://arxiv.org/pdf/2108.04468.pdf">ETA</a><a class="headerlink" href="#id9" title="Permalink to this headline"></a></h3>
+<section id="id10">
+<h3><a class="reference external" href="https://arxiv.org/pdf/2108.04468.pdf">ETA</a><a class="headerlink" href="#id10" title="Permalink to this headline"></a></h3>
 <a class="reference internal image-reference" href="../_images/04_eta.png"><img alt="../_images/04_eta.png" class="align-center" src="../_images/04_eta.png" style="width: 600px;" /></a>
 <p>ETA 主要是解决长序列的建模问题，为了获得更好的实时性能，首先设计一个辅助任务，从长期用户行为序列中检索 Topk 用户感兴趣的 Item；然后将用户短期的行为序列与检索出的 Topk 个 Item 过一个 Attention 网络。</p>
 </section>
-<section id="id10">
-<h3><a class="reference external" href="https://arxiv.org/pdf/1905.06874.pdf">BST</a><a class="headerlink" href="#id10" title="Permalink to this headline"></a></h3>
+<section id="id11">
+<h3><a class="reference external" href="https://arxiv.org/pdf/1905.06874.pdf">BST</a><a class="headerlink" href="#id11" title="Permalink to this headline"></a></h3>
 <a class="reference internal image-reference" href="../_images/04_bst.png"><img alt="../_images/04_bst.png" class="align-center" src="../_images/04_bst.png" style="width: 600px;" /></a>
 <p>将 Transformer 用于提取用户行为序列背后的隐藏信息，同时考虑序列的时间顺序，能够更好的表达用户兴趣。</p>
 </section>
-<section id="id11">
-<h3><a class="reference external" href="https://arxiv.org/pdf/2007.03519.pdf">GateNet</a><a class="headerlink" href="#id11" title="Permalink to this headline"></a></h3>
+<section id="id12">
+<h3><a class="reference external" href="https://arxiv.org/pdf/2007.03519.pdf">GateNet</a><a class="headerlink" href="#id12" title="Permalink to this headline"></a></h3>
 <a class="reference internal image-reference" href="../_images/04_gateNet.png"><img alt="../_images/04_gateNet.png" class="align-center" src="../_images/04_gateNet.png" style="width: 600px;" /></a>
 <p>提出了 Embedding Gate 和 MLP Hidden Gate，分别作用于 Embedding 层和 MLP 层。</p>
 </section>
-<section id="id12">
-<h3><a class="reference external" href="https://arxiv.org/pdf/2302.01115.pdf">PEPNet</a><a class="headerlink" href="#id12" title="Permalink to this headline"></a></h3>
+<section id="id13">
+<h3><a class="reference external" href="https://arxiv.org/pdf/2302.01115.pdf">PEPNet</a><a class="headerlink" href="#id13" title="Permalink to this headline"></a></h3>
 <a class="reference internal image-reference" href="../_images/04_pepNet.png"><img alt="../_images/04_pepNet.png" class="align-center" src="../_images/04_pepNet.png" style="width: 800px;" /></a>
 <p>PEPNet 借鉴了 <a class="reference external" href="https://arxiv.org/pdf/1601.02828.pdf">LHUC 算法</a> 的思想（Speaker Adaptation，在 DNN 网络中为每个 Speaker 学习 Hidden Unit Contributions，来提升不同 Speaker 的语音识别效果），
 提出了 Gate NU，通过 Gate NU 为神经网络层输入增加个性化偏置项，可以显著提升模型的目标预估能力。Gate NU 是一个两层神经网络，其中第二层网络的激活函数是 <span class="math notranslate nohighlight">\(2 \times \mathrm{sigmoid}\)</span> ，目的是约束其输出的值域为 [0, 2] ，并且默认值为 1。</p>
@@ -287,8 +325,8 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 </div>
 </section>
 </section>
-<section id="id13">
-<h2><span class="section-number">4.4. </span>多目标学习<a class="headerlink" href="#id13" title="Permalink to this headline"></a></h2>
+<section id="id14">
+<h2><span class="section-number">4.4. </span>多目标学习<a class="headerlink" href="#id14" title="Permalink to this headline"></a></h2>
 <p>多目标模型的提出主要针对两个问题：</p>
 <ul class="simple">
 <li><p>如果效果可以保证或者说效果下降得没有那么厉害的情况下，用一个模型实现多个任务，减少了模型布置的数量和线上的资源消耗（毕竟一个模型的部署比多个模型的部署要少很多的麻烦和出错概率）。</p></li>
@@ -296,8 +334,8 @@ Deep 与 FM 这两个部分的输入是一样的，并没有像 Wide &amp; Deep 
 </ul>
 <section id="ctr-cvr">
 <h3>CTR &amp; CVR 联合建模<a class="headerlink" href="#ctr-cvr" title="Permalink to this headline"></a></h3>
-<section id="id14">
-<h4><a class="reference external" href="https://arxiv.org/pdf/1804.07931.pdf">ESMM</a><a class="headerlink" href="#id14" title="Permalink to this headline"></a></h4>
+<section id="id15">
+<h4><a class="reference external" href="https://arxiv.org/pdf/1804.07931.pdf">ESMM</a><a class="headerlink" href="#id15" title="Permalink to this headline"></a></h4>
 <a class="reference internal image-reference" href="../_images/04_esmm.png"><img alt="../_images/04_esmm.png" class="align-center" src="../_images/04_esmm.png" style="width: 600px;" /></a>
 <p>ESMM 根据点击转化和点击的样本来学习 pCTCVR 和 pCTR 两个目标（共享 Embedding），把 pCVR 当做一个中间变量（隐式地学习），同时输出预估的 pCTR、pCVR 和 pCTCVR。</p>
 <div class="math notranslate nohighlight">
@@ -363,8 +401,8 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 <p>虽然 <span class="math notranslate nohighlight">\(\mathcal{R}_{IPS}\)</span> 号称在曝光空间建模，但是公式中乘的 <span class="math notranslate nohighlight">\(o\)</span> 相当于一个 Mask，约束了只对点击样本生效，不过其均值是在所有曝光样本上计算的。</p>
 </div>
 </section>
-<section id="id15">
-<h4>联合建模的问题<a class="headerlink" href="#id15" title="Permalink to this headline"></a></h4>
+<section id="id16">
+<h4>联合建模的问题<a class="headerlink" href="#id16" title="Permalink to this headline"></a></h4>
 <p><strong>联合建模的好处</strong></p>
 <ul class="simple">
 <li><p>共享 Embedding，加速收敛。</p></li>
@@ -383,16 +421,16 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 </div>
 </section>
 </section>
-<section id="id16">
-<h3><a class="reference external" href="https://dl.acm.org/doi/pdf/10.1145/3219819.3220007">MMoE</a><a class="headerlink" href="#id16" title="Permalink to this headline"></a></h3>
+<section id="id17">
+<h3><a class="reference external" href="https://dl.acm.org/doi/pdf/10.1145/3219819.3220007">MMoE</a><a class="headerlink" href="#id17" title="Permalink to this headline"></a></h3>
 <a class="reference internal image-reference" href="../_images/04_mmoe.png"><img alt="../_images/04_mmoe.png" class="align-center" src="../_images/04_mmoe.png" style="width: 600px;" /></a>
 <p>Share Bottom 的结构在多任务相关性不强时，会损害各自任务的效果。</p>
 <p>MoE 模型像是将 Share Bottom 分解成多个 Expert，然后通过门控网络自动控制不同任务对这些 Expert 的梯度贡献。</p>
 <p>MMoE 在 MoE 的基础上将所有任务共享一个门控网络变成不同任务使用不同的门控网络，不同任务同一个专家也有不同的权重，更加利于模型捕捉到子任务间的相关性和差异性。</p>
 <p>MMoE 中所有的 Expert 是被不同任务所共享的，这可能无法捕捉到任务之间更复杂的关系，从而给部分任务带来一定的噪声。</p>
 </section>
-<section id="id17">
-<h3><a class="reference external" href="https://github.com/tangxyw/RecSysPapers/blob/main/Multi-Task/%5B2020%5D%5BTencent%5D%5BPLE%5D%20Progressive%20Layered%20Extraction%20%28PLE%29%20-%20A%20Novel%20Multi-Task%20Learning%20%28MTL%29%20Model%20for%20Personalized%20Recommendations.pdf">PLE</a><a class="headerlink" href="#id17" title="Permalink to this headline"></a></h3>
+<section id="id18">
+<h3><a class="reference external" href="https://github.com/tangxyw/RecSysPapers/blob/main/Multi-Task/%5B2020%5D%5BTencent%5D%5BPLE%5D%20Progressive%20Layered%20Extraction%20%28PLE%29%20-%20A%20Novel%20Multi-Task%20Learning%20%28MTL%29%20Model%20for%20Personalized%20Recommendations.pdf">PLE</a><a class="headerlink" href="#id18" title="Permalink to this headline"></a></h3>
 <p><a class="reference internal" href="../_images/04_cgc.png"><img alt="cgc" src="../_images/04_cgc.png" style="width: 40%;" /></a>   <a class="reference internal" href="../_images/04_ple.png"><img alt="ple" src="../_images/04_ple.png" style="width: 50%;" /></a></p>
 <p>PLE 致力于解决两个问题：</p>
 <ul class="simple">
@@ -401,8 +439,8 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 </ul>
 <p>PLE 显式地区分了共享 Expert 网络（参数被所有样本更新）和任务专有的 Expert 网络（参数只会被一个任务的样本更新），使用一个 Gating Network（一层 FC + Softmax）对各个 Expert 输出的向量进行加权。这些 Expert 网络是多层级的。</p>
 </section>
-<section id="id18">
-<h3><a class="reference external" href="https://arxiv.org/pdf/2101.11427.pdf">STAR</a><a class="headerlink" href="#id18" title="Permalink to this headline"></a></h3>
+<section id="id19">
+<h3><a class="reference external" href="https://arxiv.org/pdf/2101.11427.pdf">STAR</a><a class="headerlink" href="#id19" title="Permalink to this headline"></a></h3>
 <a class="reference internal image-reference" href="../_images/04_star.png"><img alt="../_images/04_star.png" class="align-center" src="../_images/04_star.png" style="width: 300px;" /></a>
 <p>创新点：</p>
 <ul>
@@ -428,8 +466,8 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 <p>论文中还对比了 <a class="reference external" href="https://arxiv.org/pdf/1604.03539.pdf">Cross-Stitch</a> ，这是 CV 领域提出的一个多任务学习方法，用于学习两个网络的 Hidden Layer 输出特征的线性组合。</p>
 </div>
 </section>
-<section id="id19">
-<h3><a class="reference external" href="https://github.com/tangxyw/RecSysPapers/blob/main/Multi-Scenario/%5B2021%5D%5BBaidu%5D%20Multi-Task%20and%20Multi-Scene%20Unified%20Ranking%20Model%20for%20Online%20Advertising.pdf">MTMS</a><a class="headerlink" href="#id19" title="Permalink to this headline"></a></h3>
+<section id="id20">
+<h3><a class="reference external" href="https://github.com/tangxyw/RecSysPapers/blob/main/Multi-Scenario/%5B2021%5D%5BBaidu%5D%20Multi-Task%20and%20Multi-Scene%20Unified%20Ranking%20Model%20for%20Online%20Advertising.pdf">MTMS</a><a class="headerlink" href="#id20" title="Permalink to this headline"></a></h3>
 <a class="reference internal image-reference" href="../_images/04_mtms.png"><img alt="../_images/04_mtms.png" class="align-center" src="../_images/04_mtms.png" style="width: 800px;" /></a>
 <p>MTMS 对多任务、多场景进行统一特征管理，训练分成两个阶段：</p>
 <ul class="simple">
@@ -441,8 +479,8 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 \[\mathcal{L} = \mathcal{L}_{\mathrm{CTR}} + \mathcal{L}_{\mathrm{CVR}} + \mathcal{L}_{\mathrm{CTCVR}}\]</div>
 </section>
 </section>
-<section id="id20">
-<h2><span class="section-number">4.5. </span>负采样<a class="headerlink" href="#id20" title="Permalink to this headline"></a></h2>
+<section id="id21">
+<h2><span class="section-number">4.5. </span>负采样<a class="headerlink" href="#id21" title="Permalink to this headline"></a></h2>
 <p>为了控制数据规模，降低训练开销，可以保留全部正样本、对负样本进行降采样，一方面提高了训练效率，另一方面还缓解了正负样本不均衡的问题。</p>
 <p>负采样带来的问题是 CTR/CVR 预估值的漂移：打分均值偏高。校正公式：</p>
 <div class="math notranslate nohighlight">
@@ -461,8 +499,8 @@ Prediction</a> 探讨了不同的 CTR &amp; CVR 联合建模方式（参数是�
 <li><p>迁移学习。</p></li>
 <li><p>Inverse Propensity Scoring 和 Imputation。</p></li>
 </ul>
-<section id="id21">
-<h4>迁移学习： <a class="reference external" href="https://arxiv.org/pdf/2005.10545.pdf">ESAM</a><a class="headerlink" href="#id21" title="Permalink to this headline"></a></h4>
+<section id="id22">
+<h4>迁移学习： <a class="reference external" href="https://arxiv.org/pdf/2005.10545.pdf">ESAM</a><a class="headerlink" href="#id22" title="Permalink to this headline"></a></h4>
 <a class="reference internal image-reference" href="../_images/04_esam.png"><img alt="../_images/04_esam.png" class="align-center" src="../_images/04_esam.png" style="width: 800px;" /></a>
 <p>目标是期望模型对曝光空间和未曝光空间的打分分布一致，优化向量召回的效果。</p>
 <ul class="simple">
@@ -517,8 +555,8 @@ e &amp; = \delta - \hat{\delta}\end{split}\]</div>
 </div>
 </section>
 </section>
-<section id="id22">
-<h2><span class="section-number">4.7. </span>参考资料<a class="headerlink" href="#id22" title="Permalink to this headline"></a></h2>
+<section id="id23">
+<h2><span class="section-number">4.7. </span>参考资料<a class="headerlink" href="#id23" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>《深度学习推荐系统》，王喆，电子工业出版社。</p></li>
 <li><p>推荐系统的架构-冷启动-召回-粗排-精排-重排</p></li>
@@ -633,6 +671,12 @@ e &amp; = \delta - \hat{\delta}\end{split}\]</div>
 </ol>
 <blockquote>
 <div><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/437246384">https://zhuanlan.zhihu.com/p/437246384</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="21">
+<li><p>特征选择方法最全总结</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://blog.csdn.net/Datawhale/article/details/120582526">https://blog.csdn.net/Datawhale/article/details/120582526</a></p>
 </div></blockquote>
 </section>
 </section>

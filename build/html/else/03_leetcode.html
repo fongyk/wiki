@@ -1383,8 +1383,6 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 <p>Hint：移位操作；负数可能造成死循环。</p>
 <p><strong>C++中，指定移位次数大于或等于对象类型的比特数（如 int 型的 32 位），或者对负数进行左移操作，结果都是未定义的</strong> 。
 例如：<code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&gt;&gt;</span> <span class="pre">32</span></code> 是未定义的，但是允许 <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&gt;&gt;=</span> <span class="pre">1</span></code> 执行无限次，这是安全的。</p>
-<p>延伸：检查一个数是否是 2 的整次幂，Hint：二进制表示只有一个 1；检查一个数是否是 4 的整次幂，Hint：4 的整次幂的二进制表示中，
-1 都在奇数位；检查一个数是否是 3 的整次幂，Hint：质数的整次幂的质因子只有该质数本身。</p>
 <blockquote>
 <div><div class="toggle docutils container">
 <div class="header docutils container">
@@ -1428,31 +1426,6 @@ Hint：走 <span class="math notranslate nohighlight">\(n\)</span> 步之后能�
 <span class="linenos"> 9</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
 <span class="linenos">10</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">cnt</span><span class="p">;</span><span class="w"></span>
 <span class="linenos">11</span><span class="p">}</span><span class="w"></span>
-</pre></div>
-</div>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">// 检查一个数是否是 2 的整次幂</span>
-<span class="linenos">2</span><span class="kt">bool</span><span class="w"> </span><span class="nf">checkPower2</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"></span>
-<span class="linenos">3</span><span class="p">{</span><span class="w"></span>
-<span class="linenos">4</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">5</span><span class="p">}</span><span class="w"></span>
-</pre></div>
-</div>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">// 检查一个数是否是 4 的整次幂</span>
-<span class="linenos">2</span><span class="kt">bool</span><span class="w"> </span><span class="nf">checkPower4</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"></span>
-<span class="linenos">3</span><span class="p">{</span><span class="w"></span>
-<span class="linenos">4</span><span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="c1">// 先确保是 2 的整次幂（只有一个 1）</span>
-<span class="linenos">5</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
-<span class="linenos">6</span><span class="w">    </span><span class="k">if</span><span class="p">((</span><span class="n">n</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0x55555555</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"> </span><span class="c1">// 0x55555555 = 0101 0101 0101 0101 0101 0101 0101 0101</span>
-<span class="linenos">7</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="linenos">8</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
-<span class="linenos">9</span><span class="p">}</span><span class="w"></span>
-</pre></div>
-</div>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">// 检查一个数是否是 3 的整次幂</span>
-<span class="linenos">2</span><span class="kt">bool</span><span class="w"> </span><span class="nf">checkPower3</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"></span>
-<span class="linenos">3</span><span class="p">{</span><span class="w"></span>
-<span class="linenos">4</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="mi">1162261467</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// 3^19 = 1162261467 是 int 型中最大的 3 的整次幂</span>
-<span class="linenos">5</span><span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -2866,6 +2839,40 @@ $$</div><div class="toggle docutils container">
 </div>
 </div>
 </div></blockquote>
+<p>延伸：检查一个数是否是 2 的整次幂，Hint：二进制表示只有一个 1；检查一个数是否是 4 的整次幂，Hint：4 的整次幂的二进制表示中，
+1 都在奇数位；检查一个数是否是 3 的整次幂，Hint：质数的整次幂的质因子只有该质数本身。</p>
+<blockquote>
+<div><div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">// 检查一个数是否是 2 的整次幂</span>
+<span class="linenos">2</span><span class="kt">bool</span><span class="w"> </span><span class="nf">checkPower2</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">3</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">4</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">5</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">// 检查一个数是否是 4 的整次幂</span>
+<span class="linenos">2</span><span class="kt">bool</span><span class="w"> </span><span class="nf">checkPower4</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">3</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">4</span><span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="c1">// 先确保是 2 的整次幂（只有一个 1）</span>
+<span class="linenos">5</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">6</span><span class="w">    </span><span class="k">if</span><span class="p">((</span><span class="n">n</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0x55555555</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"> </span><span class="c1">// 0x55555555 = 0101 0101 0101 0101 0101 0101 0101 0101</span>
+<span class="linenos">7</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">8</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">9</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">// 检查一个数是否是 3 的整次幂</span>
+<span class="linenos">2</span><span class="kt">bool</span><span class="w"> </span><span class="nf">checkPower3</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">3</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">4</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="mi">1162261467</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// 3^19 = 1162261467 是 int 型中最大的 3 的整次幂</span>
+<span class="linenos">5</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
 </section>
 <section id="leetcode-valid-number">
 <h2><span class="section-number">4.33. </span>[LeetCode] Valid Number 验证一个字符串是否表示某个有效数字<a class="headerlink" href="#leetcode-valid-number" title="Permalink to this headline"></a></h2>
@@ -3075,7 +3082,6 @@ $$</div><div class="toggle docutils container">
 <section id="leetcode-lexicographical-numbers-1-sim-n">
 <h2><span class="section-number">4.35. </span>[LeetCode] Lexicographical Numbers 按字典序排列 <span class="math notranslate nohighlight">\(1 \sim n\)</span><a class="headerlink" href="#leetcode-lexicographical-numbers-1-sim-n" title="Permalink to this headline"></a></h2>
 <p>Hint：方法一，定义排序规则，按字符串的字典序排序；方法二，回溯，递归深度只与 <span class="math notranslate nohighlight">\(n\)</span> 的位数有关。</p>
-<p>延伸：找到字典序排列的第 <span class="math notranslate nohighlight">\(k\)</span> 个数。</p>
 <p><a class="reference external" href="https://leetcode.com/problems/lexicographical-numbers/">https://leetcode.com/problems/lexicographical-numbers/</a></p>
 <blockquote>
 <div><div class="toggle docutils container">
@@ -3124,6 +3130,14 @@ $$</div><div class="toggle docutils container">
 <span class="linenos">18</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="linenos">19</span><span class="p">};</span><span class="w"></span>
 </pre></div>
+</div>
+</div>
+</div></blockquote>
+<p>延伸：找到字典序排列的第 <span class="math notranslate nohighlight">\(k\)</span> 个数。</p>
+<blockquote>
+<div><div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">## 在字典树的区间 [p, p+1) 及其子区间查找</span>
 <span class="linenos"> 2</span><span class="c1">## 下一层子区间为 [p*10, (p+1)*10)</span>

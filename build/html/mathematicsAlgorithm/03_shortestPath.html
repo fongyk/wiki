@@ -84,6 +84,7 @@
 <li class="toctree-l2"><a class="reference internal" href="21_rand.html">21. 随机数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="22_unionFind.html">22. 并查集</a></li>
 <li class="toctree-l2"><a class="reference internal" href="23_kmp.html">23. 前缀函数与 KMP 算法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24_gcd.html">24. 裴蜀定理</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../recommender/index.html">推荐系统</a></li>
@@ -332,6 +333,44 @@
 <span class="linenos">60</span><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">mv</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span><span class="w"></span>
 <span class="linenos">61</span><span class="p">};</span><span class="w"></span>
 <span class="linenos">62</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Solution</span><span class="o">::</span><span class="n">mv</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{{</span><span class="mi">-1</span><span class="p">,</span><span class="mi">0</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="mi">-1</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">},{</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">}};</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</li>
+<li><p>[LeetCode] 到达目的地的方案数。</p>
+<p><a class="reference external" href="https://leetcode.cn/problems/number-of-ways-to-arrive-at-destination">https://leetcode.cn/problems/number-of-ways-to-arrive-at-destination</a></p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><span class="math notranslate nohighlight">\(\color{darkgreen}{Code}\)</span></p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">PriorityQueue</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">INF</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>
+<span class="linenos"> 4</span><span class="n">MOD</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="mi">9</span> <span class="o">+</span> <span class="mi">7</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<span class="linenos"> 7</span>    <span class="k">def</span> <span class="nf">countPaths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">roads</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="linenos"> 8</span>        <span class="n">adj</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span> <span class="c1">## 邻接表</span>
+<span class="linenos"> 9</span>        <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">time</span> <span class="ow">in</span> <span class="n">roads</span><span class="p">:</span>
+<span class="linenos">10</span>            <span class="n">adj</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">v</span><span class="p">,</span> <span class="n">time</span><span class="p">))</span>
+<span class="linenos">11</span>            <span class="n">adj</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">u</span><span class="p">,</span> <span class="n">time</span><span class="p">))</span>
+<span class="linenos">12</span>        <span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">INF</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">## 最短距离</span>
+<span class="linenos">13</span>        <span class="n">pn</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">## 最短路径数量</span>
+<span class="linenos">14</span>        <span class="n">pq</span> <span class="o">=</span> <span class="n">PriorityQueue</span><span class="p">()</span>
+<span class="linenos">15</span>        <span class="n">pq</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="c1">## (从起点到某顶点的距离，顶点)</span>
+<span class="linenos">16</span>        <span class="k">while</span> <span class="ow">not</span> <span class="n">pq</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
+<span class="linenos">17</span>            <span class="n">t</span><span class="p">,</span> <span class="n">u</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="linenos">18</span>            <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">t</span><span class="p">:</span>
+<span class="linenos">19</span>                <span class="k">continue</span>
+<span class="linenos">20</span>            <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">time</span> <span class="ow">in</span> <span class="n">adj</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
+<span class="linenos">21</span>                <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">==</span> <span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">time</span><span class="p">:</span>
+<span class="linenos">22</span>                    <span class="n">pn</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">+=</span> <span class="n">pn</span><span class="p">[</span><span class="n">u</span><span class="p">]</span>
+<span class="linenos">23</span>                <span class="k">elif</span> <span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">time</span><span class="p">:</span>
+<span class="linenos">24</span>                    <span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">time</span>
+<span class="linenos">25</span>                    <span class="n">pn</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">pn</span><span class="p">[</span><span class="n">u</span><span class="p">]</span>
+<span class="linenos">26</span>                    <span class="n">pq</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">time</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span> <span class="c1">## 发现更短的路径才放入队列</span>
+<span class="linenos">27</span>                <span class="n">pn</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">pn</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">%</span> <span class="n">MOD</span>
+<span class="linenos">28</span>        <span class="k">return</span> <span class="n">pn</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>

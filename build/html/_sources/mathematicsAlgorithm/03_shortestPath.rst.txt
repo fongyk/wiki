@@ -225,3 +225,47 @@ Dijkstra 算法
           static const int mv[4][2];
       };
       const int Solution::mv[4][2] = {{-1,0},{0,-1},{0,1},{1,0}};
+
+
+- [LeetCode] 到达目的地的方案数。
+
+  https://leetcode.cn/problems/number-of-ways-to-arrive-at-destination
+
+  .. container:: toggle
+
+    .. container:: header
+
+      :math:`\color{darkgreen}{Code}`
+
+    .. code-block:: python
+      :linenos:
+
+      from queue import PriorityQueue
+
+      INF = float('inf')
+      MOD = 10 ** 9 + 7
+
+      class Solution:
+          def countPaths(self, n: int, roads: List[List[int]]) -> int:
+              adj = [[] for _ in range(n)] ## 邻接表
+              for u, v, time in roads:
+                  adj[u].append((v, time))
+                  adj[v].append((u, time))
+              d = [0] + [INF] * (n - 1) ## 最短距离
+              pn = [1] + [0] * (n - 1) ## 最短路径数量
+              pq = PriorityQueue()
+              pq.put((0, 0)) ## (从起点到某顶点的距离，顶点)
+              while not pq.empty():
+                  t, u = pq.get()
+                  if d[u] < t:
+                      continue
+                  for v, time in adj[u]:
+                      if d[v] == d[u] + time:
+                          pn[v] += pn[u]
+                      elif d[v] > d[u] + time:
+                          d[v] = d[u] + time
+                          pn[v] = pn[u]
+                          pq.put((d[u] + time, v)) ## 发现更短的路径才放入队列
+                      pn[v] = pn[v] % MOD
+              return pn[-1]
+

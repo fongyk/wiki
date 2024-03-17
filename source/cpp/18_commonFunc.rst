@@ -1,7 +1,9 @@
 常用函数
 ==============
 
-以下函数基于 C++11 标准。
+.. note::
+
+  以下函数基于 C++11 标准。
 
 lower\_bound，upper\_bound
 -------------------------------
@@ -30,9 +32,19 @@ lower\_bound，upper\_bound
   ForwardIterator upper_bound (ForwardIterator first, ForwardIterator last, const T& val);
 
 
-求有序数组中 val 的个数： ::
+统计有序数组中 val 的个数::
 
   upper_bound(first, last, val) - lower_bound(first, last, val);
+
+**lower_bound** 和 **upper_bound** 还支持指定一个二元谓词（Binary Predicate）来比较元素（缺省时为 ``operator<`` ），当 ``comp(a, b)`` 的第一个参数在数组中排在第二个参数前面时返回 true 。事实上这两个函数并不要求数组是严格排好序的（Sorted），只需要数组是关于 val 可分的（Partitioned）： ``comp(*iter, val)`` 为 true 的元素全部排在 ``comp(*iter, val)`` 为 false 的元素前面。 
+
+::
+
+  template <class ForwardIterator, class T, class Compare>  
+  ForwardIterator lower_bound (ForwardIterator first, ForwardIterator last, const T& val, Compare comp);
+
+  template <class ForwardIterator, class T, class Compare>
+  ForwardIterator upper_bound (ForwardIterator first, ForwardIterator last, const T& val, Compare comp);
 
 
 .. container:: toggle
@@ -120,7 +132,7 @@ fill，fill\_n，for\_each
     return fn;      // or, since C++11: return move(fn);
   }
 
-``fn`` 是一个一元谓词（unary predicate），接受一个参数，其返回值被忽略。``fn`` 可以是一个函数指针或函数对象。
+``fn`` 是一个一元谓词（Unary Predicate），接受一个参数，其返回值被忽略。``fn`` 可以是一个函数指针或函数对象。
 
 .. note::
 
@@ -216,7 +228,7 @@ sort
   template <class RandomAccessIterator, class Compare>
   void sort (RandomAccessIterator first, RandomAccessIterator last, Compare comp);
 
-``comp`` 是一个二元谓词（binary predicate），接受两个参数，返回 bool 型或一个可以转换为 bool 型的类型。``comp`` 可以是一个函数指针或函数对象。
+``comp`` 是一个二元谓词（Binary Predicate），接受两个参数，返回 bool 型或一个可以转换为 bool 型的类型。``comp`` 可以是一个函数指针或函数对象。
 
 如果需要稳定排序，可以使用 ``stable_sort`` 直接代替 ``sort`` 。
 

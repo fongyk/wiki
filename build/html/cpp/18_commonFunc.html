@@ -140,7 +140,10 @@
              
   <section id="id1">
 <h1><span class="section-number">18. </span>常用函数<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>以下函数基于 C++11 标准。</p>
+</div>
 <section id="lower-bound-upper-bound">
 <h2><span class="section-number">18.1. </span>lower_bound，upper_bound<a class="headerlink" href="#lower-bound-upper-bound" title="Permalink to this headline"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
@@ -158,8 +161,16 @@
 <span class="n">ForwardIterator</span><span class="w"> </span><span class="n">upper_bound</span><span class="w"> </span><span class="p">(</span><span class="n">ForwardIterator</span><span class="w"> </span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">ForwardIterator</span><span class="w"> </span><span class="n">last</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">val</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
-<p>求有序数组中 val 的个数：</p>
+<p>统计有序数组中 val 的个数:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">upper_bound</span><span class="p">(</span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">last</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">lower_bound</span><span class="p">(</span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">last</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>lower_bound</strong> 和 <strong>upper_bound</strong> 还支持指定一个二元谓词（Binary Predicate）来比较元素（缺省时为 <code class="docutils literal notranslate"><span class="pre">operator&lt;</span></code> ），当 <code class="docutils literal notranslate"><span class="pre">comp(a,</span> <span class="pre">b)</span></code> 的第一个参数在数组中排在第二个参数前面时返回 true 。事实上这两个函数并不要求数组是严格排好序的（Sorted），只需要数组是关于 val 可分的（Partitioned）： <code class="docutils literal notranslate"><span class="pre">comp(*iter,</span> <span class="pre">val)</span></code> 为 true 的元素全部排在 <code class="docutils literal notranslate"><span class="pre">comp(*iter,</span> <span class="pre">val)</span></code> 为 false 的元素前面。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">ForwardIterator</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Compare</span><span class="o">&gt;</span><span class="w"></span>
+<span class="n">ForwardIterator</span><span class="w"> </span><span class="n">lower_bound</span><span class="w"> </span><span class="p">(</span><span class="n">ForwardIterator</span><span class="w"> </span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">ForwardIterator</span><span class="w"> </span><span class="n">last</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">Compare</span><span class="w"> </span><span class="n">comp</span><span class="p">);</span><span class="w"></span>
+
+<span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">ForwardIterator</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Compare</span><span class="o">&gt;</span><span class="w"></span>
+<span class="n">ForwardIterator</span><span class="w"> </span><span class="n">upper_bound</span><span class="w"> </span><span class="p">(</span><span class="n">ForwardIterator</span><span class="w"> </span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">ForwardIterator</span><span class="w"> </span><span class="n">last</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">Compare</span><span class="w"> </span><span class="n">comp</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <div class="toggle docutils container">
@@ -241,7 +252,7 @@
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">fn</span></code> 是一个一元谓词（unary predicate），接受一个参数，其返回值被忽略。<code class="docutils literal notranslate"><span class="pre">fn</span></code> 可以是一个函数指针或函数对象。</p>
+<p><code class="docutils literal notranslate"><span class="pre">fn</span></code> 是一个一元谓词（Unary Predicate），接受一个参数，其返回值被忽略。<code class="docutils literal notranslate"><span class="pre">fn</span></code> 可以是一个函数指针或函数对象。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <dl class="simple">
@@ -329,7 +340,7 @@
 <span class="kt">void</span><span class="w"> </span><span class="n">sort</span><span class="w"> </span><span class="p">(</span><span class="n">RandomAccessIterator</span><span class="w"> </span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">RandomAccessIterator</span><span class="w"> </span><span class="n">last</span><span class="p">,</span><span class="w"> </span><span class="n">Compare</span><span class="w"> </span><span class="n">comp</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">comp</span></code> 是一个二元谓词（binary predicate），接受两个参数，返回 bool 型或一个可以转换为 bool 型的类型。<code class="docutils literal notranslate"><span class="pre">comp</span></code> 可以是一个函数指针或函数对象。</p>
+<p><code class="docutils literal notranslate"><span class="pre">comp</span></code> 是一个二元谓词（Binary Predicate），接受两个参数，返回 bool 型或一个可以转换为 bool 型的类型。<code class="docutils literal notranslate"><span class="pre">comp</span></code> 可以是一个函数指针或函数对象。</p>
 <p>如果需要稳定排序，可以使用 <code class="docutils literal notranslate"><span class="pre">stable_sort</span></code> 直接代替 <code class="docutils literal notranslate"><span class="pre">sort</span></code> 。</p>
 <div class="toggle docutils container">
 <div class="header docutils container">

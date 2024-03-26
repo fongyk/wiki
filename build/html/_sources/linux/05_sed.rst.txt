@@ -68,7 +68,12 @@ sed 支持的正则表达式和 grep 类似，也分为基本正则和扩展正�
 
 - ``sed "s/my/*&*/g" foo.txt`` ：使用 ``&`` 来指代需要替换的模式，可以方便地在其周围增加其他字符（ ``*my*`` ）。
 
-一个例子，html.txt::
+- ``sed -E "s/(.*), (.*)/\2, \1/g" foo.txt`` ： ``-E`` 使用扩展正则表达式； ``\1`` 和 ``\2`` 表示捕获匹配。
+
+一个例子
++++++++++++++
+
+html.txt::
 
     <b>This</b> is what <span style="text-decoration: underline;">I</span> meant. Understand?
 

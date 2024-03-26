@@ -1,7 +1,7 @@
 SSH 
 ===========
 
-git 提供两类 URL 地址：
+Git 提供两类 URL 地址：
 
 - HTTPS URL（例如 https://github.com/user/repo.git）
   
@@ -9,7 +9,7 @@ git 提供两类 URL 地址：
 
 在命令行上使用 HTTPS URL 将 git clone、git fetch、git pull 或 git push 执行到远程存储库时，将要求提供用户名和密码。
 
-SSH 是一种安全的网络协议（Secure Shell），git 使用这种协议进行远程加密登录。SSH 登录安全性由非对称加密保证，生成一个公钥和一个私钥。
+SSH 是一种安全的网络协议（Secure Shell），Git 使用这种协议进行远程加密登录。SSH 登录安全性由非对称加密保证，生成一个公钥和一个私钥。
 SSH 采用加密技术验证远程主机，同时允许远程主机验证用户。
 设置 SSH key 的目的是为了节省输入用户名、密码的过程，同时保证传输安全。
 
@@ -72,7 +72,7 @@ Github 添加公钥
     % ssh -T git@github.com
     Hi <your name>! You've successfully authenticated, but GitHub does not provide shell access.
 
-如果看到上面的内容，说明连接成功。有时，防火墙会完全拒绝 SSH 连接（端口 22），可以尝试使用通过 HTTPS 端口建立的 SSH 连接克隆。
+如果看到上面的内容，说明连接成功。有时，防火墙会完全拒绝 SSH 连接（端口 22），可以尝试使用通过 HTTPS 端口建立的 SSH 连接。
 要测试通过 HTTPS 端口的 SSH 是否可行，请运行以下 SSH 命令::
 
     % ssh -T -p 443 git@ssh.github.com

@@ -3,6 +3,40 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+.. raw:: html
+
+   <p id="current-time" style="font-size:20px; color:#2980b9;"></p>
+
+    <script>
+        function displayTime() {
+            var currentTime = new Date();
+            var timestamp = parseInt(currentTime.getTime() / 1000);
+            var year = currentTime.getFullYear();
+            var month = currentTime.getMonth() + 1;
+            var day = currentTime.getDate();
+            var hours = currentTime.getHours();
+            var minutes = currentTime.getMinutes();
+            var seconds = currentTime.getSeconds();
+            var days = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+            var dayOfWeek = days[currentTime.getDay()];
+
+            month = (month < 10 ? "0" : "") + month;
+            day = (day < 10 ? "0" : "") + day;
+            hours = (hours < 10 ? "0" : "") + hours;
+            minutes = (minutes < 10 ? "0" : "") + minutes;
+            seconds = (seconds < 10 ? "0" : "") + seconds;
+
+            var timeString = dayOfWeek;
+            timeString = timeString + " " + year + "-" + month + "-" + day;
+            timeString = timeString + " " + hours + ":" + minutes + ":" + seconds;
+            timeString = timeString + " " + timestamp;
+            document.getElementById("current-time").innerHTML = timeString;
+        }
+        // flush every second
+        setInterval(displayTime, 1000);
+    </script>
+
+
 文档
 ========
 .. note::

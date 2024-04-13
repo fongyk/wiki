@@ -22,7 +22,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="快速访问" href="link/index.html" /> 
+    <link rel="next" title="现在时刻" href="time/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -46,6 +46,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">目录</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="time/index.html">现在时刻</a></li>
 <li class="toctree-l1"><a class="reference internal" href="link/index.html">快速访问</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpp/index.html">C/C++</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python/index.html">Python</a></li>
@@ -87,36 +88,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <p id="current-time" style="font-size:20px; color:#2980b9;"></p>
-
- <script>
-     function displayTime() {
-         var currentTime = new Date();
-         var timestamp = parseInt(currentTime.getTime() / 1000);
-         var year = currentTime.getFullYear();
-         var month = currentTime.getMonth() + 1;
-         var day = currentTime.getDate();
-         var hours = currentTime.getHours();
-         var minutes = currentTime.getMinutes();
-         var seconds = currentTime.getSeconds();
-         var days = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
-         var dayOfWeek = days[currentTime.getDay()];
-
-         month = (month < 10 ? "0" : "") + month;
-         day = (day < 10 ? "0" : "") + day;
-         hours = (hours < 10 ? "0" : "") + hours;
-         minutes = (minutes < 10 ? "0" : "") + minutes;
-         seconds = (seconds < 10 ? "0" : "") + seconds;
-
-         var timeString = dayOfWeek;
-         timeString = timeString + " " + year + "-" + month + "-" + day;
-         timeString = timeString + " " + hours + ":" + minutes + ":" + seconds;
-         timeString = timeString + " " + timestamp;
-         document.getElementById("current-time").innerHTML = timeString;
-     }
-     // flush every second
-     setInterval(displayTime, 1000);
- </script><section id="id1">
+  <section id="id1">
 <h1>文档<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -126,6 +98,7 @@
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">目录</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="time/index.html">现在时刻</a></li>
 <li class="toctree-l1"><a class="reference internal" href="link/index.html">快速访问</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpp/index.html">C/C++</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python/index.html">Python</a></li>
@@ -149,7 +122,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="link/index.html" class="btn btn-neutral float-right" title="快速访问" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="time/index.html" class="btn btn-neutral float-right" title="现在时刻" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

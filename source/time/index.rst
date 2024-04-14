@@ -98,17 +98,19 @@
 
             .clockbox{ border-radius: 50%; position: relative;}
             /*时钟中心点*/
-            .clockcenter{ width: 3%; height: 3%; border-radius: 40%; background: #33373f; top:48.8%; left: 48.8%; position: absolute;}
+            .clockcenter{ width: 3%; height: 3%; border-radius: 40%; background: #520404; top: 48.5%; left: 48.5%; position: absolute;}
             /*时钟数字*/
-            .num{ width: 10%; height: 10%; line-height: 1.6em;text-align: center; font-size: 1.5em; position: absolute;}
+            .num{ width: 10%; height: 10%; line-height: 1.6em; text-align: center; font-size: 1.5em; position: absolute;}
             /*时钟刻度*/
-            .clockscale{width:50%;height:1px;transform-origin:0%;z-index:7;position:absolute;top:50%;left:50%;}
-            .hiddenscale{width:91.5%;height:1px;float:left;} 
-            .displayscale{ width:5%;height:1px;background-color:#555;float:left;}
+            .clockscale{ width:50%;height:1px;transform-origin:0%;z-index:7;position:absolute;top:50%;left:50%;}
+            .hiddenscale_min{ width:91.5%;height:1px;float:left;} 
+            .displayscale_min{ width:5%;height:1px;background-color:#555;float:left;}
+            .hiddenscale_hour{ width:90%;height:2px;float:left;} 
+            .displayscale_hour{ width:12px;height:2px;background-color:#520404;float:left;}
             /*时针、分针、秒针*/
-            .hourhand{width:25%;height:4px;background-color:black;transform-origin:0%;z-index:20;position:absolute;top:50%;left:50%;border-radius:2px;box-shadow:1px -3px 8px 3px #aaa;}
-            .minutehand{width:33.5%;height:2px;background-color:grey;transform-origin:5.5%;z-index:20;position:absolute;top:50%;left:48%;border-radius:1px;box-shadow:1px -3px 8px 1px #aaa;}
-            .secondhand{width:47.5%;height:1px;background-color:red;transform-origin:8.5%;z-index:20;position:absolute;top:50%;left:46%;box-shadow:1px -3px 8px 1px #aaa;}
+            .hourhand{width:25%;height:3px;background-color:black;transform-origin:0%;z-index:20;position:absolute;top:49.4%;left:50%;border-radius:2px;box-shadow:1px -3px 8px 3px #aaa;}
+            .minutehand{width:33.5%;height:2px;background-color:grey;transform-origin:0%;z-index:21;position:absolute;top:49.8%;left:50%;border-radius:1px;box-shadow:1px -3px 8px 1px #aaa;}
+            .secondhand{width:47.5%;height:1px;background-color:red;transform-origin:0%;z-index:22;position:absolute;top:49.99%;left:50%;border-radius:0.5px;box-shadow:1px -3px 8px 1px #aaa;}
         </style>
     </head>
     <body>
@@ -150,7 +152,11 @@
                     dot[i].style.top = (relativelength-Math.cos( (rad*i) ) * radius)+"px";
                 }
                 for(var i = 0; i < 60; i++){
-                    clock.innerHTML += "<div class='clockscale'><div class='hiddenscale'></div><div class='displayscale'></div></div>"; 
+                    if (i % 5 == 0) {
+                        clock.innerHTML += "<div class='clockscale'><div class='hiddenscale_hour'></div><div class='displayscale_hour'></div></div>"; 
+                    } else {
+                        clock.innerHTML += "<div class='clockscale'><div class='hiddenscale_min'></div><div class='displayscale_min'></div></div>"; 
+                    }
                 }
                 var scale = document.getElementsByClassName("clockscale");
                 for(var i = 0;  i < scale.length; i++){

@@ -145,11 +145,11 @@
             function initClockLayout(){
                 var radius = clock.clientWidth/2-clock.clientWidth/10;
                 var relativelength = clock.clientWidth/2-clock.clientWidth/20;
-                var rad = 2 * Math.PI  / 12;
+                var rad = 2 * Math.PI / 12;
                 var dot = document.getElementsByClassName("num");
                 for (var i = 0; i < dot.length; i++) {
-                    dot[i].style.left = (relativelength+Math.sin( (rad*i) ) * radius)+"px";
-                    dot[i].style.top = (relativelength-Math.cos( (rad*i) ) * radius)+"px";
+                    dot[i].style.left = (relativelength + Math.sin(rad * i) * radius) + "px";
+                    dot[i].style.top = (relativelength - Math.cos(rad * i) * radius) - 3 + "px";
                 }
                 for(var i = 0; i < 60; i++){
                     if (i % 5 == 0) {

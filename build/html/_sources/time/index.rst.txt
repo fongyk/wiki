@@ -7,27 +7,6 @@
     <head>
         <title>TIME</title>
         <script src="https://cdn.jsdelivr.net/npm/chinese-lunar"></script>
-        <style>
-            canvas {
-                border: 1px solid black;
-            }
-        </style>
-    </head>
-    <body>
-
-        <p id="current-week" style="text-align: center; font-size:30px; color:#2980b9;"></p>
-
-        <p id="current-time" style="text-align: center; font-size:30px; color:#2980b9;"></p>
-
-        <p id="current-ts" style="text-align: center; font-size:30px; color:grey;"></p>
-        
-        <br>
-
-        <p id="lunar-year" style="text-align: center; font-size:30px; color:#2980b9;"></p>
-
-        <p id="lunar-date" style="text-align: center; font-size:30px; color:#2980b9;"></p>
-
-
         <script>
             function displayTime() {
                 var currentTime = new Date();
@@ -52,7 +31,14 @@
                 document.getElementById("current-time").innerHTML = timeString;
                 document.getElementById("current-week").innerHTML = dayOfWeek;
                 document.getElementById("current-ts").innerHTML = timestamp.toString().padEnd(14, '0');
-                
+
+                var timeZoneOffset = currentTime.getTimezoneOffset();
+                var timeZoneOffsetSign = timeZoneOffset > 0 ? "-" : "+";
+                timeZoneOffset = parseInt(Math.abs(timeZoneOffset / 60));
+                var timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                timeZone = timeZone + " UTC" + timeZoneOffsetSign + timeZoneOffset.toString().padStart(2, '0'); 
+                document.getElementById("current-tz").innerHTML = timeZone;
+
                 var tiangan = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'];
                 var dizhi = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
                 var shengxiao = ['鼠', '牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪'];
@@ -65,9 +51,29 @@
                 var lunarDate = chineseLunar.solarToLunar(utcDateM1);
                 document.getElementById("lunar-date").innerHTML = chineseLunar.format(lunarDate, 'YMD');;
             }
-            // flush every second
             setInterval(displayTime, 123);
         </script>
+        <style>
+            canvas {
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+
+        <p id="current-week" style="text-align: center; font-size:30px; color:#2980b9;"></p>
+
+        <p id="current-time" style="text-align: center; font-size:30px; color:#2980b9;"></p>
+
+        <p id="current-ts" style="text-align: center; font-size:30px; color:grey;"></p>
+
+        <p id="current-tz" style="text-align: center; font-size:30px; color:#2980b9;"></p>
+        
+        <br>
+
+        <p id="lunar-year" style="text-align: center; font-size:30px; color:#2980b9;"></p>
+
+        <p id="lunar-date" style="text-align: center; font-size:30px; color:#2980b9;"></p>
 
     </body>
     </html>

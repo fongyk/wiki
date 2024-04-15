@@ -23,7 +23,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="C/C++" href="../cpp/index.html" />
-    <link rel="prev" title="文档" href="../index.html" /> 
+    <link rel="prev" title="现在时刻" href="../time/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,7 +47,9 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">目录</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../time/index.html">现在时刻</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">快速访问</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ip">您的 IP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ustc">USTC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#anyknew">AnyKnew</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sharelatex-overleaf">ShareLatex/Overleaf</a></li>
@@ -119,6 +121,50 @@
              
   <section id="id1">
 <h1>快速访问<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<section id="ip">
+<h2>您的 IP<a class="headerlink" href="#ip" title="Permalink to this headline"></a></h2>
+<html>
+<head>
+    <title>User IP and Location</title>
+    <style>
+      .key {
+          text-align: center; font-family: monospace; font-size:20px; color:grey; white-space: pre;
+      }
+      .value {
+          text-align: center; font-family: monospace; font-size:20px; color:#2980b9;
+      }
+    </style>
+</head>
+<body>
+    <p><span class="key">        IP: </span><span id="userIp" class="value"></span></p>
+    <p><span class="key">      City: </span><span id="userCity" class="value"></span></p>
+    <p><span class="key">    Region: </span><span id="userRegion" class="value"></span></p>
+    <p><span class="key">   Country: </span><span id="userCountry" class="value"></span></p>
+    <p><span class="key">  Location: </span><span id="userLocation" class="value"></span></p>
+    <p><span class="key">  Timezone: </span><span id="userTimezone" class="value"></span></p>
+
+    <script>
+        // Get User IP
+        fetch('https://api.ipify.org/?format=json')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('userIp').innerText = data.ip;
+            // Get User Location
+            fetch(`https://ipapi.co/${data.ip}/json/`)
+            .then(response => response.json())
+            .then(locationData => {
+                document.getElementById('userCity').innerText = locationData.city;
+                document.getElementById('userRegion').innerText = locationData.region;
+                document.getElementById('userCountry').innerText = locationData.country_name;
+                document.getElementById('userLocation').innerText = locationData.latitude + ", " + locationData.longitude;
+                document.getElementById('userTimezone').innerText = locationData.timezone;
+            })
+            .catch(error => console.error('Error fetching location data:', error));
+        })
+        .catch(error => console.error('Error fetching IP address:', error));
+    </script>
+</body>
+</html></section>
 <section id="ustc">
 <h2>USTC<a class="headerlink" href="#ustc" title="Permalink to this headline"></a></h2>
 <table class="hlist"><tr><td><ul>
@@ -529,7 +575,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../index.html" class="btn btn-neutral float-left" title="文档" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../time/index.html" class="btn btn-neutral float-left" title="现在时刻" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../cpp/index.html" class="btn btn-neutral float-right" title="C/C++" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

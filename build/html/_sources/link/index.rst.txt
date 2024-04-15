@@ -1,6 +1,54 @@
 快速访问
 =============
 
+您的 IP
+------------
+
+.. raw:: html
+
+    <html>
+    <head>
+        <title>User IP and Location</title>
+        <style>
+          .key {
+              text-align: center; font-family: monospace; font-size:20px; color:grey; white-space: pre;
+          }
+          .value {
+              text-align: center; font-family: monospace; font-size:20px; color:#2980b9;
+          }
+        </style>
+    </head>
+    <body>
+        <p><span class="key">        IP: </span><span id="userIp" class="value"></span></p>
+        <p><span class="key">      City: </span><span id="userCity" class="value"></span></p>
+        <p><span class="key">    Region: </span><span id="userRegion" class="value"></span></p>
+        <p><span class="key">   Country: </span><span id="userCountry" class="value"></span></p>
+        <p><span class="key">  Location: </span><span id="userLocation" class="value"></span></p>
+        <p><span class="key">  Timezone: </span><span id="userTimezone" class="value"></span></p>
+
+        <script>
+            // Get User IP
+            fetch('https://api.ipify.org/?format=json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('userIp').innerText = data.ip;
+                // Get User Location
+                fetch(`https://ipapi.co/${data.ip}/json/`)
+                .then(response => response.json())
+                .then(locationData => {
+                    document.getElementById('userCity').innerText = locationData.city;
+                    document.getElementById('userRegion').innerText = locationData.region;
+                    document.getElementById('userCountry').innerText = locationData.country_name;
+                    document.getElementById('userLocation').innerText = locationData.latitude + ", " + locationData.longitude;
+                    document.getElementById('userTimezone').innerText = locationData.timezone;
+                })
+                .catch(error => console.error('Error fetching location data:', error));
+            })
+            .catch(error => console.error('Error fetching IP address:', error));
+        </script>
+    </body>
+    </html>
+
 USTC
 -------------
 

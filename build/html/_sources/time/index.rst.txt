@@ -196,6 +196,8 @@
 
 .. toctree::
     :hidden:
+    :maxdepth: 2
+    :numbered: 3
 
     01_timer.rst
     02_countdown.rst

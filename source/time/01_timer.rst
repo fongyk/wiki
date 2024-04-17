@@ -75,7 +75,7 @@
     <body>
         <div style="text-align:center">
             <br><br><br><br>
-            <input type="text" id="timeValue" style="width:450px;height:70px;text-align:center;background-color:#edf0f2;border:none;border-radius:10px;color:#2980b9;font-size:60px;font-family:consolas,monospace" value="00:00:00:00" readonly><br>
+            <input type="text" id="timeValue" style="width:420px;height:100px;text-align:center;background-color:#edf0f2;border:none;border-radius:10px;color:#2980b9;font-size:60px;font-family:consolas,monospace" value="00:00:00:00" readonly><br>
             <br><br><br><br><br>
             <button type="button" class="buttoncss" style="background-color:#89cfb3;" onclick="startTimer()">开始</button>
             <button type="button" class="buttoncss" style="background-color:#e69d9d;" onclick="stopTimer()">停止</button>

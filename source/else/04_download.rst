@@ -17,6 +17,7 @@
     image              `Crontab Cheatsheet`_                                :download:`crontab <resource/crontab_cheatsheet.png>`
     image              天干地支                                            :download:`tgdz <resource/tgdz.svg>`
     image              `数据结构及复杂度`_                                      :download:`complexity <resource/big-o-complexity.png>`
+    image              `地图`_                                              :download:`china_map <resource/china-map.jpg>` :download:`world_map <resource/world-map.jpg>`
     chrome             Infinity 插件配置                                      :download:`infinity <resource/infinityBackup.infinity>`
     pdf                Effective C++                                         :download:`effective_c++ <resource/Effective-C++.pdf>`
     pdf                More Effective C++                                     :download:`more_effective_c++ <resource/More-Effective-C++.pdf>`
@@ -53,3 +54,5 @@
 .. _Crontab Cheatsheet: https://quickref.me/cron
 
 .. _数据结构及复杂度: https://www.bigocheatsheet.com/
+
+.. _地图: http://bzdt.ch.mnr.gov.cn/

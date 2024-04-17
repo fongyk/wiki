@@ -9,25 +9,34 @@
         <title>timer</title>
         <script>
             var start = (new Date()).getTime();
-            var timeStr = "00:00:00:00";
+            var defaultStr = "00:00:00:00";
+            var timeStr = defaultStr;
+            var alive = false;
+            var records = ["记录"];
             var clock = 0;//计时器
             function resetTimer()
             {
+                alive = false;
                 clearInterval(clock);
                 start = (new Date()).getTime();
-                timeStr = "00:00:00:00";
+                timeStr = defaultStr;
                 document.getElementById('timeValue').value = timeStr;
             }
             function startTimer()
             {
+                alive = true;
                 start = (new Date()).getTime();
-                timeStr = "00:00:00:00";
+                timeStr = defaultStr;
                 clearInterval(clock);
                 clock = setInterval(timer, 123);
             }
             function stopTimer() {
+                if (!alive) return;
+                alive = false;
                 clearInterval(clock);
+                records.push(timeStr);
                 document.getElementById('timeValue').value = timeStr;
+                document.getElementById('records').innerHTML = records.join("<br><br>");
             }
             //计时函数
             function timer(){
@@ -47,7 +56,7 @@
                 width:100px;
                 height:50px;
                 font-style: normal;
-                font-weight: bold;
+                /* font-weight: bold; */
                 font-size:20pt; color: #042230;
                 border: 1px #003399 solid;
                 color:#006699;
@@ -61,26 +70,24 @@
                 box-shadow: 0px 0px 3px 3px #6d0404;
             }
             .textcss {
-                width: 200px;
-                height: 30px;
                 text-align:center;
-                background:transparent;
-                border:none;
-                color:#2980b9;
-                font-size:100px;
+                color:#3d0606;
+                font-size:30px;
                 font-family:consolas,monospace
             }
         </style>
     </head>
     <body>
         <div style="text-align:center">
-            <br><br><br><br>
+            <br><br><br>
             <input type="text" id="timeValue" style="width:420px;height:100px;text-align:center;background-color:#edf0f2;border:none;border-radius:10px;color:#2980b9;font-size:60px;font-family:consolas,monospace" value="00:00:00:00" readonly><br>
-            <br><br><br><br><br>
+            <br><br><br><br>
             <button type="button" class="buttoncss" style="background-color:#89cfb3;" onclick="startTimer()">开始</button>
             <button type="button" class="buttoncss" style="background-color:#e69d9d;" onclick="stopTimer()">停止</button>
             <button type="button" class="buttoncss" style="background-color:#b8b0b0;" onclick="resetTimer()">重置</button>
-            <br><br><br><br><br>
+            <br><br><br><br>
+            <p class="textcss" id="records"></p>
+            <br><br><br>
         </div>
     </body>
     </html>

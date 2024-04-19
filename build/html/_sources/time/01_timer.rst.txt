@@ -28,7 +28,7 @@
                 start = (new Date()).getTime();
                 timeStr = defaultStr;
                 clearInterval(clock);
-                clock = setInterval(timer, 123);
+                clock = setInterval(timer, 10);
             }
             function stopTimer() {
                 if (!alive) return;

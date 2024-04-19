@@ -134,6 +134,7 @@
             var tiangan = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'];
             var dizhi = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
             var shengxiao = ['鼠', '牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪'];
+            var zodiacSign = [128001, 128002, 128005, 128007, 128009, 128013, 128014, 128016, 128018, 128019, 128021, 128022]
 
             var idx1 = (year - 4) % 10;
             var idx2 = (year - 4) % 12;
@@ -141,7 +142,17 @@
 
             utcDateM1 = new Date(Date.UTC(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate() - 1));
             var lunarDate = chineseLunar.solarToLunar(utcDateM1);
-            document.getElementById("lunar-date").innerHTML = chineseLunar.format(lunarDate, 'YMD');;
+            document.getElementById("lunar-date").innerHTML = chineseLunar.format(lunarDate, 'YMD');
+
+            var zodiac = "";
+            for(var i = 0; i < 12; i++) {
+                if (i == idx2) {
+                    zodiac += " <span class='large_zodiac'>" + String.fromCodePoint(zodiacSign[i]) + "</span>";
+                } else {
+                    zodiac += " <span class='small_zodiac'>" + String.fromCodePoint(zodiacSign[i]) + "</span>";
+                }
+            }
+            document.getElementById("chinese-zodiac").innerHTML = zodiac;
         }
         setInterval(displayTime, 123);
     </script>
@@ -151,8 +162,18 @@
         }
         .time {
             text-align: center;
-            font-size:30px;
-            color:#2980b9;
+            font-size: 30px;
+            color: #2980b9;
+        }
+        .large_zodiac{
+            text-align: center;
+            font-size: 50px;
+            filter: opacity(1.0); /* 设置透明度 */
+        }
+        .small_zodiac{
+            text-align: center;
+            font-size: 30px;
+            filter: opacity(0.5); /* 设置透明度为50% */
         }
     </style>
 </head>
@@ -171,6 +192,8 @@
     <p id="lunar-year" class="time"></p>
 
     <p id="lunar-date" class="time"></p>
+
+    <p id="chinese-zodiac" style="text-align: center;"></p>
 
 </body>
 </html><html lang="en">

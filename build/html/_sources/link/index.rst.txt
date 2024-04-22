@@ -79,6 +79,17 @@ USTC
          
          lug
 
+Diff
+---------------
+
+.. figure:: pictures/diff.png
+    :target: https://fongyq.github.io/diff/
+    :width: 160px
+    :height: 120px
+    :align: center
+
+    diff
+
 AnyKnew
 ---------------
 

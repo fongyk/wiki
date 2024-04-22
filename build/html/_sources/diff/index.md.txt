@@ -1,0 +1,91 @@
+# diff
+
+```html
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>diff</title>
+
+		<!-- Stylesheet -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/diff2html/bundles/css/diff2html.min.css" />
+
+		<!-- Javascripts -->
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/diff2html/bundles/js/diff2html-ui.min.js"></script>
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/github.min.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/diff2html/bundles/css/diff2html.min.css" />
+
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css"></link>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/abbott.min.css"></link>
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jsdiff/5.0.0/diff.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/diff2html/bundles/js/diff2html-ui.min.js"></script>
+
+		<script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
+		<script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/perl/perl.min.js"></script>
+
+		<style>
+			.CodeMirror{
+				height: 160px;
+				font-family: consolas, monospace;
+				font-size: 12px;
+			}
+		</style>
+	</head>
+	<body>
+		<div style="width: 50%; margin: 0 auto;">
+			<textarea id="code1" name="code1"># source</textarea>
+			<br>
+			<textarea id="code2" name="code2"># target</textarea>
+		</div>
+
+		<div id="diff" style="tab-size:2"></div>
+		<br>
+		<script>
+			var interval = 0;
+			var editor1 = CodeMirror.fromTextArea(document.getElementById('code1'), {
+				lineNumbers: true,
+				indentUnit: 4,
+				mode: 'text/x-perl',
+				matchBrackets: true,
+				theme: 'abbott',
+			});
+			editor1.on('change', () => {
+				clearInterval(interval);
+				displayDiff();
+			});
+			var editor2 = CodeMirror.fromTextArea(document.getElementById('code2'), {
+				lineNumbers: true,
+				indentUnit: 4,
+				mode: 'text/x-perl',
+				matchBrackets: true,
+				theme: 'abbott',
+			});
+			editor2.on('change', () => {
+				clearInterval(interval);
+				displayDiff();
+			});
+			function compareTexts() {
+				var t1 = editor1.getDoc().getValue("\n");
+				var t2 = editor2.getDoc().getValue("\n");
+				var diff = Diff.createPatch("diff", t1, t2);
+				return diff;
+			}
+			function displayDiff() {
+				var diff = compareTexts();
+				var diffContainer = document.getElementById("diff");
+				var diffUI = new Diff2HtmlUI(diffContainer, diff, {
+					inputFormat: 'diff',
+					drawFileList: false,
+					matching: 'lines',
+					outputFormat: 'side-by-side'
+				});
+				console.log(diffUI);
+				diffUI.draw();
+			}
+			// interval = setInterval(displayDiff, 3000);
+		</script>
+	</body>
+</html>
+```

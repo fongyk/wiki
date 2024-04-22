@@ -1,5 +1,0 @@
-Diff
-=======
-
-.. raw:: html
-	:file: a.html

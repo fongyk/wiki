@@ -3,6 +3,7 @@
 
 .. raw:: html
     
+    <!DOCTYPE html>
     <html lang="en">
         <head>
             <meta charset="UTF-8">
@@ -108,7 +109,7 @@
                 }
                 .textcss{
                     text-align:center;
-                    font-size:30px; 
+                    font-size:2rem; 
                     color:rgb(4, 62, 80);
                 }
             </style>
@@ -117,11 +118,11 @@
             <br><br>
             <p class="textcss" id="startTimeFlag"></p>
             <p style="text-align:center;">
-                <input type="text" style="border:1px solid rgba(0, 0, 0, 0.1);text-align:center;background:transparent;color:#830303;margin:0 auto;width:380px;font-size:30px;border-radius:10px;" oninput="setStartTime(event)" id="startTime" placeholder="YYYY-MM-DD HH:MM:SS">
+                <input type="text" style="border:1px solid rgba(0, 0, 0, 0.1);text-align:center;background:transparent;color:#830303;margin:0 auto;width:24rem;font-size:1.9rem;border-radius:0.9rem;" oninput="setStartTime(event)" id="startTime" placeholder="YYYY-MM-DD HH:MM:SS">
             </p>
             <p class="textcss">距离</p>
             <p style="text-align:center;">
-                <input type="text" style="border:1px solid rgba(0, 0, 0, 0.1);text-align:center;background:transparent;color:#830303;margin:0 auto;width:380px;font-size:30px;border-radius:10px;" oninput="setEndTime(event)" id="endTime" placeholder="YYYY-MM-DD HH:MM:SS">
+                <input type="text" style="border:1px solid rgba(0, 0, 0, 0.1);text-align:center;background:transparent;color:#830303;margin:0 auto;width:24rem;font-size:1.9rem;border-radius:0.9rem;" oninput="setEndTime(event)" id="endTime" placeholder="YYYY-MM-DD HH:MM:SS">
             </p>
             <p class="textcss"><span id="sign"></span></p>
             <p class="textcss">

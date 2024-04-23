@@ -3,6 +3,7 @@
 
 .. raw:: html
 
+    <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -53,34 +54,35 @@
         </script>
         <style>
             .buttoncss {
-                width:100px;
-                height:50px;
+                width: 6rem;
+                height: 3rem;
                 font-style: normal;
                 /* font-weight: bold; */
-                font-size:20pt; color: #042230;
+                font-size: 1.5rem; 
+                color: #042230;
                 border: 1px #003399 solid;
-                color:#006699;
-                border:none;
-                border-radius:20px;
+                color: #006699;
+                border: none;
+                border-radius: 1rem;
                 cursor: hand;
-                margin-left: 20px;
-                margin-right: 20px;
+                margin-left: 1.1rem;
+                margin-right: 1.1rem;
             }
             .buttoncss:hover {
                 box-shadow: 0px 0px 3px 3px #6d0404;
             }
             .textcss {
-                text-align:center;
-                color:#3d0606;
-                font-size:30px;
-                font-family:consolas,monospace
+                text-align: center;
+                color: #3d0606;
+                font-size: 1.8rem;
+                font-family: Consolas, monospace
             }
         </style>
     </head>
     <body>
         <div style="text-align:center">
             <br><br><br>
-            <input type="text" id="timeValue" style="width:420px;height:100px;text-align:center;background-color:#edf0f2;border:none;border-radius:10px;color:#2980b9;font-size:60px;font-family:consolas,monospace" value="00:00:00:00" readonly><br>
+            <input type="text" id="timeValue" style="width:25rem;height:6rem;text-align:center;background-color:#edf0f2;border:none;border-radius:0.9rem;color:#2980b9;font-size:3.5rem;font-family:consolas,monospace" value="00:00:00:00" readonly><br>
             <br><br><br><br>
             <button type="button" class="buttoncss" style="background-color:#89cfb3;" onclick="startTimer()">开始</button>
             <button type="button" class="buttoncss" style="background-color:#e69d9d;" onclick="stopTimer()">停止</button>

@@ -90,6 +90,17 @@ Diff
 
     diff
 
+PyRun
+---------------
+
+.. figure:: pictures/pyrun.png
+    :target: https://fongyq.github.io/pyrun
+    :width: 160px
+    :height: 120px
+    :align: center
+
+    pyrun
+
 AnyKnew
 ---------------
 

@@ -6,6 +6,8 @@
     <!DOCTYPE html>
     <html>
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>TIME</title>
         <script src="https://cdn.jsdelivr.net/npm/chinese-lunar"></script>
         <script>
@@ -40,18 +42,26 @@
                 timeZone = timeZone + " UTC" + timeZoneOffsetSign + timeZoneOffset.toString().padStart(2, '0'); 
                 document.getElementById("current-tz").innerHTML = timeZone;
 
+                utcDateM1 = new Date(Date.UTC(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate() - 1));
+                var lunarDate = chineseLunar.solarToLunar(utcDateM1);
+                var lunarDateOut = chineseLunar.format(lunarDate, 'YMD');
+                // fix chineseLunar bug when cross month
+                var lunarDateA1 = chineseLunar.solarToLunar(new Date(
+                    Date.UTC(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate())));
+                if ((lunarDate.month + 1) % 12 == lunarDateA1.month % 12) {
+                    lunarDate = lunarDateA1;
+                    lunarDateOut = chineseLunar.format(lunarDateA1, 'YMD').replace("初二", "初一");
+                }
+                document.getElementById("lunar-date").innerHTML = lunarDateOut;
+
                 var tiangan = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'];
                 var dizhi = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
                 var shengxiao = ['鼠', '牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪'];
                 var zodiacSign = [128001, 128002, 128005, 128007, 128009, 128013, 128014, 128016, 128018, 128019, 128021, 128022]
 
-                var idx1 = (year - 4) % 10;
-                var idx2 = (year - 4) % 12;
+                var idx1 = (lunarDate.year - 4) % 10;
+                var idx2 = (lunarDate.year - 4) % 12;
                 document.getElementById("lunar-year").innerHTML = tiangan[idx1] + dizhi[idx2] + shengxiao[idx2] + "年";
-
-                utcDateM1 = new Date(Date.UTC(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate() - 1));
-                var lunarDate = chineseLunar.solarToLunar(utcDateM1);
-                document.getElementById("lunar-date").innerHTML = chineseLunar.format(lunarDate, 'YMD');
 
                 var zodiac = "";
                 for(var i = 0; i < 12; i++) {
@@ -226,3 +236,4 @@
 
     01_timer.rst
     02_countdown.rst
+    03_jump.rst

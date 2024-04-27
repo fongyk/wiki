@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3. 日期跳转 &mdash; fong alpha documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/magnum.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="快速访问" href="../link/index.html" />
+    <link rel="prev" title="2. 倒计时" href="02_countdown.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> fong
+            <img src="../_static/magnum.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                alpha
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">现在时刻</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_timer.html">1. 计时器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_countdown.html">2. 倒计时</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. 日期跳转</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">快速访问</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recommender/index.html">推荐系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../regularExpression/index.html">正则表达式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cron/index.html">Cron 表达式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">技巧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">现在时刻</a> &raquo;</li>
+      <li><span class="section-number">3. </span>日期跳转</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/time/03_jump.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">3. </span>日期跳转<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIME</title>
+    <script src="https://cdn.jsdelivr.net/npm/chinese-lunar"></script>
+    <script>
+        function setJumpTime(e) {
+            var jumpTime = e.target.value;
+            displayTime(jumpTime);
+        }
+        function parseTime(targetTime) {
+            var timestamp = Math.floor(targetTime.getTime() / 1000);
+            var year = targetTime.getFullYear();
+            var month = targetTime.getMonth() + 1;
+            var day = targetTime.getDate();
+            var hours = targetTime.getHours();
+            var minutes = targetTime.getMinutes();
+            var seconds = targetTime.getSeconds();
+            var days = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+            var dayOfWeek = days[targetTime.getDay()];
+
+            month = (month < 10 ? "0" : "") + month;
+            day = (day < 10 ? "0" : "") + day;
+            hours = (hours < 10 ? "0" : "") + hours;
+            minutes = (minutes < 10 ? "0" : "") + minutes;
+            seconds = (seconds < 10 ? "0" : "") + seconds;
+
+            var timeString = year + "-" + month + "-" + day;
+            timeString = timeString + " " + hours + ":" + minutes + ":" + seconds;
+
+            return [year, month, day, hours, minutes, seconds, dayOfWeek, timestamp, timeString]
+        }
+        function displayTime() {
+            var jumpTime = document.getElementById("jump-time").value;
+            var targetTime;
+            if (jumpTime.length == 0) {
+                targetTime = new Date("1970-01-01 08:00:00");
+            } else {
+                if (!jumpTime.includes(" ")) {
+                    jumpTime += " 00:00:00";
+                }
+                targetTime = new Date(jumpTime);
+            }
+            var parsedTime = parseTime(targetTime);
+            year = parsedTime[0];
+            month = parsedTime[1];
+            day = parsedTime[2];
+            hours = parsedTime[3];
+            minutes = parsedTime[4];
+            seconds = parsedTime[5];
+            dayOfWeek = parsedTime[6];
+            timestamp = parsedTime[7];
+            timeString = parsedTime[8];
+            if (jumpTime.length == 0) {
+                document.getElementById("jump-time").placeholder = "1970-01-01 08:00:00";
+            }
+            document.getElementById("target-week").innerHTML = dayOfWeek;
+            document.getElementById("target-ts").innerHTML = timestamp.toString();
+
+            var timeZoneOffset = targetTime.getTimezoneOffset();
+            var timeZoneOffsetSign = timeZoneOffset > 0 ? "-" : "+";
+            timeZoneOffset = parseInt(Math.abs(timeZoneOffset / 60));
+            var timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            timeZone = timeZone + " UTC" + timeZoneOffsetSign + timeZoneOffset.toString().padStart(2, '0');
+            document.getElementById("target-tz").innerHTML = timeZone;
+
+            utcDateM1 = new Date(Date.UTC(targetTime.getFullYear(), targetTime.getMonth(), targetTime.getDate() - 1));
+            var lunarDate = chineseLunar.solarToLunar(utcDateM1);
+            var lunarDateOut = chineseLunar.format(lunarDate, 'YMD');
+            // fix chineseLunar bug when cross month
+            var lunarDateA1 = chineseLunar.solarToLunar(new Date(
+                Date.UTC(targetTime.getFullYear(), targetTime.getMonth(), targetTime.getDate())));
+            if ((lunarDate.month + 1) % 12 == lunarDateA1.month % 12) {
+                lunarDate = lunarDateA1;
+                lunarDateOut = chineseLunar.format(lunarDateA1, 'YMD').replace("初二", "初一");
+            }
+            document.getElementById("lunar-date").innerHTML = lunarDateOut;
+
+            var tiangan = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'];
+            var dizhi = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
+            var shengxiao = ['鼠', '牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪'];
+
+            var idx1 = (lunarDate.year - 4) % 10;
+            var idx2 = (lunarDate.year - 4) % 12;
+            document.getElementById("lunar-year").innerHTML = tiangan[idx1] + dizhi[idx2] + shengxiao[idx2] + "年";
+        }
+        setInterval(displayTime, 1000);
+    </script>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+        .time {
+            text-align: center;
+            font-size: 30px;
+            color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <p id="target-week" class="time"></p>
+
+    <p style="text-align:center;">
+        <input type="text" style="border:1px solid rgba(0, 0, 0, 0.1);text-align:center;background:transparent;color:#830303;margin:0 auto;width:23rem;font-size:30px;border-radius:0.9rem;" oninput="setJumpTime(event)" id="jump-time" placeholder="1970-01-01 08:00:00">
+    </p>
+
+    <p id="target-ts" class="time"></p>
+
+    <p id="target-tz" class="time"></p>
+
+    <br>
+
+    <p id="lunar-year" class="time"></p>
+
+    <p id="lunar-date" class="time"></p>
+
+</body>
+</html></section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="02_countdown.html" class="btn btn-neutral float-left" title="2. 倒计时" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../link/index.html" class="btn btn-neutral float-right" title="快速访问" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2024, fong.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

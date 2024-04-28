@@ -13,7 +13,7 @@
         <script>
             function setJumpTime(e) {
                 var jumpTime = e.target.value;
-                displayTime(jumpTime);
+                displayTime();
             }
             function parseTime(targetTime) {
                 var timestamp = Math.floor(targetTime.getTime() / 1000);
@@ -91,7 +91,7 @@
                 var idx2 = (lunarDate.year - 4) % 12;
                 document.getElementById("lunar-year").innerHTML = tiangan[idx1] + dizhi[idx2] + shengxiao[idx2] + "年";
             }
-            setInterval(displayTime, 1000);
+            window.addEventListener("load", displayTime);
         </script>
         <style>
             canvas {

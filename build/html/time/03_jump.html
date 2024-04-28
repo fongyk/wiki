@@ -172,8 +172,11 @@
             var lunarDateA1 = chineseLunar.solarToLunar(new Date(
                 Date.UTC(targetTime.getFullYear(), targetTime.getMonth(), targetTime.getDate())));
             if ((lunarDate.month + 1) % 12 == lunarDateA1.month % 12) {
-                lunarDate = lunarDateA1;
-                lunarDateOut = chineseLunar.format(lunarDateA1, 'YMD').replace("初二", "初一");
+                var lunarDateA1Out = chineseLunar.format(lunarDateA1, 'YMD');
+                if (lunarDateA1Out.includes("初二")) {
+                    lunarDate = lunarDateA1;
+                    lunarDateOut = lunarDateA1Out.replace("初二", "初一");
+                }
             }
             document.getElementById("lunar-date").innerHTML = lunarDateOut;
 

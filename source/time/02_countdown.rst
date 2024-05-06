@@ -54,17 +54,33 @@
                     var startTime = document.getElementById("startTime").value;
                     // var arr = ["**", "--", "--", "--", "--", 0]
                     if (startTime.length == 0) {
-                        startTime = new Date();
-                        document.getElementById("startTime").placeholder = formatDate(startTime);
+                        startTime = formatDate(new Date());
+                        document.getElementById("startTime").placeholder = startTime;
                         document.getElementById("startTimeFlag").innerHTML = "现在时刻";
                     } else {
+                        if (!startTime.includes(" ")) {
+                            startTime += " 00:00:00";
+                        }
                         document.getElementById("startTimeFlag").innerHTML = "<br>";
                     }
                     if (endTime.length == 0) {
-                        var now = new Date();
-                        var nextYear = (now.getFullYear() + 1) + "-01-01 00:00:00";
-                        endTime = new Date(nextYear);
-                        document.getElementById("endTime").placeholder = nextYear;
+                        var t = new Date(startTime);
+                        var wuyi = t.getFullYear() + "-05-01 00:00:00";
+                        var shiyi = t.getFullYear() + "-10-01 00:00:00";
+                        var nextYear = (t.getFullYear() + 1) + "-01-01 00:00:00";
+                        var endTime;
+                        if (startTime <= wuyi) {
+                            endTime = wuyi;
+                        } else if (startTime <= shiyi) {
+                            endTime = shiyi;
+                        } else {
+                            endTime = nextYear;
+                        }
+                        document.getElementById("endTime").placeholder = endTime;
+                    } else {
+                        if (!endTime.includes(" ")) {
+                            endTime += " 00:00:00";
+                        }
                     }
                     arr = getDistance(startTime, endTime);
                     if (arr[1] == 0) {

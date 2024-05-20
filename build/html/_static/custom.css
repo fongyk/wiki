@@ -12,3 +12,7 @@
     /* content: " ▲"; */
     content: "";
 } 
+
+img.logo {
+    border-radius: 20px;
+}

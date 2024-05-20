@@ -6,12 +6,6 @@
 
 文档
 ========
-.. note::
-
-    **文档中可能存在错误，欢迎 PR。**
-
-    https://github.com/fongyk/wiki
-    
 
 .. toctree::
    :maxdepth: 1

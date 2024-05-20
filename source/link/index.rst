@@ -19,13 +19,15 @@
         </style>
     </head>
     <body>
-        <p><span class="key">        IP: </span><span id="userIp" class="value"></span></p>
-        <p><span class="key">      City: </span><span id="userCity" class="value"></span></p>
-        <p><span class="key">    Region: </span><span id="userRegion" class="value"></span></p>
-        <p><span class="key">   Country: </span><span id="userCountry" class="value"></span></p>
-        <p><span class="key">  Location: </span><span id="userLocation" class="value"></span></p>
-        <p><span class="key">  Timezone: </span><span id="userTimezone" class="value"></span></p>
-
+        <div style="margin-left: 20%">
+            <p><span class="key">        IP: </span><span id="userIp" class="value"></span></p>
+            <p><span class="key">      City: </span><span id="userCity" class="value"></span></p>
+            <p><span class="key">    Region: </span><span id="userRegion" class="value"></span></p>
+            <p><span class="key">   Country: </span><span id="userCountry" class="value"></span></p>
+            <p><span class="key">  Location: </span><span id="userLocation" class="value"></span></p>
+            <p><span class="key">  Timezone: </span><span id="userTimezone" class="value"></span></p>
+        </div>
+        
         <script>
             // Get User IP
             fetch('https://api.ipify.org/?format=json')
@@ -39,7 +41,7 @@
                     document.getElementById('userCity').innerText = locationData.city;
                     document.getElementById('userRegion').innerText = locationData.region;
                     document.getElementById('userCountry').innerText = locationData.country_name;
-                    document.getElementById('userLocation').innerText = locationData.latitude + ", " + locationData.longitude;
+                    document.getElementById('userLocation').innerText = locationData.latitude + "°" + ", " + locationData.longitude + "°";
                     document.getElementById('userTimezone').innerText = locationData.timezone;
                 })
                 .catch(error => console.error('Error fetching location data:', error));
@@ -100,6 +102,18 @@ PyRun
     :align: center
 
     pyrun
+
+
+JsonViewer
+---------------
+
+.. figure:: pictures/json_viewer.png
+    :target: https://fongyq.github.io/jsonview
+    :width: 160px
+    :height: 120px
+    :align: center
+
+    json viewer
 
 AnyKnew
 ---------------

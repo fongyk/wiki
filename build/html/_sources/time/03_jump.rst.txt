@@ -105,6 +105,16 @@
                 font-size: 30px; 
                 color: #2980b9;
             }
+            p input[type="text"] {
+                border:1px solid rgba(0, 0, 0, 0.1);
+                text-align:center;
+                background:transparent;
+                color:#830303;
+                margin:0 auto;
+                width:21rem;
+                font-size:30px;
+                border-radius:0.9rem;
+            }
             /*
             input::placeholder {
                 color: #2980b9;
@@ -117,7 +127,7 @@
         <p id="target-week" class="time"></p>
 
         <p style="text-align:center;">
-            <input type="text" style="border:1px solid rgba(0, 0, 0, 0.1);text-align:center;background:transparent;color:#830303;margin:0 auto;width:21rem;font-size:30px;border-radius:0.9rem;" oninput="setJumpTime(event)" id="jump-time" placeholder="1970-01-01 08:00:00">
+            <input type="text" oninput="setJumpTime(event)" id="jump-time" placeholder="1970-01-01 08:00:00">
         </p>
 
         <p id="target-ts" class="time"></p>

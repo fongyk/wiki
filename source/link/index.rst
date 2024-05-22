@@ -108,7 +108,7 @@ JsonViewer
 ---------------
 
 .. figure:: pictures/json_viewer.png
-    :target: https://fongyq.github.io/jsonview
+    :target: https://fongyq.github.io/json
     :width: 160px
     :height: 120px
     :align: center

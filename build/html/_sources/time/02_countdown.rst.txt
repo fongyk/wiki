@@ -110,18 +110,15 @@
                 }
             </script>
             <style>
-                .inputcss{
-                    display: block;
-                    margin: auto;
-                    width: 420px;
+                p input[type="text"] {
+                    border:1px solid rgba(0, 0, 0, 0.1);
                     text-align:center;
                     background:transparent;
                     color:#830303;
                     margin:0 auto;
-                    width:380px;
-                    font-size:30px;
-                    border-radius:10px;
-                    border:1px solid rgba(0, 0, 0, 0.1);
+                    width:24rem;
+                    font-size:1.9rem;
+                    border-radius:0.9rem;
                 }
                 .textcss{
                     text-align:center;
@@ -134,11 +131,11 @@
             <br><br>
             <p class="textcss" id="startTimeFlag"></p>
             <p style="text-align:center;">
-                <input type="text" style="border:1px solid rgba(0, 0, 0, 0.1);text-align:center;background:transparent;color:#830303;margin:0 auto;width:24rem;font-size:1.9rem;border-radius:0.9rem;" oninput="setStartTime(event)" id="startTime" placeholder="YYYY-MM-DD HH:MM:SS">
+                <input type="text" oninput="setStartTime(event)" id="startTime" placeholder="YYYY-MM-DD HH:MM:SS">
             </p>
             <p class="textcss">距离</p>
             <p style="text-align:center;">
-                <input type="text" style="border:1px solid rgba(0, 0, 0, 0.1);text-align:center;background:transparent;color:#830303;margin:0 auto;width:24rem;font-size:1.9rem;border-radius:0.9rem;" oninput="setEndTime(event)" id="endTime" placeholder="YYYY-MM-DD HH:MM:SS">
+                <input type="text" oninput="setEndTime(event)" id="endTime" placeholder="YYYY-MM-DD HH:MM:SS">
             </p>
             <p class="textcss"><span id="sign"></span></p>
             <p class="textcss">

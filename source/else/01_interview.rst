@@ -66,15 +66,15 @@ Python
 
 1. 激活函数
 
-  https://fongyq.github.io/blog/deepLearning/02_activationFunction.html
+  https://fongyq.github.io/docs/deepLearning/02_activationFunction.html
 
 2. Batch Normalization
 
-  https://fongyq.github.io/blog/deepLearning/03_batchnorm.html
+  https://fongyq.github.io/docs/deepLearning/03_batchnorm.html
 
 3. 过拟合
 
-  https://fongyq.github.io/blog/deepLearning/03_batchnorm.html
+  https://fongyq.github.io/docs/deepLearning/03_batchnorm.html
 
 4. 正则化项L1和L2的区别
 
@@ -100,15 +100,15 @@ Python
 
 7. Logistic Regression
 
-  https://fongyq.github.io/blog/machineLearning/01_lr.html
+  https://fongyq.github.io/docs/machineLearning/01_lr.html
 
 8. Support Vector Machine
 
-  https://fongyq.github.io/blog/machineLearning/02_svm.html
+  https://fongyq.github.io/docs/machineLearning/02_svm.html
 
 9. PCA
 
-  https://fongyq.github.io/blog/machineLearning/03_pca.html
+  https://fongyq.github.io/docs/machineLearning/03_pca.html
 
 
 论文相关

@@ -6,26 +6,42 @@
 
 .. raw:: html
 
+
     <html>
     <head>
-        <title>User IP and Location</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>User Info</title>
         <style>
+          .info {
+            margin: 0 10%;
+            overflow-wrap: break-word;
+          }
           .key {
-              text-align: center; font-family: monospace; font-size:20px; color:grey; white-space: pre;
+            font-family: Menlo, 'Droid Sans Mono', Consolas, monospace;
+            font-size: 20px;
+            color: grey;
+            white-space: pre-wrap;
           }
           .value {
-              text-align: center; font-family: monospace; font-size:20px; color:#2980b9;
+            font-family: Menlo, 'Droid Sans Mono', Consolas, monospace;
+            font-size: 20px;
+            color: #2980b9;
+            white-space: pre-wrap;
           }
         </style>
     </head>
     <body>
-        <div style="margin-left: 20%">
+        <div class="info">
             <p><span class="key">        IP: </span><span id="userIp" class="value"></span></p>
             <p><span class="key">      City: </span><span id="userCity" class="value"></span></p>
             <p><span class="key">    Region: </span><span id="userRegion" class="value"></span></p>
             <p><span class="key">   Country: </span><span id="userCountry" class="value"></span></p>
             <p><span class="key">  Location: </span><span id="userLocation" class="value"></span></p>
-            <p><span class="key">  Timezone: </span><span id="userTimezone" class="value"></span></p>
+            <p><span class="key">  TimeZone: </span><span id="userTimezone" class="value"></span></p>
+            <p><span class="key">  Platform: </span><span id="userPlatform" class="value"></span></p>
+            <p><span class="key">    Screen: </span><span id="userScreen" class="value"></span></p>
+            <p><span class="key"> UserAgent: </span><span id="userAgent" class="value"></span></p>
         </div>
         
         <script>
@@ -47,6 +63,38 @@
                 .catch(error => console.error('Error fetching location data:', error));
             })
             .catch(error => console.error('Error fetching IP address:', error));
+            document.getElementById('userPlatform').innerText = navigator.userAgentData.platform;
+            document.getElementById('userScreen').innerText = window.screen.width + " x " + window.screen.height + " x " + window.screen.colorDepth;
+            document.getElementById('userAgent').innerText = navigator.userAgent;
+
+            function detectOS() {
+                var t = navigator.userAgent;
+                var e = "Win32" === navigator.platform || "Windows" === navigator.platform;
+                var n = "Mac68K" === navigator.platform || "MacPPC" === navigator.platform || "Macintosh" === navigator.platform || "MacIntel" === navigator.platform;
+                if (n)
+                    return "Mac";
+                if ("X11" === navigator.platform && !e && !n)
+                    return "Unix";
+                if (String(navigator.platform).indexOf("Linux") > -1)
+                    return "Linux";
+                if (e) {
+                    if (t.indexOf("Windows NT 5.0") > -1 || t.indexOf("Windows 2000") > -1)
+                        return "Win2000";
+                    if (t.indexOf("Windows NT 5.1") > -1 || t.indexOf("Windows XP") > -1)
+                        return "WinXP";
+                    if (t.indexOf("Windows NT 5.2") > -1 || t.indexOf("Windows 2003") > -1)
+                        return "Win2003";
+                    if (t.indexOf("Windows NT 6.0") > -1 || t.indexOf("Windows Vista") > -1)
+                        return "WinVista";
+                    if (t.indexOf("Windows NT 6.1") > -1 || t.indexOf("Windows 7") > -1)
+                        return "Win7";
+                    if (t.indexOf("Windows NT 8") > -1 || t.indexOf("Windows 8") > -1)
+                        return "Win8";
+                    if (t.indexOf("Windows NT 10") > -1 || t.indexOf("Windows 10") > -1)
+                        return "Win10"
+                }
+                return navigator.userAgent;
+            }
         </script>
     </body>
     </html>

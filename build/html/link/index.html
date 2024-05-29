@@ -160,6 +160,7 @@
         <p><span class="key">  TimeZone: </span><span id="userTimezone" class="value"></span></p>
         <p><span class="key">  Platform: </span><span id="userPlatform" class="value"></span></p>
         <p><span class="key">    Screen: </span><span id="userScreen" class="value"></span></p>
+        <p><span class="key">       App: </span><span id="app" class="value"></span></p>
         <p><span class="key"> UserAgent: </span><span id="userAgent" class="value"></span></p>
     </div>
 
@@ -185,6 +186,7 @@
         document.getElementById('userPlatform').innerText = navigator.userAgentData.platform;
         document.getElementById('userScreen').innerText = window.screen.width + " x " + window.screen.height + " x " + window.screen.colorDepth;
         document.getElementById('userAgent').innerText = navigator.userAgent;
+        document.getElementById('app').innerText = navigator.appName + ", " + navigator.appCodeName + ", " + navigator.vendor;
 
         function detectOS() {
             var t = navigator.userAgent;

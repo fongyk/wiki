@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ASCII 码 &mdash; fong alpha documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/magnum.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="C/C++" href="../cpp/index.html" />
+    <link rel="prev" title="快速访问" href="../link/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> fong
+            <img src="../_static/magnum.jpg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                alpha
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../time/index.html">现在时刻</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../link/index.html">快速访问</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ASCII 码</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">控制字符（33）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">可打印字符（95）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machineLearning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deepLearning/index.html">深度学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mathematicsAlgorithm/index.html">数理与算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recommender/index.html">推荐系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../regularExpression/index.html">正则表达式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cron/index.html">Cron 表达式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computerNetwork/index.html">计算机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../softwares/index.html">实用软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">技巧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../else/index.html">其他</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fong</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>ASCII 码</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/ascii/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ascii">
+<h1>ASCII 码<a class="headerlink" href="#ascii" title="Permalink to this headline"></a></h1>
+<style>
+  .f {
+      font-family: Menlo, 'Droid Sans Mono', Consolas, monospace;
+      color: #2980b9;
+  }
+</style><section id="id1">
+<h2>控制字符（33）<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<table class="docutils align-center" id="id4">
+<caption><span class="caption-text">控制字符</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 9%" />
+<col style="width: 10%" />
+<col style="width: 12%" />
+<col style="width: 48%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>DEC</p></th>
+<th class="head"><p>OCT</p></th>
+<th class="head"><p>HEX</p></th>
+<th class="head"><p>BIN</p></th>
+<th class="head"><p>Symbol</p></th>
+<th class="head"><p>HTML Number</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>000</p></td>
+<td><p>00</p></td>
+<td><p>00000000</p></td>
+<td><p><span class="f">NUL</span></p></td>
+<td><p>&amp;#00;</p></td>
+<td><p>Null character</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>001</p></td>
+<td><p>01</p></td>
+<td><p>00000001</p></td>
+<td><p><span class="f">SOH</span></p></td>
+<td><p>&amp;#01;</p></td>
+<td><p>Start of Heading</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>002</p></td>
+<td><p>02</p></td>
+<td><p>00000010</p></td>
+<td><p><span class="f">STX</span></p></td>
+<td><p>&amp;#02;</p></td>
+<td><p>Start of Text</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>003</p></td>
+<td><p>03</p></td>
+<td><p>00000011</p></td>
+<td><p><span class="f">ETX</span></p></td>
+<td><p>&amp;#03;</p></td>
+<td><p>End of Text</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>004</p></td>
+<td><p>04</p></td>
+<td><p>00000100</p></td>
+<td><p><span class="f">EOT</span></p></td>
+<td><p>&amp;#04;</p></td>
+<td><p>End of Transmission</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>005</p></td>
+<td><p>05</p></td>
+<td><p>00000101</p></td>
+<td><p><span class="f">ENQ</span></p></td>
+<td><p>&amp;#05;</p></td>
+<td><p>Enquiry</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>006</p></td>
+<td><p>06</p></td>
+<td><p>00000110</p></td>
+<td><p><span class="f">ACK</span></p></td>
+<td><p>&amp;#06;</p></td>
+<td><p>Acknowledge</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>007</p></td>
+<td><p>07</p></td>
+<td><p>00000111</p></td>
+<td><p><span class="f">BEL</span></p></td>
+<td><p>&amp;#07;</p></td>
+<td><p>Bell, Alert</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>010</p></td>
+<td><p>08</p></td>
+<td><p>00001000</p></td>
+<td><p><span class="f">BS</span></p></td>
+<td><p>&amp;#08;</p></td>
+<td><p>Backspace</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p>011</p></td>
+<td><p>09</p></td>
+<td><p>00001001</p></td>
+<td><p><span class="f">HT</span></p></td>
+<td><p>&amp;#09;</p></td>
+<td><p>Horizontal Tab</p></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td><p>012</p></td>
+<td><p>0A</p></td>
+<td><p>00001010</p></td>
+<td><p><span class="f">LF</span></p></td>
+<td><p>&amp;#10;</p></td>
+<td><p>Line Feed</p></td>
+</tr>
+<tr class="row-odd"><td><p>11</p></td>
+<td><p>013</p></td>
+<td><p>0B</p></td>
+<td><p>00001011</p></td>
+<td><p><span class="f">VT</span></p></td>
+<td><p>&amp;#11;</p></td>
+<td><p>Vertical Tabulation</p></td>
+</tr>
+<tr class="row-even"><td><p>12</p></td>
+<td><p>014</p></td>
+<td><p>0C</p></td>
+<td><p>00001100</p></td>
+<td><p><span class="f">FF</span></p></td>
+<td><p>&amp;#12;</p></td>
+<td><p>Form Feed</p></td>
+</tr>
+<tr class="row-odd"><td><p>13</p></td>
+<td><p>015</p></td>
+<td><p>0D</p></td>
+<td><p>00001101</p></td>
+<td><p><span class="f">CR</span></p></td>
+<td><p>&amp;#13;</p></td>
+<td><p>Carriage Return</p></td>
+</tr>
+<tr class="row-even"><td><p>14</p></td>
+<td><p>016</p></td>
+<td><p>0E</p></td>
+<td><p>00001110</p></td>
+<td><p><span class="f">SO</span></p></td>
+<td><p>&amp;#14;</p></td>
+<td><p>Shift Out</p></td>
+</tr>
+<tr class="row-odd"><td><p>15</p></td>
+<td><p>017</p></td>
+<td><p>0F</p></td>
+<td><p>00001111</p></td>
+<td><p><span class="f">SI</span></p></td>
+<td><p>&amp;#15;</p></td>
+<td><p>Shift In</p></td>
+</tr>
+<tr class="row-even"><td><p>16</p></td>
+<td><p>020</p></td>
+<td><p>10</p></td>
+<td><p>00010000</p></td>
+<td><p><span class="f">DLE</span></p></td>
+<td><p>&amp;#16;</p></td>
+<td><p>Data Link Escape</p></td>
+</tr>
+<tr class="row-odd"><td><p>17</p></td>
+<td><p>021</p></td>
+<td><p>11</p></td>
+<td><p>00010001</p></td>
+<td><p><span class="f">DC1</span></p></td>
+<td><p>&amp;#17;</p></td>
+<td><p>Device Control One (XON)</p></td>
+</tr>
+<tr class="row-even"><td><p>18</p></td>
+<td><p>022</p></td>
+<td><p>12</p></td>
+<td><p>00010010</p></td>
+<td><p><span class="f">DC2</span></p></td>
+<td><p>&amp;#18;</p></td>
+<td><p>Device Control Two</p></td>
+</tr>
+<tr class="row-odd"><td><p>19</p></td>
+<td><p>023</p></td>
+<td><p>13</p></td>
+<td><p>00010011</p></td>
+<td><p><span class="f">DC3</span></p></td>
+<td><p>&amp;#19;</p></td>
+<td><p>Device Control Three (XOFF)</p></td>
+</tr>
+<tr class="row-even"><td><p>20</p></td>
+<td><p>024</p></td>
+<td><p>14</p></td>
+<td><p>00010100</p></td>
+<td><p><span class="f">DC4</span></p></td>
+<td><p>&amp;#20;</p></td>
+<td><p>Device Control Four</p></td>
+</tr>
+<tr class="row-odd"><td><p>21</p></td>
+<td><p>025</p></td>
+<td><p>15</p></td>
+<td><p>00010101</p></td>
+<td><p><span class="f">NAK</span></p></td>
+<td><p>&amp;#21;</p></td>
+<td><p>Negative Acknowledge</p></td>
+</tr>
+<tr class="row-even"><td><p>22</p></td>
+<td><p>026</p></td>
+<td><p>16</p></td>
+<td><p>00010110</p></td>
+<td><p><span class="f">SYN</span></p></td>
+<td><p>&amp;#22;</p></td>
+<td><p>Synchronous Idle</p></td>
+</tr>
+<tr class="row-odd"><td><p>23</p></td>
+<td><p>027</p></td>
+<td><p>17</p></td>
+<td><p>00010111</p></td>
+<td><p><span class="f">ETB</span></p></td>
+<td><p>&amp;#23;</p></td>
+<td><p>End of Transmission Block</p></td>
+</tr>
+<tr class="row-even"><td><p>24</p></td>
+<td><p>030</p></td>
+<td><p>18</p></td>
+<td><p>00011000</p></td>
+<td><p><span class="f">CAN</span></p></td>
+<td><p>&amp;#24;</p></td>
+<td><p>Cancel</p></td>
+</tr>
+<tr class="row-odd"><td><p>25</p></td>
+<td><p>031</p></td>
+<td><p>19</p></td>
+<td><p>00011001</p></td>
+<td><p><span class="f">EM</span></p></td>
+<td><p>&amp;#25;</p></td>
+<td><p>End of medium</p></td>
+</tr>
+<tr class="row-even"><td><p>26</p></td>
+<td><p>032</p></td>
+<td><p>1A</p></td>
+<td><p>00011010</p></td>
+<td><p><span class="f">SUB</span></p></td>
+<td><p>&amp;#26;</p></td>
+<td><p>Substitute</p></td>
+</tr>
+<tr class="row-odd"><td><p>27</p></td>
+<td><p>033</p></td>
+<td><p>1B</p></td>
+<td><p>00011011</p></td>
+<td><p><span class="f">ESC</span></p></td>
+<td><p>&amp;#27;</p></td>
+<td><p>Escape</p></td>
+</tr>
+<tr class="row-even"><td><p>28</p></td>
+<td><p>034</p></td>
+<td><p>1C</p></td>
+<td><p>00011100</p></td>
+<td><p><span class="f">FS</span></p></td>
+<td><p>&amp;#28;</p></td>
+<td><p>File Separator</p></td>
+</tr>
+<tr class="row-odd"><td><p>29</p></td>
+<td><p>035</p></td>
+<td><p>1D</p></td>
+<td><p>00011101</p></td>
+<td><p><span class="f">GS</span></p></td>
+<td><p>&amp;#29;</p></td>
+<td><p>Group Separator</p></td>
+</tr>
+<tr class="row-even"><td><p>30</p></td>
+<td><p>036</p></td>
+<td><p>1E</p></td>
+<td><p>00011110</p></td>
+<td><p><span class="f">RS</span></p></td>
+<td><p>&amp;#30;</p></td>
+<td><p>Record Separator</p></td>
+</tr>
+<tr class="row-odd"><td><p>31</p></td>
+<td><p>037</p></td>
+<td><p>1F</p></td>
+<td><p>00011111</p></td>
+<td><p><span class="f">US</span></p></td>
+<td><p>&amp;#31;</p></td>
+<td><p>Unit Separator</p></td>
+</tr>
+<tr class="row-even"><td><p>127</p></td>
+<td><p>177</p></td>
+<td><p>7F</p></td>
+<td><p>01111111</p></td>
+<td><p><span class="f">DEL</span></p></td>
+<td><p>&amp;#127;</p></td>
+<td><p>Delete</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id2">
+<h2>可打印字符（95）<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<table class="docutils align-center" id="id5">
+<caption><span class="caption-text">可打印字符</span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 9%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 9%" />
+<col style="width: 42%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>DEC</p></th>
+<th class="head"><p>OCT</p></th>
+<th class="head"><p>HEX</p></th>
+<th class="head"><p>BIN</p></th>
+<th class="head"><p>Symbol</p></th>
+<th class="head"><p>HTML Number</p></th>
+<th class="head"><p>HTML Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>32</p></td>
+<td><p>040</p></td>
+<td><p>20</p></td>
+<td><p>00100000</p></td>
+<td><p><span class="f">SP</span></p></td>
+<td><p>&amp;#32;</p></td>
+<td></td>
+<td><p>Space</p></td>
+</tr>
+<tr class="row-odd"><td><p>33</p></td>
+<td><p>041</p></td>
+<td><p>21</p></td>
+<td><p>00100001</p></td>
+<td><p><span class="f">!</span></p></td>
+<td><p>&amp;#33;</p></td>
+<td><p>&amp;excl;</p></td>
+<td><p>Exclamation mark</p></td>
+</tr>
+<tr class="row-even"><td><p>34</p></td>
+<td><p>042</p></td>
+<td><p>22</p></td>
+<td><p>00100010</p></td>
+<td><p><span class="f">“</span></p></td>
+<td><p>&quot;</p></td>
+<td><p>&amp;quot;</p></td>
+<td><p>Double quotes, speech marks</p></td>
+</tr>
+<tr class="row-odd"><td><p>35</p></td>
+<td><p>043</p></td>
+<td><p>23</p></td>
+<td><p>00100011</p></td>
+<td><p><span class="f">#</span></p></td>
+<td><p>&amp;#35;</p></td>
+<td><p>&amp;num;</p></td>
+<td><p>Number sign</p></td>
+</tr>
+<tr class="row-even"><td><p>36</p></td>
+<td><p>044</p></td>
+<td><p>24</p></td>
+<td><p>00100100</p></td>
+<td><p><span class="f">$</span></p></td>
+<td><p>&amp;#36;</p></td>
+<td><p>&amp;dollar;</p></td>
+<td><p>Dollar</p></td>
+</tr>
+<tr class="row-odd"><td><p>37</p></td>
+<td><p>045</p></td>
+<td><p>25</p></td>
+<td><p>00100101</p></td>
+<td><p><span class="f">%</span></p></td>
+<td><p>&amp;#37;</p></td>
+<td><p>&amp;percnt;</p></td>
+<td><p>Percent sign</p></td>
+</tr>
+<tr class="row-even"><td><p>38</p></td>
+<td><p>046</p></td>
+<td><p>26</p></td>
+<td><p>00100110</p></td>
+<td><p><span class="f">&amp;</span></p></td>
+<td><p>&amp;#38;</p></td>
+<td><p>&amp;amp;</p></td>
+<td><p>Ampersand</p></td>
+</tr>
+<tr class="row-odd"><td><p>39</p></td>
+<td><p>047</p></td>
+<td><p>27</p></td>
+<td><p>00100111</p></td>
+<td><p><span class="f">‘</span></p></td>
+<td><p>'</p></td>
+<td><p>&amp;apos;</p></td>
+<td><p>Single quote</p></td>
+</tr>
+<tr class="row-even"><td><p>40</p></td>
+<td><p>050</p></td>
+<td><p>28</p></td>
+<td><p>00101000</p></td>
+<td><p><span class="f">(</span></p></td>
+<td><p>&amp;#40;</p></td>
+<td><p>&amp;lparen;</p></td>
+<td><p>Open parenthesis, open bracket</p></td>
+</tr>
+<tr class="row-odd"><td><p>41</p></td>
+<td><p>051</p></td>
+<td><p>29</p></td>
+<td><p>00101001</p></td>
+<td><p><span class="f">)</span></p></td>
+<td><p>&amp;#41;</p></td>
+<td><p>&amp;rparen;</p></td>
+<td><p>Close parenthesis, close bracket</p></td>
+</tr>
+<tr class="row-even"><td><p>42</p></td>
+<td><p>052</p></td>
+<td><p>2A</p></td>
+<td><p>00101010</p></td>
+<td><p><span class="f">*</span></p></td>
+<td><p>&amp;#42;</p></td>
+<td><p>&amp;ast;</p></td>
+<td><p>Asterisk</p></td>
+</tr>
+<tr class="row-odd"><td><p>43</p></td>
+<td><p>053</p></td>
+<td><p>2B</p></td>
+<td><p>00101011</p></td>
+<td><p><span class="f">+</span></p></td>
+<td><p>&amp;#43;</p></td>
+<td><p>&amp;plus;</p></td>
+<td><p>Plus</p></td>
+</tr>
+<tr class="row-even"><td><p>44</p></td>
+<td><p>054</p></td>
+<td><p>2C</p></td>
+<td><p>00101100</p></td>
+<td><p><span class="f">,</span></p></td>
+<td><p>&amp;#44;</p></td>
+<td><p>&amp;comma;</p></td>
+<td><p>Comma</p></td>
+</tr>
+<tr class="row-odd"><td><p>45</p></td>
+<td><p>055</p></td>
+<td><p>2D</p></td>
+<td><p>00101101</p></td>
+<td><p><span class="f">-</span></p></td>
+<td><p>-</p></td>
+<td></td>
+<td><p>Hyphen-minus</p></td>
+</tr>
+<tr class="row-even"><td><p>46</p></td>
+<td><p>056</p></td>
+<td><p>2E</p></td>
+<td><p>00101110</p></td>
+<td><p><span class="f">.</span></p></td>
+<td><p>.</p></td>
+<td><p>&amp;period;</p></td>
+<td><p>Period, dot or full stop</p></td>
+</tr>
+<tr class="row-odd"><td><p>47</p></td>
+<td><p>057</p></td>
+<td><p>2F</p></td>
+<td><p>00101111</p></td>
+<td><p><span class="f">/</span></p></td>
+<td><p>&amp;#47;</p></td>
+<td><p>&amp;sol;</p></td>
+<td><p>Slash, divide</p></td>
+</tr>
+<tr class="row-even"><td><p>48</p></td>
+<td><p>060</p></td>
+<td><p>30</p></td>
+<td><p>00110000</p></td>
+<td><p><span class="f">0</span></p></td>
+<td><p>&amp;#48;</p></td>
+<td></td>
+<td><p>Zero</p></td>
+</tr>
+<tr class="row-odd"><td><p>49</p></td>
+<td><p>061</p></td>
+<td><p>31</p></td>
+<td><p>00110001</p></td>
+<td><p><span class="f">1</span></p></td>
+<td><p>&amp;#49;</p></td>
+<td></td>
+<td><p>One</p></td>
+</tr>
+<tr class="row-even"><td><p>50</p></td>
+<td><p>062</p></td>
+<td><p>32</p></td>
+<td><p>00110010</p></td>
+<td><p><span class="f">2</span></p></td>
+<td><p>&amp;#50;</p></td>
+<td></td>
+<td><p>Two</p></td>
+</tr>
+<tr class="row-odd"><td><p>51</p></td>
+<td><p>063</p></td>
+<td><p>33</p></td>
+<td><p>00110011</p></td>
+<td><p><span class="f">3</span></p></td>
+<td><p>&amp;#51;</p></td>
+<td></td>
+<td><p>Three</p></td>
+</tr>
+<tr class="row-even"><td><p>52</p></td>
+<td><p>064</p></td>
+<td><p>34</p></td>
+<td><p>00110100</p></td>
+<td><p><span class="f">4</span></p></td>
+<td><p>&amp;#52;</p></td>
+<td></td>
+<td><p>Four</p></td>
+</tr>
+<tr class="row-odd"><td><p>53</p></td>
+<td><p>065</p></td>
+<td><p>35</p></td>
+<td><p>00110101</p></td>
+<td><p><span class="f">5</span></p></td>
+<td><p>&amp;#53;</p></td>
+<td></td>
+<td><p>Five</p></td>
+</tr>
+<tr class="row-even"><td><p>54</p></td>
+<td><p>066</p></td>
+<td><p>36</p></td>
+<td><p>00110110</p></td>
+<td><p><span class="f">6</span></p></td>
+<td><p>&amp;#54;</p></td>
+<td></td>
+<td><p>Six</p></td>
+</tr>
+<tr class="row-odd"><td><p>55</p></td>
+<td><p>067</p></td>
+<td><p>37</p></td>
+<td><p>00110111</p></td>
+<td><p><span class="f">7</span></p></td>
+<td><p>&amp;#55;</p></td>
+<td></td>
+<td><p>Seven</p></td>
+</tr>
+<tr class="row-even"><td><p>56</p></td>
+<td><p>070</p></td>
+<td><p>38</p></td>
+<td><p>00111000</p></td>
+<td><p><span class="f">8</span></p></td>
+<td><p>&amp;#56;</p></td>
+<td></td>
+<td><p>Eight</p></td>
+</tr>
+<tr class="row-odd"><td><p>57</p></td>
+<td><p>071</p></td>
+<td><p>39</p></td>
+<td><p>00111001</p></td>
+<td><p><span class="f">9</span></p></td>
+<td><p>&amp;#57;</p></td>
+<td></td>
+<td><p>Nine</p></td>
+</tr>
+<tr class="row-even"><td><p>58</p></td>
+<td><p>072</p></td>
+<td><p>3A</p></td>
+<td><p>00111010</p></td>
+<td><p><span class="f">:</span></p></td>
+<td><p>&amp;#58;</p></td>
+<td><p>&amp;colon;</p></td>
+<td><p>Colon</p></td>
+</tr>
+<tr class="row-odd"><td><p>59</p></td>
+<td><p>073</p></td>
+<td><p>3B</p></td>
+<td><p>00111011</p></td>
+<td><p><span class="f">;</span></p></td>
+<td><p>&amp;#59;</p></td>
+<td><p>&amp;semi;</p></td>
+<td><p>Semicolon</p></td>
+</tr>
+<tr class="row-even"><td><p>60</p></td>
+<td><p>074</p></td>
+<td><p>3C</p></td>
+<td><p>00111100</p></td>
+<td><p><span class="f">&lt;</span></p></td>
+<td><p>&amp;#60;</p></td>
+<td><p>&amp;lt;</p></td>
+<td><p>Less than, open angled bracket</p></td>
+</tr>
+<tr class="row-odd"><td><p>61</p></td>
+<td><p>075</p></td>
+<td><p>3D</p></td>
+<td><p>00111101</p></td>
+<td><p><span class="f">=</span></p></td>
+<td><p>&amp;#61;</p></td>
+<td><p>&amp;equals;</p></td>
+<td><p>Equals</p></td>
+</tr>
+<tr class="row-even"><td><p>62</p></td>
+<td><p>076</p></td>
+<td><p>3E</p></td>
+<td><p>00111110</p></td>
+<td><p><span class="f">&gt;</span></p></td>
+<td><p>&amp;#62;</p></td>
+<td><p>&amp;gt;</p></td>
+<td><p>Greater than, close angled bracket</p></td>
+</tr>
+<tr class="row-odd"><td><p>63</p></td>
+<td><p>077</p></td>
+<td><p>3F</p></td>
+<td><p>00111111</p></td>
+<td><p><span class="f">?</span></p></td>
+<td><p>&amp;#63;</p></td>
+<td><p>&amp;quest;</p></td>
+<td><p>Question mark</p></td>
+</tr>
+<tr class="row-even"><td><p>64</p></td>
+<td><p>100</p></td>
+<td><p>40</p></td>
+<td><p>01000000</p></td>
+<td><p><span class="f">&#64;</span></p></td>
+<td><p>&amp;#64;</p></td>
+<td><p>&amp;commat;</p></td>
+<td><p>At sign</p></td>
+</tr>
+<tr class="row-odd"><td><p>65</p></td>
+<td><p>101</p></td>
+<td><p>41</p></td>
+<td><p>01000001</p></td>
+<td><p><span class="f">A</span></p></td>
+<td><p>&amp;#65;</p></td>
+<td></td>
+<td><p>Uppercase A</p></td>
+</tr>
+<tr class="row-even"><td><p>66</p></td>
+<td><p>102</p></td>
+<td><p>42</p></td>
+<td><p>01000010</p></td>
+<td><p><span class="f">B</span></p></td>
+<td><p>&amp;#66;</p></td>
+<td></td>
+<td><p>Uppercase B</p></td>
+</tr>
+<tr class="row-odd"><td><p>67</p></td>
+<td><p>103</p></td>
+<td><p>43</p></td>
+<td><p>01000011</p></td>
+<td><p><span class="f">C</span></p></td>
+<td><p>&amp;#67;</p></td>
+<td></td>
+<td><p>Uppercase C</p></td>
+</tr>
+<tr class="row-even"><td><p>68</p></td>
+<td><p>104</p></td>
+<td><p>44</p></td>
+<td><p>01000100</p></td>
+<td><p><span class="f">D</span></p></td>
+<td><p>&amp;#68;</p></td>
+<td></td>
+<td><p>Uppercase D</p></td>
+</tr>
+<tr class="row-odd"><td><p>69</p></td>
+<td><p>105</p></td>
+<td><p>45</p></td>
+<td><p>01000101</p></td>
+<td><p><span class="f">E</span></p></td>
+<td><p>&amp;#69;</p></td>
+<td></td>
+<td><p>Uppercase E</p></td>
+</tr>
+<tr class="row-even"><td><p>70</p></td>
+<td><p>106</p></td>
+<td><p>46</p></td>
+<td><p>01000110</p></td>
+<td><p><span class="f">F</span></p></td>
+<td><p>&amp;#70;</p></td>
+<td></td>
+<td><p>Uppercase F</p></td>
+</tr>
+<tr class="row-odd"><td><p>71</p></td>
+<td><p>107</p></td>
+<td><p>47</p></td>
+<td><p>01000111</p></td>
+<td><p><span class="f">G</span></p></td>
+<td><p>&amp;#71;</p></td>
+<td></td>
+<td><p>Uppercase G</p></td>
+</tr>
+<tr class="row-even"><td><p>72</p></td>
+<td><p>110</p></td>
+<td><p>48</p></td>
+<td><p>01001000</p></td>
+<td><p><span class="f">H</span></p></td>
+<td><p>&amp;#72;</p></td>
+<td></td>
+<td><p>Uppercase H</p></td>
+</tr>
+<tr class="row-odd"><td><p>73</p></td>
+<td><p>111</p></td>
+<td><p>49</p></td>
+<td><p>01001001</p></td>
+<td><p><span class="f">I</span></p></td>
+<td><p>&amp;#73;</p></td>
+<td></td>
+<td><p>Uppercase I</p></td>
+</tr>
+<tr class="row-even"><td><p>74</p></td>
+<td><p>112</p></td>
+<td><p>4A</p></td>
+<td><p>01001010</p></td>
+<td><p><span class="f">J</span></p></td>
+<td><p>&amp;#74;</p></td>
+<td></td>
+<td><p>Uppercase J</p></td>
+</tr>
+<tr class="row-odd"><td><p>75</p></td>
+<td><p>113</p></td>
+<td><p>4B</p></td>
+<td><p>01001011</p></td>
+<td><p><span class="f">K</span></p></td>
+<td><p>&amp;#75;</p></td>
+<td></td>
+<td><p>Uppercase K</p></td>
+</tr>
+<tr class="row-even"><td><p>76</p></td>
+<td><p>114</p></td>
+<td><p>4C</p></td>
+<td><p>01001100</p></td>
+<td><p><span class="f">L</span></p></td>
+<td><p>&amp;#76;</p></td>
+<td></td>
+<td><p>Uppercase L</p></td>
+</tr>
+<tr class="row-odd"><td><p>77</p></td>
+<td><p>115</p></td>
+<td><p>4D</p></td>
+<td><p>01001101</p></td>
+<td><p><span class="f">M</span></p></td>
+<td><p>&amp;#77;</p></td>
+<td></td>
+<td><p>Uppercase M</p></td>
+</tr>
+<tr class="row-even"><td><p>78</p></td>
+<td><p>116</p></td>
+<td><p>4E</p></td>
+<td><p>01001110</p></td>
+<td><p><span class="f">N</span></p></td>
+<td><p>&amp;#78;</p></td>
+<td></td>
+<td><p>Uppercase N</p></td>
+</tr>
+<tr class="row-odd"><td><p>79</p></td>
+<td><p>117</p></td>
+<td><p>4F</p></td>
+<td><p>01001111</p></td>
+<td><p><span class="f">O</span></p></td>
+<td><p>&amp;#79;</p></td>
+<td></td>
+<td><p>Uppercase O</p></td>
+</tr>
+<tr class="row-even"><td><p>80</p></td>
+<td><p>120</p></td>
+<td><p>50</p></td>
+<td><p>01010000</p></td>
+<td><p><span class="f">P</span></p></td>
+<td><p>&amp;#80;</p></td>
+<td></td>
+<td><p>Uppercase P</p></td>
+</tr>
+<tr class="row-odd"><td><p>81</p></td>
+<td><p>121</p></td>
+<td><p>51</p></td>
+<td><p>01010001</p></td>
+<td><p><span class="f">Q</span></p></td>
+<td><p>&amp;#81;</p></td>
+<td></td>
+<td><p>Uppercase Q</p></td>
+</tr>
+<tr class="row-even"><td><p>82</p></td>
+<td><p>122</p></td>
+<td><p>52</p></td>
+<td><p>01010010</p></td>
+<td><p><span class="f">R</span></p></td>
+<td><p>&amp;#82;</p></td>
+<td></td>
+<td><p>Uppercase R</p></td>
+</tr>
+<tr class="row-odd"><td><p>83</p></td>
+<td><p>123</p></td>
+<td><p>53</p></td>
+<td><p>01010011</p></td>
+<td><p><span class="f">S</span></p></td>
+<td><p>&amp;#83;</p></td>
+<td></td>
+<td><p>Uppercase S</p></td>
+</tr>
+<tr class="row-even"><td><p>84</p></td>
+<td><p>124</p></td>
+<td><p>54</p></td>
+<td><p>01010100</p></td>
+<td><p><span class="f">T</span></p></td>
+<td><p>&amp;#84;</p></td>
+<td></td>
+<td><p>Uppercase T</p></td>
+</tr>
+<tr class="row-odd"><td><p>85</p></td>
+<td><p>125</p></td>
+<td><p>55</p></td>
+<td><p>01010101</p></td>
+<td><p><span class="f">U</span></p></td>
+<td><p>&amp;#85;</p></td>
+<td></td>
+<td><p>Uppercase U</p></td>
+</tr>
+<tr class="row-even"><td><p>86</p></td>
+<td><p>126</p></td>
+<td><p>56</p></td>
+<td><p>01010110</p></td>
+<td><p><span class="f">V</span></p></td>
+<td><p>&amp;#86;</p></td>
+<td></td>
+<td><p>Uppercase V</p></td>
+</tr>
+<tr class="row-odd"><td><p>87</p></td>
+<td><p>127</p></td>
+<td><p>57</p></td>
+<td><p>01010111</p></td>
+<td><p><span class="f">W</span></p></td>
+<td><p>&amp;#87;</p></td>
+<td></td>
+<td><p>Uppercase W</p></td>
+</tr>
+<tr class="row-even"><td><p>88</p></td>
+<td><p>130</p></td>
+<td><p>58</p></td>
+<td><p>01011000</p></td>
+<td><p><span class="f">X</span></p></td>
+<td><p>&amp;#88;</p></td>
+<td></td>
+<td><p>Uppercase X</p></td>
+</tr>
+<tr class="row-odd"><td><p>89</p></td>
+<td><p>131</p></td>
+<td><p>59</p></td>
+<td><p>01011001</p></td>
+<td><p><span class="f">Y</span></p></td>
+<td><p>&amp;#89;</p></td>
+<td></td>
+<td><p>Uppercase Y</p></td>
+</tr>
+<tr class="row-even"><td><p>90</p></td>
+<td><p>132</p></td>
+<td><p>5A</p></td>
+<td><p>01011010</p></td>
+<td><p><span class="f">Z</span></p></td>
+<td><p>&amp;#90;</p></td>
+<td></td>
+<td><p>Uppercase Z</p></td>
+</tr>
+<tr class="row-odd"><td><p>91</p></td>
+<td><p>133</p></td>
+<td><p>5B</p></td>
+<td><p>01011011</p></td>
+<td><p><span class="f">[</span></p></td>
+<td><p>&amp;#91;</p></td>
+<td><p>&amp;lsqb;</p></td>
+<td><p>Opening bracket</p></td>
+</tr>
+<tr class="row-even"><td><p>92</p></td>
+<td><p>134</p></td>
+<td><p>5C</p></td>
+<td><p>01011100</p></td>
+<td><p><span class="f">\</span></p></td>
+<td><p>\</p></td>
+<td><p>&amp;bsol;</p></td>
+<td><p>Backslash</p></td>
+</tr>
+<tr class="row-odd"><td><p>93</p></td>
+<td><p>135</p></td>
+<td><p>5D</p></td>
+<td><p>01011101</p></td>
+<td><p><span class="f">]</span></p></td>
+<td><p>&amp;#93;</p></td>
+<td><p>&amp;rsqb;</p></td>
+<td><p>Closing bracket</p></td>
+</tr>
+<tr class="row-even"><td><p>94</p></td>
+<td><p>136</p></td>
+<td><p>5E</p></td>
+<td><p>01011110</p></td>
+<td><p><span class="f">^</span></p></td>
+<td><p>&amp;#94;</p></td>
+<td><p>&amp;Hat;</p></td>
+<td><p>Caret, circumflex</p></td>
+</tr>
+<tr class="row-odd"><td><p>95</p></td>
+<td><p>137</p></td>
+<td><p>5F</p></td>
+<td><p>01011111</p></td>
+<td><p><span class="f">_</span></p></td>
+<td><p>&amp;#95;</p></td>
+<td><p>&amp;lowbar;</p></td>
+<td><p>Underscore</p></td>
+</tr>
+<tr class="row-even"><td><p>96</p></td>
+<td><p>140</p></td>
+<td><p>60</p></td>
+<td><p>01100000</p></td>
+<td><p><span class="f">`</span></p></td>
+<td><p>`</p></td>
+<td><p>&amp;grave;</p></td>
+<td><p>Grave accent</p></td>
+</tr>
+<tr class="row-odd"><td><p>97</p></td>
+<td><p>141</p></td>
+<td><p>61</p></td>
+<td><p>01100001</p></td>
+<td><p><span class="f">a</span></p></td>
+<td><p>&amp;#97;</p></td>
+<td></td>
+<td><p>Lowercase a</p></td>
+</tr>
+<tr class="row-even"><td><p>98</p></td>
+<td><p>142</p></td>
+<td><p>62</p></td>
+<td><p>01100010</p></td>
+<td><p><span class="f">b</span></p></td>
+<td><p>&amp;#98;</p></td>
+<td></td>
+<td><p>Lowercase b</p></td>
+</tr>
+<tr class="row-odd"><td><p>99</p></td>
+<td><p>143</p></td>
+<td><p>63</p></td>
+<td><p>01100011</p></td>
+<td><p><span class="f">c</span></p></td>
+<td><p>&amp;#99;</p></td>
+<td></td>
+<td><p>Lowercase c</p></td>
+</tr>
+<tr class="row-even"><td><p>100</p></td>
+<td><p>144</p></td>
+<td><p>64</p></td>
+<td><p>01100100</p></td>
+<td><p><span class="f">d</span></p></td>
+<td><p>&amp;#100;</p></td>
+<td></td>
+<td><p>Lowercase d</p></td>
+</tr>
+<tr class="row-odd"><td><p>101</p></td>
+<td><p>145</p></td>
+<td><p>65</p></td>
+<td><p>01100101</p></td>
+<td><p><span class="f">e</span></p></td>
+<td><p>&amp;#101;</p></td>
+<td></td>
+<td><p>Lowercase e</p></td>
+</tr>
+<tr class="row-even"><td><p>102</p></td>
+<td><p>146</p></td>
+<td><p>66</p></td>
+<td><p>01100110</p></td>
+<td><p><span class="f">f</span></p></td>
+<td><p>&amp;#102;</p></td>
+<td></td>
+<td><p>Lowercase f</p></td>
+</tr>
+<tr class="row-odd"><td><p>103</p></td>
+<td><p>147</p></td>
+<td><p>67</p></td>
+<td><p>01100111</p></td>
+<td><p><span class="f">g</span></p></td>
+<td><p>&amp;#103;</p></td>
+<td></td>
+<td><p>Lowercase g</p></td>
+</tr>
+<tr class="row-even"><td><p>104</p></td>
+<td><p>150</p></td>
+<td><p>68</p></td>
+<td><p>01101000</p></td>
+<td><p><span class="f">h</span></p></td>
+<td><p>&amp;#104;</p></td>
+<td></td>
+<td><p>Lowercase h</p></td>
+</tr>
+<tr class="row-odd"><td><p>105</p></td>
+<td><p>151</p></td>
+<td><p>69</p></td>
+<td><p>01101001</p></td>
+<td><p><span class="f">i</span></p></td>
+<td><p>&amp;#105;</p></td>
+<td></td>
+<td><p>Lowercase i</p></td>
+</tr>
+<tr class="row-even"><td><p>106</p></td>
+<td><p>152</p></td>
+<td><p>6A</p></td>
+<td><p>01101010</p></td>
+<td><p><span class="f">j</span></p></td>
+<td><p>&amp;#106;</p></td>
+<td></td>
+<td><p>Lowercase j</p></td>
+</tr>
+<tr class="row-odd"><td><p>107</p></td>
+<td><p>153</p></td>
+<td><p>6B</p></td>
+<td><p>01101011</p></td>
+<td><p><span class="f">k</span></p></td>
+<td><p>&amp;#107;</p></td>
+<td></td>
+<td><p>Lowercase k</p></td>
+</tr>
+<tr class="row-even"><td><p>108</p></td>
+<td><p>154</p></td>
+<td><p>6C</p></td>
+<td><p>01101100</p></td>
+<td><p><span class="f">l</span></p></td>
+<td><p>&amp;#108;</p></td>
+<td></td>
+<td><p>Lowercase l</p></td>
+</tr>
+<tr class="row-odd"><td><p>109</p></td>
+<td><p>155</p></td>
+<td><p>6D</p></td>
+<td><p>01101101</p></td>
+<td><p><span class="f">m</span></p></td>
+<td><p>&amp;#109;</p></td>
+<td></td>
+<td><p>Lowercase m</p></td>
+</tr>
+<tr class="row-even"><td><p>110</p></td>
+<td><p>156</p></td>
+<td><p>6E</p></td>
+<td><p>01101110</p></td>
+<td><p><span class="f">n</span></p></td>
+<td><p>&amp;#110;</p></td>
+<td></td>
+<td><p>Lowercase n</p></td>
+</tr>
+<tr class="row-odd"><td><p>111</p></td>
+<td><p>157</p></td>
+<td><p>6F</p></td>
+<td><p>01101111</p></td>
+<td><p><span class="f">o</span></p></td>
+<td><p>&amp;#111;</p></td>
+<td></td>
+<td><p>Lowercase o</p></td>
+</tr>
+<tr class="row-even"><td><p>112</p></td>
+<td><p>160</p></td>
+<td><p>70</p></td>
+<td><p>01110000</p></td>
+<td><p><span class="f">p</span></p></td>
+<td><p>&amp;#112;</p></td>
+<td></td>
+<td><p>Lowercase p</p></td>
+</tr>
+<tr class="row-odd"><td><p>113</p></td>
+<td><p>161</p></td>
+<td><p>71</p></td>
+<td><p>01110001</p></td>
+<td><p><span class="f">q</span></p></td>
+<td><p>&amp;#113;</p></td>
+<td></td>
+<td><p>Lowercase q</p></td>
+</tr>
+<tr class="row-even"><td><p>114</p></td>
+<td><p>162</p></td>
+<td><p>72</p></td>
+<td><p>01110010</p></td>
+<td><p><span class="f">r</span></p></td>
+<td><p>&amp;#114;</p></td>
+<td></td>
+<td><p>Lowercase r</p></td>
+</tr>
+<tr class="row-odd"><td><p>115</p></td>
+<td><p>163</p></td>
+<td><p>73</p></td>
+<td><p>01110011</p></td>
+<td><p><span class="f">s</span></p></td>
+<td><p>&amp;#115;</p></td>
+<td></td>
+<td><p>Lowercase s</p></td>
+</tr>
+<tr class="row-even"><td><p>116</p></td>
+<td><p>164</p></td>
+<td><p>74</p></td>
+<td><p>01110100</p></td>
+<td><p><span class="f">t</span></p></td>
+<td><p>&amp;#116;</p></td>
+<td></td>
+<td><p>Lowercase t</p></td>
+</tr>
+<tr class="row-odd"><td><p>117</p></td>
+<td><p>165</p></td>
+<td><p>75</p></td>
+<td><p>01110101</p></td>
+<td><p><span class="f">u</span></p></td>
+<td><p>&amp;#117;</p></td>
+<td></td>
+<td><p>Lowercase u</p></td>
+</tr>
+<tr class="row-even"><td><p>118</p></td>
+<td><p>166</p></td>
+<td><p>76</p></td>
+<td><p>01110110</p></td>
+<td><p><span class="f">v</span></p></td>
+<td><p>&amp;#118;</p></td>
+<td></td>
+<td><p>Lowercase v</p></td>
+</tr>
+<tr class="row-odd"><td><p>119</p></td>
+<td><p>167</p></td>
+<td><p>77</p></td>
+<td><p>01110111</p></td>
+<td><p><span class="f">w</span></p></td>
+<td><p>&amp;#119;</p></td>
+<td></td>
+<td><p>Lowercase w</p></td>
+</tr>
+<tr class="row-even"><td><p>120</p></td>
+<td><p>170</p></td>
+<td><p>78</p></td>
+<td><p>01111000</p></td>
+<td><p><span class="f">x</span></p></td>
+<td><p>&amp;#120;</p></td>
+<td></td>
+<td><p>Lowercase x</p></td>
+</tr>
+<tr class="row-odd"><td><p>121</p></td>
+<td><p>171</p></td>
+<td><p>79</p></td>
+<td><p>01111001</p></td>
+<td><p><span class="f">y</span></p></td>
+<td><p>&amp;#121;</p></td>
+<td></td>
+<td><p>Lowercase y</p></td>
+</tr>
+<tr class="row-even"><td><p>122</p></td>
+<td><p>172</p></td>
+<td><p>7A</p></td>
+<td><p>01111010</p></td>
+<td><p><span class="f">z</span></p></td>
+<td><p>&amp;#122;</p></td>
+<td></td>
+<td><p>Lowercase z</p></td>
+</tr>
+<tr class="row-odd"><td><p>123</p></td>
+<td><p>173</p></td>
+<td><p>7B</p></td>
+<td><p>01111011</p></td>
+<td><p><span class="f">{</span></p></td>
+<td><p>&amp;#123;</p></td>
+<td><p>&amp;lcub;</p></td>
+<td><p>Opening brace</p></td>
+</tr>
+<tr class="row-even"><td><p>124</p></td>
+<td><p>174</p></td>
+<td><p>7C</p></td>
+<td><p>01111100</p></td>
+<td><p><span class="f">|</span></p></td>
+<td><p>&amp;#124;</p></td>
+<td><p>&amp;verbar;</p></td>
+<td><p>Vertical bar</p></td>
+</tr>
+<tr class="row-odd"><td><p>125</p></td>
+<td><p>175</p></td>
+<td><p>7D</p></td>
+<td><p>01111101</p></td>
+<td><p><span class="f">}</span></p></td>
+<td><p>&amp;#125;</p></td>
+<td><p>&amp;rcub;</p></td>
+<td><p>Closing brace</p></td>
+</tr>
+<tr class="row-even"><td><p>126</p></td>
+<td><p>176</p></td>
+<td><p>7E</p></td>
+<td><p>01111110</p></td>
+<td><p><span class="f">~</span></p></td>
+<td><p>&amp;#126;</p></td>
+<td><p>&amp;tilde;</p></td>
+<td><p>Equivalency sign, tilde</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id3">
+<h2>参考资料<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>ASCII Table</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://www.ascii-code.com/">https://www.ascii-code.com/</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>ASCII</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://en.wikipedia.org/wiki/ASCII">https://en.wikipedia.org/wiki/ASCII</a></p>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../link/index.html" class="btn btn-neutral float-left" title="快速访问" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../cpp/index.html" class="btn btn-neutral float-right" title="C/C++" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2024, fong.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+     $(".toggle > *").hide();
+     $(".toggle .header").show();
+     $(".toggle .header").click(function() {
+      $(this).parent().children().not(".header").toggle(400);
+      $(this).parent().children(".header").toggleClass("open");
+     })
+    });
+</script>
+
+
+</body>
+</html>

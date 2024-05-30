@@ -129,7 +129,12 @@
              
   <section id="id1">
 <h1><span class="section-number">21. </span>运算符优先级<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
-<table class="docutils align-center" id="id3">
+<style>
+  .f {
+      font-family: Menlo, 'Droid Sans Mono', Consolas, monospace;
+      color: #2980b9;
+  }
+</style><table class="docutils align-center" id="id3">
 <caption><span class="caption-text">运算符的优先级</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 33%" />
@@ -137,132 +142,136 @@
 <col style="width: 33%" />
 </colgroup>
 <thead>
-<tr class="row-odd"><th class="head"><p>priority</p></th>
-<th class="head"><p>operator</p></th>
-<th class="head"><p>meaning</p></th>
+<tr class="row-odd"><th class="head"><p>优先级</p></th>
+<th class="head"><p>运算符</p></th>
+<th class="head"><p>描述</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td rowspan="6"><p>1</p></td>
-<td><p>[]</p></td>
+<tr class="row-even"><td><p>0</p></td>
+<td><p><span class="f">::</span></p></td>
+<td><p>作用域运算符</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="6"><p>1</p></td>
+<td><p><span class="f">[]</span></p></td>
 <td><p>下标运算</p></td>
 </tr>
-<tr class="row-odd"><td><p>()</p></td>
+<tr class="row-even"><td><p><span class="f">()</span></p></td>
 <td><p>圆括号</p></td>
 </tr>
-<tr class="row-even"><td><p>-&gt;</p></td>
+<tr class="row-odd"><td><p><span class="f">-&gt;</span></p></td>
 <td><p>指向运算符</p></td>
 </tr>
-<tr class="row-odd"><td><p>.</p></td>
+<tr class="row-even"><td><p><span class="f">.</span></p></td>
 <td><p>成员运算符</p></td>
 </tr>
-<tr class="row-even"><td><p>++</p></td>
+<tr class="row-odd"><td><p><span class="f">++</span></p></td>
 <td><p>自增（后缀）</p></td>
 </tr>
-<tr class="row-odd"><td><p>- -</p></td>
+<tr class="row-even"><td><p><span class="f">--</span></p></td>
 <td><p>自减（后缀）</p></td>
 </tr>
-<tr class="row-even"><td rowspan="10"><p>2</p></td>
-<td><p>!</p></td>
+<tr class="row-odd"><td rowspan="10"><p>2</p></td>
+<td><p><span class="f">!</span></p></td>
 <td><p>逻辑非</p></td>
 </tr>
-<tr class="row-odd"><td><p>~</p></td>
+<tr class="row-even"><td><p><span class="f">~</span></p></td>
 <td><p>按位反</p></td>
 </tr>
-<tr class="row-even"><td><p>++</p></td>
+<tr class="row-odd"><td><p><span class="f">++</span></p></td>
 <td><p>自增（前缀）</p></td>
 </tr>
-<tr class="row-odd"><td><p>- -</p></td>
+<tr class="row-even"><td><p><span class="f">--</span></p></td>
 <td><p>自减（前缀）</p></td>
 </tr>
-<tr class="row-even"><td><p>-</p></td>
+<tr class="row-odd"><td><p><span class="f">-</span></p></td>
 <td><p>负号</p></td>
 </tr>
-<tr class="row-odd"><td><p>+</p></td>
+<tr class="row-even"><td><p><span class="f">+</span></p></td>
 <td><p>正号</p></td>
 </tr>
-<tr class="row-even"><td><p>(类型)</p></td>
+<tr class="row-odd"><td><p><span class="f">(类型)</span></p></td>
 <td><p>类型转换</p></td>
 </tr>
-<tr class="row-odd"><td><p>*</p></td>
+<tr class="row-even"><td><p><span class="f">*</span></p></td>
 <td><p>指针运算符</p></td>
 </tr>
-<tr class="row-even"><td><p>&amp;</p></td>
+<tr class="row-odd"><td><p><span class="f">&amp;</span></p></td>
 <td><p>取地址</p></td>
 </tr>
-<tr class="row-odd"><td><p>sizeof</p></td>
+<tr class="row-even"><td><p><span class="f">sizeof</span></p></td>
 <td><p>长度运算</p></td>
 </tr>
-<tr class="row-even"><td rowspan="3"><p>3</p></td>
-<td><p>*</p></td>
+<tr class="row-odd"><td rowspan="3"><p>3</p></td>
+<td><p><span class="f">*</span></p></td>
 <td><p>乘法</p></td>
 </tr>
-<tr class="row-odd"><td><p>/</p></td>
+<tr class="row-even"><td><p><span class="f">/</span></p></td>
 <td><p>除法</p></td>
 </tr>
-<tr class="row-even"><td><p>%</p></td>
+<tr class="row-odd"><td><p><span class="f">%</span></p></td>
 <td><p>求余</p></td>
 </tr>
-<tr class="row-odd"><td rowspan="2"><p>4</p></td>
-<td><p>+</p></td>
+<tr class="row-even"><td rowspan="2"><p>4</p></td>
+<td><p><span class="f">+</span></p></td>
 <td><p>加法</p></td>
 </tr>
-<tr class="row-even"><td><p>-</p></td>
+<tr class="row-odd"><td><p><span class="f">-</span></p></td>
 <td><p>减法</p></td>
 </tr>
-<tr class="row-odd"><td rowspan="2"><p>5</p></td>
-<td><p>&lt;&lt;</p></td>
+<tr class="row-even"><td rowspan="2"><p>5</p></td>
+<td><p><span class="f">&lt;&lt;</span></p></td>
 <td><p>左移位</p></td>
 </tr>
-<tr class="row-even"><td><p>&gt;&gt;</p></td>
+<tr class="row-odd"><td><p><span class="f">&gt;&gt;</span></p></td>
 <td><p>右移位</p></td>
 </tr>
-<tr class="row-odd"><td><p>6</p></td>
-<td><p>&lt; &lt;= &gt; &gt;=</p></td>
+<tr class="row-even"><td><p>6</p></td>
+<td><p><span class="f">&lt; &lt;= &gt; &gt;=</span></p></td>
 <td><p>关系运算符</p></td>
 </tr>
-<tr class="row-even"><td rowspan="2"><p>7</p></td>
-<td><p>==</p></td>
+<tr class="row-odd"><td rowspan="2"><p>7</p></td>
+<td><p><span class="f">==</span></p></td>
 <td><p>等于</p></td>
 </tr>
-<tr class="row-odd"><td><p>!=</p></td>
+<tr class="row-even"><td><p><span class="f">!=</span></p></td>
 <td><p>不等于</p></td>
 </tr>
-<tr class="row-even"><td><p>8</p></td>
-<td><p>&amp;</p></td>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p><span class="f">&amp;</span></p></td>
 <td><p>按位与</p></td>
 </tr>
-<tr class="row-odd"><td><p>9</p></td>
-<td><p>^</p></td>
+<tr class="row-even"><td><p>9</p></td>
+<td><p><span class="f">^</span></p></td>
 <td><p>按位异或</p></td>
 </tr>
-<tr class="row-even"><td><p>10</p></td>
-<td><p>|</p></td>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p><span class="f">|</span></p></td>
 <td><p>按位或</p></td>
 </tr>
-<tr class="row-odd"><td><p>11</p></td>
-<td><p>&amp;&amp;</p></td>
+<tr class="row-even"><td><p>11</p></td>
+<td><p><span class="f">&amp;&amp;</span></p></td>
 <td><p>逻辑与</p></td>
 </tr>
-<tr class="row-even"><td><p>12</p></td>
-<td><p>||</p></td>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p><span class="f">||</span></p></td>
 <td><p>逻辑或</p></td>
 </tr>
-<tr class="row-odd"><td><p>13</p></td>
-<td><p>? :</p></td>
+<tr class="row-even"><td><p>13</p></td>
+<td><p><span class="f">? :</span></p></td>
 <td><p>条件运算符</p></td>
 </tr>
-<tr class="row-even"><td rowspan="3"><p>14</p></td>
-<td rowspan="3"><p>=   +=  -=  *=</p>
-<p>/=  %=  &amp;=  |=</p>
-<p>^=  &lt;&lt;=  &gt;&gt;=</p>
+<tr class="row-odd"><td rowspan="3"><p>14</p></td>
+<td rowspan="3"><p><span class="f">=  += -= *=</span></p>
+<p><span class="f">/= %= &amp;= |=</span></p>
+<p><span class="f">^= &lt;&lt;= &gt;&gt;=</span></p>
 </td>
 <td rowspan="3"><p>赋值运算符</p></td>
 </tr>
-<tr class="row-odd"></tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td><p>15</p></td>
-<td><p>,</p></td>
+<tr class="row-odd"></tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p><span class="f">,</span></p></td>
 <td><p>逗号运算符</p></td>
 </tr>
 </tbody>

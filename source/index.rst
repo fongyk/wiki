@@ -13,6 +13,7 @@
 
    time/index
    link/index
+   ascii/index
    cpp/index
    python/index
    linux/index

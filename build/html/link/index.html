@@ -183,7 +183,11 @@
             .catch(error => console.error('Error fetching location data:', error));
         })
         .catch(error => console.error('Error fetching IP address:', error));
-        document.getElementById('userPlatform').innerText = navigator.userAgentData.platform;
+        try {
+            document.getElementById('userPlatform').innerText = navigator.userAgentData.platform;
+        } catch (e) {
+            document.getElementById('userPlatform').innerText = detectOS();
+        }
         document.getElementById('userScreen').innerText = window.screen.width + " x " + window.screen.height + " x " + window.screen.colorDepth;
         document.getElementById('userAgent').innerText = navigator.userAgent;
         document.getElementById('app').innerText = navigator.appName + ", " + navigator.appCodeName + ", " + navigator.vendor;

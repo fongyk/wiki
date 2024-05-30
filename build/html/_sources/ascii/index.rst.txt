@@ -6,6 +6,7 @@ ASCII 码
   <style>
     .f {
         font-family: Menlo, 'Droid Sans Mono', Consolas, monospace;
+        font-weight: bold;
         color: #2980b9;
     }
   </style>
@@ -70,20 +71,20 @@ ASCII 码
     ============= ==================== ===================== ========================= =========================== ========================== ======================= ===============================================================================================================
     32                    040                    20                    00100000                    :f:`SP`                   &#32;                                         Space
     33                    041                    21                    00100001                    :f:`!`                    &#33;                    &excl;                    Exclamation mark
-    34                    042                    22                    00100010                    :f:`"`                    &#34;                    &quot;                    Double quotes, speech marks
+    34                    042                    22                    00100010                    :f:`"`                    &#34;                    &quot;                    Double quotes, Speech marks
     35                    043                    23                    00100011                    :f:`#`                    &#35;                    &num;                    Number sign
     36                    044                    24                    00100100                    :f:`$`                    &#36;                    &dollar;                    Dollar
     37                    045                    25                    00100101                    :f:`%`                    &#37;                    &percnt;                    Percent sign
     38                    046                    26                    00100110                    :f:`&`                    &#38;                    &amp;                    Ampersand
     39                    047                    27                    00100111                    :f:`'`                    &#39;                    &apos;                    Single quote
-    40                    050                    28                    00101000                    :f:`(`                    &#40;                    &lparen;                    Open parenthesis, open bracket
-    41                    051                    29                    00101001                    :f:`)`                    &#41;                    &rparen;                    Close parenthesis, close bracket
+    40                    050                    28                    00101000                    :f:`(`                    &#40;                    &lparen;                    Open parenthesis, Open bracket
+    41                    051                    29                    00101001                    :f:`)`                    &#41;                    &rparen;                    Close parenthesis, Close bracket
     42                    052                    2A                    00101010                    :f:`*`                    &#42;                    &ast;                    Asterisk
     43                    053                    2B                    00101011                    :f:`+`                    &#43;                    &plus;                    Plus
     44                    054                    2C                    00101100                    :f:`,`                    &#44;                    &comma;                    Comma
-    45                    055                    2D                    00101101                    :f:`-`                    &#45;                                         Hyphen-minus
-    46                    056                    2E                    00101110                    :f:`.`                    &#46;                    &period;                    Period, dot or full stop
-    47                    057                    2F                    00101111                    :f:`/`                    &#47;                    &sol;                    Slash, divide
+    45                    055                    2D                    00101101                    :f:`-`                    &#45;                                         Hyphen, Minus
+    46                    056                    2E                    00101110                    :f:`.`                    &#46;                    &period;                    Period, Dot, Full stop
+    47                    057                    2F                    00101111                    :f:`/`                    &#47;                    &sol;                    Slash, Divide
     48                    060                    30                    00110000                    :f:`0`                    &#48;                                         Zero
     49                    061                    31                    00110001                    :f:`1`                    &#49;                                         One
     50                    062                    32                    00110010                    :f:`2`                    &#50;                                         Two
@@ -96,9 +97,9 @@ ASCII 码
     57                    071                    39                    00111001                    :f:`9`                    &#57;                                         Nine
     58                    072                    3A                    00111010                    :f:`:`                    &#58;                    &colon;                    Colon
     59                    073                    3B                    00111011                    :f:`;`                    &#59;                    &semi;                    Semicolon
-    60                    074                    3C                    00111100                    :f:`<`                    &#60;                    &lt;                    Less than, open angled bracket
+    60                    074                    3C                    00111100                    :f:`<`                    &#60;                    &lt;                    Less than, Open angled bracket
     61                    075                    3D                    00111101                    :f:`=`                    &#61;                    &equals;                    Equals
-    62                    076                    3E                    00111110                    :f:`>`                    &#62;                    &gt;                    Greater than, close angled bracket
+    62                    076                    3E                    00111110                    :f:`>`                    &#62;                    &gt;                    Greater than, Close angled bracket
     63                    077                    3F                    00111111                    :f:`?`                    &#63;                    &quest;                    Question mark
     64                    100                    40                    01000000                    :f:`@`                    &#64;                    &commat;                    At sign
     65                    101                    41                    01000001                    :f:`A`                    &#65;                                         Uppercase A
@@ -130,7 +131,7 @@ ASCII 码
     91                    133                    5B                    01011011                    :f:`[`                    &#91;                    &lsqb;                    Opening bracket
     92                    134                    5C                    01011100                    :f:`\\`                    &#92;                    &bsol;                    Backslash
     93                    135                    5D                    01011101                    :f:`]`                    &#93;                    &rsqb;                    Closing bracket
-    94                    136                    5E                    01011110                    :f:`^`                    &#94;                    &Hat;                    Caret, circumflex
+    94                    136                    5E                    01011110                    :f:`^`                    &#94;                    &Hat;                    Caret, Circumflex
     95                    137                    5F                    01011111                    :f:`_`                    &#95;                    &lowbar;                    Underscore
     96                    140                    60                    01100000                    :f:`\``                    &#96;                    &grave;                    Grave accent
     97                    141                    61                    01100001                    :f:`a`                    &#97;                                         Lowercase a
@@ -162,7 +163,7 @@ ASCII 码
     123                    173                    7B                    01111011                    :f:`{`                    &#123;                    &lcub;                    Opening brace
     124                    174                    7C                    01111100                    :f:`|`                    &#124;                    &verbar;                    Vertical bar
     125                    175                    7D                    01111101                    :f:`}`                    &#125;                    &rcub;                    Closing brace
-    126                    176                    7E                    01111110                    :f:`~`                    &#126;                    &tilde;                    Equivalency sign, tilde
+    126                    176                    7E                    01111110                    :f:`~`                    &#126;                    &tilde;                    Equivalency sign, Tilde
     ============= ==================== ===================== ========================= =========================== ========================== ======================= ===============================================================================================================
 
 

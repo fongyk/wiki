@@ -6,6 +6,7 @@
   <style>
     .f {
         font-family: Menlo, 'Droid Sans Mono', Consolas, monospace;
+        font-weight: bold;
         color: #2980b9;
     }
   </style>

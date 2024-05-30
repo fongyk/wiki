@@ -8,7 +8,7 @@
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/magnum.ico"/>
   <!--[if lt IE 9]>
@@ -20,6 +20,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/js/chinese-lunar.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -50,6 +51,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../time/index.html">现在时刻</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">快速访问</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ascii/index.html">ASCII 码</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux/Shell</a></li>
@@ -380,10 +382,7 @@ execute -&gt; compare;
 <blockquote>
 <div><p>WARNING: html_static_path 入口 ‘_static’ 不存在</p>
 </div></blockquote>
-<p>需要修改配置文件 conf.py:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_static_path</span> <span class="o">=</span> <span class="p">[]</span>
-</pre></div>
-</div>
+<p>需要在 source 目录下新增一个 _static 目录。</p>
 </div>
 </section>
 <section id="id2">
@@ -465,6 +464,12 @@ execute -&gt; compare;
 <div><p><a class="reference external" href="http://graphviz.org/">http://graphviz.org/</a></p>
 <p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/graphviz.html">https://www.sphinx-doc.org/en/master/usage/extensions/graphviz.html</a></p>
 <p><a class="reference external" href="https://blog.51cto.com/mouday/5058561">https://blog.51cto.com/mouday/5058561</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="12">
+<li><p>How to add custom CSS or JavaScript to Sphinx documentation</p></li>
+</ol>
+<blockquote>
+<div><p><a class="reference external" href="https://docs.readthedocs.io/en/stable/guides/adding-custom-css.html">https://docs.readthedocs.io/en/stable/guides/adding-custom-css.html</a></p>
 </div></blockquote>
 </section>
 </section>

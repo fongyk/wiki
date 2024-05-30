@@ -333,9 +333,7 @@ field list：
 
       WARNING: html_static_path 入口 '_static' 不存在
 
-    需要修改配置文件 conf.py::
-
-      html_static_path = []
+    需要在 source 目录下新增一个 _static 目录。
 
 
 参考资料
@@ -408,3 +406,7 @@ field list：
   https://www.sphinx-doc.org/en/master/usage/extensions/graphviz.html
 
   https://blog.51cto.com/mouday/5058561
+
+12. How to add custom CSS or JavaScript to Sphinx documentation
+
+  https://docs.readthedocs.io/en/stable/guides/adding-custom-css.html

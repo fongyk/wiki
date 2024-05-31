@@ -30,13 +30,13 @@ ASCII 码
     4                    004                    04                    00000100                    :f:`EOT`                    &#04;                                         End of Transmission
     5                    005                    05                    00000101                    :f:`ENQ`                    &#05;                                         Enquiry
     6                    006                    06                    00000110                    :f:`ACK`                    &#06;                                         Acknowledge
-    7                    007                    07                    00000111                    :f:`BEL`                    &#07;                                         Bell, Alert
-    8                    010                    08                    00001000                    :f:`BS`                    &#08;                                         Backspace
-    9                    011                    09                    00001001                    :f:`HT`                    &#09;                                         Horizontal Tab
-    10                    012                    0A                    00001010                    :f:`LF`                    &#10;                                         Line Feed
-    11                    013                    0B                    00001011                    :f:`VT`                    &#11;                                         Vertical Tabulation
-    12                    014                    0C                    00001100                    :f:`FF`                    &#12;                                         Form Feed
-    13                    015                    0D                    00001101                    :f:`CR`                    &#13;                                         Carriage Return
+    7                    007                    07                    00000111                    :f:`BEL`                    &#07;                                         Bell, Alert, \\a
+    8                    010                    08                    00001000                    :f:`BS`                    &#08;                                         Backspace, \\b
+    9                    011                    09                    00001001                    :f:`HT`                    &#09;                                         Horizontal Tab, \\t
+    10                    012                    0A                    00001010                    :f:`LF`                    &#10;                                         Line Feed, \\n
+    11                    013                    0B                    00001011                    :f:`VT`                    &#11;                                         Vertical Tabulation, \\v
+    12                    014                    0C                    00001100                    :f:`FF`                    &#12;                                         Form Feed, \\f
+    13                    015                    0D                    00001101                    :f:`CR`                    &#13;                                         Carriage Return, \\r
     14                    016                    0E                    00001110                    :f:`SO`                    &#14;                                         Shift Out
     15                    017                    0F                    00001111                    :f:`SI`                    &#15;                                         Shift In
     16                    020                    10                    00010000                    :f:`DLE`                    &#16;                                         Data Link Escape
@@ -48,9 +48,9 @@ ASCII 码
     22                    026                    16                    00010110                    :f:`SYN`                    &#22;                                         Synchronous Idle
     23                    027                    17                    00010111                    :f:`ETB`                    &#23;                                         End of Transmission Block
     24                    030                    18                    00011000                    :f:`CAN`                    &#24;                                         Cancel
-    25                    031                    19                    00011001                    :f:`EM`                    &#25;                                         End of medium
+    25                    031                    19                    00011001                    :f:`EM`                    &#25;                                         End of Medium
     26                    032                    1A                    00011010                    :f:`SUB`                    &#26;                                         Substitute
-    27                    033                    1B                    00011011                    :f:`ESC`                    &#27;                                         Escape
+    27                    033                    1B                    00011011                    :f:`ESC`                    &#27;                                         Escape, \\e
     28                    034                    1C                    00011100                    :f:`FS`                    &#28;                                         File Separator
     29                    035                    1D                    00011101                    :f:`GS`                    &#29;                                         Group Separator
     30                    036                    1E                    00011110                    :f:`RS`                    &#30;                                         Record Separator

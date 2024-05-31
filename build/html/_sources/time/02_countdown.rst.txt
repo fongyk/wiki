@@ -42,7 +42,11 @@
                     return [sign, days, hours, minutes, seconds, distance];
                 }
                 function format(n, key, flag) {
-                    document.getElementById(key).innerHTML = n.toString().padStart(2, "0");
+                    if (n === "") {
+                        document.getElementById(key).innerHTML = "";
+                    } else {
+                        document.getElementById(key).innerHTML = n.toString().padStart(2, "0");
+                    }
                     if (flag) {
                         document.getElementById(key).style.color = "#6d0404";
                     } else {
@@ -82,13 +86,17 @@
                             endTime += " 00:00:00";
                         }
                     }
-                    arr = getDistance(startTime, endTime);
+                    var keys = ["天", "小时", "分钟", "秒"];
+                    var arr = getDistance(startTime, endTime);
                     if (arr[1] == 0) {
-                        arr[1] = "--";
+                        arr[1] = "";
+                        keys[0] = "";
                         if (arr[2] == 0) {
-                            arr[2] = "--";
+                            arr[2] = "";
+                            keys[1] = ""
                             if (arr[3] == 0) {
-                                arr[3] = "--";
+                                arr[3] = "";
+                                keys[2] = "";
                             }
                         }
                     }
@@ -98,6 +106,10 @@
                     format(arr[2], "hours", flag);
                     format(arr[3], "minutes", flag);
                     format(arr[4], "seconds", flag);
+                    document.getElementById("k0").innerText = keys[0];
+                    document.getElementById("k1").innerText = keys[1];
+                    document.getElementById("k2").innerText = keys[2];
+                    document.getElementById("k3").innerText = keys[3];
                 }
                 setInterval(countdown, 100);
                 function setStartTime(e) {
@@ -139,10 +151,10 @@
             </p>
             <p class="textcss"><span id="sign"></span></p>
             <p class="textcss">
-                <span id="days"></span> 天 
-                <span id="hours"></span> 小时
-                <span id="minutes"></span> 分钟 
-                <span id="seconds"></span> 秒 
+                <span id="days"></span> <span id="k0"></span>
+                <span id="hours"></span> <span id="k1"></span>
+                <span id="minutes"></span> <span id="k2"></span>
+                <span id="seconds"></span> <span id="k3"></span>
             </p>
             <br><br><br><br><br>
         </body>

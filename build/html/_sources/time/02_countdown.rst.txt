@@ -35,11 +35,12 @@
                     var distance = endTime - startTime;
                     var sign = distance > 0? "还有":"已过";
                     distance = Math.abs(distance);
+                    var years = Math.round(distance / (1000 * 60 * 60 * 24 * 365) * 10) / 10; // 保留 1 位小数
                     var days = Math.floor(distance / (1000 * 60 * 60 * 24));
                     var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                    return [sign, days, hours, minutes, seconds, distance];
+                    return [sign, days, hours, minutes, seconds, years, distance];
                 }
                 function format(n, key, flag) {
                     if (n === "") {
@@ -86,30 +87,35 @@
                             endTime += " 00:00:00";
                         }
                     }
-                    var keys = ["天", "小时", "分钟", "秒"];
+                    var keys = ["年", "天", "小时", "分钟", "秒"];
                     var arr = getDistance(startTime, endTime);
                     if (arr[1] == 0) {
                         arr[1] = "";
-                        keys[0] = "";
+                        keys[1] = "";
                         if (arr[2] == 0) {
                             arr[2] = "";
-                            keys[1] = ""
+                            keys[2] = ""
                             if (arr[3] == 0) {
                                 arr[3] = "";
-                                keys[2] = "";
+                                keys[3] = "";
                             }
                         }
                     }
-                    var flag = arr[5] <= 3600000;
+                    var flag = arr[6] <= 3600000;
                     document.getElementById("sign").innerHTML = arr[0];
                     format(arr[1], "days", flag);
                     format(arr[2], "hours", flag);
                     format(arr[3], "minutes", flag);
                     format(arr[4], "seconds", flag);
-                    document.getElementById("k0").innerText = keys[0];
                     document.getElementById("k1").innerText = keys[1];
                     document.getElementById("k2").innerText = keys[2];
                     document.getElementById("k3").innerText = keys[3];
+                    document.getElementById("k4").innerText = keys[4];
+                    if (arr[5] < 1.0) {
+                        document.getElementById("years").innerHTML = "";
+                    } else {
+                        document.getElementById("years").innerHTML = "(" + '<span style="color:#2980b9;">' + arr[5] + '</span>' + keys[0] + ")";
+                    }
                 }
                 setInterval(countdown, 100);
                 function setStartTime(e) {
@@ -151,10 +157,11 @@
             </p>
             <p class="textcss"><span id="sign"></span></p>
             <p class="textcss">
-                <span id="days"></span> <span id="k0"></span>
-                <span id="hours"></span> <span id="k1"></span>
-                <span id="minutes"></span> <span id="k2"></span>
-                <span id="seconds"></span> <span id="k3"></span>
+                <span id="days"></span> <span id="k1"></span>
+                <span id="hours"></span> <span id="k2"></span>
+                <span id="minutes"></span> <span id="k3"></span>
+                <span id="seconds"></span> <span id="k4"></span>
+                <span id="years"></span>
             </p>
             <br><br><br><br><br>
         </body>

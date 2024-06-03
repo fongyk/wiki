@@ -19,6 +19,7 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script src="../_static/js/chinese-lunar.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -51,9 +52,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../time/index.html">现在时刻</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../link/index.html">快速访问</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">ASCII 码</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">控制字符（33）</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">可打印字符（95）</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">参考资料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">控制字符（33）</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">制表符</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">可打印字符（95）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">参考资料</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C/C++</a></li>
@@ -106,16 +110,17 @@
   }
 </style><section id="id1">
 <h2>控制字符（33）<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
-<table class="docutils align-center" id="id4">
-<caption><span class="caption-text">控制字符</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
+<table class="docutils align-center" id="id5">
+<caption><span class="caption-text">Control Characters</span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 5%" />
-<col style="width: 8%" />
+<col style="width: 7%" />
 <col style="width: 8%" />
 <col style="width: 9%" />
 <col style="width: 10%" />
-<col style="width: 12%" />
-<col style="width: 48%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 43%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>DEC</p></th>
@@ -124,6 +129,7 @@
 <th class="head"><p>BIN</p></th>
 <th class="head"><p>Symbol</p></th>
 <th class="head"><p>HTML Number</p></th>
+<th class="head"><p>Caret Notation</p></th>
 <th class="head"><p>Description</p></th>
 </tr>
 </thead>
@@ -134,7 +140,8 @@
 <td><p>00000000</p></td>
 <td><p><span class="f">NUL</span></p></td>
 <td><p>&amp;#00;</p></td>
-<td><p>Null character</p></td>
+<td><p>^&#64;</p></td>
+<td><p>Null character, \0</p></td>
 </tr>
 <tr class="row-odd"><td><p>1</p></td>
 <td><p>001</p></td>
@@ -142,6 +149,7 @@
 <td><p>00000001</p></td>
 <td><p><span class="f">SOH</span></p></td>
 <td><p>&amp;#01;</p></td>
+<td><p>^A</p></td>
 <td><p>Start of Heading</p></td>
 </tr>
 <tr class="row-even"><td><p>2</p></td>
@@ -150,6 +158,7 @@
 <td><p>00000010</p></td>
 <td><p><span class="f">STX</span></p></td>
 <td><p>&amp;#02;</p></td>
+<td><p>^B</p></td>
 <td><p>Start of Text</p></td>
 </tr>
 <tr class="row-odd"><td><p>3</p></td>
@@ -158,6 +167,7 @@
 <td><p>00000011</p></td>
 <td><p><span class="f">ETX</span></p></td>
 <td><p>&amp;#03;</p></td>
+<td><p>^C</p></td>
 <td><p>End of Text</p></td>
 </tr>
 <tr class="row-even"><td><p>4</p></td>
@@ -166,6 +176,7 @@
 <td><p>00000100</p></td>
 <td><p><span class="f">EOT</span></p></td>
 <td><p>&amp;#04;</p></td>
+<td><p>^D</p></td>
 <td><p>End of Transmission</p></td>
 </tr>
 <tr class="row-odd"><td><p>5</p></td>
@@ -174,6 +185,7 @@
 <td><p>00000101</p></td>
 <td><p><span class="f">ENQ</span></p></td>
 <td><p>&amp;#05;</p></td>
+<td><p>^E</p></td>
 <td><p>Enquiry</p></td>
 </tr>
 <tr class="row-even"><td><p>6</p></td>
@@ -182,6 +194,7 @@
 <td><p>00000110</p></td>
 <td><p><span class="f">ACK</span></p></td>
 <td><p>&amp;#06;</p></td>
+<td><p>^F</p></td>
 <td><p>Acknowledge</p></td>
 </tr>
 <tr class="row-odd"><td><p>7</p></td>
@@ -190,6 +203,7 @@
 <td><p>00000111</p></td>
 <td><p><span class="f">BEL</span></p></td>
 <td><p>&amp;#07;</p></td>
+<td><p>^G</p></td>
 <td><p>Bell, Alert, \a</p></td>
 </tr>
 <tr class="row-even"><td><p>8</p></td>
@@ -198,6 +212,7 @@
 <td><p>00001000</p></td>
 <td><p><span class="f">BS</span></p></td>
 <td><p>&amp;#08;</p></td>
+<td><p>^H</p></td>
 <td><p>Backspace, \b</p></td>
 </tr>
 <tr class="row-odd"><td><p>9</p></td>
@@ -206,7 +221,8 @@
 <td><p>00001001</p></td>
 <td><p><span class="f">HT</span></p></td>
 <td><p>&amp;#09;</p></td>
-<td><p>Horizontal Tab, \t</p></td>
+<td><p>^I</p></td>
+<td><p>Horizontal Tabulation, \t</p></td>
 </tr>
 <tr class="row-even"><td><p>10</p></td>
 <td><p>012</p></td>
@@ -214,6 +230,7 @@
 <td><p>00001010</p></td>
 <td><p><span class="f">LF</span></p></td>
 <td><p>&amp;#10;</p></td>
+<td><p>^J</p></td>
 <td><p>Line Feed, \n</p></td>
 </tr>
 <tr class="row-odd"><td><p>11</p></td>
@@ -222,6 +239,7 @@
 <td><p>00001011</p></td>
 <td><p><span class="f">VT</span></p></td>
 <td><p>&amp;#11;</p></td>
+<td><p>^K</p></td>
 <td><p>Vertical Tabulation, \v</p></td>
 </tr>
 <tr class="row-even"><td><p>12</p></td>
@@ -230,6 +248,7 @@
 <td><p>00001100</p></td>
 <td><p><span class="f">FF</span></p></td>
 <td><p>&amp;#12;</p></td>
+<td><p>^L</p></td>
 <td><p>Form Feed, \f</p></td>
 </tr>
 <tr class="row-odd"><td><p>13</p></td>
@@ -238,6 +257,7 @@
 <td><p>00001101</p></td>
 <td><p><span class="f">CR</span></p></td>
 <td><p>&amp;#13;</p></td>
+<td><p>^M</p></td>
 <td><p>Carriage Return, \r</p></td>
 </tr>
 <tr class="row-even"><td><p>14</p></td>
@@ -246,6 +266,7 @@
 <td><p>00001110</p></td>
 <td><p><span class="f">SO</span></p></td>
 <td><p>&amp;#14;</p></td>
+<td><p>^N</p></td>
 <td><p>Shift Out</p></td>
 </tr>
 <tr class="row-odd"><td><p>15</p></td>
@@ -254,6 +275,7 @@
 <td><p>00001111</p></td>
 <td><p><span class="f">SI</span></p></td>
 <td><p>&amp;#15;</p></td>
+<td><p>^O</p></td>
 <td><p>Shift In</p></td>
 </tr>
 <tr class="row-even"><td><p>16</p></td>
@@ -262,6 +284,7 @@
 <td><p>00010000</p></td>
 <td><p><span class="f">DLE</span></p></td>
 <td><p>&amp;#16;</p></td>
+<td><p>^P</p></td>
 <td><p>Data Link Escape</p></td>
 </tr>
 <tr class="row-odd"><td><p>17</p></td>
@@ -270,6 +293,7 @@
 <td><p>00010001</p></td>
 <td><p><span class="f">DC1</span></p></td>
 <td><p>&amp;#17;</p></td>
+<td><p>^Q</p></td>
 <td><p>Device Control One (XON)</p></td>
 </tr>
 <tr class="row-even"><td><p>18</p></td>
@@ -278,6 +302,7 @@
 <td><p>00010010</p></td>
 <td><p><span class="f">DC2</span></p></td>
 <td><p>&amp;#18;</p></td>
+<td><p>^R</p></td>
 <td><p>Device Control Two</p></td>
 </tr>
 <tr class="row-odd"><td><p>19</p></td>
@@ -286,6 +311,7 @@
 <td><p>00010011</p></td>
 <td><p><span class="f">DC3</span></p></td>
 <td><p>&amp;#19;</p></td>
+<td><p>^S</p></td>
 <td><p>Device Control Three (XOFF)</p></td>
 </tr>
 <tr class="row-even"><td><p>20</p></td>
@@ -294,6 +320,7 @@
 <td><p>00010100</p></td>
 <td><p><span class="f">DC4</span></p></td>
 <td><p>&amp;#20;</p></td>
+<td><p>^T</p></td>
 <td><p>Device Control Four</p></td>
 </tr>
 <tr class="row-odd"><td><p>21</p></td>
@@ -302,6 +329,7 @@
 <td><p>00010101</p></td>
 <td><p><span class="f">NAK</span></p></td>
 <td><p>&amp;#21;</p></td>
+<td><p>^U</p></td>
 <td><p>Negative Acknowledge</p></td>
 </tr>
 <tr class="row-even"><td><p>22</p></td>
@@ -310,6 +338,7 @@
 <td><p>00010110</p></td>
 <td><p><span class="f">SYN</span></p></td>
 <td><p>&amp;#22;</p></td>
+<td><p>^V</p></td>
 <td><p>Synchronous Idle</p></td>
 </tr>
 <tr class="row-odd"><td><p>23</p></td>
@@ -318,6 +347,7 @@
 <td><p>00010111</p></td>
 <td><p><span class="f">ETB</span></p></td>
 <td><p>&amp;#23;</p></td>
+<td><p>^W</p></td>
 <td><p>End of Transmission Block</p></td>
 </tr>
 <tr class="row-even"><td><p>24</p></td>
@@ -326,6 +356,7 @@
 <td><p>00011000</p></td>
 <td><p><span class="f">CAN</span></p></td>
 <td><p>&amp;#24;</p></td>
+<td><p>^X</p></td>
 <td><p>Cancel</p></td>
 </tr>
 <tr class="row-odd"><td><p>25</p></td>
@@ -334,6 +365,7 @@
 <td><p>00011001</p></td>
 <td><p><span class="f">EM</span></p></td>
 <td><p>&amp;#25;</p></td>
+<td><p>^Y</p></td>
 <td><p>End of Medium</p></td>
 </tr>
 <tr class="row-even"><td><p>26</p></td>
@@ -342,6 +374,7 @@
 <td><p>00011010</p></td>
 <td><p><span class="f">SUB</span></p></td>
 <td><p>&amp;#26;</p></td>
+<td><p>^Z</p></td>
 <td><p>Substitute</p></td>
 </tr>
 <tr class="row-odd"><td><p>27</p></td>
@@ -350,6 +383,7 @@
 <td><p>00011011</p></td>
 <td><p><span class="f">ESC</span></p></td>
 <td><p>&amp;#27;</p></td>
+<td><p>^[</p></td>
 <td><p>Escape, \e</p></td>
 </tr>
 <tr class="row-even"><td><p>28</p></td>
@@ -358,6 +392,7 @@
 <td><p>00011100</p></td>
 <td><p><span class="f">FS</span></p></td>
 <td><p>&amp;#28;</p></td>
+<td><p>^\</p></td>
 <td><p>File Separator</p></td>
 </tr>
 <tr class="row-odd"><td><p>29</p></td>
@@ -366,6 +401,7 @@
 <td><p>00011101</p></td>
 <td><p><span class="f">GS</span></p></td>
 <td><p>&amp;#29;</p></td>
+<td><p>^]</p></td>
 <td><p>Group Separator</p></td>
 </tr>
 <tr class="row-even"><td><p>30</p></td>
@@ -374,6 +410,7 @@
 <td><p>00011110</p></td>
 <td><p><span class="f">RS</span></p></td>
 <td><p>&amp;#30;</p></td>
+<td><p>^^</p></td>
 <td><p>Record Separator</p></td>
 </tr>
 <tr class="row-odd"><td><p>31</p></td>
@@ -382,6 +419,7 @@
 <td><p>00011111</p></td>
 <td><p><span class="f">US</span></p></td>
 <td><p>&amp;#31;</p></td>
+<td><p>^_</p></td>
 <td><p>Unit Separator</p></td>
 </tr>
 <tr class="row-even"><td><p>127</p></td>
@@ -390,15 +428,36 @@
 <td><p>01111111</p></td>
 <td><p><span class="f">DEL</span></p></td>
 <td><p>&amp;#127;</p></td>
+<td><p>^?</p></td>
 <td><p>Delete</p></td>
 </tr>
 </tbody>
 </table>
-</section>
+<p>Shell 中使用 <code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">-vET</span> <span class="pre">file</span></code> 可以打印出一些 Caret Notation 格式的字符。</p>
 <section id="id2">
-<h2>可打印字符（95）<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
-<table class="docutils align-center" id="id5">
-<caption><span class="caption-text">可打印字符</span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
+<h3>制表符<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h3>
+<p>制表符（Tab）不是可打印字符，因为它不是用于显示某个具体字符，更不代表固定长度的空白字符，而是用于控制文本的格式和布局。</p>
+<p>假设在 HTML 的 &lt;pre&gt; 元素中插入这样一段源码：</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="ni">&amp;#9;</span>This line begins with a single tab.
+<span class="linenos">2</span>Here<span class="ni">&amp;#9;</span>are<span class="ni">&amp;#9;</span>some<span class="ni">&amp;#9;</span>more<span class="ni">&amp;#9;</span>tab<span class="ni">&amp;#9;</span>characters<span class="ni">&amp;#9;</span>!
+<span class="linenos">3</span>T.......T.......T.......T.......T.......T.......T.......T
+</pre></div>
+</div>
+<p>网页中显示的效果如下（默认 tab-size 为 8）：</p>
+<pre>
+&#9;This line begins with a single tab.
+Here&#9;are&#9;some&#9;more&#9;tab&#9;characters&#9;!
+T.......T.......T.......T.......T.......T.......T.......T
+</pre><p>满足：</p>
+<div class="math notranslate nohighlight">
+\[(\mathrm{wordLength} + \mathrm{tabSpaceLength})\ \% \ \mathrm{tabSize} = 0\]</div>
+<p>使用文本编辑器时，可以设置按 Tab 键插入一个制表符，或者插入固定长度的空格（一般默认为 4 个空格）。</p>
+</section>
+</section>
+<section id="id3">
+<h2>可打印字符（95）<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<table class="docutils align-center" id="id6">
+<caption><span class="caption-text">Printable Characters</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 5%" />
 <col style="width: 8%" />
@@ -444,7 +503,7 @@
 <td><p>22</p></td>
 <td><p>00100010</p></td>
 <td><p><span class="f">“</span></p></td>
-<td><p>&quot;</p></td>
+<td><p>&amp;#34;</p></td>
 <td><p>&amp;quot;</p></td>
 <td><p>Double quotes, Speech marks</p></td>
 </tr>
@@ -489,7 +548,7 @@
 <td><p>27</p></td>
 <td><p>00100111</p></td>
 <td><p><span class="f">‘</span></p></td>
-<td><p>'</p></td>
+<td><p>&amp;#39;</p></td>
 <td><p>&amp;apos;</p></td>
 <td><p>Single quote</p></td>
 </tr>
@@ -543,7 +602,7 @@
 <td><p>2D</p></td>
 <td><p>00101101</p></td>
 <td><p><span class="f">-</span></p></td>
-<td><p>-</p></td>
+<td><p>&amp;#45;</p></td>
 <td></td>
 <td><p>Hyphen, Minus</p></td>
 </tr>
@@ -552,7 +611,7 @@
 <td><p>2E</p></td>
 <td><p>00101110</p></td>
 <td><p><span class="f">.</span></p></td>
-<td><p>.</p></td>
+<td><p>&amp;#46;</p></td>
 <td><p>&amp;period;</p></td>
 <td><p>Period, Dot, Full stop</p></td>
 </tr>
@@ -966,7 +1025,7 @@
 <td><p>5C</p></td>
 <td><p>01011100</p></td>
 <td><p><span class="f">\</span></p></td>
-<td><p>\</p></td>
+<td><p>&amp;#92;</p></td>
 <td><p>&amp;bsol;</p></td>
 <td><p>Backslash</p></td>
 </tr>
@@ -1002,7 +1061,7 @@
 <td><p>60</p></td>
 <td><p>01100000</p></td>
 <td><p><span class="f">`</span></p></td>
-<td><p>`</p></td>
+<td><p>&amp;#96;</p></td>
 <td><p>&amp;grave;</p></td>
 <td><p>Grave accent</p></td>
 </tr>
@@ -1279,8 +1338,8 @@
 </tbody>
 </table>
 </section>
-<section id="id3">
-<h2>参考资料<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<section id="id4">
+<h2>参考资料<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>ASCII Table</p></li>
 </ol>
